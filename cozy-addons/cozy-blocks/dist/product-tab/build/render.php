@@ -62,6 +62,10 @@ $item_box = array(
 );
 
 $post_image = array(
+	'margin' => array(
+		'top'    => isset( $attributes['imageStyles']['margin']['top'] ) ? $attributes['imageStyles']['margin']['top'] : '0px',
+		'bottom' => isset( $attributes['imageStyles']['margin']['bottom'] ) ? $attributes['imageStyles']['margin']['bottom'] : '0px',
+	),
 	'radius' => isset( $attributes['imageStyles']['radius'] ) ? $attributes['imageStyles']['radius'] : '',
 	'color'  => array(
 		'overlay' => isset( $attributes['imageStyles']['overlay'] ) ? $attributes['imageStyles']['overlay'] : '',
@@ -271,6 +275,8 @@ $block_styles = <<<BLOCK_STYLES
     max-width: {$attributes['imageStyles']['width']};
     max-height: {$attributes['imageStyles']['height']};
 	border-radius: {$post_image['radius']};
+	margin-top: {$post_image['margin']['top']};
+	margin-bottom: {$post_image['margin']['bottom']};
 }
 #$block_id .cozy-block-product-tab__product-image img {
     height: {$attributes['imageStyles']['height']};

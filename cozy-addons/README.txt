@@ -4,7 +4,7 @@ Tags: gutenberg-blocks, wordpress-blocks, woocommerce-blocks, patterns, template
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.6
-Stable tag: 2.0.15
+Stable tag: 2.0.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks, patterns & templates designed to extend the WordPress Site Editor.
@@ -38,7 +38,7 @@ Streamline your website designs with our library of advanced blocks, patterns & 
 
 Watch our step-by-step tutorial on installing Cozy Blocks!
 
-https://www.youtube.com/watch?v=BqUeANCB7Oo
+https://www.youtube.com/watch?v=GP4NxSbikS4
 
 = Extensive Patterns Library =
 Discover our extensive Pattern Library, offering over 20+ categories and 200+ professionally designed patterns for FSE and Gutenberg Editor. Accelerate your website creation process with ready-to-use patterns, crafted to build sites faster and more efficiently.
@@ -144,7 +144,7 @@ Transform your online store with WooCommerce Blocks. Our plugin includes a versa
 
 Watch our step-by-step tutorial on installing Cozy Blocks!
 
-https://www.youtube.com/watch?v=BqUeANCB7Oo
+https://www.youtube.com/watch?v=GP4NxSbikS4
 
 == Frequently Asked Questions ==
 
@@ -167,6 +167,12 @@ You can report any security bugs found in the source code of this plugin through
 7. Animation and Hover Effects
 
 == Changelog ==
+= 2.0.16 - September 30, 2024 = 
+* Fix: Advanced Gallery lightbox slider initialization.
+* Fix: Advanced Gallery ajax loader.
+* Fix: Portfolio Gallery lightbox slider initialization.
+* Fix: XSS in elementor Call to Action Widget.
+
 = 2.0.15 - September 12, 2024 = 
 * Add: Affiliate partnership program.
 * Add: Featured Post element styles in 'Categorized Post tabs' and 'Magazine Grid' block.

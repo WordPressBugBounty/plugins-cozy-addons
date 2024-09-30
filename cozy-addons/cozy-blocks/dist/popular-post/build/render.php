@@ -35,6 +35,13 @@ $cat_styles  = array(
 	'border_color_hover' => isset( $attributes['categoryStyles']['borderColorHover'] ) ? $attributes['categoryStyles']['borderColorHover'] : '',
 );
 
+$post_image = array(
+	'margin' => array(
+		'top'    => isset( $attributes['images']['margin']['top'] ) ? $attributes['images']['margin']['top'] : '',
+		'bottom' => isset( $attributes['images']['margin']['bottom'] ) ? $attributes['images']['margin']['bottom'] : '',
+	),
+);
+
 $title_styles = array(
 	'color'       => isset( $attributes['titleStyles']['color'] ) ? $attributes['titleStyles']['color'] : '',
 	'color_hover' => isset( $attributes['titleStyles']['colorHover'] ) ? $attributes['titleStyles']['colorHover'] : '',
@@ -158,6 +165,12 @@ $block_styles = <<<BLOCK_STYLES
 
 #$block_id .cozy-block-popular-posts__image  {
 	max-height: {$attributes['imageStyles']['height']};
+	max-width: {$attributes['imageStyles']['width']};
+	border-radius: {$attributes['imageStyles']['radius']};
+	margin-top: {$post_image['margin']['top']};
+	margin-bottom: {$post_image['margin']['bottom']};
+}
+#$block_id.display-list .cozy-block-popular-posts__image  {
 	min-width: {$attributes['imageStyles']['width']};
 }
 #$block_id .cozy-block-popular-posts__image img {

@@ -554,17 +554,3 @@ if ( ! function_exists( 'cozy_create_excerpt' ) ) {
 		return esc_html_x( $content, 'cozy-addons' );
 	}
 }
-
-/* Strip chars */
-if ( ! function_exists( 'cozy_remove_special_chars' ) ) {
-	function cozy_remove_special_chars( $str, $args = array() ) {
-		$special_chars = array( ';', '=', '(', ')', ' ' );
-		if ( ! empty( $args ) && is_array( $args ) ) {
-			$special_chars = array_diff( $special_chars, $args );
-		}
-
-		$str = wp_strip_all_tags( $str );
-
-		return str_replace( $special_chars, '', $str );
-	}
-}

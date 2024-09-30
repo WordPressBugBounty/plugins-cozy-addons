@@ -79,6 +79,10 @@
         "labelAfter": true
       }
     },
+    "linkNewTab": {
+      "type": "boolean",
+      "default": false
+    },
     "labelBefore": {
       "type": "string",
       "default": ""

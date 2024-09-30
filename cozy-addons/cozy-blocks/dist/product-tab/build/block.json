@@ -257,6 +257,10 @@
       "default": {
         "width": "",
         "height": "330px",
+        "margin": {
+          "top": "0px",
+          "bottom": "0px"
+        },
         "radius": "0px",
         "hoverEffect": true,
         "linkProduct": true,

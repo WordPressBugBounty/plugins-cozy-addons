@@ -1332,7 +1332,7 @@ if ( ! function_exists( 'cozy_block_advanced_gallery_load_content' ) ) {
 		check_ajax_referer( 'cozy_block_advanced_gallery_load_more', 'nonce', true );
 		$attributes = $_POST['attributes'];
 		$offset     = isset( $_POST['offset'] ) ? $_POST['offset'] : 0;
-		$tab_slug   = $_POST['tabSlug'];
+		$tab_slug   = isset( $_POST['tabSlug'] ) && '' !== $_POST['tabSlug'] ? $_POST['tabSlug'] : 'all';
 
 		if ( empty( $attributes ) ) {
 			return;
@@ -1386,7 +1386,7 @@ if ( ! function_exists( 'cozy_block_advanced_gallery_load_content' ) ) {
 				$remaining_posts_chunk = array_slice( $remaining_posts, $offset, $posts_per_page );
 				$next_chunk            = array_slice( $remaining_posts, $offset + $posts_per_page, $posts_per_page );
 				if ( empty( $remaining_posts_chunk ) ) {
-					wp_send_json_error( '' );
+					wp_send_json_error( $remaining_posts_chunk );
 				}
 
 				if ( ! empty( $remaining_posts_chunk ) ) {
@@ -1399,6 +1399,7 @@ if ( ! function_exists( 'cozy_block_advanced_gallery_load_content' ) ) {
 					$return_data = array(
 						'render'           => $output,
 						'next_chunk_count' => count( $next_chunk ),
+						'tab_slug'         => $tab_slug,
 					);
 					wp_send_json_success( $return_data );
 				}
@@ -1418,7 +1419,7 @@ if ( ! function_exists( 'cozy_block_advanced_gallery_load_content' ) ) {
 				$next_chunk            = array_slice( $remaining_posts, $tab_offset + $posts_per_page, $posts_per_page );
 
 				if ( empty( $remaining_posts_chunk ) ) {
-					wp_send_json_error( '' );
+					wp_send_json_error( $tab_slug );
 				}
 
 				if ( ! empty( $remaining_posts_chunk ) ) {
@@ -1431,6 +1432,7 @@ if ( ! function_exists( 'cozy_block_advanced_gallery_load_content' ) ) {
 					$return_data = array(
 						'render'           => $output,
 						'next_chunk_count' => count( $next_chunk ),
+						'tab_slug'         => $tab_slug,
 					);
 					wp_send_json_success( $return_data );
 				}
@@ -1758,5 +1760,19 @@ if ( ! function_exists( 'render_cozy_block_quick_view_lightbox_body' ) ) {
 				)
 			);
 		}
+	}
+}
+
+/* Strip chars */
+if ( ! function_exists( 'cozy_remove_special_chars' ) ) {
+	function cozy_remove_special_chars( $str, $args = array() ) {
+		$special_chars = array( ';', '=', '(', ')', ' ' );
+		if ( ! empty( $args ) && is_array( $args ) ) {
+			$special_chars = array_diff( $special_chars, $args );
+		}
+
+		$str = wp_strip_all_tags( $str );
+
+		return str_replace( $special_chars, '', $str );
 	}
 }

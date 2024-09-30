@@ -122,7 +122,9 @@ if ( $attributes['enableOptions']['labelBefore'] ) {
 
 $output .= '<div>';
 
-$output .= '<a class="cozy-block-post-comments__wrapper" href="' . esc_url( $post_comments_link ) . '" target="_blank" rel="noopener">';
+$open_new_tab = isset( $attributes['linkNewTab'] ) && $attributes['linkNewTab'] ? 'target="_blank"' : '';
+
+$output .= '<a class="cozy-block-post-comments__wrapper" href="' . esc_url( $post_comments_link ) . '" ' . $open_new_tab . ' rel="noopener">';
 if ( 'before' === $attributes['icon']['position'] ) {
 	$output .= render_cozy_block_post_comments_icon( $attributes, $post_comments_count );
 }
@@ -144,6 +146,8 @@ if ( $attributes['enableOptions']['labelAfter'] ) {
 
 $output .= '</div></div>';
 
-if ( isset( $post_comments_count ) && ! empty( $post_comments_count ) && '0' != $post_comments_count ) {
+$post_type = $block->context['postType'];
+
+if ( isset( $post_comments_count ) && 'post' === $post_type && ! empty( $post_comments_count ) && '0' != $post_comments_count ) {
 	echo $output;
 }

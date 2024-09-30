@@ -128,6 +128,8 @@ if ( $attributes['enableOptions']['labelAfter'] ) {
 
 $output .= '</div></div>';
 
-if ( isset( $post_views_count ) && ! empty( $post_views_count ) && '0' != $post_views_count ) {
+$post_type = $block->context['postType'];
+
+if ( isset( $post_views_count ) && 'post' === $post_type && ! empty( $post_views_count ) && '0' != $post_views_count ) {
 	echo $output;
 }

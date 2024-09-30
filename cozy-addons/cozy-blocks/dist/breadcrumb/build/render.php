@@ -15,8 +15,8 @@ if ( ! is_home() ) {
 	$output .= '<p class="cozy-block-breadcrumb" id="cozyBreadcrumb_ ' . $block_id . '" style=" ' . $style . '">';
 	$output .= '<a href="' . home_url( '/' ) . '">Home</a> / ';
 	if ( is_category() ) {
-		$category = get_the_category();
-		$output  .= $category[0]->name;
+		$category = single_cat_title( '', false );
+		$output  .= $category;
 	} elseif ( is_single() ) {
 		$categories = get_the_category();
 		if ( is_single() && $categories ) {
@@ -26,6 +26,7 @@ if ( ! is_home() ) {
 	} elseif ( is_page() ) {
 		$output .= the_title( '', '', false );
 	}
+
 	$output .= '</p>';
 }
 

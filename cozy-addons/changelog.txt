@@ -1,3 +1,9 @@
+= 2.0.16 - September 30, 2024 = 
+* Fix: Advanced Gallery lightbox slider initialization.
+* Fix: Advanced Gallery ajax loader.
+* Fix: Portfolio Gallery lightbox slider initialization.
+* Fix: XSS in elementor Call to Action Widget.
+
 = 2.0.15 - September 12, 2024 = 
 * Add: Affiliate partnership program.
 * Add: Featured Post element styles in 'Categorized Post tabs' and 'Magazine Grid' block.

@@ -385,14 +385,14 @@ class Cozy_Addons_Elementor_Widgets {
 		if ( cozy_addons_premium_access() ) {
 			return $settings;
 		}
-			$promotion_widgets = array();
+		$promotion_widgets = array();
 		if ( isset( $settings['promotionWidgets'] ) ) {
 			$promotion_widgets = $settings['promotionWidgets'];
 		}
 
-			$cozy_addons_stub_widgets = self::$cozy_addons_pro_widget_stub['addons'];
+		$cozy_addons_stub_widgets = self::$cozy_addons_pro_widget_stub['addons'];
 
-			$ctWidgets = array();
+		$ctWidgets = array();
 		foreach ( $cozy_addons_stub_widgets as $stub ) {
 			$ctWidgets[] = array(
 				'name'       => $stub['slug'],
@@ -402,10 +402,10 @@ class Cozy_Addons_Elementor_Widgets {
 			);
 		}
 
-			$mergedArray                  = array_merge( $promotion_widgets, $ctWidgets );
-			$settings['promotionWidgets'] = $mergedArray;
+		$mergedArray                  = array_merge( $promotion_widgets, $ctWidgets );
+		$settings['promotionWidgets'] = $mergedArray;
 
-			return $settings;
+		return $settings;
 	}
 	public function __construct() {
 

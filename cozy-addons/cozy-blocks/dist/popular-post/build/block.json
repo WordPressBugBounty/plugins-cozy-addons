@@ -134,9 +134,13 @@
       "default": {
         "gap": "10px",
         "hoverEffect": true,
+        "margin": {
+          "top": "0px",
+          "bottom": "0px"
+        },
         "width": "220px",
         "height": "120px",
-        "radius": ""
+        "radius": "0px"
       }
     },
     "categoryStyles": {
