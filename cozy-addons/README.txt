@@ -4,7 +4,7 @@ Tags: gutenberg-blocks, wordpress-blocks, woocommerce-blocks, patterns, template
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.6
-Stable tag: 2.0.16
+Stable tag: 2.0.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks, patterns & templates designed to extend the WordPress Site Editor.
@@ -34,9 +34,13 @@ Streamline your website designs with our library of advanced blocks, patterns & 
 <li>Advanced Gallery with multiple layouts</li>
 </ul>
 
-[Cozy Blocks](https://cozythemes.com/cozy-addons/) is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Perfectly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it boasts a comprehensive library of over 40 advanced, customizable Gutenberg blocks and more than 200+ patterns library organized across over 20 distinct categories. Designed to be user-friendly for both experienced developers and beginners alike, [Cozy Blocks](https://cozythemes.com/cozy-addons/) enables users to effortlessly design dynamic, visually stunning websites. Whether you’re creating an e-commerce site, or a news and magazine platform, or a corporate agency website, or any other type of web presence, [Cozy Blocks](https://cozythemes.com/cozy-addons/) provides the powerful tools you need. Supported by flexible customization options and robust support, this plugin allows you to embrace the future of web design and unlock your creative potential. Join the [Cozy Blocks](https://cozythemes.com/cozy-addons/) movement and build any type of website with ease.
+[Cozy Blocks](https://cozythemes.com/cozy-addons/) is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Seamlessly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it offers a robust library of over 40 advanced, customizable Gutenberg blocks and more than 200 patterns, organized into 20+ distinct categories. Designed for ease of use, [Cozy Blocks](https://cozythemes.com/cozy-addons/) caters to both experienced developers and beginners, enabling users to effortlessly design dynamic, visually stunning websites.
 
-Watch our step-by-step tutorial on installing Cozy Blocks!
+Whether you’re building an e-commerce store, a news platform, a corporate site, or any other type of web presence, [Cozy Blocks](https://cozythemes.com/cozy-addons/) provides the powerful tools you need. Supported by flexible customization options and robust support, this plugin empowers you to embrace the future of web design and unlock your creative potential.
+
+Join the [Cozy Blocks](https://cozythemes.com/cozy-addons/) movement today and build your website with ease.
+
+Watch our step-by-step tutorial on installing [Cozy Blocks](https://cozythemes.com/cozy-addons/)!
 
 https://www.youtube.com/watch?v=GP4NxSbikS4
 
@@ -167,20 +171,10 @@ You can report any security bugs found in the source code of this plugin through
 7. Animation and Hover Effects
 
 == Changelog ==
-= 2.0.16 - September 30, 2024 = 
-* Fix: Advanced Gallery lightbox slider initialization.
+= 2.0.17 - October 2, 2024 = 
 * Fix: Advanced Gallery ajax loader.
-* Fix: Portfolio Gallery lightbox slider initialization.
-* Fix: XSS in elementor Call to Action Widget.
-
-= 2.0.15 - September 12, 2024 = 
-* Add: Affiliate partnership program.
-* Add: Featured Post element styles in 'Categorized Post tabs' and 'Magazine Grid' block.
-* Fix: Ajax loader button closing div element.
-* Fix: Featured Product & Featured Product Tabs sale badge content type render.
-
-= 2.0.14 - September 2, 2024 = 
-* Fix: Product Showcase Tabs sale badge content type render.
+* Fix: Slider thumbnail image fit.
+* Update: Freemius SDK.
 
 [See changes for all the versions here.](https://plugins.svn.wordpress.org/cozy-addons/trunk/changelog.txt)
 

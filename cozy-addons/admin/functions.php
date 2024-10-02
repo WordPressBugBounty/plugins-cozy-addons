@@ -1330,9 +1330,10 @@ add_action( 'wp_ajax_nopriv_cozy_block_advanced_gallery_loader', 'cozy_block_adv
 if ( ! function_exists( 'cozy_block_advanced_gallery_load_content' ) ) {
 	function cozy_block_advanced_gallery_load_content() {
 		check_ajax_referer( 'cozy_block_advanced_gallery_load_more', 'nonce', true );
-		$attributes = $_POST['attributes'];
-		$offset     = isset( $_POST['offset'] ) ? $_POST['offset'] : 0;
-		$tab_slug   = isset( $_POST['tabSlug'] ) && '' !== $_POST['tabSlug'] ? $_POST['tabSlug'] : 'all';
+		$attributes = isset( $_POST['attributes'] ) ? json_decode( stripslashes( $_POST['attributes'] ), true ) : array();
+
+		$offset   = isset( $_POST['offset'] ) ? intval( $_POST['offset'] ) : 0;
+		$tab_slug = isset( $_POST['tabSlug'] ) && '' !== $_POST['tabSlug'] ? $_POST['tabSlug'] : 'all';
 
 		if ( empty( $attributes ) ) {
 			return;
