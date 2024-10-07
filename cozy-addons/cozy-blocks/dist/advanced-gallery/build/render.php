@@ -628,8 +628,10 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 }
 /* End Tab Content Body */
 
-/* Lightbox */
-if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['lightbox'] && ! empty( $attributes['mediaCollection'] ) ) {
+/*
+Lightbox */
+// if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['lightbox'] && ! empty( $attributes['mediaCollection'] ) ) {
+if ( $attributes['enableOptions']['lightbox'] && ! empty( $attributes['mediaCollection'] ) ) {
 	$output .= '<div class="cozy-block-advanced-gallery__lightbox-wrapper display-none">';
 
 	$output .= '<div class="cozy-block-advanced-gallery__toolbar-wrapper" style="display:flex;justify-content:space-between;">';
@@ -657,7 +659,7 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['lightbox
 
 	$output .= '</div>';
 
-	if ( ( $attributes['enableOptions']['isotopeFilter'] && $attributes['tabOptions']['showDefaultTab'] ) || ( ! $attributes['enableOptions']['isotopeFilter'] && 'grid' === $attributes['display'] ) ) {
+	if ( ( $attributes['enableOptions']['isotopeFilter'] && $attributes['tabOptions']['showDefaultTab'] ) || ( ! $attributes['enableOptions']['isotopeFilter'] && 'grid' === $attributes['display'] ) || 'carousel' === $attributes['display'] ) {
 		$output .= '<div class="cozy-block-advanced-gallery__lightbox active-gallery">';
 		$output .= '<ul class="cozy-block-advanced-gallery__lightbox-swiper-wrapper swiper-wrapper active-content">';
 		foreach ( (array) $attributes['mediaCollection'] as $media ) {

@@ -4,7 +4,7 @@ Tags: gutenberg-blocks, wordpress-blocks, woocommerce-blocks, patterns, template
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.6
-Stable tag: 2.0.17
+Stable tag: 2.0.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks, patterns & templates designed to extend the WordPress Site Editor.
@@ -171,6 +171,10 @@ You can report any security bugs found in the source code of this plugin through
 7. Animation and Hover Effects
 
 == Changelog ==
+= 2.0.18 - October 7, 2024 = 
+* Fix: Lightbox for carousel layout in 'Advanced Gallery' block.
+* Fix: Filter for portfolio gallery category.
+
 = 2.0.17 - October 2, 2024 = 
 * Fix: Advanced Gallery ajax loader.
 * Fix: Slider thumbnail image fit.
