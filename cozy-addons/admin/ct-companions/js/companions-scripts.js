@@ -420,6 +420,19 @@
         },
       });
     });
+
+    $(".ca-elementor__removal-notice").on(
+      "click",
+      ".notice-dismiss",
+      function () {
+        $.ajax({
+          url: ajax_url,
+          data: {
+            action: "ca_elementor_removal_dismissable_notice",
+          },
+        });
+      }
+    );
   });
 
   function changeTab(index) {

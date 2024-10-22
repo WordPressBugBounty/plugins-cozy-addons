@@ -483,6 +483,11 @@ function cozy_blocks_dismissble_notice() {
 }
 add_action( 'wp_ajax_cozy_blocks_dismissble_notice', 'cozy_blocks_dismissble_notice' );
 
+function ca_elementor_removal_dismissable_notice() {
+	update_option( 'ca_clear_elementor_removal_notice', 1 );
+}
+add_action( 'wp_ajax_ca_elementor_removal_dismissable_notice', 'ca_elementor_removal_dismissable_notice' );
+
 add_action( 'wp_ajax_cozy_block_magazine_grid_loader', 'cozy_block_magazine_grid_load_content' );
 add_action( 'wp_ajax_nopriv_cozy_block_magazine_grid_loader', 'cozy_block_magazine_grid_load_content' );
 if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
@@ -1776,4 +1781,25 @@ if ( ! function_exists( 'cozy_remove_special_chars' ) ) {
 
 		return str_replace( $special_chars, '', $str );
 	}
+}
+
+/**
+ * Filters HTML content to allow only a specific set of HTML tags and attributes.
+ *
+ * This function helps prevent XSS (Cross-Site Scripting) attacks by sanitizing
+ * user-provided content and ensuring only safe HTML elements and attributes
+ * are allowed. It uses the wp_kses() function internally to enforce the whitelist.
+ *
+ * @param string $content The HTML content to be sanitized.
+ *
+ * @return string The sanitized content with only the allowed HTML tags and attributes.
+ */
+function cozy_filter_html_tags( $tag ) {
+	$allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p' );
+
+	// Convert the user input to lowercase to ensure case-insensitive comparison.
+	$tag = strtolower( trim( $tag ) );
+
+	// Check if the tag is in the whitelist; return it if valid, otherwise return 'p'.
+	return in_array( $tag, $allowed_tags, true ) ? $tag : 'p';
 }

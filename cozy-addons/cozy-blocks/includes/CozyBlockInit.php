@@ -309,7 +309,9 @@ if ( ! class_exists( 'CozyBlockInit' ) ) {
 			// Swiper styles.
 			wp_register_style( 'cozy-swiper-bundle', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/css/swiper-bundle.css', array(), '11.0.3' );
 
-			wp_register_script( 'cozy-block-scripts', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/js/cozy-block-scripts.min.js', array( 'jquery' ), COZY_ADDONS_VERSION, false );
+			wp_register_script( 'cozy-aos-animation', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/js/aos.js', array(), COZY_ADDONS_VERSION, false );
+
+			wp_register_script( 'cozy-block-scripts', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/js/cozy-block-scripts.min.js', array( 'jquery', 'cozy-aos-animation' ), COZY_ADDONS_VERSION, false );
 		}
 
 		private function localize_cozy_icon_lib( $block_name ) {

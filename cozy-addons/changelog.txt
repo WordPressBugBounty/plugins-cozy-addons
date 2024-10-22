@@ -1,3 +1,8 @@
+= 2.0.19 - October 22, 2024 = 
+* Fix: Slider block's initial render template.
+* Fix: Security check for elementor widgets render data.
+* Add: Elementor support removal notice.
+
 = 2.0.18 - October 7, 2024 = 
 * Fix: Lightbox for carousel layout in 'Advanced Gallery' block.
 * Fix: Filter for portfolio gallery category.
