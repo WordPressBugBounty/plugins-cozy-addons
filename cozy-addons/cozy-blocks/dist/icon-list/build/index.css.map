@@ -1,0 +1,1 @@
+{"version":3,"file":"index.css","mappings":";;;AAAA;EACE;AACF;;AAGA;EACE;AAAF,C","sources":["webpack://icon-list/./src/editor.scss"],"sourcesContent":[".cozy-block-icon-list.horizontal .wp-block[data-type=\"cozy-block/list-item\"] {\n  display: inline-block;\n}\n\n// Padding link styles.\n.cozy-link-styles {\n  left: 235px !important;\n}"],"names":[],"sourceRoot":""}

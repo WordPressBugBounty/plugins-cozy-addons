@@ -568,7 +568,7 @@ if ( ! function_exists( 'get_cozy_block_featured_product_data' ) ) {
 				}
 
 				$post_data['ID']                  = $product_id;
-				$post_data['image_url']           = get_the_post_thumbnail( $product_id );
+				$post_data['image_url']           = get_the_post_thumbnail_url( $product_id );
 				$post_data['post_link']           = get_permalink( $product_id );
 				$post_data['post_title']          = get_the_title( $product_id );
 				$post_data['post_content']        = get_the_content( '', '', $product_id );
@@ -602,12 +602,27 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 		$classes[] = $attributes['postBoxStyles']['shadowHover']['enabled'] ? 'has-hover-box-shadow' : '';
 		$output   .= '<li class="' . implode( ' ', $classes ) . '" data-product-id="' . $post_data['ID'] . '">';
 
+		// Toast
+		$output .= '<div class="post__toast visibility-hidden">';
+		$output .= '<div id="tick-icon" style="display:none;">';
+		$output .= '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">';
+		$output .= '<path d="M6.66668 10.1133L12.7947 3.986L13.7373 4.92867L6.66668 11.9993L2.42401 7.75667L3.36668 6.814L6.66668 10.1133Z" />';
+		$output .= '</svg>';
+		$output .= '</div>';
+		$output .= '<div id="cross-icon" style="display:none;">';
+		$output .= '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">';
+		$output .= '<path d="M7.99999 7.058L11.3 3.758L12.2427 4.70067L8.94266 8.00067L12.2427 11.3007L11.2993 12.2433L7.99932 8.94334L4.69999 12.2433L3.75732 11.3L7.05732 8L3.75732 4.7L4.69999 3.75867L7.99999 7.058Z" />';
+		$output .= '</svg>';
+		$output .= '</div>';
+		$output .= '<div class="toast__message"></div>';
+		$output .= '</div>';
+
 		if ( $attributes['enableOptions']['postImage'] && ! empty( $post_data['image_url'] ) ) {
 			$classes   = array();
 			$classes[] = 'post__image';
 			$classes[] = $attributes['postOptions']['image']['hoverEffect'] ? 'has-hover-effect' : '';
 			$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
-			$output   .= '<img src="' . $post_data['image_url'] . '" />';
+			$output   .= '<img src="' . esc_url( $post_data['image_url'] ) . '" />';
 			if ( $attributes['enableOptions']['saleBadge'] && $post_data['on_sale'] ) {
 				$classes   = array();
 				$classes[] = 'cozy-block-featured-product__sale-badge';
@@ -648,10 +663,12 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 				}
 			}
 
-			$output .= '<a href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">';
-			$output .= '<span class="post__image-background">';
-			$output .= '</span>';
-			$output .= '</a>';
+			$has_post_link = isset( $attributes['enableOptions']['imgLinkPost'] ) && $attributes['enableOptions']['imgLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+			$open_new_tab  = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && $attributes['enableOptions']['imgLinkPost'] && $attributes['enableOptions']['imgLinkNewTab'] ? '_blank' : '';
+			$output       .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
+			$output       .= '<span class="post__image-background">';
+			$output       .= '</span>';
+			$output       .= '</a>';
 
 			if ( $attributes['enableOptions']['cart'] || $attributes['enableOptions']['wishlist'] || $attributes['enableOptions']['quickView'] ) {
 				$classes   = array();
@@ -697,17 +714,21 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 		$output .= '<div class="post__content-wrapper">';
 
 		if ( $attributes['enableOptions']['productCategories'] && ! empty( $post_data['categories'] ) ) {
-			$classes   = array();
-			$classes[] = 'post__categories';
-			$classes[] = $attributes['productCategory']['hoverEffect'] ? 'has-hover-effect' : '';
-			$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+			$classes      = array();
+			$classes[]    = 'post__categories';
+			$classes[]    = $attributes['productCategory']['hoverEffect'] ? 'has-hover-effect' : '';
+			$output      .= '<div class="' . implode( ' ', $classes ) . '">';
+			$open_new_tab = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && $attributes['enableOptions']['linkCat'] && $attributes['enableOptions']['catNewTab'] ? '_blank' : '';
 			foreach ( $post_data['categories'] as $cat_data ) {
-				$output .= '<a href="' . esc_url( $cat_data['link'] ) . '" rel="noopener" target="_blank">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
+				$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && $attributes['enableOptions']['linkCat'] ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
+				$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
 			}
-				$output .= '</div>';
+			$output .= '</div>';
 		}
 
-		$output .= '<h2 class="post__title"><a href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
+		$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+		$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleLinkNewTab'] ? '_blank' : '';
+		$output       .= '<h2 class="post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
 
 		$justify_content = $attributes['postOptions']['textAlign'];
 
@@ -741,7 +762,10 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 
 		if ( $attributes['enableOptions']['cartButton'] ) {
 			$output .= '<div class="post__cart-button" data-product-id="' . $post_data['ID'] . '">';
-			$output .= esc_html_x( $attributes['cartButton']['label'], 'cozy-addons' );
+			$output .= '<svg class="loader-icon display-none" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path d="M7.99998 2.66666C9.72665 2.66666 11.2626 3.48666 12.238 4.762L10.6666 6.33333H14.6666V2.33333L13.1873 3.81266C12.5631 3.03781 11.773 2.41284 10.8753 1.98376C9.97754 1.55467 8.99499 1.33241 7.99998 1.33333C4.31798 1.33333 1.33331 4.318 1.33331 8H2.66665C2.66665 6.58551 3.22855 5.22896 4.22874 4.22876C5.22894 3.22857 6.58549 2.66666 7.99998 2.66666ZM13.3333 8C13.3333 9.11533 12.9837 10.2026 12.3336 11.1089C11.6835 12.0151 10.7656 12.6948 9.7091 13.0522C8.65259 13.4096 7.51062 13.4268 6.44382 13.1014C5.37703 12.776 4.4391 12.1243 3.76198 11.238L5.33331 9.66666H1.33331V13.6667L2.81265 12.1873C3.43687 12.9622 4.22694 13.5872 5.12468 14.0162C6.02242 14.4453 7.00497 14.6676 7.99998 14.6667C11.682 14.6667 14.6666 11.682 14.6666 8H13.3333Z" />
+				</svg>';
+			$output .= '<span class="cart-button__label">' . esc_html_x( $attributes['cartButton']['label'], 'cozy-addons' ) . '</span>';
 			$output .= '</div>';
 		}
 

@@ -2,7 +2,7 @@
 
 use CozyBlock\Helpers\WooHelpers;
 
-$client_id     = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $cozy_block_var = 'cozyProductReview_' . str_replace( '-', '_', $client_id );
 
 $blockId = 'cozyBlock_' . str_replace( '-', '_', $client_id );
@@ -149,9 +149,12 @@ $blockStyles = <<<BLOCK_CSS
         margin: 0 0 {$attributes['listOptions']['rowGap']}px 0;
         text-align: {$attributes['listOptions']['textAlign']};
     }
-    #{$blockId} .woo-product-review figure img {
+    #{$blockId} .woo-product-review figure {
         width: {$attributes['reviewImage']['width']}px;
         height: {$attributes['reviewImage']['height']}px;
+        border-radius: {$attributes['reviewImage']['borderRadius']}px;
+    }
+    #{$blockId} .woo-product-review figure img {
         border-radius: {$attributes['reviewImage']['borderRadius']}px;
     }
     #{$blockId} .woo-product-review .display-grid .display-flex.align-start.flex-column {
@@ -161,13 +164,13 @@ $blockStyles = <<<BLOCK_CSS
     #{$blockId} .woo-product-review .display-grid .display-flex.align-start.flex-column .review-date:before {
         border-right-color: {$title_color['text']};
     }
-    #{$blockId} .woo-product-review .display-grid .display-flex.align-start.flex-column .product-name {
+    #{$blockId} .product-name {
         font-size: {$attributes['reviewTitle']['titleTypography']['fontSize']}px;
         font-weight: {$attributes['reviewTitle']['titleTypography']['fontWeight']};
         font-family: {$attributes['reviewTitle']['titleTypography']['fontFamily']};
         color: {$title_color['text']};
     }
-    #{$blockId} .woo-product-review:hover .display-grid .display-flex.align-start.flex-column .product-name {
+    #{$blockId} .product-name:hover {
         color: {$title_color['text_hover']};
     }
     #{$blockId} .product-rating-wrapper {
@@ -355,9 +358,9 @@ if ( ! empty( $reviewsToDisplay ) ) {
 		echo '<style>' . $varPercent . '</style>';
 		echo '<li class="woo-product-review ' . ( $attributes['layout'] === 'carousel' ? 'swiper-slide' : '' ) . '" data-comment-id="' . esc_attr( $review->comment_ID ) . '">';
 
-		if ( $attributes['enableOptions']['reviewContent'] && $attributes['reviewContent']['position'] === 'top' ) {
+		if ( $attributes['enableOptions']['reviewContent'] && 'top' === $attributes['reviewContent']['position'] ) {
 			echo '<div class="review-content-wrapper">';
-			echo '<div class="review-content">' . cozy_create_excerpt( $review->comment_content, 30 ) . '</div>';
+			echo '<div class="review-content">' . cozy_create_excerpt( $review->comment_content, intval( $attributes['reviewContent']['excerpt'] ) ) . '</div>';
 			echo '</div>';
 		}
 
@@ -378,7 +381,9 @@ if ( ! empty( $reviewsToDisplay ) ) {
 		echo '<div class="display-flex">';
 
 		if ( $attributes['enableOptions']['productName'] ) {
-			echo '<a class="product-name" href="' . esc_url( $review->product_url ) . '" rel="noopener" target="_blank">';
+			$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $review->product_url ) . '"' : '';
+			$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleLinkNewTab'] ? '_blank' : '';
+			echo '<a class="product-name" ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
 			echo esc_html__( $review->product_name, 'cozy-addons' );
 			echo '</a>';
 		}
@@ -405,9 +410,9 @@ if ( ! empty( $reviewsToDisplay ) ) {
 
 		echo '</div>';
 
-		if ( $attributes['enableOptions']['reviewContent'] && $attributes['reviewContent']['position'] === 'bottom' ) {
+		if ( $attributes['enableOptions']['reviewContent'] && 'bottom' === $attributes['reviewContent']['position'] ) {
 			echo '<div class="review-content-wrapper">';
-			echo '<div class="review-content">' . cozy_create_excerpt( $review->comment_content, 30 ) . '</div>';
+			echo '<div class="review-content">' . cozy_create_excerpt( $review->comment_content, intval( $attributes['reviewContent']['excerpt'] ) ) . '</div>';
 			echo '</div>';
 		}
 

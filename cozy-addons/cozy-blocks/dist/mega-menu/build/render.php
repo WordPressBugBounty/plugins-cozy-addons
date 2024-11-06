@@ -2,7 +2,7 @@
 
 use CozyBlock\Helpers\CozyHelpers;
 
-$client_id     = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $cozy_block_var = 'cozyMegaMenu_' . str_replace( '-', '_', $client_id );
 
 $attributes['megaMenuTemplates'] = CozyHelpers::get_cozy_mega_menu_templates();
@@ -33,9 +33,48 @@ $sub_item_color = array(
 	'text_hover'    => isset( $attributes['submenuStyles']['textHoverColor'] ) ? $attributes['submenuStyles']['textHoverColor'] : '',
 );
 
-$icon_color = array(
-	'border' => isset( $attributes['iconBoxStyles']['borderColor'] ) ? $attributes['iconBoxStyles']['borderColor'] : '',
-	'bg'     => isset( $attributes['iconBoxStyles']['bgColor'] ) ? $attributes['iconBoxStyles']['bgColor'] : '',
+$icon_styles = array(
+	'box_width'  => isset( $attributes['iconBoxStyles']['width'] ) ? $attributes['iconBoxStyles']['width'] : '30px',
+	'box_height' => isset( $attributes['iconBoxStyles']['height'] ) ? $attributes['iconBoxStyles']['height'] : '30px',
+	'color'      => array(
+		'icon'         => isset( $attributes['icon']['color'] ) ? $attributes['icon']['color'] : '',
+		'border'       => isset( $attributes['iconBoxStyles']['borderColor'] ) ? $attributes['iconBoxStyles']['borderColor'] : '',
+		'bg'           => isset( $attributes['iconBoxStyles']['bgColor'] ) ? $attributes['iconBoxStyles']['bgColor'] : '',
+		'bg_hover'     => isset( $attributes['iconBoxStyles']['bgColorHover'] ) ? $attributes['iconBoxStyles']['bgColorHover'] : '',
+		'border_hover' => isset( $attributes['iconBoxStyles']['borderColorHover'] ) ? $attributes['iconBoxStyles']['borderColorHover'] : '',
+	),
+);
+
+$responsive_styles = array(
+	'open_icon'  => array(
+		'box_width'  => isset( $attributes['responsive']['openIcon']['boxWidth'] ) ? $attributes['responsive']['openIcon']['boxWidth'] : '30px',
+		'box_height' => isset( $attributes['responsive']['openIcon']['boxHeight'] ) ? $attributes['responsive']['openIcon']['boxHeight'] : '30px',
+		'border'     => isset( $attributes['responsive']['openIcon']['border'] ) ? cozy_render_TRBL( 'border', $attributes['responsive']['openIcon']['border'] ) : '',
+		'radius'     => isset( $attributes['responsive']['openIcon']['radius'] ) ? $attributes['responsive']['openIcon']['radius'] : '',
+		'size'       => isset( $attributes['responsive']['openIcon']['size'] ) ? $attributes['responsive']['openIcon']['size'] : '',
+		'color'      => array(
+			'icon'         => isset( $attributes['responsive']['openIcon']['color']['icon'] ) ? $attributes['responsive']['openIcon']['color']['icon'] : '',
+			'icon_hover'   => isset( $attributes['responsive']['openIcon']['color']['iconHover'] ) ? $attributes['responsive']['openIcon']['color']['iconHover'] : '',
+			'bg'           => isset( $attributes['responsive']['openIcon']['color']['bg'] ) ? $attributes['responsive']['openIcon']['color']['bg'] : '',
+			'bg_hover'     => isset( $attributes['responsive']['openIcon']['color']['bgHover'] ) ? $attributes['responsive']['openIcon']['color']['bgHover'] : '',
+			'border_hover' => isset( $attributes['responsive']['openIcon']['color']['borderHover'] ) ? $attributes['responsive']['openIcon']['color']['borderHover'] : '',
+		),
+	),
+	'close_icon' => array(
+		'hgap'       => isset( $attributes['responsive']['closeIcon']['horizontalSpacing'] ) ? $attributes['responsive']['closeIcon']['horizontalSpacing'] : '',
+		'box_width'  => isset( $attributes['responsive']['closeIcon']['boxWidth'] ) ? $attributes['responsive']['closeIcon']['boxWidth'] : '30px',
+		'box_height' => isset( $attributes['responsive']['closeIcon']['boxHeight'] ) ? $attributes['responsive']['closeIcon']['boxHeight'] : '30px',
+		'border'     => isset( $attributes['responsive']['closeIcon']['border'] ) ? cozy_render_TRBL( 'border', $attributes['responsive']['closeIcon']['border'] ) : '',
+		'radius'     => isset( $attributes['responsive']['closeIcon']['radius'] ) ? $attributes['responsive']['closeIcon']['radius'] : '',
+		'size'       => isset( $attributes['responsive']['closeIcon']['size'] ) ? $attributes['responsive']['closeIcon']['size'] : '',
+		'color'      => array(
+			'icon'         => isset( $attributes['responsive']['closeIcon']['color']['icon'] ) ? $attributes['responsive']['closeIcon']['color']['icon'] : '',
+			'icon_hover'   => isset( $attributes['responsive']['closeIcon']['color']['iconHover'] ) ? $attributes['responsive']['closeIcon']['color']['iconHover'] : '',
+			'bg'           => isset( $attributes['responsive']['closeIcon']['color']['bg'] ) ? $attributes['responsive']['closeIcon']['color']['bg'] : '',
+			'bg_hover'     => isset( $attributes['responsive']['closeIcon']['color']['bgHover'] ) ? $attributes['responsive']['closeIcon']['color']['bgHover'] : '',
+			'border_hover' => isset( $attributes['responsive']['closeIcon']['color']['borderHover'] ) ? $attributes['responsive']['closeIcon']['color']['borderHover'] : '',
+		),
+	),
 );
 
 $color = array(
@@ -113,43 +152,111 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id.display-horizontal.event-hover .wp-block-navigation-item.has-child:hover .wp-block-navigation__submenu-container, #$block_id.display-horizontal .cozy-block-navigation-menu:not(.full-screen) .cozy-menu-wrapper > .wp-block-navigation-item.has-child > .wp-block-navigation__submenu-container.show-cozy-dropdown-color {
     top: {$attributes['contentGap']}px;
 }
+#$block_id .full-screen .wp-block-navigation__submenu-container {
+    margin-top: {$attributes['contentGap']}px !important;
+}
+
 #$block_id .cozy-menu-wrapper > .wp-block-navigation-item.has-child > .cozy-dropdown-icon-wrapper,
 #$block_id .cozy-menu-wrapper > .cozy-mega-menu__item > .cozy-dropdown-icon-wrapper {
     margin-left: {$attributes['icon']['gap']}px;
 }
-#$block_id.icon-view-stacked .cozy-dropdown-icon-wrapper {
+#$block_id .cozy-dropdown-icon-wrapper {
+    width: {$icon_styles['box_width']};
+    height: {$icon_styles['box_height']};
     padding: {$attributes['iconBoxStyles']['padding']['top']}px {$attributes['iconBoxStyles']['padding']['right']}px {$attributes['iconBoxStyles']['padding']['bottom']}px {$attributes['iconBoxStyles']['padding']['left']}px;
-    border: {$attributes['iconBoxStyles']['borderWidth']}px {$attributes['iconBoxStyles']['borderType']} {$icon_color['border']};
+    border: {$attributes['iconBoxStyles']['borderWidth']}px {$attributes['iconBoxStyles']['borderType']} {$icon_styles['color']['border']};
     border-radius: {$attributes['iconBoxStyles']['borderRadius']}px;
-    background-color: {$icon_color['bg']};
+    background-color: {$icon_styles['color']['bg']};
+    margin-right: {$attributes['submenuStyles']['padding']['right']}px;
+
+    & .cozy-dropdown-icon {
+        width: {$attributes['icon']['size']}px;
+        height: {$attributes['icon']['size']}px;
+        opacity: {$attributes['icon']['opacity']};
+        rotate: {$attributes['icon']['rotate']}deg;
+        fill: {$icon_styles['color']['icon']};
+    }
 }
-#$block_id .cozy-dropdown-icon {
-    width: {$attributes['icon']['size']}px;
-    height: {$attributes['icon']['size']}px;
-    opacity: {$attributes['icon']['opacity']};
-    rotate: {$attributes['icon']['rotate']}deg;
+#$block_id .cozy-menu-wrapper > .wp-block-navigation-item:hover .cozy-dropdown-icon-wrapper {
+    background-color: {$icon_styles['color']['bg_hover']};
+    border-color: {$icon_styles['color']['border_hover']};
+
+    & .cozy-dropdown-icon {
+        fill: {$item_color['text_hover']};
+    }
 }
+
 #$block_id.event-hover .wp-block-navigation__submenu-container .wp-block-navigation-item.has-child:hover .cozy-dropdown-icon, #$block_id.event-hover .wp-block-navigation__submenu-container .wp-block-navigation__submenu-container .wp-block-navigation-item.has-child:hover .cozy-dropdown-icon {
     rotate: {$attributes['icon']['rotateActive']}deg;
 }
 #$block_id.event-hover .wp-block-navigation-item:hover .wp-block-navigation__submenu-container .cozy-dropdown-icon, #$block_id.event-hover .wp-block-navigation__submenu-container .wp-block-navigation-item:hover .wp-block-navigation__submenu-container .cozy-dropdown-icon {
     rotate: {$attributes['icon']['rotate']}deg;
 }
+
+#$block_id .open-icon-wrapper {
+    width: {$responsive_styles['open_icon']['box_width']};
+    height: {$responsive_styles['open_icon']['box_height']};
+    {$responsive_styles['open_icon']['border']}
+    border-radius: {$responsive_styles['open_icon']['radius']};
+    background-color: {$responsive_styles['open_icon']['color']['bg']};
+    
+    & .cozy-responsive-icon__open {
+        width: {$responsive_styles['open_icon']['size']};
+        height: {$responsive_styles['open_icon']['size']};
+        fill: {$responsive_styles['open_icon']['color']['icon']};
+    }
+
+    &:hover {
+        background-color: {$responsive_styles['open_icon']['color']['bg_hover']};
+        border-color: {$responsive_styles['open_icon']['color']['border_hover']};
+    }
+
+    &:hover .cozy-responsive-icon__open {
+        fill: {$responsive_styles['open_icon']['color']['icon_hover']};
+    }
+}
+
 #$block_id .cozy-block-navigation-menu.full-screen {
     padding: {$attributes['responsive']['padding']['top']}px {$attributes['responsive']['padding']['right']}px {$attributes['responsive']['padding']['bottom']}px {$attributes['responsive']['padding']['left']}px;
     background-color: {$container_color['bg_fullscreen']};
+
+    & .cozy-menu-wrapper {
+        margin-top: calc({$responsive_styles['close_icon']['box_width']} + 6px) !important;
+    }
+
+    & .close-icon-wrapper {
+        width: {$responsive_styles['close_icon']['box_width']};
+        height: {$responsive_styles['close_icon']['box_height']};
+        {$responsive_styles['close_icon']['border']}
+        border-radius: {$responsive_styles['close_icon']['radius']};
+        top: {$attributes['responsive']['iconTop']}px;
+        background-color: {$responsive_styles['close_icon']['color']['bg']};
+        
+        & .cozy-responsive-icon__close {
+            width: {$responsive_styles['close_icon']['size']};
+            height: {$responsive_styles['close_icon']['size']};
+            fill: {$responsive_styles['close_icon']['color']['icon']};
+        }
+
+        &:hover {
+            background-color: {$responsive_styles['close_icon']['color']['bg_hover']};
+            border-color: {$responsive_styles['close_icon']['color']['border_hover']};
+        }
+
+        &:hover .cozy-responsive-icon__close {
+            fill: {$responsive_styles['close_icon']['color']['icon_hover']};
+        }
+    }
+    &.responsive-icon-position-left .close-icon-wrapper {
+        left: 0;
+        margin-left: {$responsive_styles['close_icon']['hgap']}px;
+    }
+    &.responsive-icon-position-right .close-icon-wrapper {
+        right: 0;
+        margin-right: {$responsive_styles['close_icon']['hgap']}px;
+    }
 }
-#$block_id .cozy-block-navigation-menu.full-screen .cozy-responsive-icon__close {
-    top: {$attributes['responsive']['iconTop']}px;
-}
-#$block_id .cozy-block-navigation-menu.full-screen.responsive-icon-position-left .cozy-responsive-icon__close {
-    left: 0;
-    right: auto;
-}
-#$block_id .cozy-block-navigation-menu.full-screen.responsive-icon-position-right .cozy-responsive-icon__close {
-    right: 0;
-    left: auto;
-}
+
 #$block_id .wp-block-navigation-item__content {
     font-weight: {$attributes['typography']['fontWeight']};
     font-size: {$attributes['typography']['fontSize']}px;

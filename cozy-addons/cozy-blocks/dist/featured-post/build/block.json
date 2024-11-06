@@ -69,19 +69,36 @@
       "type": "string",
       "default": "grid"
     },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "14px"
+        }
+      }
+    },
     "enableOptions": {
       "type": "object",
       "default": {
         "heading": true,
         "subHeading": true,
         "postImage": true,
+        "imgLinkPost": true,
+        "imgOpenNewTab": false,
+        "titleLinkPost": true,
+        "titleOpenNewTab": false,
         "postCategories": true,
+        "linkCat": true,
+        "catOpenNewTab": false,
         "postContent": true,
         "postAuthor": true,
         "postComments": true,
         "postDate": true,
+        "linkPostMeta": true,
+        "postMetaOpenNewTab": false,
         "postExcerpt": 20,
-        "readMore": true
+        "readMore": true,
+        "readMoreNewTab": false
       }
     },
     "headingLabel": {
@@ -162,7 +179,7 @@
         "font": {
           "size": "18px",
           "weight": "600",
-          "family": ""
+          "family": "Public Sans"
         },
         "color": {
           "bg": "",
@@ -190,7 +207,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "color": {
@@ -288,7 +305,7 @@
           "font": {
             "size": "18px",
             "weight": "600",
-            "family": ""
+            "family": "Public Sans"
           },
           "letterCase": "none",
           "color": {
@@ -321,7 +338,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "hoverEffect": true,
         "letterCase": "none",
@@ -344,7 +361,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "color": {
@@ -375,7 +392,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "textAlign": "right",

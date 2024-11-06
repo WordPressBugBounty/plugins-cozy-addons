@@ -56,7 +56,10 @@ $featured_image   = array(
 	'height' => isset( $attributes['featuredPostOptions']['image']['height'] ) ? $attributes['featuredPostOptions']['image']['height'] : '',
 );
 $featured_content = array(
+	'outer_vgap'        => isset( $attributes['featuredPostOptions']['content']['outerVGap'] ) ? $attributes['featuredPostOptions']['content']['outerVGap'] : '0px',
+	'outer_hgap'        => isset( $attributes['featuredPostOptions']['content']['outerHGap'] ) ? $attributes['featuredPostOptions']['content']['outerHGap'] : '0px',
 	'padding'           => cozy_render_TRBL( 'padding', $attributes['featuredPostOptions']['content']['padding'] ),
+	'border'            => isset( $attributes['featuredPostOptions']['content']['border'] ) ? cozy_render_TRBL( 'border', $attributes['featuredPostOptions']['content']['border'] ) : '',
 	'bg'                => isset( $attributes['featuredPostOptions']['content']['color']['bg'] ) ? $attributes['featuredPostOptions']['content']['color']['bg'] : '',
 	'title_font_family' => isset( $attributes['featuredPostOptions']['title']['font']['family'] ) ? $attributes['featuredPostOptions']['title']['font']['family'] : '',
 	'title_color'       => isset( $attributes['featuredPostOptions']['title']['color']['text'] ) ? $attributes['featuredPostOptions']['title']['color']['text'] : '',
@@ -243,12 +246,13 @@ $block_styles = <<<BLOCK_STYLES
 	border-radius: {$attributes['featuredPostOptions']['image']['radius']};
 }
 #$block_id .featured-post__content-overlay-wrapper {
-	{$featured_content['padding']}
+	padding: {$featured_content['outer_vgap']} {$featured_content['outer_hgap']};
 	margin-top: {$attributes['featuredPostOptions']['content']['margin']['top']}px;
 	margin-bottom: {$attributes['featuredPostOptions']['content']['margin']['bottom']};
 }
 #$block_id .featured-post__content-wrapper {
 	{$featured_content['padding']}
+	{$featured_content['border']}
 	border-radius: {$attributes['featuredPostOptions']['content']['radius']};
 	background-color: {$featured_content['bg']};
 	position: {$attributes['featuredPostOptions']['content']['position']};
@@ -621,10 +625,12 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_data' ) ) {
 		$output   .= '<li class="' . implode( ' ', $classes ) . '">';
 
 		if ( $attributes['enableOptions']['postImage'] && ! empty( $post_data['post_image_url'] ) ) {
-			$classes   = array();
-			$classes[] = 'post__image';
-			$classes[] = $attributes['postOptions']['image']['hoverEffect'] ? 'has-hover-effect' : '';
-			$output   .= '<figure class="' . implode( ' ', $classes ) . '"><a href="' . $post_data['post_link'] . '" target="_blank" rel="noopener"><img src="' . $post_data['post_image_url'] . '" /></a></figure>';
+			$classes       = array();
+			$classes[]     = 'post__image';
+			$classes[]     = $attributes['postOptions']['image']['hoverEffect'] ? 'has-hover-effect' : '';
+			$has_post_link = isset( $attributes['enableOptions']['imgLinkPost'] ) && $attributes['enableOptions']['imgLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+			$open_new_tab  = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgOpenNewTab'] ) && $attributes['enableOptions']['imgLinkPost'] && $attributes['enableOptions']['imgOpenNewTab'] ? '_blank' : '';
+			$output       .= '<figure class="' . implode( ' ', $classes ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener"><img src="' . $post_data['post_image_url'] . '" /></a></figure>';
 		}
 
 		$output .= '<div class="post__content-wrapper">';
@@ -632,19 +638,26 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_data' ) ) {
 		if ( $attributes['enableOptions']['postCategories'] && ! empty( $post_data['post_categories'] ) ) {
 			$output .= '<div class="post__categories">';
 			foreach ( $post_data['post_categories'] as $cat_data ) {
-				$output .= '<a class="post__category-item" href="' . $cat_data['link'] . '" target="_blank" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
+				$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && $attributes['enableOptions']['linkCat'] ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
+				$open_new_tab = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catOpenNewTab'] ) && $attributes['enableOptions']['linkCat'] && $attributes['enableOptions']['catOpenNewTab'] ? '_blank' : '';
+				$output      .= '<a class="post__category-item" ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
 			}
 			$output .= '</div>';
 		}
 
-		$output .= '<h2 class="post__title"><a href="' . $post_data['post_link'] . '" target="_blank" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
+		$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+		$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleOpenNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleOpenNewTab'] ? '_blank' : '';
+		$output       .= '<h2 class="post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
 
 		if ( $attributes['enableOptions']['postAuthor'] || $attributes['enableOptions']['postComments'] || $attributes['enableOptions']['postDate'] ) {
 			$output .= '<div class="post__meta">';
 
+			$has_meta_link = isset( $attributes['enableOptions']['linkPostMeta'] ) && $attributes['enableOptions']['linkPostMeta'] ? true : false;
+			$open_new_tab  = isset( $attributes['enableOptions']['linkPostMeta'], $attributes['enableOptions']['postMetaOpenNewTab'] ) && $attributes['enableOptions']['linkPostMeta'] && $attributes['enableOptions']['postMetaOpenNewTab'] ? '_blank' : '';
 			if ( $attributes['enableOptions']['postAuthor'] ) {
-				$output .= '<a class="post__author display-flex" href="' . esc_url( $post_data['post_author_url'] ) . '" target="_blank" rel="noopener">';
-				$output .= '<svg
+				$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_author_url'] ) . '"' : '';
+				$output   .= '<a class="post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+				$output   .= '<svg
 										width="' . $attributes['postMeta']['font']['size'] . '"
 										height="' . $attributes['postMeta']['font']['size'] . '"
 										xmlns="http://www.w3.org/2000/svg"
@@ -659,8 +672,9 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_data' ) ) {
 			}
 
 			if ( $attributes['enableOptions']['postComments'] && intval( $post_data['comment_count'] ) > 0 ) {
-				$output .= '<a class="post__comments display-flex" href="' . $post_data['comment_link'] . '" target="_blank" rel="noopener">';
-				$output .= '<svg
+				$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['comment_link'] ) . '"' : '';
+				$output   .= '<a class="post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+				$output   .= '<svg
 										width="' . $attributes['postMeta']['font']['size'] . '"
 										height="' . $attributes['postMeta']['font']['size'] . '"
 										xmlns="http://www.w3.org/2000/svg"
@@ -675,8 +689,9 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_data' ) ) {
 			}
 
 			if ( $attributes['enableOptions']['postDate'] ) {
-				$output .= '<a class="post__date display-flex" href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">';
-				$output .= '<svg
+				$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+				$output   .= '<a class="post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+				$output   .= '<svg
 										width="' . $attributes['postMeta']['font']['size'] . '"
 										height="' . $attributes['postMeta']['font']['size'] . '"
 										xmlns="http://www.w3.org/2000/svg"
@@ -696,7 +711,10 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_data' ) ) {
 		if ( $attributes['enableOptions']['postContent'] ) {
 			$output .= '<div class="post__content">';
 			$output .= '<div>' . cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] ) . '</div>';
-			$output .= '<span class="post__read-more"><a class="post__read-more-link" href="' . $post_data['post_link'] . '" target="_blank" rel="noopener">' . esc_html_x( 'Read More', 'cozy-addons' ) . '</a></span>';
+			if ( $attributes['enableOptions']['readMore'] ) {
+				$open_new_tab = isset( $attributes['enableOptions']['readMoreNewTab'] ) && $attributes['enableOptions']['readMoreNewTab'] ? '_blank' : '';
+				$output      .= '<span class="post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( 'Read More', 'cozy-addons' ) . '</a></span>';
+			}
 			$output .= '</div>';
 		}
 
@@ -716,30 +734,40 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_featured_data' 
 			$classes[] = $attributes['featuredPostOptions']['sticky'] ? 'is-sticky' : '';
 			$output   .= '<div class="' . implode( ' ', $classes ) . '">';
 			if ( $attributes['enableOptions']['postImage'] ) {
-				$classes   = array();
-				$classes[] = 'featured-post__image';
-				$classes[] = $attributes['postOptions']['image']['hoverEffect'] ? 'has-hover-effect' : '';
-				$output   .= '<a href="' . $post_data['post_link'] . '" target="_blank" rel="noopener"><figure class="' . implode( ' ', $classes ) . '"><img src="' . $post_data['post_image_url'] . '" /></figure></a>';
+				$classes       = array();
+				$classes[]     = 'featured-post__image';
+				$classes[]     = $attributes['postOptions']['image']['hoverEffect'] ? 'has-hover-effect' : '';
+				$has_post_link = isset( $attributes['enableOptions']['imgLinkPost'] ) && $attributes['enableOptions']['imgLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+				$open_new_tab  = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgOpenNewTab'] ) && $attributes['enableOptions']['imgLinkPost'] && $attributes['enableOptions']['imgOpenNewTab'] ? '_blank' : '';
+
+				$output .= '<figure class="' . implode( ' ', $classes ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener"><img src="' . $post_data['post_image_url'] . '" /></a></figure>';
 			}
 
 			$output .= '<div class="featured-post__content-overlay-wrapper">';
 			$output .= '<div class="featured-post__content-wrapper">';
-			if ( $attributes['enableOptions']['postCategories'] && ! empty( $post_data['post_categories'] ) ) {
+			if ( isset( $attributes['enableOptions']['featuredPostCategories'] ) && $attributes['enableOptions']['featuredPostCategories'] && ! empty( $post_data['post_categories'] ) ) {
 				$output .= '<div class="featured-post__categories post__categories">';
 				foreach ( $post_data['post_categories'] as $cat_data ) {
-					$output .= '<a class="featured-post__category-item post__category-item" href="' . $cat_data['link'] . '" target="_blank" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
+					$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && $attributes['enableOptions']['linkCat'] ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
+					$open_new_tab = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catOpenNewTab'] ) && $attributes['enableOptions']['linkCat'] && $attributes['enableOptions']['catOpenNewTab'] ? '_blank' : '';
+					$output      .= '<a class="featured-post__category-item post__category-item" ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
 				}
 				$output .= '</div>';
 			}
 
-			$output .= '<h2 class="featured-post__title"><a href="' . $post_data['post_link'] . '" target="_blank" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
+			$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+			$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleOpenNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleOpenNewTab'] ? '_blank' : '';
+			$output       .= '<h2 class="featured-post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
 
-			if ( $attributes['enableOptions']['postAuthor'] || $attributes['enableOptions']['postComments'] || $attributes['enableOptions']['postDate'] ) {
-				$output .= '<div class="featured-post__meta post__meta">';
+			if ( ( isset( $attributes['enableOptions']['featuredPostAuthor'] ) && $attributes['enableOptions']['featuredPostAuthor'] ) || ( isset( $attributes['enableOptions']['featuredPostComments'] ) && $attributes['enableOptions']['featuredPostComments'] ) || ( isset( $attributes['enableOptions']['featuredPostDate'] ) && $attributes['enableOptions']['featuredPostDate'] ) ) {
+				$output       .= '<div class="featured-post__meta post__meta">';
+				$has_meta_link = isset( $attributes['enableOptions']['linkPostMeta'] ) && $attributes['enableOptions']['linkPostMeta'] ? true : false;
+				$open_new_tab  = isset( $attributes['enableOptions']['linkPostMeta'], $attributes['enableOptions']['postMetaOpenNewTab'] ) && $attributes['enableOptions']['linkPostMeta'] && $attributes['enableOptions']['postMetaOpenNewTab'] ? '_blank' : '';
 
-				if ( $attributes['enableOptions']['postAuthor'] ) {
-					$output .= '<a class="featured-post__author display-flex">';
-					$output .= '<svg
+				if ( isset( $attributes['enableOptions']['featuredPostAuthor'] ) && $attributes['enableOptions']['featuredPostAuthor'] ) {
+					$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_author_url'] ) . '"' : '';
+					$output   .= '<a class="featured-post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+					$output   .= '<svg
 										width="' . $attributes['postMeta']['font']['size'] . '"
 										height="' . $attributes['postMeta']['font']['size'] . '"
 										xmlns="http://www.w3.org/2000/svg"
@@ -753,9 +781,10 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_featured_data' 
 					$output .= '</a>';
 				}
 
-				if ( $attributes['enableOptions']['postComments'] && intval( $post_data['comment_count'] ) > 0 ) {
-					$output .= '<a class="featured-post__comments display-flex">';
-					$output .= '<svg
+				if ( isset( $attributes['enableOptions']['featuredPostComments'] ) && $attributes['enableOptions']['featuredPostComments'] && intval( $post_data['comment_count'] ) > 0 ) {
+					$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['comment_link'] ) . '"' : '';
+					$output   .= '<a class="featured-post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+					$output   .= '<svg
 										width="' . $attributes['postMeta']['font']['size'] . '"
 										height="' . $attributes['postMeta']['font']['size'] . '"
 										xmlns="http://www.w3.org/2000/svg"
@@ -769,9 +798,10 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_featured_data' 
 					$output .= '</a>';
 				}
 
-				if ( $attributes['enableOptions']['postDate'] ) {
-					$output .= '<a class="featured-post__date display-flex" href="' . $post_data['post_link'] . '" target="_blank" rel="noopener">';
-					$output .= '<svg
+				if ( isset( $attributes['enableOptions']['featuredPostDate'] ) && $attributes['enableOptions']['featuredPostDate'] ) {
+					$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+					$output   .= '<a class="featured-post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+					$output   .= '<svg
 										width="' . $attributes['postMeta']['font']['size'] . '"
 										height="' . $attributes['postMeta']['font']['size'] . '"
 										xmlns="http://www.w3.org/2000/svg"
@@ -788,10 +818,14 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_featured_data' 
 				$output .= '</div>';
 			}
 
-			if ( $attributes['enableOptions']['postContent'] ) {
-				$output .= '<div class="featured-post__content">';
-				$output .= '<div>' . cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] ) . '</div>';
-				$output .= '<span class="post__read-more post__read-more"><a class="post__read-more-link" href="' . $post_data['post_link'] . '" target="_blank" rel="noopener">' . esc_html_x( 'Read More', 'cozy-addons' ) . '</a></span>';
+			if ( isset( $attributes['enableOptions']['featuredPostContent'] ) && $attributes['enableOptions']['featuredPostContent'] ) {
+				$output          .= '<div class="featured-post__content">';
+				$featured_excerpt = isset( $attributes['enableOptions']['featuredPostExcerpt'] ) ? $attributes['enableOptions']['featuredPostExcerpt'] : 20;
+				$output          .= '<div>' . cozy_create_excerpt( $post_data['post_content'], $featured_excerpt ) . '</div>';
+				if ( isset( $attributes['enableOptions']['featuredReadMore'] ) && $attributes['enableOptions']['featuredReadMore'] ) {
+					$open_new_tab = isset( $attributes['enableOptions']['readMoreNewTab'] ) && $attributes['enableOptions']['readMoreNewTab'] ? '_blank' : '';
+					$output      .= '<span class="post__read-more post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( 'Read More', 'cozy-addons' ) . '</a></span>';
+				}
 				$output .= '</div>';
 			}
 

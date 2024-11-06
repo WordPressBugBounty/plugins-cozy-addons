@@ -91,9 +91,9 @@
     "enableOptions": {
       "type": "object",
       "default": {
+        "productImage": true,
         "productName": true,
         "productRating": true,
-        "productImage": true,
         "productCategories": true,
         "productSummary": true,
         "productPrice": true,
@@ -264,6 +264,7 @@
         "radius": "0px",
         "hoverEffect": true,
         "linkProduct": true,
+        "linkNewTab": false,
         "overlay": "#1c1c1c96"
       }
     },
@@ -374,6 +375,8 @@
     "productName": {
       "type": "object",
       "default": {
+        "linkProduct": true,
+        "linkNewTab": false,
         "marginTop": "6px",
         "marginBottom": "4px",
         "fontSize": "18px",

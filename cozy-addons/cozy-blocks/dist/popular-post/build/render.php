@@ -146,8 +146,8 @@ $block_styles = <<<BLOCK_STYLES
 	}
 }
 
-#$block_id.display-list .cozy-block-popular-posts__item {
-    margin-bottom: {$attributes['gap']};
+#$block_id.display-list .cozy-block-popular-posts__list-wrapper {
+    row-gap: {$attributes['gap']};
 }
 #$block_id .cozy-block-popular-posts__item {
     {$item_padding}
@@ -425,7 +425,9 @@ foreach ( $additional_post_data as $post_data ) {
 		$figure_classes[] = 'cozy-block-popular-posts__image';
 		$figure_classes[] = $attributes['imageStyles']['hoverEffect'] ? 'has-hover-effect' : '';
 		$output          .= '<figure class="' . implode( ' ', $figure_classes ) . '">';
-		$output          .= '<a href="' . esc_url( $post_data['post_link'] ) . '" rel="noopener" target="_blank">';
+		$has_post_link    = isset( $attributes['enableOptions']['imgLinkPost'] ) && $attributes['enableOptions']['imgLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+		$open_new_tab     = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && $attributes['enableOptions']['imgLinkPost'] && $attributes['enableOptions']['imgLinkNewTab'] ? '_blank' : '';
+		$output          .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
 		$output          .= '<img alt="' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '" src="' . $post_data['post_image_url'] . '" />';
 		$output          .= '</a>';
 		$output          .= '</figure>';
@@ -438,16 +440,20 @@ foreach ( $additional_post_data as $post_data ) {
 		$category_classes[] = 'cozy-block-popular-posts__post-categories';
 		$category_classes[] = $attributes['categoryStyles']['hoverEffect'] ? 'has-hover-effect' : '';
 		$output            .= '<div class="' . implode( ' ', $category_classes ) . '">';
+		$open_new_tab       = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && $attributes['enableOptions']['linkCat'] && $attributes['enableOptions']['catNewTab'] ? '_blank' : '';
 		foreach ( $post_data['post_categories'] as $cat_data ) {
-			$output .= '<a href="' . esc_url( $cat_data['link'] ) . '" rel="noopener" target="_blank">';
-			$output .= esc_html_x( $cat_data['name'], 'cozy-addons' );
-			$output .= '</a>';
+			$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && $attributes['enableOptions']['linkCat'] ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
+			$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">';
+			$output      .= esc_html_x( $cat_data['name'], 'cozy-addons' );
+			$output      .= '</a>';
 		}
 		$output .= '</div>';
 	}
 
 	// Post Title.
-	$output .= '<h4 class="cozy-block-popular-posts__post-title"><a href="' . esc_url( $post_data['post_link'] ) . '" rel="noopener" target="_blank">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h4>';
+	$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+	$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleLinkNewTab'] ? '_blank' : '';
+	$output       .= '<h4 class="cozy-block-popular-posts__post-title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h4>';
 
 	// Post Excerpt
 	if ( $attributes['enableOptions']['content'] ) {
@@ -458,9 +464,12 @@ foreach ( $additional_post_data as $post_data ) {
 
 	// Post Date.
 	if ( $attributes['enableOptions']['date'] ) {
-		$output .= '<p class="cozy-block-popular-posts__date">';
-		$output .= '<a href="' . esc_url( $post_data['post_link'] ) . '" rel="noopener" target="_blank">' . esc_html_x( $post_data['post_date_formatted'], 'cozy-addons' ) . '</a>';
-		$output .= '</p>';
+		$has_meta_link = isset( $attributes['enableOptions']['linkPostMeta'] ) && $attributes['enableOptions']['linkPostMeta'] ? true : false;
+		$open_new_tab  = isset( $attributes['enableOptions']['linkPostMeta'], $attributes['enableOptions']['postMetaNewTab'] ) && $attributes['enableOptions']['linkPostMeta'] && $attributes['enableOptions']['postMetaNewTab'] ? '_blank' : '';
+		$meta_link     = $has_meta_link ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+		$output       .= '<p class="cozy-block-popular-posts__date">';
+		$output       .= '<a ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_date_formatted'], 'cozy-addons' ) . '</a>';
+		$output       .= '</p>';
 	}
 	$output .= '</div>';
 

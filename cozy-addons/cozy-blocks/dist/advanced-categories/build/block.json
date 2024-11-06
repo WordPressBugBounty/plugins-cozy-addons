@@ -92,6 +92,8 @@
     "enableOptions": {
       "type": "object",
       "default": {
+        "linkCategory": true,
+        "openNewTab": true,
         "image": true,
         "name": true,
         "icon": true,

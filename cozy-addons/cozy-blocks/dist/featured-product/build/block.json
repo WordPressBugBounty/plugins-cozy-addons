@@ -74,7 +74,13 @@
         "heading": true,
         "subHeading": true,
         "postImage": true,
+        "imgLinkPost": true,
+        "imgLinkNewTab": false,
         "productCategories": true,
+        "linkCat": true,
+        "catNewTab": false,
+        "titleLinkPost": true,
+        "titleLinkNewTab": false,
         "productPrice": true,
         "productRating": true,
         "postContent": true,
@@ -164,7 +170,7 @@
         "font": {
           "size": "18px",
           "weight": "600",
-          "family": ""
+          "family": "Public Sans"
         },
         "color": {
           "bg": "",
@@ -192,7 +198,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "color": {
@@ -279,7 +285,7 @@
           "font": {
             "size": "18px",
             "weight": "600",
-            "family": ""
+            "family": "Public Sans"
           },
           "letterCase": "none",
           "color": {
@@ -315,7 +321,7 @@
         "font": {
           "size": "12px",
           "weight": "400",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "color": {
@@ -397,7 +403,7 @@
         "font": {
           "size": "12px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none"
       }
@@ -412,7 +418,7 @@
         "font": {
           "size": "16px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "color": {
           "text": "#090b10"
@@ -429,7 +435,7 @@
         "font": {
           "size": "14px",
           "weight": "400",
-          "family": ""
+          "family": "Public Sans"
         },
         "color": {
           "text": "#6a6a6a"
@@ -459,7 +465,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "color": {

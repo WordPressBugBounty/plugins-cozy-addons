@@ -61,6 +61,14 @@
       "type": "string",
       "default": ""
     },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "14px"
+        }
+      }
+    },
     "siteURL": {
       "type": "string",
       "default": ""
@@ -80,7 +88,9 @@
         "popular": true,
         "trending": false,
         "tags": true,
-        "comments": true
+        "tagsLinkNewTab": false,
+        "comments": true,
+        "commentsLinkNewTab": false
       }
     },
     "gridOptions": {
@@ -197,9 +207,17 @@
       "type": "object",
       "default": {
         "postImage": true,
+        "imgLinkPost": true,
+        "imgOpenLinkNewTab": false,
+        "titleLinkPost": true,
+        "titleOpenLinkNewTab": false,
         "postContent": true,
         "postDate": true,
+        "linkPostMeta": true,
+        "postMetaOpenLinkNewTab": false,
         "categories": true,
+        "linkCat": true,
+        "catLinkNewTab": false,
         "excerpt": 20
       }
     },
@@ -267,7 +285,7 @@
         "bgColorHover": "#f90",
         "borderColorHover": "",
         "fontSize": "12px",
-        "fontFamily": "",
+        "fontFamily": "Public Sans",
         "fontWeight": "400"
       }
     },
@@ -277,10 +295,10 @@
         "marginTop": "6px",
         "marginBottom": "6px",
         "fontSize": "20px",
-        "fontFamily": "",
+        "fontFamily": "Public Sans",
         "fontWeight": "600",
-        "color": "",
-        "colorHover": ""
+        "color": "#090b10",
+        "colorHover": "#f90"
       }
     },
     "dateStyles": {
@@ -306,7 +324,7 @@
         "bgColorHover": "",
         "borderColorHover": "",
         "fontSize": "12px",
-        "fontFamily": "",
+        "fontFamily": "Public Sans",
         "fontWeight": "400"
       }
     },
@@ -338,7 +356,7 @@
         "bgColorHover": "#f90",
         "borderColorHover": "",
         "fontSize": "12px",
-        "fontFamily": "",
+        "fontFamily": "Public Sans",
         "fontWeight": "400",
         "letterCase": "none"
       }
@@ -380,7 +398,7 @@
           "bgColor": ""
         },
         "fontSize": "14px",
-        "fontFamily": "",
+        "fontFamily": "Public Sans",
         "fontWeight": "500"
       }
     },

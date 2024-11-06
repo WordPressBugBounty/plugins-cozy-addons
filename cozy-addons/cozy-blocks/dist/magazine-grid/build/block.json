@@ -65,6 +65,14 @@
       "type": "string",
       "default": ""
     },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "14px"
+        }
+      }
+    },
     "perPage": {
       "type": "number",
       "default": 6
@@ -84,14 +92,29 @@
         "subHeading": true,
         "ignoreSticky": true,
         "postImage": true,
+        "imgLinkPost": true,
+        "imgLinkNewTab": false,
+        "titleLinkPost": true,
+        "titleLinkNewTab": false,
         "postContent": true,
+        "featuredPostContent": true,
         "postExcerpt": 20,
         "featuredPostExcerpt": 30,
         "readMore": true,
+        "featuredReadMore": true,
+        "readMoreNewTab": false,
         "postAuthor": true,
+        "featuredPostAuthor": true,
         "postComments": true,
+        "feauredPostComments": true,
         "postDate": true,
-        "postCategories": true
+        "featuredPostDate": true,
+        "linkPostMeta": true,
+        "postMetaNewTab": false,
+        "postCategories": true,
+        "featuredPostCategories": true,
+        "linkCat": true,
+        "catNewTab": false
       }
     },
     "headingLabel": {
@@ -172,7 +195,7 @@
         "font": {
           "size": "18px",
           "weight": "600",
-          "family": ""
+          "family": "Public Sans"
         },
         "color": {
           "bg": "",
@@ -200,7 +223,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "color": {
@@ -245,6 +268,11 @@
             "top": 0,
             "bottom": "0px"
           },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
           "radius": "0px",
           "outerHGap": "0px",
           "outerVGap": "0px",
@@ -261,7 +289,7 @@
           "font": {
             "size": "22px",
             "weight": "600",
-            "family": ""
+            "family": "Public Sans"
           },
           "letterCase": "none",
           "color": {
@@ -354,7 +382,7 @@
           "font": {
             "size": "18px",
             "weight": "600",
-            "family": ""
+            "family": "Public Sans"
           },
           "letterCase": "none",
           "color": {
@@ -376,7 +404,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "color": {
@@ -411,7 +439,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "hoverEffect": true,
         "letterCase": "none",
@@ -434,7 +462,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "color": {
@@ -457,7 +485,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "color": {
@@ -491,7 +519,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "textAlign": "right",
@@ -532,7 +560,7 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
         "textAlign": "center",

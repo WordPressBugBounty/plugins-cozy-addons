@@ -386,9 +386,11 @@ if ( ! function_exists( 'cozy_render_featured_post_tab_data' ) ) {
 		$output = '<div class="post__content-wrapper" style="display:flex;gap:' . esc_attr( $attributes['imageStyles']['gap'] ) . ';">';
 
 		if ( $attributes['postOptions']['postImage'] && ! empty( $post['post_image_url'] ) ) {
-			$output .= '<figure class="cozy-block-featured-post-tabs__post-image' . ( $attributes['imageStyles']['hoverEffect'] ? ' has-hover-effect' : '' ) . '">';
-			$output .= '<a href="' . esc_url( $post['post_link'] ) . '" target="_blank" rel="noopener"><img src="' . esc_url( $post['post_image_url'] ) . '" /></a>';
-			$output .= '</figure>';
+			$has_post_link = isset( $attributes['postOptions']['imgLinkPost'] ) && $attributes['postOptions']['imgLinkPost'] ? 'href="' . esc_url( $post['post_link'] ) . '"' : '';
+			$open_new_tab  = isset( $attributes['postOptions']['imgLinkPost'], $attributes['postOptions']['imgOpenLinkNewTab'] ) && $attributes['postOptions']['imgLinkPost'] && $attributes['postOptions']['imgOpenLinkNewTab'] ? '_blank' : '';
+			$output       .= '<figure class="cozy-block-featured-post-tabs__post-image' . ( $attributes['imageStyles']['hoverEffect'] ? ' has-hover-effect' : '' ) . '">';
+			$output       .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener"><img src="' . esc_url( $post['post_image_url'] ) . '" /></a>';
+			$output       .= '</figure>';
 		}
 
 		$output .= '<div>';
@@ -396,21 +398,27 @@ if ( ! function_exists( 'cozy_render_featured_post_tab_data' ) ) {
 		if ( $attributes['postOptions']['categories'] ) {
 			$output .= '<div class="cozy-block-featured-post-tabs__post-categories' . ( $attributes['categoryStyles']['hoverEffect'] ? ' has-hover-effect' : '' ) . '">';
 			if ( ! empty( $post['post_categories'] ) ) {
+				$open_new_tab = isset( $attributes['postOptions']['linkCat'], $attributes['postOptions']['catLinkNewTab'] ) && $attributes['postOptions']['linkCat'] && $attributes['postOptions']['catLinkNewTab'] ? '_blank' : '';
 				foreach ( $post['post_categories'] as $cat ) {
-					$output .= '<a href="' . esc_url( $cat['link'] ) . '" target="_blank" rel="noopener">' . $cat['name'] . '</a>';
+					$has_cat_link = isset( $attributes['postOptions']['linkCat'] ) && $attributes['postOptions']['linkCat'] ? 'href="' . esc_url( $cat['link'] ) . '"' : '';
+					$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . $cat['name'] . '</a>';
 				}
 			}
 			$output .= '</div>';
 		}
 
-		$output .= '<h4 class="cozy-block-featured-post-tabs__post-title"><a href="' . esc_url( $post['post_link'] ) . '" target="_blank" rel="noopener">' . $post['post_title'] . '</a></h4>';
+		$has_post_link = isset( $attributes['postOptions']['titleLinkPost'] ) && $attributes['postOptions']['titleLinkPost'] ? 'href="' . esc_url( $post['post_link'] ) . '"' : '';
+		$open_new_tab  = isset( $attributes['postOptions']['titleLinkPost'], $attributes['postOptions']['titleOpenLinkNewTab'] ) && $attributes['postOptions']['titleLinkPost'] && $attributes['postOptions']['titleOpenLinkNewTab'] ? '_blank' : '';
+		$output       .= '<h4 class="cozy-block-featured-post-tabs__post-title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . $post['post_title'] . '</a></h4>';
 
 		if ( $attributes['postOptions']['postContent'] ) {
 			$output .= '<p class="cozy-block-featured-post-tabs__post-content">' . cozy_create_excerpt( $post['post_content'], $attributes['postOptions']['excerpt'] ) . '</p>';
 		}
 
 		if ( $attributes['postOptions']['postDate'] ) {
-			$output .= '<p class="cozy-block-featured-post-tabs__post-date"><a href="' . esc_url( $post['post_link'] ) . '" target="_blank" rel="noopener">' . $post['post_date_formatted'] . '</a></p>';
+			$has_post_link = isset( $attributes['postOptions']['linkPostMeta'] ) && $attributes['postOptions']['linkPostMeta'] ? 'href="' . esc_url( $post['post_link'] ) . '"' : '';
+			$open_new_tab  = isset( $attributes['postOptions']['linkPostMeta'], $attributes['postOptions']['postMetaOpenLinkNewTab'] ) && $attributes['postOptions']['linkPostMeta'] && $attributes['postOptions']['postMetaOpenLinkNewTab'] ? '_blank' : '';
+			$output       .= '<p class="cozy-block-featured-post-tabs__post-date"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . $post['post_date_formatted'] . '</a></p>';
 		}
 
 		$output .= '</div></div>';
@@ -580,16 +588,18 @@ if ( ! function_exists( 'cozy_fetch_featured_post_tab_data' ) ) {
 
 		switch ( $tab ) {
 			case 'tags':
+				$open_new_tab = isset( $attributes['enableOptions']['tagsLinkNewTab'] ) && $attributes['enableOptions']['tagsLinkNewTab'] ? '_blank' : '';
 				foreach ( $data as $tag ) {
-					$render_html .= '<div class="cozy-block-featured-post-tabs__tag"><a href="' . esc_url( $tag->link ) . '" target="_blank" rel="noopener">' . $tag->name . '</a></div>';
+					$render_html .= '<div class="cozy-block-featured-post-tabs__tag"><a href="' . esc_url( $tag->link ) . '" target="' . $open_new_tab . '" rel="noopener">' . $tag->name . '</a></div>';
 				}
 				break;
 
 			case 'comments':
+				$cmt_open_new_tab = isset( $attributes['enableOptions']['commentsLinkNewTab'] ) && $attributes['enableOptions']['commentsLinkNewTab'] ? '_blank' : '';
 				foreach ( $data as $comment ) {
 					$render_html .= '<div class="cozy-block-featured-post-tabs__comment">
                       <p class="cozy-block-featured-post-tabs__comment-content">' . cozy_create_excerpt( $comment->comment_content ) . '</p>
-                      <a href="' . esc_url( $comment->link ) . '" target="_blank" rel="noopener">
+                      <a href="' . esc_url( $comment->link ) . '" target="' . $cmt_open_new_tab . '" rel="noopener">
                         <div style="display:flex;gap:10px;margin-top:10px;">
                             <img class="cozy-block-featured-post-tabs__author-avatar" src="' . esc_url( $comment->comment_author_avatar ) . '" width="50" height="50" style="border-radius:100px;"/>
                             <div>

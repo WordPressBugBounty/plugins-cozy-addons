@@ -351,7 +351,11 @@ if ( isset( $attributes['title']['fontFamily'] ) && ! empty( $attributes['title'
 		$cat_classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
 		$output       .= '<style>' . $cat_styles . '</style>';
 		$output       .= '<div class="' . implode( ' ', $cat_classes ) . '" data-category-id="' . $category->term_id . '">';
-			$output   .= '<a href="' . get_category_link( $category->term_id ) . '" target="_blank" rel="noopener">';
+
+		$has_category_link = isset( $attributes['enableOptions']['linkCategory'] ) && $attributes['enableOptions']['linkCategory'] ? 'href="' . esc_url( get_category_link( $category->term_id ) ) . '"' : '';
+		$open_new_tab      = isset( $attributes['enableOptions']['linkCategory'], $attributes['enableOptions']['openNewTab'] ) && $attributes['enableOptions']['linkCategory'] && $attributes['enableOptions']['openNewTab'] ? '_blank' : '';
+
+			$output .= '<a ' . $has_category_link . ' target="' . $open_new_tab . '" rel="noopener">';
 		if ( 'cover' === $attributes['layout'] ) {
 			$output .= '<span class="cozy-block-advanced-categories__background"></span>';
 		}
