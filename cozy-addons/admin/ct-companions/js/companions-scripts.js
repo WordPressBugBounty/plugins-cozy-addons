@@ -71,7 +71,7 @@
             }
           },
           error: function (xhr, status, error) {
-            console.error("Error:", error);
+            console.log("Error:", error);
           },
         });
       });
@@ -94,7 +94,7 @@
             $("#" + checkboxId).prop("checked", false);
           },
           error: function (xhr, status, error) {
-            console.error("Error:", error);
+            console.log("Error:", error);
           },
         });
       });
@@ -133,7 +133,7 @@
                 }
               },
               error: function (xhr, status, error) {
-                console.error("Error:", error);
+                console.log("Error:", error);
               },
             });
           } else if (
@@ -153,7 +153,7 @@
                 $("#" + checkboxId).prop("checked", false);
               },
               error: function (xhr, status, error) {
-                console.error("Error:", error);
+                console.log("Error:", error);
               },
             });
           } else {
@@ -162,7 +162,7 @@
           }
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     }
@@ -191,7 +191,109 @@
           // console.log(`${blockName}: Active status(${isChecked})`);
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
+        },
+      });
+    });
+
+    // Block CPT enable/disable
+    // Function to retrieve the option value using AJAX
+    function getBlockCPTOption(templateName, checkboxId) {
+      const premiumBlockTemplates = ["mega-menu-templates"];
+
+      $.ajax({
+        url: ajax_url,
+        method: "POST",
+        data: {
+          action: "get_ca_cpt_enable_status",
+          templateName: templateName,
+        },
+        success: function (response) {
+          if ("" === response.data.enabledStatus) {
+            $.ajax({
+              url: ajax_url,
+              method: "POST",
+              data: {
+                action: "toggle_ca_cpt_enable",
+                templateName: templateName,
+                checked: !premiumBlockTemplates.includes(templateName)
+                  ? "1"
+                  : isPremium && premiumBlockTemplates.includes(templateName)
+                  ? "1"
+                  : "",
+              },
+              success: function (res) {
+                if (!premiumBlockTemplates.includes(templateName)) {
+                  $("#" + checkboxId).prop("checked", true);
+                }
+
+                if (isPremium && premiumBlockTemplates.includes(templateName)) {
+                  $("#" + checkboxId).prop("checked", true);
+                }
+              },
+              error: function (xhr, status, error) {
+                console.log("Error:", error);
+              },
+            });
+          } else if (
+            ("1" === response.data.enabledStatus ||
+              "0" === response.data.enabledStatus) &&
+            !isPremium &&
+            premiumBlockTemplates.includes(templateName)
+          ) {
+            $.ajax({
+              url: ajax_url,
+              method: "POST",
+              data: {
+                action: "toggle_ca_cpt_enable",
+                templateName: templateName,
+                checked: "",
+              },
+              success: function (res) {
+                $("#" + checkboxId).prop("checked", false);
+              },
+              error: function (xhr, status, error) {
+                console.log("Error:", error);
+              },
+            });
+          } else {
+            // Set the checkbox based on the retrieved value
+            $("#" + checkboxId).prop(
+              "checked",
+              response.data.enabledStatus === "1"
+            );
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log("Error:", error);
+        },
+      });
+    }
+
+    // Call the function for each checkbox on page load
+    $(".ca__block-cpt").each(function () {
+      const templateName = $(this).attr("name");
+      const checkboxId = $(this).attr("id");
+      getBlockCPTOption(templateName, checkboxId);
+    });
+
+    $(".ca__block-cpt").change(function () {
+      const templateName = $(this).attr("name");
+      const isChecked = $(this).is(":checked");
+
+      $.ajax({
+        url: ajax_url,
+        method: "POST",
+        data: {
+          action: "toggle_ca_cpt_enable",
+          templateName: templateName,
+          checked: isChecked ? "1" : "0",
+        },
+        success: function (response) {
+          // console.log(`${templateName}: Active status(${isChecked})`);
+        },
+        error: function (xhr, status, error) {
+          console.log("Error:", error);
         },
       });
     });
@@ -227,7 +329,7 @@
                 // console.log(`Elementor Widgets: Active status(${isChecked})`);
               },
               error: function (xhr, status, error) {
-                console.error("Error:", error);
+                console.log("Error:", error);
               },
             });
           } else {
@@ -242,7 +344,7 @@
                 // console.log(`Elementor Widgets: Active status(${isChecked})`);
               },
               error: function (xhr, status, error) {
-                console.error("Error:", error);
+                console.log("Error:", error);
               },
             });
           }
@@ -254,7 +356,7 @@
           }
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     }
@@ -278,7 +380,7 @@
           // console.log(`Elementor Widgets: Active status(${isChecked})`);
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     });
@@ -294,7 +396,7 @@
           $("#" + checkboxId).prop("checked", response === "1");
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     }
@@ -318,7 +420,7 @@
           // console.log(`CT Header & Footer: Active status(${isChecked})`);
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     });
@@ -334,7 +436,7 @@
           $("#" + checkboxId).prop("checked", response === "1");
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     }
@@ -358,7 +460,7 @@
           // console.log(`CT Custom Assets: Active status(${isChecked})`);
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     });
@@ -374,7 +476,7 @@
           $("#" + checkboxId).prop("checked", response === "1");
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     }
@@ -398,7 +500,7 @@
           // console.log(`CT Custom Assets: Active status(${isChecked})`);
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     });

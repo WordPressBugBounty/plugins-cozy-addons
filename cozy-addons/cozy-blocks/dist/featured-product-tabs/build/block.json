@@ -191,6 +191,10 @@
         "fontSize": "20px",
         "fontWeight": "600",
         "fontFamily": "",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": ""
       }
     },
@@ -371,6 +375,10 @@
         "fontSize": "12px",
         "fontFamily": "Public Sans",
         "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#fff"
       }
     },
@@ -438,7 +446,11 @@
         "borderColorHover": "",
         "fontSize": "12px",
         "fontFamily": "Public Sans",
-        "fontWeight": "400"
+        "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "title": {
@@ -449,6 +461,10 @@
         "fontSize": "18px",
         "fontFamily": "Public Sans",
         "fontWeight": "600",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#090b10",
         "colorHover": "#f90"
       }
@@ -468,6 +484,10 @@
         "fontSize": "16px",
         "fontFamily": "Public Sans",
         "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#090b10"
       }
     },
@@ -479,6 +499,10 @@
         "fontSize": "14px",
         "fontFamily": "Public Sans",
         "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "",
         "iconColor": "#f90"
       }
@@ -509,6 +533,9 @@
           "family": "Public Sans"
         },
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "#fff",
           "textHover": "",
@@ -556,7 +583,11 @@
         },
         "fontSize": "14px",
         "fontFamily": "Public Sans",
-        "fontWeight": "500"
+        "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "separatorStyles": {

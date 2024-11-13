@@ -62,8 +62,12 @@
         "gap": 15,
         "verticalGap": 10,
         "label": "Store Reviews",
-        "fontFamily": "public-sans",
+        "fontFamily": "Public Sans",
         "fontSize": "22",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#000",
         "iconColor": "#D48D3B",
         "iconBgColor": "#FBF3EA",
@@ -107,7 +111,11 @@
         "borderRadius": 10,
         "fontSize": 14,
         "fontWeight": 500,
-        "fontFamily": "sans-serif",
+        "fontFamily": "Public Sans",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "bgColor": "#5566ca",
         "bgColorHover": "#f90",
         "color": "#fff",
@@ -234,9 +242,13 @@
         "ratingColor": "#fcb900",
         "textColor": "#000",
         "titleTypography": {
-          "fontFamily": "public-sans",
+          "fontFamily": "Public Sans",
           "fontSize": 16,
-          "fontWeight": 600
+          "fontWeight": 600,
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": ""
         }
       }
     },
@@ -257,10 +269,14 @@
     "typography": {
       "type": "object",
       "default": {
-        "fontFamily": "public-sans",
+        "fontFamily": "Public Sans",
         "fontSize": 14,
         "color": "#646464",
-        "fontWeight": 400
+        "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     }
   },

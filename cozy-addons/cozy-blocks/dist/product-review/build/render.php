@@ -38,23 +38,48 @@ $container_color = array(
 	'bg_hover'     => isset( $attributes['containerStyles']['bgColorHover'] ) ? $attributes['containerStyles']['bgColorHover'] : '',
 );
 
-$heading_color = array(
+$heading_styles = array(
+	'letter_case'    => isset( $attributes['headingOptions']['letterCase'] ) ? $attributes['headingOptions']['letterCase'] : '',
+	'decoration'     => isset( $attributes['headingOptions']['decoration'] ) ? $attributes['headingOptions']['decoration'] : '',
+	'line_height'    => isset( $attributes['headingOptions']['lineHeight'] ) ? $attributes['headingOptions']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['headingOptions']['letterSpacing'] ) ? $attributes['headingOptions']['letterSpacing'] : '',
+);
+$heading_color  = array(
 	'text'      => isset( $attributes['headingOptions']['color'] ) ? $attributes['headingOptions']['color'] : '',
 	'rating_bg' => isset( $attributes['headingOptions']['iconBgColor'] ) ? $attributes['headingOptions']['iconBgColor'] : '',
 );
 
-$title_color = array(
+$title_color  = array(
 	'text'       => isset( $attributes['reviewTitle']['textColor'] ) ? $attributes['reviewTitle']['textColor'] : '',
 	'text_hover' => isset( $attributes['reviewTitle']['titleColorHover'] ) ? $attributes['reviewTitle']['titleColorHover'] : '',
 );
+$title_styles = array(
+	'letter_case'    => isset( $attributes['reviewTitle']['titleTypography']['letterCase'] ) ? $attributes['reviewTitle']['titleTypography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['reviewTitle']['titleTypography']['decoration'] ) ? $attributes['reviewTitle']['titleTypography']['decoration'] : '',
+	'line_height'    => isset( $attributes['reviewTitle']['titleTypography']['lineHeight'] ) ? $attributes['reviewTitle']['titleTypography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['reviewTitle']['titleTypography']['letterSpacing'] ) ? $attributes['reviewTitle']['titleTypography']['letterSpacing'] : '',
+);
 
-$loader_color = array(
+$loader_color  = array(
 	'border'       => isset( $attributes['ajaxButton']['border']['color'] ) ? $attributes['ajaxButton']['border']['color'] : '',
 	'text'         => isset( $attributes['ajaxButton']['color'] ) ? $attributes['ajaxButton']['color'] : '',
 	'bg'           => isset( $attributes['ajaxButton']['bgColor'] ) ? $attributes['ajaxButton']['bgColor'] : '',
 	'border_hover' => isset( $attributes['ajaxButton']['border']['colorHover'] ) ? $attributes['ajaxButton']['border']['colorHover'] : '',
 	'text_hover'   => isset( $attributes['ajaxButton']['colorHover'] ) ? $attributes['ajaxButton']['colorHover'] : '',
 	'bg_hover'     => isset( $attributes['ajaxButton']['bgColorHover'] ) ? $attributes['ajaxButton']['bgColorHover'] : '',
+);
+$loader_styles = array(
+	'letter_case'    => isset( $attributes['ajaxButton']['letterCase'] ) ? $attributes['ajaxButton']['letterCase'] : '',
+	'decoration'     => isset( $attributes['ajaxButton']['decoration'] ) ? $attributes['ajaxButton']['decoration'] : '',
+	'line_height'    => isset( $attributes['ajaxButton']['lineHeight'] ) ? $attributes['ajaxButton']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['ajaxButton']['letterSpacing'] ) ? $attributes['ajaxButton']['letterSpacing'] : '',
+);
+
+$block_typography = array(
+	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
+	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
 );
 
 $nav_color = array(
@@ -81,6 +106,10 @@ $blockStyles = <<<BLOCK_CSS
         font-size: {$attributes['typography']['fontSize']}px;
         font-weight: {$attributes['typography']['fontWeight']};
         font-family: {$attributes['typography']['fontFamily']};
+        text-transform: {$block_typography['letter_case']};
+        text-decoration: {$block_typography['decoration']};
+        line-height: {$block_typography['line_height']};
+        letter-spacing: {$block_typography['letter_spacing']};
         color: {$container_color['text']};
     }
     #{$blockId} .woo-product-review {
@@ -110,6 +139,10 @@ $blockStyles = <<<BLOCK_CSS
         font-size: {$attributes['headingOptions']['fontSize']}px;
         font-weight: {$attributes['headingOptions']['fontWeight']};
         font-family: {$attributes['headingOptions']['fontFamily']};
+        text-transform: {$heading_styles['letter_case']};
+        text-decoration: {$heading_styles['decoration']};
+        line-height: {$heading_styles['line_height']};
+        letter-spacing: {$heading_styles['letter_spacing']};
         color: {$heading_color['text']};
     }
     #{$blockId} .review-heading-wrapper .total-avg-rating-wrapper {
@@ -168,6 +201,10 @@ $blockStyles = <<<BLOCK_CSS
         font-size: {$attributes['reviewTitle']['titleTypography']['fontSize']}px;
         font-weight: {$attributes['reviewTitle']['titleTypography']['fontWeight']};
         font-family: {$attributes['reviewTitle']['titleTypography']['fontFamily']};
+        text-transform: {$title_styles['letter_case']};
+        text-decoration: {$title_styles['decoration']};
+        line-height: {$title_styles['line_height']};
+        letter-spacing: {$title_styles['letter_spacing']};
         color: {$title_color['text']};
     }
     #{$blockId} .product-name:hover {
@@ -191,6 +228,10 @@ $blockStyles = <<<BLOCK_CSS
         font-size: {$attributes['ajaxButton']['fontSize']}px;
         font-weight: {$attributes['ajaxButton']['fontWeight']};
         font-family: {$attributes['ajaxButton']['fontFamily']};
+        text-transform: {$loader_styles['letter_case']};
+        text-decoration: {$loader_styles['decoration']};
+        line-height: {$loader_styles['line_height']};
+        letter-spacing: {$loader_styles['letter_spacing']};
     }
     #{$blockId} .cozy-dynamic-loader:hover {
         border-color: {$loader_color['border_hover']};
@@ -295,6 +336,22 @@ $varAvgPercent = '
 echo '<div class="cozy-block-wrapper">';
 
 echo '<style>' . esc_html( $blockStyles ) . '</style>';
+
+if ( isset( $attributes['ajaxButton']['fontFamily'] ) && ! empty( $attributes['ajaxButton']['fontFamily'] ) ) {
+	echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['ajaxButton']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+}
+
+if ( isset( $attributes['headingOptions']['fontFamily'] ) && ! empty( $attributes['headingOptions']['fontFamily'] ) ) {
+	echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['headingOptions']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+}
+
+if ( isset( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) && ! empty( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) ) {
+	echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['reviewTitle']['titleTypography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+}
+
+if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
+	echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['typography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+}
 
 echo '<div class="cozy-block-product-review layout-' . esc_attr( $attributes['layout'] ) . ' ' . ( $attributes['hoverShow'] ? 'hover-show' : '' ) . ' ' . ( $attributes['containerStyles']['boxShadow']['enabled'] ? 'has-box-shadow' : '' ) . ' ' . ( $attributes['reviewImage']['hoverEffect'] ? 'has-image-hover-effect' : '' ) . '" id="' . esc_attr( $blockId ) . '">';
 

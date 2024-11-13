@@ -136,7 +136,7 @@ if ( $is_cozy_addons_active ) {
 					</li>
 
 					<li>
-						<a href="https://cozyblock.cozythemes.com/advanced-gallery-gutenberg-block/" target="_blank" rel="noopener"> 
+						<a href="https://cozyblock.cozythemes.com/advanced-gallery-gutenberg-block/" target="_blank" rel="noopener">
 							<div class="cozy-display-flex">
 								<svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect x="1" y="1" width="28" height="25" stroke="#0C50FF" stroke-width="2" fill="none" />
@@ -163,7 +163,7 @@ if ( $is_cozy_addons_active ) {
 					</li>
 
 					<li>
-						<a href="https://cozyblock.cozythemes.com/mega-menu-gutenberg-block/" target="_blank" rel="noopener"> 
+						<a href="https://cozyblock.cozythemes.com/mega-menu-gutenberg-block/" target="_blank" rel="noopener">
 							<div class="cozy-display-flex">
 								<svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect fill="none" x="1" y="1" width="25" height="20" stroke="#0C50FF" stroke-width="2" />
@@ -360,7 +360,7 @@ if ( $is_cozy_addons_active ) {
 					</li>
 
 					<li>
-						<a href="https://cozyblock.cozythemes.com/featured-content-box-gutenberg-block/" target="_blank" rel="noopener"> 
+						<a href="https://cozyblock.cozythemes.com/featured-content-box-gutenberg-block/" target="_blank" rel="noopener">
 							<div class="cozy-display-flex">
 								<svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect x="1" y="1" width="25" height="20" stroke="#0C50FF" stroke-width="2" />
@@ -462,7 +462,7 @@ if ( $is_cozy_addons_active ) {
 					</li>
 
 					<li>
-						<a href="https://cozyblock.cozythemes.com/portfolio-gallery-gutenberg-block/" target="_blank" rel="noopener"> 
+						<a href="https://cozyblock.cozythemes.com/portfolio-gallery-gutenberg-block/" target="_blank" rel="noopener">
 							<div class="cozy-display-flex">
 								<svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect fill="none" x="1" y="1" width="25" height="20" stroke="#0C50FF" stroke-width="2" />
@@ -1176,7 +1176,7 @@ if ( $is_cozy_addons_active ) {
 				<h2 class="mt-34"><?php echo esc_html_x( 'Woocommerce Blocks', 'cozy-addons' ); ?></h2>
 				<ul class="blocks-holder">
 					<li>
-						<a href="https://cozyblock.cozythemes.com/product-add-to-cart-woocommerce-block/" target="_blank" rel="noopener"> 
+						<a href="https://cozyblock.cozythemes.com/product-add-to-cart-woocommerce-block/" target="_blank" rel="noopener">
 							<div class="cozy-display-flex">
 								<svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M26 14V1H1V20.5H17.5" stroke="#0C50FF" stroke-width="2" />
@@ -1210,7 +1210,7 @@ if ( $is_cozy_addons_active ) {
 
 					<li>
 						<div class="cozy-display-flex">
-							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/featured-product-woocommerce-block/" target="_blank" rel="noopener"> 
+							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/featured-product-woocommerce-block/" target="_blank" rel="noopener">
 								<svg width="27" height="20" viewBox="0 0 27 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect x="0.75"
 										y="0.75"
@@ -1358,7 +1358,7 @@ if ( $is_cozy_addons_active ) {
 
 					<li>
 						<div class="cozy-display-flex">
-							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/featured-products-tab-woocommerce-block/" target="_blank" rel="noopener"> 
+							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/featured-products-tab-woocommerce-block/" target="_blank" rel="noopener">
 								<svg width="27" height="21" viewBox="0 0 27 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect fill="none" x="0.75" y="2.75" width="25.5" height="17.5" stroke="#0C50FF" stroke-width="1.5" />
 									<path d="M8 1H11" stroke="#0C50FF" />
@@ -1412,7 +1412,7 @@ if ( $is_cozy_addons_active ) {
 					</li>
 
 					<li>
-						<a href="https://cozyblock.cozythemes.com/product-categories-woocommerce-block/" target="_blank" rel="noopener"> 
+						<a href="https://cozyblock.cozythemes.com/product-categories-woocommerce-block/" target="_blank" rel="noopener">
 							<div class="cozy-display-flex">
 								<svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect fill="none" x="22" y="23" width="2" height="2" rx="1" stroke="#0C50FF" stroke-width="0.6" />
@@ -1448,7 +1448,7 @@ if ( $is_cozy_addons_active ) {
 					</li>
 
 					<li>
-						<a href="https://cozyblock.cozythemes.com/product-carousel-woocommerce-block/" target="_blank" rel="noopener"> 
+						<a href="https://cozyblock.cozythemes.com/product-carousel-woocommerce-block/" target="_blank" rel="noopener">
 							<div class="cozy-display-flex">
 								<svg width="27" height="21" viewBox="0 0 27 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect fill="none" x="0.75" y="2.75" width="25.5" height="17.5" stroke="#0C50FF" stroke-width="1.5" />
@@ -1491,7 +1491,7 @@ if ( $is_cozy_addons_active ) {
 					</li>
 
 					<li>
-						<a href="https://cozyblock.cozythemes.com/all-product-reviews-woocommerce-block/" target="_blank" rel="noopener"> 
+						<a href="https://cozyblock.cozythemes.com/all-product-reviews-woocommerce-block/" target="_blank" rel="noopener">
 							<div class="cozy-display-flex">
 								<svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect fill="none" x="22" y="23" width="2" height="2" rx="1" stroke="#0C50FF" stroke-width="0.6" />
@@ -1526,7 +1526,7 @@ if ( $is_cozy_addons_active ) {
 
 					<li>
 						<div class="cozy-display-flex">
-							<a style="display:flex;align-items:center;gap:10px;" href="https://cozyblock.cozythemes.com/product-slider-woocommerce-block/" target="_blank" rel="noopener"> 
+							<a style="display:flex;align-items:center;gap:10px;" href="https://cozyblock.cozythemes.com/product-slider-woocommerce-block/" target="_blank" rel="noopener">
 								<svg width="28" height="19" viewBox="0 0 28 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect fill="none" x="5" y="1" width="17" height="13" stroke="#0C50FF" stroke-width="2" />
 									<path d="M7.5 4H15V11H7.5V4Z" fill="#0C50FF" />
@@ -1576,7 +1576,7 @@ if ( $is_cozy_addons_active ) {
 
 					<li>
 						<div class="cozy-display-flex">
-							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/product-showcase-tabs-woocommerce-block/" target="_blank" rel="noopener"> 
+							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/product-showcase-tabs-woocommerce-block/" target="_blank" rel="noopener">
 								<svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M9.5 4.5V5.5H10.5H26V21H1V1H9.5V4.5Z" fill="none" stroke="#0C50FF" stroke-width="2" />
 									<path d="M4 8H13V15H4V8Z" fill="#0C50FF" />
@@ -1627,7 +1627,7 @@ if ( $is_cozy_addons_active ) {
 
 					<li>
 						<div class="cozy-display-flex">
-							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/product-quick-view-woocommerce-block/" target="_blank" rel="noopener"> 
+							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/product-quick-view-woocommerce-block/" target="_blank" rel="noopener">
 								<svg width="31" height="24" viewBox="0 0 31 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M7.9855 15.1047C7.9855 14.4595 8.50851 13.9365 9.15367 13.9365C9.79883 13.9365 10.3218 14.4595 10.3218 15.1047C10.3218 15.7498 9.79883 16.2729 9.15367 16.2729C8.50851 16.2729 7.9855 15.7498 7.9855 15.1047ZM9.15367 14.555C8.85006 14.555 8.60394 14.8011 8.60394 15.1047C8.60394 15.4083 8.85006 15.6544 9.15367 15.6544C9.45727 15.6544 9.70339 15.4083 9.70339 15.1047C9.70339 14.8011 9.45727 14.555 9.15367 14.555Z" fill="#0C50FF" />
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M11.4213 15.1047C11.4213 14.4595 11.9443 13.9365 12.5895 13.9365C13.2346 13.9365 13.7576 14.4595 13.7576 15.1047C13.7576 15.7498 13.2346 16.2729 12.5895 16.2729C11.9443 16.2729 11.4213 15.7498 11.4213 15.1047ZM12.5895 14.555C12.2859 14.555 12.0397 14.8011 12.0397 15.1047C12.0397 15.4083 12.2859 15.6544 12.5895 15.6544C12.8931 15.6544 13.1392 15.4083 13.1392 15.1047C13.1392 14.8011 12.8931 14.555 12.5895 14.555Z" fill="#0C50FF" />
@@ -1671,7 +1671,7 @@ if ( $is_cozy_addons_active ) {
 
 					<li>
 						<div class="cozy-display-flex">
-							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/product-wishlist-woocommerce-block/" target="_blank" rel="noopener"> 
+							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/product-wishlist-woocommerce-block/" target="_blank" rel="noopener">
 								<svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M12.1071 2.0202C9.44281 -0.444265 5.38564 -0.75193 2.6215 1.64103C-0.69016 4.51241 -0.86418 9.66589 2.09943 12.7783L12.3033 23.4817C12.9625 24.1728 14.033 24.1728 14.6922 23.4817L24.8961 12.7783C27.865 9.66589 27.6909 4.51241 24.3793 1.64103C21.615 -0.75203 17.5625 -0.444239 14.894 2.02051C14.7728 2.13244 14.6545 2.24882 14.5392 2.36959L13.5004 3.45707L12.4615 2.36959C12.3464 2.2487 12.2282 2.13222 12.1071 2.0202ZM23.0697 3.1527C21.0836 1.43373 17.994 1.64574 15.9863 3.75015L13.5004 6.35246L11.0131 3.74871C9.0119 1.64691 5.91796 1.43305 3.93103 3.1527C1.49712 5.26369 1.35778 9.09871 3.54752 11.3988C3.5474 11.3987 3.54763 11.3989 3.54752 11.3988L13.4978 21.8361L23.4485 11.3983C25.6423 9.09838 25.5036 5.26364 23.0697 3.1527Z" fill="#0C50FF" />
 									<rect x="14.75" y="10.75" width="10.5" height="10.5" rx="5.25" fill="#F5F5F5" stroke="#0C50FF" stroke-width="1.5" />
@@ -1705,6 +1705,43 @@ if ( $is_cozy_addons_active ) {
 								<?php } else { ?>
 									<span class="cozy-toggle-slider cozy-pro-block round"></span>
 								<?php } ?>
+							</label>
+						</div>
+					</li>
+				</ul>
+
+				<!-- Block CPT enable/disable -->
+				<h2 class="mt-34"><?php echo esc_html_x( 'Block Custom Post Type', 'cozy-addons' ); ?></h2>
+				<ul class="blocks-holder">
+					<li>
+						<div class="cozy-display-flex">
+							<p>
+								<?php esc_html_e( 'Mega Menu Templates', 'cozy-addons' ); ?>
+							</p>
+							</a>
+							<p class="cozy-block-pro-label"><?php echo esc_html_x( 'PRO', 'cozy-addons' ); ?></p>
+						</div>
+						<div class="cozy-block-toggle">
+							<label class="switch">
+								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
+								<input type="checkbox" class="ca__block-cpt <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="mega-menu-templates" id="ca--mega-menu-cpt">
+								<?php if ( false === cozy_addons_premium_access() ) { ?>
+									<div class="cozy-block-upsell-tooltip">
+										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this CPT!', 'cozy-addons' ); ?>
+									</div>
+								<?php } else { ?>
+									<span class="cozy-toggle-slider cozy-pro-block round"></span>
+								<?php } ?>
+							</label>
+						</div>
+					</li>
+
+					<li>
+						<?php esc_html_e( 'Portfolio Gallery Templates', 'cozy-addons' ); ?>
+						<div class="cozy-block-toggle">
+							<label class="switch">
+								<input type="checkbox" class="ca__block-cpt" name="portfolio-gallery-templates" id="ca--portfolio-gallery-cpt">
+								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
 					</li>

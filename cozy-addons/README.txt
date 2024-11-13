@@ -3,8 +3,8 @@ Contributors: CozyThemes
 Tags: gutenberg-blocks, wordpress-blocks, woocommerce-blocks, patterns, templates-library
 Requires PHP: 7.3.0
 Requires at least: 5.8
-Tested up to: 6.6
-Stable tag: 2.0.21
+Tested up to: 6.7
+Stable tag: 2.0.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks, patterns & templates designed to extend the WordPress Site Editor.
@@ -171,6 +171,10 @@ You can report any security bugs found in the source code of this plugin through
 7. Animation and Hover Effects
 
 == Changelog ==
+= 2.0.22 - November 13, 2024 = 
+* Fix: Post/Product blocks typography settings.
+* Fix: 'Advanced Mega Menu' responsive dropdown.
+
 = 2.0.21 - November 6, 2024 = 
 * Add: 'Categorized Post Tabs' content wrapper border.
 * Add: 'Magazine Grid' content wrapper border.

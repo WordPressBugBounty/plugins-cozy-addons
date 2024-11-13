@@ -58,6 +58,7 @@
           "vh": 20
         },
         "enableTitle": true,
+        "pulseEffect": false,
         "title": "Menu",
         "titlePosition": "after",
         "gap": 10,

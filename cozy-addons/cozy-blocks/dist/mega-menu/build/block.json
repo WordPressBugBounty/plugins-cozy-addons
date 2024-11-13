@@ -229,6 +229,10 @@
       "default": {
         "fontFamily": "",
         "fontSize": 16,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#000",
         "bgColorActive": "",
         "colorActive": "",

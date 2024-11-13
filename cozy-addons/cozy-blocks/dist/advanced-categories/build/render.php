@@ -37,8 +37,12 @@ $image_color = array(
 );
 
 $title_styles = array(
-	'color'       => isset( $attributes['title']['color'] ) ? $attributes['title']['color'] : '',
-	'color_hover' => isset( $attributes['title']['colorHover'] ) ? $attributes['title']['colorHover'] : '',
+	'letter_case'    => isset( $attributes['title']['letterCase'] ) ? $attributes['title']['letterCase'] : '',
+	'decoration'     => isset( $attributes['title']['decoration'] ) ? $attributes['title']['decoration'] : '',
+	'line_height'    => isset( $attributes['title']['lineHeight'] ) ? $attributes['title']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['title']['letterSpacing'] ) ? $attributes['title']['letterSpacing'] : '',
+	'color'          => isset( $attributes['title']['color'] ) ? $attributes['title']['color'] : '',
+	'color_hover'    => isset( $attributes['title']['colorHover'] ) ? $attributes['title']['colorHover'] : '',
 );
 
 $icon_box_padding = cozy_render_TRBL( 'padding', $attributes['iconBox']['padding'] );
@@ -208,6 +212,10 @@ $block_styles = <<<BLOCK_STYLES
 	font-size: {$attributes['title']['fontSize']};
 	font-family: {$attributes['title']['fontFamily']};
 	font-weight: {$attributes['title']['fontWeight']};
+	text-transform: {$title_styles['letter_case']};
+	text-decoration: {$title_styles['decoration']};
+	line-height: {$title_styles['line_height']};
+	letter-spacing: {$title_styles['letter_spacing']};
 	color: {$title_styles['color']};
 }
 #$block_id.layout-default .cozy-block-advanced-categories__category-item:hover .cozy-block-advanced-categories__name {

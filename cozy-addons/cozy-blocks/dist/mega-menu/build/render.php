@@ -83,6 +83,13 @@ $color = array(
 	'active_bg'   => isset( $attributes['typography']['bgColorActive'] ) ? $attributes['typography']['bgColorActive'] : '',
 );
 
+$typography = array(
+	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
+	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
+);
+
 $block_styles = <<<BLOCK_STYLES
 #$block_id.display-horizontal .cozy-menu-wrapper {
     gap: {$attributes['menuGap']}px;
@@ -260,6 +267,10 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .wp-block-navigation-item__content {
     font-weight: {$attributes['typography']['fontWeight']};
     font-size: {$attributes['typography']['fontSize']}px;
+    text-transform: {$typography['letter_spacing']};
+    text-decoration: {$typography['decoration']};
+    line-height: {$typography['line_height']};
+    letter-spacing: {$typography['letter_spacing']};
     color: {$color['text']};
 }
 #$block_id .wp-block-navigation-item:active .wp-block-navigation-item__content {

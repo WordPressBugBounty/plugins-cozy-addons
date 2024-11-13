@@ -173,6 +173,10 @@
         "fontSize": "18px",
         "fontFamily": "",
         "fontWeight": "600",
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#5566ca",
         "colorHover": "#f90"
       }

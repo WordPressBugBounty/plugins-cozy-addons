@@ -375,6 +375,50 @@ function update_cozy_blocks_option_callback() {
 	wp_die();
 }
 
+add_action( 'wp_ajax_get_ca_cpt_enable_status', 'get_ca_cpt_enable_status_callback' );
+function get_ca_cpt_enable_status_callback() {
+	$option_name   = '';
+	$template_name = sanitize_text_field( $_POST['templateName'] );
+	if ( isset( $template_name ) ) {
+		$option_name = 'ca-cpt--' . $template_name;
+	}
+	$enabled_status = get_option( $option_name );
+	// echo esc_html( $block_option );
+	wp_send_json_success(
+		array(
+			'enabledStatus' => $enabled_status,
+		)
+	);
+	wp_die();
+}
+
+add_action( 'wp_ajax_toggle_ca_cpt_enable', 'toggle_ca_cpt_enable_callback' );
+if ( ! function_exists( 'toggle_ca_cpt_enable_callback' ) ) {
+	function toggle_ca_cpt_enable_callback() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( 'Access Denied' );
+			return;
+		}
+
+		$allowed_options = array(
+			'mega-menu-templates',
+			'portfolio-gallery-templates',
+		);
+
+		$request_option = sanitize_text_field( $_POST['templateName'] );
+
+		if ( ! in_array( $request_option, $allowed_options ) ) {
+			wp_die( 'Invalid Option' );
+		}
+
+		$option_name = 'ca-cpt--' . $request_option;
+		$checked     = sanitize_text_field( $_POST['checked'] );
+		update_option( $option_name, $checked );
+		wp_die();
+	}
+}
+
+
 add_action( 'wp_ajax_get_cozy_addons_elementor_widgets_enabled', 'get_elementor_widgets_enabled_callback' );
 function get_elementor_widgets_enabled_callback() {
 	$option_name = 'cozy_addons_elementor_widgets_enabled';

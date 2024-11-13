@@ -14,22 +14,29 @@ $header_box = array(
 );
 
 $heading = array(
-	'padding'   => cozy_render_TRBL( 'padding', $attributes['headingStyles']['padding'] ),
-	'border'    => isset( $attributes['headingStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['headingStyles']['border'] ) : '',
-	'radius'    => cozy_render_TRBL( 'border-radius', $attributes['headingStyles']['radius'] ),
-	'bg'        => isset( $attributes['headingStyles']['color']['bg'] ) ? $attributes['headingStyles']['color']['bg'] : '',
-	'text'      => isset( $attributes['headingStyles']['color']['text'] ) ? $attributes['headingStyles']['color']['text'] : '',
-	'clip_path' => isset( $attributes['headingStyles']['clipPath'] ) ? $attributes['headingStyles']['clipPath'] : '',
+	'padding'        => cozy_render_TRBL( 'padding', $attributes['headingStyles']['padding'] ),
+	'border'         => isset( $attributes['headingStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['headingStyles']['border'] ) : '',
+	'radius'         => cozy_render_TRBL( 'border-radius', $attributes['headingStyles']['radius'] ),
+	'bg'             => isset( $attributes['headingStyles']['color']['bg'] ) ? $attributes['headingStyles']['color']['bg'] : '',
+	'text'           => isset( $attributes['headingStyles']['color']['text'] ) ? $attributes['headingStyles']['color']['text'] : '',
+	'clip_path'      => isset( $attributes['headingStyles']['clipPath'] ) ? $attributes['headingStyles']['clipPath'] : '',
+	'letter_case'    => isset( $attributes['headingStyles']['letterCase'] ) ? $attributes['headingStyles']['letterCase'] : '',
+	'decoration'     => isset( $attributes['headingStyles']['decoration'] ) ? $attributes['headingStyles']['decoration'] : '',
+	'line_height'    => isset( $attributes['headingStyles']['lineHeight'] ) ? $attributes['headingStyles']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['headingStyles']['letterSpacing'] ) ? $attributes['headingStyles']['letterSpacing'] : '',
 );
 
 $sub_heading = array(
-	'padding'      => cozy_render_TRBL( 'padding', $attributes['subHeading']['padding'] ),
-	'border'       => isset( $attributes['subHeading']['border'] ) ? cozy_render_TRBL( 'border', $attributes['subHeading']['border'] ) : '',
-	'text'         => isset( $attributes['subHeading']['color']['text'] ) ? $attributes['subHeading']['color']['text'] : '',
-	'text_hover'   => isset( $attributes['subHeading']['color']['textHover'] ) ? $attributes['subHeading']['color']['textHover'] : '',
-	'bg'           => isset( $attributes['subHeading']['color']['bg'] ) ? $attributes['subHeading']['color']['bg'] : '',
-	'bg_hover'     => isset( $attributes['subHeading']['color']['bgHover'] ) ? $attributes['subHeading']['color']['bgHover'] : '',
-	'border_hover' => isset( $attributes['subHeading']['color']['borderHover'] ) ? $attributes['subHeading']['color']['borderHover'] : '',
+	'padding'        => cozy_render_TRBL( 'padding', $attributes['subHeading']['padding'] ),
+	'border'         => isset( $attributes['subHeading']['border'] ) ? cozy_render_TRBL( 'border', $attributes['subHeading']['border'] ) : '',
+	'text'           => isset( $attributes['subHeading']['color']['text'] ) ? $attributes['subHeading']['color']['text'] : '',
+	'text_hover'     => isset( $attributes['subHeading']['color']['textHover'] ) ? $attributes['subHeading']['color']['textHover'] : '',
+	'bg'             => isset( $attributes['subHeading']['color']['bg'] ) ? $attributes['subHeading']['color']['bg'] : '',
+	'bg_hover'       => isset( $attributes['subHeading']['color']['bgHover'] ) ? $attributes['subHeading']['color']['bgHover'] : '',
+	'border_hover'   => isset( $attributes['subHeading']['color']['borderHover'] ) ? $attributes['subHeading']['color']['borderHover'] : '',
+	'decoration'     => isset( $attributes['subHeading']['decoration'] ) ? $attributes['subHeading']['decoration'] : '',
+	'line_height'    => isset( $attributes['subHeading']['lineHeight'] ) ? $attributes['subHeading']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['subHeading']['letterSpacing'] ) ? $attributes['subHeading']['letterSpacing'] : '',
 );
 
 $featured_image   = array(
@@ -40,12 +47,15 @@ $featured_image   = array(
 	'height' => isset( $attributes['featuredPostOptions']['image']['height'] ) ? $attributes['featuredPostOptions']['image']['height'] : '',
 );
 $featured_content = array(
-	'padding'           => cozy_render_TRBL( 'padding', $attributes['featuredPostOptions']['content']['padding'] ),
-	'border'            => isset( $attributes['featuredPostOptions']['content']['border'] ) ? cozy_render_TRBL( 'border', $attributes['featuredPostOptions']['content']['border'] ) : '',
-	'bg'                => isset( $attributes['featuredPostOptions']['content']['color']['bg'] ) ? $attributes['featuredPostOptions']['content']['color']['bg'] : '',
-	'title_font_family' => isset( $attributes['featuredPostOptions']['title']['font']['family'] ) ? $attributes['featuredPostOptions']['title']['font']['family'] : '',
-	'title_color'       => isset( $attributes['featuredPostOptions']['title']['color']['text'] ) ? $attributes['featuredPostOptions']['title']['color']['text'] : '',
-	'title_color_hover' => isset( $attributes['featuredPostOptions']['title']['color']['textHover'] ) ? $attributes['featuredPostOptions']['title']['color']['textHover'] : '',
+	'padding'              => cozy_render_TRBL( 'padding', $attributes['featuredPostOptions']['content']['padding'] ),
+	'border'               => isset( $attributes['featuredPostOptions']['content']['border'] ) ? cozy_render_TRBL( 'border', $attributes['featuredPostOptions']['content']['border'] ) : '',
+	'bg'                   => isset( $attributes['featuredPostOptions']['content']['color']['bg'] ) ? $attributes['featuredPostOptions']['content']['color']['bg'] : '',
+	'title_font_family'    => isset( $attributes['featuredPostOptions']['title']['font']['family'] ) ? $attributes['featuredPostOptions']['title']['font']['family'] : '',
+	'title_decoration'     => isset( $attributes['featuredPostOptions']['title']['decoration'] ) ? $attributes['featuredPostOptions']['title']['decoration'] : '',
+	'title_line_height'    => isset( $attributes['featuredPostOptions']['title']['lineHeight'] ) ? $attributes['featuredPostOptions']['title']['lineHeight'] : '',
+	'title_letter_spacing' => isset( $attributes['featuredPostOptions']['title']['letterSpacing'] ) ? $attributes['featuredPostOptions']['title']['letterSpacing'] : '',
+	'title_color'          => isset( $attributes['featuredPostOptions']['title']['color']['text'] ) ? $attributes['featuredPostOptions']['title']['color']['text'] : '',
+	'title_color_hover'    => isset( $attributes['featuredPostOptions']['title']['color']['textHover'] ) ? $attributes['featuredPostOptions']['title']['color']['textHover'] : '',
 );
 
 $post_item    = array(
@@ -80,22 +90,28 @@ $post_image   = array(
 	'height' => isset( $attributes['postOptions']['image']['height'] ) ? $attributes['postOptions']['image']['height'] : '',
 );
 $post_content = array(
-	'padding'           => cozy_render_TRBL( 'padding', $attributes['postOptions']['content']['padding'] ),
-	'title_font_family' => isset( $attributes['postOptions']['title']['font']['family'] ) ? $attributes['postOptions']['title']['font']['family'] : '',
-	'title_color'       => isset( $attributes['postOptions']['title']['color']['text'] ) ? $attributes['postOptions']['title']['color']['text'] : '',
-	'title_color_hover' => isset( $attributes['postOptions']['title']['color']['textHover'] ) ? $attributes['postOptions']['title']['color']['textHover'] : '',
+	'padding'              => cozy_render_TRBL( 'padding', $attributes['postOptions']['content']['padding'] ),
+	'title_font_family'    => isset( $attributes['postOptions']['title']['font']['family'] ) ? $attributes['postOptions']['title']['font']['family'] : '',
+	'title_decoration'     => isset( $attributes['postOptions']['title']['decoration'] ) ? $attributes['postOptions']['title']['decoration'] : '',
+	'title_line_height'    => isset( $attributes['postOptions']['title']['lineHeight'] ) ? $attributes['postOptions']['title']['lineHeight'] : '',
+	'title_letter_spacing' => isset( $attributes['postOptions']['title']['letterSpacing'] ) ? $attributes['postOptions']['title']['letterSpacing'] : '',
+	'title_color'          => isset( $attributes['postOptions']['title']['color']['text'] ) ? $attributes['postOptions']['title']['color']['text'] : '',
+	'title_color_hover'    => isset( $attributes['postOptions']['title']['color']['textHover'] ) ? $attributes['postOptions']['title']['color']['textHover'] : '',
 );
 
 $featured_cat_item = array(
-	'border'      => isset( $attributes['featuredPostCategories']['border'] ) ? cozy_render_TRBL( 'border', $attributes['featuredPostCategories']['border'] ) : '',
-	'radius'      => isset( $attributes['featuredPostCategories']['radius'] ) ? $attributes['featuredPostCategories']['radius'] : '',
-	'font'        => array(
+	'border'         => isset( $attributes['featuredPostCategories']['border'] ) ? cozy_render_TRBL( 'border', $attributes['featuredPostCategories']['border'] ) : '',
+	'radius'         => isset( $attributes['featuredPostCategories']['radius'] ) ? $attributes['featuredPostCategories']['radius'] : '',
+	'font'           => array(
 		'size'   => isset( $attributes['featuredPostCategories']['font']['size'] ) ? $attributes['featuredPostCategories']['font']['size'] : '',
 		'family' => isset( $attributes['featuredPostCategories']['font']['family'] ) ? $attributes['featuredPostCategories']['font']['family'] : '',
 		'weight' => isset( $attributes['featuredPostCategories']['font']['weight'] ) ? $attributes['featuredPostCategories']['font']['weight'] : '',
 	),
-	'letter_case' => isset( $attributes['featuredPostCategories']['letterCase'] ) ? $attributes['featuredPostCategories']['letterCase'] : '',
-	'color'       => array(
+	'letter_case'    => isset( $attributes['featuredPostCategories']['letterCase'] ) ? $attributes['featuredPostCategories']['letterCase'] : '',
+	'decoration'     => isset( $attributes['featuredPostCategories']['decoration'] ) ? $attributes['featuredPostCategories']['decoration'] : '',
+	'line_height'    => isset( $attributes['featuredPostCategories']['lineHeight'] ) ? $attributes['featuredPostCategories']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['featuredPostCategories']['letterSpacing'] ) ? $attributes['featuredPostCategories']['letterSpacing'] : '',
+	'color'          => array(
 		'text'         => isset( $attributes['featuredPostCategories']['color']['text'] ) ? $attributes['featuredPostCategories']['color']['text'] : '',
 		'text_hover'   => isset( $attributes['featuredPostCategories']['color']['textHover'] ) ? $attributes['featuredPostCategories']['color']['textHover'] : '',
 		'bg'           => isset( $attributes['featuredPostCategories']['color']['bg'] ) ? $attributes['featuredPostCategories']['color']['bg'] : '',
@@ -105,18 +121,24 @@ $featured_cat_item = array(
 );
 
 $cat_item = array(
-	'padding'      => cozy_render_TRBL( 'padding', $attributes['postCategories']['padding'] ),
-	'border'       => isset( $attributes['postCategories']['border'] ) ? cozy_render_TRBL( 'border', $attributes['postCategories']['border'] ) : '',
-	'font_family'  => isset( $attributes['postCategories']['font']['family'] ) ? $attributes['postCategories']['font']['family'] : '',
-	'text'         => isset( $attributes['postCategories']['color']['text'] ) ? $attributes['postCategories']['color']['text'] : '',
-	'text_hover'   => isset( $attributes['postCategories']['color']['textHover'] ) ? $attributes['postCategories']['color']['textHover'] : '',
-	'bg'           => isset( $attributes['postCategories']['color']['bg'] ) ? $attributes['postCategories']['color']['bg'] : '',
-	'bg_hover'     => isset( $attributes['postCategories']['color']['bgHover'] ) ? $attributes['postCategories']['color']['bgHover'] : '',
-	'border_hover' => isset( $attributes['postCategories']['color']['borderHover'] ) ? $attributes['postCategories']['color']['borderHover'] : '',
+	'padding'        => cozy_render_TRBL( 'padding', $attributes['postCategories']['padding'] ),
+	'border'         => isset( $attributes['postCategories']['border'] ) ? cozy_render_TRBL( 'border', $attributes['postCategories']['border'] ) : '',
+	'font_family'    => isset( $attributes['postCategories']['font']['family'] ) ? $attributes['postCategories']['font']['family'] : '',
+	'decoration'     => isset( $attributes['postCategories']['decoration'] ) ? $attributes['postCategories']['decoration'] : '',
+	'line_height'    => isset( $attributes['postCategories']['lineHeight'] ) ? $attributes['postCategories']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['postCategories']['letterSpacing'] ) ? $attributes['postCategories']['letterSpacing'] : '',
+	'text'           => isset( $attributes['postCategories']['color']['text'] ) ? $attributes['postCategories']['color']['text'] : '',
+	'text_hover'     => isset( $attributes['postCategories']['color']['textHover'] ) ? $attributes['postCategories']['color']['textHover'] : '',
+	'bg'             => isset( $attributes['postCategories']['color']['bg'] ) ? $attributes['postCategories']['color']['bg'] : '',
+	'bg_hover'       => isset( $attributes['postCategories']['color']['bgHover'] ) ? $attributes['postCategories']['color']['bgHover'] : '',
+	'border_hover'   => isset( $attributes['postCategories']['color']['borderHover'] ) ? $attributes['postCategories']['color']['borderHover'] : '',
 );
 
 $post_meta = array(
 	'font_family'    => isset( $attributes['postMeta']['font']['family'] ) ? $attributes['postMeta']['font']['family'] : '',
+	'decoration'     => isset( $attributes['postMeta']['decoration'] ) ? $attributes['postMeta']['decoration'] : '',
+	'line_height'    => isset( $attributes['postMeta']['lineHeight'] ) ? $attributes['postMeta']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['postMeta']['letterSpacing'] ) ? $attributes['postMeta']['letterSpacing'] : '',
 	'featured'       => isset( $attributes['postMeta']['color']['featured'] ) ? $attributes['postMeta']['color']['featured'] : '',
 	'featured_hover' => isset( $attributes['postMeta']['color']['featuredHover'] ) ? $attributes['postMeta']['color']['featuredHover'] : '',
 	'text'           => isset( $attributes['postMeta']['color']['text'] ) ? $attributes['postMeta']['color']['text'] : '',
@@ -124,15 +146,18 @@ $post_meta = array(
 );
 
 $featured_read_more = array(
-	'border'      => isset( $attributes['featuredReadMore']['border'] ) ? cozy_render_TRBL( 'border', $attributes['featuredReadMore']['border'] ) : '',
-	'radius'      => isset( $attributes['featuredReadMore']['radius'] ) ? $attributes['featuredReadMore']['radius'] : '',
-	'font'        => array(
+	'border'         => isset( $attributes['featuredReadMore']['border'] ) ? cozy_render_TRBL( 'border', $attributes['featuredReadMore']['border'] ) : '',
+	'radius'         => isset( $attributes['featuredReadMore']['radius'] ) ? $attributes['featuredReadMore']['radius'] : '',
+	'font'           => array(
 		'size'   => isset( $attributes['featuredReadMore']['font']['size'] ) ? $attributes['featuredReadMore']['font']['size'] : '',
 		'weight' => isset( $attributes['featuredReadMore']['font']['weight'] ) ? $attributes['featuredReadMore']['font']['weight'] : '',
 		'family' => isset( $attributes['featuredReadMore']['font']['family'] ) ? $attributes['featuredReadMore']['font']['family'] : '',
 	),
-	'letter_case' => isset( $attributes['featuredReadMore']['letterCase'] ) ? $attributes['featuredReadMore']['letterCase'] : '',
-	'color'       => array(
+	'letter_case'    => isset( $attributes['featuredReadMore']['letterCase'] ) ? $attributes['featuredReadMore']['letterCase'] : '',
+	'decoration'     => isset( $attributes['featuredReadMore']['decoration'] ) ? $attributes['featuredReadMore']['decoration'] : '',
+	'line_height'    => isset( $attributes['featuredReadMore']['lineHeight'] ) ? $attributes['featuredReadMore']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['featuredReadMore']['letterSpacing'] ) ? $attributes['featuredReadMore']['letterSpacing'] : '',
+	'color'          => array(
 		'text'         => isset( $attributes['featuredReadMore']['color']['text'] ) ? $attributes['featuredReadMore']['color']['text'] : '',
 		'text_hover'   => isset( $attributes['featuredReadMore']['color']['textHover'] ) ? $attributes['featuredReadMore']['color']['textHover'] : '',
 		'bg'           => isset( $attributes['featuredReadMore']['color']['bg'] ) ? $attributes['featuredReadMore']['color']['bg'] : '',
@@ -142,20 +167,26 @@ $featured_read_more = array(
 );
 
 $read_more = array(
-	'padding'      => cozy_render_TRBL( 'padding', $attributes['readMore']['padding'] ),
-	'border'       => isset( $attributes['readMore']['border'] ) ? cozy_render_TRBL( 'border', $attributes['readMore']['border'] ) : '',
-	'font_family'  => isset( $attributes['readMore']['font']['family'] ) ? $attributes['readMore']['font']['family'] : '',
-	'text'         => isset( $attributes['readMore']['color']['text'] ) ? $attributes['readMore']['color']['text'] : '',
-	'text_hover'   => isset( $attributes['readMore']['color']['textHover'] ) ? $attributes['readMore']['color']['textHover'] : '',
-	'bg'           => isset( $attributes['readMore']['color']['bg'] ) ? $attributes['readMore']['color']['bg'] : '',
-	'bg_hover'     => isset( $attributes['readMore']['color']['bgHover'] ) ? $attributes['readMore']['color']['bgHover'] : '',
-	'border_hover' => isset( $attributes['readMore']['color']['borderHover'] ) ? $attributes['readMore']['color']['borderHover'] : '',
+	'padding'        => cozy_render_TRBL( 'padding', $attributes['readMore']['padding'] ),
+	'border'         => isset( $attributes['readMore']['border'] ) ? cozy_render_TRBL( 'border', $attributes['readMore']['border'] ) : '',
+	'font_family'    => isset( $attributes['readMore']['font']['family'] ) ? $attributes['readMore']['font']['family'] : '',
+	'decoration'     => isset( $attributes['readMore']['decoration'] ) ? $attributes['readMore']['decoration'] : '',
+	'line_height'    => isset( $attributes['readMore']['lineHeight'] ) ? $attributes['readMore']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['readMore']['letterSpacing'] ) ? $attributes['readMore']['letterSpacing'] : '',
+	'text'           => isset( $attributes['readMore']['color']['text'] ) ? $attributes['readMore']['color']['text'] : '',
+	'text_hover'     => isset( $attributes['readMore']['color']['textHover'] ) ? $attributes['readMore']['color']['textHover'] : '',
+	'bg'             => isset( $attributes['readMore']['color']['bg'] ) ? $attributes['readMore']['color']['bg'] : '',
+	'bg_hover'       => isset( $attributes['readMore']['color']['bgHover'] ) ? $attributes['readMore']['color']['bgHover'] : '',
+	'border_hover'   => isset( $attributes['readMore']['color']['borderHover'] ) ? $attributes['readMore']['color']['borderHover'] : '',
 );
 
 $ajax_loader = array(
 	'padding'           => cozy_render_TRBL( 'padding', $attributes['ajaxLoader']['padding'] ),
 	'border'            => isset( $attributes['ajaxLoader']['border'] ) ? cozy_render_TRBL( 'border', $attributes['ajaxLoader']['border'] ) : '',
 	'font_family'       => isset( $attributes['ajaxLoader']['font']['family'] ) ? $attributes['ajaxLoader']['font']['family'] : '',
+	'decoration'        => isset( $attributes['ajaxLoader']['decoration'] ) ? $attributes['ajaxLoader']['decoration'] : '',
+	'line_height'       => isset( $attributes['ajaxLoader']['lineHeight'] ) ? $attributes['ajaxLoader']['lineHeight'] : '',
+	'letter_spacing'    => isset( $attributes['ajaxLoader']['letterSpacing'] ) ? $attributes['ajaxLoader']['letterSpacing'] : '',
 	'text'              => isset( $attributes['ajaxLoader']['color']['text'] ) ? $attributes['ajaxLoader']['color']['text'] : '',
 	'text_hover'        => isset( $attributes['ajaxLoader']['color']['textHover'] ) ? $attributes['ajaxLoader']['color']['textHover'] : '',
 	'bg'                => isset( $attributes['ajaxLoader']['color']['bg'] ) ? $attributes['ajaxLoader']['color']['bg'] : '',
@@ -187,6 +218,10 @@ $block_styles = <<<BLOCK_STYLES
     font-size: {$attributes['headingStyles']['font']['size']};
     font-weight: {$attributes['headingStyles']['font']['weight']};
     font-family: {$attributes['headingStyles']['font']['family']};
+	text-transform: {$heading['letter_case']};
+	text-decoration: {$heading['decoration']};
+	line-height: {$heading['line_height']};
+	letter-spacing: {$heading['letter_spacing']};
     background-color: {$heading['bg']};
     color: {$heading['text']};
 	clip-path: {$heading['clip_path']};
@@ -200,6 +235,9 @@ $block_styles = <<<BLOCK_STYLES
     font-weight: {$attributes['subHeading']['font']['weight']};
     font-family: {$attributes['subHeading']['font']['family']};
 	text-transform: {$attributes['subHeading']['letterCase']};
+    text-decoration: {$sub_heading['decoration']};
+    line-height: {$sub_heading['line_height']};
+    letter-spacing: {$sub_heading['letter_spacing']};
     background-color: {$sub_heading['bg']};
 }
 #$block_id .cozy-block-magazine-grid__sub-heading, #$block_id .cozy-block-magazine-grid__sub-heading a {
@@ -252,6 +290,9 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$featured_cat_item['font']['weight']};
 	font-family: {$featured_cat_item['font']['family']};
 	text-transform: {$featured_cat_item['letter_case']};
+	text-decoration: {$featured_cat_item['decoration']};
+	line-height: {$featured_cat_item['line_height']};
+	letter-spacing: {$featured_cat_item['letter_spacing']};
 	color: {$featured_cat_item['color']['text']};
 	background-color: {$featured_cat_item['color']['bg']};
 }
@@ -268,8 +309,11 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['featuredPostOptions']['title']['font']['weight']};
 	font-family: {$featured_content['title_font_family']};
 	text-transform: {$attributes['featuredPostOptions']['title']['letterCase']};
+	line-height: {$featured_content['title_line_height']};
+	letter-spacing: {$featured_content['title_letter_spacing']};
 }
 #$block_id .featured-post__title a {
+	text-decoration: {$featured_content['title_decoration']};
 	color: {$featured_content['title_color']};
 }
 #$block_id .featured-post__title:hover a {
@@ -299,6 +343,9 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$featured_read_more['font']['weight']};
 	font-family: {$featured_read_more['font']['family']};
 	text-transform: {$featured_read_more['letter_case']};
+	text-decoration: {$featured_read_more['decoration']};
+	line-height: {$featured_read_more['line_height']};
+	letter-spacing: {$featured_read_more['letter_spacing']};
 	color: {$featured_read_more['color']['text']};
 	background-color: {$featured_read_more['color']['bg']};
 }
@@ -406,6 +453,9 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['postCategories']['font']['weight']};
 	font-family: {$cat_item['font_family']};
 	text-transform: {$attributes['postCategories']['letterCase']};
+	text-decoration: {$cat_item['decoration']};
+	line-height: {$cat_item['line_height']};
+	letter-spacing: {$cat_item['letter_spacing']};
 	color: {$cat_item['text']};
 	background-color: {$cat_item['bg']};
 }
@@ -422,8 +472,11 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['postOptions']['title']['font']['weight']};
 	font-family: {$post_content['title_font_family']};
 	text-transform: {$attributes['postOptions']['title']['letterCase']};
+	line-height: {$post_content['title_line_height']};
+	letter-spacing: {$post_content['title_letter_spacing']};
 }
 #$block_id .post__title a {
+	text-decoration: {$post_content['title_decoration']};
 	color: {$post_content['title_color']};
 }
 #$block_id .post__title:hover a {
@@ -438,6 +491,12 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['postMeta']['font']['weight']};
 	font-family: {$post_meta['font_family']};
 	text-transform: {$attributes['postMeta']['letterCase']};
+	line-height: {$post_meta['line_height']};
+	letter_spacing: {$post_meta['letter_spacing']};
+	
+	& a {
+		text-decoration: {$post_meta['decoration']};
+	}
 }
 #$block_id .post__meta .display-flex {
 	color: {$post_meta['text']};
@@ -465,6 +524,9 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['readMore']['font']['weight']};
 	font-family: {$read_more['font_family']};
 	text-transform: {$attributes['readMore']['letterCase']};
+	text-decoration: {$read_more['decoration']};
+	line-height: {$read_more['line_height']};
+	letter-spacing: {$read_more['letter_spacing']};
 	color: {$read_more['text']};
 	background-color: {$read_more['bg']};
 }
@@ -487,6 +549,9 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['ajaxLoader']['font']['weight']};
 	font-family: {$ajax_loader['font_family']};
 	text-transform: {$attributes['ajaxLoader']['letterCase']};
+	text-decoration: {$ajax_loader['decoration']};
+	line-height: {$ajax_loader['line_height']};
+	letter-spacing: {$ajax_loader['letter_spacing']};
 	color: {$ajax_loader['text']};
 	background-color: {$ajax_loader['bg']};
 	min-width: {$attributes['ajaxLoader']['minWidth']};

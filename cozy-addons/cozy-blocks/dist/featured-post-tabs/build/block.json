@@ -286,7 +286,11 @@
         "borderColorHover": "",
         "fontSize": "12px",
         "fontFamily": "Public Sans",
-        "fontWeight": "400"
+        "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "titleStyles": {
@@ -297,6 +301,10 @@
         "fontSize": "20px",
         "fontFamily": "Public Sans",
         "fontWeight": "600",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#090b10",
         "colorHover": "#f90"
       }
@@ -325,7 +333,11 @@
         "borderColorHover": "",
         "fontSize": "12px",
         "fontFamily": "Public Sans",
-        "fontWeight": "400"
+        "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "tagStyles": {
@@ -358,7 +370,10 @@
         "fontSize": "12px",
         "fontFamily": "Public Sans",
         "fontWeight": "400",
-        "letterCase": "none"
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "tabStyles": {
@@ -399,7 +414,11 @@
         },
         "fontSize": "14px",
         "fontFamily": "Public Sans",
-        "fontWeight": "500"
+        "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "separatorStyles": {
