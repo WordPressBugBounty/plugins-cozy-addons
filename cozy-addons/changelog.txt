@@ -1,3 +1,7 @@
+= 2.0.23 - November 15, 2024 = 
+* Fix: Typography settings for general blocks.
+* Fix: Show block CPT if the option not set.
+
 = 2.0.22 - November 13, 2024 = 
 * Fix: Post/Product blocks typography settings.
 * Fix: 'Advanced Mega Menu' responsive dropdown.

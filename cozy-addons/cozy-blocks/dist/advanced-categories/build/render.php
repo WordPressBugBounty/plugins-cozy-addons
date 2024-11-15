@@ -131,8 +131,11 @@ $block_styles = <<<BLOCK_STYLES
 	{$item_div_padding}
 	{$item_div_border}
 	{$item_div_radius}
-	box-shadow: {$attributes['categoryItem']['shadow']['horizontal']}px {$attributes['categoryItem']['shadow']['vertical']}px {$attributes['categoryItem']['shadow']['blur']}px {$attributes['categoryItem']['shadow']['spread']}px {$item_styles['shadow_color']} {$attributes['categoryItem']['shadow']['position']};
 	background-color: {$item_styles['bg_color']};
+	
+	&.has-box-shadow {
+		box-shadow: {$attributes['categoryItem']['shadow']['horizontal']}px {$attributes['categoryItem']['shadow']['vertical']}px {$attributes['categoryItem']['shadow']['blur']}px {$attributes['categoryItem']['shadow']['spread']}px {$item_styles['shadow_color']} {$attributes['categoryItem']['shadow']['position']};
+	}
 }
 #$block_id .cozy-block-advanced-categories__category-item:hover {
 	background-color: {$item_styles['bg_color_hover']};
@@ -357,6 +360,7 @@ if ( isset( $attributes['title']['fontFamily'] ) && ! empty( $attributes['title'
 		$cat_classes   = array();
 		$cat_classes[] = 'cozy-block-advanced-categories__category-item';
 		$cat_classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
+		$cat_classes[] = isset($attributes['categoryItem']['shadow']['enabled']) && $attributes['categoryItem']['shadow']['enabled'] ? 'has-box-shadow' : '';
 		$output       .= '<style>' . $cat_styles . '</style>';
 		$output       .= '<div class="' . implode( ' ', $cat_classes ) . '" data-category-id="' . $category->term_id . '">';
 

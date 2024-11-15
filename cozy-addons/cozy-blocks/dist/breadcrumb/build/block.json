@@ -22,9 +22,14 @@
     "typography": {
       "type": "object",
       "default": {
-        "fontFamily": "default",
+        "fontFamily": "Public Sans",
         "fontSize": 16,
         "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "": "none",
         "color": "#000",
         "linkColor": "#5566CA",
         "hoverColor": "#36CFC6"
