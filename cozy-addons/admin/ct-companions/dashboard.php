@@ -129,7 +129,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="accordion" id="cozy-block--accordion">
+								<?php
+								$checked = get_option( 'cozy-block--accordion' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="accordion" id="cozy-block--accordion" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -156,7 +159,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="advanced-gallery" id="cozy-block--advanced-gallery">
+								<?php
+								$checked = get_option( 'cozy-block--advanced-gallery' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="advanced-gallery" id="cozy-block--advanced-gallery" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -181,7 +187,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="mega-menu" id="cozy-block--mega-menu">
+								<?php
+								$checked = get_option( 'cozy-block--mega-menu' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="mega-menu" id="cozy-block--mega-menu" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -202,7 +211,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="advanced-tab" id="cozy-block--advanced-tab">
+								<?php
+								$checked = get_option( 'cozy-block--advanced-tab' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="advanced-tab" id="cozy-block--advanced-tab" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -222,7 +234,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="back-to-top" id="cozy-block--back-to-top">
+								<?php
+								$checked = get_option( 'cozy-block--back-to-top' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="back-to-top" id="cozy-block--back-to-top" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -242,7 +257,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="breadcrumb" id="cozy-block--breadcrumb">
+								<?php
+								$checked = get_option( 'cozy-block--breadcrumb' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="breadcrumb" id="cozy-block--breadcrumb" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -262,7 +280,10 @@ if ( $is_cozy_addons_active ) {
 						</div>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="button" id="cozy-block--button">
+								<?php
+								$checked = get_option( 'cozy-block--button' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="button" id="cozy-block--button" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -280,7 +301,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="container" id="cozy-block--container">
+								<?php
+								$checked = get_option( 'cozy-block--container' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="container" id="cozy-block--container" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -301,7 +325,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="counter" id="cozy-block--counter">
+								<?php
+								$checked = get_option( 'cozy-block--counter' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="counter" id="cozy-block--counter" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -326,7 +353,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="cta" id="cozy-block--cta">
+								<?php
+								$checked = get_option( 'cozy-block--cta' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="cta" id="cozy-block--cta" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -353,7 +383,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="current-time" id="cozy-block--current-time">
+								<?php
+								$checked = get_option( 'cozy-block--current-time' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="current-time" id="cozy-block--current-time" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -374,7 +407,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="featured-content-box" id="cozy-block--featured-content-box">
+								<?php
+								$checked = get_option( 'cozy-block--featured-content-box' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="featured-content-box" id="cozy-block--featured-content-box" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -399,7 +435,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="icon-list" id="cozy-block--icon-list">
+								<?php
+								$checked = get_option( 'cozy-block--icon-list' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="icon-list" id="cozy-block--icon-list" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -418,7 +457,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="icon-picker" id="cozy-block--icon-picker">
+								<?php
+								$checked = get_option( 'cozy-block--icon-picker' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="icon-picker" id="cozy-block--icon-picker" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -449,7 +491,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="modal" id="cozy-block--modal">
+								<?php
+								$checked = get_option( 'cozy-block--modal' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="modal" id="cozy-block--modal" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -477,7 +522,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="portfolio-gallery" id="cozy-block--portfolio-gallery">
+								<?php
+								$checked = get_option( 'cozy-block--portfolio-gallery' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="portfolio-gallery" id="cozy-block--portfolio-gallery" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -506,7 +554,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="progress-bar" id="cozy-block--progress-bar">
+								<?php
+								$checked = get_option( 'cozy-block--progress-bar' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="progress-bar" id="cozy-block--progress-bar" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -531,7 +582,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="sidebar-panel" id="cozy-block--sidebar-panel">
+								<?php
+								$checked = get_option( 'cozy-block--sidebar-panel' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="sidebar-panel" id="cozy-block--sidebar-panel" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -556,7 +610,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="slider" id="cozy-block--slider">
+								<?php
+								$checked = get_option( 'cozy-block--slider' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="slider" id="cozy-block--slider" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -578,7 +635,10 @@ if ( $is_cozy_addons_active ) {
 						</div>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="social-icon" id="cozy-block--social-icon">
+								<?php
+								$checked = get_option( 'cozy-block--social-icon' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="social-icon" id="cozy-block--social-icon" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -597,7 +657,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="social-share" id="cozy-block--social-share">
+								<?php
+								$checked = get_option( 'cozy-block--social-share' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="social-share" id="cozy-block--social-share" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -616,7 +679,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="teams" id="cozy-block--teams">
+								<?php
+								$checked = get_option( 'cozy-block--teams' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="teams" id="cozy-block--teams" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -642,7 +708,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="testimonial" id="cozy-block--testimonial">
+								<?php
+								$checked = get_option( 'cozy-block--testimonial' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="testimonial" id="cozy-block--testimonial" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -677,7 +746,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="ad" id="cozy-block--ad">
+								<?php
+								$checked = get_option( 'cozy-block--ad' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="ad" id="cozy-block--ad" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -703,7 +775,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="advanced-categories" id="cozy-block--advanced-categories">
+								<?php
+								$checked = get_option( 'cozy-block--advanced-categories' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="advanced-categories" id="cozy-block--advanced-categories" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -743,7 +818,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="categorized-post-tabs" id="cozy-block--categorized-post-tabs">
+								<?php
+								$checked = get_option( 'cozy-block--categorized-post-tabs' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="categorized-post-tabs" id="cozy-block--categorized-post-tabs" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -785,7 +863,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="featured-post" id="cozy-block--featured-post">
+								<?php
+								$checked = get_option( 'cozy-block--featured-post' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="featured-post" id="cozy-block--featured-post" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -819,7 +900,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="featured-post-tabs" id="cozy-block--featured-post-tabs">
+								<?php
+								$checked = get_option( 'cozy-block--featured-post-tabs' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="featured-post-tabs" id="cozy-block--featured-post-tabs" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -857,7 +941,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="magazine-grid" id="cozy-block--magazine-grid">
+								<?php
+								$checked = get_option( 'cozy-block--magazine-grid' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="magazine-grid" id="cozy-block--magazine-grid" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -896,7 +983,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="magazine-list" id="cozy-block--magazine-list">
+								<?php
+								$checked = get_option( 'cozy-block--magazine-list' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="magazine-list" id="cozy-block--magazine-list" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -928,7 +1018,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="news-ticker" id="cozy-block--news-ticker">
+								<?php
+								$checked = get_option( 'cozy-block--news-ticker' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="news-ticker" id="cozy-block--news-ticker" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -963,7 +1056,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="popular-post" id="cozy-block--popular-post">
+								<?php
+								$checked = get_option( 'cozy-block--popular-post' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="popular-post" id="cozy-block--popular-post" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -998,7 +1094,10 @@ if ( $is_cozy_addons_active ) {
 						</a>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="cozy-block-active" name="post-carousel" id="cozy-block--post-carousel">
+								<?php
+								$checked = get_option( 'cozy-block--post-carousel' );
+								?>
+								<input type="checkbox" class="cozy-block-active" name="post-carousel" id="cozy-block--post-carousel" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>
@@ -1022,7 +1121,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="post-comments" id="cozy-block--post-comments">
+								<?php
+								$checked = get_option( 'cozy-block--post-comments' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="post-comments" id="cozy-block--post-comments" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -1058,7 +1160,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="post-slider" id="cozy-block--post-slider">
+								<?php
+								$checked = get_option( 'cozy-block--post-slider' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="post-slider" id="cozy-block--post-slider" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -1086,7 +1191,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="post-views" id="cozy-block--post-views">
+								<?php
+								$checked = get_option( 'cozy-block--post-views' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="post-views" id="cozy-block--post-views" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -1121,7 +1229,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="related-post" id="cozy-block--related-post">
+								<?php
+								$checked = get_option( 'cozy-block--related-post' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="related-post" id="cozy-block--related-post" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -1159,7 +1270,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="trending-post" id="cozy-block--trending-post">
+								<?php
+								$checked = get_option( 'cozy-block--trending-post' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="trending-post" id="cozy-block--trending-post" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this block!', 'cozy-addons' ); ?>
@@ -1194,7 +1308,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo ! is_woocommerce_active() ? '<span class="cozy-toggle-slider round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="add-to-cart" id="cozy-block--add-to-cart">
+								<?php
+								$checked = get_option( 'cozy-block--add-to-cart' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="add-to-cart" id="cozy-block--add-to-cart" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<?php if ( ! is_woocommerce_active() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php
@@ -1331,7 +1448,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="featured-product" id="cozy-block--featured-product">
+								<?php
+								$checked = get_option( 'cozy-block--featured-product' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="featured-product" id="cozy-block--featured-product" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() || ! is_woocommerce_active() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php
@@ -1386,7 +1506,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="featured-product-tabs" id="cozy-block--featured-product-tabs">
+								<?php
+								$checked = get_option( 'cozy-block--featured-product-tabs' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="featured-product-tabs" id="cozy-block--featured-product-tabs" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() || ! is_woocommerce_active() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php
@@ -1433,7 +1556,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo ! is_woocommerce_active() ? '<span class="cozy-toggle-slider round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="product-category" id="cozy-block--product-category">
+								<?php
+								$checked = get_option( 'cozy-block--product-category' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="product-category" id="cozy-block--product-category" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<?php if ( ! is_woocommerce_active() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php
@@ -1476,7 +1602,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo ! is_woocommerce_active() ? '<span class="cozy-toggle-slider round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="product-carousel" id="cozy-block--product-carousel">
+								<?php
+								$checked = get_option( 'cozy-block--product-carousel' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="product-carousel" id="cozy-block--product-carousel" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<?php if ( ! is_woocommerce_active() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php
@@ -1510,7 +1639,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo ! is_woocommerce_active() ? '<span class="cozy-toggle-slider round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="product-review" id="cozy-block--product-review">
+								<?php
+								$checked = get_option( 'cozy-block--product-review' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="product-review" id="cozy-block--product-review" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<?php if ( ! is_woocommerce_active() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php
@@ -1551,7 +1683,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="product-slider" id="cozy-block--product-slider">
+								<?php
+								$checked = get_option( 'cozy-block--product-slider' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="product-slider" id="cozy-block--product-slider" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() || ! is_woocommerce_active() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php
@@ -1602,7 +1737,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="product-tab" id="cozy-block--product-tab">
+								<?php
+								$checked = get_option( 'cozy-block--product-tab' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="product-tab" id="cozy-block--product-tab" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() || ! is_woocommerce_active() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php
@@ -1646,7 +1784,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="quick-view" id="cozy-block--quick-view">
+								<?php
+								$checked = get_option( 'cozy-block--quick-view' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="quick-view" id="cozy-block--quick-view" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() || ! is_woocommerce_active() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php
@@ -1686,7 +1827,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="wishlist" id="cozy-block--wishlist">
+								<?php
+								$checked = get_option( 'cozy-block--wishlist' );
+								?>
+								<input type="checkbox" class="cozy-block-active <?php echo false === cozy_addons_premium_access() || ! is_woocommerce_active() ? 'cozy-block-upsell' : ''; ?>" name="wishlist" id="cozy-block--wishlist" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() || ! is_woocommerce_active() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php
@@ -1724,7 +1868,10 @@ if ( $is_cozy_addons_active ) {
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
-								<input type="checkbox" class="ca__block-cpt <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="mega-menu-templates" id="ca--mega-menu-cpt">
+								<?php
+								$checked = get_option( 'ca-cpt--mega-menu-templates' );
+								?>
+								<input type="checkbox" class="ca__block-cpt <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="mega-menu-templates" id="ca--mega-menu-cpt" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 								<?php if ( false === cozy_addons_premium_access() ) { ?>
 									<div class="cozy-block-upsell-tooltip">
 										<?php echo esc_html_x( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php echo esc_html_x( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php echo esc_html_x( ' to enable this CPT!', 'cozy-addons' ); ?>
@@ -1740,7 +1887,10 @@ if ( $is_cozy_addons_active ) {
 						<?php esc_html_e( 'Portfolio Gallery Templates', 'cozy-addons' ); ?>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<input type="checkbox" class="ca__block-cpt" name="portfolio-gallery-templates" id="ca--portfolio-gallery-cpt">
+								<?php
+								$checked = get_option( 'ca-cpt--portfolio-gallery-templates' );
+								?>
+								<input type="checkbox" class="ca__block-cpt" name="portfolio-gallery-templates" id="ca--portfolio-gallery-cpt" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 								<span class="cozy-toggle-slider round"></span>
 							</label>
 						</div>

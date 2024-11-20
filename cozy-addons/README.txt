@@ -4,7 +4,7 @@ Tags: gutenberg-blocks, wordpress-blocks, woocommerce-blocks, patterns, template
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 2.0.23
+Stable tag: 2.0.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks, patterns & templates designed to extend the WordPress Site Editor.
@@ -171,6 +171,12 @@ You can report any security bugs found in the source code of this plugin through
 7. Animation and Hover Effects
 
 == Changelog ==
+= 2.0.24 - November 20, 2024 = 
+* Fix: 'Advanced Mega Menu' block's active menu item's text/background color and typography settings.
+* Fix: Render the popup in the respective block section for 'Sidebar Panel' block.
+* Fix: Render the popup in the respective block section for 'Popup Builder' block.
+* Fix: Reduced load time for plugin's Dashboard > Blocks enable/disabled status.
+
 = 2.0.23 - November 15, 2024 = 
 * Fix: Typography settings for general blocks.
 * Fix: Show block CPT if the option not set.

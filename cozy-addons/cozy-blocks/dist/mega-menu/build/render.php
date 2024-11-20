@@ -84,6 +84,7 @@ $color = array(
 );
 
 $typography = array(
+	'font_family'    => isset( $attributes['typography']['fontFamily'] ) ? $attributes['typography']['fontFamily'] : '',
 	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
 	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
 	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
@@ -106,9 +107,9 @@ $block_styles = <<<BLOCK_STYLES
 
 #$block_id .cozy-menu-wrapper > .wp-block-navigation-item {
     padding: {$attributes['menuStyles']['itemPadding']['top']}px {$attributes['menuStyles']['itemPadding']['right']}px {$attributes['menuStyles']['itemPadding']['bottom']}px {$attributes['menuStyles']['itemPadding']['left']}px;
+    border-radius: {$attributes['menuStyles']['itemBorderRadius']}px;
 }
 #$block_id .cozy-menu-wrapper > .wp-block-navigation-item:hover {
-    border-radius: {$attributes['menuStyles']['itemBorderRadius']}px;
     background-color: {$item_color['bg_hover']};
 }
 #$block_id .cozy-menu-wrapper > .wp-block-navigation-item:hover .wp-block-navigation-item__content {
@@ -150,10 +151,10 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id.display-vertical .cozy-menu-wrapper > .wp-block-navigation-item.has-child > .wp-block-navigation__submenu-container {
     left: {$attributes['menuWidth']}px;
 }
-#$block_id.display-horizontal .cozy-mega-menu__item .cozy-block-mega-menu__dropdown, #$block_id.display-horizontal .cozy-menu-wrapper .wp-block-navigation__submenu-container {
-    top: {$content_gap_top}px;
+#$block_id.display-horizontal .cozy-menu-wrapper .wp-block-navigation__submenu-container {
+    top: {$attributes['contentGap']}px;
 }
-#$block_id.display-horizontal.event-hover .cozy-mega-menu__item:hover .cozy-block-mega-menu__dropdown, #$block_id.display-horizontal .cozy-mega-menu__item .cozy-block-mega-menu__dropdown.show-cozy-dropdown-color {
+#$block_id.display-horizontal .cozy-mega-menu__item .cozy-block-mega-menu__dropdown.show-cozy-dropdown-color {
     top: {$attributes['contentGap']}px;
 }
 #$block_id.display-horizontal.event-hover .wp-block-navigation-item.has-child:hover .wp-block-navigation__submenu-container, #$block_id.display-horizontal .cozy-block-navigation-menu:not(.full-screen) .cozy-menu-wrapper > .wp-block-navigation-item.has-child > .wp-block-navigation__submenu-container.show-cozy-dropdown-color {
@@ -267,22 +268,28 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .wp-block-navigation-item__content {
     font-weight: {$attributes['typography']['fontWeight']};
     font-size: {$attributes['typography']['fontSize']}px;
-    text-transform: {$typography['letter_spacing']};
+    font-family: {$typography['font_family']};
+    text-transform: {$typography['letter_case']};
     text-decoration: {$typography['decoration']};
     line-height: {$typography['line_height']};
     letter-spacing: {$typography['letter_spacing']};
     color: {$color['text']};
 }
-#$block_id .wp-block-navigation-item:active .wp-block-navigation-item__content {
+#$block_id .cozy-menu-wrapper > .wp-block-navigation-item:hover > .wp-block-navigation-item__content, #$block_id .cozy-menu-wrapper > .wp-block-navigation-item.current-menu-item > .wp-block-navigation-item__content {
     color: {$color['active_text']};
 }
-#$block_id .cozy-block-navigation-menu:not(.full-screen) .wp-block-navigation-item:active {
+#$block_id .cozy-block-navigation-menu:not(.full-screen) .cozy-menu-wrapper > .wp-block-navigation-item:hover, #$block_id .cozy-block-navigation-menu:not(.full-screen) .cozy-menu-wrapper > .wp-block-navigation-item.current-menu-item {
     background-color: {$color['active_bg']};
 }
 BLOCK_STYLES;
 
 $output  = '<div class="cozy-block-wrapper cozy-block-mega-menu-wrapper">';
 $output .= '<style>' . $block_styles . '</style>';
+
+if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
+	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['typography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+}
+
 $output .= $content;
 $output .= '</div>';
 

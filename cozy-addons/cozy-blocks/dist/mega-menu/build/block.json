@@ -41,7 +41,7 @@
     },
     "contentGap": {
       "type": "number",
-      "default": 50
+      "default": 40
     },
     "icon": {
       "type": "object",
@@ -227,7 +227,7 @@
     "typography": {
       "type": "object",
       "default": {
-        "fontFamily": "",
+        "fontFamily": "Public Sans",
         "fontSize": 16,
         "letterCase": "none",
         "decoration": "none",

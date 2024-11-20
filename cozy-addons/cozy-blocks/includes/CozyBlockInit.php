@@ -224,6 +224,8 @@ if ( ! class_exists( 'CozyBlockInit' ) ) {
 				'featured-product-tabs',
 				'quick-view',
 				'featured-product',
+				'wishlist',
+				'add-to-cart',
 			);
 
 			$available_fonts = cozy_get_fonts_from_active_theme();

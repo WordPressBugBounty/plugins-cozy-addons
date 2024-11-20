@@ -14,13 +14,21 @@ $color = array(
 
 
 $button_styles = array(
-	'justify'    => isset( $attributes['clickButtonStyles']['justify'] ) ? $attributes['clickButtonStyles']['justify'] : '',
-	'border'     => isset( $attributes['clickButtonStyles']['borderColor'] ) ? $attributes['clickButtonStyles']['borderColor'] : '',
-	'text'       => isset( $attributes['clickButtonStyles']['color'] ) ? $attributes['clickButtonStyles']['color'] : '',
-	'bg'         => isset( $attributes['clickButtonStyles']['bgColor'] ) ? $attributes['clickButtonStyles']['bgColor'] : '',
-	'text_hover' => isset( $attributes['clickButtonStyles']['colorHover'] ) ? $attributes['clickButtonStyles']['colorHover'] : '',
-	'bg_hover'   => isset( $attributes['clickButtonStyles']['bgColorHover'] ) ? $attributes['clickButtonStyles']['bgColorHover'] : '',
-	'img'        => array(
+	'justify'        => isset( $attributes['clickButtonStyles']['justify'] ) ? $attributes['clickButtonStyles']['justify'] : '',
+	'border'         => isset( $attributes['clickButtonStyles']['borderColor'] ) ? $attributes['clickButtonStyles']['borderColor'] : '',
+	'text'           => isset( $attributes['clickButtonStyles']['color'] ) ? $attributes['clickButtonStyles']['color'] : '',
+	'bg'             => isset( $attributes['clickButtonStyles']['bgColor'] ) ? $attributes['clickButtonStyles']['bgColor'] : '',
+	'text_hover'     => isset( $attributes['clickButtonStyles']['colorHover'] ) ? $attributes['clickButtonStyles']['colorHover'] : '',
+	'bg_hover'       => isset( $attributes['clickButtonStyles']['bgColorHover'] ) ? $attributes['clickButtonStyles']['bgColorHover'] : '',
+	'font'           => array(
+		'family' => isset( $attributes['clickButtonStyles']['fontFamily'] ) ? $attributes['clickButtonStyles']['fontFamily'] : '',
+		'weight' => isset( $attributes['clickButtonStyles']['fontWeight'] ) ? $attributes['clickButtonStyles']['fontWeight'] : '',
+	),
+	'letter_case'    => isset( $attributes['clickButtonStyles']['letterCase'] ) ? $attributes['clickButtonStyles']['letterCase'] : '',
+	'decoration'     => isset( $attributes['clickButtonStyles']['decoration'] ) ? $attributes['clickButtonStyles']['decoration'] : '',
+	'line_height'    => isset( $attributes['clickButtonStyles']['lineHeight'] ) ? $attributes['clickButtonStyles']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['clickButtonStyles']['letterSpacing'] ) ? $attributes['clickButtonStyles']['letterSpacing'] : '',
+	'img'            => array(
 		'width'  => isset( $attributes['clickButtonStyles']['imgWidth'] ) ? $attributes['clickButtonStyles']['imgWidth'] : '100',
 		'height' => isset( $attributes['clickButtonStyles']['imgHeight'] ) ? $attributes['clickButtonStyles']['imgHeight'] : '100',
 		'radius' => isset( $attributes['clickButtonStyles']['imgRadius'] ) ? $attributes['clickButtonStyles']['imgRadius'] : '',
@@ -38,9 +46,19 @@ $icon_styles = array(
 	),
 );
 
+$overlay_styles = array(
+	'color' => array(
+		'bg' => isset( $attributes['backgroundOverlayColor'] ) ? $attributes['backgroundOverlayColor'] : '',
+	),
+);
+
 $block_styles = <<<BLOCK_STYLES
 .cozy-block-wrapper[data-block="{$client_id}"] {
     text-align: {$button_styles['justify']};
+
+    & .cozy-block-modal__overlay {
+        background-color: {$overlay_styles['color']['bg']};
+    }
 }
 .cozy-modal-open[data-type="{$client_id}"] {
     padding: {$attributes['clickButtonStyles']['padding']['top']}px {$attributes['clickButtonStyles']['padding']['right']}px {$attributes['clickButtonStyles']['padding']['bottom']}px {$attributes['clickButtonStyles']['padding']['left']}px;
@@ -49,6 +67,12 @@ $block_styles = <<<BLOCK_STYLES
     border-color: {$button_styles['border']};
     border-radius: {$attributes['clickButtonStyles']['borderRadius']}px;
     font-size: {$attributes['clickButtonStyles']['fontSize']}px;
+    font-family: {$button_styles['font']['family']};
+    font-weight: {$button_styles['font']['weight']};
+    text-transform: {$button_styles['letter_case']};
+    text-decoration: {$button_styles['decoration']};
+    line-height: {$button_styles['line_height']};
+    letter-spacing: {$button_styles['letter_spacing']};
     color: {$button_styles['text']};
     background-color: {$button_styles['bg']};
 }
@@ -100,6 +124,15 @@ BLOCK_STYLES;
 
 $output  = '<div class="cozy-block-wrapper" data-block="' . $client_id . '">';
 $output .= '<style>' . $block_styles . '</style>';
+
+if ( 'default' === $attributes['modalType'] ) {
+	$output .= '<div class="cozy-block-modal__overlay display-none"></div>';
+}
+
+if ( isset( $attributes['clickButtonStyles']['fontFamily'] ) && ! empty( $attributes['clickButtonStyles']['fontFamily'] ) ) {
+	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['clickButtonStyles']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+}
+
 $output .= $content;
 $output .= '</div>';
 
