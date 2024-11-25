@@ -207,6 +207,9 @@ $bullet_styles  = array(
 	'default_color_hover' => isset( $attributes['pagination']['default']['colorHover'] ) ? $attributes['pagination']['default']['colorHover'] : '',
 	'active_color'        => isset( $attributes['pagination']['active']['color'] ) ? $attributes['pagination']['active']['color'] : '',
 	'active_color_hover'  => isset( $attributes['pagination']['active']['colorHover'] ) ? $attributes['pagination']['active']['colorHover'] : '',
+	'align'               => isset( $attributes['pagination']['align'] ) ? $attributes['pagination']['align'] : 'center',
+	'left'                => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? $attributes['pagination']['left'] : '',
+	'right'               => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? $attributes['pagination']['right'] : '',
 );
 
 $column1 = $attributes['gridOptions']['columnCount'] <= 3 ? $attributes['gridOptions']['columnCount'] : 3;
@@ -524,6 +527,9 @@ $block_styles = <<<BLOCK_STYLES
 
 #$block_id .swiper-pagination {
 	bottom: {$attributes['pagination']['verticalPosition']}px;
+    text-align: {$bullet_styles['align']};
+    padding-left: {$bullet_styles['left']};
+    padding-right: {$bullet_styles['right']};
 }
 #$block_id .swiper-pagination .swiper-pagination-bullet {
 	width: {$attributes['pagination']['default']['width']};
@@ -545,10 +551,10 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .swiper-pagination .swiper-pagination-bullet-active:hover {
 	background-color: {$bullet_styles['active_color_hover']};
 }
-#$block_id.swiper-horizontal .swiper-pagination-bullets .swiper-pagination-bullet {
+#$block_id:has(.swiper-horizontal) .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$attributes['pagination']['gap']});
 }
-#$block_id.swiper-vertical .swiper-pagination-bullets .swiper-pagination-bullet {
+#$block_id:has(.swiper-vertical) .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: var(--swiper-pagination-bullet-vertical-gap, {$attributes['pagination']['gap']}) 0;
 }
 BLOCK_STYLES;

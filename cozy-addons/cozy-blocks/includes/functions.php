@@ -184,6 +184,10 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 		);
 		$cozy_hover_string .= '--cozyDefaultBoxShadow: ' . $cozy_hover_effect['boxShadow']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadow']['vertical'] . 'px ' . $cozy_hover_effect['boxShadow']['blur'] . 'px ' . $cozy_hover_effect['boxShadow']['spread'] . 'px ' . $shadow_color['default'] . ' ' . $cozy_hover_effect['boxShadow']['position'] . '; --cozyHoverBoxShadow: ' . $cozy_hover_effect['boxShadowHover']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadowHover']['vertical'] . 'px ' . $cozy_hover_effect['boxShadowHover']['blur'] . 'px ' . $cozy_hover_effect['boxShadowHover']['spread'] . 'px ' . $shadow_color['hover'] . ' ' . $cozy_hover_effect['boxShadowHover']['position'] . ';';
 
+		if ( isset( $cozy_hover_effect['hasZIndex'] ) && $cozy_hover_effect['hasZIndex'] ) {
+			$cozy_hover_string .= 'z-index:' . $cozy_hover_effect['zIndex'] . ';';
+		}
+
 		preg_match( '/style="([^"]*)"/', $block_content, $matches );
 		$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
 

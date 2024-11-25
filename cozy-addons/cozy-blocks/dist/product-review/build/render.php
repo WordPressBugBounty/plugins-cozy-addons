@@ -82,17 +82,27 @@ $block_typography = array(
 	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
 );
 
-$nav_color = array(
-	'icon'       => isset( $attributes['navigation']['color'] ) ? $attributes['navigation']['color'] : '',
-	'bg'         => isset( $attributes['navigation']['backgroundColor'] ) ? $attributes['navigation']['backgroundColor'] : '',
-	'icon_hover' => isset( $attributes['navigation']['colorHover'] ) ? $attributes['navigation']['colorHover'] : '',
-	'bg_hover'   => isset( $attributes['navigation']['backgroundColorHover'] ) ? $attributes['navigation']['backgroundColorHover'] : '',
+$nav_styles = array(
+	'border' => isset( $attributes['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['navigation']['border'] ) : '',
+);
+$nav_color  = array(
+	'icon'         => isset( $attributes['navigation']['color'] ) ? $attributes['navigation']['color'] : '',
+	'bg'           => isset( $attributes['navigation']['backgroundColor'] ) ? $attributes['navigation']['backgroundColor'] : '',
+	'icon_hover'   => isset( $attributes['navigation']['colorHover'] ) ? $attributes['navigation']['colorHover'] : '',
+	'bg_hover'     => isset( $attributes['navigation']['backgroundColorHover'] ) ? $attributes['navigation']['backgroundColorHover'] : '',
+	'border_hover' => isset( $attributes['navigation']['borderHover'] ) ? $attributes['navigation']['borderHover'] : '',
 );
 
 $bullet       = array(
-	'align' => isset( $attributes['pagination']['align'] ) ? $attributes['pagination']['align'] : 'center',
-	'left'  => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? 'padding-left: ' . $attributes['pagination']['left'] . ';' : '',
-	'right' => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? 'padding-right: ' . $attributes['pagination']['right'] . ';' : '',
+	'align'  => isset( $attributes['pagination']['align'] ) ? $attributes['pagination']['align'] : 'center',
+	'left'   => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? 'padding-left: ' . $attributes['pagination']['left'] . ';' : '',
+	'right'  => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? 'padding-right: ' . $attributes['pagination']['right'] . ';' : '',
+	'active' => array(
+		'height' => isset( $attributes['pagination']['activeHeight'] ) ? $attributes['pagination']['activeHeight'] : '',
+		'border' => isset( $attributes['pagination']['activeBorder'] ) ? cozy_render_TRBL( 'outline', $attributes['pagination']['activeBorder'] ) : '',
+		'offset' => isset( $attributes['pagination']['activeOffset'] ) ? $attributes['pagination']['activeOffset'] : '',
+	),
+	'gap'    => isset( $attributes['pagination']['gap'] ) ? $attributes['pagination']['gap'] : '',
 );
 $bullet_color = array(
 	'default_bg'       => isset( $attributes['pagination']['color'] ) ? $attributes['pagination']['color'] : '',
@@ -246,6 +256,7 @@ $blockStyles = <<<BLOCK_CSS
     #{$blockId} .swiper-button-next {
         width: {$attributes['navigation']['iconBoxWidth']}px;
         height: {$attributes['navigation']['iconBoxHeight']}px;
+        {$nav_styles['border']}
         border-radius: {$attributes['navigation']['borderRadius']}px;
         color: {$nav_color['icon']};
         background-color: {$nav_color['bg']};
@@ -255,6 +266,7 @@ $blockStyles = <<<BLOCK_CSS
     #{$blockId} .swiper-button-next:hover {
         color: {$nav_color['icon_hover']};
         background-color: {$nav_color['bg_hover']};
+        border-color: {$nav_color['border_hover']};
     }
 
     #{$blockId} .swiper-pagination {
@@ -264,6 +276,9 @@ $blockStyles = <<<BLOCK_CSS
         {$bullet['right']}
     }
     #{$blockId} .swiper-pagination .swiper-pagination-bullet {
+        margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet['gap']}px);
+    }
+    #{$blockId} .swiper-pagination .swiper-pagination-bullet {
         width: {$attributes['pagination']['width']}px;
         height: {$attributes['pagination']['height']}px;
         border-radius: {$attributes['pagination']['borderRadius']}px;
@@ -271,6 +286,9 @@ $blockStyles = <<<BLOCK_CSS
     }
     #{$blockId} .swiper-pagination .swiper-pagination-bullet-active {
         width: {$attributes['pagination']['activeWidth']}px;
+        height: {$bullet['active']['height']}px;
+        {$bullet['active']['border']}
+        outline-offset: {$bullet['active']['offset']}px;
         border-radius: {$attributes['pagination']['activeBorderRadius']}px;
         background-color: {$bullet_color['active_bg']};
     }
@@ -435,7 +453,7 @@ if ( ! empty( $reviewsToDisplay ) ) {
 
 		echo '<div class="display-flex flex-column align-start justify-center">';
 
-		echo '<div class="display-flex">';
+		echo '<div class="display-flex" style="flex-wrap:wrap;row-gap:4px;">';
 
 		if ( $attributes['enableOptions']['productName'] ) {
 			$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $review->product_url ) . '"' : '';
@@ -451,7 +469,7 @@ if ( ! empty( $reviewsToDisplay ) ) {
 
 		echo '</div>';
 
-		echo '<div class="display-flex">';
+		echo '<div class="display-flex" style="margin-top:6px;margin-bottom:4px;">';
 
 		if ( $attributes['enableOptions']['reviewerName'] ) {
 			echo '<div class="reviewer-name">' . esc_html( $review->reviewer_name ) . '</div>';

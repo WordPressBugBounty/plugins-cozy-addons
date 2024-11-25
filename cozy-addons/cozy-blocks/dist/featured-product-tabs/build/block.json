@@ -148,7 +148,10 @@
           "colorHover": ""
         },
         "verticalPosition": 0,
-        "gap": "4px"
+        "gap": "4px",
+        "align": "center",
+        "left": "0px",
+        "right": "0px"
       }
     },
     "navigation": {

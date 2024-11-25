@@ -1,3 +1,8 @@
+= 2.0.25 - November 25, 2024 = 
+* Fix: Slider styles.
+* Add: z-index option for 'Cozy Hover Effect' functionality.
+* Add: Post meta options for 'Popular Post' and 'Trending Posts' blocks.
+
 = 2.0.24 - November 20, 2024 = 
 * Fix: 'Advanced Mega Menu' block's active menu item's text/background color and typography settings.
 * Fix: Render the popup in the respective block section for 'Sidebar Panel' block.

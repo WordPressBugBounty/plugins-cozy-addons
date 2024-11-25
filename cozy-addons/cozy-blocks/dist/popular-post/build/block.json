@@ -106,6 +106,8 @@
         "titleLinkNewTab": false,
         "content": true,
         "excerpt": 20,
+        "author": true,
+        "comments": true,
         "date": true,
         "linkPostMeta": true,
         "postMetaNewTab": false
@@ -196,7 +198,7 @@
       "type": "object",
       "default": {
         "marginTop": "6px",
-        "marginBottom": "6px",
+        "marginBottom": "4px",
         "fontSize": "18px",
         "fontFamily": "Public Sans",
         "fontWeight": "600",
@@ -217,16 +219,16 @@
           "bottom": "0px",
           "left": "0px"
         },
-        "marginTop": "6px",
-        "marginBottom": "0px",
+        "marginTop": "0px",
+        "marginBottom": "6px",
         "border": {
           "width": "",
           "style": "",
           "color": ""
         },
         "radius": "0px",
-        "color": "",
-        "colorHover": "",
+        "color": "#5566ca",
+        "colorHover": "#f90",
         "bgColor": "",
         "bgColorHover": "",
         "borderColorHover": "",
