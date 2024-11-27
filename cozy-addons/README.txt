@@ -4,7 +4,7 @@ Tags: gutenberg-blocks, wordpress-blocks, woocommerce-blocks, patterns, template
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 2.0.25
+Stable tag: 2.0.26
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks, patterns & templates designed to extend the WordPress Site Editor.
@@ -171,6 +171,11 @@ You can report any security bugs found in the source code of this plugin through
 7. Animation and Hover Effects
 
 == Changelog ==
+= 2.0.26 - November 27, 2024 = 
+* Fix: Slider options 'Speed', 'Autoplay Delay' value to minimum 0.
+* Add: Transform option for default state in 'Cozy Hover Effect' functionality.
+* Add: Overflow option for default state in 'Cozy Hover Effect' functionality.
+
 = 2.0.25 - November 25, 2024 = 
 * Fix: Slider styles.
 * Add: z-index option for 'Cozy Hover Effect' functionality.

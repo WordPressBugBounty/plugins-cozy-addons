@@ -661,6 +661,16 @@
     rotate(var(--cozyHoverRotate)) scale(var(--cozyHoverScale)) !important ;
   transition: transform 0.23s ease-in-out !important;
 }
+/* Overflow Hidden */
+.cozy-hover-effect__overflow-hidden {
+  overflow: hidden;
+}
+.cozy-hover-effect__overflow-visible {
+  overflow: visible;
+}
+.cozy-hover-effect__overflow-scroll {
+  overflow: scroll;
+}
 
 /* Pattern Search Bar */
 .cozy-block-pattern__search-bar .wp-block-search__inside-wrapper {

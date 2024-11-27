@@ -1,3 +1,8 @@
+= 2.0.26 - November 27, 2024 = 
+* Fix: Slider options 'Speed', 'Autoplay Delay' value to minimum 0.
+* Add: Transform option for default state in 'Cozy Hover Effect' functionality.
+* Add: Overflow option for default state in 'Cozy Hover Effect' functionality.
+
 = 2.0.25 - November 25, 2024 = 
 * Fix: Slider styles.
 * Add: z-index option for 'Cozy Hover Effect' functionality.

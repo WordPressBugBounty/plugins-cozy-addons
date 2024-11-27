@@ -1697,6 +1697,7 @@ if ( ! function_exists( 'get_cozy_block_wishlist_render_data_sidebar' ) ) {
 					$product_price       = wc_price( $product->get_price() );
 					$product_description = $product->get_description();
 					$product_image       = wp_get_attachment_url( $product->get_image_id() );
+					$is_in_stock         = $product->get_stock_status();
 
 					$output .= '<li class="cozy-block-wishlist__product-data post-' . $product_id . '">';
 					/* Product Image */
@@ -1711,13 +1712,17 @@ if ( ! function_exists( 'get_cozy_block_wishlist_render_data_sidebar' ) ) {
 
 					/* Product Details */
 					$output .= '<div style="width:100%;">';
-					$output .= '<p class="cozy-block-wishlist__product-title"><a href="' . esc_url( $product_link ) . '" rel="noopener" target="_blank">' . $product_name . '</a></p>';
+					$output .= '<p class="cozy-block-wishlist__product-title"><a href="' . esc_url( $product_link ) . '" rel="noopener" target="_blank">' . esc_html( $product_name ) . '</a></p>';
 					$output .= '<p class="cozy-block-wishlist__product-summary">' . cozy_create_excerpt( $product_description, 15 ) . '</p>';
 					$output .= '<p class="cozy-block-wishlist__product-price">' . $product_price . '</p>';
 
 					/* Add/Remove Buttons */
 					$output .= '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">';
-					$output .= '<div class="cozy-block-wishlist__sidebar-button add__cart" data-product-id="' . $product_id . '">' . esc_html_x( 'Add to Cart', 'cozy-addons' ) . '</div>';
+					$stock_label = 'instock' === $is_in_stock ? 'Add to Cart' : 'Out of Stock';
+					$classes     = array();
+					$classes[]   = 'cozy-block-wishlist__sidebar-button';
+					$classes[]   = 'instock' === $is_in_stock ? 'add__cart' : 'out-of-stock';
+					$output     .= '<div class="' . implode( ' ', $classes ) . '" data-product-id="' . $product_id . '">' . $stock_label . '</div>';
 					$output .= '<div class="cozy-block-wishlist__sidebar-button remove__wishlist" data-product-id="' . $product_id . '">' . esc_html_x( 'Remove', 'cozy-addons' ) . '</div>';
 					$output .= '</div>';
 					/* End Add/Remove Buttons */
