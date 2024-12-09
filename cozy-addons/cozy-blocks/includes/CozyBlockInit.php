@@ -31,8 +31,6 @@ if ( ! class_exists( 'CozyBlockInit' ) ) {
 			QueryLoop::init();
 			CozyPattern::init();
 
-			add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_cozy_block_pattern_lib' ) );
-
 			add_filter( 'block_categories_all', array( $this, 'cozy_block_categories' ), PHP_INT_MAX, 2 );
 			add_action( 'enqueue_block_assets', array( $this, 'enqueue_cozy_block_assets' ) );
 			add_action( 'init', array( $this, 'enqueue_cozy_block' ) );
@@ -134,35 +132,6 @@ if ( ! class_exists( 'CozyBlockInit' ) ) {
 			$this->register_cozy_blocks();
 			$this->register_active_cozy_blocks();
 			$this->register_cozy_assets();
-		}
-
-		public function enqueue_cozy_block_pattern_lib() {
-			wp_enqueue_style(
-				'cozy-block-pattern-styles', // Handle name.
-				COZY_BLOCK_PLUGIN_URL . 'assets/css/cozy-block-editor.css',
-				array(),
-				COZY_ADDONS_VERSION
-			);
-
-			// Pattern lib script.
-			wp_enqueue_script(
-				'cozy-block-pattern-lib', // Handle name.
-				COZY_BLOCK_PLUGIN_URL . 'assets/js/pattern-lib.min.js',
-				// COZY_BLOCK_PLUGIN_URL . 'dist/pattern-lib/build/index.js',
-				array( 'react', 'wp-block-editor', 'wp-blocks', 'wp-data', 'wp-element', 'wp-i18n' ), // Dependencies: wp-blocks, wp-element, wp-hooks.
-				COZY_ADDONS_VERSION,
-				true
-			);
-
-			wp_localize_script(
-				'cozy-block-pattern-lib',
-				'cozyPatterns',
-				array(
-					'isPremium' => cozy_addons_premium_access(),
-					'imageDir'  => COZY_BLOCK_PLUGIN_URL . 'assets/img/',
-					'assetsURL' => CT_ASSETS_URL,
-				)
-			);
 		}
 
 		private function register_cozy_blocks() {
@@ -300,16 +269,15 @@ if ( ! class_exists( 'CozyBlockInit' ) ) {
 					$this->localize_woo_resources_cozy_blocks( $block_name );
 
 					$this->localize_ca_cpt_assets( $block_name );
-
 				}
 			}
 		}
 
 		private function register_cozy_assets() {
 			// Swiper
-			wp_register_script( 'cozy-swiper-bundle', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/js/swiper-bundle.js', array( 'jquery' ), '11.0.3', false );
+			wp_register_script( 'cozy-swiper-bundle', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/js/swiper-bundle.js', array( 'jquery' ), '11.1.15', false );
 			// Swiper styles.
-			wp_register_style( 'cozy-swiper-bundle', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/css/swiper-bundle.css', array(), '11.0.3' );
+			wp_register_style( 'cozy-swiper-bundle', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/css/swiper-bundle.css', array(), '11.1.15' );
 
 			wp_register_script( 'cozy-aos-animation', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/js/aos.js', array(), COZY_ADDONS_VERSION, false );
 

@@ -52,6 +52,7 @@
           "colorHover": "#a5a5a5",
           "align": "center",
           "positionVertical": 5,
+          "gap": 4,
           "left": "0px",
           "right": "0px"
         },

@@ -115,6 +115,7 @@
         "autoplay": {
           "status": true,
           "pauseOnMouseEnter": true,
+          "reverseDirection": false,
           "delay": 2500
         },
         "centeredSlides": false,

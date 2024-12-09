@@ -1,3 +1,7 @@
+= 2.0.27 - December 9, 2024 = 
+* Fix: Styles for 'Advanced Mega Menu' block.
+* Fix: Slider options for 'Featured Content Box' block.
+
 = 2.0.26 - November 27, 2024 = 
 * Fix: Slider options 'Speed', 'Autoplay Delay' value to minimum 0.
 * Add: Transform option for default state in 'Cozy Hover Effect' functionality.

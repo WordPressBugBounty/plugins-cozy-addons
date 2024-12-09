@@ -43,6 +43,10 @@
       "type": "number",
       "default": 40
     },
+    "megaMenuContentGap": {
+      "type": "number",
+      "default": 20
+    },
     "icon": {
       "type": "object",
       "default": {
@@ -213,8 +217,8 @@
           "bottom": 0,
           "left": 0
         },
-        "width": "30px",
-        "height": "30px",
+        "width": "20px",
+        "height": "20px",
         "borderType": "none",
         "borderWidth": 1,
         "borderColor": "#000",

@@ -20,6 +20,10 @@ $container_color = array(
 	'bg_fullscreen' => isset( $attributes['responsive']['bgColor'] ) ? $attributes['responsive']['bgColor'] : '',
 );
 
+$mega_menu = array(
+	'dropdown_gap' => isset( $attributes['megaMenuContentGap'] ) ? $attributes['megaMenuContentGap'] : '26',
+);
+
 $item_color = array(
 	'bg_hover'   => isset( $attributes['menuStyles']['itemHoverColor'] ) ? $attributes['menuStyles']['itemHoverColor'] : '',
 	'text_hover' => isset( $attributes['menuStyles']['textHoverColor'] ) ? $attributes['menuStyles']['textHoverColor'] : '',
@@ -112,7 +116,7 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .cozy-menu-wrapper > .wp-block-navigation-item:hover {
     background-color: {$item_color['bg_hover']};
 }
-#$block_id .cozy-menu-wrapper > .wp-block-navigation-item:hover .wp-block-navigation-item__content {
+#$block_id .cozy-menu-wrapper > .wp-block-navigation-item:hover > .wp-block-navigation-item__content {
     color: {$item_color['text_hover']};
 }
 #$block_id .wp-block-navigation-item li.wp-block-navigation-item:not(:last-child) {
@@ -145,7 +149,7 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .wp-block-navigation__submenu-container .wp-block-navigation-item:hover {
     background-color: {$sub_item_color['item_bg_hover']};
 }
-#$block_id .wp-block-navigation__submenu-container .wp-block-navigation-item:hover .wp-block-navigation-item__content {
+#$block_id .wp-block-navigation__submenu-container > .wp-block-navigation-item:hover .wp-block-navigation-item__content {
     color: {$sub_item_color['text_hover']};
 }
 #$block_id.display-vertical .cozy-menu-wrapper > .wp-block-navigation-item.has-child > .wp-block-navigation__submenu-container {
@@ -154,10 +158,10 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id.display-horizontal .cozy-menu-wrapper .wp-block-navigation__submenu-container {
     top: {$attributes['contentGap']}px;
 }
-#$block_id.display-horizontal .cozy-mega-menu__item .cozy-block-mega-menu__dropdown.show-cozy-dropdown-color {
-    top: {$attributes['contentGap']}px;
+#$block_id.display-horizontal.event-hover .cozy-mega-menu__item .cozy-block-mega-menu__dropdown, #$block_id .full-screen .cozy-mega-menu__item .cozy-block-mega-menu__dropdown {
+    padding-top: {$mega_menu['dropdown_gap']}px;
 }
-#$block_id.display-horizontal.event-hover .wp-block-navigation-item.has-child:hover .wp-block-navigation__submenu-container, #$block_id.display-horizontal .cozy-block-navigation-menu:not(.full-screen) .cozy-menu-wrapper > .wp-block-navigation-item.has-child > .wp-block-navigation__submenu-container.show-cozy-dropdown-color {
+#$block_id.display-horizontal.event-hover .wp-block-navigation-item.has-child:hover .wp-block-navigation__submenu-container, #$block_id.display-horizontal .cozy-block-navigation-menu:not(.full-screen) .cozy-menu-wrapper > .wp-block-navigation-item.has-child > .wp-block-navigation__submenu-container.show-cozy-dropdown-content {
     top: {$attributes['contentGap']}px;
 }
 #$block_id .full-screen .wp-block-navigation__submenu-container {
@@ -275,7 +279,7 @@ $block_styles = <<<BLOCK_STYLES
     letter-spacing: {$typography['letter_spacing']};
     color: {$color['text']};
 }
-#$block_id .cozy-menu-wrapper > .wp-block-navigation-item:hover > .wp-block-navigation-item__content, #$block_id .cozy-menu-wrapper > .wp-block-navigation-item.current-menu-item > .wp-block-navigation-item__content {
+#$block_id .cozy-menu-wrapper > .wp-block-navigation-item.current-menu-item > .wp-block-navigation-item__content {
     color: {$color['active_text']};
 }
 #$block_id .cozy-block-navigation-menu:not(.full-screen) .cozy-menu-wrapper > .wp-block-navigation-item:hover, #$block_id .cozy-block-navigation-menu:not(.full-screen) .cozy-menu-wrapper > .wp-block-navigation-item.current-menu-item {
