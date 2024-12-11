@@ -1,3 +1,7 @@
+= 2.0.28 - December 11, 2024 = 
+* Fix: Styles for 'Advanced Mega Menu' block.
+* Fix: Styles preg match for 'Cozy Hover Styles' attribute.
+
 = 2.0.27 - December 9, 2024 = 
 * Fix: Styles for 'Advanced Mega Menu' block.
 * Fix: Slider options for 'Featured Content Box' block.

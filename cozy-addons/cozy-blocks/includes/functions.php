@@ -158,7 +158,7 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 		$existing_class = isset( $matches[1] ) ? $matches[1] : '';
 
 		preg_match(
-			'/<div class=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"(?: style="([^"]*)")?/',
+			'/<div[^>]*\bclass=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"[^>]*\sstyle="([^"]*)"/',
 			$block_content,
 			$matches
 		);
@@ -299,6 +299,8 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 			);
 
 		} else {
+			// $cozy_hover_string .= $existing_styles . '"';
+
 			$block_content = preg_replace(
 				'/<div class=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"/',
 				'<div class="' . esc_attr( $updated_class ) . '"' . $cozy_hover_string,
