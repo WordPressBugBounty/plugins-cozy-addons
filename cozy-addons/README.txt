@@ -4,7 +4,7 @@ Tags: gutenberg-blocks, wordpress-blocks, woocommerce-blocks
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 2.0.28
+Stable tag: 2.0.29
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
@@ -138,6 +138,10 @@ You can report any security bugs found in the source code of this plugin through
 6. Animation and Hover Effects
 
 == Changelog ==
+= 2.0.29 - December 13, 2024 = 
+* Add: Sticky color for fixed position in 'Cozy Container' block.
+* Fix: Overlay hover styles render in frontend for 'Featured Content Box' block.
+
 = 2.0.28 - December 11, 2024 = 
 * Fix: Styles for 'Advanced Mega Menu' block.
 * Fix: Styles preg match for 'Cozy Hover Styles' attribute.

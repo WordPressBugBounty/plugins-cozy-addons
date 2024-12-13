@@ -104,7 +104,7 @@ $block_styles = <<<BLOCK_STYLES
     bottom: {$attributes['stackedImage']['verticalPosition']}px;
 }
 
-#$block_id.layout-gallery .cozy-featured-content-box__layout-gallery-wrapper:hover .wp-block-cover__background {
+#$block_id.layout-gallery .cozy-featured-content-box__layout-gallery:hover .wp-block-cover__background {
     background-color: {$gallery_color['bg']} !important;
     opacity: {$attributes['galleryOptions']['overlayOpacity']} !important;
 }
