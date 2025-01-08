@@ -15,32 +15,18 @@ if ( $is_cozy_addons_active ) {
 	<div class="dashboard-container">
 		<div class="ct-dashboard-nav">
 			<div class="ct-branding">
-				<div class="ca-plugin-icon"><img src="<?php echo CT_COMPANION_SDK_URL . 'images/cozy-addons-icon.png'; ?>" /></div>
+				<div class="ca-plugin-icon"><img src="<?php echo esc_url( CT_COMPANION_SDK_URL . 'images/cozy-addons-icon.png' ); ?>" /></div>
 				<div class="ct-tabs" id="ct-dashboard-tabs">
 					<div class="ct-tab" data-index="0"><?php esc_html_e( 'Dashboard', 'cozy-addons' ); ?></div>
 
 					<?php if ( cozy_addons_is_block_theme() ) { ?>
 						<div class="ct-tab" data-index="1"><?php esc_html_e( 'Blocks', 'cozy-addons' ); ?></div>
-						<?php
-						if ( is_elementor_active() ) {
-							?>
-							<div class="ct-tab" data-index="2"><?php esc_html_e( 'Elementor', 'cozy-addons' ); ?></div>
-						<?php } ?>
-					<?php } else { ?>
-						<?php
-						if ( is_elementor_active() ) {
-							?>
-							<div class="ct-tab" data-index="1"><?php esc_html_e( 'Elementor', 'cozy-addons' ); ?></div>
-							<?php
-						}
-					}
-					?>
-					<!-- <div class="ct-tab" data-index="3">Settings</div> -->
+					<?php } ?>
 				</div>
 			</div>
 			<div class="ct-plugin-link">
 				<a href="https://cozythemes.com/cozy-addons/" target="_blank">
-					<img src="<?php echo CT_COMPANION_SDK_URL . 'images/paper_icon.png'; ?>" />
+					<img src="<?php echo esc_url( CT_COMPANION_SDK_URL . 'images/paper_icon.png' ); ?>" />
 					<?php esc_html_e( 'Visit Website', 'cozy-addons' ); ?></a>
 			</div>
 		</div>
@@ -1867,8 +1853,8 @@ if ( $is_cozy_addons_active ) {
 						</div>
 						<div class="cozy-block-toggle">
 							<label class="switch">
-								<?php echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : ''; ?>
 								<?php
+								echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : '';
 								$checked = get_option( 'ca-cpt--mega-menu-templates' );
 								?>
 								<input type="checkbox" class="ca__block-cpt <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="mega-menu-templates" id="ca--mega-menu-cpt" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
@@ -1884,14 +1870,27 @@ if ( $is_cozy_addons_active ) {
 					</li>
 
 					<li>
-						<?php esc_html_e( 'Portfolio Gallery Templates', 'cozy-addons' ); ?>
+						<div class="cozy-display-flex">
+							<p>
+								<?php esc_html_e( 'Portfolio Gallery Templates', 'cozy-addons' ); ?>
+							</p>
+							</a>
+							<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+						</div>
 						<div class="cozy-block-toggle">
 							<label class="switch">
 								<?php
+								echo false === cozy_addons_premium_access() ? '<span class="cozy-toggle-slider cozy-pro-block round"></span>' : '';
 								$checked = get_option( 'ca-cpt--portfolio-gallery-templates' );
 								?>
-								<input type="checkbox" class="ca__block-cpt" name="portfolio-gallery-templates" id="ca--portfolio-gallery-cpt" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
-								<span class="cozy-toggle-slider round"></span>
+								<input type="checkbox" class="ca__block-cpt <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="portfolio-gallery-templates" id="ca--portfolio-gallery-cpt" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
+								<?php if ( false === cozy_addons_premium_access() ) { ?>
+									<div class="cozy-block-upsell-tooltip">
+										<?php esc_html_e( 'Please', 'cozy-addons' ); ?> <a href="https://cozythemes.com/pricing-and-plans/"><?php esc_html_e( ' upgrade to pro', 'cozy-addons' ); ?></a> <?php esc_html_e( ' to enable this CPT!', 'cozy-addons' ); ?>
+									</div>
+								<?php } else { ?>
+									<span class="cozy-toggle-slider cozy-pro-block round"></span>
+								<?php } ?>
 							</label>
 						</div>
 					</li>
@@ -1900,152 +1899,5 @@ if ( $is_cozy_addons_active ) {
 			</div>
 
 		<?php endif; ?>
-
-		<div class="tab-content" id="content3">
-			<h2><?php esc_html_e( 'Elementor Integration Control', 'cozy-addons' ); ?></h2>
-			<div class="display-flex">
-				<h2><?php esc_html_e( 'Enable Elementor Widgets', 'cozy-addons' ); ?></h2>
-				<div class="cozy-block-toggle">
-					<label class="switch">
-						<input type="checkbox" class="cozy-elementor-widgets" id="enable-elementor-widgets">
-						<span class="cozy-toggle-slider round"></span>
-					</label>
-				</div>
-			</div>
-			<div class="cozy-free-widgets grid-layout">
-				<h3 class="widget-box-header"><?php esc_html_e( 'Free Widgets for Elementor - 25 Widgets', 'cozy-addons' ); ?></h3>
-				<ul class="widgets-holder">
-					<li><a href="https://cozythemes.com/pricing-table/" target="_blank"><?php esc_html_e( 'Pricing Table', 'cozy-addons' ); ?> </a> </li>
-					<li><a href="https://cozythemes.com/call-to-action/" target="_blank"><?php esc_html_e( 'Call To Action', 'cozy-addons' ); ?> </a> </li>
-					<li><a href="https://cozythemes.com/flip-box/" target="_blank"><?php esc_html_e( 'Flip Box', 'cozy-addons' ); ?> </a> </li>
-					<li><a href="https://cozythemes.com/working-hour/" target="_blank"><?php esc_html_e( 'Working Hour', 'cozy-addons' ); ?> </a> </li>
-					<li><a href="https://cozythemes.com/multi-buttons/" target="_blank"><?php esc_html_e( 'Multi Buttons', 'cozy-addons' ); ?> </a> </li>
-					<li><a href="https://cozythemes.com/brands-logo-showcase/" target="_blank"><?php esc_html_e( 'Brands Logo Showcase', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/advance-header/" target="_blank"><?php esc_html_e( 'Advanced Text', 'cozy-addons' ); ?> </a> </li>
-					<li><a href="https://cozythemes.com/basic-post-demos/" target="_blank"><?php esc_html_e( 'Basic Blog Posts', 'cozy-addons' ); ?> </a> </li>
-					<li><a href="https://cozythemes.com/post-slider-demos/" target="_blank"><?php esc_html_e( 'Post Slider', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/cozy-popular-posts/" target="_blank"><?php esc_html_e( 'Popular Posts', 'cozy-addons' ); ?> </a> </li>
-					<li><a href="https://cozythemes.com/focus-posts-demos/" target="_blank"><?php esc_html_e( 'Focus Posts', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/author-box-demos/" target="_blank"><?php esc_html_e( 'Author Box', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/search-form-demos/" target="_blank">S<?php esc_html_e( 'earch Form', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/travel-list-demo/" target="_blank"><?php esc_html_e( 'Travel List', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/properties-list-demo/" target="_blank"><?php esc_html_e( 'Properties List', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/pages-list-demo/" target="_blank"><?php esc_html_e( 'Pages List', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/site-logo-demo/" target="_blank"><?php esc_html_e( 'Site Logo', 'cozy-addons' ); ?></a> </li>
-					<li><a href="https://cozythemes.com/courses-list-demo/" target="_blank"><?php esc_html_e( 'Course List', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/post-categories-demo/" target="_blank"><?php esc_html_e( 'Post Categories', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/price-list-demos/" target="_blank"><?php esc_html_e( 'Price List', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/cozy-teams/" target="_blank"><?php esc_html_e( 'Teams', 'cozy-addons' ); ?> </a> </li>
-					<li><a href="https://cozythemes.com/cozy-woo-products-demo/" target="_blank"><?php esc_html_e( 'Products List', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/testimonials-demos/" target="_blank"><?php esc_html_e( 'Testimonials', 'cozy-addons' ); ?> </a> </li>
-					<li><a href="https://cozythemes.com/sliders/" target="_blank"><?php esc_html_e( 'Slider', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/event-lists/" target="_blank"><?php esc_html_e( 'Events List', 'cozy-addons' ); ?></a></li>
-				</ul>
-			</div><!--end of free-widgets -->
-			<div class="cozy-pro-widgets grid-layout">
-				<h3 class="widget-box-header"><?php esc_html_e( 'Premium Widgets for Elementor', 'cozy-addons' ); ?><span><?php esc_html_e( '20 Widgets', 'cozy-addons' ); ?></span></h3>
-				<ul class="widgets-holder">
-					<li><a href="https://cozythemes.com/cozy-portfolios-demo/" target="_blank"><?php esc_html_e( 'Portfolio', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/cozy-services-demos/" target="_blank"><?php esc_html_e( 'Service', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/cozy-promotions-demo/" target="_blank"><?php esc_html_e( 'Promotion ', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/cozy-blog-posts-demos/" target="_blank"><?php esc_html_e( 'Blog Posts', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/cozy-faqs/" target="_blank"><?php esc_html_e( 'FAQ', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/hover-box-demo/" target="_blank"><?php esc_html_e( 'Hover Box', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/contact-form-7-styler/" target="_blank"><?php esc_html_e( 'Contact Form 7 styler ', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/cozy-typeout-text/" target="_blank"><?php esc_html_e( 'Typeout Text', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/cozy-woo-slider-demos/" target="_blank"><?php esc_html_e( 'Product Slider', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/advanced-magazine-block-demos/" target="_blank"><?php esc_html_e( 'Magazine Block ', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/menu-search-demo/" target="_blank"><?php esc_html_e( 'Menu Search', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/menu-cart-demo/" target="_blank"><?php esc_html_e( 'Menu Cart', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/toggle-content-demo/" target="_blank"><?php esc_html_e( 'Toggle Content', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/navigation-demo/" target="_blank"><?php esc_html_e( 'Navigation Menu', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/sitemap-demo/" target="_blank"><?php esc_html_e( 'Sitemap', 'cozy-addons' ); ?> </a></li>
-					<li><a href="https://cozythemes.com/sidebar-panel-demo/" target="_blank"><?php esc_html_e( 'Sidebar Panel', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/date-and-time-demo/" target="_blank"><?php esc_html_e( 'Date & Time', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/footer-copyright-text/" target="_blank"><?php esc_html_e( 'Footer Copyright Text', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/product-categories-demo/" target="_blank"><?php esc_html_e( 'Product Categories', 'cozy-addons' ); ?></a></li>
-					<li><a href="https://cozythemes.com/my-account-demo/" target="_blank"><?php esc_html_e( 'My Account', 'cozy-addons' ); ?></a></li>
-				</ul>
-
-				<?php if ( cozy_addons_premium_access() ) { ?>
-					<h3 class="widget-box-header"><?php esc_html_e( 'Other Premium Features', 'cozy-addons' ); ?></h3>
-					<ul class="widgets-holder other-features">
-						<?php
-						if ( is_plugin_active( 'elementor/elementor.php' ) ) {
-							?>
-							<li>
-								<form method="POST" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>?page=_cozy_companions">
-									<div class="display-flex">
-										<p><?php esc_html_e( 'Header and Footer Builder for Elementor', 'cozy-addons' ); ?></p>
-										<div class="cozy-block-toggle">
-											<label class="switch">
-												<input type="checkbox" class="ct-header-footer" id="enable-header-footer">
-												<span class="cozy-toggle-slider round"></span>
-											</label>
-										</div>
-									</div>
-									<?php submit_button(); ?>
-								</form>
-							</li>
-							<li>
-								<form method="POST" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>?page=_cozy_companions">
-
-									<div class="display-flex">
-										<p><?php esc_html_e( 'Custom CSS, Custom Header and Footer Scripts', 'cozy-addons' ); ?></p>
-										<div class="cozy-block-toggle">
-											<label class="switch">
-												<input type="checkbox" class="ct-custom-assets" id="enable-custom-assets">
-												<span class="cozy-toggle-slider round"></span>
-											</label>
-										</div>
-									</div>
-									<?php submit_button(); ?>
-								</form>
-							</li>
-						<?php } ?>
-						<li>
-							<form method="POST" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>?page=_cozy_companions">
-
-								<div class="display-flex">
-									<p><?php esc_html_e( 'Custom Fonts', 'cozy-addons' ); ?></p>
-									<div class="cozy-block-toggle">
-										<label class="switch">
-											<input type="checkbox" class="ct-custom-fonts" id="enable-custom-fonts">
-											<span class="cozy-toggle-slider round"></span>
-										</label>
-									</div>
-								</div>
-								<?php submit_button(); ?>
-							</form>
-						</li>
-
-						<li>
-							<p><?php esc_html_e( 'Sticky Section', 'cozy-addons' ); ?></p>
-							<p>
-								<?php
-								esc_html_e(
-									'We have provided a sticky section functionality for Elementor, ensuring that crucial elements like headers, navigation menus, or call-to-action buttons remain fixed within the viewport as users scroll, enhancing accessibility and user experience.',
-									'cozy-addons'
-								);
-								?>
-							</p>
-						</li>
-					</ul>
-				<?php } ?>
-				<?php if ( ! cozy_addons_premium_access() ) { ?>
-					<a href="https://cozythemes.com/cozy-addons/" class="unlock-pro" target="_blank"><span class="dashicons dashicons-lock"></span> <span class="dashicons dashicons-unlock"></span> <?php esc_html_e( 'Unlock Pro Features', 'cozy-addons' ); ?></a>
-				<?php } ?>
-			</div><!--end of pro-widgets -->
-
-
-		</div>
-		<!-- <div class="tab-content" id="content4">
-			<h2>Basic Setup and Configuration for Plugin Dependency</h2>
-			<p>This is the content for Tab 3.</p>
-
-		</div> -->
-
-
-
 	</div>
 </div>

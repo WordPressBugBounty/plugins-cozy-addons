@@ -51,9 +51,8 @@ if ( ! function_exists( '_ct_companion_scripts_loading' ) ) {
 			'companion-admin-scripts',
 			'ajax_object',
 			array(
-				'ajax_url'          => admin_url( 'admin-ajax.php' ),
+				'ajax_url'          => esc_url(admin_url( 'admin-ajax.php' )),
 				'isPremium'         => cozy_addons_premium_access(),
-				'isElementorActive' => is_plugin_active( 'elementor/elementor.php' ),
 			)
 		);
 	}

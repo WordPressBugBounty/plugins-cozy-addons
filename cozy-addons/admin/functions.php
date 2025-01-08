@@ -418,99 +418,10 @@ if ( ! function_exists( 'toggle_ca_cpt_enable_callback' ) ) {
 	}
 }
 
-
-add_action( 'wp_ajax_get_cozy_addons_elementor_widgets_enabled', 'get_elementor_widgets_enabled_callback' );
-function get_elementor_widgets_enabled_callback() {
-	$option_name = 'cozy_addons_elementor_widgets_enabled';
-	$value       = get_option( $option_name );
-	echo esc_html( $value );
-	wp_die();
-}
-
-add_action( 'wp_ajax_update_cozy_addons_elementor_widgets_enabled', 'update_cozy_addons_elementor_widgets_enabled_callback' );
-function update_cozy_addons_elementor_widgets_enabled_callback() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Access Denied' );
-		return;
-	}
-
-	$option_name = 'cozy_addons_elementor_widgets_enabled';
-	$checked     = sanitize_text_field( $_POST['checked'] );
-	update_option( $option_name, $checked );
-	wp_die();
-}
-
-add_action( 'wp_ajax_get_ct_header_footer_enabled', 'get_ct_header_footer_enabled_callback' );
-function get_ct_header_footer_enabled_callback() {
-	$option_name = 'ct_header_footer_enabled';
-	$value       = get_option( $option_name, '0' );
-	echo esc_html( $value );
-	wp_die();
-}
-
-add_action( 'wp_ajax_update_ct_header_footer_enabled', 'update_ct_header_footer_enabled_callback' );
-function update_ct_header_footer_enabled_callback() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Access Denied' );
-		return;
-	}
-
-	$option_name = 'ct_header_footer_enabled';
-	$checked     = sanitize_text_field( $_POST['checked'] );
-	update_option( $option_name, $checked );
-	wp_die();
-}
-
-add_action( 'wp_ajax_get_ct_custom_assets_enabled', 'get_ct_custom_assets_enabled_callback' );
-function get_ct_custom_assets_enabled_callback() {
-	$option_name = 'ct_custom_assets_enabled';
-	$value       = get_option( $option_name, '0' );
-	echo esc_html( $value );
-	wp_die();
-}
-
-add_action( 'wp_ajax_update_ct_custom_assets_enabled', 'update_ct_custom_assets_enabled_callback' );
-function update_ct_custom_assets_enabled_callback() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Access Denied' );
-		return;
-	}
-
-	$option_name = 'ct_custom_assets_enabled';
-	$checked     = sanitize_text_field( $_POST['checked'] );
-	update_option( $option_name, $checked );
-	wp_die();
-}
-
-add_action( 'wp_ajax_get_ct_custom_fonts_enabled', 'get_ct_custom_fonts_enabled_callback' );
-function get_ct_custom_fonts_enabled_callback() {
-	$option_name = 'ct_custom_fonts_enabled';
-	$value       = get_option( $option_name, '0' );
-	echo esc_html( $value );
-	wp_die();
-}
-
-add_action( 'wp_ajax_update_ct_custom_fonts_enabled', 'update_ct_custom_fonts_enabled_callback' );
-function update_ct_custom_fonts_enabled_callback() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Access Denied' );
-		return;
-	}
-
-	$option_name = 'ct_custom_fonts_enabled';
-	$checked     = sanitize_text_field( $_POST['checked'] );
-	update_option( $option_name, $checked );
-	wp_die();
-}
-
 function cozy_upsell_dismissble_notice() {
 	update_option( 'cozy_dashboard_dismissed_notice', 1 );
 }
 add_action( 'wp_ajax_cozy_upsell_dismissble_notice', 'cozy_upsell_dismissble_notice' );
-
-function is_elementor_active() {
-	return is_plugin_active( 'elementor/elementor.php' );
-}
 
 function is_woocommerce_active() {
 	return is_plugin_active( 'woocommerce/woocommerce.php' );
@@ -526,11 +437,6 @@ function cozy_blocks_dismissble_notice() {
 	update_option( 'cozy_addons_block_theme', 1 );
 }
 add_action( 'wp_ajax_cozy_blocks_dismissble_notice', 'cozy_blocks_dismissble_notice' );
-
-function ca_elementor_removal_dismissable_notice() {
-	update_option( 'ca_clear_elementor_removal_notice', 1 );
-}
-add_action( 'wp_ajax_ca_elementor_removal_dismissable_notice', 'ca_elementor_removal_dismissable_notice' );
 
 add_action( 'wp_ajax_cozy_block_magazine_grid_loader', 'cozy_block_magazine_grid_load_content' );
 add_action( 'wp_ajax_nopriv_cozy_block_magazine_grid_loader', 'cozy_block_magazine_grid_load_content' );
@@ -1717,14 +1623,14 @@ if ( ! function_exists( 'get_cozy_block_wishlist_render_data_sidebar' ) ) {
 					$output .= '<p class="cozy-block-wishlist__product-price">' . $product_price . '</p>';
 
 					/* Add/Remove Buttons */
-					$output .= '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">';
+					$output     .= '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">';
 					$stock_label = 'instock' === $is_in_stock ? 'Add to Cart' : 'Out of Stock';
 					$classes     = array();
 					$classes[]   = 'cozy-block-wishlist__sidebar-button';
 					$classes[]   = 'instock' === $is_in_stock ? 'add__cart' : 'out-of-stock';
 					$output     .= '<div class="' . implode( ' ', $classes ) . '" data-product-id="' . $product_id . '">' . $stock_label . '</div>';
-					$output .= '<div class="cozy-block-wishlist__sidebar-button remove__wishlist" data-product-id="' . $product_id . '">' . esc_html_x( 'Remove', 'cozy-addons' ) . '</div>';
-					$output .= '</div>';
+					$output     .= '<div class="cozy-block-wishlist__sidebar-button remove__wishlist" data-product-id="' . $product_id . '">' . esc_html_x( 'Remove', 'cozy-addons' ) . '</div>';
+					$output     .= '</div>';
 					/* End Add/Remove Buttons */
 
 					$output .= '</div>';
@@ -2018,3 +1924,116 @@ function cozy_filter_html_tags( $tag ) {
 	// Check if the tag is in the whitelist; return it if valid, otherwise return 'p'.
 	return in_array( $tag, $allowed_tags, true ) ? $tag : 'p';
 }
+
+/**
+ * Retrieves the plugin versions of the Cozy Addons plugin from the WordPress API.
+ *
+ * This function sends a request to the WordPress Plugin API endpoint for Cozy Addons
+ * and retrieves the available versions. It processes the response, checks if it is serialized
+ * or JSON, and extracts version information into an array. The versions are then sorted
+ * in descending order based on the version number.
+ *
+ * @return array An array of plugin versions, each containing 'version' and 'url' keys.
+ *               - 'version' is the plugin version number.
+ *               - 'url' is the download URL for the plugin version.
+ *               If the response does not contain version data or is invalid,
+ *               an empty array will be returned.
+ */
+function cozy_addons_get_plugin_versions() {
+	$response = wp_remote_get( 'https://api.wordpress.org/plugins/info/1.0/cozy-addons/' );
+
+	$response = wp_remote_retrieve_body( $response );
+
+	if ( is_serialized( $response ) ) {
+		$response = maybe_unserialize( $response );
+	} else {
+		$response = json_decode( $response );
+	}
+
+	if ( ! is_object( $response ) ) {
+		return array();
+	}
+	if ( ! isset( $response->versions ) ) {
+		return array();
+	}
+
+	$versions = array();
+	foreach ( $response->versions as $key => $value ) {
+		$versions[] = array(
+			'version' => is_object( $value ) ? $value->version : $key,
+			'url'     => is_object( $value ) ? $value->file : $value,
+		);
+	}
+
+	usort(
+		$versions,
+		function ( $a, $b ) {
+			return version_compare( $b['version'], $a['version'] );
+		}
+	);
+
+	return $versions;
+}
+
+// Download plugin and initiate rollback
+function cozy_addons_download_plugin_rollback_version_callback() {
+	check_ajax_referer( 'cozy_addons_rollback_version_download', 'nonce', true );
+
+	$previous_version_url = isset( $_POST['downloadURL'] ) ? sanitize_url( wp_unslash( $_POST['downloadURL'] ) ) : '';
+
+	// Your previous version logic here
+	if ( empty( esc_url( $previous_version_url ) ) ) {
+		wp_send_json_error( array( 'message' => esc_html__( 'Invalid download URL.', 'cozy-addons' ) ) );
+	}
+
+	$temp_file = download_url( esc_url( $previous_version_url ) );
+
+	if ( is_wp_error( $temp_file ) ) {
+		wp_delete_file( $temp_file );
+		wp_send_json_error( array( 'message' => esc_html__( 'Oops! Download failed.', 'cozy-addons' ) ) );
+	}
+
+	wp_send_json_success(
+		array(
+			'tempFile' => $temp_file,
+		)
+	);
+}
+add_action( 'wp_ajax_cozy_addons_download_plugin_rollback_version', 'cozy_addons_download_plugin_rollback_version_callback' );
+add_action( 'wp_ajax_nopriv_cozy_addons_download_plugin_rollback_version', 'cozy_addons_download_plugin_rollback_version_callback' );
+
+// Deactivate and remove the plugin
+function cozy_addons_activate_rollback_version_callback() {
+	check_ajax_referer( 'cozy_addons_rollback_version_activate', 'nonce', true );
+
+	$temp_file = isset( $_POST['tempURL'] ) ? sanitize_text_field( wp_unslash( $_POST['tempURL'] ) ) : '';
+
+	if ( empty( $temp_file ) || ! file_exists( $temp_file ) || mime_content_type( $temp_file ) !== 'application/zip' ) {
+		wp_delete_file( $temp_file );
+		wp_send_json_error();
+	}
+
+	if ( is_plugin_active( 'cozy-addons/cozy-addons.php' ) ) {
+		deactivate_plugins( 'cozy-addons/cozy-addons.php' );
+
+		if ( file_exists( trailingslashit( WP_PLUGIN_DIR ) . 'cozy-addons' ) ) {
+			if ( is_wp_error( delete_plugins( array( 'cozy-addons/cozy-addons.php' ) ) ) ) {
+				wp_send_json_error();
+			}
+		}
+	}
+
+	$result = unzip_file( $temp_file, WP_PLUGIN_DIR );
+
+	wp_delete_file( $temp_file );
+
+	if ( is_wp_error( $result ) ) {
+		wp_send_json_error();
+	}
+
+	activate_plugin( 'cozy-addons/cozy-addons.php' );
+
+	wp_send_json_success();
+}
+add_action( 'wp_ajax_cozy_addons_activate_rollback_version', 'cozy_addons_activate_rollback_version_callback' );
+add_action( 'wp_ajax_nopriv_cozy_addons_activate_rollback_version', 'cozy_addons_activate_rollback_version_callback' );

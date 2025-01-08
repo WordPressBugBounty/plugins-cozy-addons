@@ -37,12 +37,12 @@ if ( ! function_exists( 'cozy_addons_activation_admin_notice' ) ) :
 						</h1>
 						<p>
 							<?php esc_html_e( 'Supercharge your website design with Cozy Blocks Premium! Access up to 40+ advanced blocks, enjoy regular updates, and receive priority support. Upgrade now for an ad-free, seamless editing experience! ', 'cozy-addons' ); ?> 🚀</p>
-						<a href="<?php echo admin_url(); ?>admin.php?page=_cozy_companions" class="cozy-btns btns-more"><?php echo __( 'Explore Cozy Blocks', 'cozy-addons' ); ?></a>
-						<a href="https://cozythemes.com/cozy-addons/" class="cozy-btns btns-more checkout-btn" target="_blank"><?php echo __( 'Checkout Pro', 'cozy-addons' ); ?></a>
+						<a href="<?php echo esc_url( admin_url() ); ?>admin.php?page=_cozy_companions" class="cozy-btns btns-more"><?php esc_html_e( 'Explore Cozy Blocks', 'cozy-addons' ); ?></a>
+						<a href="https://cozythemes.com/cozy-addons/" class="cozy-btns btns-more checkout-btn" target="_blank"><?php esc_html_e( 'Checkout Pro', 'cozy-addons' ); ?></a>
 					</div>
 				</div>
 				<div class="pluign-screen">
-					<img src="<?php echo COZY_ADDONS_PLUGIN_URL . '/admin/images/cozy-blocks-notice-image.png'; ?>" />
+					<img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . '/admin/images/cozy-blocks-notice-image.png' ); ?>" />
 				</div>
 			</div>
 			<?php
@@ -82,7 +82,7 @@ if ( ! function_exists( 'cozy_addons_invalid_theme_type_notice' ) ) :
 			}
 			?>
 			<div class="fs-notice notice fs-has-title notice-warning is-dismissible cozy-blocks-admin-notice">
-				<label class="fs-plugin-title">Cozy Blocks</label>
+				<label class="fs-plugin-title"><?php esc_html_e( 'Cozy Blocks', 'cozy-addons' ); ?></label>
 				<div class="notice-content">
 					<div class="notice-holder">
 						<p>
@@ -96,45 +96,3 @@ if ( ! function_exists( 'cozy_addons_invalid_theme_type_notice' ) ) :
 	}
 endif;
 add_action( 'admin_notices', 'cozy_addons_invalid_theme_type_notice' );
-
-if ( ! function_exists( 'ca_elementor_removal_notice' ) ) :
-	/**
-	 * Displays an admin notice about the removal of Elementor support in the next plugin version.
-	 *
-	 * This notice informs administrators to switch to Gutenberg blocks to maintain functionality.
-	 * It is shown only to users with the appropriate permissions (`manage_options`) and is not
-	 * displayed in the network admin area. The notice can be dismissed by setting the
-	 * 'ca_clear_elementor_removal_notice' option in the database.
-	 *
-	 * Conditions for displaying the notice:
-	 * - User must be in the WordPress admin area (not network admin).
-	 * - User must have the 'manage_options' capability.
-	 * - The notice is not shown if it has already been dismissed.
-	 */
-	function ca_elementor_removal_notice() {
-		if ( is_admin() ) {
-			if ( is_network_admin() ) {
-				return;
-			}
-			if ( ! current_user_can( 'manage_options' ) ) {
-				return;
-			}
-			if ( get_option( 'ca_clear_elementor_removal_notice' ) ) {
-				return;
-			}
-			?>
-			<div class="fs-notice notice fs-has-title notice-warning is-dismissible ca-elementor__removal-notice">
-				<label class="fs-plugin-title">Cozy Blocks</label>
-				<div class="notice-content">
-					<div class="notice-holder">
-						<p>
-							<?php esc_html_e( 'Elementor support is ending in the next version. Switch to Gutenberg blocks for a better experience and future-ready features!', 'cozy-addons' ); ?>
-						</p>
-					</div>
-				</div>
-			</div>
-			<?php
-		}
-	}
-endif;
-add_action( 'admin_notices', 'ca_elementor_removal_notice' );

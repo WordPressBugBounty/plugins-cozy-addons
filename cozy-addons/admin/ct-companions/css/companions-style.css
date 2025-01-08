@@ -46,16 +46,6 @@
   background: #fff;
   margin-top: -100px;
 }
-/* #adminmenu .toplevel_page__cozy_companions .wp-menu-image.dashicons-before.dashicons-groups:before,
-.toplevel_page__cozy_companions a.toplevel_page__cozy_companions,
-ul#adminmenu .toplevel_page__cozy_companions a.toplevel_page__cozy_companions.wp-has-current-submenu:before {
-  color: #6881d9 !important;
-}
-#adminmenu .toplevel_page__cozy_companions:hover .wp-menu-image.dashicons-before.dashicons-groups:before,
-.toplevel_page__cozy_companions a.toplevel_page__cozy_companions:hover,
-.wp-menu-open .toplevel_page__cozy_companions a.toplevel_page__cozy_companions {
-  color: #72aee6 !important;
-} */
 .ct-companion-dashboard .ct-short-text {
   font-size: 16px;
   font-weight: 400;
@@ -176,8 +166,9 @@ ul#adminmenu .toplevel_page__cozy_companions a.toplevel_page__cozy_companions.wp
 }
 #adminmenu li#toplevel_page__cozy_companions .wp-menu-image img {
   opacity: 1;
-  width: 22px;
-  margin-top: -5px;
+  width: 19px;
+  margin-top: -3px;
+  margin-left: 3px;
 }
 #adminmenu
   li.wp-has-current-submenu#toplevel_page__cozy_companions

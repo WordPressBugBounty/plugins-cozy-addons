@@ -1,3 +1,8 @@
+= 2.1.0 - January 08, 2025 = 
+* Add: Version Control.
+* Fix: Block improvements.
+* Update: Removed Elementor Support.
+
 = 2.0.29 - December 13, 2024 = 
 * Add: Sticky color for fixed position in 'Cozy Container' block.
 * Fix: Overlay hover styles render in frontend for 'Featured Content Box' block.
