@@ -4,7 +4,7 @@ Tags: blocks, gutenberg blocks, gutenberg, woocommerce blocks, block
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
@@ -19,7 +19,7 @@ Streamline your website designs with our library of advanced blocks designed to 
 <li>40+ Advanced Blocks to Extend the Site Editor</li>
 <li>WooCommerce Blocks</li>
 <li>Post and Magazine Blocks</li>
-<li>Slider Blocks (Slider & Carousel Blocks)</li>l
+<li>Slider Blocks (Slider & Carousel Blocks)</li>
 <li>Team Block</li>
 <li>Testimonial Block</li>
 <li>Pricing Table</li>
@@ -142,6 +142,10 @@ You can report any security bugs found in the source code of this plugin through
 6. Animation and Hover Effects
 
 == Changelog ==
+= 2.1.2 - January 22, 2025 = 
+* Add: Pricing table block.
+* Fix: Block improvements.
+
 = 2.1.1 - January 22, 2025 = 
 * Add: Pricing table block.
 * Fix: Block improvements.
