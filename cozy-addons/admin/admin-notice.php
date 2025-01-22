@@ -86,7 +86,7 @@ if ( ! function_exists( 'cozy_addons_invalid_theme_type_notice' ) ) :
 				<div class="notice-content">
 					<div class="notice-holder">
 						<p>
-							<strong><?php esc_html_e( 'Uh-oh!', 'cozy-addons' ); ?></strong><?php esc_html_e( ' Cozy Blocks is tailored for Full Site Editing (FSE), however addons compatible with Elementor are available for use.', 'cozy-addons' ); ?>
+							<strong><?php esc_html_e( 'Uh-oh!', 'cozy-addons' ); ?></strong><?php esc_html_e( ' Cozy Blocks is tailored for Full Site Editing (FSE).', 'cozy-addons' ); ?>
 						</p>
 					</div>
 				</div>

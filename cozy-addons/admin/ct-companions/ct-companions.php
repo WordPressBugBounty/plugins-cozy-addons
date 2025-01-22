@@ -1,15 +1,4 @@
 <?php
-
-/**
- * The admin-specific functionality of the plugin.
- *
- * @link       https://cozythemes.com/
- * @since      1.0.0
- *
- * @package    Patternberg
- * @subpackage patternberg/inc
- */
-
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -29,7 +18,7 @@ if ( ! class_exists( 'Cozy_Companions_Menu' ) ) :
 				add_submenu_page(
 					'_cozy_companions',
 					'Dashboard',
-					__( 'Dashboard', 'patternberg' ),
+					__( 'Dashboard', 'cozy-addons' ),
 					'manage_options',
 					'_cozy_companions'
 				);
@@ -51,8 +40,8 @@ if ( ! function_exists( '_ct_companion_scripts_loading' ) ) {
 			'companion-admin-scripts',
 			'ajax_object',
 			array(
-				'ajax_url'          => esc_url(admin_url( 'admin-ajax.php' )),
-				'isPremium'         => cozy_addons_premium_access(),
+				'ajax_url'  => esc_url( admin_url( 'admin-ajax.php' ) ),
+				'isPremium' => cozy_addons_premium_access(),
 			)
 		);
 	}

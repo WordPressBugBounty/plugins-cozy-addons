@@ -1,5 +1,5 @@
 <?php
-$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['clientId'] ) ) : '';
+$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attributes['isUserLoggedIn'] = is_user_logged_in();
@@ -11,7 +11,7 @@ $attributes['sidebarNonce']   = wp_create_nonce( 'cozy_block_wishlist_render_dat
 $attributes['quickViewNonce'] = wp_create_nonce( 'cozy_block_quick_view_render_data_lightbox' );
 
 wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProductTabs( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProductTabs( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $wrapper_attributes = get_block_wrapper_attributes();
 
@@ -215,7 +215,7 @@ $bullet_styles  = array(
 $column1 = $attributes['gridOptions']['columnCount'] <= 3 ? $attributes['gridOptions']['columnCount'] : 3;
 $column2 = $attributes['gridOptions']['columnCount'] <= 2 ? $attributes['gridOptions']['columnCount'] : 2;
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id .cozy-block-featured-product-tabs__tab-heading {
 	font-size: {$attributes['tabHeading']['fontSize']};
 	font-weight: {$attributes['tabHeading']['fontWeight']};
@@ -557,7 +557,7 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id:has(.swiper-vertical) .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: var(--swiper-pagination-bullet-vertical-gap, {$attributes['pagination']['gap']}) 0;
 }
-BLOCK_STYLES;
+";
 
 $classes   = array();
 $classes[] = 'cozy-block-featured-product-tabs';
@@ -566,32 +566,6 @@ $classes[] = $attributes['navigation']['hoverShow'] ? 'nav-hover-show' : '';
 $classes[] = $attributes['tabStyles']['active']['tabOverlay'] ? 'has-tab-overlay' : '';
 $classes[] = $attributes['itemStyles']['shadow']['enabled'] ? 'item-has-shadow' : '';
 $output    = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
-
-// Enqueue Google Fonts.
-if ( isset( $attributes['tabHeading']['fontFamily'] ) && ! empty( $attributes['tabHeading']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['tabHeading']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['tabStyles']['fontFamily'] ) && ! empty( $attributes['tabStyles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['tabStyles']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['saleBadge']['fontFamily'] ) && ! empty( $attributes['saleBadge']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['saleBadge']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['categoryStyles']['fontFamily'] ) && ! empty( $attributes['categoryStyles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['categoryStyles']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['title']['fontFamily'] ) && ! empty( $attributes['title']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['title']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['price']['fontFamily'] ) && ! empty( $attributes['price']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['price']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['rating']['fontFamily'] ) && ! empty( $attributes['rating']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['rating']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['cartButton']['fontFamily'] ) && ! empty( $attributes['cartButton']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['cartButton']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
 
 // Tabs.
 $inline_styles   = array();
@@ -603,17 +577,17 @@ $inline_styles[] = 'gap:' . $attributes['tabHeading']['gap'];
 
 $output .= '<div style="' . implode( ';', $inline_styles ) . '">';
 if ( $attributes['tabHeading']['enabled'] ) {
-	$heading_content = esc_html_x( $attributes['tabHeading']['content'], 'cozy-addons' );
+	$heading_content = esc_html( $attributes['tabHeading']['content'] );
 	$output         .= sprintf( '<%1$s class="cozy-block-featured-product-tabs__tab-heading">%2$s</%1$s>', $attributes['tabHeading']['tag'], $heading_content );
 }
 
 $output .= '<article class="cozy-block-featured-product-tabs__tabs">';
 
 $cozy_featured_product_tabs = array(
-	'latest' => esc_html_x( 'Latest', 'cozy-addons' ),
-	'seller' => esc_html_x( 'Best Seller', 'cozy-addons' ),
-	'rated'  => esc_html_x( 'Top Rated', 'cozy-addons' ),
-	'sale'   => esc_html_x( 'On Sale', 'cozy-addons' ),
+	'latest' => esc_html__( 'Latest', 'cozy-addons' ),
+	'seller' => esc_html__( 'Best Seller', 'cozy-addons' ),
+	'rated'  => esc_html__( 'Top Rated', 'cozy-addons' ),
+	'sale'   => esc_html__( 'On Sale', 'cozy-addons' ),
 );
 
 $set_first_tab = false;
@@ -862,9 +836,9 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 						case 'amount':
 							if ( isset( $product_data['discount_amt'] ) && ! empty( $product_data['discount_amt'] ) ) {
 								$output .= '<span class="' . implode( ' ', $classes ) . '">';
-								$output .= esc_html_x( $attributes['saleBadge']['labelBefore'], 'cozy-addons' );
+								$output .= esc_html( $attributes['saleBadge']['labelBefore'] );
 								$output .= '<span>' . $product_data['discount_amt'] . '</span>';
-								$output .= esc_html_x( $attributes['saleBadge']['labelAfter'], 'cozy-addons' );
+								$output .= esc_html( $attributes['saleBadge']['labelAfter'] );
 								$output .= '</span>';
 							}
 							break;
@@ -872,18 +846,18 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 						case 'percentage':
 							if ( isset( $product_data['discount_percentage'] ) && ! empty( $product_data['discount_percentage'] ) ) {
 								$output .= '<span class="' . implode( ' ', $classes ) . '">';
-								$output .= esc_html_x( $attributes['saleBadge']['labelBefore'], 'cozy-addons' );
+								$output .= esc_html( $attributes['saleBadge']['labelBefore'] );
 								$output .= $product_data['discount_percentage'];
-								$output .= esc_html_x( $attributes['saleBadge']['labelAfter'], 'cozy-addons' );
+								$output .= esc_html( $attributes['saleBadge']['labelAfter'] );
 								$output .= '</span>';
 							}
 							break;
 
 						default:
 							$output .= '<span class="' . implode( ' ', $classes ) . '">';
-							$output .= esc_html_x( $attributes['saleBadge']['labelBefore'], 'cozy-addons' );
-							$output .= esc_html_x( 'Sale', 'cozy-addons' );
-							$output .= esc_html_x( $attributes['saleBadge']['labelAfter'], 'cozy-addons' );
+							$output .= esc_html( $attributes['saleBadge']['labelBefore'] );
+							$output .= esc_html__( 'Sale', 'cozy-addons' );
+							$output .= esc_html( $attributes['saleBadge']['labelAfter'] );
 							$output .= '</span>';
 					}
 				}
@@ -940,7 +914,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 				$open_new_tab = isset( $attributes['productOptions']['linkCat'], $attributes['productOptions']['catNewTab'] ) && $attributes['productOptions']['linkCat'] && $attributes['productOptions']['catNewTab'] ? '_blank' : '';
 				foreach ( $product_data['categories'] as $cat_data ) {
 					$has_cat_link = isset( $attributes['productOptions']['linkCat'] ) && $attributes['productOptions']['linkCat'] ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
-					$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
+					$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $cat_data['name'] ) . '</a>';
 				}
 				$output .= '</div>';
 			}
@@ -949,7 +923,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 				$output       .= '<h4 class="cozy-block-featured-product-tabs__product-title">';
 				$has_post_link = isset( $attributes['productOptions']['titleLinkPost'] ) && $attributes['productOptions']['titleLinkPost'] ? 'href="' . esc_url( $product_data['link'] ) . '"' : '';
 				$open_new_tab  = isset( $attributes['productOptions']['titleLinkPost'], $attributes['productOptions']['titleLinkNewTab'] ) && $attributes['productOptions']['titleLinkPost'] && $attributes['productOptions']['titleLinkNewTab'] ? '_blank' : '';
-				$output       .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $product_data['title'], 'cozy-addons' ) . '</a>';
+				$output       .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $product_data['title'] ) . '</a>';
 				$output       .= '</h4>';
 			}
 
@@ -984,7 +958,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 				<path d="M7.99998 2.66666C9.72665 2.66666 11.2626 3.48666 12.238 4.762L10.6666 6.33333H14.6666V2.33333L13.1873 3.81266C12.5631 3.03781 11.773 2.41284 10.8753 1.98376C9.97754 1.55467 8.99499 1.33241 7.99998 1.33333C4.31798 1.33333 1.33331 4.318 1.33331 8H2.66665C2.66665 6.58551 3.22855 5.22896 4.22874 4.22876C5.22894 3.22857 6.58549 2.66666 7.99998 2.66666ZM13.3333 8C13.3333 9.11533 12.9837 10.2026 12.3336 11.1089C11.6835 12.0151 10.7656 12.6948 9.7091 13.0522C8.65259 13.4096 7.51062 13.4268 6.44382 13.1014C5.37703 12.776 4.4391 12.1243 3.76198 11.238L5.33331 9.66666H1.33331V13.6667L2.81265 12.1873C3.43687 12.9622 4.22694 13.5872 5.12468 14.0162C6.02242 14.4453 7.00497 14.6676 7.99998 14.6667C11.682 14.6667 14.6666 11.682 14.6666 8H13.3333Z" />
 				</svg>';
 				$cart_label = isset( $attributes['cartButton']['label'] ) ? $attributes['cartButton']['label'] : '';
-				$output    .= '<span class="cart-button__label">' . esc_html_x( $cart_label, 'cozy-addons' ) . '</span>';
+				$output    .= '<span class="cart-button__label">' . esc_html( $cart_label ) . '</span>';
 				$output    .= '</div>';
 			}
 
@@ -1052,5 +1026,67 @@ if ( isset( $attributes['productOptions']['quickView'] ) && $attributes['product
 
 $output .= '</div>';
 
-$render = sprintf( '<div class="cozy-block-wrapper cozy-block-featured-product-tabs-wrapper"><div %1$s><style>%2$s</style> %3$s</div></div>', $wrapper_attributes, $block_styles, $output );
+if ( ! function_exists( 'cozy_block_featured_product_tabs_enqueue_google_fonts' ) ) {
+	function cozy_block_featured_product_tabs_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['tabHeading']['fontFamily'] ) && ! empty( $attributes['tabHeading']['fontFamily'] ) ) {
+			$font_families[] = $attributes['tabHeading']['fontFamily'];
+		}
+		if ( isset( $attributes['tabStyles']['fontFamily'] ) && ! empty( $attributes['tabStyles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['tabStyles']['fontFamily'];
+		}
+		if ( isset( $attributes['saleBadge']['fontFamily'] ) && ! empty( $attributes['saleBadge']['fontFamily'] ) ) {
+			$font_families[] = $attributes['saleBadge']['fontFamily'];
+		}
+		if ( isset( $attributes['categoryStyles']['fontFamily'] ) && ! empty( $attributes['categoryStyles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['categoryStyles']['fontFamily'];
+		}
+		if ( isset( $attributes['title']['fontFamily'] ) && ! empty( $attributes['title']['fontFamily'] ) ) {
+			$font_families[] = $attributes['title']['fontFamily'];
+		}
+		if ( isset( $attributes['price']['fontFamily'] ) && ! empty( $attributes['price']['fontFamily'] ) ) {
+			$font_families[] = $attributes['price']['fontFamily'];
+		}
+		if ( isset( $attributes['rating']['fontFamily'] ) && ! empty( $attributes['rating']['fontFamily'] ) ) {
+			$font_families[] = $attributes['rating']['fontFamily'];
+		}
+		if ( isset( $attributes['cartButton']['fontFamily'] ) && ! empty( $attributes['cartButton']['fontFamily'] ) ) {
+			$font_families[] = $attributes['cartButton']['fontFamily'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--featured-product-tabs--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
+}
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_featured_product_tabs_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--featured-product-tabs--style', esc_html( $block_styles ) );
+	}
+);
+
+$render = sprintf( '<div class="cozy-block-wrapper cozy-block-featured-product-tabs-wrapper"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;

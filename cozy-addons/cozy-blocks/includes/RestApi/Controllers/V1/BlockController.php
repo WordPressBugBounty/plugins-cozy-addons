@@ -329,7 +329,7 @@ class BlockController extends RestControllerBase {
 		foreach ( $all_comments as $comment ) {
 			$comment->comment_author_avatar = get_avatar_url( $comment->comment_author_email );
 			$comment->link                  = get_comment_link( $comment->comment_ID );
-			$comment->formatted_date        = date( 'F j, Y', strtotime( $comment->comment_date ) );
+			$comment->formatted_date        = gmdate( 'F j, Y', strtotime( $comment->comment_date ) );
 
 			$comments_formatted[] = $comment;
 		}

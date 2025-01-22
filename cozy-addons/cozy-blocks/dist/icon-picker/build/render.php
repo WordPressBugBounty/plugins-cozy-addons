@@ -1,5 +1,5 @@
 <?php
-$client_id          = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id          = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $block_id           = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 $box_bg_color       = isset( $attributes['boxStyles']['bgColor'] ) ? $attributes['boxStyles']['bgColor'] : '';
 $box_bg_color_hover = isset( $attributes['boxStyles']['bgColorHover'] ) ? $attributes['boxStyles']['bgColorHover'] : '';
@@ -19,7 +19,7 @@ $icon_color = array(
 
 $stroke_hover_color = 'outline' === $attributes['layout'] ? $icon_color['hover'] : '';
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id {
     margin-top: {$margin['top']}px;
     margin-right: {$margin['right']}px;
@@ -51,10 +51,17 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id:hover svg {
     stroke: {$stroke_hover_color};
 }
-BLOCK_STYLES;
+";
 
-$output  = '<div class="cozy-block-wrapper cozy-block-icon-wrapper">';
-$output .= '<style>' . $block_styles . '</style>';
+$output = '<div class="cozy-block-wrapper cozy-block-icon-wrapper">';
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--icon-picker--style', esc_html( $block_styles ) );
+	}
+);
+
 $output .= $content;
 $output .= '</div>';
 

@@ -4,7 +4,7 @@ $client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( 
 $cozy_block_var = 'cozyFeaturedContentBox_' . str_replace( '-', '_', $client_id );
 
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedContentBoxInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedContentBoxInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -43,7 +43,7 @@ $bullet_color = array(
 	'active_border_hover' => isset( $attributes['pagination']['activeBorderHover'] ) ? $attributes['pagination']['activeBorderHover'] : '',
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id {
     margin: {$attributes['margin']['top']}px {$attributes['margin']['right']}px {$attributes['margin']['bottom']}px {$attributes['margin']['left']}px;
 }
@@ -158,10 +158,17 @@ $block_styles = <<<BLOCK_STYLES
     background-color: {$bullet_color['active_bg_hover']};
     outline-color: {$bullet_color['active_border_hover']};
 }
-BLOCK_STYLES;
+";
 
-$output  = '<div class="cozy-block-wrapper">';
-$output .= '<style>' . $block_styles . '</style>';
+$output = '<div class="cozy-block-wrapper">';
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--featured-content-box--style', esc_html( $block_styles ) );
+	}
+);
+
 $output .= $content;
 $output .= '</div>';
 

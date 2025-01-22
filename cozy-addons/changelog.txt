@@ -1,3 +1,7 @@
+= 2.1.1 - January 22, 2025 = 
+* Add: Pricing table block.
+* Fix: Block improvements.
+
 = 2.1.0 - January 08, 2025 = 
 * Add: Version Control.
 * Fix: Block improvements.

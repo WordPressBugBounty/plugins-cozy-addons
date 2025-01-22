@@ -2,7 +2,7 @@
 
 use CozyBlock\Icons\CozyIcons;
 
-$client_id = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -17,7 +17,7 @@ $icon_color = array(
 	'hover'    => isset( $attributes['iconColorHover'] ) ? $attributes['iconColorHover'] : '',
 );
 
-$block_styles = <<<EOD
+$block_styles = "
     #{$block_id}.horizontal ul li .inline-block{
         margin-right: {$attributes['iconGap']}px;
     }
@@ -51,40 +51,52 @@ $block_styles = <<<EOD
     #{$block_id} ul li:hover svg path {
         fill: {$icon_color['hover']} !important;
     }
-EOD;
+";
 
 $social_icons = CozyIcons::get_cozy_social_icon_collection();
 $permalink    = get_permalink();
+
+$classes   = array();
+$classes[] = 'cozy-block-social-share';
+$classes[] = $attributes['iconDisplay']['orientation'];
+$classes[] = $attributes['iconDisplay']['alignment'];
 ?>
 
 <div class="cozy-block-wrapper">
-	<style>
-		<?php echo $block_styles; ?>
-	</style>
-	<div class="cozy-block-social-share <?php echo $attributes['iconDisplay']['orientation'] . ' ' . $attributes['iconDisplay']['alignment']; ?>" id="<?php echo esc_html( $block_id ); ?>">
+
+	<?php
+	add_action(
+		'wp_enqueue_scripts',
+		function () use ( $block_styles ) {
+			wp_add_inline_style( 'cozy-block--social-share--style', esc_html( $block_styles ) );
+		}
+	);
+	?>
+
+	<div class="<?php echo esc_html( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>" id="<?php echo esc_html( $block_id ); ?>">
 		<ul>
 			<?php
 			foreach ( $attributes['selectedSocialList'] as $social ) {
 				$value = $social['value'];
 
-				$icon_styles = <<<EOD
+				$icon_styles = "
                     .{$block_id}.{$value} {
                         background-color: {$social['bgColor']} !important;
                     }
                     .{$block_id}.{$value}:hover {
                         background-color: {$social['bgColorHover']} !important;
                     }
-                    .{$block_id}.{$value} svg path{
+                    #{$block_id} .{$block_id}.{$value} svg path{
                         fill: {$social['iconColor']} !important;
                     }
-                    .{$block_id}.{$value} svg:hover path{
+                    #{$block_id} .{$block_id}.{$value} svg:hover path{
                         fill: {$social['iconColorHover']} !important;
                     }
                     .{$block_id}.{$value} svg {
                         width: {$attributes['iconSize']}px !important;
                         height: {$attributes['iconSize']}px !important;
                     }
-                EOD;
+                ";
 
 				$share_url  = $social['shareUrl'];
 				$page_title = the_title( '', '', '', false );
@@ -105,13 +117,13 @@ $permalink    = get_permalink();
 					$share_url .= $permalink;
 				}
 
-				if ( $social['enabled'] ) {
+				if ( isset( $social['enabled'] ) && filter_var( $social['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
 					?>
 					<style>
-						<?php echo $icon_styles; ?>
+						<?php echo esc_html( $icon_styles ); ?>
 					</style>
-					<a href="<?php echo $share_url; ?>" target="_blank">
-						<li class="<?php echo $value . ' ' . $block_id; ?>">
+					<a href="<?php echo esc_url( $share_url ); ?>" target="_blank">
+						<li class="<?php echo esc_attr( sanitize_html_class( $value ) ) . ' ' . esc_attr( sanitize_html_class( $block_id ) ); ?>">
 							<div class="inline-block">
 								<div class="flex">
 									<i>
@@ -121,7 +133,7 @@ $permalink    = get_permalink();
 									</i>
 									<?php
 									if ( true === $attributes['enableLabel'] && 'horizontal' === $attributes['iconDisplay']['orientation'] ) {
-										echo '<p>' . $social['label'] . '</p>';
+										echo '<p>' . esc_html( $social['label'] ) . '</p>';
 									}
 									?>
 								</div>

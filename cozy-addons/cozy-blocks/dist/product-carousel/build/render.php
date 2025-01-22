@@ -1,5 +1,5 @@
 <?php
-$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyProductCarousel_' . str_replace( '-', '_', $client_id );
 
 $currency_symbol                = get_woocommerce_currency_symbol();
@@ -8,7 +8,7 @@ $attributes['currencySymbol']   = $currency_symbol;
 $attributes['currencyPosition'] = $currency_position;
 
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductCarouselInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductCarouselInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $width1 = $attributes['gridOptions']['displayColumn'] <= 3 ? $attributes['gridOptions']['displayColumn'] : 3;
 $width2 = $attributes['gridOptions']['displayColumn'] <= 2 ? $attributes['gridOptions']['displayColumn'] : 2;
@@ -68,7 +68,7 @@ $bullet_color = array(
 );
 
 $block_id     = 'cozyBlock_' . str_replace( '-', '_', $client_id );
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id.layout-grid .cozy-layout-grid {
     row-gap: {$attributes['gridOptions']['columnGap']}px;
     column-gap: {$attributes['gridOptions']['columnGap']}px;
@@ -184,17 +184,54 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .swiper-pagination .swiper-pagination-bullet-active:hover {
     background-color: {$bullet_color['active_hover']};
 }
-BLOCK_STYLES;
+";
 
-$output  = '<div class="cozy-block-wrapper">';
-$output .= '<style>' . $block_styles . '</style>';
+$output = '<div class="cozy-block-wrapper">';
 
-if ( isset( $attributes['saleBadge']['typography']['fontFamily'] ) && ! empty( $attributes['saleBadge']['typography']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['saleBadge']['typography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+if ( ! function_exists( 'cozy_block_product_carousel_enqueue_google_fonts' ) ) {
+	function cozy_block_product_carousel_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['saleBadge']['typography']['fontFamily'] ) && ! empty( $attributes['saleBadge']['typography']['fontFamily'] ) ) {
+			$font_families[] = $attributes['saleBadge']['typography']['fontFamily'];
+		}
+		if ( isset( $attributes['saleBadge']['labelTypography']['fontFamily'] ) && ! empty( $attributes['saleBadge']['labelTypography']['fontFamily'] ) ) {
+			$font_families[] = $attributes['saleBadge']['labelTypography']['fontFamily'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--product-carousel--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
 }
-if ( isset( $attributes['saleBadge']['labelTypography']['fontFamily'] ) && ! empty( $attributes['saleBadge']['labelTypography']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['saleBadge']['labelTypography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_product_carousel_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--product-carousel--style', esc_html( $block_styles ) );
+	}
+);
+
 $output .= $content;
 
 

@@ -1,8 +1,8 @@
 <?php
-$client_id     = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyTestimonial_' . str_replace( '-', '_', $client_id );
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockTestimonialInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockTestimonialInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -21,7 +21,7 @@ $bullet_styles = array(
 	),
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 @media screen and (max-width: 1024px) {
     #$block_id.display-grid:not(.has-masonry) .cozy-block-grid-wrapper {
         grid-template-columns: repeat(
@@ -69,10 +69,17 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .swiper-pagination .swiper-pagination-bullet-active:hover {
     outline-color: {$bullet_styles['color']['active_border_hover']};
 }
-BLOCK_STYLES;
+";
 
-$output  = '<div class="cozy-block-wrapper">';
-$output  .= '<style>' . $block_styles . '</style>';
+$output = '<div class="cozy-block-wrapper">';
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--testimonial--style', esc_html( $block_styles ) );
+	}
+);
+
 $output .= $content;
 $output .= '</div>';
 

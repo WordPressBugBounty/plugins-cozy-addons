@@ -44,7 +44,7 @@ $icon         = array(
 		'border_hover' => isset( $attributes['icon']['color']['borderHover'] ) && ! empty( $attributes['icon']['color']['borderHover'] ) ? $attributes['icon']['color']['borderHover'] : $button['color']['border_hover'],
 	),
 );
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id.has-label {
     width: {$button['width']};
     height: {$button['height']};
@@ -92,7 +92,7 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .cozy-block-add-to-cart__icon-wrapper:hover svg, #$block_id.has-label:hover svg {
     fill: {$icon['color']['text_hover']};
 }
-BLOCK_STYLES;
+";
 
 $product_id = $block->context['postId'];
 
@@ -130,7 +130,7 @@ if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType']
 
 	if ( $attributes['button']['enabled'] ) {
 		$output .= '<span class="cozy-block-add-to-cart__label">';
-		$output .= esc_html_x( cozy_remove_special_chars( $attributes['button']['label'], array( ' ' ) ), 'cozy-addons' );
+		$output .= esc_html( cozy_remove_special_chars( $attributes['button']['label'], array( ' ' ) ) );
 		$output .= '</span>';
 	}
 
@@ -158,12 +158,19 @@ $output .= '</div>';
 
 $wrapper_attributes = get_block_wrapper_attributes();
 
-$render = sprintf( '<div class="cozy-block-wrapper cozy-block-add-to-cart-wrapper justify-' . $attributes['button']['justify'] . '"><div %1$s><style>%2$s</style> %3$s</div></div>', $wrapper_attributes, $block_styles, $output );
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--add-to-cart--style', esc_html( $block_styles ) );
+	}
+);
+
+$render = sprintf( '<div class="cozy-block-wrapper cozy-block-add-to-cart-wrapper justify-' . $attributes['button']['justify'] . '"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;
 
 ?>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo esc_url( trailingslashit(COZY_ADDONS_PLUGIN_URL) ) . 'public/js/jquery.js'; ?>"></script>
 <script type="text/javascript">
 	function handleAddToCartClick(productId) {
 		if ($('body').find('.cozy-block-add-to-cart__toast').length === 0) {
@@ -171,11 +178,11 @@ echo $render;
 		}	
 
 		$.ajax({
-			url: "<?php echo $attributes['ajaxUrl']; ?>",
+			url: "<?php echo esc_url( $attributes['ajaxUrl'] ); ?>",
 			method: "POST",
 			data: {
 				action: "cozy_block_wishlist_add_to_cart",
-				cartNonce: "<?php echo $attributes['cartNonce']; ?>",
+				cartNonce: "<?php echo sanitize_key( $attributes['cartNonce'] ); ?>",
 				productId: parseInt(productId),
 			},
 			success: function (response) {

@@ -2,7 +2,7 @@
 
 use CozyBlock\Helpers\WooHelpers;
 
-$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyProductReview_' . str_replace( '-', '_', $client_id );
 
 $blockId = 'cozyBlock_' . str_replace( '-', '_', $client_id );
@@ -23,7 +23,7 @@ $woo_product_comments = array_values( $woo_product_comments );
 $attributes = array_merge( $attributes, array( 'woo_product_comments' => $woo_product_comments ) );
 
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductReviewInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductReviewInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $displayColumn1 = ( $attributes['gridOptions']['displayColumn'] <= 3 ) ? $attributes['gridOptions']['displayColumn'] : 3;
 $displayColumn2 = ( $attributes['gridOptions']['displayColumn'] <= 2 ) ? $attributes['gridOptions']['displayColumn'] : 2;
@@ -111,7 +111,7 @@ $bullet_color = array(
 	'active_bg_hover'  => isset( $attributes['pagination']['activeColorHover'] ) ? $attributes['pagination']['activeColorHover'] : '',
 );
 
-$blockStyles = <<<BLOCK_CSS
+$blockStyles = "
     #{$blockId} {
         font-size: {$attributes['typography']['fontSize']}px;
         font-weight: {$attributes['typography']['fontWeight']};
@@ -298,7 +298,7 @@ $blockStyles = <<<BLOCK_CSS
     #{$blockId} .swiper-pagination .swiper-pagination-bullet-active:hover {
         background-color: {$bullet_color['active_bg_hover']};
     }
-    BLOCK_CSS;
+";
 
 $months = array(
 	'January',
@@ -353,36 +353,72 @@ $varAvgPercent = '
 
 echo '<div class="cozy-block-wrapper">';
 
-echo '<style>' . esc_html( $blockStyles ) . '</style>';
+if ( ! function_exists( 'cozy_block_product_review_enqueue_google_fonts' ) ) {
+	function cozy_block_product_review_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
 
-if ( isset( $attributes['ajaxButton']['fontFamily'] ) && ! empty( $attributes['ajaxButton']['fontFamily'] ) ) {
-	echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['ajaxButton']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+		if ( isset( $attributes['ajaxButton']['fontFamily'] ) && ! empty( $attributes['ajaxButton']['fontFamily'] ) ) {
+			$font_families[] = $attributes['ajaxButton']['fontFamily'];
+		}
+
+		if ( isset( $attributes['headingOptions']['fontFamily'] ) && ! empty( $attributes['headingOptions']['fontFamily'] ) ) {
+			$font_families[] = $attributes['headingOptions']['fontFamily'];
+		}
+
+		if ( isset( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) && ! empty( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) ) {
+			$font_families[] = $attributes['reviewTitle']['titleTypography']['fontFamily'];
+		}
+
+		if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
+			$font_families[] = $attributes['typography']['fontFamily'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--product-review--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
 }
 
-if ( isset( $attributes['headingOptions']['fontFamily'] ) && ! empty( $attributes['headingOptions']['fontFamily'] ) ) {
-	echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['headingOptions']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_product_review_enqueue_google_fonts( $attributes );
 
-if ( isset( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) && ! empty( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) ) {
-	echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['reviewTitle']['titleTypography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
+		wp_add_inline_style( 'cozy-block--product-review--style', esc_html( $block_styles ) );
+	}
+);
 
-if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
-	echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['typography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
 
 echo '<div class="cozy-block-product-review layout-' . esc_attr( $attributes['layout'] ) . ' ' . ( $attributes['hoverShow'] ? 'hover-show' : '' ) . ' ' . ( $attributes['containerStyles']['boxShadow']['enabled'] ? 'has-box-shadow' : '' ) . ' ' . ( $attributes['reviewImage']['hoverEffect'] ? 'has-image-hover-effect' : '' ) . '" id="' . esc_attr( $blockId ) . '">';
 
 if ( $attributes['headingOptions']['enabled'] ) {
 	echo '<div class="review-heading-wrapper">';
-	echo '<h2 class="review-heading">' . esc_html__( $attributes['headingOptions']['label'], 'cozy-addons' ) . '</h2>';
+	echo '<h2 class="review-heading">' . esc_html( $attributes['headingOptions']['label'] ) . '</h2>';
 
 	echo '<div class="total-reviews-count">';
 	echo '<style>' . esc_html( $varAvgPercent ) . '</style>';
 	echo '<div class="display-inline-flex total-avg-rating-wrapper" style="margin-right: 10px; padding: 0 10px; border-radius: 10px;">';
 	echo '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: text-top; margin-right: 5px;">';
 	// ... SVG path
-	echo '<path stroke="' . $attributes['headingOptions']['iconColor'] . '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6.65335 1.83265C6.68155 1.76387 6.72957 1.70503 6.7913 1.66362C6.85303 1.62221 6.92568 1.6001 7.00002 1.6001C7.07435 1.6001 7.14701 1.62221 7.20874 1.66362C7.27047 1.70503 7.31849 1.76387 7.34669 1.83265L8.76335 5.23998C8.78987 5.30374 8.83346 5.35894 8.88933 5.39952C8.9452 5.4401 9.01119 5.46448 9.08002 5.46998L12.7587 5.76465C13.0914 5.79131 13.226 6.20665 12.9727 6.42331L10.17 8.82465C10.1177 8.86944 10.0786 8.92778 10.0572 8.99328C10.0358 9.05878 10.0329 9.12891 10.0487 9.19598L10.9054 12.786C10.9226 12.858 10.9181 12.9335 10.8924 13.003C10.8667 13.0724 10.821 13.1327 10.7611 13.1763C10.7012 13.2198 10.6297 13.2445 10.5557 13.2475C10.4817 13.2504 10.4085 13.2313 10.3454 13.1926L7.19535 11.2693C7.13651 11.2335 7.06893 11.2145 7.00002 11.2145C6.93111 11.2145 6.86353 11.2335 6.80469 11.2693L3.65469 13.1933C3.59152 13.232 3.51832 13.2511 3.44432 13.2481C3.37033 13.2452 3.29885 13.2204 3.23893 13.1769C3.17901 13.1334 3.13333 13.0731 3.10765 13.0036C3.08198 12.9342 3.07747 12.8587 3.09469 12.7866L3.95135 9.19598C3.96724 9.12891 3.96432 9.05876 3.94291 8.99325C3.92151 8.92773 3.88244 8.86939 3.83002 8.82465L1.02735 6.42331C0.971228 6.37505 0.930626 6.31128 0.910652 6.24C0.890678 6.16873 0.892224 6.09314 0.915096 6.02274C0.937968 5.95235 0.981145 5.89028 1.0392 5.84436C1.09725 5.79844 1.16758 5.7707 1.24135 5.76465L4.92002 5.46998C4.98885 5.46448 5.05483 5.4401 5.1107 5.39952C5.16657 5.35894 5.21017 5.30374 5.23669 5.23998L6.65335 1.83265Z" />';
+	echo '<path stroke="' . esc_attr( $attributes['headingOptions']['iconColor'] ) . '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6.65335 1.83265C6.68155 1.76387 6.72957 1.70503 6.7913 1.66362C6.85303 1.62221 6.92568 1.6001 7.00002 1.6001C7.07435 1.6001 7.14701 1.62221 7.20874 1.66362C7.27047 1.70503 7.31849 1.76387 7.34669 1.83265L8.76335 5.23998C8.78987 5.30374 8.83346 5.35894 8.88933 5.39952C8.9452 5.4401 9.01119 5.46448 9.08002 5.46998L12.7587 5.76465C13.0914 5.79131 13.226 6.20665 12.9727 6.42331L10.17 8.82465C10.1177 8.86944 10.0786 8.92778 10.0572 8.99328C10.0358 9.05878 10.0329 9.12891 10.0487 9.19598L10.9054 12.786C10.9226 12.858 10.9181 12.9335 10.8924 13.003C10.8667 13.0724 10.821 13.1327 10.7611 13.1763C10.7012 13.2198 10.6297 13.2445 10.5557 13.2475C10.4817 13.2504 10.4085 13.2313 10.3454 13.1926L7.19535 11.2693C7.13651 11.2335 7.06893 11.2145 7.00002 11.2145C6.93111 11.2145 6.86353 11.2335 6.80469 11.2693L3.65469 13.1933C3.59152 13.232 3.51832 13.2511 3.44432 13.2481C3.37033 13.2452 3.29885 13.2204 3.23893 13.1769C3.17901 13.1334 3.13333 13.0731 3.10765 13.0036C3.08198 12.9342 3.07747 12.8587 3.09469 12.7866L3.95135 9.19598C3.96724 9.12891 3.96432 9.05876 3.94291 8.99325C3.92151 8.92773 3.88244 8.86939 3.83002 8.82465L1.02735 6.42331C0.971228 6.37505 0.930626 6.31128 0.910652 6.24C0.890678 6.16873 0.892224 6.09314 0.915096 6.02274C0.937968 5.95235 0.981145 5.89028 1.0392 5.84436C1.09725 5.79844 1.16758 5.7707 1.24135 5.76465L4.92002 5.46998C4.98885 5.46448 5.05483 5.4401 5.1107 5.39952C5.16657 5.35894 5.21017 5.30374 5.23669 5.23998L6.65335 1.83265Z" />';
 	echo '</svg>';
 	echo '<span>' . esc_html( $avgReviews ) . '</span>';
 	echo '</div>';
@@ -430,12 +466,12 @@ if ( ! empty( $reviewsToDisplay ) ) {
             }
         ';
 
-		echo '<style>' . $varPercent . '</style>';
+		echo '<style>' . esc_html( $varPercent ) . '</style>';
 		echo '<li class="woo-product-review ' . ( $attributes['layout'] === 'carousel' ? 'swiper-slide' : '' ) . '" data-comment-id="' . esc_attr( $review->comment_ID ) . '">';
 
 		if ( $attributes['enableOptions']['reviewContent'] && 'top' === $attributes['reviewContent']['position'] ) {
 			echo '<div class="review-content-wrapper">';
-			echo '<div class="review-content">' . cozy_create_excerpt( $review->comment_content, intval( $attributes['reviewContent']['excerpt'] ) ) . '</div>';
+			echo '<div class="review-content">' . esc_html( cozy_create_excerpt( $review->comment_content, intval( $attributes['reviewContent']['excerpt'] ) ) ) . '</div>';
 			echo '</div>';
 		}
 
@@ -458,8 +494,8 @@ if ( ! empty( $reviewsToDisplay ) ) {
 		if ( $attributes['enableOptions']['productName'] ) {
 			$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $review->product_url ) . '"' : '';
 			$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleLinkNewTab'] ? '_blank' : '';
-			echo '<a class="product-name" ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
-			echo esc_html__( $review->product_name, 'cozy-addons' );
+			echo '<a class="product-name" ' . $has_post_link . ' target="' . esc_attr( $open_new_tab ) . '" rel="noopener">';
+			echo esc_html( $review->product_name );
 			echo '</a>';
 		}
 
@@ -487,7 +523,7 @@ if ( ! empty( $reviewsToDisplay ) ) {
 
 		if ( $attributes['enableOptions']['reviewContent'] && 'bottom' === $attributes['reviewContent']['position'] ) {
 			echo '<div class="review-content-wrapper">';
-			echo '<div class="review-content">' . cozy_create_excerpt( $review->comment_content, intval( $attributes['reviewContent']['excerpt'] ) ) . '</div>';
+			echo '<div class="review-content">' . esc_html( cozy_create_excerpt( $review->comment_content, intval( $attributes['reviewContent']['excerpt'] ) ) ) . '</div>';
 			echo '</div>';
 		}
 
@@ -510,7 +546,7 @@ echo '</div>';
 
 if ( $attributes['perPage'] !== '-1' && $attributes['layout'] !== 'carousel' && $attributes['ajaxButton']['enabled'] ) {
 	echo '<div class="display-flex justify-center">';
-	echo '<button class="cozy-dynamic-loader">' . esc_html__( $attributes['ajaxButton']['label'], 'cozy-addons' ) . '</button>';
+	echo '<button class="cozy-dynamic-loader">' . esc_html( $attributes['ajaxButton']['label'] ) . '</button>';
 	echo '</div>';
 }
 

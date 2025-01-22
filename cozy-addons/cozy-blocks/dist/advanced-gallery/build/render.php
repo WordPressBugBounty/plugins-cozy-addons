@@ -142,7 +142,7 @@ $ajax_loader = array(
 $col1 = isset( $attributes['gridOptions']['column'] ) && $attributes['gridOptions']['column'] <= 3 ? $attributes['gridOptions']['column'] : 3;
 $col2 = isset( $attributes['gridOptions']['column'] ) && $attributes['gridOptions']['column'] <= 2 ? $attributes['gridOptions']['column'] : 2;
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id .cozy-block-advanced-gallery__header {
     {$header_box['padding']}
     margin-top: {$attributes['headerBox']['margin']['top']};
@@ -388,7 +388,7 @@ $block_styles = <<<BLOCK_STYLES
 	border-color: {$ajax_loader['spinner_secondary']};
 	border-top-color: {$ajax_loader['spinner_primary']};
 }
-BLOCK_STYLES;
+";
 
 $classes   = array();
 $classes[] = 'cozy-block-advanced-gallery';
@@ -397,18 +397,6 @@ $classes[] = 'carousel' === $attributes['display'] && $attributes['navigation'][
 $classes[] = 'grid' === $attributes['display'] && $attributes['enableOptions']['lightbox'] ? 'has-light-box' : '';
 $classes[] = 'grid' === $attributes['display'] && $attributes['ajaxLoader']['enabled'] && 'scroll' === $attributes['ajaxLoader']['type'] ? 'has-infinite-scroll' : '';
 $output    = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
-if ( isset( $attributes['tabStyles']['font']['family'] ) && ! empty( $attributes['tabStyles']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['tabStyles']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['image']['title']['font']['family'] ) && ! empty( $attributes['image']['title']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['image']['title']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['lightbox']['title']['font']['family'] ) && ! empty( $attributes['lightbox']['title']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['lightbox']['title']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['ajaxLoader']['font']['family'] ) && ! empty( $attributes['ajaxLoader']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['ajaxLoader']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
 
 /* Header */
 if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeFilter'] ) {
@@ -423,7 +411,7 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 	$classes[] = isset( $attributes['tabStyles']['active']['shadow']['enabled'] ) ? 'item-has-active-shadow' : '';
 	$output   .= '<ul class="' . implode( ' ', $classes ) . '">';
 	if ( $attributes['tabOptions']['showDefaultTab'] ) {
-		$output .= '<li class="cozy-block-advanced-gallery__tab active-tab" data-index="0" data-slug="">' . esc_html_x( 'All', 'cozy-addons' ) . '</li>';
+		$output .= '<li class="cozy-block-advanced-gallery__tab active-tab" data-index="0" data-slug="">' . esc_html__( 'All', 'cozy-addons' ) . '</li>';
 	}
 	if ( ! empty( $attributes['tabsList'] ) ) {
 		foreach ( (array) $attributes['tabsList'] as $index => $identifier ) {
@@ -432,7 +420,7 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 			$classes[]  = ! $attributes['tabOptions']['showDefaultTab'] && 0 === $index ? 'active-tab' : '';
 			$data_index = $attributes['tabOptions']['showDefaultTab'] ? $index + 1 : $index;
 			$output    .= '<li class="' . implode( ' ', $classes ) . '" data-index="' . $data_index . '" data-slug="' . $identifier['id'] . '">';
-			$output    .= esc_html_x( $identifier['title'], 'cozy-addons' );
+			$output    .= esc_html( $identifier['title'] );
 			$output    .= '</li>';
 		}
 	}
@@ -457,7 +445,7 @@ if ( ! function_exists( 'render_cozy_block_advanced_gallery_item_data' ) ) {
 		$classes[] = $attributes['image']['hoverEffect'] ? 'has-hover-effect' : '';
 		$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
 		$output   .= '<span class="cozy-block-advanced-gallery__image-background"></span>';
-		$output   .= '<img class="cozy-block-advanced-gallery__image" src="' . esc_url( $item_data['url'] ) . '" alt="' . esc_html_x( $item_data['alt'], 'cozy-addons' ) . '" />';
+		$output   .= '<img class="cozy-block-advanced-gallery__image" src="' . esc_url( $item_data['url'] ) . '" alt="' . esc_html( $item_data['alt'] ) . '" />';
 
 		if ( $attributes['enableOptions']['hoverIcon'] ) {
 			$view_box   = array();
@@ -474,7 +462,7 @@ if ( ! function_exists( 'render_cozy_block_advanced_gallery_item_data' ) ) {
 
 		if ( $attributes['enableOptions']['hoverTitle'] ) {
 			$output .= '<div class="cozy-block-advanced-gallery__image-caption">';
-			$output .= esc_html_x( $item_data['caption'], 'cozy-addons' );
+			$output .= esc_html( $item_data['caption'] );
 			$output .= '</div>';
 		}
 		$output .= '</figure>';
@@ -532,13 +520,13 @@ if ( ( ( $attributes['tabOptions']['showDefaultTab'] && $attributes['enableOptio
 			$classes[] = 'cozy-block-advanced-gallery__ajax-loader';
 			$output   .= '<div class="cozy-block-advanced-gallery__ajax-loader-wrapper">';
 			$output   .= '<button class="' . implode( ' ', $classes ) . '" data-slug="all">';
-			$output   .= '<span>' . esc_html_x( $attributes['ajaxLoader']['label'], 'cozy-addons' ) . '</span>';
+			$output   .= '<span>' . esc_html( $attributes['ajaxLoader']['label'] ) . '</span>';
 
 			$classes   = array();
 			$classes[] = 'spinner';
 			$classes[] = isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ? 'has-loading-text' : '';
 			$output   .= '<div class="' . implode( ' ', $classes ) . '">';
-			$output   .= esc_html_x( $attributes['ajaxLoader']['loadingText'], 'cozy-addons' );
+			$output   .= esc_html( $attributes['ajaxLoader']['loadingText'] );
 			$output   .= '<span class="cozy-block-advanced-gallery__dots"></span>';
 			$output   .= '</div>';
 
@@ -554,7 +542,7 @@ if ( ( ( $attributes['tabOptions']['showDefaultTab'] && $attributes['enableOptio
 			$classes[]   = isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ? 'has-loading-text' : '';
 			$output     .= '<div class="' . implode( ' ', $classes ) . '">';
 			if ( isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ) {
-				$output .= esc_html_x( $attributes['ajaxLoader']['loadingText'], 'cozy-addons' );
+				$output .= esc_html( $attributes['ajaxLoader']['loadingText'] );
 				$output .= '<span class="cozy-block-advanced-gallery__dots"></span>';
 			}
 			$output .= '</div>';
@@ -621,13 +609,13 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 				$classes[] = 'cozy-block-advanced-gallery__ajax-loader';
 				$output   .= '<div class="cozy-block-advanced-gallery__ajax-loader-wrapper">';
 				$output   .= '<button class="' . implode( ' ', $classes ) . '" data-slug="' . $tab_id . '">';
-				$output   .= '<span>' . esc_html_x( $attributes['ajaxLoader']['label'], 'cozy-addons' ) . '</span>';
+				$output   .= '<span>' . esc_html( $attributes['ajaxLoader']['label'] ) . '</span>';
 
 				$classes   = array();
 				$classes[] = 'spinner';
 				$classes[] = isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ? 'has-loading-text' : '';
 				$output   .= '<div class="' . implode( ' ', $classes ) . '">';
-				$output   .= esc_html_x( $attributes['ajaxLoader']['loadingText'], 'cozy-addons' );
+				$output   .= esc_html( $attributes['ajaxLoader']['loadingText'] );
 				$output   .= '<span class="cozy-block-advanced-gallery__dots"></span>';
 				$output   .= '</div>';
 
@@ -643,7 +631,7 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 				$classes[] = isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ? 'has-loading-text' : '';
 				$output   .= '<div class="' . implode( ' ', $classes ) . '">';
 				if ( isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ) {
-					$output .= esc_html_x( $attributes['ajaxLoader']['loadingText'], 'cozy-addons' );
+					$output .= esc_html( $attributes['ajaxLoader']['loadingText'] );
 					$output .= '<span class="cozy-block-advanced-gallery__dots"></span>';
 				}
 				$output .= '</div>';
@@ -697,12 +685,12 @@ if ( $attributes['enableOptions']['lightbox'] && ! empty( $attributes['mediaColl
 			$classes   = array();
 			$classes[] = 'cozy-block-advanced-gallery__lightbox-image-wrapper';
 			$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
-			$output   .= '<img class="cozy-block-advanced-gallery__lightbox-image" src="' . esc_url( $media['url'] ) . '" alt="' . esc_html_x( $media['alt'], 'cozy-addons' ) . '" />';
+			$output   .= '<img class="cozy-block-advanced-gallery__lightbox-image" src="' . esc_url( $media['url'] ) . '" alt="' . esc_html( $media['alt'] ) . '" />';
 			$output   .= '</figure>';
 
 			if ( $attributes['enableOptions']['lightboxTitle'] ) {
 				$output .= '<div class="cozy-block-advanced-gallery__lightbox-caption">';
-				$output .= esc_html_x( $media['caption'], 'cozy-addons' );
+				$output .= esc_html( $media['caption'] );
 				$output .= '</div>';
 			}
 
@@ -738,12 +726,12 @@ if ( $attributes['enableOptions']['lightbox'] && ! empty( $attributes['mediaColl
 					$classes   = array();
 					$classes[] = 'cozy-block-advanced-gallery__lightbox-image-wrapper';
 					$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
-					$output   .= '<img class="cozy-block-advanced-gallery__lightbox-image" src="' . esc_url( $media['url'] ) . '" alt="' . esc_html_x( $media['alt'], 'cozy-addons' ) . '" />';
+					$output   .= '<img class="cozy-block-advanced-gallery__lightbox-image" src="' . esc_url( $media['url'] ) . '" alt="' . esc_html( $media['alt'] ) . '" />';
 					$output   .= '</figure>';
 
 					if ( $attributes['enableOptions']['lightboxTitle'] ) {
 						$output .= '<div class="cozy-block-advanced-gallery__lightbox-caption">';
-						$output .= esc_html_x( $media['caption'], 'cozy-addons' );
+						$output .= esc_html( $media['caption'] );
 						$output .= '</div>';
 					}
 
@@ -770,5 +758,56 @@ wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
 wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockAdvancedGallery( "' . $client_id . '" ) }) ' );
 
 $wrapper_attributes = get_block_wrapper_attributes();
-$render             = sprintf( '<div class="cozy-block-wrapper"><div %1$s><style>%2$s</style> %3$s</div></div>', $wrapper_attributes, $block_styles, $output );
+
+if ( ! function_exists( 'cozy_block_advanced_gallery_google_fonts' ) ) {
+	function cozy_block_advanced_gallery_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['tabStyles']['font']['family'] ) && ! empty( $attributes['tabStyles']['font']['family'] ) ) {
+			$font_families[] = $attributes['tabStyles']['font']['family'];
+		}
+		if ( isset( $attributes['image']['title']['font']['family'] ) && ! empty( $attributes['image']['title']['font']['family'] ) ) {
+			$font_families[] = $attributes['image']['title']['font']['family'];
+		}
+		if ( isset( $attributes['lightbox']['title']['font']['family'] ) && ! empty( $attributes['lightbox']['title']['font']['family'] ) ) {
+			$font_families[] = $attributes['lightbox']['title']['font']['family'];
+		}
+		if ( isset( $attributes['ajaxLoader']['font']['family'] ) && ! empty( $attributes['ajaxLoader']['font']['family'] ) ) {
+			$font_families[] = $attributes['ajaxLoader']['font']['family'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--advanced-gallery--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
+}
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_advanced_gallery_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--advanced-gallery--style', esc_html( $block_styles ) );
+	}
+);
+
+$render = sprintf( '<div class="cozy-block-wrapper"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;

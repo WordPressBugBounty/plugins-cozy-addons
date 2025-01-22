@@ -296,6 +296,7 @@
     "titleStyles": {
       "type": "object",
       "default": {
+        "className": "",
         "marginTop": "6px",
         "marginBottom": "6px",
         "fontSize": "20px",

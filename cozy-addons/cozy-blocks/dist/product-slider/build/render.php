@@ -1,8 +1,8 @@
 <?php
-$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyProductSlider_' . str_replace( '-', '_', $client_id );
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductSliderInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductSliderInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -35,7 +35,7 @@ $bullet_color = array(
 	'active_bg_hover'  => isset( $attributes['pagination']['activeColorHover'] ) ? $attributes['pagination']['activeColorHover'] : '',
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id .swiper-button-prev::after,
 #$block_id .swiper-button-next::after {
     font-size: {$attributes['navigation']['iconSize']}px;
@@ -85,10 +85,17 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .swiper-pagination .swiper-pagination-bullet-active:hover {
     background-color: {$bullet_color['active_bg_hover']};
 }
-BLOCK_STYLES;
+";
 
 $output  = '<div class="cozy-block-wrapper">';
-$output .= '<style>' . $block_styles . '</style>';
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--product-slider--style', esc_html( $block_styles ) );
+	}
+);
+
 $output .= $content;
 $output .= '</div>';
 

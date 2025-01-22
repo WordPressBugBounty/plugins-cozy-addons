@@ -1,8 +1,8 @@
 <?php
-$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyPostSlider_' . str_replace( '-', '_', $client_id );
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockPostSliderInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockPostSliderInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -23,14 +23,14 @@ $bullet_styles = array(
 );
 
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id .swiper-button-prev,
 #$block_id .swiper-button-next {
     {$nav_styles['border']}
-
-    &:hover {
-        border-color: {$nav_styles['color']['border_hover']};
-    }
+}
+#$block_id .swiper-button-prev:hover,
+#$block_id .swiper-button-next:hover {
+	border-color: {$nav_styles['color']['border_hover']};
 }
 
 #$block_id .swiper-pagination-bullets .swiper-pagination-bullet {
@@ -41,11 +41,16 @@ $block_styles = <<<BLOCK_STYLES
     {$bullet_styles['active']['border']}
     outline-offset: {$bullet_styles['active']['offset']}px;
 }
-BLOCK_STYLES;
+";
 
-$output  = '<div class="cozy-block-wrapper">';
+$output = '<div class="cozy-block-wrapper">';
 
-$output .= '<style>' . $block_styles . '</style>';
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--post-slider--style', esc_html( $block_styles ) );
+	}
+);
 
 $output .= $content;
 $output .= '</div>';

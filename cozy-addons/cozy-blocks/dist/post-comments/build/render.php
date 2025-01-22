@@ -4,7 +4,7 @@ if ( ! isset( $block->context['postId'] ) ) {
 	return '';
 }
 
-$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['clientId'] ) ) : '';
+$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 if ( ! function_exists( 'render_cozy_block_post_comments_icon' ) ) {
@@ -15,24 +15,24 @@ if ( ! function_exists( 'render_cozy_block_post_comments_icon' ) ) {
 			$stroke_width   = 'outline' === $attributes['icon']['layout'] ? $attributes['icon']['strokeWidth'] : '';
 			$stroke_opacity = 'outline' === $attributes['icon']['layout'] ? $attributes['icon']['opacity'] / 100 : '';
 
-			$icon = <<<ICON
-				<div class="cozy-block-post-comments__icon-wrapper view-{$attributes['icon']['view']} layout-{$attributes['icon']['layout']}">
+			$icon = "
+				<div class='cozy-block-post-comments__icon-wrapper view-{$attributes['icon']['view']} layout-{$attributes['icon']['layout']}'>
 					<svg
-						width="{$attributes['icon']['size']}"
-						height="{$attributes['icon']['size']}"
-						class="cozy-block-post-comments__icon"
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="{$attributes['icon']['viewBox']['vx']} {$attributes['icon']['viewBox']['vy']} {$attributes['icon']['viewBox']['vw']} {$attributes['icon']['viewBox']['vh']}"
-						aria-hidden="true"
-						fill="{$icon_fill}"
-						stroke="{$icon_stroke}"
-						stroke-width="{$stroke_width}"
-						stroke-opacity="{$stroke_opacity}"
+						width='{$attributes['icon']['size']}'
+						height='{$attributes['icon']['size']}'
+						class='cozy-block-post-comments__icon'
+						xmlns='http://www.w3.org/2000/svg'
+						viewBox='{$attributes['icon']['viewBox']['vx']} {$attributes['icon']['viewBox']['vy']} {$attributes['icon']['viewBox']['vw']} {$attributes['icon']['viewBox']['vh']}'
+						aria-hidden='true'
+						fill='{$icon_fill}'
+						stroke='{$icon_stroke}'
+						stroke-width='{$stroke_width}'
+						stroke-opacity='{$stroke_opacity}'
 					>
-						<path d="{$attributes['icon']['path']}"/>
+						<path d='{$attributes['icon']['path']}'/>
 					</svg>
 				</div>
-			ICON;
+			";
 
 			return $icon;
 		}
@@ -62,7 +62,7 @@ $icon_color       = array(
 );
 
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id.display-block {
     text-align: {$attributes['textAlign']};
 }
@@ -104,17 +104,52 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['label']['fontWeight']};
 	color: {$icon_color['text']};
 }
-BLOCK_STYLES;
+";
 
 $output = '<div ' . $wrapper_attributes . '>';
 
-$output .= '<style>' . $block_styles . '</style>';
+if ( ! function_exists( 'cozy_block_post_comments_enqueue_google_fonts' ) ) {
+	function cozy_block_post_comments_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['label']['fontFamily'] ) && ! empty( $attributes['label']['fontFamily'] ) ) {
+			$font_families[] = $attributes['label']['fontFamily'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--post-comments--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
+}
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_post_comments_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--post-comments--style', esc_html( $block_styles ) );
+	}
+);
 
 $output .= '<div class="cozy-block-post-comments ' . $block_extra_classes . '" id="' . $block_id . '">';
-
-if ( isset( $attributes['label']['fontFamily'] ) && ! empty( $attributes['label']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . rawurlencode( $attributes['label']['fontFamily'] ) . ':wght@300;400;500;600;700;800;900" />';
-}
 
 if ( $attributes['enableOptions']['labelBefore'] ) {
 	$output .= '<p class="cozy-block-post-comments__label cozy-block-post-comments__label-before">' . $attributes['labelBefore'] . '</p>';

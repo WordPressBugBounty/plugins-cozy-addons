@@ -1,10 +1,10 @@
 <?php
-$client_id = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $cozy_block_var = 'cozyDateTime_' . str_replace( '-', '_', $client_id );
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockDateTimeInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockDateTimeInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $typography_styles = array(
 	'letter_case'    => isset( $attributes['layout']['styles']['letterCase'] ) ? $attributes['layout']['styles']['letterCase'] : '',
@@ -21,34 +21,69 @@ $time_styles = array(
 	'letter_spacing' => isset( $attributes['time']['styles']['letterSpacing'] ) ? $attributes['time']['styles']['letterSpacing'] : '',
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id {
     text-transform: {$typography_styles['letter_case']};
     text-decoration: {$typography_styles['decoration']};
     line-height: {$typography_styles['line_height']};
     letter-spacing: {$typography_styles['letter_spacing']};
-
-    & .cozy-time {
-        font-family: {$time_styles['font_family']};
-        text-transform: {$time_styles['letter_case']};
-        text-decoration: {$time_styles['decoration']};
-        line-height: {$time_styles['line_height']};
-        letter-spacing: {$time_styles['letter_spacing']};
-    }
 }
-BLOCK_STYLES;
+
+#$block_id .cozy-time {
+	font-family: {$time_styles['font_family']};
+	text-transform: {$time_styles['letter_case']};
+	text-decoration: {$time_styles['decoration']};
+	line-height: {$time_styles['line_height']};
+	letter-spacing: {$time_styles['letter_spacing']};
+}
+";
 
 $output = '<div class="cozy-block-wrapper">';
 
-$output .= '<style>' . $block_styles . '</style>';
+if ( ! function_exists( 'cozy_block_current_time_enqueue_google_fonts' ) ) {
+	function cozy_block_current_time_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
 
-if ( isset( $attributes['layout']['styles']['fontFamily'] ) && ! empty( $attributes['layout']['styles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['layout']['styles']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+		if ( isset( $attributes['layout']['styles']['fontFamily'] ) && ! empty( $attributes['layout']['styles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['layout']['styles']['fontFamily'];
+		}
+
+		if ( isset( $attributes['time']['styles']['fontFamily'] ) && ! empty( $attributes['time']['styles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['time']['styles']['fontFamily'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--current-time--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
 }
 
-if ( isset( $attributes['time']['styles']['fontFamily'] ) && ! empty( $attributes['time']['styles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['time']['styles']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_current_time_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--current-time--style', esc_html( $block_styles ) );
+	}
+);
 
 $output .= $content;
 $output .= '</div>';

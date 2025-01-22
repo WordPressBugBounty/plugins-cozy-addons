@@ -305,6 +305,7 @@
           }
         },
         "title": {
+          "className": "",
           "margin": {
             "top": "4px",
             "bottom": "6px"
@@ -367,6 +368,7 @@
     "postMeta": {
       "type": "object",
       "default": {
+        "enableIcon": true,
         "margin": {
           "top": "8px",
           "bottom": "8px"

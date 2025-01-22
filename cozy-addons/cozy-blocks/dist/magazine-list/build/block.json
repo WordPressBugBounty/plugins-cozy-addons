@@ -81,6 +81,10 @@
       "type": "string",
       "default": "latest"
     },
+    "exclude": {
+      "type": "string",
+      "default": ""
+    },
     "enableOptions": {
       "type": "object",
       "default": {
@@ -304,6 +308,7 @@
           }
         },
         "title": {
+          "className": "",
           "margin": {
             "top": "4px",
             "bottom": "6px"
@@ -366,6 +371,7 @@
     "postMeta": {
       "type": "object",
       "default": {
+        "enableIcon": true,
         "margin": {
           "top": "8px",
           "bottom": "8px"

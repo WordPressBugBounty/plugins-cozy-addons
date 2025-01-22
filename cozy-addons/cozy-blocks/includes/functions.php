@@ -646,6 +646,6 @@ if ( ! function_exists( 'cozy_create_excerpt' ) ) {
 			$content = implode( ' ', $words );
 		}
 
-		return esc_html_x( $content, 'cozy-addons' );
+		return esc_html( $content );
 	}
 }

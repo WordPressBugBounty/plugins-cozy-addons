@@ -109,6 +109,7 @@
         "author": true,
         "comments": true,
         "date": true,
+        "enableMetaIcon": true,
         "linkPostMeta": true,
         "postMetaNewTab": false
       }
@@ -193,6 +194,7 @@
     "titleStyles": {
       "type": "object",
       "default": {
+        "className": "",
         "marginTop": "6px",
         "marginBottom": "4px",
         "fontSize": "18px",

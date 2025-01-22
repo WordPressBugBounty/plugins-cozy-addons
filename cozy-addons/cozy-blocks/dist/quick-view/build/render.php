@@ -1,5 +1,5 @@
 <?php
-$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['clientId'] ) ) : '';
+$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attributes['ajaxUrl']        = admin_url( 'admin-ajax.php' );
@@ -109,7 +109,7 @@ $bullets = array(
 	'right'  => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? $attributes['pagination']['right'] : '',
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id .cozy-block-quick-view__icon-wrapper {
 	width: {$icon['box']['width']};
 	height: {$icon['box']['height']};
@@ -277,7 +277,7 @@ body .cozy-block-quick-view__lightbox-wrapper .quick-view__rating .review-conten
 .cozy-block-quick-view__lightbox-wrapper .swiper-pagination-bullet-active:hover {
     background-color: {$bullets['color']['active_hover']};
 }
-BLOCK_STYLES;
+";
 
 $product_id = $block->context['postId'];
 
@@ -285,19 +285,6 @@ $classes   = array();
 $classes[] = 'cozy-block-quick-view';
 $classes[] = 'post-' . $product_id;
 $output    = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
-
-if ( isset( $attributes['productTitle']['font']['family'] ) && ! empty( $attributes['productTitle']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['productTitle']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['productSummary']['font']['family'] ) && ! empty( $attributes['productSummary']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['productSummary']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['productPrice']['font']['family'] ) && ! empty( $attributes['productPrice']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['productPrice']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['cartButton']['font']['family'] ) && ! empty( $attributes['cartButton']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['cartButton']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
 
 if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType'] ) {
 	/* Icon Wrapper */
@@ -316,17 +303,64 @@ if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType']
 
 $output .= '</div>';
 
-// wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-// wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockQuickView( "' . $client_id . '" ) }) ' );
-
 $wrapper_attributes = get_block_wrapper_attributes();
 
-$render = sprintf( '<div class="cozy-block-wrapper cozy-block-quick-view-wrapper justify-content-' . $attributes['icon']['align'] . '"><div %1$s><style>%2$s</style> %3$s</div></div>', $wrapper_attributes, $block_styles, $output );
+if ( ! function_exists( 'cozy_block_quick_view_enqueue_google_fonts' ) ) {
+	function cozy_block_quick_view_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['productTitle']['font']['family'] ) && ! empty( $attributes['productTitle']['font']['family'] ) ) {
+			$font_families[] = $attributes['productTitle']['font']['family'];
+		}
+		if ( isset( $attributes['productSummary']['font']['family'] ) && ! empty( $attributes['productSummary']['font']['family'] ) ) {
+			$font_families[] = $attributes['productSummary']['font']['family'];
+		}
+		if ( isset( $attributes['productPrice']['font']['family'] ) && ! empty( $attributes['productPrice']['font']['family'] ) ) {
+			$font_families[] = $attributes['productPrice']['font']['family'];
+		}
+		if ( isset( $attributes['cartButton']['font']['family'] ) && ! empty( $attributes['cartButton']['font']['family'] ) ) {
+			$font_families[] = $attributes['cartButton']['font']['family'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--quick-view--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
+}
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_quick_view_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--quick-view--style', esc_html( $block_styles ) );
+	}
+);
+
+$render = sprintf( '<div class="cozy-block-wrapper cozy-block-quick-view-wrapper justify-content-' . $attributes['icon']['align'] . '"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;
 
 
 ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'public/js/jquery.js'; ?>"></script>
 <script type="text/javascript">
 	function handleQuickViewIconClick(productId, attributes) {
 		if ($('body').find('.cozy-block-quick-view__lightbox-wrapper').length === 0) {

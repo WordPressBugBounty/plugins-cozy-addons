@@ -1,9 +1,9 @@
 <?php
-$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyProductCategory_' . str_replace( '-', '_', $client_id );
 
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductCategoryInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductCategoryInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -52,7 +52,7 @@ $bullet_styles  = array(
 	'active_color_hover'  => isset( $attributes['pagination']['active']['colorHover'] ) ? $attributes['pagination']['active']['colorHover'] : '',
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id {
 	text-align: {$attributes['textAlign']};
 	font-family: {$attributes['fontFamily']};
@@ -182,7 +182,7 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id.swiper-vertical .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: var(--swiper-pagination-bullet-vertical-gap, {$attributes['pagination']['gap']}) 0;
 }
-BLOCK_STYLES;
+";
 
 $classes   = array();
 $classes[] = 'cozy-block-product-category';
@@ -194,12 +194,7 @@ $classes[] = $attributes['featuredImage']['hoverEffect'] ? 'has-image-hover-effe
 $classes[] = 'product-count-position-' . $attributes['productCount']['position'];
 
 $output = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
-if ( isset( $attributes['productCount']['fontFamily'] ) && ! empty( $attributes['productCount']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['productCount']['fontFamily'] . ':wght@300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['fontFamily'] ) && ! empty( $attributes['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['fontFamily'] . ':wght@300;400;500;600;700;800;900" />';
-}
+
 $wrapper_classes   = array();
 $wrapper_classes[] = 'woo-product-category-wrapper';
 $wrapper_classes[] = 'carousel' === $attributes['display'] ? 'swiper-wrapper' : '';
@@ -236,20 +231,20 @@ foreach ( $categories as $product_cat ) {
 	if ( $attributes['enableOptions']['count'] && 'badge' === $attributes['productCount']['display'] ) {
 		$output .= '<div class="product-count-wrapper">';
 		$output .= '<span class="product-count">';
-		$output .= esc_html_x( $attributes['productCount']['labelBefore'], 'cozy-addons' ) . esc_html_x( $product_cat->count, 'cozy-addons' ) . esc_html_x( $attributes['productCount']['labelAfter'], 'cozy-addons' );
+		$output .= esc_html( $attributes['productCount']['labelBefore'] ) . esc_html( $product_cat->count ) . esc_html( $attributes['productCount']['labelAfter'] );
 		$output .= '</span>';
 		$output .= '</div>';
 	}
 	$output .= '</div>';
 
 	if ( $attributes['enableOptions']['name'] ) {
-		$output .= '<div class="category-name">' . esc_html_x( $product_cat->name, 'cozy-addons' ) . '</div>';
+		$output .= '<div class="category-name">' . esc_html( $product_cat->name ) . '</div>';
 	}
 
 	if ( $attributes['enableOptions']['count'] && 'default' === $attributes['productCount']['display'] ) {
 		$output .= '<div class="product-count-wrapper">';
 		$output .= '<span class="product-count">';
-		$output .= esc_html_x( $attributes['productCount']['labelBefore'], 'cozy-addons' ) . esc_html_x( $product_cat->count, 'cozy-addons' ) . esc_html_x( $attributes['productCount']['labelAfter'], 'cozy-addons' );
+		$output .= esc_html( $attributes['productCount']['labelBefore'] ) . esc_html( $product_cat->count ) . esc_html( $attributes['productCount']['labelAfter'] );
 		$output .= '</span>';
 		$output .= '</div>';
 	}
@@ -274,5 +269,49 @@ if ( 'carousel' === $attributes['display'] ) {
 }
 $output .= '</div>';
 
-$render = sprintf( '<div class="cozy-block-wrapper cozy-block-product-category-wrapper"><div %1$s><style>%2$s</style> %3$s</div></div>', $wrapper_attributes, $block_styles, $output );
+if ( ! function_exists( 'cozy_block_product_category_enqueue_google_fonts' ) ) {
+	function cozy_block_product_category_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['productCount']['fontFamily'] ) && ! empty( $attributes['productCount']['fontFamily'] ) ) {
+			$font_families[] = $attributes['productCount']['fontFamily'];
+		}
+		if ( isset( $attributes['fontFamily'] ) && ! empty( $attributes['fontFamily'] ) ) {
+			$font_families[] = $attributes['fontFamily'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--product-category--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
+}
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_product_category_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--product-category--style', esc_html( $block_styles ) );
+	}
+);
+
+$render = sprintf( '<div class="cozy-block-wrapper cozy-block-product-category-wrapper"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;

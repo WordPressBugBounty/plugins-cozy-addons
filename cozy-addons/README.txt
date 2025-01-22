@@ -1,10 +1,10 @@
 === Cozy Blocks – Page Builder for Gutenberg & Site Editor with Post Blocks, WooCommerce Blocks, Magazine Blocks & WordPress Gutenberg Blocks ===
 Contributors: CozyThemes
-Tags: gutenberg-blocks, wordpress-blocks, woocommerce-blocks
+Tags: blocks, gutenberg blocks, gutenberg, woocommerce blocks, block
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
@@ -12,14 +12,17 @@ Streamline your website designs with our library of advanced blocks designed to 
 == Description ==
 [Cozy Blocks](https://cozythemes.com/cozy-addons/)! A must-have WordPress plugin to powerfully enhance your website with the WordPress Gutenberg Editor.
 
+<a href="https://app.zipwp.com/wp?plugins=cozy-addons" target="_blank" rel="">Try Cozy Blocks on a dummy site!</a>
+
 = Key Features That Enhance and Extend WordPress Blocks =
 <ul>
 <li>40+ Advanced Blocks to Extend the Site Editor</li>
 <li>WooCommerce Blocks</li>
 <li>Post and Magazine Blocks</li>
-<li>Slider Blocks (Slider & Carousel Blocks)</li>
+<li>Slider Blocks (Slider & Carousel Blocks)</li>l
 <li>Team Block</li>
 <li>Testimonial Block</li>
+<li>Pricing Table</li>
 <li>Portfolio Block (Dynamic Portfolio and Gallery Builder)</li>
 <li>Popup Builder Block</li>
 <li>Social Media/Share Icons Blocks</li>
@@ -60,6 +63,7 @@ Enhance your website building experience with Gutenberg Blocks and Full Site Edi
 * [**Icon List**](https://cozyblock.cozythemes.com/icon-list-gutenberg-block/) - Elevate your lists with style using the 'Icon List' block, offering advanced options to effortlessly integrate and customize icons for a visually appealing and informative presentation.
 * [**Icon Picker**](https://cozyblock.cozythemes.com/icon-picker-gutenberg-block/) - Unlock endless possibilities with our 'Icon Picker' block, providing a user-friendly interface to choose from a diverse range of icons, enhancing the visual appeal of your content.
 * [**Portfolio Gallery**](https://fotademo.cozythemes.com/fotademo-pro/portfolios/) - Showcase your work with finesse using the 'Portfolio Gallery' block, designed for creating advanced and visually stunning layouts to present your portfolio in a captivating manner.
+* Pricing Table - Explore pricing options with this clean and organized pricing table. It includes a simple container displaying pricing elements, allowing users to view prices and features at a glance.
 * [**Progress Bar**](https://cozyblock.cozythemes.com/progress-bar-gutenberg-block/) - Keep your audience informed and intrigued with our 'Progress Bar' block, offering dynamic circular, horizontal, and vertical progress indicators for an interactive and visually engaging user experience.
 * [**Sidebar Panel**](https://cozyblock.cozythemes.com/sidebar-panel-gutenberg-block/) - Maximize versatility with our 'Sidebar Panel' block, seamlessly integrating a customizable sidebar drawer to display menus, latest posts, popular content, or any desired elements for a user-friendly and organized layout.
 * [**Slider**](https://cozyblock.cozythemes.com/slider-gutenberg-block/) - Immerse your audience in captivating visuals with our versatile 'Slider' block, perfect for showcasing images or content in a dynamic and engaging carousel.
@@ -138,6 +142,10 @@ You can report any security bugs found in the source code of this plugin through
 6. Animation and Hover Effects
 
 == Changelog ==
+= 2.1.1 - January 22, 2025 = 
+* Add: Pricing table block.
+* Fix: Block improvements.
+
 = 2.1.0 - January 08, 2025 = 
 * Add: Version Control.
 * Fix: Block improvements.
@@ -148,3 +156,8 @@ You can report any security bugs found in the source code of this plugin through
 == License ==
 
 This plugin is licensed under the GPLv2 or later license. See [LICENSE](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) for more details.
+
+== Upgrade Notice ==
+
+= 2.1.0 =
+Elementor support has been deprecated and is no longer actively maintained.

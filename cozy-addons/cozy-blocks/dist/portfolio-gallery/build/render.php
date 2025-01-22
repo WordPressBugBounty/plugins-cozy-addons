@@ -2,14 +2,14 @@
 
 use CozyBlock\Helpers\CozyHelpers;
 
-$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyPortfolioGallery_' . str_replace( '-', '_', $client_id );
 
 $attributes['portfolioTemplates'] = array( ...CozyHelpers::get_cozy_portfolio_gallery_templates() );
 $attributes['portfolioTax']       = get_terms( array( 'ca_portfolio_gallery_category' ) );
 
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockPortfolioGalleryInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockPortfolioGalleryInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -214,7 +214,7 @@ $bullet_styles  = array(
 	'active_color_hover'  => isset( $attributes['pagination']['active']['colorHover'] ) ? $attributes['pagination']['active']['colorHover'] : '',
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id.source-template:not(.layout-type-default) > .cozy-layout-wrapper .cozy-portfolio:hover .cozy-portfolio-gallery__image-overlay {
     background-color: {$attributes['featuredImage']['overlayColor']};
     opacity: {$attributes['featuredImage']['opacity']};
@@ -543,26 +543,62 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id.swiper-vertical .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: var(--swiper-pagination-bullet-vertical-gap, {$bullet['gap']}) 0;
 }
-BLOCK_STYLES;
+";
 
-$output  = '<div class="cozy-block-wrapper">';
-$output .= '<style>' . $block_styles . '</style>';
+$output = '<div class="cozy-block-wrapper">';
 
-if ( isset( $attributes['ajaxButton']['fontFamily'] ) && ! empty( $attributes['ajaxButton']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . rawurlencode( $attributes['ajaxButton']['fontFamily'] ) . ':wght@100;200;300;400;500;600;700;800;900" />';
+if ( ! function_exists( 'cozy_block_porfolio_gallery_enqueue_google_fonts' ) ) {
+	function cozy_block_porfolio_gallery_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['ajaxButton']['fontFamily'] ) && ! empty( $attributes['ajaxButton']['fontFamily'] ) ) {
+			$font_families[] = $attributes['ajaxButton']['fontFamily'];
+		}
+		if ( isset( $attributes['catStyles']['fontFamily'] ) && ! empty( $attributes['catStyles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['catStyles']['fontFamily'];
+		}
+		if ( isset( $attributes['isotopeStyles']['fontFamily'] ) && ! empty( $attributes['isotopeStyles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['isotopeStyles']['fontFamily'];
+		}
+		if ( isset( $attributes['titleTypography']['fontFamily'] ) && ! empty( $attributes['titleTypography']['fontFamily'] ) ) {
+			$font_families[] = $attributes['titleTypography']['fontFamily'];
+		}
+		if ( isset( $attributes['subtitleTypography']['fontFamily'] ) && ! empty( $attributes['subtitleTypography']['fontFamily'] ) ) {
+			$font_families[] = $attributes['subtitleTypography']['fontFamily'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--portfolio-gallery--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
 }
-if ( isset( $attributes['catStyles']['fontFamily'] ) && ! empty( $attributes['catStyles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . rawurlencode( $attributes['catStyles']['fontFamily'] ) . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['isotopeStyles']['fontFamily'] ) && ! empty( $attributes['isotopeStyles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . rawurlencode( $attributes['isotopeStyles']['fontFamily'] ) . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['titleTypography']['fontFamily'] ) && ! empty( $attributes['titleTypography']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . rawurlencode( $attributes['titleTypography']['fontFamily'] ) . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['subtitleTypography']['fontFamily'] ) && ! empty( $attributes['subtitleTypography']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . rawurlencode( $attributes['subtitleTypography']['fontFamily'] ) . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_porfolio_gallery_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--portfolio-gallery--style', esc_html( $block_styles ) );
+	}
+);
 
 $output .= $content;
 $output .= '</div>';

@@ -198,7 +198,7 @@ $bullets = array(
 	'right'  => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? $attributes['pagination']['right'] : '',
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id .cozy-block-featured-product__header {
     {$header_box['padding']}
     margin-top: {$attributes['headerBox']['margin']['top']};
@@ -522,38 +522,13 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .swiper-pagination-bullet-active:hover {
     background-color: {$bullets['color']['active_hover']};
 }
-BLOCK_STYLES;
+";
 
 $classes   = array();
 $classes[] = 'cozy-block-featured-product';
 $classes[] = 'display-' . $attributes['display'];
 $classes[] = 'carousel' === $attributes['display'] && $attributes['navigation']['enabled'] && $attributes['navigation']['hoverShow'] ? 'has-nav-hover-show' : '';
 $output    = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
-
-if ( isset( $attributes['headingStyles']['font']['family'] ) && ! empty( $attributes['headingStyles']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['headingStyles']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['subHeading']['font']['family'] ) && ! empty( $attributes['subHeading']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['subHeading']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['postOptions']['title']['font']['family'] ) && ! empty( $attributes['postOptions']['title']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['postOptions']['title']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['saleBadge']['font']['family'] ) && ! empty( $attributes['saleBadge']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['saleBadge']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['productCategory']['font']['family'] ) && ! empty( $attributes['productCategory']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['productCategory']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['productPrice']['font']['family'] ) && ! empty( $attributes['productPrice']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['productPrice']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['productSummary']['font']['family'] ) && ! empty( $attributes['productSummary']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['productSummary']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['cartButton']['font']['family'] ) && ! empty( $attributes['cartButton']['font']['family'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['cartButton']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-}
 
 if ( $attributes['enableOptions']['heading'] || $attributes['enableOptions']['subHeading'] ) {
 	$output .= '<article class="cozy-block-featured-product__header">';
@@ -685,11 +660,11 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 					case 'amount':
 						if ( isset( $post_data['discount_amt'] ) && ! empty( $post_data['discount_amt'] ) ) {
 							$output .= '<span class="' . implode( ' ', $classes ) . '">';
-							$output .= esc_html_x( $attributes['saleBadge']['labelBefore'], 'cozy-addons' );
+							$output .= esc_html( $attributes['saleBadge']['labelBefore'] );
 							$output .= '<span>';
 							$output .= $post_data['discount_amt'];
 							$output .= '</span>';
-							$output .= esc_html_x( $attributes['saleBadge']['labelAfter'], 'cozy-addons' );
+							$output .= esc_html( $attributes['saleBadge']['labelAfter'] );
 							$output .= '</span>';
 						}
 						break;
@@ -697,22 +672,22 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 					case 'percentage':
 						if ( isset( $post_data['discount_percentage'] ) && ! empty( $post_data['discount_percentage'] ) ) {
 							$output .= '<span class="' . implode( ' ', $classes ) . '">';
-							$output .= esc_html_x( $attributes['saleBadge']['labelBefore'], 'cozy-addons' );
+							$output .= esc_html( $attributes['saleBadge']['labelBefore'] );
 							$output .= '<span>';
 							$output .= $post_data['discount_percentage'];
 							$output .= '</span>';
-							$output .= esc_html_x( $attributes['saleBadge']['labelAfter'], 'cozy-addons' );
+							$output .= esc_html( $attributes['saleBadge']['labelAfter'] );
 							$output .= '</span>';
 						}
 						break;
 
 					default:
 						$output .= '<span class="' . implode( ' ', $classes ) . '">';
-						$output .= esc_html_x( $attributes['saleBadge']['labelBefore'], 'cozy-addons' );
+						$output .= esc_html( $attributes['saleBadge']['labelBefore'] );
 						$output .= '<span>';
-						$output .= esc_html_x( 'Sale', 'cozy-addons' );
+						$output .= esc_html__( 'Sale', 'cozy-addons' );
 						$output .= '</span>';
-						$output .= esc_html_x( $attributes['saleBadge']['labelAfter'], 'cozy-addons' );
+						$output .= esc_html( $attributes['saleBadge']['labelAfter'] );
 						$output .= '</span>';
 				}
 			}
@@ -775,14 +750,14 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 			$open_new_tab = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && $attributes['enableOptions']['linkCat'] && $attributes['enableOptions']['catNewTab'] ? '_blank' : '';
 			foreach ( $post_data['categories'] as $cat_data ) {
 				$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && $attributes['enableOptions']['linkCat'] ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
-				$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
+				$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $cat_data['name'] ) . '</a>';
 			}
 			$output .= '</div>';
 		}
 
 		$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
 		$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleLinkNewTab'] ? '_blank' : '';
-		$output       .= '<h2 class="post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
+		$output       .= '<h2 class="post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h2>';
 
 		$justify_content = $attributes['postOptions']['textAlign'];
 
@@ -819,7 +794,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 			$output .= '<svg class="loader-icon display-none" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 				<path d="M7.99998 2.66666C9.72665 2.66666 11.2626 3.48666 12.238 4.762L10.6666 6.33333H14.6666V2.33333L13.1873 3.81266C12.5631 3.03781 11.773 2.41284 10.8753 1.98376C9.97754 1.55467 8.99499 1.33241 7.99998 1.33333C4.31798 1.33333 1.33331 4.318 1.33331 8H2.66665C2.66665 6.58551 3.22855 5.22896 4.22874 4.22876C5.22894 3.22857 6.58549 2.66666 7.99998 2.66666ZM13.3333 8C13.3333 9.11533 12.9837 10.2026 12.3336 11.1089C11.6835 12.0151 10.7656 12.6948 9.7091 13.0522C8.65259 13.4096 7.51062 13.4268 6.44382 13.1014C5.37703 12.776 4.4391 12.1243 3.76198 11.238L5.33331 9.66666H1.33331V13.6667L2.81265 12.1873C3.43687 12.9622 4.22694 13.5872 5.12468 14.0162C6.02242 14.4453 7.00497 14.6676 7.99998 14.6667C11.682 14.6667 14.6666 11.682 14.6666 8H13.3333Z" />
 				</svg>';
-			$output .= '<span class="cart-button__label">' . esc_html_x( $attributes['cartButton']['label'], 'cozy-addons' ) . '</span>';
+			$output .= '<span class="cart-button__label">' . esc_html( $attributes['cartButton']['label'] ) . '</span>';
 			$output .= '</div>';
 		}
 
@@ -892,7 +867,69 @@ $output .= '</div>';
 $wrapper_attributes = get_block_wrapper_attributes();
 
 wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProduct( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProduct( "' . esc_html( $client_id ) . '" ) }) ' );
 
-$render = sprintf( '<div class="cozy-block-wrapper"><div %1$s><style>%2$s</style> %3$s</div></div>', $wrapper_attributes, $block_styles, $output );
+if ( ! function_exists( 'cozy_block_featured_product_enqueue_google_fonts' ) ) {
+	function cozy_block_featured_product_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['headingStyles']['font']['family'] ) && ! empty( $attributes['headingStyles']['font']['family'] ) ) {
+			$font_families[] = $attributes['headingStyles']['font']['family'];
+		}
+		if ( isset( $attributes['subHeading']['font']['family'] ) && ! empty( $attributes['subHeading']['font']['family'] ) ) {
+			$font_families[] = $attributes['subHeading']['font']['family'];
+		}
+		if ( isset( $attributes['postOptions']['title']['font']['family'] ) && ! empty( $attributes['postOptions']['title']['font']['family'] ) ) {
+			$font_families[] = $attributes['postOptions']['title']['font']['family'];
+		}
+		if ( isset( $attributes['saleBadge']['font']['family'] ) && ! empty( $attributes['saleBadge']['font']['family'] ) ) {
+			$font_families[] = $attributes['saleBadge']['font']['family'];
+		}
+		if ( isset( $attributes['productCategory']['font']['family'] ) && ! empty( $attributes['productCategory']['font']['family'] ) ) {
+			$font_families[] = $attributes['productCategory']['font']['family'];
+		}
+		if ( isset( $attributes['productPrice']['font']['family'] ) && ! empty( $attributes['productPrice']['font']['family'] ) ) {
+			$font_families[] = $attributes['productPrice']['font']['family'];
+		}
+		if ( isset( $attributes['productSummary']['font']['family'] ) && ! empty( $attributes['productSummary']['font']['family'] ) ) {
+			$font_families[] = $attributes['productSummary']['font']['family'];
+		}
+		if ( isset( $attributes['cartButton']['font']['family'] ) && ! empty( $attributes['cartButton']['font']['family'] ) ) {
+			$font_families[] = $attributes['cartButton']['font']['family'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--featured-product--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
+}
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_featured_product_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--featured-product--style', esc_html( $block_styles ) );
+	}
+);
+
+$render = sprintf( '<div class="cozy-block-wrapper"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;

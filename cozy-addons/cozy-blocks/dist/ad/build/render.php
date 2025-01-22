@@ -12,7 +12,7 @@ $image = array(
 	'radius'   => cozy_render_TRBL( 'border-radius', $attributes['media']['radius'] ),
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id .cozy-block-ad__image-wrapper {
     max-width: {$image['width']};
     max-height: {$image['height']};
@@ -34,7 +34,14 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .object-fit-cover .cozy-block-ad__image {
     object-position: {$image['position']['x']}% {$image['position']['y']}%;
 }
-BLOCK_STYLES;
+";
 
-$render = sprintf( '<div class="cozy-block-wrapper"><style>%1$s</style>%2$s</div>', $block_styles, $content );
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--ad--style', esc_html( $block_styles ) );
+	}
+);
+
+$render = sprintf( '<div class="cozy-block-wrapper">%1$s</div>', $content );
 echo $render;

@@ -81,6 +81,10 @@
       "type": "string",
       "default": "latest"
     },
+    "exclude": {
+      "type": "string",
+      "default": ""
+    },
     "layout": {
       "type": "string",
       "default": "featured-left"
@@ -108,11 +112,13 @@
         "postComments": true,
         "feauredPostComments": true,
         "postDate": true,
+        "enableMetaIcon": true,
         "featuredPostDate": true,
         "linkPostMeta": true,
         "postMetaNewTab": false,
         "postCategories": true,
         "featuredPostCategories": true,
+        "enableFeaturedMetaIcon": true,
         "linkCat": true,
         "catNewTab": false
       }
@@ -289,6 +295,7 @@
           }
         },
         "title": {
+          "className": "",
           "margin": {
             "top": "4px",
             "bottom": "6px"
@@ -385,6 +392,7 @@
           }
         },
         "title": {
+          "className": "",
           "margin": {
             "top": "4px",
             "bottom": "6px"

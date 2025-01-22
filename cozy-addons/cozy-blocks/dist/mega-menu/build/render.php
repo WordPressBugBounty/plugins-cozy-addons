@@ -2,13 +2,13 @@
 
 use CozyBlock\Helpers\CozyHelpers;
 
-$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyMegaMenu_' . str_replace( '-', '_', $client_id );
 
 $attributes['megaMenuTemplates'] = CozyHelpers::get_cozy_mega_menu_templates();
 
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMegaMenuInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMegaMenuInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -95,7 +95,7 @@ $typography = array(
 	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id.display-horizontal .cozy-menu-wrapper {
     gap: {$attributes['menuGap']}px;
 }
@@ -180,22 +180,21 @@ $block_styles = <<<BLOCK_STYLES
     border-radius: {$attributes['iconBoxStyles']['borderRadius']}px;
     background-color: {$icon_styles['color']['bg']};
     margin-right: {$attributes['submenuStyles']['padding']['right']}px;
-
-    & .cozy-dropdown-icon {
-        width: {$attributes['icon']['size']}px;
-        height: {$attributes['icon']['size']}px;
-        opacity: {$attributes['icon']['opacity']};
-        rotate: {$attributes['icon']['rotate']}deg;
-        fill: {$icon_styles['color']['icon']};
-    }
+}
+#$block_id .cozy-dropdown-icon-wrapper .cozy-dropdown-icon {
+    width: {$attributes['icon']['size']}px;
+    height: {$attributes['icon']['size']}px;
+    opacity: {$attributes['icon']['opacity']};
+    rotate: {$attributes['icon']['rotate']}deg;
+    fill: {$icon_styles['color']['icon']};
 }
 #$block_id .cozy-menu-wrapper > .wp-block-navigation-item:hover .cozy-dropdown-icon-wrapper {
     background-color: {$icon_styles['color']['bg_hover']};
     border-color: {$icon_styles['color']['border_hover']};
 
-    & .cozy-dropdown-icon {
-        fill: {$item_color['text_hover']};
-    }
+}
+#$block_id .cozy-menu-wrapper > .wp-block-navigation-item:hover .cozy-dropdown-icon-wrapper .cozy-dropdown-icon {
+    fill: {$item_color['text_hover']};
 }
 
 #$block_id.event-hover .wp-block-navigation__submenu-container .wp-block-navigation-item.has-child:hover .cozy-dropdown-icon, #$block_id.event-hover .wp-block-navigation__submenu-container .wp-block-navigation__submenu-container .wp-block-navigation-item.has-child:hover .cozy-dropdown-icon {
@@ -211,62 +210,60 @@ $block_styles = <<<BLOCK_STYLES
     {$responsive_styles['open_icon']['border']}
     border-radius: {$responsive_styles['open_icon']['radius']};
     background-color: {$responsive_styles['open_icon']['color']['bg']};
-    
-    & .cozy-responsive-icon__open {
-        width: {$responsive_styles['open_icon']['size']};
-        height: {$responsive_styles['open_icon']['size']};
-        fill: {$responsive_styles['open_icon']['color']['icon']};
-    }
+}
+#$block_id .open-icon-wrapper .cozy-responsive-icon__open {
+    width: {$responsive_styles['open_icon']['size']};
+    height: {$responsive_styles['open_icon']['size']};
+    fill: {$responsive_styles['open_icon']['color']['icon']};
+}
 
-    &:hover {
-        background-color: {$responsive_styles['open_icon']['color']['bg_hover']};
-        border-color: {$responsive_styles['open_icon']['color']['border_hover']};
-    }
+#$block_id .open-icon-wrapper:hover {
+    background-color: {$responsive_styles['open_icon']['color']['bg_hover']};
+    border-color: {$responsive_styles['open_icon']['color']['border_hover']};
+}
 
-    &:hover .cozy-responsive-icon__open {
-        fill: {$responsive_styles['open_icon']['color']['icon_hover']};
-    }
+#$block_id .open-icon-wrapper:hover .cozy-responsive-icon__open {
+    fill: {$responsive_styles['open_icon']['color']['icon_hover']};
 }
 
 #$block_id .cozy-block-navigation-menu.full-screen {
     padding: {$attributes['responsive']['padding']['top']}px {$attributes['responsive']['padding']['right']}px {$attributes['responsive']['padding']['bottom']}px {$attributes['responsive']['padding']['left']}px;
     background-color: {$container_color['bg_fullscreen']};
 
-    & .cozy-menu-wrapper {
-        margin-top: calc({$responsive_styles['close_icon']['box_width']} + 6px) !important;
-    }
+}
+#$block_id .cozy-block-navigation-menu.full-screen .cozy-menu-wrapper {
+    margin-top: calc({$responsive_styles['close_icon']['box_width']} + 6px) !important;
+}
 
-    & .close-icon-wrapper {
-        width: {$responsive_styles['close_icon']['box_width']};
-        height: {$responsive_styles['close_icon']['box_height']};
-        {$responsive_styles['close_icon']['border']}
-        border-radius: {$responsive_styles['close_icon']['radius']};
-        top: {$attributes['responsive']['iconTop']}px;
-        background-color: {$responsive_styles['close_icon']['color']['bg']};
-        
-        & .cozy-responsive-icon__close {
-            width: {$responsive_styles['close_icon']['size']};
-            height: {$responsive_styles['close_icon']['size']};
-            fill: {$responsive_styles['close_icon']['color']['icon']};
-        }
+#$block_id .cozy-block-navigation-menu.full-screen .close-icon-wrapper {
+    width: {$responsive_styles['close_icon']['box_width']};
+    height: {$responsive_styles['close_icon']['box_height']};
+    {$responsive_styles['close_icon']['border']}
+    border-radius: {$responsive_styles['close_icon']['radius']};
+    top: {$attributes['responsive']['iconTop']}px;
+    background-color: {$responsive_styles['close_icon']['color']['bg']};
+}
+#$block_id .cozy-block-navigation-menu.full-screen .close-icon-wrapper .cozy-responsive-icon__close {
+    width: {$responsive_styles['close_icon']['size']};
+    height: {$responsive_styles['close_icon']['size']};
+    fill: {$responsive_styles['close_icon']['color']['icon']};
+}
 
-        &:hover {
-            background-color: {$responsive_styles['close_icon']['color']['bg_hover']};
-            border-color: {$responsive_styles['close_icon']['color']['border_hover']};
-        }
+#$block_id .cozy-block-navigation-menu.full-screen .close-icon-wrapper:hover {
+    background-color: {$responsive_styles['close_icon']['color']['bg_hover']};
+    border-color: {$responsive_styles['close_icon']['color']['border_hover']};
+}
 
-        &:hover .cozy-responsive-icon__close {
-            fill: {$responsive_styles['close_icon']['color']['icon_hover']};
-        }
-    }
-    &.responsive-icon-position-left .close-icon-wrapper {
-        left: 0;
-        margin-left: {$responsive_styles['close_icon']['hgap']}px;
-    }
-    &.responsive-icon-position-right .close-icon-wrapper {
-        right: 0;
-        margin-right: {$responsive_styles['close_icon']['hgap']}px;
-    }
+#$block_id .cozy-block-navigation-menu.full-screen .close-icon-wrapper:hover .cozy-responsive-icon__close {
+    fill: {$responsive_styles['close_icon']['color']['icon_hover']};
+}
+#$block_id .cozy-block-navigation-menu.full-screen.responsive-icon-position-left .close-icon-wrapper {
+    left: 0;
+    margin-left: {$responsive_styles['close_icon']['hgap']}px;
+}
+#$block_id .cozy-block-navigation-menu.full-screen.responsive-icon-position-right .close-icon-wrapper {
+    right: 0;
+    margin-right: {$responsive_styles['close_icon']['hgap']}px;
 }
 
 #$block_id .wp-block-navigation-item__content {
@@ -285,14 +282,50 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .cozy-block-navigation-menu:not(.full-screen) .cozy-menu-wrapper > .wp-block-navigation-item:hover, #$block_id .cozy-block-navigation-menu:not(.full-screen) .cozy-menu-wrapper > .wp-block-navigation-item.current-menu-item {
     background-color: {$color['active_bg']};
 }
-BLOCK_STYLES;
+";
 
-$output  = '<div class="cozy-block-wrapper cozy-block-mega-menu-wrapper">';
-$output .= '<style>' . $block_styles . '</style>';
+$output = '<div class="cozy-block-wrapper cozy-block-mega-menu-wrapper">';
 
-if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['typography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+if ( ! function_exists( 'cozy_block_mega_menu_enqueue_google_fonts' ) ) {
+	function cozy_block_mega_menu_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
+			$font_families[] = $attributes['typography']['fontFamily'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--mega-menu--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
 }
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_mega_menu_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--mega-menu--style', esc_html( $block_styles ) );
+	}
+);
 
 $output .= $content;
 $output .= '</div>';

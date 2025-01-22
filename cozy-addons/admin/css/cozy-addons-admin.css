@@ -411,6 +411,7 @@ h4.addons-info {
   padding: 0 5px;
   border-radius: 10px;
   font-size: 10px;
+  max-height: 18px;
 }
 .cozy-pro-icon {
   position: absolute;

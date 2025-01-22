@@ -55,8 +55,8 @@ if ( ! function_exists( 'ca_portfolio_gallery_taxonomy' ) ) :
 	 */
 	function ca_portfolio_gallery_taxonomy() {
 		$labels = array(
-			'name'              => _x( 'Categories', 'cozy-addons' ),
-			'singular_name'     => _x( 'Category', 'cozy-addons' ),
+			'name'              => __( 'Categories', 'cozy-addons' ),
+			'singular_name'     => __( 'Category', 'cozy-addons' ),
 			'search_items'      => __( 'Search Categories', 'cozy-addons' ),
 			'all_items'         => __( 'All Categories', 'cozy-addons' ),
 			'parent_item'       => __( 'Parent Category', 'cozy-addons' ),
@@ -173,7 +173,7 @@ if ( ! function_exists( 'ca_portfolio_gallery_fields_callback' ) ) {
 
 		$current_year = gmdate( 'Y' );
 		?>
-		<label class="components-base-control__label" for="ca_portfolio_gallery_project_year"><?php echo __( 'Project Year', 'cozy-addons' ); ?></label>
+		<label class="components-base-control__label" for="ca_portfolio_gallery_project_year"><?php echo esc_html__( 'Project Year', 'cozy-addons' ); ?></label>
 		<?php wp_nonce_field( -1, 'ca_portfolio_project_year' ); ?>
 		<input class="components-text-control__input" type="number" min="1900" max="<?php echo esc_html( $current_year ); ?>" id="ca_portfolio_gallery_project_year" name="ca_portfolio_gallery_project_year" value="<?php echo esc_attr( $ca_portfolio_gallery_project_year ); ?>" /><br><br>
 		
@@ -211,20 +211,32 @@ if ( ! function_exists( 'ca_portfolio_gallery_save_custom_meta' ) ) {
 			return;
 		}
 
-		if ( isset( $_POST['ca_portfolio_gallery_project_year'] ) && wp_verify_nonce( $_POST['ca_portfolio_project_year'] ) ) {
-			update_post_meta( $post_id, 'ca_portfolio_gallery_project_year', sanitize_text_field( $_POST['ca_portfolio_gallery_project_year'] ) );
+		if ( isset( $_POST['ca_portfolio_gallery_project_year'] ) ) {
+			$year_nonce = isset( $_POST['ca_portfolio_project_year'] ) ? sanitize_key( wp_unslash( $_POST['ca_portfolio_project_year'] ) ) : '';
+			if ( ! empty( $year_nonce ) && wp_verify_nonce( $year_nonce ) ) {
+				update_post_meta( $post_id, 'ca_portfolio_gallery_project_year', sanitize_text_field( wp_unslash( $_POST['ca_portfolio_gallery_project_year'] ) ) );
+			}
 		}
 
-		if ( isset( $_POST['ca_portfolio_gallery_client'] ) && wp_verify_nonce( $_POST['ca_portfolio_client'] ) ) {
-			update_post_meta( $post_id, 'ca_portfolio_gallery_client', sanitize_text_field( $_POST['ca_portfolio_gallery_client'] ) );
+		if ( isset( $_POST['ca_portfolio_gallery_client'] ) ) {
+			$client_nonce = isset( $_POST['ca_portfolio_client'] ) ? sanitize_key( wp_unslash( $_POST['ca_portfolio_client'] ) ) : '';
+			if ( ! empty( $client_nonce ) && wp_verify_nonce( $client_nonce ) ) {
+				update_post_meta( $post_id, 'ca_portfolio_gallery_client', sanitize_text_field( wp_unslash( $_POST['ca_portfolio_gallery_client'] ) ) );
+			}
 		}
 
-		if ( isset( $_POST['ca_portfolio_gallery_skills'] ) && wp_verify_nonce( $_POST['ca_portfolio_skills'] ) ) {
-			update_post_meta( $post_id, 'ca_portfolio_gallery_skills', sanitize_text_field( $_POST['ca_portfolio_gallery_skills'] ) );
+		if ( isset( $_POST['ca_portfolio_gallery_skills'] ) ) {
+			$skills_nonce = isset( $_POST['ca_portfolio_skills'] ) ? sanitize_key( wp_unslash( $_POST['ca_portfolio_skills'] ) ) : '';
+			if ( ! empty( $skills_nonce ) && wp_verify_nonce( $skills_nonce ) ) {
+				update_post_meta( $post_id, 'ca_portfolio_gallery_skills', sanitize_text_field( wp_unslash( $_POST['ca_portfolio_gallery_skills'] ) ) );
+			}
 		}
 
-		if ( isset( $_POST['ca_portfolio_gallery_url'] ) && wp_verify_nonce( $_POST['ca_portfolio_url'] ) ) {
-			update_post_meta( $post_id, 'ca_portfolio_gallery_url', sanitize_url( $_POST['ca_portfolio_gallery_url'] ) );
+		if ( isset( $_POST['ca_portfolio_gallery_url'] ) ) {
+			$url_nonce = isset( $_POST['ca_portfolio_url'] ) ? sanitize_key( wp_unslash( $_POST['ca_portfolio_url'] ) ) : '';
+			if ( ! empty( $url_nonce ) && wp_verify_nonce( $url_nonce ) ) {
+				update_post_meta( $post_id, 'ca_portfolio_gallery_url', sanitize_url( wp_unslash( $_POST['ca_portfolio_gallery_url'] ) ) );
+			}
 		}
 	}
 

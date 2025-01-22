@@ -1,5 +1,5 @@
 <?php
-$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['clientId'] ) ) : '';
+$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attributes['isUserLoggedIn'] = is_user_logged_in();
@@ -11,7 +11,7 @@ $attributes['cartNonce']      = wp_create_nonce( 'cozy_block_wishlist_add_to_car
 
 if ( 'sidebar' === $attributes['variation'] ) {
 	wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-	wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockWishlist( "' . $client_id . '" ) }) ' );
+	wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockWishlist( "' . esc_html( $client_id ) . '" ) }) ' );
 }
 
 $wishlist_icon = array(
@@ -161,7 +161,7 @@ $toast = array(
 	),
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id.variation-wishlist .wishlist__icon-wrapper {
 	width: {$wishlist_icon['default']['width']};
 	height: {$wishlist_icon['default']['height']};
@@ -377,40 +377,19 @@ $block_styles = <<<BLOCK_STYLES
 	color: {$toast['color']['text']};
 	background-color: {$toast['color']['bg']};
 }
-BLOCK_STYLES;
+";
 
 $classes   = array();
 $classes[] = 'cozy-block-wishlist';
 $classes[] = 'variation-' . $attributes['variation'];
 $classes[] = 'sidebar' === $attributes['variation'] && $attributes['itemStyles']['shadow']['enabled'] ? 'item-has-box-shadow' : '';
 $classes[] = 'sidebar' === $attributes['variation'] && $attributes['itemStyles']['shadowHover']['enabled'] ? 'item-has-hover-box-shadow' : '';
-$output    = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
+$output    = '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '" id="' . esc_attr( $block_id ) . '">';
 
 if ( 'wishlist' === $attributes['variation'] ) {
 	/* Toast */
 	$output .= '<div class="cozy-block-wishlist__toast visibility-hidden"></div>';
 	/* End Toast */
-}
-
-if ( 'sidebar' === $attributes['variation'] ) {
-	if ( isset( $attributes['sidebar']['count']['font']['family'] ) && ! empty( $attributes['sidebar']['count']['font']['family'] ) ) {
-		$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['sidebar']['count']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-	}
-	if ( isset( $attributes['sidebar']['productTitle']['font']['family'] ) && ! empty( $attributes['sidebar']['productTitle']['font']['family'] ) ) {
-		$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['sidebar']['productTitle']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-	}
-	if ( isset( $attributes['sidebar']['productSummary']['font']['family'] ) && ! empty( $attributes['sidebar']['productSummary']['font']['family'] ) ) {
-		$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['sidebar']['productSummary']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-	}
-	if ( isset( $attributes['sidebar']['productPrice']['font']['family'] ) && ! empty( $attributes['sidebar']['productPrice']['font']['family'] ) ) {
-		$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['sidebar']['productPrice']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-	}
-	if ( isset( $attributes['sidebar']['button']['font']['family'] ) && ! empty( $attributes['sidebar']['button']['font']['family'] ) ) {
-		$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['sidebar']['button']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-	}
-	if ( isset( $attributes['toast']['font']['family'] ) && ! empty( $attributes['toast']['font']['family'] ) ) {
-		$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['toast']['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-	}
 }
 
 /* Wishlist Variation */
@@ -422,7 +401,7 @@ if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType']
 	$classes[]       = 'wishlist__icon-wrapper';
 	$classes[]       = 'post-' . $cozy_product_id;
 	$classes[]       = is_array( $wishlist_user_meta ) && is_user_logged_in() && in_array( intval( $cozy_product_id ), $wishlist_user_meta ) ? 'is-active' : '';
-	$output         .= '<div class="' . implode( ' ', $classes ) . '" data-product-id="' . $cozy_product_id . '" onClick="handleWishlistClick(' . $cozy_product_id . ')">';
+	$output         .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '" data-product-id="' . $cozy_product_id . '" onClick="handleWishlistClick(' . $cozy_product_id . ')">';
 
 	$view_box   = array();
 	$view_box[] = $attributes['wishlist']['icon']['viewBox']['vx'];
@@ -465,7 +444,7 @@ if ( 'sidebar' === $attributes['variation'] ) {
 	$classes[] = 'cozy-block-wishlist__sidebar-wrapper';
 	$classes[] = 'visibility-hidden';
 	$classes[] = 'position-' . $attributes['sidebar']['position'];
-	$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+	$output   .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 
 	/* Toast */
 	$output .= '<div class="cozy-block-wishlist__toast visibility-hidden"></div>';
@@ -479,7 +458,7 @@ if ( 'sidebar' === $attributes['variation'] ) {
 	$classes[] = 'cozy-block-wishlist__toolbar-button';
 	$classes[] = 'sidebar-close-button';
 	$classes[] = 'position-' . $attributes['sidebar']['closeIcon']['position'];
-	$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+	$output   .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 	$output   .= '<svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/" aria-hidden="true">';
 	$output   .= '<path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />';
 	$output   .= '</svg>';
@@ -528,8 +507,8 @@ if ( 'sidebar' === $attributes['variation'] ) {
 					$classes     = array();
 					$classes[]   = 'cozy-block-wishlist__sidebar-button';
 					$classes[]   = 'instock' === $is_in_stock ? 'add__cart' : 'out-of-stock';
-					$output     .= '<div class="' . implode( ' ', $classes ) . '" data-product-id="' . $product_id . '">' . $stock_label . '</div>';
-					$output     .= '<div class="cozy-block-wishlist__sidebar-button remove__wishlist" data-product-id="' . $product_id . '">' . esc_html_x( 'Remove', 'cozy-addons' ) . '</div>';
+					$output     .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '" data-product-id="' . $product_id . '">' . $stock_label . '</div>';
+					$output     .= '<div class="cozy-block-wishlist__sidebar-button remove__wishlist" data-product-id="' . $product_id . '">' . esc_html__( 'Remove', 'cozy-addons' ) . '</div>';
 					$output     .= '</div>';
 					/* End Add/Remove Buttons */
 
@@ -550,7 +529,7 @@ if ( 'sidebar' === $attributes['variation'] ) {
 	/* Go to Cart Button */
 	$cart_page_url = wc_get_cart_url();
 	$output       .= '<a class="cozy-block-wishlist__cart-button" href="' . esc_url( $cart_page_url ) . '" rel="noopener" target="_blank">';
-	$output       .= esc_html_x( 'View my cart', 'cozy-addons' );
+	$output       .= esc_html__( 'View my cart', 'cozy-addons' );
 	$output       .= '</a>';
 	/* End Cart Button */
 
@@ -563,16 +542,74 @@ $output .= '</div>';
 
 $wrapper_attributes = get_block_wrapper_attributes();
 
-$render = sprintf( '<div class="cozy-block-wrapper cozy-block-wishlist-wrapper justify-' . $attributes['wishlist']['icon']['align'] . '"><div %1$s><style>%2$s</style> %3$s</div></div>', $wrapper_attributes, $block_styles, $output );
+if ( ! function_exists( 'cozy_block_wishlist_enqueue_google_fonts' ) ) {
+	function cozy_block_wishlist_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['sidebar']['count']['font']['family'] ) && ! empty( $attributes['sidebar']['count']['font']['family'] ) ) {
+			$font_families[] = $attributes['sidebar']['count']['font']['family'];
+		}
+		if ( isset( $attributes['sidebar']['productTitle']['font']['family'] ) && ! empty( $attributes['sidebar']['productTitle']['font']['family'] ) ) {
+			$font_families[] = $attributes['sidebar']['productTitle']['font']['family'];
+		}
+		if ( isset( $attributes['sidebar']['productSummary']['font']['family'] ) && ! empty( $attributes['sidebar']['productSummary']['font']['family'] ) ) {
+			$font_families[] = $attributes['sidebar']['productSummary']['font']['family'];
+		}
+		if ( isset( $attributes['sidebar']['productPrice']['font']['family'] ) && ! empty( $attributes['sidebar']['productPrice']['font']['family'] ) ) {
+			$font_families[] = $attributes['sidebar']['productPrice']['font']['family'];
+		}
+		if ( isset( $attributes['sidebar']['button']['font']['family'] ) && ! empty( $attributes['sidebar']['button']['font']['family'] ) ) {
+			$font_families[] = $attributes['sidebar']['button']['font']['family'];
+		}
+		if ( isset( $attributes['toast']['font']['family'] ) && ! empty( $attributes['toast']['font']['family'] ) ) {
+			$font_families[] = $attributes['toast']['font']['family'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--wishlist--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
+}
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		if ( 'sidebar' === $attributes['variation'] ) {
+			cozy_block_wishlist_enqueue_google_fonts( $attributes );
+		}
+
+		wp_add_inline_style( 'cozy-block--wishlist--style', esc_html( $block_styles ) );
+	}
+);
+
+$render = sprintf( '<div class="cozy-block-wrapper cozy-block-wishlist-wrapper justify-' . $attributes['wishlist']['icon']['align'] . '"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;
 
 if ( ! function_exists( 'add_to_wishlist_cookie' ) ) {
 	function add_to_wishlist_cookie( $product_id ) {
-		$wishlist = isset( $_COOKIE['wishlist'] ) ? json_decode( stripslashes( $_COOKIE['wishlist'] ), true ) : array();
+		$wishlist = isset( $_COOKIE['wishlist'] ) ? json_decode( sanitize_key( wp_unslash( $_COOKIE['wishlist'] ) ), true ) : array();
 
 		if ( ! in_array( $product_id, $wishlist ) ) {
 			$wishlist[] = $product_id;
-			setcookie( 'wishlist', json_encode( $wishlist ), time() + ( 86400 * 30 ), '/' ); // 30 days expiration
+			setcookie( 'wishlist', wp_json_encode( $wishlist ), time() + ( 86400 * 30 ), '/' ); // 30 days expiration
 			return true;
 		}
 
@@ -583,7 +620,7 @@ if ( ! function_exists( 'add_to_wishlist_cookie' ) ) {
 if ( ! is_user_logged_in() ) {
 	?>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'public/js/jquery.js'; ?>"></script>
 <script type="text/javascript">
 	// var wishlistCount = document.querySelector('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count');
 	var wishlistData = getLocalWishlist();
@@ -683,7 +720,7 @@ if ( ! is_user_logged_in() ) {
 		}
 
 		// Trigger Toast Message
-		const variationClass = "variation-<?php echo $attributes['variation']; ?>";
+		const variationClass = "variation-<?php echo esc_attr( $attributes['variation'] ); ?>";
 		$('.cozy-block-wishlist.'+ variationClass +' .cozy-block-wishlist__toast').html('Wishlist Updated!');
 		$('.cozy-block-wishlist.'+ variationClass +' .cozy-block-wishlist__toast').removeClass('visibility-hidden');
 		setTimeout(() => {
@@ -696,23 +733,23 @@ if ( ! is_user_logged_in() ) {
 
 if ( 'wishlist' === $attributes['variation'] && is_user_logged_in() ) {
 	?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'public/js/jquery.js'; ?>"></script>
 <script type="text/javascript">
 	var showWishlistCount = <?php echo 'sidebar' === $attributes['variation'] && isset( $attributes['sidebar']['count']['enabled'] ) && $attributes['sidebar']['count']['enabled'] ? '1' : '0'; ?>;
 
 	function addToCart(el) {
 		const productId = $(el).attr("data-product-id");
 		$.ajax({
-			url: "<?php echo $attributes['ajaxUrl']; ?>",
+			url: "<?php echo esc_url( $attributes['ajaxUrl'] ); ?>",
 			method: "POST",
 			data: {
 				action: "cozy_block_wishlist_add_to_cart",
-				cartNonce: "<?php echo $attributes['cartNonce']; ?>",
+				cartNonce: "<?php echo sanitize_key( $attributes['cartNonce'] ); ?>",
 				productId: productId,
 			},
 			success: function (response) {
 				// Trigger Toast Message
-				const variationClass = "variation-<?php echo $attributes['variation']; ?>";
+				const variationClass = "variation-<?php echo esc_attr( $attributes['variation'] ); ?>";
 				$('.cozy-block-wishlist.'+ variationClass +' .cozy-block-wishlist__toast').html('Cart Updated!');
 				$('.cozy-block-wishlist.'+ variationClass +' .cozy-block-wishlist__toast').removeClass('visibility-hidden');
 				setTimeout(() => {
@@ -728,13 +765,13 @@ if ( 'wishlist' === $attributes['variation'] && is_user_logged_in() ) {
 	function removeFromWishlist(el) {
 		const productId = $(el).attr("data-product-id");
 		$.ajax({
-			url: "<?php echo $attributes['ajaxUrl']; ?>",
+			url: "<?php echo esc_url( $attributes['ajaxUrl'] ); ?>",
 			method: "POST",
 			data: {
 				action: "cozy_block_wishlist_update_user_wishlist",
-				wishlistNonce: "<?php echo $attributes['wishlistNonce']; ?>",
+				wishlistNonce: "<?php echo sanitize_key( $attributes['wishlistNonce'] ); ?>",
 				productId: productId,
-				userId: "<?php echo $attributes['userID']; ?>",
+				userId: "<?php echo sanitize_key( $attributes['userID'] ); ?>",
 			},
 			success: function (response) {
 			if (response.data.user_wishlist.includes(parseInt(productId))) {
@@ -780,11 +817,11 @@ if ( 'wishlist' === $attributes['variation'] && is_user_logged_in() ) {
 	function updateSidebarRender(wishlistData) {
 		if (wishlistData.length > 0) {
 			$.ajax({
-			url: "<?php echo $attributes['ajaxUrl']; ?>",
+			url: "<?php echo esc_url( $attributes['ajaxUrl'] ); ?>",
 			method: "POST",
 			data: {
 				action: "cozy_block_wishlist_render_data_sidebar",
-				sidebarNonce: "<?php echo $attributes['sidebarNonce']; ?>",
+				sidebarNonce: "<?php echo sanitize_key( $attributes['sidebarNonce'] ); ?>",
 				wishlistData: wishlistData,
 			},
 			success: function (response) {
@@ -816,13 +853,13 @@ if ( 'wishlist' === $attributes['variation'] && is_user_logged_in() ) {
 	
 	function handleWishlistClick(productId) {
 		$.ajax({
-				url: "<?php echo $attributes['ajaxUrl']; ?>",
+				url: "<?php echo esc_url( $attributes['ajaxUrl'] ); ?>",
 				method: "POST",
 				data: {
 					action: "cozy_block_wishlist_update_user_wishlist",
-					wishlistNonce: "<?php echo $attributes['wishlistNonce']; ?>",
+					wishlistNonce: "<?php echo sanitize_key( $attributes['wishlistNonce'] ); ?>",
 					productId: productId,
-					userId: "<?php echo $attributes['userID']; ?>",
+					userId: "<?php echo sanitize_key( $attributes['userID'] ); ?>",
 				}, 
 				success: function(response) {
 					if (response.data.user_wishlist.includes(parseInt(productId))) {

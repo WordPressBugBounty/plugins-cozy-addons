@@ -1,11 +1,10 @@
 <?php
-$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['clientId'] ) ) : '';
+$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attributes['siteURL'] = site_url();
 
-// wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedPostTabs( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedPostTabs( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $wrapper_attributes = get_block_wrapper_attributes();
 
@@ -115,7 +114,7 @@ $post_box_styles  = array(
 $column1 = $attributes['gridOptions']['columnCount'] <= 3 ? $attributes['gridOptions']['columnCount'] : 3;
 $column2 = $attributes['gridOptions']['columnCount'] <= 2 ? $attributes['gridOptions']['columnCount'] : 2;
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id .cozy-block-featured-post-tabs__tabs {
 	{$separator_padding}
 	{$separator_border}
@@ -345,18 +344,18 @@ $block_styles = <<<BLOCK_STYLES
 	background-color: {$tag_styles['bg_color_hover']};
 	border-color: {$tag_styles['border_color_hover']};
 }
-BLOCK_STYLES;
+";
 
 $output = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
 
 // <-- Tabs -->.
 $output                 .= '<article class="cozy-block-featured-post-tabs__tabs">';
 $cozy_featured_post_tabs = array(
-	'latest'   => esc_html_x( 'Latest', 'cozy-addons' ),
-	'popular'  => esc_html_x( 'Popular', 'cozy-addons' ),
-	'trending' => esc_html_x( 'Trending', 'cozy-addons' ),
-	'tags'     => esc_html_x( 'Tags', 'cozy-addons' ),
-	'comments' => esc_html_x( 'Comments', 'cozy-addons' ),
+	'latest'   => esc_html__( 'Latest', 'cozy-addons' ),
+	'popular'  => esc_html__( 'Popular', 'cozy-addons' ),
+	'trending' => esc_html__( 'Trending', 'cozy-addons' ),
+	'tags'     => esc_html__( 'Tags', 'cozy-addons' ),
+	'comments' => esc_html__( 'Comments', 'cozy-addons' ),
 );
 
 $index = 0;
@@ -401,23 +400,6 @@ foreach ( $cozy_featured_post_tabs as $key => $label ) {
 $output .= '</article>';
 // <-- Tabs /-->.
 
-
-if ( isset( $attributes['tabStyles']['fontFamily'] ) && ! empty( $attributes['tabStyles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['tabStyles']['fontFamily'] . ':wght@300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['categoryStyles']['fontFamily'] ) && ! empty( $attributes['categoryStyles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['categoryStyles']['fontFamily'] . ':wght@300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['titleStyles']['fontFamily'] ) && ! empty( $attributes['titleStyles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['titleStyles']['fontFamily'] . ':wght@300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['dateStyles']['fontFamily'] ) && ! empty( $attributes['dateStyles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['dateStyles']['fontFamily'] . ':wght@300;400;500;600;700;800;900" />';
-}
-if ( isset( $attributes['tagStyles']['fontFamily'] ) && ! empty( $attributes['tagStyles']['fontFamily'] ) ) {
-	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['tagStyles']['fontFamily'] . ':wght@300;400;500;600;700;800;900" />';
-}
-
 // <-- Post Content -->.
 if ( ! function_exists( 'cozy_render_featured_post_tab_data' ) ) {
 	function cozy_render_featured_post_tab_data( $post, $attributes ) {
@@ -445,9 +427,15 @@ if ( ! function_exists( 'cozy_render_featured_post_tab_data' ) ) {
 			$output .= '</div>';
 		}
 
-		$has_post_link = isset( $attributes['postOptions']['titleLinkPost'] ) && $attributes['postOptions']['titleLinkPost'] ? 'href="' . esc_url( $post['post_link'] ) . '"' : '';
-		$open_new_tab  = isset( $attributes['postOptions']['titleLinkPost'], $attributes['postOptions']['titleOpenLinkNewTab'] ) && $attributes['postOptions']['titleLinkPost'] && $attributes['postOptions']['titleOpenLinkNewTab'] ? '_blank' : '';
-		$output       .= '<h4 class="cozy-block-featured-post-tabs__post-title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . $post['post_title'] . '</a></h4>';
+		$has_post_link      = isset( $attributes['postOptions']['titleLinkPost'] ) && $attributes['postOptions']['titleLinkPost'] ? 'href="' . esc_url( $post['post_link'] ) . '"' : '';
+		$open_new_tab       = isset( $attributes['postOptions']['titleLinkPost'], $attributes['postOptions']['titleOpenLinkNewTab'] ) && $attributes['postOptions']['titleLinkPost'] && $attributes['postOptions']['titleOpenLinkNewTab'] ? '_blank' : '';
+		$classes            = array();
+		$classes[]          = 'cozy-block-featured-post-tabs__post-title';
+		$additional_classes = isset( $attributes['titleStyles']['className'] ) ? $attributes['titleStyles']['className'] : '';
+		if ( ! empty( $additional_classes ) ) {
+			$classes = array_merge( $classes, explode( ' ', $additional_classes ) );
+		}
+		$output .= '<h4 class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . $post['post_title'] . '</a></h4>';
 
 		if ( $attributes['postOptions']['postContent'] ) {
 			$output .= '<p class="cozy-block-featured-post-tabs__post-content">' . cozy_create_excerpt( $post['post_content'], $attributes['postOptions']['excerpt'] ) . '</p>';
@@ -488,7 +476,7 @@ if ( ! function_exists( 'cozy_fetch_featured_post_tab_data' ) ) {
 				foreach ( $all_comments as $comment ) {
 					$comment->comment_author_avatar = get_avatar_url( $comment->comment_author_email );
 					$comment->link                  = get_comment_link( $comment->comment_ID );
-					$comment->formatted_date        = date( 'F j, Y', strtotime( $comment->comment_date ) );
+					$comment->formatted_date        = gmdate( 'F j, Y', strtotime( $comment->comment_date ) );
 
 					$comments_formatted[] = $comment;
 				}
@@ -680,5 +668,58 @@ foreach ( $cozy_featured_post_tabs as $key => $label ) {
 
 $output .= '</div>';
 
-$render = sprintf( '<div class="cozy-block-wrapper"><div %1$s><style>%2$s</style> %3$s</div></div>', $wrapper_attributes, $block_styles, $output );
+if ( ! function_exists( 'cozy_block_featured_post_tabs_enqueue_google_fonts' ) ) {
+	function cozy_block_featured_post_tabs_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['tabStyles']['fontFamily'] ) && ! empty( $attributes['tabStyles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['tabStyles']['fontFamily'];
+		}
+		if ( isset( $attributes['categoryStyles']['fontFamily'] ) && ! empty( $attributes['categoryStyles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['categoryStyles']['fontFamily'];
+		}
+		if ( isset( $attributes['titleStyles']['fontFamily'] ) && ! empty( $attributes['titleStyles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['titleStyles']['fontFamily'];
+		}
+		if ( isset( $attributes['dateStyles']['fontFamily'] ) && ! empty( $attributes['dateStyles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['dateStyles']['fontFamily'];
+		}
+		if ( isset( $attributes['tagStyles']['fontFamily'] ) && ! empty( $attributes['tagStyles']['fontFamily'] ) ) {
+			$font_families[] = $attributes['tagStyles']['fontFamily'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--featured-post-tabs--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
+	}
+}
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_featured_post_tabs_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--featured-post-tabs--style', esc_html( $block_styles ) );
+	}
+);
+
+$render = sprintf( '<div class="cozy-block-wrapper"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;

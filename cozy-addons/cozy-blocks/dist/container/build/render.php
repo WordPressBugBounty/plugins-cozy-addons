@@ -3,13 +3,13 @@ $client_id     = ! empty( $attributes['blockClientId'] ) ? str_replace( array( '
 $container_var = 'cozyContainer_' . str_replace( '-', '_', $client_id );
 
 wp_localize_script( 'cozy-block-scripts', $container_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockContainerInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockContainerInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $background_image = $attributes['mediaUrl'] != '' ? 'url("' . $attributes['mediaUrl'] . '")' : 'none';
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 .cozy-block-wrapper.position-sticky {
     z-index: {$attributes['zIndex']};
 }
@@ -33,10 +33,17 @@ $block_styles = <<<BLOCK_STYLES
     height: {$attributes['shapeDivider']['height']}px;
     fill: {$attributes['shapeDivider']['color']};
 }
-BLOCK_STYLES;
+";
 
-$output  = '<div class="cozy-block-wrapper ' . ( 'sticky' === $attributes['position'] ? 'position-sticky' : '' ) . '">';
-$output .= '<style>' . $block_styles . '</style>';
+$output = '<div class="cozy-block-wrapper ' . ( 'sticky' === $attributes['position'] ? 'position-sticky' : '' ) . '">';
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--container--style', esc_html( $block_styles ) );
+	}
+);
+
 $output .= $content;
 $output .= '</div>';
 

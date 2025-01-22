@@ -18,24 +18,59 @@ $typography_styles = array(
 	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
 );
 
-$block_styles = <<<BLOCK_STYLES
+$block_styles = "
 #$block_id {
 	text-transform: {$typography_styles['letter_case']};
 	line-height: {$typography_styles['line_height']};
 	letter-spacing: {$typography_styles['letter_spacing']};
-	
-	& a {
-		text-decoration: {$typography_styles['decoration']} !important;
+}
+
+#$block_id a {
+	text-decoration: {$typography_styles['decoration']} !important;
+}
+";
+
+if ( ! function_exists( 'cozy_block_breadcrumb_enqueue_google_fonts' ) ) {
+	function cozy_block_breadcrumb_enqueue_google_fonts( $attributes ) {
+		$font_families = array();
+
+		if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
+			$font_families[] = $attributes['typography']['fontFamily'];
+		}
+
+		// Remove duplicate font families.
+		$font_families = array_unique( $font_families );
+
+		$font_query = '';
+
+		// Add other fonts.
+		foreach ( $font_families as $key => $family ) {
+			if ( 0 === $key ) {
+				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			} else {
+				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+			}
+		}
+
+		if ( ! empty( $font_query ) ) {
+			// Generate the inline style for the Google Fonts link.
+			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+			// Add the Google Fonts URL as an inline style.
+			wp_add_inline_style( 'cozy-block--breadcrumb--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+		}
 	}
 }
-BLOCK_STYLES;
 
 if ( ! is_home() ) {
-	$output .= '<style>' . $block_styles . '</style>';
+	add_action(
+		'wp_enqueue_scripts',
+		function () use ( $block_styles, $attributes ) {
+			cozy_block_breadcrumb_enqueue_google_fonts( $attributes );
 
-	if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
-		$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['typography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
-	}
+			wp_add_inline_style( 'cozy-block--breadcrumb--style', esc_html( $block_styles ) );
+		}
+	);
 
 	$output .= '<p class="cozy-block-breadcrumb" id="' . $block_id . '" style=" ' . $style . '">';
 	$output .= '<a href="' . home_url( '/' ) . '">Home</a> / ';

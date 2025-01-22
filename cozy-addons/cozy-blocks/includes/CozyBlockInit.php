@@ -250,6 +250,11 @@ final class CozyBlockInit {
 					wp_register_style( 'cozy-block--' . $block_name . '--style', COZY_BLOCK_PLUGIN_URL . 'dist/' . $block_name . '/build/style-index.css', array(), $asset_file['version'], false );
 				}
 
+				// Frontend script.
+				if ( file_exists( COZY_BLOCK_PLUGIN_DIR . 'frontend/' . $block_name . '.js' ) ) {
+					wp_register_script( 'cozy-block--' . $block_name . '--frontend-script', COZY_BLOCK_PLUGIN_URL . 'frontend/' . $block_name . '.js', array( 'jquery' ), COZY_ADDONS_VERSION, false );
+				}
+
 				wp_localize_script(
 					'cozy-block--' . $block_name,
 					'cozyBlockAssets',
@@ -300,6 +305,7 @@ final class CozyBlockInit {
 			'wishlist',
 			'quick-view',
 			'add-to-cart',
+			'pricing-table',
 		);
 
 		if ( in_array( $block_name, $icon_lib_extended_blocks, true ) ) {
