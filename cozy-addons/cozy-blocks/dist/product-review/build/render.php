@@ -111,7 +111,7 @@ $bullet_color = array(
 	'active_bg_hover'  => isset( $attributes['pagination']['activeColorHover'] ) ? $attributes['pagination']['activeColorHover'] : '',
 );
 
-$blockStyles = "
+$block_styles = "
     #{$blockId} {
         font-size: {$attributes['typography']['fontSize']}px;
         font-weight: {$attributes['typography']['fontWeight']};
@@ -343,13 +343,7 @@ $reviewsToDisplay = array_filter(
 		return $review->product_rating >= $attributes['ratingFilter'];
 	}
 );
-
-$varAvgPercent = '
-    #' . esc_attr( $blockId ) . ' .product-rating-wrapper[data-rating="' . esc_attr( $avgReviews ) . '"]:before {
-        --percent: calc(' . floatval( $avgReviews ) / 5 * 100 . '%);
-        background: linear-gradient(90deg, ' . esc_attr( $attributes['reviewTitle']['ratingColor'] ) . ' var(--percent), rgba(0,0,0,0.2) var(--percent));
-    }
-';
+$percent          = $avgReviews / 5 * 100;
 
 echo '<div class="cozy-block-wrapper">';
 
@@ -397,16 +391,6 @@ if ( ! function_exists( 'cozy_block_product_review_enqueue_google_fonts' ) ) {
 	}
 }
 
-add_action(
-	'wp_enqueue_scripts',
-	function () use ( $block_styles, $attributes ) {
-		cozy_block_product_review_enqueue_google_fonts( $attributes );
-
-		wp_add_inline_style( 'cozy-block--product-review--style', esc_html( $block_styles ) );
-	}
-);
-
-
 echo '<div class="cozy-block-product-review layout-' . esc_attr( $attributes['layout'] ) . ' ' . ( $attributes['hoverShow'] ? 'hover-show' : '' ) . ' ' . ( $attributes['containerStyles']['boxShadow']['enabled'] ? 'has-box-shadow' : '' ) . ' ' . ( $attributes['reviewImage']['hoverEffect'] ? 'has-image-hover-effect' : '' ) . '" id="' . esc_attr( $blockId ) . '">';
 
 if ( $attributes['headingOptions']['enabled'] ) {
@@ -414,7 +398,6 @@ if ( $attributes['headingOptions']['enabled'] ) {
 	echo '<h2 class="review-heading">' . esc_html( $attributes['headingOptions']['label'] ) . '</h2>';
 
 	echo '<div class="total-reviews-count">';
-	echo '<style>' . esc_html( $varAvgPercent ) . '</style>';
 	echo '<div class="display-inline-flex total-avg-rating-wrapper" style="margin-right: 10px; padding: 0 10px; border-radius: 10px;">';
 	echo '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: text-top; margin-right: 5px;">';
 	// ... SVG path
@@ -457,16 +440,16 @@ if ( ! empty( $reviewsToDisplay ) ) {
 			$formattedDate = $month . ' ' . $day . ', ' . $year;
 		}
 
-		$percent = $comment_rating / 5 * 100 . '%';
+		$percent = $comment_rating / 5 * 100;
 
-		$varPercent = '
-            #' . esc_attr( $blockId ) . ' .product-rating-wrapper[data-rating="' . esc_attr( $comment_rating ) . '"]:before {
-                --percent: calc(' . $comment_rating / 5 * 100 . '%);
-                background: linear-gradient(90deg, ' . esc_attr( $attributes['reviewTitle']['ratingColor'] ) . ' ' . $percent . ', rgba(0,0,0,0.2) ' . $percent . ');
+		$varPercent = "
+            #$blockId .product-rating-wrapper[data-rating='{$comment_rating}']:before {
+                --percent: calc($percent%);
+                background: linear-gradient(90deg, {$attributes['reviewTitle']['ratingColor']} $percent%, rgba(0,0,0,0.2) $percent%);
             }
-        ';
+        ";
 
-		echo '<style>' . esc_html( $varPercent ) . '</style>';
+		echo '<style>' . $varPercent . '</style>';
 		echo '<li class="woo-product-review ' . ( $attributes['layout'] === 'carousel' ? 'swiper-slide' : '' ) . '" data-comment-id="' . esc_attr( $review->comment_ID ) . '">';
 
 		if ( $attributes['enableOptions']['reviewContent'] && 'top' === $attributes['reviewContent']['position'] ) {
@@ -549,6 +532,15 @@ if ( $attributes['perPage'] !== '-1' && $attributes['layout'] !== 'carousel' && 
 	echo '<button class="cozy-dynamic-loader">' . esc_html( $attributes['ajaxButton']['label'] ) . '</button>';
 	echo '</div>';
 }
+
+add_action(
+	'wp_enqueue_scripts',
+	function () use ( $block_styles, $attributes ) {
+		cozy_block_product_review_enqueue_google_fonts( $attributes );
+
+		wp_add_inline_style( 'cozy-block--product-review--style', esc_html( $block_styles ) );
+	}
+);
 
 echo '</div>';
 
