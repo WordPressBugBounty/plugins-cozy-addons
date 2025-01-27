@@ -254,7 +254,7 @@
     "cozy-block--mega-menu--style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--mega-menu--frontend-script"
   ],
   "render": "file:./render.php"
 }

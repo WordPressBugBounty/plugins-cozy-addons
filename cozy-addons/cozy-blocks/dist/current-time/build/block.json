@@ -102,7 +102,7 @@
   "editorScript": "cozy-block--current-time",
   "editorStyle": "cozy-block--current-time--editor-style",
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--current-time--frontend-script"
   ],
   "style": [
     "cozy-block--current-time--style"

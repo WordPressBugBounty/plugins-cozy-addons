@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "cozy-block/featured-product",
-  "title": "Featured Product (Premium)",
+  "title": "Featured Product (Pro)",
   "description": "'Featured Product' block allows you to handpick from your latest products and showcase them in versatile display options such as grid, and carousel, enhancing your site's visual appeal and user engagement.",
   "category": "cozy-block/woocommerce",
   "keywords": [
@@ -586,7 +586,7 @@
     "cozy-swiper-bundle"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--featured-product--frontend-script"
   ],
   "script": [
     "cozy-swiper-bundle"

@@ -87,21 +87,21 @@ final class CozyBlockInit {
 			COZY_ADDONS_VERSION
 		);
 
-		wp_enqueue_style(
+		/* wp_enqueue_style(
 			'cozy-block-form-styler', // Handle name.
 			COZY_BLOCK_PLUGIN_URL . 'assets/css/cozy-form-styler.css',
 			array(),
 			COZY_ADDONS_VERSION
-		);
+		); */
 
 		// Pattern Block Script
-		wp_enqueue_script(
+		/* wp_enqueue_script(
 			'cozy-pattern-block-script', // Handle name.
 			COZY_BLOCK_PLUGIN_URL . 'assets/js/pattern-block-scripts.min.js', // Path to your JavaScript file.
 			array( 'jquery' ),
 			COZY_ADDONS_VERSION,
 			false
-		);
+		); */
 
 		wp_enqueue_style(
 			'cozy-aos-css', // Handle name.
@@ -130,9 +130,10 @@ final class CozyBlockInit {
 	}
 
 	public function enqueue_cozy_block() {
+		$this->register_cozy_assets();
+
 		$this->register_cozy_blocks();
 		$this->register_active_cozy_blocks();
-		$this->register_cozy_assets();
 	}
 
 	private function register_cozy_blocks() {
@@ -183,6 +184,7 @@ final class CozyBlockInit {
 			'wishlist',
 			'quick-view',
 			'featured-product',
+			// 'toggle-content',
 		);
 
 		$woocommerce_blocks = array(
@@ -252,7 +254,7 @@ final class CozyBlockInit {
 
 				// Frontend script.
 				if ( file_exists( COZY_BLOCK_PLUGIN_DIR . 'frontend/' . $block_name . '.js' ) ) {
-					wp_register_script( 'cozy-block--' . $block_name . '--frontend-script', COZY_BLOCK_PLUGIN_URL . 'frontend/' . $block_name . '.js', array( 'jquery' ), COZY_ADDONS_VERSION, false );
+					wp_register_script( 'cozy-block--' . $block_name . '--frontend-script', COZY_BLOCK_PLUGIN_URL . 'frontend/' . $block_name . '.js', array( 'jquery', 'cozy-aos-animation' ), COZY_ADDONS_VERSION, false );
 				}
 
 				wp_localize_script(
@@ -286,8 +288,6 @@ final class CozyBlockInit {
 		wp_register_style( 'cozy-swiper-bundle', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/css/swiper-bundle.css', array(), COZY_ADDONS_VERSION );
 
 		wp_register_script( 'cozy-aos-animation', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/js/aos.js', array(), COZY_ADDONS_VERSION, false );
-
-		wp_register_script( 'cozy-block-scripts', trailingslashit( COZY_BLOCK_PLUGIN_URL ) . 'assets/js/cozy-block-scripts.min.js', array( 'jquery', 'cozy-aos-animation' ), COZY_ADDONS_VERSION, false );
 	}
 
 	private function localize_cozy_icon_lib( $block_name ) {

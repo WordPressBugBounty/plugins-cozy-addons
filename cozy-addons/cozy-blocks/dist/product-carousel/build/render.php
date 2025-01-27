@@ -7,8 +7,8 @@ $currency_position              = get_option( 'woocommerce_currency_pos' );
 $attributes['currencySymbol']   = $currency_symbol;
 $attributes['currencyPosition'] = $currency_position;
 
-wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductCarouselInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_localize_script( 'cozy-block--product-carousel--frontend-script', $cozy_block_var, $attributes );
+wp_add_inline_script( 'cozy-block--product-carousel--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductCarouselInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $width1 = $attributes['gridOptions']['displayColumn'] <= 3 ? $attributes['gridOptions']['displayColumn'] : 3;
 $width2 = $attributes['gridOptions']['displayColumn'] <= 2 ? $attributes['gridOptions']['displayColumn'] : 2;

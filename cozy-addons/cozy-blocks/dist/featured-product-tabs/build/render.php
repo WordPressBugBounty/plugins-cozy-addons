@@ -10,8 +10,8 @@ $attributes['userID']         = get_current_user_id();
 $attributes['sidebarNonce']   = wp_create_nonce( 'cozy_block_wishlist_render_data_sidebar' );
 $attributes['quickViewNonce'] = wp_create_nonce( 'cozy_block_quick_view_render_data_lightbox' );
 
-wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProductTabs( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_localize_script( 'cozy-block--featured-product-tabs--frontend-script', $block_id, $attributes );
+wp_add_inline_script( 'cozy-block--featured-product-tabs--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProductTabs( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $wrapper_attributes = get_block_wrapper_attributes();
 

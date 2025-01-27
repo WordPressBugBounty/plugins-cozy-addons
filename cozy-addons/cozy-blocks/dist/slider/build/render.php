@@ -26,8 +26,8 @@ $block_styles = "
 }
 ";
 
-wp_localize_script( 'cozy-block-scripts', $slider_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockSliderInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_localize_script( 'cozy-block--slider--frontend-script', $slider_var, $attributes );
+wp_add_inline_script( 'cozy-block--slider--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockSliderInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $wrapper_attributes = get_block_wrapper_attributes();
 

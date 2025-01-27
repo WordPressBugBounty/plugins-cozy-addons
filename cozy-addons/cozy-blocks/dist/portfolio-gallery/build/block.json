@@ -557,7 +557,7 @@
     "cozy-block--portfolio-gallery--editor-style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--portfolio-gallery--frontend-script"
   ],
   "script": [
     "cozy-swiper-bundle"

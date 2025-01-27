@@ -156,7 +156,7 @@
     "cozy-block--sidebar-panel--style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--sidebar-panel--frontend-script"
   ],
   "render": "file:./render.php"
 }

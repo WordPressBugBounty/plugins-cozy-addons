@@ -108,7 +108,7 @@
     "cozy-swiper-bundle"
   ],
   "viewScript": [
-    "cozy-block-scripts",
+    "cozy-block--testimonial--frontend-script",
     "cozy-swiper-bundle"
   ],
   "render": "file:./render.php"

@@ -170,7 +170,7 @@ echo $render;
 
 ?>
 
-<script src="<?php echo esc_url( trailingslashit(COZY_ADDONS_PLUGIN_URL) ) . 'public/js/jquery.js'; ?>"></script>
+<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'public/js/jquery.js'; ?>"></script>
 <script type="text/javascript">
 	function handleAddToCartClick(productId) {
 		if ($('body').find('.cozy-block-add-to-cart__toast').length === 0) {

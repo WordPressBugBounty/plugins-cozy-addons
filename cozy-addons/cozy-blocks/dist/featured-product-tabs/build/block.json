@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "cozy-block/featured-product-tabs",
-  "title": "Featured Products Tab (Premium)",
+  "title": "Featured Products Tab (Pro)",
   "description": "Highlight your best content with our 'Featured Product Tabs' block, providing four tabs—Latest, Best Seller, Top Rated, and On Sale—to showcase your top products and boost engagement.",
   "category": "cozy-block/woocommerce",
   "keywords": [
@@ -631,7 +631,7 @@
     "cozy-swiper-bundle"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--featured-product-tabs--frontend-script"
   ],
   "render": "file:./render.php"
 }

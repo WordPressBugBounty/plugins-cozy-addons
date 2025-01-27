@@ -130,7 +130,7 @@
   ],
   "editorStyle": "cozy-block--featured-content-box--editor-style",
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--featured-content-box--frontend-script"
   ],
   "script": [
     "cozy-swiper-bundle"

@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "cozy-block/popular-post",
-  "title": "Popular Post",
+  "title": "Popular Post (Pro)",
   "description": "Explore trending topics effortlessly with our 'Popular Post' block, showcasing a curated selection of the latest and most engaging content for a quick and dynamic browsing experience.",
   "category": "cozy-block/post-magazine",
   "supports": {
@@ -378,7 +378,7 @@
   ],
   "editorStyle": "cozy-block--popular-post--editor-style",
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--popular-post--frontend-script"
   ],
   "script": [
     "cozy-swiper-bundle"

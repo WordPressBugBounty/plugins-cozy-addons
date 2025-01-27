@@ -350,7 +350,7 @@
     "cozy-block--wishlist--editor-style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--wishlist--frontend-script"
   ],
   "style": [
     "cozy-block--wishlist--style"

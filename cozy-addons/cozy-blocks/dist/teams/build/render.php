@@ -1,8 +1,8 @@
 <?php
 $client_id = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $teams_var = 'cozyTeams_' . str_replace( '-', '_', $client_id );
-wp_localize_script( 'cozy-block-scripts', $teams_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockTeamsInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_localize_script( 'cozy-block--teams--frontend-script', $teams_var, $attributes );
+wp_add_inline_script( 'cozy-block--teams--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockTeamsInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 

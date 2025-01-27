@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "cozy-block/magazine-list",
-  "title": "Magazine List (Premium)",
+  "title": "Magazine List (Pro)",
   "description": "Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Magazine List' block.",
   "category": "cozy-block/post-magazine",
   "keywords": [
@@ -486,7 +486,7 @@
     "cozy-block--magazine-list--style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--magazine-list--frontend-script"
   ],
   "render": "file:./render.php"
 }

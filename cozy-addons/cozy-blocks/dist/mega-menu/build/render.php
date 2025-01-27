@@ -7,8 +7,8 @@ $cozy_block_var = 'cozyMegaMenu_' . str_replace( '-', '_', $client_id );
 
 $attributes['megaMenuTemplates'] = CozyHelpers::get_cozy_mega_menu_templates();
 
-wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMegaMenuInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_localize_script( 'cozy-block--mega-menu--frontend-script', $cozy_block_var, $attributes );
+wp_add_inline_script( 'cozy-block--mega-menu--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMegaMenuInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 

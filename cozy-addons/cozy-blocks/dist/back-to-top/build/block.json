@@ -45,7 +45,7 @@
   ],
   "editorStyle": "cozy-block--back-to-top--editor-style",
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--back-to-top--frontend-script"
   ],
   "style": [
     "cozy-block--back-to-top--style"

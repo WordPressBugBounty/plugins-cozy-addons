@@ -513,7 +513,7 @@
     "cozy-block--product-tab--editor-style"
   ],
   "viewScript": [
-    "cozy-block-scripts",
+    "cozy-block--product-tab--frontend-script",
     "cozy-swiper-bundle"
   ],
   "viewStyle": "cozy-swiper-bundle",

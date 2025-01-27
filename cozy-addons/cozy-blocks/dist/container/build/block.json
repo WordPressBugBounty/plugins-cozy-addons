@@ -190,7 +190,7 @@
     "cozy-block--container--style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--container--frontend-script"
   ],
   "render": "file:./render.php"
 }

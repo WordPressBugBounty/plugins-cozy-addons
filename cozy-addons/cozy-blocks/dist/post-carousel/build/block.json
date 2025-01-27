@@ -102,7 +102,7 @@
   ],
   "editorStyle": "cozy-block--post-carousel--editor-style",
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--post-carousel--frontend-script"
   ],
   "script": [
     "cozy-swiper-bundle"

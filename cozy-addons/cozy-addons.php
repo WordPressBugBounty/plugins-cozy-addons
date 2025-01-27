@@ -16,7 +16,7 @@
  * Plugin Name:       Cozy Blocks
  * Plugin URI:        https://cozythemes.com/cozy-addons
  * Description:       Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
- * Version:           2.1.2
+ * Version:           2.1.3
  * Author:            CozyThemes
  * Author URI:        https://cozythemes.com/
  * License:           GPL-2.0+
@@ -96,7 +96,7 @@ function deactivate_cozy_addons() {
 register_activation_hook( __FILE__, 'activate_cozy_addons' );
 register_deactivation_hook( __FILE__, 'deactivate_cozy_addons' );
 
-define( 'COZY_ADDONS_VERSION', '2.1.2' );
+define( 'COZY_ADDONS_VERSION', '2.1.3' );
 
 if ( ! class_exists( 'Cozy_Addons' ) ) :
 	final class Cozy_Addons {
@@ -216,27 +216,29 @@ if ( ! class_exists( 'Cozy_Addons' ) ) :
 
 endif;
 
-function cozy_addons_downgrade_version_link( $links ) {
-	$versions = cozy_addons_get_plugin_versions();
+$cozy_addons_versions = cozy_addons_get_plugin_versions();
 
-	$previous_version = array_filter(
-		$versions,
-		function ( $version_info ) {
-			return version_compare( $version_info['version'], COZY_ADDONS_VERSION, '<' );
+add_filter(
+	'plugin_action_links_' . plugin_basename( __FILE__ ),
+	function ( $links ) use ( $cozy_addons_versions ) {
+		$previous_version = array_filter(
+			$cozy_addons_versions,
+			function ( $version_info ) {
+				return version_compare( $version_info['version'], COZY_ADDONS_VERSION, '<' );
+			}
+		);
+
+		$previous_version = array_values( $previous_version );
+
+		if ( empty( $previous_version ) ) {
+			return $links;
 		}
-	);
 
-	$previous_version = array_values( $previous_version );
-
-	if ( empty( $previous_version ) ) {
+		$nonce   = wp_create_nonce( 'cozy_addons_rollback_action' );
+		$links[] = '<a id="cozy-addons__rollback" href="' . esc_url( get_admin_url( null, 'admin-post.php?action=cozy_addons_rollback&_wpnonce=' . $nonce ) ) . '">Rollback to v' . $previous_version[0]['version'] . '</a>';
 		return $links;
 	}
-
-	$nonce   = wp_create_nonce( 'cozy_addons_rollback_action' );
-	$links[] = '<a id="cozy-addons__rollback" href="' . esc_url( get_admin_url( null, 'admin-post.php?action=cozy_addons_rollback&_wpnonce=' . $nonce ) ) . '">Rollback to v' . $previous_version[0]['version'] . '</a>';
-	return $links;
-}
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'cozy_addons_downgrade_version_link' );
+);
 
 /**
  * Handles the rollback process for the "Cozy Addons" plugin.

@@ -46,7 +46,7 @@
   ],
   "editorStyle": "cozy-block--counter--editor-style",
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--counter--frontend-script"
   ],
   "style": [
     "cozy-block--counter--style"

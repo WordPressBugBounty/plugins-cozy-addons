@@ -571,18 +571,19 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 			$inline_styles .= "$style: $value; ";
 		}
 
-		$updated_class = 'cozy-nav-hover-color';
-
 		preg_match( '/<ul[^>]*?\s+class="([^"]+)"/', $block_content, $class_matches );
 		$existing_class_attribute = $class_matches[1] ?? '';
+
+		$updated_class = trim( $existing_class_attribute ) . ' cozy-nav-hover-color';
 
 		preg_match( '/<ul[^>]*?\s+style="([^"]*)"/', $block_content, $style_matches );
 		$existing_style_attribute = $style_matches[1] ?? '';
 
 		$block_content = preg_replace(
-			'/<ul[^>]*?\s+class="([^"]+)"/',
-			'<ul class="' . esc_attr( $updated_class ) . ' ' . esc_attr( $existing_class_attribute ) . '" style="' . esc_attr( $existing_style_attribute . $inline_styles ) . '"',
-			$block_content
+			'/<ul class=".*?\b' . preg_quote( $existing_class_attribute, '/' ) . '\b.*?"/',
+			'<ul class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( $existing_style_attribute . $inline_styles ) . '"',
+			$block_content,
+			1
 		);
 
 	}

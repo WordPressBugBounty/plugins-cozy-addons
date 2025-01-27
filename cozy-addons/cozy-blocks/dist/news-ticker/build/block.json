@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "cozy-block/news-ticker",
-  "title": "News Ticker (Premium)",
+  "title": "News Ticker (Pro)",
   "description": "Stay informed with our 'News Ticker' block, delivering real-time headlines in a scrolling format for an engaging and dynamic user experience.",
   "category": "cozy-block/post-magazine",
   "supports": {
@@ -56,7 +56,7 @@
   ],
   "editorStyle": "cozy-block--news-ticker--editor-style",
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--news-ticker--frontend-script"
   ],
   "script": [
     "cozy-swiper-bundle"

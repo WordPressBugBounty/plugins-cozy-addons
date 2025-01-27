@@ -4,8 +4,8 @@ $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attributes['ajaxUrl'] = admin_url( 'admin-ajax.php' );
 $attributes['nonce']   = wp_create_nonce( 'cozy_block_magazine_grid_load_more' );
-wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMagazineGrid( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_localize_script( 'cozy-block--magazine-grid--frontend-script', $block_id, $attributes );
+wp_add_inline_script( 'cozy-block--magazine-grid--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMagazineGrid( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $header_box = array(
 	'padding' => cozy_render_TRBL( 'padding', $attributes['headerBox']['padding'] ),

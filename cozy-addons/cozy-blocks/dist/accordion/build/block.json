@@ -154,7 +154,7 @@
   "editorStyle": "cozy-block--accordion--editor-style",
   "style": "cozy-block--accordion--style",
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--accordion--frontend-script"
   ],
   "render": "file:./render.php"
 }

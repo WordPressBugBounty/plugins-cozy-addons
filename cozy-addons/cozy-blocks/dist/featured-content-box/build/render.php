@@ -3,8 +3,8 @@
 $client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $cozy_block_var = 'cozyFeaturedContentBox_' . str_replace( '-', '_', $client_id );
 
-wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedContentBoxInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_localize_script( 'cozy-block--featured-content-box--frontend-script', $cozy_block_var, $attributes );
+wp_add_inline_script( 'cozy-block--featured-content-box--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedContentBoxInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 

@@ -301,7 +301,7 @@
     "cozy-block--product-review--editor-style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--product-review--frontend-script"
   ],
   "script": [
     "cozy-swiper-bundle"

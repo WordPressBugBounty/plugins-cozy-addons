@@ -1,8 +1,8 @@
 <?php
 $client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyProductSlider_' . str_replace( '-', '_', $client_id );
-wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductSliderInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_localize_script( 'cozy-block--product-slider--frontend-script', $cozy_block_var, $attributes );
+wp_add_inline_script( 'cozy-block--product-slider--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductSliderInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -44,7 +44,7 @@ $block_styles = "
 #$block_id .swiper-button-next {
     width: {$attributes['navigation']['iconBoxWidth']}px;
     height: {$attributes['navigation']['iconBoxHeight']}px;
-        {$nav_styles['border']}
+    {$nav_styles['border']}
     border-radius: {$attributes['navigation']['borderRadius']}px;
     color: {$nav_color['icon']};
     background-color: {$nav_color['bg']};
@@ -53,7 +53,7 @@ $block_styles = "
 #$block_id .swiper-button-next:hover {
     color: {$nav_color['icon_hover']};
     background-color: {$nav_color['bg_hover']};
-        border-color: {$nav_color['border_hover']};
+    border-color: {$nav_color['border_hover']};
 }
 
 #$block_id .swiper-pagination {

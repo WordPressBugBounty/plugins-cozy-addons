@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "cozy-block/related-post",
-  "title": "Related Post (Premium)",
+  "title": "Related Post (Pro)",
   "description": "Uncover additional relevant content using our 'Related Post' block, offering curated suggestions tailored to your interests for an engaging exploration of aligned topics.",
   "category": "cozy-block/post-magazine",
   "supports": {
@@ -30,7 +30,7 @@
   ],
   "editorStyle": "cozy-block--related-post--editor-style",
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--related-post--frontend-script"
   ],
   "style": [
     "cozy-block--related-post--style"

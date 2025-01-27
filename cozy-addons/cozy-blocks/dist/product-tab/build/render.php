@@ -810,8 +810,8 @@ if ( isset( $attributes['enableOptions']['quickView'] ) && $attributes['enableOp
 
 $output .= '</div>';
 
-wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductTab( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_localize_script( 'cozy-block--product-tab--frontend-script', $block_id, $attributes );
+wp_add_inline_script( 'cozy-block--product-tab--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductTab( "' . esc_html( $client_id ) . '" ) }) ' );
 
 $wrapper_attributes = get_block_wrapper_attributes();
 

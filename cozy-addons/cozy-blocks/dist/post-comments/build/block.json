@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "cozy-block/post-comments",
-  "title": "Post Comments (Premium)",
+  "title": "Post Comments (Pro)",
   "description": "Unlock the Conversation Power! See what sparks discussions with our 'Post Comments' block. Gain valuable insights to refine your engagement strategy and foster meaningful interactions.",
   "category": "cozy-block/post-magazine",
   "supports": {

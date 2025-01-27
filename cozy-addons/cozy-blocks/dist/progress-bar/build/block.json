@@ -128,7 +128,7 @@
     "cozy-block--progress-bar--editor-style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--progress-bar--frontend-script"
   ],
   "style": [
     "cozy-block--progress-bar--style"

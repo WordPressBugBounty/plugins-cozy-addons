@@ -262,7 +262,7 @@
     "cozy-block--product-category--editor-style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--product-category--frontend-script"
   ],
   "script": [
     "cozy-swiper-bundle"

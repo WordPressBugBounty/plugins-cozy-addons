@@ -866,8 +866,8 @@ $output .= '</div>';
 
 $wrapper_attributes = get_block_wrapper_attributes();
 
-wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProduct( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_localize_script( 'cozy-block--featured-product--frontend-script', $block_id, $attributes );
+wp_add_inline_script( 'cozy-block--featured-product--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProduct( "' . esc_html( $client_id ) . '" ) }) ' );
 
 if ( ! function_exists( 'cozy_block_featured_product_enqueue_google_fonts' ) ) {
 	function cozy_block_featured_product_enqueue_google_fonts( $attributes ) {

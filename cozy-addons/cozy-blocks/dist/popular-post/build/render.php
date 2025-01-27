@@ -4,8 +4,8 @@ $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attributes['ajaxUrl'] = admin_url( 'admin-ajax.php' );
 $attributes['nonce']   = wp_create_nonce( 'cozy_block_popular_posts_load_more' );
-wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockPopularPostsInit( "' . $client_id . '" ) }) ' );
+wp_localize_script( 'cozy-block--popular-post--frontend-script', $block_id, $attributes );
+wp_add_inline_script( 'cozy-block--popular-post--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockPopularPostsInit( "' . $client_id . '" ) }) ' );
 
 $list = array(
 	'column' => isset( $attributes['column'] ) ? $attributes['column'] : '',

@@ -10,8 +10,8 @@ $attributes['wishlistNonce']  = wp_create_nonce( 'cozy_block_wishlist_update_use
 $attributes['cartNonce']      = wp_create_nonce( 'cozy_block_wishlist_add_to_cart' );
 
 if ( 'sidebar' === $attributes['variation'] ) {
-	wp_localize_script( 'cozy-block-scripts', $block_id, $attributes );
-	wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockWishlist( "' . esc_html( $client_id ) . '" ) }) ' );
+	wp_localize_script( 'cozy-block--wishlist--frontend-script', $block_id, $attributes );
+	wp_add_inline_script( 'cozy-block--wishlist--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockWishlist( "' . esc_html( $client_id ) . '" ) }) ' );
 }
 
 $wishlist_icon = array(

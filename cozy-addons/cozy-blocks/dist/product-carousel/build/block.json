@@ -286,7 +286,7 @@
     "cozy-block--product-carousel--editor-style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--product-carousel--frontend-script"
   ],
   "script": [
     "cozy-swiper-bundle"

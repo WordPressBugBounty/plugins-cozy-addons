@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "cozy-block/product-slider",
-  "title": "Product Slider (Premium)",
+  "title": "Product Slider (Pro)",
   "description": "Highlight your WooCommerce products dynamically with the 'Product Slider' block, allowing smooth sliding to showcase your products in an attractive and interactive manner.",
   "category": "cozy-block/woocommerce",
   "supports": {
@@ -136,7 +136,7 @@
     "cozy-block--product-slider--editor-style"
   ],
   "viewScript": [
-    "cozy-block-scripts"
+    "cozy-block--product-slider--frontend-script"
   ],
   "script": [
     "cozy-swiper-bundle"

@@ -24,6 +24,8 @@ add_action(
 	}
 );
 
+$output = '';
+
 $output .= '<div class="swiper-slide" id="' . esc_attr( $block_id ) . '">';
 $output .= $content;
 $output .= '</div>';

@@ -4,7 +4,7 @@ Tags: blocks, gutenberg blocks, gutenberg, woocommerce blocks, block
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
@@ -71,40 +71,40 @@ Enhance your website building experience with Gutenberg Blocks and Full Site Edi
 * [**Social Shares**](https://cozyblock.cozythemes.com/related-post-gutenberg-block/) - Encourage seamless content sharing with our 'Social Shares' block, featuring eye-catching social media icons for enhanced engagement and wider reach.
 * [**Team**](https://cozyblock.cozythemes.com/team-gutenberg-block/) - Introduce your team in style with our 'Team' block, offering both grid and carousel layouts for a visually appealing display of your talented lineup.
 * [**Testimonials**](https://cozyblock.cozythemes.com/testimonial-gutenberg-block/) - Build trust and credibility with our 'Testimonial' block, providing grid and carousel layouts to elegantly showcase user feedback and positive experiences.
-* [**Popup Builder**](https://cozyblock.cozythemes.com/popup-builder-gutenberg-block/) (Premium) - Capture attention with our 'Popup Builder' block, a pop-up window designed to showcase offers and promotions, providing a compelling way to communicate with your audience.
+* [**Popup Builder**](https://cozyblock.cozythemes.com/popup-builder-gutenberg-block/) (Pro) - Capture attention with our 'Popup Builder' block, a pop-up window designed to showcase offers and promotions, providing a compelling way to communicate with your audience.
 
 = Post and Magazine Blocks =
 Elevate your digital publishing with Post and Magazine Blocks. Our plugin offers a dynamic range of over 10 dedicated  blocks, designed specifically for crafting engaging news sites, blogs, and digital magazines. Create compelling layouts and features that captivate your audience effortlessly.
 
 * [**Advertisement**](https://cozyblock.cozythemes.com/advertisement-gutenberg-block/) - 'Advertisement' block seamlessly integrates custom ad scripts and clickable image links into your WordPress site, enhancing engagement and driving traffic.
-* [**Advanced Categories**](https://cozyblock.cozythemes.com/advanced-categories-gutenberg-block/) (Premium) - Showcase your post categories with images in various layouts—grid, list, or carousel—for a visually engaging and navigable experience with our 'Advanced Categories' block.
-* [**Categorized Post Tabs**](https://cozyblock.cozythemes.com/categorized-post-tabs-gutenberg-block/) (Premium) - Showcase your posts categorically with multiple layout options, including grid and list. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Categorized Post Tabs' block.
-* [**Featured Post**](https://cozyblock.cozythemes.com/featured-post-gutenberg-block/) (Premium) - 'Featured Post' block allows you to handpick from your latest posts and showcase them in versatile display options such as grid, list, and carousel, enhancing your site's visual appeal and user engagement.
-* [**Featured Post Tabs**](https://cozyblock.cozythemes.com/featured-post-tabs-gutenberg-block/) (Premium) - Highlight your best content with our 'Featured Post Tabs' block, providing five tabs—Latest, Popular, Trending, Tags, and Comments—to showcase your top articles and boost engagement.
-* [**Magazine Grid**](https://cozyblock.cozythemes.com/magazine-grid-gutenberg-block/) (Premium) - Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Magazine Grid' block.
-* [**Magazine List**](https://cozyblock.cozythemes.com/magazine-list-gutenberg-block/) (Premium) - Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Magazine List' block.
-* [**News Ticker**](https://cozyblock.cozythemes.com/news-ticker-gutenberg-block/) (Premium) - Stay informed with our 'News Ticker' block, delivering real-time headlines in a scrolling format for an engaging and dynamic user experience.
+* [**Advanced Categories**](https://cozyblock.cozythemes.com/advanced-categories-gutenberg-block/) (Pro) - Showcase your post categories with images in various layouts—grid, list, or carousel—for a visually engaging and navigable experience with our 'Advanced Categories' block.
+* [**Categorized Post Tabs**](https://cozyblock.cozythemes.com/categorized-post-tabs-gutenberg-block/) (Pro) - Showcase your posts categorically with multiple layout options, including grid and list. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Categorized Post Tabs' block.
+* [**Featured Post**](https://cozyblock.cozythemes.com/featured-post-gutenberg-block/) (Pro) - 'Featured Post' block allows you to handpick from your latest posts and showcase them in versatile display options such as grid, list, and carousel, enhancing your site's visual appeal and user engagement.
+* [**Featured Post Tabs**](https://cozyblock.cozythemes.com/featured-post-tabs-gutenberg-block/) (Pro) - Highlight your best content with our 'Featured Post Tabs' block, providing five tabs—Latest, Popular, Trending, Tags, and Comments—to showcase your top articles and boost engagement.
+* [**Magazine Grid**](https://cozyblock.cozythemes.com/magazine-grid-gutenberg-block/) (Pro) - Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Magazine Grid' block.
+* [**Magazine List**](https://cozyblock.cozythemes.com/magazine-list-gutenberg-block/) (Pro) - Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Magazine List' block.
+* [**News Ticker**](https://cozyblock.cozythemes.com/news-ticker-gutenberg-block/) (Pro) - Stay informed with our 'News Ticker' block, delivering real-time headlines in a scrolling format for an engaging and dynamic user experience.
 * [**Popular Post**](https://cozyblock.cozythemes.com/popular-post-gutenberg-block/) - Explore trending topics effortlessly with our 'Popular Post' block, showcasing a curated selection of the latest and most engaging content for a quick and dynamic browsing experience.
 * [**Post Grid/Carousel**](https://cozyblock.cozythemes.com/post-carousel-gutenberg-block/) - Immerse yourself in an engaging browsing journey using our 'Post Carousel' block, showcasing visually stunning and interactive featured content for effortless exploration.
-* [**Post Comments**](https://cozyblock.cozythemes.com/post-comments-gutenberg-block/) (Premium) - Unlock the Conversation Power! See what sparks discussions with our 'Post Comments' block. Gain valuable insights to refine your engagement strategy and foster meaningful interactions.
-* [**Post Slider**](https://cozyblock.cozythemes.com/post-slider-gutenberg-block/) (Premium) - Discover an interactive showcase of content through our 'Post Slider' feature, presenting a visually captivating carousel of posts for an engaging and dynamic browsing experience.
-* [**Post Views**](https://cozyblock.cozythemes.com/post-views-gutenberg-block/) (Premium) - Unlock the Engagement Power! See what captivates your audience with our 'Post Views' block. Gain valuable insights to refine your content strategy and maximize impact.
-* [**Related Post**](https://cozyblock.cozythemes.com/related-post-gutenberg-block/) (Premium) - Uncover additional relevant content using our 'Related Post' block, offering curated suggestions tailored to your interests for an engaging exploration of aligned topics.
-* [**Trending Post**](https://cozyblock.cozythemes.com/trending-post-gutenberg-block/) (Premium) - Stay ahead with our 'Trending Post' block, spotlighting the most popular and engaging content on your site for a dynamic and up-to-the-minute user experience.
+* [**Post Comments**](https://cozyblock.cozythemes.com/post-comments-gutenberg-block/) (Pro) - Unlock the Conversation Power! See what sparks discussions with our 'Post Comments' block. Gain valuable insights to refine your engagement strategy and foster meaningful interactions.
+* [**Post Slider**](https://cozyblock.cozythemes.com/post-slider-gutenberg-block/) (Pro) - Discover an interactive showcase of content through our 'Post Slider' feature, presenting a visually captivating carousel of posts for an engaging and dynamic browsing experience.
+* [**Post Views**](https://cozyblock.cozythemes.com/post-views-gutenberg-block/) (Pro) - Unlock the Engagement Power! See what captivates your audience with our 'Post Views' block. Gain valuable insights to refine your content strategy and maximize impact.
+* [**Related Post**](https://cozyblock.cozythemes.com/related-post-gutenberg-block/) (Pro) - Uncover additional relevant content using our 'Related Post' block, offering curated suggestions tailored to your interests for an engaging exploration of aligned topics.
+* [**Trending Post**](https://cozyblock.cozythemes.com/trending-post-gutenberg-block/) (Pro) - Stay ahead with our 'Trending Post' block, spotlighting the most popular and engaging content on your site for a dynamic and up-to-the-minute user experience.
 
 = WooCommerce Blocks =
 Transform your online store with WooCommerce Blocks. Our plugin includes a versatile selection of over 10  dedicated WooCommerce blocks, enabling you to customize and optimize your e-commerce site with ease. Build a seamless shopping experience tailored to your business needs.
 
 * [**Add to Cart**](https://cozyblock.cozythemes.com/product-add-to-cart-woocommerce-block/) - With the 'Add to Cart' block allows you to easily add products to your cart, featuring a customizable button that can display a label, an icon, or both.
 * [**Featured Product**](https://cozyblock.cozythemes.com/featured-product-woocommerce-block/) - 'Featured Product' block allows you to handpick from your latest products and showcase them in versatile display options such as grid, and carousel, enhancing your site's visual appeal and user engagement.
-* [**Featured Products Tab**](https://cozyblock.cozythemes.com/featured-products-tab-woocommerce-block/) (Premium) - Highlight your best content with our 'Featured Product Tabs' block, providing four tabs—Latest, Best Seller, Top Rated, and On Sale—to showcase your top products and boost engagement.
+* [**Featured Products Tab**](https://cozyblock.cozythemes.com/featured-products-tab-woocommerce-block/) (Pro) - Highlight your best content with our 'Featured Product Tabs' block, providing four tabs—Latest, Best Seller, Top Rated, and On Sale—to showcase your top products and boost engagement.
 * [**Product Category**](https://cozyblock.cozythemes.com/product-categories-woocommerce-block/) - Elevate your product presentation with the 'Product Category' block, providing advanced layout options like lists, grids, and carousels to showcase WooCommerce product categories in a visually appealing and organized manner.
 * [**Product Grid/Carousel**](https://cozyblock.cozythemes.com/product-carousel-woocommerce-block/) - Engage your audience with our 'Product Carousel' block, offering a visually appealing and interactive way to display WooCommerce products in a carousel format for an enhanced browsing experience.
 * [**All Product Reviews**](https://cozyblock.cozythemes.com/all-product-reviews-woocommerce-block/) - Revolutionize your product displays with our 'All Product Reviews' block. Showcase customer feedback in style with multiple layout options, including list, grid, and carousel. Increase trust and engagement by strategically placing authentic reviews anywhere on your WordPress site for maximum impact.
-* [**Product Slider**](https://cozyblock.cozythemes.com/product-slider-woocommerce-block/) (Premium) - Highlight your WooCommerce products dynamically with the 'Product Slider' block, allowing smooth sliding to showcase your products in an attractive and interactive manner.
-* [**Products Tab Showcase**](https://cozyblock.cozythemes.com/product-showcase-tabs-woocommerce-block/) (Premium) - Effortlessly organize and present your WooCommerce products with our 'Products Tabs Showcase' block. Explore a user-friendly approach to displaying items in categorized tabs, enhancing navigation and optimizing the shopping experience for your visitors.
-* [**Quick View**](https://cozyblock.cozythemes.com/product-quick-view-woocommerce-block/) (Premium) - Preview product details in a stylish lightbox with the 'Quick View' block, providing a seamless and efficient way to view essential information without leaving the current page.
-* [**Wishlist**](https://cozyblock.cozythemes.com/product-wishlist-woocommerce-block/) (Premium) - 'Wishlist' block allows you to add and view your favorite products in a convenient, accessible sidebar for easy management and quick access.
+* [**Product Slider**](https://cozyblock.cozythemes.com/product-slider-woocommerce-block/) (Pro) - Highlight your WooCommerce products dynamically with the 'Product Slider' block, allowing smooth sliding to showcase your products in an attractive and interactive manner.
+* [**Products Tab Showcase**](https://cozyblock.cozythemes.com/product-showcase-tabs-woocommerce-block/) (Pro) - Effortlessly organize and present your WooCommerce products with our 'Products Tabs Showcase' block. Explore a user-friendly approach to displaying items in categorized tabs, enhancing navigation and optimizing the shopping experience for your visitors.
+* [**Quick View**](https://cozyblock.cozythemes.com/product-quick-view-woocommerce-block/) (Pro) - Preview product details in a stylish lightbox with the 'Quick View' block, providing a seamless and efficient way to view essential information without leaving the current page.
+* [**Wishlist**](https://cozyblock.cozythemes.com/product-wishlist-woocommerce-block/) (Pro) - 'Wishlist' block allows you to add and view your favorite products in a convenient, accessible sidebar for easy management and quick access.
 
 == Installation ==
 
@@ -142,6 +142,11 @@ You can report any security bugs found in the source code of this plugin through
 6. Animation and Hover Effects
 
 == Changelog ==
+= 2.1.3 - January 27, 2025 = 
+* Update: Freemius SDK to 2.11.0
+* Fix: Core 'Navigation' block hover styles.
+* Fix: Block improvements.
+
 = 2.1.2 - January 22, 2025 = 
 * Add: Pricing table block.
 * Fix: Block improvements.
