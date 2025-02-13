@@ -5,6 +5,7 @@
   "title": "Add to Cart",
   "description": "With the 'Add to Cart' block allows you to easily add products to your cart, featuring a customizable button that can display a label, an icon, or both.",
   "category": "cozy-block/woocommerce",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {

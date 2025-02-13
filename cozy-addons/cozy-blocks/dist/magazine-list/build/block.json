@@ -9,6 +9,7 @@
     "magazine",
     "post"
   ],
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {

@@ -14,7 +14,7 @@ $color = array(
 
 
 $button_styles = array(
-	'justify'        => isset( $attributes['clickButtonStyles']['justify'] ) ? $attributes['clickButtonStyles']['justify'] : '',
+	'justify'        => isset( $attributes['clickButtonStyles']['justify'] ) ? $attributes['clickButtonStyles']['justify'] : 'center',
 	'border'         => isset( $attributes['clickButtonStyles']['borderColor'] ) ? $attributes['clickButtonStyles']['borderColor'] : '',
 	'text'           => isset( $attributes['clickButtonStyles']['color'] ) ? $attributes['clickButtonStyles']['color'] : '',
 	'bg'             => isset( $attributes['clickButtonStyles']['bgColor'] ) ? $attributes['clickButtonStyles']['bgColor'] : '',
@@ -53,13 +53,13 @@ $overlay_styles = array(
 );
 
 $block_styles = "
-.cozy-block-wrapper[data-block={$client_id}] {
+.cozy-block-wrapper[data-block='{$client_id}'] {
     text-align: {$button_styles['justify']};
 }
-.cozy-block-wrapper[data-block={$client_id}] .cozy-block-modal__overlay {
+.cozy-block-wrapper[data-block='{$client_id}'] .cozy-block-modal__overlay {
 	background-color: {$overlay_styles['color']['bg']};
 }
-.cozy-modal-open[data-type={$client_id}] {
+.cozy-modal-open[data-type='{$client_id}'] {
     padding: {$attributes['clickButtonStyles']['padding']['top']}px {$attributes['clickButtonStyles']['padding']['right']}px {$attributes['clickButtonStyles']['padding']['bottom']}px {$attributes['clickButtonStyles']['padding']['left']}px;
     border-style: {$attributes['clickButtonStyles']['borderType']};
     border-width: {$attributes['clickButtonStyles']['borderWidth']['top']}px {$attributes['clickButtonStyles']['borderWidth']['right']}px {$attributes['clickButtonStyles']['borderWidth']['bottom']}px {$attributes['clickButtonStyles']['borderWidth']['left']}px;
@@ -75,15 +75,15 @@ $block_styles = "
     color: {$button_styles['text']};
     background-color: {$button_styles['bg']};
 }
-.cozy-modal-open[data-type={$client_id}] .cozy-modal-open__img {
+.cozy-modal-open[data-type='{$client_id}'] .cozy-modal-open__img {
     max-width: {$button_styles['img']['width']}px;
     max-height: {$button_styles['img']['height']}px;
     border-radius: {$button_styles['img']['radius']}px;
 }
-.cozy-modal-open[data-type={$client_id}] .cozy-modal-open__img img {
+.cozy-modal-open[data-type='{$client_id}'] .cozy-modal-open__img img {
     border-radius: {$button_styles['img']['radius']}px;
 }
-.cozy-modal-open[data-type={$client_id}]:hover {
+.cozy-modal-open[data-type='{$client_id}']:hover {
     color: {$button_styles['text_hover']};
     background-color: {$button_styles['bg_hover']};
 }
@@ -123,44 +123,38 @@ $block_styles = "
 
 $output = '<div class="cozy-block-wrapper" data-block="' . esc_attr( $client_id ) . '">';
 
-if ( ! function_exists( 'cozy_block_modal_enqueue_google_fonts' ) ) {
-	function cozy_block_modal_enqueue_google_fonts( $attributes ) {
-		$font_families = array();
+$font_families = array();
 
-		if ( isset( $attributes['clickButtonStyles']['fontFamily'] ) && ! empty( $attributes['clickButtonStyles']['fontFamily'] ) ) {
-			$font_families[] = $attributes['clickButtonStyles']['fontFamily'];
-		}
+if ( isset( $attributes['clickButtonStyles']['fontFamily'] ) && ! empty( $attributes['clickButtonStyles']['fontFamily'] ) ) {
+	$font_families[] = $attributes['clickButtonStyles']['fontFamily'];
+}
 
-		// Remove duplicate font families.
-		$font_families = array_unique( $font_families );
+// Remove duplicate font families.
+$font_families = array_unique( $font_families );
 
-		$font_query = '';
+$font_query = '';
 
-		// Add other fonts.
-		foreach ( $font_families as $key => $family ) {
-			if ( 0 === $key ) {
-				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			} else {
-				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			}
-		}
-
-		if ( ! empty( $font_query ) ) {
-			// Generate the inline style for the Google Fonts link.
-			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
-
-			// Add the Google Fonts URL as an inline style.
-			wp_add_inline_style( 'cozy-block--modal--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
-		}
+// Add other fonts.
+foreach ( $font_families as $key => $family ) {
+	if ( 0 === $key ) {
+		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+	} else {
+		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
 	}
+}
+
+if ( ! empty( $font_query ) ) {
+	// Generate the inline style for the Google Fonts link.
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+	// Add the Google Fonts URL as an inline style.
+	wp_add_inline_style( 'cozy-block--modal--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
 }
 
 add_action(
 	'wp_enqueue_scripts',
-	function () use ( $block_styles, $attributes ) {
-		cozy_block_modal_enqueue_google_fonts( $attributes );
-
-		wp_add_inline_style( 'cozy-block--modal--style', esc_html( $block_styles ) );
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--modal--style', $block_styles );
 	}
 );
 

@@ -5,8 +5,7 @@
   "title": "Sidebar Panel",
   "description": "Maximize versatility with our 'Sidebar Panel' block, seamlessly integrating a customizable sidebar drawer to display menus, latest posts, popular content, or any desired elements for a user-friendly and organized layout.",
   "category": "cozy-block",
-  "example": {},
-  "icon": "<svg width='26' height='23' viewBox='0 0 26 23' fill='none' xmlns='http://www.w3.org/2000/svg'><rect fill='white' x='0.5' y='0.5' width='16' height='22' rx='1.5' stroke='#5566CA'/><path fill-rule='evenodd' clip-rule='evenodd' d='M13 5H4V4H13V5Z' fill='#B2BCF9'/><path fill-rule='evenodd' clip-rule='evenodd' d='M13 9H4V8H13V9Z' fill='#B2BCF9'/><path fill-rule='evenodd' clip-rule='evenodd' d='M13 13H4V12H13V13Z' fill='#B2BCF9'/><rect x='18' width='8' height='8' rx='2' fill='#5566CA'/><path d='M22.7582 4L23.8953 2.86284C24.0349 2.7233 24.0349 2.49705 23.8953 2.35739L23.6426 2.10466C23.5031 1.96511 23.2768 1.96511 23.1372 2.10466L22 3.24182L20.8628 2.10466C20.7233 1.96511 20.497 1.96511 20.3574 2.10466L20.1047 2.35739C19.9651 2.49693 19.9651 2.72318 20.1047 2.86284L21.2418 4L20.1047 5.13716C19.9651 5.2767 19.9651 5.50295 20.1047 5.64261L20.3574 5.89534C20.4969 6.03489 20.7233 6.03489 20.8628 5.89534L22 4.75818L23.1372 5.89534C23.2767 6.03489 23.5031 6.03489 23.6426 5.89534L23.8953 5.64261C24.0349 5.50307 24.0349 5.27682 23.8953 5.13716L22.7582 4Z' fill='white'/></svg>",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },

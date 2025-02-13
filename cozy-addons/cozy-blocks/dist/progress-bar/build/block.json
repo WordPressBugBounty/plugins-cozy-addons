@@ -5,7 +5,7 @@
   "title": "Progress Bar",
   "description": "Keep your audience informed and intrigued with our 'Progress Bar' block, offering dynamic circular, horizontal, and vertical progress indicators for an interactive and visually engaging user experience.",
   "category": "cozy-block",
-  "example": {},
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },
@@ -105,7 +105,7 @@
     "typography": {
       "type": "object",
       "default": {
-        "fontFamily": "sans-serif",
+        "fontFamily": "",
         "fontSize": 16,
         "color": "#fff",
         "fontWeight": 400
@@ -114,7 +114,7 @@
     "labelTypography": {
       "type": "object",
       "default": {
-        "fontFamily": "sans-serif",
+        "fontFamily": "",
         "fontSize": 16,
         "color": "",
         "fontWeight": 400

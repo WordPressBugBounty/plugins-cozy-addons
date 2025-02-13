@@ -5,8 +5,7 @@
   "title": "Social Shares",
   "description": "Encourage seamless content sharing with our 'Social Shares' block, featuring eye-catching social media icons for enhanced engagement and wider reach.",
   "category": "cozy-block",
-  "example": {},
-  "icon": "<svg width=\"26\" height=\"23\" viewBox=\"0 0 26 23\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect fill=\"white\" x=\"0.5\" y=\"0.5\" width=\"25\" height=\"22\" rx=\"2.5\" stroke=\"#5566CA\" /><circle cx=\"8.5\" cy=\"11.5\" r=\"2.5\" fill=\"#36CFC6\" /><path d=\"M18.7679 16.1119C18.7679 17.4926 17.6486 18.6119 16.2679 18.6119C14.8872 18.6119 13.7679 17.4926 13.7679 16.1119C13.7679 14.7312 14.8872 13.6119 16.2679 13.6119C17.6486 13.6119 18.7679 14.7312 18.7679 16.1119Z\" fill=\"#36CFC6\" /><path d=\"M17.5 7.06301C17.5 8.16757 16.6046 9.06301 15.5 9.06301C14.3954 9.06301 13.5 8.16757 13.5 7.06301C13.5 5.95845 14.3954 5.06301 15.5 5.06301C16.6046 5.06301 17.5 5.95845 17.5 7.06301Z\" fill=\"#36CFC6\" /><path d=\"M14.9783 7L10 10.2826L10.5 11L15 8L14.9783 7Z\" fill=\"#36CFC6\" /><path d=\"M14.5 15L10.5 12L10 12.5L14 15.5L14.5 15Z\" fill=\"#36CFC6\" /></svg>",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },

@@ -10,6 +10,7 @@
     "grid",
     "carousel"
   ],
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "typography": {

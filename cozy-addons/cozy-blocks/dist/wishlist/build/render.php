@@ -16,6 +16,7 @@ if ( 'sidebar' === $attributes['variation'] ) {
 
 $wishlist_icon = array(
 	'default' => array(
+		'align'  => isset( $attributes['wishlist']['icon']['align'] ) ? $attributes['wishlist']['icon']['align'] : 'right',
 		'width'  => isset( $attributes['wishlist']['icon']['box']['width'] ) ? $attributes['wishlist']['icon']['box']['width'] : '40px',
 		'height' => isset( $attributes['wishlist']['icon']['box']['height'] ) ? $attributes['wishlist']['icon']['box']['height'] : '40px',
 		'border' => isset( $attributes['wishlist']['icon']['box']['border'] ) ? cozy_render_TRBL( 'border', $attributes['wishlist']['icon']['box']['border'] ) : '',
@@ -29,6 +30,7 @@ $wishlist_icon = array(
 	),
 	'active'  => array(
 		'border' => isset( $attributes['wishlist']['activeIcon']['box']['border'] ) ? cozy_render_TRBL( 'border', $attributes['wishlist']['activeIcon']['box']['border'] ) : '',
+		'radius' => isset( $attributes['wishlist']['activeIcon']['box']['radius'] ) ? $attributes['wishlist']['activeIcon']['box']['radius'] : '',
 		'color'  => array(
 			'text'         => isset( $attributes['wishlist']['activeIcon']['color']['text'] ) ? $attributes['wishlist']['activeIcon']['color']['text'] : '',
 			'text_hover'   => isset( $attributes['wishlist']['activeIcon']['color']['textHover'] ) ? $attributes['wishlist']['activeIcon']['color']['textHover'] : '',
@@ -184,7 +186,7 @@ $block_styles = "
 }
 #$block_id.variation-wishlist .wishlist__icon-wrapper.is-active {
 	{$wishlist_icon['active']['border']}
-	border-radius: {$attributes['wishlist']['activeIcon']['box']['radius']};
+	border-radius: {$wishlist_icon['active']['radius']};
 	background-color: {$wishlist_icon['active']['color']['bg']};
 }
 #$block_id.variation-wishlist .wishlist__icon-wrapper.is-active:hover {
@@ -542,65 +544,60 @@ $output .= '</div>';
 
 $wrapper_attributes = get_block_wrapper_attributes();
 
-if ( ! function_exists( 'cozy_block_wishlist_enqueue_google_fonts' ) ) {
-	function cozy_block_wishlist_enqueue_google_fonts( $attributes ) {
-		$font_families = array();
+if ( 'sidebar' === $attributes['variation'] ) {
+	$font_families = array();
 
-		if ( isset( $attributes['sidebar']['count']['font']['family'] ) && ! empty( $attributes['sidebar']['count']['font']['family'] ) ) {
-			$font_families[] = $attributes['sidebar']['count']['font']['family'];
-		}
-		if ( isset( $attributes['sidebar']['productTitle']['font']['family'] ) && ! empty( $attributes['sidebar']['productTitle']['font']['family'] ) ) {
-			$font_families[] = $attributes['sidebar']['productTitle']['font']['family'];
-		}
-		if ( isset( $attributes['sidebar']['productSummary']['font']['family'] ) && ! empty( $attributes['sidebar']['productSummary']['font']['family'] ) ) {
-			$font_families[] = $attributes['sidebar']['productSummary']['font']['family'];
-		}
-		if ( isset( $attributes['sidebar']['productPrice']['font']['family'] ) && ! empty( $attributes['sidebar']['productPrice']['font']['family'] ) ) {
-			$font_families[] = $attributes['sidebar']['productPrice']['font']['family'];
-		}
-		if ( isset( $attributes['sidebar']['button']['font']['family'] ) && ! empty( $attributes['sidebar']['button']['font']['family'] ) ) {
-			$font_families[] = $attributes['sidebar']['button']['font']['family'];
-		}
-		if ( isset( $attributes['toast']['font']['family'] ) && ! empty( $attributes['toast']['font']['family'] ) ) {
-			$font_families[] = $attributes['toast']['font']['family'];
-		}
+	if ( isset( $attributes['sidebar']['count']['font']['family'] ) && ! empty( $attributes['sidebar']['count']['font']['family'] ) ) {
+		$font_families[] = $attributes['sidebar']['count']['font']['family'];
+	}
+	if ( isset( $attributes['sidebar']['productTitle']['font']['family'] ) && ! empty( $attributes['sidebar']['productTitle']['font']['family'] ) ) {
+		$font_families[] = $attributes['sidebar']['productTitle']['font']['family'];
+	}
+	if ( isset( $attributes['sidebar']['productSummary']['font']['family'] ) && ! empty( $attributes['sidebar']['productSummary']['font']['family'] ) ) {
+		$font_families[] = $attributes['sidebar']['productSummary']['font']['family'];
+	}
+	if ( isset( $attributes['sidebar']['productPrice']['font']['family'] ) && ! empty( $attributes['sidebar']['productPrice']['font']['family'] ) ) {
+		$font_families[] = $attributes['sidebar']['productPrice']['font']['family'];
+	}
+	if ( isset( $attributes['sidebar']['button']['font']['family'] ) && ! empty( $attributes['sidebar']['button']['font']['family'] ) ) {
+		$font_families[] = $attributes['sidebar']['button']['font']['family'];
+	}
+	if ( isset( $attributes['toast']['font']['family'] ) && ! empty( $attributes['toast']['font']['family'] ) ) {
+		$font_families[] = $attributes['toast']['font']['family'];
+	}
 
-		// Remove duplicate font families.
-		$font_families = array_unique( $font_families );
+	// Remove duplicate font families.
+	$font_families = array_unique( $font_families );
 
-		$font_query = '';
+	$font_query = '';
 
-		// Add other fonts.
-		foreach ( $font_families as $key => $family ) {
-			if ( 0 === $key ) {
-				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			} else {
-				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			}
+	// Add other fonts.
+	foreach ( $font_families as $key => $family ) {
+		if ( 0 === $key ) {
+			$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		} else {
+			$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
 		}
+	}
 
-		if ( ! empty( $font_query ) ) {
-			// Generate the inline style for the Google Fonts link.
-			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+	if ( ! empty( $font_query ) ) {
+		// Generate the inline style for the Google Fonts link.
+		$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
 
-			// Add the Google Fonts URL as an inline style.
-			wp_add_inline_style( 'cozy-block--wishlist--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
-		}
+		// Add the Google Fonts URL as an inline style.
+		wp_add_inline_style( 'cozy-block--wishlist--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
 	}
 }
 
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles, $attributes ) {
-		if ( 'sidebar' === $attributes['variation'] ) {
-			cozy_block_wishlist_enqueue_google_fonts( $attributes );
-		}
-
 		wp_add_inline_style( 'cozy-block--wishlist--style', esc_html( $block_styles ) );
 	}
 );
 
-$render = sprintf( '<div class="cozy-block-wrapper cozy-block-wishlist-wrapper justify-' . $attributes['wishlist']['icon']['align'] . '"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
+
+$render = sprintf( '<div class="cozy-block-wrapper cozy-block-wishlist-wrapper justify-' . $wishlist_icon['default']['align'] . '"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;
 
 if ( ! function_exists( 'add_to_wishlist_cookie' ) ) {

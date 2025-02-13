@@ -56,6 +56,7 @@ class CozyRestApi {
 		return array(
 			'block'       => __NAMESPACE__ . '\\Controllers\\V1\\BlockController',
 			'woocommerce' => __NAMESPACE__ . '\\Controllers\\V1\\WooController',
+			'cf7'         => __NAMESPACE__ . '\\Controllers\\V1\\CF7',
 		);
 	}
 

@@ -5,7 +5,7 @@
   "title": "Slider",
   "description": "Immerse your audience in captivating visuals with our versatile 'Slider' block, perfect for showcasing images or content in a dynamic and engaging carousel.",
   "category": "cozy-block",
-  "example": {},
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {

@@ -5,6 +5,7 @@
   "title": "Post Views (Pro)",
   "description": "Unlock the Engagement Power! See what captivates your audience with our 'Post Views' block. Gain valuable insights to refine your content strategy and maximize impact.",
   "category": "cozy-block/post-magazine",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {

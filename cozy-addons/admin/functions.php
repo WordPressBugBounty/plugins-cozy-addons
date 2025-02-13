@@ -1793,6 +1793,8 @@ function cozy_addons_get_plugin_versions() {
 		}
 	);
 
+	array_pop( $versions );
+
 	return $versions;
 }
 

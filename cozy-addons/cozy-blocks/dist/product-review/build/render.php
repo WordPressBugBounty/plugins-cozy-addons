@@ -347,48 +347,44 @@ $percent          = $avgReviews / 5 * 100;
 
 echo '<div class="cozy-block-wrapper">';
 
-if ( ! function_exists( 'cozy_block_product_review_enqueue_google_fonts' ) ) {
-	function cozy_block_product_review_enqueue_google_fonts( $attributes ) {
-		$font_families = array();
+$font_families = array();
 
-		if ( isset( $attributes['ajaxButton']['fontFamily'] ) && ! empty( $attributes['ajaxButton']['fontFamily'] ) ) {
-			$font_families[] = $attributes['ajaxButton']['fontFamily'];
-		}
+if ( isset( $attributes['ajaxButton']['fontFamily'] ) && ! empty( $attributes['ajaxButton']['fontFamily'] ) ) {
+	$font_families[] = $attributes['ajaxButton']['fontFamily'];
+}
 
-		if ( isset( $attributes['headingOptions']['fontFamily'] ) && ! empty( $attributes['headingOptions']['fontFamily'] ) ) {
-			$font_families[] = $attributes['headingOptions']['fontFamily'];
-		}
+if ( isset( $attributes['headingOptions']['fontFamily'] ) && ! empty( $attributes['headingOptions']['fontFamily'] ) ) {
+	$font_families[] = $attributes['headingOptions']['fontFamily'];
+}
 
-		if ( isset( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) && ! empty( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) ) {
-			$font_families[] = $attributes['reviewTitle']['titleTypography']['fontFamily'];
-		}
+if ( isset( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) && ! empty( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) ) {
+	$font_families[] = $attributes['reviewTitle']['titleTypography']['fontFamily'];
+}
 
-		if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
-			$font_families[] = $attributes['typography']['fontFamily'];
-		}
+if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
+	$font_families[] = $attributes['typography']['fontFamily'];
+}
 
-		// Remove duplicate font families.
-		$font_families = array_unique( $font_families );
+// Remove duplicate font families.
+$font_families = array_unique( $font_families );
 
-		$font_query = '';
+$font_query = '';
 
-		// Add other fonts.
-		foreach ( $font_families as $key => $family ) {
-			if ( 0 === $key ) {
-				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			} else {
-				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			}
-		}
-
-		if ( ! empty( $font_query ) ) {
-			// Generate the inline style for the Google Fonts link.
-			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
-
-			// Add the Google Fonts URL as an inline style.
-			wp_add_inline_style( 'cozy-block--product-review--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
-		}
+// Add other fonts.
+foreach ( $font_families as $key => $family ) {
+	if ( 0 === $key ) {
+		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+	} else {
+		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
 	}
+}
+
+if ( ! empty( $font_query ) ) {
+	// Generate the inline style for the Google Fonts link.
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+	// Add the Google Fonts URL as an inline style.
+	wp_add_inline_style( 'cozy-block--product-review--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
 }
 
 echo '<div class="cozy-block-product-review layout-' . esc_attr( $attributes['layout'] ) . ' ' . ( $attributes['hoverShow'] ? 'hover-show' : '' ) . ' ' . ( $attributes['containerStyles']['boxShadow']['enabled'] ? 'has-box-shadow' : '' ) . ' ' . ( $attributes['reviewImage']['hoverEffect'] ? 'has-image-hover-effect' : '' ) . '" id="' . esc_attr( $blockId ) . '">';
@@ -535,9 +531,7 @@ if ( $attributes['perPage'] !== '-1' && $attributes['layout'] !== 'carousel' && 
 
 add_action(
 	'wp_enqueue_scripts',
-	function () use ( $block_styles, $attributes ) {
-		cozy_block_product_review_enqueue_google_fonts( $attributes );
-
+	function () use ( $block_styles ) {
 		wp_add_inline_style( 'cozy-block--product-review--style', esc_html( $block_styles ) );
 	}
 );

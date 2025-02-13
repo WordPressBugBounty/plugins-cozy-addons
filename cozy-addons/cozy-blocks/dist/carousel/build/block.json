@@ -6,7 +6,7 @@
   "title": "Item",
   "description": "Supportive block for Team and Testimonials blocks.",
   "category": "cozy-block",
-  "textdomain": "cozy-block",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },

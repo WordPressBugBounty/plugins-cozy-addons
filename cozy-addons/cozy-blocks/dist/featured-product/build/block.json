@@ -8,6 +8,7 @@
   "keywords": [
     "product"
   ],
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {

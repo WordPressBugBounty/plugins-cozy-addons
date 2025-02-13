@@ -6,7 +6,7 @@
   "title": "Slide",
   "description": "Support block for the slider block.",
   "category": "cozy-block",
-  "textdomain": "cozy-block",
+  "textdomain": "cozy-addons",
   "attributes": {
     "blockClientId": {
       "type": "string",

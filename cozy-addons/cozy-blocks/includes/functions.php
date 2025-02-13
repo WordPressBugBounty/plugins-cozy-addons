@@ -592,42 +592,80 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 }
 add_filter( 'render_block', 'add_cozy_hover_color_styles', 10, 2 );
 
-if ( ! function_exists( 'cozy_render_TRBL' ) ) {
-	function cozy_render_TRBL( $type, $attr ) {
-		if ( isset( $attr ) && count( $attr ) > 2 && count( $attr ) < 4 ) {
-			if ( isset( $attr['width'], $attr['style'], $attr['color'] ) ) {
-				return "{$type}: {$attr['width']} {$attr['style']} {$attr['color']};";
-			}
-			return "{$type}: ;";
-		} elseif ( isset( $attr ) && count( $attr ) === 4 ) {
-			$topWidth = $attr['top']['width'] ?? 'initial';
-			$topStyle = $attr['top']['style'] ?? 'initial';
-			$topColor = $attr['top']['color'] ?? 'initial';
+function cozy_render_TRBL( $type, $attributes ) {
+	$sides = array( 'top', 'right', 'bottom', 'left' );
 
-			$rightWidth = $attr['right']['width'] ?? 'initial';
-			$rightStyle = $attr['right']['style'] ?? 'initial';
-			$rightColor = $attr['right']['color'] ?? 'initial';
-
-			$bottomWidth = $attr['bottom']['width'] ?? 'initial';
-			$bottomStyle = $attr['bottom']['style'] ?? 'initial';
-			$bottomColor = $attr['bottom']['color'] ?? 'initial';
-
-			$leftWidth = $attr['left']['width'] ?? 'initial';
-			$leftStyle = $attr['left']['style'] ?? 'initial';
-			$leftColor = $attr['left']['color'] ?? 'initial';
-
-			if ( $type === 'border' ) {
-				return "
-                    border-top: {$topWidth} {$topStyle} {$topColor};
-                    border-right: {$rightWidth} {$rightStyle} {$rightColor};
-                    border-bottom: {$bottomWidth} {$bottomStyle} {$bottomColor};
-                    border-left: {$leftWidth} {$leftStyle} {$leftColor};
-                ";
-			}
-			return "{$type}: {$attr['top']} {$attr['right']} {$attr['bottom']} {$attr['left']};";
-		} else {
-			return '';
+	if ( ! function_exists( 'cozy_addons_generate_property' ) ) {
+		/**
+		 * Helper function to generate CSS properties conditionally.
+		 *
+		 * @param string $prop       The CSS property to generate (e.g., 'padding', 'border').
+		 * @param string $side       The side of the element to apply the property (e.g., 'top', 'right', 'bottom', 'left').
+		 * @param array  $attributes An associative array of style attributes for the element.
+		 *                           Contains the values for the corresponding CSS property for each side.
+		 *
+		 * @return string            The generated CSS rule for the specified property and side, or an empty string if the attribute is not set.
+		 */
+		function cozy_addons_generate_property( $prop, $side, $attributes ) {
+			$attr_side = esc_attr( $attributes[ $side ] );
+			return ! empty( $attributes[ $side ] ) ? "{$prop}-{$side}: {$attr_side};" : '';
 		}
+	}
+
+	switch ( $type ) {
+		case 'border':
+			// Check if any global border property exists.
+			if ( isset( $attributes['width'] ) || isset( $attributes['style'] ) || isset( $attributes['color'] ) ) {
+				$width = isset( $attributes['width'] ) ? esc_attr( $attributes['width'] ) : '';
+				$style = isset( $attributes['style'] ) ? esc_attr( $attributes['style'] ) : '';
+				$color = isset( $attributes['color'] ) ? esc_attr( $attributes['color'] ) : '';
+				return "border-width:{$width};border-style: {$style};border-color: {$color};";
+			}
+
+			// Handle individual borders for each side.
+			$css = '';
+			foreach ( $sides as $side ) {
+				$border_value =
+				( ! empty( $attributes[ $side ]['width'] ) ? "{$attributes[$side]['width']} " : '' ) .
+				( ! empty( $attributes[ $side ]['style'] ) ? "{$attributes[$side]['style']} " : '' ) .
+				( ! empty( $attributes[ $side ]['color'] ) ? "{$attributes[$side]['color']}" : '' );
+
+				if ( ! empty( $border_value ) ) {
+					$css .= "border-{$side}: {$border_value};\n";
+				}
+			}
+			return $css;
+
+		case 'border-radius':
+			// Handle individual border radius for each side.
+			$top    = esc_attr( $attributes['top'] );
+			$right  = esc_attr( $attributes['right'] );
+			$bottom = esc_attr( $attributes['bottom'] );
+			$left   = esc_attr( $attributes['left'] );
+
+			return ( ! empty( $attributes['top'] ) ? "border-top-left-radius: {$top};" : '' ) .
+			( ! empty( $attributes['right'] ) ? "border-top-right-radius: {$right};" : '' ) .
+			( ! empty( $attributes['bottom'] ) ? "border-bottom-right-radius: {$bottom};" : '' ) .
+			( ! empty( $attributes['left'] ) ? "border-bottom-left-radius: {$left};" : '' );
+
+		case 'padding':
+			// Handle padding for each side
+			$css = '';
+			foreach ( $sides as $side ) {
+				$css .= cozy_addons_generate_property( 'padding', $side, $attributes ) . "\n";
+			}
+			return $css;
+
+		case 'margin':
+			// Handle padding for each side
+			$css = '';
+			foreach ( $sides as $side ) {
+				$css .= cozy_addons_generate_property( 'margin', $side, $attributes ) . "\n";
+			}
+			return $css;
+
+		default:
+			return '';
 	}
 }
 

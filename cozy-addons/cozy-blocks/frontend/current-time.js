@@ -131,7 +131,6 @@
         const year = now.getFullYear();
         const week = daysInWeek[now.getDay()];
 
-        document.getElementsByClassName("cozy-date").innerHtml = "Amun Pote";
         if (blockOptions.date.enabled) {
           if (blockOptions.date.format === "m-d-y") {
             date.innerHTML = `${

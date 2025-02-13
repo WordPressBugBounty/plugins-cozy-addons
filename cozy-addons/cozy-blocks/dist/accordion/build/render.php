@@ -24,7 +24,10 @@ $content_color = array(
 	'text' => isset( $attributes['typography']['color'] ) ? $attributes['typography']['color'] : '',
 );
 
-$icon_color = array(
+$icon_styles = array(
+	'gap' => isset( $attributes['icon']['gap'] ) ? $attributes['icon']['gap'] : '6px',
+);
+$icon_color  = array(
 	'bg'           => isset( $attributes['iconBoxStyles']['bgColor'] ) ? $attributes['iconBoxStyles']['bgColor'] : '',
 	'border'       => isset( $attributes['iconBoxStyles']['borderColor'] ) ? $attributes['iconBoxStyles']['borderColor'] : '',
 	'bg_hover'     => isset( $attributes['iconBoxStyles']['bgColorHover'] ) ? $attributes['iconBoxStyles']['bgColorHover'] : '',
@@ -56,6 +59,9 @@ $block_styles = "
     background-color: {$item_color['bg']};
 }
 
+#$block_id .cozy-block-accordion-item .cozy-accordion-title {
+	gap: {$icon_styles['gap']};
+}
 #$block_id .cozy-block-accordion-item .cozy-accordion-title * {
     font-weight: {$attributes['titleTypography']['fontWeight']};
     font-size: {$attributes['titleTypography']['fontSize']}px;
@@ -112,16 +118,14 @@ $block_styles = "
 
 $output = '<div class="cozy-block-wrapper">';
 
-if ( ! function_exists( 'cozy_block_accordion_enqueue_google_fonts' ) ) {
-	function cozy_block_accordion_enqueue_google_fonts( $attributes ) {
-		$font_families = array();
+$font_families = array();
 
-		if ( isset( $attributes['titleTypography']['fontFamily'] ) && ! empty( $attributes['titleTypography']['fontFamily'] ) ) {
-			$font_families[] = $attributes['titleTypography']['fontFamily'];
-		}
-		if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
-			$font_families[] = $attributes['typography']['fontFamily'];
-		}
+if ( isset( $attributes['titleTypography']['fontFamily'] ) && ! empty( $attributes['titleTypography']['fontFamily'] ) ) {
+	$font_families[] = $attributes['titleTypography']['fontFamily'];
+}
+if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
+	$font_families[] = $attributes['typography']['fontFamily'];
+}
 
 		// Remove duplicate font families.
 		$font_families = array_unique( $font_families );
@@ -129,29 +133,25 @@ if ( ! function_exists( 'cozy_block_accordion_enqueue_google_fonts' ) ) {
 		$font_query = '';
 
 		// Add other fonts.
-		foreach ( $font_families as $key => $family ) {
-			if ( 0 === $key ) {
-				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			} else {
-				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			}
-		}
-
-		if ( ! empty( $font_query ) ) {
-			// Generate the inline style for the Google Fonts link.
-			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
-
-			// Add the Google Fonts URL as an inline style.
-			wp_add_inline_style( 'cozy-block--accordion--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
-		}
+foreach ( $font_families as $key => $family ) {
+	if ( 0 === $key ) {
+		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+	} else {
+		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
 	}
+}
+
+if ( ! empty( $font_query ) ) {
+	// Generate the inline style for the Google Fonts link.
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+	// Add the Google Fonts URL as an inline style.
+	wp_add_inline_style( 'cozy-block--accordion--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
 }
 
 add_action(
 	'wp_enqueue_scripts',
-	function () use ( $block_styles, $attributes ) {
-		cozy_block_accordion_enqueue_google_fonts( $attributes );
-
+	function () use ( $block_styles ) {
 		wp_add_inline_style( 'cozy-block--accordion--style', esc_html( $block_styles ) );
 	}
 );

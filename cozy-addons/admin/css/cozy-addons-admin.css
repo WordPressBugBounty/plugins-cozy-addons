@@ -6,7 +6,7 @@
   margin: 0 15px;
 }
 .cozy-addons-dashboard .dashboard-holder {
-  padding: 0px;
+  padding: 0;
   background: #fff;
   margin-top: 20px;
   box-shadow: 0 0 4px rgb(0 0 0 / 9%);
@@ -40,7 +40,7 @@
   font-weight: 700;
 }
 .widgets-holder .widget-box {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   padding: 15px 0 15px 20px;
   text-align: left;
   position: relative;
@@ -227,7 +227,7 @@ h4.addons-info {
   object-fit: cover;
 }
 .cozy-recommended-plugins h3 {
-  margin: 10px 0 10px;
+  margin: 10px 0;
   display: inline-block;
   width: 100%;
 }
@@ -240,9 +240,8 @@ h4.addons-info {
   align-items: center;
 }
 .cozy-addons-admin-notice .notice-content {
-  padding: 20px;
+  padding: 20px 5% 20px 20px;
   width: 60%;
-  padding-right: 5%;
   display: flex;
   align-items: center;
 }
@@ -365,7 +364,7 @@ h4.addons-info {
   color: #fff;
   border-radius: 10px;
   font-size: 20px;
-  margin-top: 0px;
+  margin-top: 0;
   display: inline-block;
   text-decoration: none;
   transition: all ease 0.23s;
@@ -375,6 +374,22 @@ h4.addons-info {
 }
 
 /* Cozy block toggle */
+.element-holder {
+  background-color: #fff;
+  padding: 30px;
+
+  & .rollback-desc {
+    margin-bottom: 26px;
+  }
+
+  & .rollback-label {
+    font-size: 14px;
+  }
+
+  & .cozy-addons-rollback-version {
+    margin-left: 68px;
+  }
+}
 .blocks-holder {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   display: grid;

@@ -16,7 +16,7 @@
  * Plugin Name:       Cozy Blocks
  * Plugin URI:        https://cozythemes.com/cozy-addons
  * Description:       Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
- * Version:           2.1.4
+ * Version:           2.1.5
  * Author:            CozyThemes
  * Author URI:        https://cozythemes.com/
  * License:           GPL-2.0+
@@ -96,7 +96,7 @@ function deactivate_cozy_addons() {
 register_activation_hook( __FILE__, 'activate_cozy_addons' );
 register_deactivation_hook( __FILE__, 'deactivate_cozy_addons' );
 
-define( 'COZY_ADDONS_VERSION', '2.1.4' );
+define( 'COZY_ADDONS_VERSION', '2.1.5' );
 
 if ( ! class_exists( 'Cozy_Addons' ) ) :
 	final class Cozy_Addons {
@@ -216,30 +216,6 @@ if ( ! class_exists( 'Cozy_Addons' ) ) :
 
 endif;
 
-$cozy_addons_versions = cozy_addons_get_plugin_versions();
-
-add_filter(
-	'plugin_action_links_' . plugin_basename( __FILE__ ),
-	function ( $links ) use ( $cozy_addons_versions ) {
-		$previous_version = array_filter(
-			$cozy_addons_versions,
-			function ( $version_info ) {
-				return version_compare( $version_info['version'], COZY_ADDONS_VERSION, '<' );
-			}
-		);
-
-		$previous_version = array_values( $previous_version );
-
-		if ( empty( $previous_version ) ) {
-			return $links;
-		}
-
-		$nonce   = wp_create_nonce( 'cozy_addons_rollback_action' );
-		$links[] = '<a id="cozy-addons__rollback" href="' . esc_url( get_admin_url( null, 'admin-post.php?action=cozy_addons_rollback&_wpnonce=' . $nonce ) ) . '">Rollback to v' . $previous_version[0]['version'] . '</a>';
-		return $links;
-	}
-);
-
 /**
  * Handles the rollback process for the "Cozy Addons" plugin.
  *
@@ -258,6 +234,8 @@ function cozy_addons_rollback_html_schema() {
 	}
 	$wp_nonce = isset( $_GET['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ) : '';
 
+	$rollback_version = isset( $_GET['version'] ) ? sanitize_text_field( wp_unslash( $_GET['version'] ) ) : '';
+
 	if ( empty( $wp_nonce ) || ! wp_verify_nonce( $wp_nonce, 'cozy_addons_rollback_action' ) ) {
 		wp_die( esc_html__( 'Not allowed!', 'cozy-addons' ) );
 	}
@@ -268,24 +246,28 @@ function cozy_addons_rollback_html_schema() {
 
 	$versions = cozy_addons_get_plugin_versions();
 
-	$previous_version = array_filter(
-		$versions,
-		function ( $version_info ) {
-			return version_compare( $version_info['version'], COZY_ADDONS_VERSION, '<' );
-		}
-	);
+	$previous_version = array();
+
+	if ( ! empty( $rollback_version ) ) {
+		$previous_version = array_filter(
+			$versions,
+			function ( $version_info ) use ( $rollback_version ) {
+				return version_compare( $version_info['version'], $rollback_version, '=' );
+			}
+		);
+	} else {
+		$previous_version = array_filter(
+			$versions,
+			function ( $version_info ) {
+				return version_compare( $version_info['version'], COZY_ADDONS_VERSION, '<' );
+			}
+		);
+	}
 
 	$previous_version = array_values( $previous_version );
 
 	if ( empty( $previous_version ) ) {
 		wp_die( esc_html__( 'Not allowed!', 'cozy-addons' ) );
-	}
-
-	$temp_file = download_url( esc_url( $previous_version[0]['url'] ) );
-
-	if ( ! file_exists( $temp_file ) || mime_content_type( $temp_file ) !== 'application/zip' ) {
-		wp_delete_file( $temp_file );
-		wp_send_json_error();
 	}
 
 	$styles = "
@@ -464,6 +446,8 @@ function cozy_addons_rollback_html_schema() {
 						if (response.success) {
 							// Display step 2: Deactivate plugin
 							rollbackLogs.append(`Unpacking and installing the plugin...\\n`);
+
+							const tempFile = response.data.tempFile;
 							
 							// Simulate next step in PHP
 							jQuery.ajax({
@@ -472,7 +456,7 @@ function cozy_addons_rollback_html_schema() {
 								data: {
 									action: `cozy_addons_activate_rollback_version`,
 									nonce: `{$activate_nonce}`,
-									tempURL: `{$temp_file}`,
+									tempURL: tempFile,
 								},
 								success: function(response) {
 									if (response.success) {

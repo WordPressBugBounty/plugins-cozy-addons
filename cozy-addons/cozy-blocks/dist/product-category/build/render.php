@@ -92,7 +92,7 @@ $block_styles = "
 #$block_id.has-box-shadow .woo-product-category {
     box-shadow: {$attributes['containerStyles']['boxShadow']['horizontal']}px {$attributes['containerStyles']['boxShadow']['vertical']}px {$attributes['containerStyles']['boxShadow']['blur']}px {$attributes['containerStyles']['boxShadow']['spread']}px {$item_styles['shadow_color']} {$attributes['containerStyles']['boxShadow']['position']};
 }
-#$block_id.woo-product-category:hover {
+#$block_id .woo-product-category:hover {
 	background-color: {$item_styles['bg_color_hover']};
 	border-color: {$item_styles['border_color_hover']};
 }
@@ -269,49 +269,43 @@ if ( 'carousel' === $attributes['display'] ) {
 }
 $output .= '</div>';
 
-if ( ! function_exists( 'cozy_block_product_category_enqueue_google_fonts' ) ) {
-	function cozy_block_product_category_enqueue_google_fonts( $attributes ) {
-		$font_families = array();
+$font_families = array();
 
-		if ( isset( $attributes['productCount']['fontFamily'] ) && ! empty( $attributes['productCount']['fontFamily'] ) ) {
-			$font_families[] = $attributes['productCount']['fontFamily'];
-		}
-		if ( isset( $attributes['fontFamily'] ) && ! empty( $attributes['fontFamily'] ) ) {
-			$font_families[] = $attributes['fontFamily'];
-		}
+if ( isset( $attributes['productCount']['fontFamily'] ) && ! empty( $attributes['productCount']['fontFamily'] ) ) {
+	$font_families[] = $attributes['productCount']['fontFamily'];
+}
+if ( isset( $attributes['fontFamily'] ) && ! empty( $attributes['fontFamily'] ) ) {
+	$font_families[] = $attributes['fontFamily'];
+}
 
-		// Remove duplicate font families.
-		$font_families = array_unique( $font_families );
+// Remove duplicate font families.
+$font_families = array_unique( $font_families );
 
-		$font_query = '';
+$font_query = '';
 
-		// Add other fonts.
-		foreach ( $font_families as $key => $family ) {
-			if ( 0 === $key ) {
-				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			} else {
-				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			}
-		}
-
-		if ( ! empty( $font_query ) ) {
-			// Generate the inline style for the Google Fonts link.
-			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
-
-			// Add the Google Fonts URL as an inline style.
-			wp_add_inline_style( 'cozy-block--product-category--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
-		}
+// Add other fonts.
+foreach ( $font_families as $key => $family ) {
+	if ( 0 === $key ) {
+		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+	} else {
+		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
 	}
+}
+
+if ( ! empty( $font_query ) ) {
+	// Generate the inline style for the Google Fonts link.
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+	// Add the Google Fonts URL as an inline style.
+	wp_add_inline_style( 'cozy-block--product-category--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
 }
 
 add_action(
 	'wp_enqueue_scripts',
-	function () use ( $block_styles, $attributes ) {
-		cozy_block_product_category_enqueue_google_fonts( $attributes );
-
+	function () use ( $block_styles ) {
 		wp_add_inline_style( 'cozy-block--product-category--style', esc_html( $block_styles ) );
 	}
 );
 
-$render = sprintf( '<div class="cozy-block-wrapper cozy-block-product-category-wrapper"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
+$render = sprintf( '<div class="cozy-block-wrapper cozy-block-product-category-wrapper display-' . $attributes['display'] . '"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;

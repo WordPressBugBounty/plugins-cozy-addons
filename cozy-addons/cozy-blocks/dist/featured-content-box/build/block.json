@@ -5,7 +5,7 @@
   "title": "Featured Content Box",
   "description": "Presenting the 'Featured Content Box' block – your ultimate tool for showcasing standout content! Customize your display for a visually stunning presentation that captivates your audience.",
   "category": "cozy-block",
-  "example": {},
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },

@@ -5,8 +5,7 @@
   "title": "Cozy Container",
   "description": "Infuse life into your content with our 'Cozy Container' block, offering animation and customization options for a vibrant and personalized user experience.",
   "category": "cozy-block",
-  "example": {},
-  "icon": "<svg width=\"26\" height=\"18\" viewBox=\"0 0 26 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect fill=\"white\" x=\"0.5\" y=\"0.5\" width=\"25\" height=\"17\" rx=\"2.5\" stroke=\"#5566CA\"/><path d=\"M13 5C10.7903 5 9 6.79032 9 9C9 11.2097 10.7903 13 13 13C15.2097 13 17 11.2097 17 9C17 6.79032 15.2097 5 13 5ZM15.3226 9.45161C15.3226 9.55806 15.2355 9.64516 15.129 9.64516H13.6452V11.129C13.6452 11.2355 13.5581 11.3226 13.4516 11.3226H12.5484C12.4419 11.3226 12.3548 11.2355 12.3548 11.129V9.64516H10.871C10.7645 9.64516 10.6774 9.55806 10.6774 9.45161V8.54839C10.6774 8.44194 10.7645 8.35484 10.871 8.35484H12.3548V6.87097C12.3548 6.76452 12.4419 6.67742 12.5484 6.67742H13.4516C13.5581 6.67742 13.6452 6.76452 13.6452 6.87097V8.35484H15.129C15.2355 8.35484 15.3226 8.44194 15.3226 8.54839V9.45161Z\" fill=\"#36CFC6\"/></svg>",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "background": {

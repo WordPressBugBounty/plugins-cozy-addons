@@ -85,6 +85,37 @@ if ( 'circle' === $attributes['layout'] ) {
 	$output = '<div class="cozy-block-wrapper ' . $block_id . ' ">';
 }
 
+$font_families = array();
+
+if ( isset( $attributes['labelTypography']['fontFamily'] ) && ! empty( $attributes['labelTypography']['fontFamily'] ) ) {
+	$font_families[] = $attributes['labelTypography']['fontFamily'];
+}
+if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
+	$font_families[] = $attributes['typography']['fontFamily'];
+}
+
+// Remove duplicate font families.
+$font_families = array_unique( $font_families );
+
+$font_query = '';
+
+// Add other fonts.
+foreach ( $font_families as $key => $family ) {
+	if ( 0 === $key ) {
+		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+	} else {
+		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+	}
+}
+
+if ( ! empty( $font_query ) ) {
+	// Generate the inline style for the Google Fonts link.
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+	// Add the Google Fonts URL as an inline style.
+	wp_add_inline_style( 'cozy-block--progress-bar--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+}
+
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {

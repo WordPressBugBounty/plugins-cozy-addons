@@ -5,8 +5,7 @@
   "title": "Icon Picker",
   "description": "Unlock endless possibilities with our 'Icon Picker' block, providing a user-friendly interface to choose from a diverse range of icons, enhancing the visual appeal of your content.",
   "category": "cozy-block",
-  "example": {},
-  "icon": "<svg width='26' height='21' viewBox='0 0 26 21' fill='none' xmlns='http://www.w3.org/2000/svg'><rect fill='white' x='0.5' y='0.5' width='25' height='20' rx='2.5' stroke='#5566CA'/><path d='M12.249 4.45222L10.5402 7.81352L6.71702 8.35428C6.03141 8.45075 5.75665 9.27076 6.25384 9.74043L9.01982 12.3553L8.36562 16.0492C8.24786 16.7169 8.97272 17.217 9.57982 16.9048L13 15.1607L16.4202 16.9048C17.0273 17.2145 17.7521 16.7169 17.6344 16.0492L16.9802 12.3553L19.7462 9.74043C20.2434 9.27076 19.9686 8.45075 19.283 8.35428L15.4598 7.81352L13.751 4.45222C13.4449 3.85307 12.5578 3.84546 12.249 4.45222Z' fill='#36CFC6'/></svg>",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },

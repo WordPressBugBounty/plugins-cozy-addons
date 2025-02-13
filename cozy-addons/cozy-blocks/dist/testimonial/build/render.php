@@ -58,7 +58,7 @@ $block_styles = "
     }
 }
 
-#$block_id.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+#$block_id.swiper-horizontal .swiper-pagination-bullets .swiper-pagination-bullet {
     margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet_styles['gap']}px);
 }
 #$block_id .swiper-pagination-bullet-active {

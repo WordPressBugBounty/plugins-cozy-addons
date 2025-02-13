@@ -5,6 +5,7 @@
   "title": "Trending Post (Pro)",
   "description": "Stay ahead with our 'Trending Post' block, spotlighting the most popular and engaging content on your site for a dynamic and up-to-the-minute user experience.",
   "category": "cozy-block/post-magazine",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {

@@ -5,7 +5,7 @@
   "title": "Advanced Mega Menu",
   "description": "Our user-friendly 'Advanced Mega Menu Block' is the ultimate solution for effortlessly organizing your site's content into stylish and efficient multi-column layouts, enhancing navigation for your visitors.",
   "category": "cozy-block",
-  "example": {},
+  "textdomain": "cozy-addons",
   "attributes": {
     "cover": {
       "type": "string",

@@ -9,6 +9,7 @@
     "post",
     "slider"
   ],
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },

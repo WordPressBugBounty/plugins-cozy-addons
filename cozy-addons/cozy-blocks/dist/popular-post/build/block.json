@@ -5,6 +5,7 @@
   "title": "Popular Post (Pro)",
   "description": "Explore trending topics effortlessly with our 'Popular Post' block, showcasing a curated selection of the latest and most engaging content for a quick and dynamic browsing experience.",
   "category": "cozy-block/post-magazine",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {

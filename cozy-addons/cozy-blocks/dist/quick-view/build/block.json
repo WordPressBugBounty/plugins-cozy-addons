@@ -5,6 +5,7 @@
   "title": "Quick View (Pro)",
   "description": "Preview product details in a stylish lightbox with the 'Quick View' block, providing a seamless and efficient way to view essential information without leaving the current page.",
   "category": "cozy-block/woocommerce",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {
@@ -278,7 +279,6 @@
     "cozy-block--quick-view--editor-style"
   ],
   "viewScript": [
-    "cozy-block-scripts",
     "cozy-swiper-bundle"
   ],
   "viewStyle": "cozy-swiper-bundle",

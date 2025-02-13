@@ -5,28 +5,7 @@
   "title": "Wishlist (Pro)",
   "description": "'Wishlist' block allows you to add and view your favorite products in a convenient, accessible sidebar for easy management and quick access.",
   "category": "cozy-block/woocommerce",
-  "supports": {
-    "html": false,
-    "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
-      "text": true
-    },
-    "spacing": {
-      "padding": true,
-      "margin": [
-        "top",
-        "bottom"
-      ],
-      "__experimentalDefaultControls": {
-        "padding": true
-      }
-    },
-    "interactivity": {
-      "clientNavigation": true
-    }
-  },
+  "textdomain": "cozy-addons",
   "usesContext": [
     "postId",
     "postType",

@@ -181,17 +181,17 @@ $block_styles = "
     fill: none;
 }
 
-#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .latest-wrapper,
-#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .popular-wrapper,
-#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .trending-wrapper {
+#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .latest-wrapper,
+#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .popular-wrapper,
+#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .trending-wrapper {
 	grid-template-columns: repeat({$attributes['gridOptions']['columnCount']}, 1fr);
 	row-gap: {$attributes['gridOptions']['gap']};
 	column-gap: {$attributes['gridOptions']['gap']};
 }
 @media screen and (max-width: 1024px) {
-	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .latest-wrapper,
-	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .popular-wrapper,
-#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .trending-wrapper {
+	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .latest-wrapper,
+	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .popular-wrapper,
+#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .trending-wrapper {
 		grid-template-columns: repeat(
 				$column1,
 				1fr
@@ -200,9 +200,9 @@ $block_styles = "
 }
 
 @media screen and (max-width: 767px) {
-	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .latest-wrapper,
-	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .popular-wrapper,
-#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .trending-wrapper {
+	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .latest-wrapper,
+	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .popular-wrapper,
+#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .trending-wrapper {
 		grid-template-columns: repeat(
 				$column2,
 				1fr
@@ -211,9 +211,9 @@ $block_styles = "
 }
 
 @media screen and (max-width: 400px) {
-	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .latest-wrapper,
-	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .popular-wrapper,
-#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper > .trending-wrapper {
+	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .latest-wrapper,
+	#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .popular-wrapper,
+#{$block_id}.display-grid .cozy-block-featured-post-tabs__content-wrapper .trending-wrapper {
 		grid-template-columns: repeat(
 				1,
 				1fr
@@ -225,23 +225,23 @@ $block_styles = "
 	margin-bottom: {$attributes['listOptions']['gap']};
 }
 
-#{$block_id} .cozy-block-featured-post-tabs__content-wrapper > .latest-wrapper .cozy-block-featured-post-tabs__content,
-#{$block_id} .cozy-block-featured-post-tabs__content-wrapper > .popular-wrapper .cozy-block-featured-post-tabs__content,
-#{$block_id} .cozy-block-featured-post-tabs__content-wrapper > .trending-wrapper .cozy-block-featured-post-tabs__content {
+#{$block_id} .cozy-block-featured-post-tabs__content-wrapper .latest-wrapper .cozy-block-featured-post-tabs__content,
+#{$block_id} .cozy-block-featured-post-tabs__content-wrapper .popular-wrapper .cozy-block-featured-post-tabs__content,
+#{$block_id} .cozy-block-featured-post-tabs__content-wrapper .trending-wrapper .cozy-block-featured-post-tabs__content {
 	{$post_box_padding}
 	{$post_box_border}
 	border-radius: {$attributes['postBoxStyles']['radius']};
 	background-color: {$post_box_styles['bg_color']};
 }
-#{$block_id} .cozy-block-featured-post-tabs__content-wrapper > .latest-wrapper .cozy-block-featured-post-tabs__content:hover,
-#{$block_id} .cozy-block-featured-post-tabs__content-wrapper > .popular-wrapper .cozy-block-featured-post-tabs__content:hover,
-#{$block_id} .cozy-block-featured-post-tabs__content-wrapper > .trending-wrapper .cozy-block-featured-post-tabs__content:hover {
+#{$block_id} .cozy-block-featured-post-tabs__content-wrapper .latest-wrapper .cozy-block-featured-post-tabs__content:hover,
+#{$block_id} .cozy-block-featured-post-tabs__content-wrapper .popular-wrapper .cozy-block-featured-post-tabs__content:hover,
+#{$block_id} .cozy-block-featured-post-tabs__content-wrapper .trending-wrapper .cozy-block-featured-post-tabs__content:hover {
 	background-color: {$post_box_styles['bg_color_hover']};
 	border-color: {$post_box_styles['border_color_hover']};
 }
-#{$block_id}.post-box-has-shadow .cozy-block-featured-post-tabs__content-wrapper > .latest-wrapper .cozy-block-featured-post-tabs__content,
-#{$block_id}.post-box-has-shadow .cozy-block-featured-post-tabs__content-wrapper > .popular-wrapper .cozy-block-featured-post-tabs__content,
-#{$block_id}.post-box-has-shadow .cozy-block-featured-post-tabs__content-wrapper > .trending-wrapper .cozy-block-featured-post-tabs__content {
+#{$block_id}.post-box-has-shadow .cozy-block-featured-post-tabs__content-wrapper .latest-wrapper .cozy-block-featured-post-tabs__content,
+#{$block_id}.post-box-has-shadow .cozy-block-featured-post-tabs__content-wrapper .popular-wrapper .cozy-block-featured-post-tabs__content,
+#{$block_id}.post-box-has-shadow .cozy-block-featured-post-tabs__content-wrapper .trending-wrapper .cozy-block-featured-post-tabs__content {
 	box-shadow: {$attributes['postBoxStyles']['shadow']['horizontal']}px {$attributes['postBoxStyles']['shadow']['vertical']}px {$attributes['postBoxStyles']['shadow']['blur']}px {$attributes['postBoxStyles']['shadow']['spread']}px {$attributes['postBoxStyles']['shadow']['color']} {$attributes['postBoxStyles']['shadow']['position']};
 }
   
@@ -668,55 +668,49 @@ foreach ( $cozy_featured_post_tabs as $key => $label ) {
 
 $output .= '</div>';
 
-if ( ! function_exists( 'cozy_block_featured_post_tabs_enqueue_google_fonts' ) ) {
-	function cozy_block_featured_post_tabs_enqueue_google_fonts( $attributes ) {
-		$font_families = array();
+$font_families = array();
 
-		if ( isset( $attributes['tabStyles']['fontFamily'] ) && ! empty( $attributes['tabStyles']['fontFamily'] ) ) {
-			$font_families[] = $attributes['tabStyles']['fontFamily'];
-		}
-		if ( isset( $attributes['categoryStyles']['fontFamily'] ) && ! empty( $attributes['categoryStyles']['fontFamily'] ) ) {
-			$font_families[] = $attributes['categoryStyles']['fontFamily'];
-		}
-		if ( isset( $attributes['titleStyles']['fontFamily'] ) && ! empty( $attributes['titleStyles']['fontFamily'] ) ) {
-			$font_families[] = $attributes['titleStyles']['fontFamily'];
-		}
-		if ( isset( $attributes['dateStyles']['fontFamily'] ) && ! empty( $attributes['dateStyles']['fontFamily'] ) ) {
-			$font_families[] = $attributes['dateStyles']['fontFamily'];
-		}
-		if ( isset( $attributes['tagStyles']['fontFamily'] ) && ! empty( $attributes['tagStyles']['fontFamily'] ) ) {
-			$font_families[] = $attributes['tagStyles']['fontFamily'];
-		}
+if ( isset( $attributes['tabStyles']['fontFamily'] ) && ! empty( $attributes['tabStyles']['fontFamily'] ) ) {
+	$font_families[] = $attributes['tabStyles']['fontFamily'];
+}
+if ( isset( $attributes['categoryStyles']['fontFamily'] ) && ! empty( $attributes['categoryStyles']['fontFamily'] ) ) {
+	$font_families[] = $attributes['categoryStyles']['fontFamily'];
+}
+if ( isset( $attributes['titleStyles']['fontFamily'] ) && ! empty( $attributes['titleStyles']['fontFamily'] ) ) {
+	$font_families[] = $attributes['titleStyles']['fontFamily'];
+}
+if ( isset( $attributes['dateStyles']['fontFamily'] ) && ! empty( $attributes['dateStyles']['fontFamily'] ) ) {
+	$font_families[] = $attributes['dateStyles']['fontFamily'];
+}
+if ( isset( $attributes['tagStyles']['fontFamily'] ) && ! empty( $attributes['tagStyles']['fontFamily'] ) ) {
+	$font_families[] = $attributes['tagStyles']['fontFamily'];
+}
 
-		// Remove duplicate font families.
-		$font_families = array_unique( $font_families );
+// Remove duplicate font families.
+$font_families = array_unique( $font_families );
 
-		$font_query = '';
+$font_query = '';
 
-		// Add other fonts.
-		foreach ( $font_families as $key => $family ) {
-			if ( 0 === $key ) {
-				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			} else {
-				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			}
-		}
-
-		if ( ! empty( $font_query ) ) {
-			// Generate the inline style for the Google Fonts link.
-			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
-
-			// Add the Google Fonts URL as an inline style.
-			wp_add_inline_style( 'cozy-block--featured-post-tabs--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
-		}
+// Add other fonts.
+foreach ( $font_families as $key => $family ) {
+	if ( 0 === $key ) {
+		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+	} else {
+		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
 	}
+}
+
+if ( ! empty( $font_query ) ) {
+	// Generate the inline style for the Google Fonts link.
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+	// Add the Google Fonts URL as an inline style.
+	wp_add_inline_style( 'cozy-block--featured-post-tabs--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
 }
 
 add_action(
 	'wp_enqueue_scripts',
-	function () use ( $block_styles, $attributes ) {
-		cozy_block_featured_post_tabs_enqueue_google_fonts( $attributes );
-
+	function () use ( $block_styles ) {
 		wp_add_inline_style( 'cozy-block--featured-post-tabs--style', esc_html( $block_styles ) );
 	}
 );

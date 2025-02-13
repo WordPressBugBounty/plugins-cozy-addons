@@ -9,6 +9,7 @@
     "product",
     "review"
   ],
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },

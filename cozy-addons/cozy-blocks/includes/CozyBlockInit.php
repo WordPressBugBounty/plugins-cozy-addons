@@ -33,7 +33,9 @@ final class CozyBlockInit {
 		QueryLoop::init();
 
 		add_filter( 'block_categories_all', array( $this, 'cozy_block_categories' ), PHP_INT_MAX, 2 );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_cozy_block_editor_assets' ) );
 		add_action( 'enqueue_block_assets', array( $this, 'enqueue_cozy_block_assets' ) );
+
 		add_action( 'init', array( $this, 'enqueue_cozy_block' ) );
 	}
 
@@ -63,6 +65,10 @@ final class CozyBlockInit {
 		require_once COZY_BLOCK_PLUGIN_DIR . 'includes/functions.php';
 	}
 
+	public function enqueue_cozy_block_editor_assets() {
+		wp_enqueue_style( 'cozy-block--editor-styles', COZY_BLOCK_PLUGIN_URL . 'assets/css/cozy-block-editor.css', array(), COZY_ADDONS_VERSION, 'all' );
+	}
+
 	public function enqueue_cozy_block_assets() {
 		wp_enqueue_script(
 			'cozy-core-block-scripts', // Handle name.
@@ -87,7 +93,8 @@ final class CozyBlockInit {
 			COZY_ADDONS_VERSION
 		);
 
-		/* wp_enqueue_style(
+		/*
+		wp_enqueue_style(
 			'cozy-block-form-styler', // Handle name.
 			COZY_BLOCK_PLUGIN_URL . 'assets/css/cozy-form-styler.css',
 			array(),
@@ -95,7 +102,8 @@ final class CozyBlockInit {
 		); */
 
 		// Pattern Block Script
-		/* wp_enqueue_script(
+		/*
+		wp_enqueue_script(
 			'cozy-pattern-block-script', // Handle name.
 			COZY_BLOCK_PLUGIN_URL . 'assets/js/pattern-block-scripts.min.js', // Path to your JavaScript file.
 			array( 'jquery' ),
@@ -184,7 +192,10 @@ final class CozyBlockInit {
 			'wishlist',
 			'quick-view',
 			'featured-product',
-			// 'toggle-content',
+			'toggle-content',
+			'countdown-timer',
+			'cf7-styler',
+			'img-compare',
 		);
 
 		$woocommerce_blocks = array(

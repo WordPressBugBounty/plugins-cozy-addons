@@ -5,6 +5,7 @@
   "title": "Product Slider (Pro)",
   "description": "Highlight your WooCommerce products dynamically with the 'Product Slider' block, allowing smooth sliding to showcase your products in an attractive and interactive manner.",
   "category": "cozy-block/woocommerce",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },

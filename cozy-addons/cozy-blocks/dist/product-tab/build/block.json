@@ -5,6 +5,7 @@
   "title": "Products Showcase Tabs (Pro)",
   "description": "Effortlessly organize and present your WooCommerce products with our 'Products Showcase Tabs' block. Explore a user-friendly approach to displaying items in categorized tabs, enhancing navigation and optimizing the shopping experience for your visitors.",
   "category": "cozy-block/woocommerce",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "typography": {
@@ -192,7 +193,7 @@
         "margin": {
           "top": "0",
           "right": "0",
-          "bottom": "0",
+          "bottom": "16px",
           "left": "0"
         },
         "padding": {

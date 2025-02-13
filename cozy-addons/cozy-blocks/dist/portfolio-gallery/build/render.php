@@ -547,56 +547,50 @@ $block_styles = "
 
 $output = '<div class="cozy-block-wrapper">';
 
-if ( ! function_exists( 'cozy_block_porfolio_gallery_enqueue_google_fonts' ) ) {
-	function cozy_block_porfolio_gallery_enqueue_google_fonts( $attributes ) {
-		$font_families = array();
+$font_families = array();
 
-		if ( isset( $attributes['ajaxButton']['fontFamily'] ) && ! empty( $attributes['ajaxButton']['fontFamily'] ) ) {
-			$font_families[] = $attributes['ajaxButton']['fontFamily'];
-		}
-		if ( isset( $attributes['catStyles']['fontFamily'] ) && ! empty( $attributes['catStyles']['fontFamily'] ) ) {
-			$font_families[] = $attributes['catStyles']['fontFamily'];
-		}
-		if ( isset( $attributes['isotopeStyles']['fontFamily'] ) && ! empty( $attributes['isotopeStyles']['fontFamily'] ) ) {
-			$font_families[] = $attributes['isotopeStyles']['fontFamily'];
-		}
-		if ( isset( $attributes['titleTypography']['fontFamily'] ) && ! empty( $attributes['titleTypography']['fontFamily'] ) ) {
-			$font_families[] = $attributes['titleTypography']['fontFamily'];
-		}
-		if ( isset( $attributes['subtitleTypography']['fontFamily'] ) && ! empty( $attributes['subtitleTypography']['fontFamily'] ) ) {
-			$font_families[] = $attributes['subtitleTypography']['fontFamily'];
-		}
+if ( isset( $attributes['ajaxButton']['fontFamily'] ) && ! empty( $attributes['ajaxButton']['fontFamily'] ) ) {
+    $font_families[] = $attributes['ajaxButton']['fontFamily'];
+}
+if ( isset( $attributes['catStyles']['fontFamily'] ) && ! empty( $attributes['catStyles']['fontFamily'] ) ) {
+    $font_families[] = $attributes['catStyles']['fontFamily'];
+}
+if ( isset( $attributes['isotopeStyles']['fontFamily'] ) && ! empty( $attributes['isotopeStyles']['fontFamily'] ) ) {
+    $font_families[] = $attributes['isotopeStyles']['fontFamily'];
+}
+if ( isset( $attributes['titleTypography']['fontFamily'] ) && ! empty( $attributes['titleTypography']['fontFamily'] ) ) {
+    $font_families[] = $attributes['titleTypography']['fontFamily'];
+}
+if ( isset( $attributes['subtitleTypography']['fontFamily'] ) && ! empty( $attributes['subtitleTypography']['fontFamily'] ) ) {
+    $font_families[] = $attributes['subtitleTypography']['fontFamily'];
+}
 
-		// Remove duplicate font families.
-		$font_families = array_unique( $font_families );
+// Remove duplicate font families.
+$font_families = array_unique( $font_families );
 
-		$font_query = '';
+$font_query = '';
 
-		// Add other fonts.
-		foreach ( $font_families as $key => $family ) {
-			if ( 0 === $key ) {
-				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			} else {
-				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			}
-		}
+// Add other fonts.
+foreach ( $font_families as $key => $family ) {
+    if ( 0 === $key ) {
+        $font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+    } else {
+        $font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+    }
+}
 
-		if ( ! empty( $font_query ) ) {
-			// Generate the inline style for the Google Fonts link.
-			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+if ( ! empty( $font_query ) ) {
+    // Generate the inline style for the Google Fonts link.
+    $google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
 
-			// Add the Google Fonts URL as an inline style.
-			wp_add_inline_style( 'cozy-block--portfolio-gallery--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
-		}
-	}
+    // Add the Google Fonts URL as an inline style.
+    wp_add_inline_style( 'cozy-block--portfolio-gallery--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
 }
 
 add_action(
 	'wp_enqueue_scripts',
-	function () use ( $block_styles, $attributes ) {
-		cozy_block_porfolio_gallery_enqueue_google_fonts( $attributes );
-
-		wp_add_inline_style( 'cozy-block--portfolio-gallery--style', esc_html( $block_styles ) );
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--portfolio-gallery--style', $block_styles );
 	}
 );
 

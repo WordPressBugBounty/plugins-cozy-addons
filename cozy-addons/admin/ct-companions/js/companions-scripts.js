@@ -40,6 +40,10 @@
       "wishlist",
       "quick-view",
       "featured-product",
+      "toggle-content",
+      "countdown-timer",
+      "cf7-styler",
+      "img-compare",
     ];
 
     $("#cozy-blocks-enable-super").click(function () {
@@ -169,6 +173,21 @@
           action: "cozy_blocks_dismissble_notice",
         },
       });
+    });
+
+    // Rollback btn
+    const rollbackBtn = $("#cozy-addons-rollback-btn");
+    $(".cozy-addons-rollback-version").change(function () {
+      const selectedVal = $(this).val();
+
+      let url = rollbackBtn.attr("href");
+
+      let urlObj = new URL(url);
+      urlObj.searchParams.set("version", selectedVal);
+
+      const updatedURL = urlObj.toString();
+
+      rollbackBtn.attr("href", updatedURL);
     });
   });
 

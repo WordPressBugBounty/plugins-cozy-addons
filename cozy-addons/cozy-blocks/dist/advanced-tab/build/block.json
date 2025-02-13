@@ -5,7 +5,7 @@
   "title": "Advanced Tabs",
   "description": "Elevate navigation and content organization with our 'Advanced Tabs' block, offering a sophisticated tabbed interface that lets you present diverse content sections in a visually appealing and structured way. Enhance user engagement by providing an intuitive and interactive browsing experience.",
   "category": "cozy-block",
-  "example": {},
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },

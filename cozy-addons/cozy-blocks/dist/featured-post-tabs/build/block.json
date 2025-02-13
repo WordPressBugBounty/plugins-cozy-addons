@@ -5,6 +5,7 @@
   "title": "Featured Post Tabs (Pro)",
   "description": "Highlight your best content with our 'Featured Post Tabs' block, providing five tabs—Latest, Popular, Trending, Tags, and Comments—to showcase your top articles and boost engagement.",
   "category": "cozy-block/post-magazine",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {

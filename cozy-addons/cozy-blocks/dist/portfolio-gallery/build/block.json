@@ -11,7 +11,7 @@
     "img",
     "portfolio"
   ],
-  "example": {},
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {

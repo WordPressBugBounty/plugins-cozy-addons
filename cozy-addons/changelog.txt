@@ -1,3 +1,7 @@
+= 2.1.5 - February 13, 2025 = 
+* Add: Toggle Content, Contact Form 7 Styler, Countdown Timer and Toggle Content blocks.
+* Fix: Block improvements.
+
 = 2.1.4 - January 27, 2025 = 
 * Fix: 'All Product Review' block render styles.
 

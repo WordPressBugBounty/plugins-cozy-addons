@@ -5,6 +5,7 @@
   "title": "News Ticker (Pro)",
   "description": "Stay informed with our 'News Ticker' block, delivering real-time headlines in a scrolling format for an engaging and dynamic user experience.",
   "category": "cozy-block/post-magazine",
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false
   },

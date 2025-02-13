@@ -5,6 +5,7 @@
   "title": "Pricing Table",
   "description": "Explore pricing options with this clean and organized pricing table. It includes a simple container displaying pricing elements, allowing users to view prices and features at a glance.",
   "category": "cozy-block",
+  "textdomain": "cozy-addons",
   "attributes": {
     "cover": {
       "type": "string",

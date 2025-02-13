@@ -4,7 +4,7 @@ Tags: blocks, gutenberg blocks, gutenberg, woocommerce blocks, block
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 2.1.4
+Stable tag: 2.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
@@ -16,7 +16,7 @@ Streamline your website designs with our library of advanced blocks designed to 
 
 = Key Features That Enhance and Extend WordPress Blocks =
 <ul>
-<li>40+ Advanced Blocks to Extend the Site Editor</li>
+<li>50+ Advanced Blocks to Extend the Site Editor</li>
 <li>WooCommerce Blocks</li>
 <li>Post and Magazine Blocks</li>
 <li>Slider Blocks (Slider & Carousel Blocks)</li>
@@ -35,7 +35,7 @@ Streamline your website designs with our library of advanced blocks designed to 
 <li>Advanced Gallery with multiple layouts</li>
 </ul>
 
-[Cozy Blocks](https://cozythemes.com/cozy-addons/) is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Seamlessly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it offers a robust library of over 40 advanced, customizable Gutenberg blocks. Designed for ease of use, [Cozy Blocks](https://cozythemes.com/cozy-addons/) caters to both experienced developers and beginners, enabling users to effortlessly design dynamic, visually stunning websites.
+[Cozy Blocks](https://cozythemes.com/cozy-addons/) is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Seamlessly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it offers a robust library of over 50 advanced, customizable Gutenberg blocks. Designed for ease of use, [Cozy Blocks](https://cozythemes.com/cozy-addons/) caters to both experienced developers and beginners, enabling users to effortlessly design dynamic, visually stunning websites.
 
 Whether you’re building an e-commerce store, a news platform, a corporate site, or any other type of web presence, [Cozy Blocks](https://cozythemes.com/cozy-addons/) provides the powerful tools you need. Supported by flexible customization options and robust support, this plugin empowers you to embrace the future of web design and unlock your creative potential.
 
@@ -55,13 +55,16 @@ Enhance your website building experience with Gutenberg Blocks and Full Site Edi
 * [**Back to Top**](https://cozyblock.cozythemes.com/back-to-top-gutenberg-block/) - Improve user experience with a convenient 'Back to Top' button, enabling effortless return to the page's top for smooth and easy navigation.
 * [**Breadcrumbs**](https://cozyblock.cozythemes.com/related-post-gutenberg-block/) - Enhance navigation on your site with our 'Breadcrumbs' block, offering an intuitive trail of links that guides users through the hierarchical structure, ensuring a seamless and organized browsing experience.
 * Cozy Button - Enhance user interaction with our stylish and versatile 'Button' block, designed to seamlessly integrate into your site for a polished appearance.
+* Contact Form 7 Styler(Pro) - Effortlessly customize and style your Contact Form 7 forms with unique designs using the Contact Form 7 Styler block.
 * [**Cozy Container**](https://cozyblock.cozythemes.com/cozy-container-gutenberg-block/) - Infuse life into your content with our 'Cozy Container' block, offering animation and customization options for a vibrant and personalized user experience.
+* Countdown Timer(Pro) - The Countdown Timer Block creates urgency with a customizable timer for promotions or events, featuring automatic hiding after the offer ends.
 * [**Counter**](https://cozyblock.cozythemes.com/counter-gutenberg-block/) - Highlight achievements and statistics with our 'Counter' block, a sleek number counter that elegantly displays numbers and stats to captivate your audience.
 * [**Call to Action(CTA)**](https://cozyblock.cozythemes.com/call-to-action-gutenberg-block/) - Boost interaction with our 'Call to Action' block, strategically placed to inspire users to take the next step, whether it's making a purchase or subscribing.
 * [**Date & Time**](https://cozyblock.cozythemes.com/date-and-time-gutenberg-block/) - Stay updated with our 'Date & Time' block, effortlessly displaying the current time and date to keep your audience informed and engaged.
 * [**Featured Content Box**](https://cozyblock.cozythemes.com/featured-content-box-gutenberg-block/) - Presenting the 'Featured Content Box' block – your ultimate tool for showcasing standout content! Customize your display for a visually stunning presentation that captivates your audience.
 * [**Icon List**](https://cozyblock.cozythemes.com/icon-list-gutenberg-block/) - Elevate your lists with style using the 'Icon List' block, offering advanced options to effortlessly integrate and customize icons for a visually appealing and informative presentation.
 * [**Icon Picker**](https://cozyblock.cozythemes.com/icon-picker-gutenberg-block/) - Unlock endless possibilities with our 'Icon Picker' block, providing a user-friendly interface to choose from a diverse range of icons, enhancing the visual appeal of your content.
+* Before/After Image(Pro) - Showcase stunning before-and-after images with a sleek, interactive Image Compare block for visual storytelling.
 * [**Portfolio Gallery**](https://fotademo.cozythemes.com/fotademo-pro/portfolios/) - Showcase your work with finesse using the 'Portfolio Gallery' block, designed for creating advanced and visually stunning layouts to present your portfolio in a captivating manner.
 * Pricing Table - Explore pricing options with this clean and organized pricing table. It includes a simple container displaying pricing elements, allowing users to view prices and features at a glance.
 * [**Progress Bar**](https://cozyblock.cozythemes.com/progress-bar-gutenberg-block/) - Keep your audience informed and intrigued with our 'Progress Bar' block, offering dynamic circular, horizontal, and vertical progress indicators for an interactive and visually engaging user experience.
@@ -71,6 +74,7 @@ Enhance your website building experience with Gutenberg Blocks and Full Site Edi
 * [**Social Shares**](https://cozyblock.cozythemes.com/related-post-gutenberg-block/) - Encourage seamless content sharing with our 'Social Shares' block, featuring eye-catching social media icons for enhanced engagement and wider reach.
 * [**Team**](https://cozyblock.cozythemes.com/team-gutenberg-block/) - Introduce your team in style with our 'Team' block, offering both grid and carousel layouts for a visually appealing display of your talented lineup.
 * [**Testimonials**](https://cozyblock.cozythemes.com/testimonial-gutenberg-block/) - Build trust and credibility with our 'Testimonial' block, providing grid and carousel layouts to elegantly showcase user feedback and positive experiences.
+* Toggle Content(Pro) - The toggle content, featuring a switcher or tab-style design, allows users to seamlessly switch between different content sections for a more organized and interactive experience. 
 * [**Popup Builder**](https://cozyblock.cozythemes.com/popup-builder-gutenberg-block/) (Pro) - Capture attention with our 'Popup Builder' block, a pop-up window designed to showcase offers and promotions, providing a compelling way to communicate with your audience.
 
 = Post and Magazine Blocks =
@@ -142,26 +146,9 @@ You can report any security bugs found in the source code of this plugin through
 6. Animation and Hover Effects
 
 == Changelog ==
-= 2.1.4 - January 27, 2025 = 
-* Fix: 'All Product Review' block render styles.
-
-= 2.1.3 - January 27, 2025 = 
-* Update: Freemius SDK to 2.11.0
-* Fix: Core 'Navigation' block hover styles.
+= 2.1.5 - February 13, 2025 = 
+* Add: Toggle Content, Contact Form 7 Styler, Countdown Timer and Toggle Content blocks.
 * Fix: Block improvements.
-
-= 2.1.2 - January 22, 2025 = 
-* Add: Pricing table block.
-* Fix: Block improvements.
-
-= 2.1.1 - January 22, 2025 = 
-* Add: Pricing table block.
-* Fix: Block improvements.
-
-= 2.1.0 - January 08, 2025 = 
-* Add: Version Control.
-* Fix: Block improvements.
-* Update: Removed Elementor Support.
 
 [See changes for all the versions here.](https://plugins.svn.wordpress.org/cozy-addons/trunk/changelog.txt)
 

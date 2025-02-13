@@ -5,17 +5,6 @@
     const accordionClass = `#cozyBlock_${n}`;
     const cozyAccordion = document.querySelector(accordionClass);
 
-    const accordionStyles = [
-      {
-        property: "--cozyIconRotate",
-        value: `${blockOptions.icon.rotate}deg`,
-      },
-      {
-        property: "--cozyIconRotateActive",
-        value: `${blockOptions.icon.rotateActive}deg`,
-      },
-    ];
-
     const cozyAccordionItem = cozyAccordion.querySelectorAll(
       ".cozy-block-accordion-item"
     );
@@ -48,10 +37,6 @@
           }
         }
       });
-    });
-
-    accordionStyles.forEach((style) => {
-      cozyAccordion.style.setProperty(style.property, style.value);
     });
   };
 })(jQuery);

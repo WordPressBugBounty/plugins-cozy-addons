@@ -140,7 +140,7 @@ $block_styles = "
     border-radius: {$attributes['pagination']['borderRadius']}px;
     background-color: {$bullet_color['bg']};
 }
-#$block_id.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+#$block_id.swiper-horizontal .swiper-pagination-bullets .swiper-pagination-bullet {
     margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet['gap']}px);
 }
 #$block_id .swiper-pagination .swiper-pagination-bullet-active {

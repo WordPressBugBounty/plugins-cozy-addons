@@ -12,6 +12,7 @@
     "list",
     "grid"
   ],
+  "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {

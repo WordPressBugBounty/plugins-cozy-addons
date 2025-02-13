@@ -305,52 +305,46 @@ $output .= '</div>';
 
 $wrapper_attributes = get_block_wrapper_attributes();
 
-if ( ! function_exists( 'cozy_block_quick_view_enqueue_google_fonts' ) ) {
-	function cozy_block_quick_view_enqueue_google_fonts( $attributes ) {
-		$font_families = array();
+$font_families = array();
 
-		if ( isset( $attributes['productTitle']['font']['family'] ) && ! empty( $attributes['productTitle']['font']['family'] ) ) {
-			$font_families[] = $attributes['productTitle']['font']['family'];
-		}
-		if ( isset( $attributes['productSummary']['font']['family'] ) && ! empty( $attributes['productSummary']['font']['family'] ) ) {
-			$font_families[] = $attributes['productSummary']['font']['family'];
-		}
-		if ( isset( $attributes['productPrice']['font']['family'] ) && ! empty( $attributes['productPrice']['font']['family'] ) ) {
-			$font_families[] = $attributes['productPrice']['font']['family'];
-		}
-		if ( isset( $attributes['cartButton']['font']['family'] ) && ! empty( $attributes['cartButton']['font']['family'] ) ) {
-			$font_families[] = $attributes['cartButton']['font']['family'];
-		}
+if ( isset( $attributes['productTitle']['font']['family'] ) && ! empty( $attributes['productTitle']['font']['family'] ) ) {
+	$font_families[] = $attributes['productTitle']['font']['family'];
+}
+if ( isset( $attributes['productSummary']['font']['family'] ) && ! empty( $attributes['productSummary']['font']['family'] ) ) {
+	$font_families[] = $attributes['productSummary']['font']['family'];
+}
+if ( isset( $attributes['productPrice']['font']['family'] ) && ! empty( $attributes['productPrice']['font']['family'] ) ) {
+	$font_families[] = $attributes['productPrice']['font']['family'];
+}
+if ( isset( $attributes['cartButton']['font']['family'] ) && ! empty( $attributes['cartButton']['font']['family'] ) ) {
+	$font_families[] = $attributes['cartButton']['font']['family'];
+}
 
-		// Remove duplicate font families.
-		$font_families = array_unique( $font_families );
+// Remove duplicate font families.
+$font_families = array_unique( $font_families );
 
-		$font_query = '';
+$font_query = '';
 
-		// Add other fonts.
-		foreach ( $font_families as $key => $family ) {
-			if ( 0 === $key ) {
-				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			} else {
-				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			}
-		}
-
-		if ( ! empty( $font_query ) ) {
-			// Generate the inline style for the Google Fonts link.
-			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
-
-			// Add the Google Fonts URL as an inline style.
-			wp_add_inline_style( 'cozy-block--quick-view--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
-		}
+// Add other fonts.
+foreach ( $font_families as $key => $family ) {
+	if ( 0 === $key ) {
+		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+	} else {
+		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
 	}
+}
+
+if ( ! empty( $font_query ) ) {
+	// Generate the inline style for the Google Fonts link.
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+	// Add the Google Fonts URL as an inline style.
+	wp_add_inline_style( 'cozy-block--quick-view--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
 }
 
 add_action(
 	'wp_enqueue_scripts',
-	function () use ( $block_styles, $attributes ) {
-		cozy_block_quick_view_enqueue_google_fonts( $attributes );
-
+	function () use ( $block_styles ) {
 		wp_add_inline_style( 'cozy-block--quick-view--style', esc_html( $block_styles ) );
 	}
 );
@@ -451,6 +445,12 @@ echo $render;
 
 				// Add to cart
 				$("body .cozy-block-quick-view__lightbox-wrapper .quick-view__cart-button").on("click", function () {
+					const cartSpinner = $(this).find('.loader-icon');
+					const cartLabel = $(this).find('.cart-button__label');
+
+					cartSpinner.removeClass('display-none');
+					cartLabel.addClass('display-none');
+
 					$.ajax({
 						url: "<?php echo $attributes['ajaxUrl']; ?>",
 						method: "POST",
@@ -463,18 +463,31 @@ echo $render;
 						),
 						},
 						success: function (response) {
+							const cartTooltip = $("body .cozy-block-quick-view__lightbox-wrapper .quick-view__cart-tooltip");
+
+							if(response.success) {
+								cartTooltip.text('Cart Updated!');
+							}else {
+								cartTooltip.text('Sorry! Cannot purchase the product.');
+							}
 							// Trigger Toast Message
-							$("body .cozy-block-quick-view__lightbox-wrapper .quick-view__cart-tooltip").removeClass(
+							cartTooltip.removeClass(
 								"visibility-hidden"
 							);
 							setTimeout(() => {
-								$("body .cozy-block-quick-view__lightbox-wrapper .quick-view__cart-tooltip").addClass(
+								cartTooltip.addClass(
 								"visibility-hidden"
 								);
 							}, 2000);
+
+							cartSpinner.addClass('display-none');
+							cartLabel.removeClass('display-none');
 						},
 						error: function (error) {
 							console.log("Unable to add to cart...");
+
+							cartSpinner.addClass('display-none');
+							cartLabel.removeClass('display-none');
 						},
 					});
 				});
