@@ -1,3 +1,6 @@
+= 2.1.6 - February 19, 2025 = 
+* Fix: Possible cross site scripting in 'Pricing table' block.
+
 = 2.1.5 - February 13, 2025 = 
 * Add: Toggle Content, Contact Form 7 Styler, Countdown Timer and Toggle Content blocks.
 * Fix: Block improvements.

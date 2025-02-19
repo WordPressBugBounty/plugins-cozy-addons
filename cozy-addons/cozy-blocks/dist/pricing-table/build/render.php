@@ -482,7 +482,7 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 				$classes[] = 'position-' . $attributes['featured']['position']['type'];
 				$classes[] = 'align-' . $attributes['featured']['position']['align'];
 				$classes[] = isset( $attributes['featured']['shadow']['enabled'] ) && $attributes['featured']['shadow']['enabled'] ? 'has-box-shadow' : '';
-				printf( '<%1$s class="%2$s">%3$s</%1$s>', esc_attr( $attributes['featured']['tag'] ), esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ), esc_html( $attributes['featured']['content'] ) );
+				printf( '<%1$s class="%2$s">%3$s</%1$s>', esc_attr( preg_replace( '/[=()<>\"\']/', '', $attributes['featured']['tag'] ) ), esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ), esc_html( sanitize_text_field( $attributes['featured']['content'] ) ) );
 			}
 
 			$safe_values = array( 'heading', 'subHeading', 'price', 'description', 'button', 'list' );
@@ -579,13 +579,13 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 
 					if ( 'button' === $key ) {
 						$new_tab = isset( $attributes['button']['link']['newtab'] ) && $attributes['button']['link']['newtab'] ? '_blank' : '';
-						printf( '<%1$s class="pricing-table__%2$s" href="%4$s" target="%5$s">%3$s</%1$s>', esc_attr( $attributes[ $key ]['tag'] ), esc_attr( $classes ), esc_html( $attributes[ $key ]['content'] ), esc_url( $attributes['button']['link']['url'] ), esc_attr( $new_tab ) );
+						printf( '<%1$s class="pricing-table__%2$s" href="%4$s" target="%5$s">%3$s</%1$s>', esc_attr( preg_replace( '/[=()<>\"\']/', '', $attributes[ $key ]['tag'] ) ), esc_attr( $classes ), esc_html( $attributes[ $key ]['content'] ), esc_url( $attributes['button']['link']['url'] ), esc_attr( $new_tab ) );
 					} else {
-						printf( '<%1$s class="pricing-table__%2$s">%3$s</%1$s>', esc_attr( $attributes[ $key ]['tag'] ), esc_attr( $classes ), esc_html( $attributes[ $key ]['content'] ) );
+						printf( '<%1$s class="pricing-table__%2$s">%3$s</%1$s>', esc_attr( preg_replace( '/[=()<>\"\']/', '', $attributes[ $key ]['tag'] ) ), esc_attr( $classes ), esc_html( $attributes[ $key ]['content'] ) );
 					}
 
 					if ( 'price' === $key && ! empty( $attributes['price']['separator']['content'] ) ) {
-						printf( '<%1$s class="price__separator-label">%2$s</%1$s>', esc_attr( $attributes[ $key ]['tag'] ), esc_html( $attributes['price']['separator']['content'] ) );
+						printf( '<%1$s class="price__separator-label">%2$s</%1$s>', esc_attr( preg_replace( '/[=()<>\"\']/', '', $attributes[ $key ]['tag'] ) ), esc_html( $attributes['price']['separator']['content'] ) );
 					}
 					if ( 'button' === $key || 'price' === $key ) {
 						?>

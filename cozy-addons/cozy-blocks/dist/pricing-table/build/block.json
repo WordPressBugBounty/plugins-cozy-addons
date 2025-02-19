@@ -203,7 +203,7 @@
         "textAlign": "center",
         "content": "Upgrade to Pro",
         "link": {
-          "url": "",
+          "url": "#",
           "newtab": false
         },
         "width": "100%",
