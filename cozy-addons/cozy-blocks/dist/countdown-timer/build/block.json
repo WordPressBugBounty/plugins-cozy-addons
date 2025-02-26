@@ -159,12 +159,8 @@
     "itemStyles": {
       "type": "object",
       "default": {
-        "padding": {
-          "top": "",
-          "right": "",
-          "bottom": "",
-          "left": ""
-        },
+        "width": "",
+        "height": "",
         "margin": {
           "top": "",
           "bottom": ""
@@ -184,6 +180,27 @@
           "color": "",
           "position": ""
         },
+        "color": {
+          "text": "",
+          "bg": ""
+        }
+      }
+    },
+    "timerStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
         "font": {
           "size": "44px",
           "weight": "600",

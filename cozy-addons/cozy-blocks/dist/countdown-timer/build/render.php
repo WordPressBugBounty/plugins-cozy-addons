@@ -29,14 +29,15 @@ $styles = array(
 );
 
 $item_styles = array(
-	'padding'        => isset( $attributes['itemStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['itemStyles']['padding'] ) : '',
-	'margin'         => array(
+	'width'  => isset( $attributes['itemStyles']['width'] ) ? $attributes['itemStyles']['width'] : '',
+	'height' => isset( $attributes['itemStyles']['height'] ) ? $attributes['itemStyles']['height'] : '',
+	'margin' => array(
 		'top'    => isset( $attributes['itemStyles']['margin']['top'] ) ? $attributes['itemStyles']['margin']['top'] : '',
 		'bottom' => isset( $attributes['itemStyles']['margin']['bottom'] ) ? $attributes['itemStyles']['margin']['bottom'] : '',
 	),
-	'border'         => isset( $attributes['itemStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['itemStyles']['border'] ) : '',
-	'radius'         => isset( $attributes['itemStyles']['radius'] ) ? $attributes['itemStyles']['radius'] : '',
-	'shadow'         => array(
+	'border' => isset( $attributes['itemStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['itemStyles']['border'] ) : '',
+	'radius' => isset( $attributes['itemStyles']['radius'] ) ? $attributes['itemStyles']['radius'] : '',
+	'shadow' => array(
 		'horizontal' => isset( $attributes['itemStyles']['shadow']['horizontal'] ) ? $attributes['itemStyles']['shadow']['horizontal'] : '',
 		'vertical'   => isset( $attributes['itemStyles']['shadow']['vertical'] ) ? $attributes['itemStyles']['shadow']['vertical'] : '',
 		'blur'       => isset( $attributes['itemStyles']['shadow']['blur'] ) ? $attributes['itemStyles']['shadow']['blur'] : '',
@@ -44,15 +45,26 @@ $item_styles = array(
 		'color'      => isset( $attributes['itemStyles']['shadow']['color'] ) ? $attributes['itemStyles']['shadow']['color'] : '',
 		'position'   => isset( $attributes['itemStyles']['shadow']['position'] ) ? $attributes['itemStyles']['shadow']['position'] : '',
 	),
-	'font'           => array(
-		'size'   => isset( $attributes['itemStyles']['font']['size'] ) ? $attributes['itemStyles']['font']['size'] : '',
-		'family' => isset( $attributes['itemStyles']['font']['family'] ) ? $attributes['itemStyles']['font']['family'] : '',
-	),
-	'line_height'    => isset( $attributes['itemStyles']['lineHeight'] ) ? $attributes['itemStyles']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['itemStyles']['letterSpacing'] ) ? $attributes['itemStyles']['letterSpacing'] : '',
-	'color'          => array(
+	'color'  => array(
 		'text' => isset( $attributes['itemStyles']['color']['text'] ) ? $attributes['itemStyles']['color']['text'] : '',
 		'bg'   => isset( $attributes['itemStyles']['color']['bg'] ) ? $attributes['itemStyles']['color']['bg'] : '',
+	),
+);
+
+$timer_styles = array(
+	'padding'        => isset( $attributes['timerStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['timerStyles']['padding'] ) : '',
+	'border'         => isset( $attributes['timerStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['timerStyles']['border'] ) : '',
+	'radius'         => isset( $attributes['timerStyles']['radius'] ) ? $attributes['timerStyles']['radius'] : '',
+	'font'           => array(
+		'size'   => isset( $attributes['timerStyles']['font']['size'] ) ? $attributes['timerStyles']['font']['size'] : '44px',
+		'weight' => isset( $attributes['timerStyles']['font']['weight'] ) ? $attributes['timerStyles']['font']['weight'] : '600',
+		'family' => isset( $attributes['timerStyles']['font']['family'] ) ? $attributes['timerStyles']['font']['family'] : '',
+	),
+	'line_height'    => isset( $attributes['timerStyles']['lineHeight'] ) ? $attributes['timerStyles']['lineHeight'] : '1.2em',
+	'letter_spacing' => isset( $attributes['timerStyles']['letterSpacing'] ) ? $attributes['timerStyles']['letterSpacing'] : '',
+	'color'          => array(
+		'text' => isset( $attributes['timerStyles']['color']['text'] ) ? $attributes['timerStyles']['color']['text'] : '',
+		'bg'   => isset( $attributes['timerStyles']['color']['bg'] ) ? $attributes['timerStyles']['color']['bg'] : '',
 	),
 );
 
@@ -138,19 +150,15 @@ $block_styles = "
 	gap: {$styles['gap']};
 }
 
-#$block_id .countdown-timer__item {
-	{$item_styles['padding']}
+#$block_id .item__wrap {
+	width: {$item_styles['width']};
+	height: {$item_styles['height']};
 	{$item_styles['border']}
 	border-radius: {$item_styles['radius']};
-	font-size: {$item_styles['font']['size']};
-	font-weight: {$attributes['itemStyles']['font']['weight']};
-	font-family: {$item_styles['font']['family']};
-	line-height: {$item_styles['line_height']};
-	letter-spacing: {$item_styles['letter_spacing']};
 	background-color: {$item_styles['color']['bg']};
 	color: {$item_styles['color']['text']};
 }
-#$block_id .countdown-timer__item.has-box-shadow {
+#$block_id .item__wrap.has-box-shadow {
 	box-shadow: {$item_styles['shadow']['horizontal']} {$item_styles['shadow']['vertical']} {$item_styles['shadow']['blur']} {$item_styles['shadow']['spread']} {$item_styles['shadow']['color']} {$item_styles['shadow']['position']};
 }
 #$block_id .countdown-timer__item.has-separator:before {
@@ -162,6 +170,19 @@ $block_styles = "
 }
 #$block_id .countdown-timer__item.display-inline {
 	gap: {$label_styles['gap']};
+}
+
+#$block_id .countdown-timer__item .timer {
+	{$timer_styles['padding']}
+	{$timer_styles['border']}
+	border-radius: {$timer_styles['radius']};
+	font-size: {$timer_styles['font']['size']};
+	font-weight: {$timer_styles['font']['weight']};
+	font-family: {$timer_styles['font']['family']};
+	line-height: {$timer_styles['line_height']};
+	letter-spacing: {$timer_styles['letter_spacing']};
+	background-color: {$timer_styles['color']['bg']};
+	color: {$timer_styles['color']['text']};
 }
 
 #$block_id .countdown-timer__label {
@@ -229,8 +250,8 @@ $block_styles = "
 
 $font_families = array();
 
-if ( isset( $attributes['itemStyles']['font']['family'] ) && ! empty( $attributes['itemStyles']['font']['family'] ) ) {
-	$font_families[] = $attributes['itemStyles']['font']['family'];
+if ( isset( $attributes['timerStyles']['font']['family'] ) && ! empty( $attributes['timerStyles']['font']['family'] ) ) {
+	$font_families[] = $attributes['timerStyles']['font']['family'];
 }
 
 if ( isset( $attributes['label']['font']['family'] ) && ! empty( $attributes['label']['font']['family'] ) ) {
@@ -348,29 +369,34 @@ $classes[] = $block_id;
 				?>
 				<ul class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
 					<?php
+					$wrap_classes   = array();
+					$wrap_classes[] = 'item__wrap';
+					$wrap_classes[] = $attributes['itemStyles']['shadow']['enabled'] ? 'has-box-shadow' : '';
+
 					$classes   = array();
 					$classes[] = 'countdown-timer__item';
 					$classes[] = 'display-' . $attributes['label']['display'];
-					$classes[] = $attributes['itemStyles']['shadow']['enabled'] ? 'has-box-shadow' : '';
 
 					if ( $attributes['enableOptions']['day'] ) {
 						?>
-						<li class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
-							<?php
-							if ( $attributes['label']['enabled'] && 'top' === $attributes['label']['position'] ) {
-								?>
-								<p class="countdown-timer__label is-top"><?php esc_html_e( 'Days', 'cozy-addons' ); ?></p>
+						<li class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $wrap_classes ) ) ) ); ?>">
+							<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
 								<?php
-							}
-							?>
-							<div class="timer day"><?php echo esc_html( $days ); ?></div>
-							<?php
-							if ( $attributes['label']['enabled'] && 'bottom' === $attributes['label']['position'] ) {
+								if ( $attributes['label']['enabled'] && 'top' === $attributes['label']['position'] ) {
+									?>
+									<p class="countdown-timer__label is-top"><?php esc_html_e( 'Days', 'cozy-addons' ); ?></p>
+									<?php
+								}
 								?>
-								<p class="countdown-timer__label is-bottom"><?php esc_html_e( 'Days', 'cozy-addons' ); ?></p>
+								<div class="timer day"><?php echo esc_html( $days ); ?></div>
 								<?php
-							}
-							?>
+								if ( $attributes['label']['enabled'] && 'bottom' === $attributes['label']['position'] ) {
+									?>
+									<p class="countdown-timer__label is-bottom"><?php esc_html_e( 'Days', 'cozy-addons' ); ?></p>
+									<?php
+								}
+								?>
+							</div>
 						</li>
 						<?php
 					}
@@ -380,22 +406,24 @@ $classes[] = $block_id;
 					if ( $attributes['enableOptions']['hour'] ) {
 						$classes[] = $attributes['enableOptions']['day'] && $attributes['separator']['enabled'] ? 'has-separator' : '';
 						?>
-						<li class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
-							<?php
-							if ( $attributes['label']['enabled'] && 'top' === $attributes['label']['position'] ) {
-								?>
-								<p class="countdown-timer__label is-top"><?php esc_html_e( 'Hours', 'cozy-addons' ); ?></p>
+						<li class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $wrap_classes ) ) ) ); ?>">
+							<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
 								<?php
-							}
-							?>
-							<div class="timer hour"><?php echo esc_html( $hours ); ?></div>
-							<?php
-							if ( $attributes['label']['enabled'] && 'bottom' === $attributes['label']['position'] ) {
+								if ( $attributes['label']['enabled'] && 'top' === $attributes['label']['position'] ) {
+									?>
+									<p class="countdown-timer__label is-top"><?php esc_html_e( 'Hours', 'cozy-addons' ); ?></p>
+									<?php
+								}
 								?>
-								<p class="countdown-timer__label is-bottom"><?php esc_html_e( 'Hours', 'cozy-addons' ); ?></p>
+								<div class="timer hour"><?php echo esc_html( $hours ); ?></div>
 								<?php
-							}
-							?>
+								if ( $attributes['label']['enabled'] && 'bottom' === $attributes['label']['position'] ) {
+									?>
+									<p class="countdown-timer__label is-bottom"><?php esc_html_e( 'Hours', 'cozy-addons' ); ?></p>
+									<?php
+								}
+								?>
+							</div>
 						</li>
 						<?php
 					}
@@ -405,22 +433,24 @@ $classes[] = $block_id;
 					if ( $attributes['enableOptions']['minute'] ) {
 						$classes[] = ( $attributes['enableOptions']['day'] || $attributes['enableOptions']['hour'] ) && $attributes['separator']['enabled'] ? 'has-separator' : '';
 						?>
-						<li class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
-							<?php
-							if ( $attributes['label']['enabled'] && 'top' === $attributes['label']['position'] ) {
-								?>
-								<p class="countdown-timer__label is-top"><?php esc_html_e( 'Minutes', 'cozy-addons' ); ?></p>
+						<li class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $wrap_classes ) ) ) ); ?>">
+							<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
 								<?php
-							}
-							?>
-							<div class="timer minute"><?php echo esc_html( $minutes ); ?></div>
-							<?php
-							if ( $attributes['label']['enabled'] && 'bottom' === $attributes['label']['position'] ) {
+								if ( $attributes['label']['enabled'] && 'top' === $attributes['label']['position'] ) {
+									?>
+									<p class="countdown-timer__label is-top"><?php esc_html_e( 'Minutes', 'cozy-addons' ); ?></p>
+									<?php
+								}
 								?>
-								<p class="countdown-timer__label is-bottom"><?php esc_html_e( 'Minutes', 'cozy-addons' ); ?></p>
+								<div class="timer minute"><?php echo esc_html( $minutes ); ?></div>
 								<?php
-							}
-							?>
+								if ( $attributes['label']['enabled'] && 'bottom' === $attributes['label']['position'] ) {
+									?>
+									<p class="countdown-timer__label is-bottom"><?php esc_html_e( 'Minutes', 'cozy-addons' ); ?></p>
+									<?php
+								}
+								?>
+							</div>
 						</li>
 						<?php
 					}
@@ -430,22 +460,24 @@ $classes[] = $block_id;
 					if ( $attributes['enableOptions']['second'] ) {
 						$classes[] = ( $attributes['enableOptions']['day'] || $attributes['enableOptions']['hour'] || $attributes['enableOptions']['minute'] ) && $attributes['separator']['enabled'] ? 'has-separator' : '';
 						?>
-						<li class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
-							<?php
-							if ( $attributes['label']['enabled'] && 'top' === $attributes['label']['position'] ) {
-								?>
-								<p class="countdown-timer__label is-top"><?php esc_html_e( 'Seconds', 'cozy-addons' ); ?></p>
+						<li class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $wrap_classes ) ) ) ); ?>">
+							<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
 								<?php
-							}
-							?>
-							<div class="timer second"><?php echo esc_html( $seconds ); ?></div>
-							<?php
-							if ( $attributes['label']['enabled'] && 'bottom' === $attributes['label']['position'] ) {
+								if ( $attributes['label']['enabled'] && 'top' === $attributes['label']['position'] ) {
+									?>
+									<p class="countdown-timer__label is-top"><?php esc_html_e( 'Seconds', 'cozy-addons' ); ?></p>
+									<?php
+								}
 								?>
-								<p class="countdown-timer__label is-bottom"><?php esc_html_e( 'Seconds', 'cozy-addons' ); ?></p>
+								<div class="timer second"><?php echo esc_html( $seconds ); ?></div>
 								<?php
-							}
-							?>
+								if ( $attributes['label']['enabled'] && 'bottom' === $attributes['label']['position'] ) {
+									?>
+									<p class="countdown-timer__label is-bottom"><?php esc_html_e( 'Seconds', 'cozy-addons' ); ?></p>
+									<?php
+								}
+								?>
+							</div>
 						</li>
 						<?php
 					}
@@ -467,9 +499,9 @@ $classes[] = $block_id;
 				?>
 				<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
 					<?php
-						$classes   = array();
-						$classes[] = 'end-text';
-						$classes[] = 'display-' . $attributes['endOptions']['width'];
+					$classes   = array();
+					$classes[] = 'end-text';
+					$classes[] = 'display-' . $attributes['endOptions']['width'];
 					?>
 					<p class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>"><?php echo esc_html( $attributes['endOptions']['label'] ); ?></p>
 				</div>

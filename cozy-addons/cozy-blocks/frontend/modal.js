@@ -64,6 +64,13 @@
       cozyModal.addClass("display-none");
     });
 
+    // When the user presses the Escape key, close the modal
+    $(document).keydown(function (event) {
+      if (event.key === "Escape") {
+        showModal(false);
+      }
+    });
+
     if (
       blockOptions.modalType === "default" &&
       blockOptions.modalEvent === "click"

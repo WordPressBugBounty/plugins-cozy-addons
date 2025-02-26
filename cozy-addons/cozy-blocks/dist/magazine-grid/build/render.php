@@ -2,11 +2,6 @@
 $client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
-$attributes['ajaxUrl'] = admin_url( 'admin-ajax.php' );
-$attributes['nonce']   = wp_create_nonce( 'cozy_block_magazine_grid_load_more' );
-wp_localize_script( 'cozy-block--magazine-grid--frontend-script', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block--magazine-grid--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMagazineGrid( "' . esc_html( $client_id ) . '" ) }) ' );
-
 $header_box = array(
 	'padding' => cozy_render_TRBL( 'padding', $attributes['headerBox']['padding'] ),
 	'border'  => isset( $attributes['headerBox']['border'] ) ? cozy_render_TRBL( 'border', $attributes['headerBox']['border'] ) : '',
@@ -941,8 +936,8 @@ $cozy_block_magazine_grid_args = array(
 	'ignore_sticky_posts' => $attributes['enableOptions']['ignoreSticky'],
 	'category__in'        => $selected_category,
 	'post__not_in'        => array(),
+	'status'              => 'published',
 );
-
 
 $featured_post_data = array();
 
@@ -972,6 +967,24 @@ if ( $attributes['featuredPostOptions']['enabled'] ) {
 $excluded_post_ids = isset( $attributes['exclude'] ) ? explode( ',', sanitize_text_field( $attributes['exclude'] ) ) : array();
 if ( is_array( $excluded_post_ids ) && ! empty( $excluded_post_ids ) ) {
 	$cozy_block_magazine_grid_args['post__not_in'] = array_merge( $cozy_block_magazine_grid_args['post__not_in'], $excluded_post_ids );
+}
+
+if ( isset( $attributes['offset'] ) && ! empty( $attributes['offset'] ) ) {
+	$cozy_block_magazine_grid_args['offset'] = $attributes['offset'];
+
+	$offset_args     = array(
+		'post_type'           => 'post',
+		'orderby'             => 'date',
+		'order'               => 'DESC',
+		'ignore_sticky_posts' => $attributes['enableOptions']['ignoreSticky'],
+		'category__in'        => $selected_category,
+		'fields'              => 'ids',
+		'posts_per_page'      => $attributes['offset'],
+	);
+	$offset_post_ids = get_posts( $offset_args );
+
+
+	$attributes['exclude'] = $attributes['exclude'] . ',' . implode( ',', $offset_post_ids );
 }
 
 $additional_post_data = get_cozy_block_magazine_grid_posts( $cozy_block_magazine_grid_args );
@@ -1051,74 +1064,74 @@ if ( ! $attributes['featuredPostOptions']['enabled'] && $attributes['ajaxLoader'
 
 $output .= '</div>';
 
-if ( ! function_exists( 'cozy_block_magazine_grid_enqueue_google_fonts' ) ) {
-	function cozy_block_magazine_grid_enqueue_google_fonts( $attributes ) {
-		$font_families = array();
-
-		if ( isset( $attributes['headingStyles']['font']['family'] ) && ! empty( $attributes['headingStyles']['font']['family'] ) ) {
-			$font_families[] = $attributes['headingStyles']['font']['family'];
-		}
-		if ( isset( $attributes['subHeading']['font']['family'] ) && ! empty( $attributes['subHeading']['font']['family'] ) ) {
-			$font_families[] = $attributes['subHeading']['font']['family'];
-		}
-		if ( isset( $attributes['featuredPostCategories']['font']['family'] ) && ! empty( $attributes['featuredPostCategories']['font']['family'] ) ) {
-			$font_families[] = $attributes['featuredPostCategories']['font']['family'];
-		}
-		if ( isset( $attributes['postCategories']['font']['family'] ) && ! empty( $attributes['postCategories']['font']['family'] ) ) {
-			$font_families[] = $attributes['postCategories']['font']['family'];
-		}
-		if ( isset( $attributes['featuredPostOptions']['title']['font']['family'] ) && ! empty( $attributes['featuredPostOptions']['title']['font']['family'] ) ) {
-			$font_families[] = $attributes['featuredPostOptions']['title']['font']['family'];
-		}
-		if ( isset( $attributes['postOptions']['title']['font']['family'] ) && ! empty( $attributes['postOptions']['title']['font']['family'] ) ) {
-			$font_families[] = $attributes['postOptions']['title']['font']['family'];
-		}
-		if ( isset( $attributes['postMeta']['font']['family'] ) && ! empty( $attributes['postMeta']['font']['family'] ) ) {
-			$font_families[] = $attributes['postMeta']['font']['family'];
-		}
-		if ( isset( $attributes['featuredReadMore']['font']['family'] ) && ! empty( $attributes['featuredReadMore']['font']['family'] ) ) {
-			$font_families[] = $attributes['featuredReadMore']['font']['family'];
-		}
-		if ( isset( $attributes['readMore']['font']['family'] ) && ! empty( $attributes['readMore']['font']['family'] ) ) {
-			$font_families[] = $attributes['readMore']['font']['family'];
-		}
-		if ( isset( $attributes['ajaxLoader']['font']['family'] ) && ! empty( $attributes['ajaxLoader']['font']['family'] ) ) {
-			$font_families[] = $attributes['ajaxLoader']['font']['family'];
-		}
-
-		// Remove duplicate font families.
-		$font_families = array_unique( $font_families );
-
-		$font_query = '';
-
-		// Add other fonts.
-		foreach ( $font_families as $key => $family ) {
-			if ( 0 === $key ) {
-				$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			} else {
-				$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
-			}
-		}
-
-		if ( ! empty( $font_query ) ) {
-			// Generate the inline style for the Google Fonts link.
-			$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
-
-			// Add the Google Fonts URL as an inline style.
-			wp_add_inline_style( 'cozy-block--magazine-grid--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
-		}
-	}
-}
-
 add_action(
 	'wp_enqueue_scripts',
-	function () use ( $block_styles, $attributes ) {
-		cozy_block_magazine_grid_enqueue_google_fonts( $attributes );
-
-		wp_add_inline_style( 'cozy-block--magazine-grid--style', esc_html( $block_styles ) );
+	function () use ( $block_styles ) {
+		wp_add_inline_style( 'cozy-block--magazine-grid--style', $block_styles );
 	}
 );
 
 $wrapper_attributes = get_block_wrapper_attributes();
-$render             = sprintf( '<div class="cozy-block-wrapper"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
+
+$font_families = array();
+
+if ( isset( $attributes['headingStyles']['font']['family'] ) && ! empty( $attributes['headingStyles']['font']['family'] ) ) {
+	$font_families[] = $attributes['headingStyles']['font']['family'];
+}
+if ( isset( $attributes['subHeading']['font']['family'] ) && ! empty( $attributes['subHeading']['font']['family'] ) ) {
+	$font_families[] = $attributes['subHeading']['font']['family'];
+}
+if ( isset( $attributes['featuredPostCategories']['font']['family'] ) && ! empty( $attributes['featuredPostCategories']['font']['family'] ) ) {
+	$font_families[] = $attributes['featuredPostCategories']['font']['family'];
+}
+if ( isset( $attributes['postCategories']['font']['family'] ) && ! empty( $attributes['postCategories']['font']['family'] ) ) {
+	$font_families[] = $attributes['postCategories']['font']['family'];
+}
+if ( isset( $attributes['featuredPostOptions']['title']['font']['family'] ) && ! empty( $attributes['featuredPostOptions']['title']['font']['family'] ) ) {
+	$font_families[] = $attributes['featuredPostOptions']['title']['font']['family'];
+}
+if ( isset( $attributes['postOptions']['title']['font']['family'] ) && ! empty( $attributes['postOptions']['title']['font']['family'] ) ) {
+	$font_families[] = $attributes['postOptions']['title']['font']['family'];
+}
+if ( isset( $attributes['postMeta']['font']['family'] ) && ! empty( $attributes['postMeta']['font']['family'] ) ) {
+	$font_families[] = $attributes['postMeta']['font']['family'];
+}
+if ( isset( $attributes['featuredReadMore']['font']['family'] ) && ! empty( $attributes['featuredReadMore']['font']['family'] ) ) {
+	$font_families[] = $attributes['featuredReadMore']['font']['family'];
+}
+if ( isset( $attributes['readMore']['font']['family'] ) && ! empty( $attributes['readMore']['font']['family'] ) ) {
+	$font_families[] = $attributes['readMore']['font']['family'];
+}
+if ( isset( $attributes['ajaxLoader']['font']['family'] ) && ! empty( $attributes['ajaxLoader']['font']['family'] ) ) {
+	$font_families[] = $attributes['ajaxLoader']['font']['family'];
+}
+
+// Remove duplicate font families.
+$font_families = array_unique( $font_families );
+
+$font_query = '';
+
+// Add other fonts.
+foreach ( $font_families as $key => $family ) {
+	if ( 0 === $key ) {
+		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+	} else {
+		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+	}
+}
+
+if ( ! empty( $font_query ) ) {
+	// Generate the inline style for the Google Fonts link.
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . rawurlencode( $font_query );
+
+	// Add the Google Fonts URL as an inline style.
+	wp_add_inline_style( 'cozy-block--magazine-grid--style', '@import url("' . rawurldecode( esc_url( $google_fonts_url ) ) . '");' );
+}
+
+$attributes['ajaxUrl'] = admin_url( 'admin-ajax.php' );
+$attributes['nonce']   = wp_create_nonce( 'cozy_block_magazine_grid_load_more' );
+wp_localize_script( 'cozy-block--magazine-grid--frontend-script', $block_id, $attributes );
+wp_add_inline_script( 'cozy-block--magazine-grid--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMagazineGrid( "' . esc_html( $client_id ) . '" ) }) ' );
+
+$render = sprintf( '<div class="cozy-block-wrapper"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;

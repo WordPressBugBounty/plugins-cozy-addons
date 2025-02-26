@@ -86,6 +86,10 @@
       "type": "string",
       "default": ""
     },
+    "offset": {
+      "type": "number",
+      "default": ""
+    },
     "layout": {
       "type": "string",
       "default": "featured-left"

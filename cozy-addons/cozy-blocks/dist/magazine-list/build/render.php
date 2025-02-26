@@ -580,11 +580,30 @@ $cozy_block_magazine_list_args = array(
 	'ignore_sticky_posts' => $attributes['enableOptions']['ignoreSticky'],
 	'category__in'        => $selected_category,
 	'post__not_in'        => array(),
+	'status'              => 'published',
 );
 
 $excluded_post_ids = isset( $attributes['exclude'] ) ? explode( ',', sanitize_text_field( $attributes['exclude'] ) ) : array();
 if ( is_array( $excluded_post_ids ) && ! empty( $excluded_post_ids ) ) {
 	$cozy_block_magazine_list_args['post__not_in'] = array_merge( $cozy_block_magazine_list_args['post__not_in'], $excluded_post_ids );
+}
+
+if ( isset( $attributes['offset'] ) && ! empty( $attributes['offset'] ) ) {
+	$cozy_block_magazine_list_args['offset'] = $attributes['offset'];
+
+	$offset_args     = array(
+		'post_type'           => 'post',
+		'orderby'             => 'date',
+		'order'               => 'DESC',
+		'ignore_sticky_posts' => $attributes['enableOptions']['ignoreSticky'],
+		'category__in'        => $selected_category,
+		'fields'              => 'ids',
+		'posts_per_page'      => $attributes['offset'],
+	);
+	$offset_post_ids = get_posts( $offset_args );
+
+
+	$attributes['exclude'] = $attributes['exclude'] . ',' . implode( ',', $offset_post_ids );
 }
 
 $additional_post_data = get_cozy_block_magazine_list_posts( $cozy_block_magazine_list_args );

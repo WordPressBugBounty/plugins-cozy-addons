@@ -33,10 +33,10 @@ if ( ! function_exists( 'cozy_addons_activation_admin_notice' ) ) :
 						<h4><?php esc_html_e( 'Welcome to the Cozy Blocks!', 'cozy-addons' ); ?></h4>
 						<!-- plugins list need to be install -->
 						<h1>
-							<?php esc_html_e( 'Optimize your workflow effortlessly! Cozy Blocks pairs perfectly with our 40+ Advanced Blocks.', 'cozy-addons' ); ?>
+							<?php esc_html_e( 'Optimize your workflow effortlessly! Cozy Blocks pairs perfectly with our 50+ Advanced Blocks.', 'cozy-addons' ); ?>
 						</h1>
 						<p>
-							<?php esc_html_e( 'Supercharge your website design with Cozy Blocks Premium! Access up to 40+ advanced blocks, enjoy regular updates, and receive priority support. Upgrade now for an ad-free, seamless editing experience! ', 'cozy-addons' ); ?> 🚀</p>
+							<?php esc_html_e( 'Supercharge your website design with Cozy Blocks Premium! Access up to 50+ advanced blocks, enjoy regular updates, and receive priority support. Upgrade now for an ad-free, seamless editing experience! ', 'cozy-addons' ); ?> 🚀</p>
 						<a href="<?php echo esc_url( admin_url() ); ?>admin.php?page=_cozy_companions" class="cozy-btns btns-more"><?php esc_html_e( 'Explore Cozy Blocks', 'cozy-addons' ); ?></a>
 						<a href="https://cozythemes.com/cozy-addons/" class="cozy-btns btns-more checkout-btn" target="_blank"><?php esc_html_e( 'Checkout Pro', 'cozy-addons' ); ?></a>
 					</div>

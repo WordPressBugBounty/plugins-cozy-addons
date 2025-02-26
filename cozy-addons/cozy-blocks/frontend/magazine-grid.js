@@ -8,7 +8,7 @@
       attributes.ajaxLoader.enabled
     ) {
       if (attributes.ajaxLoader.type === "default") {
-        let offset = 1;
+        let offset = 0;
         $(blockID + " .cozy-block-magazine-grid__ajax-loader").click(
           function () {
             var button = $(this);
@@ -58,7 +58,7 @@
           blockID + ".has-infinite-scroll"
         );
         let isFetching = false; // Flag to prevent multiple AJAX requests
-        let offset = 1; // Initialize offset
+        let offset = 0; // Initialize offset
         let hasNextChunk = true;
 
         function isContainerNearingEnd(el) {

@@ -279,7 +279,7 @@ if ( $is_cozy_addons_active ) {
 
 					<li>
 						<div class="cozy-display-flex">
-							<a style="display:flex;gap:10px;align-items:center;" href="#" target="_blank" rel="noopener">
+							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/contact-form-styler-gutenberg-block/" target="_blank" rel="noopener">
 								<svg
 									width="27"
 									height="21"
@@ -359,7 +359,7 @@ if ( $is_cozy_addons_active ) {
 
 					<li>
 						<div class="cozy-display-flex">
-							<a style="display:flex;gap:10px;align-items:center;" href="#" target="_blank" rel="noopener">
+							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/countdown-timer-gutenberg-block/" target="_blank" rel="noopener">
 								<svg
 									width="23"
 									height="25"
@@ -576,7 +576,7 @@ if ( $is_cozy_addons_active ) {
 
 					<li>
 						<div class="cozy-display-flex">
-							<a style="display:flex;gap:10px;align-items:center;" href="#" target="_blank" rel="noopener">
+							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/before-after-image-gutenberg-block/" target="_blank" rel="noopener">
 								<svg
 									width="28"
 									height="20"
@@ -704,7 +704,7 @@ if ( $is_cozy_addons_active ) {
 					</li>
 
 					<li>
-						<a href="#" target="_blank" rel="noopener">
+						<a href="https://cozyblock.cozythemes.com/pricing-table-gutenberg-block/" target="_blank" rel="noopener">
 							<div class="cozy-display-flex">
 								<svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M17.5 1.5H9.5V20.5H17.5V1.5ZM8 0V22H19V0H8Z" fill="#0C50FF" />
@@ -920,7 +920,7 @@ if ( $is_cozy_addons_active ) {
 
 					<li>
 						<div class="cozy-display-flex">
-							<a style="display:flex;gap:10px;align-items:center;" href="#" target="_blank" rel="noopener">
+							<a style="display:flex;gap:10px;align-items:center;" href="https://cozyblock.cozythemes.com/pricing-table-gutenberg-block/#toggle-content" target="_blank" rel="noopener">
 								<svg
 									width="27"
 									height="13"
