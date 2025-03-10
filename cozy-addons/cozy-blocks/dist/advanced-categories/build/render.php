@@ -310,7 +310,12 @@ $args = array(
 	'number'     => -1 !== $attributes['perPage'] ? $attributes['perPage'] : '',
 	'order'      => 'DESC',
 	'orderby'    => 'count',
+	// 'parent'     => 0,
 );
+
+if ( isset( $attributes['showNestedCategory'] ) && ! filter_var( $attributes['showNestedCategory'], FILTER_VALIDATE_BOOLEAN ) ) {
+	$args['parent'] = 0;
+}
 
 $categories = get_categories( $args );
 

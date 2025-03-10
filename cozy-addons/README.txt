@@ -4,7 +4,7 @@ Tags: blocks, gutenberg blocks, gutenberg, woocommerce blocks, block
 Requires PHP: 7.3.0
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 2.1.7
+Stable tag: 2.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
@@ -146,16 +146,9 @@ You can report any security bugs found in the source code of this plugin through
 6. Animation and Hover Effects
 
 == Changelog ==
-= 2.1.7 - February 26, 2025 = 
-* Fix: Block Improvements.
-* Add: Post Offset option for 'Magazine Grid' & 'Magazine List'.
-
-= 2.1.6 - February 19, 2025 = 
-* Fix: Possible cross site scripting in 'Pricing table' block.
-
-= 2.1.5 - February 13, 2025 = 
-* Add: Toggle Content, Contact Form 7 Styler, Countdown Timer and Toggle Content blocks.
-* Fix: Block improvements.
+= 2.1.8 - March 10, 2025 = 
+* Fix: Core 'Navigation' block Hover Styles attribute.
+* Add: Show/Hide nested categories option in 'Advanced Categories' block.
 
 [See changes for all the versions here.](https://plugins.svn.wordpress.org/cozy-addons/trunk/changelog.txt)
 

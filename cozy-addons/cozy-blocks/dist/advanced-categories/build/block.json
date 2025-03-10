@@ -70,6 +70,10 @@
       "type": "number",
       "default": -1
     },
+    "showNestedCategory": {
+      "type": "boolean",
+      "default": true
+    },
     "categoryOptions": {
       "type": "array",
       "default": []

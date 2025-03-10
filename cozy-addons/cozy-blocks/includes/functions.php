@@ -580,7 +580,8 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 		$existing_style_attribute = $style_matches[1] ?? '';
 
 		$block_content = preg_replace(
-			'/<ul class=".*?\b' . preg_quote( $existing_class_attribute, '/' ) . '\b.*?"/',
+			// '/<ul class=".*?\b' . preg_quote( $existing_class_attribute, '/' ) . '\b.*?"/',
+			'/<ul[^>]*?\s+class="([^"]+)"/',
 			'<ul class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( $existing_style_attribute . $inline_styles ) . '"',
 			$block_content,
 			1
