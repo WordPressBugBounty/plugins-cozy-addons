@@ -1,10 +1,10 @@
 === Cozy Blocks – Page Builder for Gutenberg & Site Editor with Post Blocks, WooCommerce Blocks, Magazine Blocks & WordPress Gutenberg Blocks ===
 Contributors: CozyThemes
 Tags: blocks, gutenberg blocks, gutenberg, woocommerce blocks, block
-Requires PHP: 7.3.0
+Requires PHP: 7.3
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 2.1.8
+Stable tag: 2.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
@@ -146,6 +146,10 @@ You can report any security bugs found in the source code of this plugin through
 6. Animation and Hover Effects
 
 == Changelog ==
+= 2.1.9 - March 24, 2025 = 
+* Fix: 'Related Post' block's render query.
+* Fix: 'Categorized Post Tabs' layout style.
+
 = 2.1.8 - March 10, 2025 = 
 * Fix: Core 'Navigation' block Hover Styles attribute.
 * Add: Show/Hide nested categories option in 'Advanced Categories' block.

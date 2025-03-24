@@ -45,14 +45,13 @@ class QueryLoop {
 	}
 
 	public function apply_cozy_related_posts( $pre_render, $parsed_block ) {
-		if ( isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] && isset( $parsed_block['parents'] ) && in_array( 'cozy-block/related-post', $parsed_block['parents'], true ) ) {
-			$all_post_ids    = $this->get_all_post_ids();
+		if ( is_single() && isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] && in_array( 'cozy-block/related-post', $parsed_block['attrs']['query']['parents'], true ) ) {
 			$current_post_id = get_the_ID();
 
 			$tags       = wp_get_post_tags( $current_post_id );
 			$categories = wp_get_post_categories( $current_post_id );
 
-			// Collect tag and category IDs
+			// Collect tag and category IDs.
 			$tag_ids      = array();
 			$category_ids = array();
 
@@ -64,83 +63,46 @@ class QueryLoop {
 				$category_ids[] = $category;
 			}
 
-			// Query related posts based on tags and categories
-			$related_args = array(
-				'post__not_in'   => array( $current_post_id ), // Exclude the current post
-				'tax_query'      => array(
-					'relation' => 'OR',
-					array(
-						'taxonomy' => 'post_tag',
-						'field'    => 'id',
-						'terms'    => $tag_ids,
-						'operator' => 'IN',
-					),
-					array(
-						'taxonomy' => 'category',
-						'field'    => 'id',
-						'terms'    => $category_ids,
-						'operator' => 'IN',
-					),
-				),
-				'posts_per_page' => -1, // Number of related posts to display
-				'orderby'        => 'rand', // Optional: Order by random
-				'fields'         => 'ids', // Retrieve only post IDs
+			\add_filter(
+				'query_loop_block_query_vars',
+				function ( $default_query ) use ( $parsed_block, $category_ids, $tag_ids, $current_post_id ) {
+					$query_args = array();
+
+					$query_args['post__not_in'] = array( intval( $current_post_id ) );
+
+					$query_args['tax_query'] = array(
+						'relation' => 'OR', // Allows matching either condition
+						array(
+							'taxonomy' => 'category',
+							'field'    => 'term_id', // You can use 'slug' or 'term_id'
+							'terms'    => $category_ids, // Replace with your category IDs
+						),
+						array(
+							'taxonomy' => 'post_tag',
+							'field'    => 'term_id',
+							'terms'    => $tag_ids, // Replace with your tag IDs
+						),
+					);
+
+					if ( is_single() && isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] && in_array( 'cozy-block/related-post', $parsed_block['attrs']['query']['parents'], true ) ) {
+						// Return the merged query.
+						$filtered_query = array_merge(
+							// $parsed_block['attrs']['query'],
+							$default_query,
+							$query_args
+						);
+
+						return $filtered_query;
+					} 
+					
+					return $default_query;
+				},
+				10,
+				2
 			);
 
-			$related_query = new \WP_Query( $related_args );
-
-			if ( $related_query->have_posts() ) {
-				$related_post_ids = $related_query->posts;
-
-				$filtered_post_ids = array_diff( $all_post_ids, $related_post_ids );
-
-				$query_loop_attrs = $parsed_block['attrs'];
-
-				if ( isset( $query_loop_attrs['query']['parents'][0] ) && 'cozy-block/related-post' === $query_loop_attrs['query']['parents'][0] ) {
-					\add_filter(
-						'query_loop_block_query_vars',
-						function ( $default_query ) use ( $parsed_block, $filtered_post_ids, $query_loop_attrs ) {
-							$query_args                       = array();
-								$query_args['post__not_in']   = $filtered_post_ids;
-								$query_args['posts_per_page'] = $query_loop_attrs['query']['perPage'];
-								// Return the merged query.
-								$filtered_query = array_merge(
-									$parsed_block['attrs']['query'],
-									$query_args
-								);
-
-								return $filtered_query;
-						},
-						10,
-						2
-					);
-				}
-				// Now $related_post_ids contains an array of post IDs.
-			} else {
-				// No related posts found.
-				$query_loop_attrs = $parsed_block['attrs'];
-
-				if ( isset( $query_loop_attrs['query']['parents'][0] ) && 'cozy-block/related-post' === $query_loop_attrs['query']['parents'][0] ) {
-					\add_filter(
-						'query_loop_block_query_vars',
-						function ( $default_query ) use ( $parsed_block ) {
-
-								$query_args = array();
-
-								$query_args['post__not_in'] = $this->get_all_post_ids();
-
-								// Return the merged query.
-								return array_merge(
-									$parsed_block['attrs']['query'],
-									$query_args
-								);
-						},
-						10,
-						2
-					);
-				}
-			}
 		}
+
 		return $pre_render;
 	}
 
