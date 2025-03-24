@@ -1,3 +1,6 @@
+= 2.1.20 - March 24, 2025 = 
+* Fix: 'Related Post' block's render query.
+
 = 2.1.9 - March 24, 2025 = 
 * Fix: 'Related Post' block's render query.
 * Fix: 'Categorized Post Tabs' layout style.

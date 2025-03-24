@@ -16,7 +16,7 @@
  * Plugin Name:       Cozy Blocks
  * Plugin URI:        https://cozythemes.com/cozy-addons
  * Description:       Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
- * Version:           2.1.9
+ * Version:           2.1.20
  * Author:            CozyThemes
  * Author URI:        https://cozythemes.com/
  * License:           GPL-2.0+
@@ -96,7 +96,7 @@ function deactivate_cozy_addons() {
 register_activation_hook( __FILE__, 'activate_cozy_addons' );
 register_deactivation_hook( __FILE__, 'deactivate_cozy_addons' );
 
-define( 'COZY_ADDONS_VERSION', '2.1.9' );
+define( 'COZY_ADDONS_VERSION', '2.1.20' );
 
 if ( ! class_exists( 'Cozy_Addons' ) ) :
 	final class Cozy_Addons {

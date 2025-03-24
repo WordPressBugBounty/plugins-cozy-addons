@@ -45,7 +45,7 @@ class QueryLoop {
 	}
 
 	public function apply_cozy_related_posts( $pre_render, $parsed_block ) {
-		if ( is_single() && isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] && in_array( 'cozy-block/related-post', $parsed_block['attrs']['query']['parents'], true ) ) {
+		if ( is_single() && isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] && isset( $parsed_block['attrs']['query']['parents'] ) && in_array( 'cozy-block/related-post', $parsed_block['attrs']['query']['parents'], true ) ) {
 			$current_post_id = get_the_ID();
 
 			$tags       = wp_get_post_tags( $current_post_id );
@@ -84,7 +84,7 @@ class QueryLoop {
 						),
 					);
 
-					if ( is_single() && isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] && in_array( 'cozy-block/related-post', $parsed_block['attrs']['query']['parents'], true ) ) {
+					if ( is_single() && isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] && isset( $parsed_block['attrs']['query']['parents'] ) && in_array( 'cozy-block/related-post', $parsed_block['attrs']['query']['parents'], true ) ) {
 						// Return the merged query.
 						$filtered_query = array_merge(
 							// $parsed_block['attrs']['query'],
@@ -93,8 +93,8 @@ class QueryLoop {
 						);
 
 						return $filtered_query;
-					} 
-					
+					}
+
 					return $default_query;
 				},
 				10,
