@@ -87,7 +87,7 @@
       "default": ""
     },
     "offset": {
-      "type": "number",
+      "type": "string",
       "default": ""
     },
     "enableOptions": {

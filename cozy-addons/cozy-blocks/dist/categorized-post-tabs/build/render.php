@@ -217,7 +217,7 @@ $block_styles = "
     {$heading['padding']}
     {$heading['border']}
     {$heading['radius']}
-    font-size: {$attributes['headingStyles']['font']['size']};
+    font-size: clamp(20px, calc(3vw + 4px), {$attributes['headingStyles']['font']['size']});
     font-weight: {$attributes['headingStyles']['font']['weight']};
     font-family: {$attributes['headingStyles']['font']['family']};
 	text-transform: {$heading['letter_case']};
@@ -236,7 +236,7 @@ $block_styles = "
     {$tab_item['padding']}
     {$tab_item['border']}
     border-radius: {$attributes['tabStyles']['radius']};
-    font-size: {$attributes['tabStyles']['font']['size']};
+    font-size: clamp(18px, calc(3vw + 4px), {$attributes['tabStyles']['font']['size']});
     font-weight: {$attributes['tabStyles']['font']['weight']};
     font-family: {$attributes['tabStyles']['font']['family']};
 	text-transform: {$tab_item['letter_case']};
@@ -281,6 +281,11 @@ $block_styles = "
 	height: {$featured_image['height']};
 	border-radius: {$attributes['featuredPostOptions']['image']['radius']};
 }
+@media only screen and (max-width: 1024px) {
+	#$block_id .featured-post__image img {
+		max-height: {$featured_image['height']};
+	}
+}
 #$block_id .featured-post__content-overlay-wrapper {
 	padding: {$featured_content['outer_vgap']} {$featured_content['outer_hgap']};
 	margin-top: {$attributes['featuredPostOptions']['content']['margin']['top']}px;
@@ -320,7 +325,7 @@ $block_styles = "
 #$block_id .featured-post__title {
 	margin-top: {$attributes['featuredPostOptions']['title']['margin']['top']};
 	margin-bottom: {$attributes['featuredPostOptions']['title']['margin']['bottom']};
-	font-size: {$attributes['featuredPostOptions']['title']['font']['size']};
+	font-size: clamp(16px, calc(3vw + 4px), {$attributes['featuredPostOptions']['title']['font']['size']});
 	font-weight: {$attributes['featuredPostOptions']['title']['font']['weight']};
 	font-family: {$featured_content['title_font_family']};
 	text-transform: {$attributes['featuredPostOptions']['title']['letterCase']};
@@ -425,6 +430,11 @@ $block_styles = "
 	height: {$post_image['height']};
 	border-radius: {$attributes['postOptions']['image']['radius']};
 }
+@media only screen and (max-width: 1024px) {
+	#$block_id .post__image img {
+		max-height: {$post_image['height']};
+	}
+}
 
 #$block_id .post__content-wrapper {
 	{$post_content['padding']}
@@ -459,7 +469,7 @@ $block_styles = "
 #$block_id .post__title {
 	margin-top: {$attributes['postOptions']['title']['margin']['top']};
 	margin-bottom: {$attributes['postOptions']['title']['margin']['bottom']};
-	font-size: {$attributes['postOptions']['title']['font']['size']};
+	font-size: clamp(16px, calc(3vw + 4px), {$attributes['postOptions']['title']['font']['size']});
 	font-weight: {$attributes['postOptions']['title']['font']['weight']};
 	font-family: {$post_content['title_font_family']};
 	text-transform: {$attributes['postOptions']['title']['letterCase']};
@@ -593,6 +603,8 @@ if ( ! function_exists( 'get_cozy_block_categorized_posts' ) ) {
 				}
 				$post_data['post_categories'] = $post_categories;
 
+				$post_data['post_excerpt'] = get_the_excerpt( $post_id );
+
 				$post_data['post_author_name']    = get_the_author_meta( 'display_name', $post->post_author ) ?? '';
 				$post_data['post_author_url']     = get_author_posts_url( $post_data['post_author'] ) ?? '';
 				$post_data['post_link']           = $post_link;
@@ -636,9 +648,13 @@ if ( ! function_exists( 'get_cozy_block_categorized_featured_post' ) ) {
 		}
 		$post_data['post_categories'] = $post_categories;
 
+		$post_data['post_excerpt'] = get_the_excerpt( $post_id );
+
 		$post_data['post_author_name']    = get_the_author_meta( 'display_name', $post_data['post_author'] ) ?? '';
+		$post_data['post_author_url']     = get_author_posts_url( $post_data['post_author'] ) ?? '';
 		$post_data['post_link']           = $post_link;
-		$post_data['post_date_formatted'] = get_the_date( '', $post_data );
+		$post_data['post_date_formatted'] = get_the_date( '', $post_id );
+		$post_data['comment_link']        = get_comments_link( $post_id );
 		$additional_post_data[]           = $post_data;
 		// print_r( $additional_post_data );
 		return $additional_post_data;
@@ -756,7 +772,15 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_data' ) ) {
 
 		if ( $attributes['enableOptions']['postContent'] ) {
 			$output .= '<div class="post__content">';
-			$output .= '<div>' . cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] ) . '</div>';
+
+			$output .= '<div>';
+			if ( isset( $post_data['post_excerpt'] ) && ! empty( $post_data['post_excerpt'] ) ) {
+				$output .= $post_data['post_excerpt'];
+			} else {
+				$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] );
+			}
+			$output .= '</div>';
+
 			if ( $attributes['enableOptions']['readMore'] ) {
 				$open_new_tab = isset( $attributes['enableOptions']['readMoreNewTab'] ) && $attributes['enableOptions']['readMoreNewTab'] ? '_blank' : '';
 				$output      .= '<span class="post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="' . $open_new_tab . '" rel="noopener">' . esc_html__( 'Read More', 'cozy-addons' ) . '</a></span>';
@@ -880,7 +904,15 @@ if ( ! function_exists( 'render_cozy_block_categorized_post_tabs_featured_data' 
 			if ( isset( $attributes['enableOptions']['featuredPostContent'] ) && $attributes['enableOptions']['featuredPostContent'] ) {
 				$output          .= '<div class="featured-post__content">';
 				$featured_excerpt = isset( $attributes['enableOptions']['featuredPostExcerpt'] ) ? $attributes['enableOptions']['featuredPostExcerpt'] : 20;
-				$output          .= '<div>' . cozy_create_excerpt( $post_data['post_content'], $featured_excerpt ) . '</div>';
+
+				$output .= '<div>';
+				if ( isset( $post_data['post_excerpt'] ) && ! empty( $post_data['post_excerpt'] ) ) {
+					$output .= $post_data['post_excerpt'];
+				} else {
+					$output .= cozy_create_excerpt( $post_data['post_content'], $featured_excerpt );
+				}
+				$output .= '</div>';
+
 				if ( isset( $attributes['enableOptions']['featuredReadMore'] ) && $attributes['enableOptions']['featuredReadMore'] ) {
 					$open_new_tab = isset( $attributes['enableOptions']['readMoreNewTab'] ) && $attributes['enableOptions']['readMoreNewTab'] ? '_blank' : '';
 					$output      .= '<span class="post__read-more post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="' . $open_new_tab . '" rel="noopener">' . esc_html__( 'Read More', 'cozy-addons' ) . '</a></span>';

@@ -77,6 +77,16 @@ $block_styles = "
 	height: {$styles['image']['height']};
 }
 
+@media only screen and (max-width: 1024px) {
+	#$block_id.direction-vertical .divider {
+		max-height: {$divider_styles['width']};
+	}
+
+	#$block_id .comparison-slider img {
+		max-height: {$styles['image']['height']};
+	}
+}
+
 #$block_id .overlay-label {
 	{$label_styles['padding']}
 	{$label_styles['border']}

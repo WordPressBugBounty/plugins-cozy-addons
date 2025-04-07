@@ -74,11 +74,13 @@ $icon_styles      = array(
 
 $img_radius    = cozy_render_TRBL( 'border-radius', $attributes['imageStyles']['radius'] );
 $product_image = array(
-	'margin' => array(
+	'margin'   => array(
 		'top'    => isset( $attributes['imageStyles']['margin']['top'] ) ? $attributes['imageStyles']['margin']['top'] : '0px',
 		'bottom' => isset( $attributes['imageStyles']['margin']['bottom'] ) ? $attributes['imageStyles']['margin']['bottom'] : '0px',
 	),
-	'color'  => array(
+	'fit'      => isset( $attributes['imageStyles']['objectFit'] ) ? $attributes['imageStyles']['objectFit'] : '',
+	'position' => isset( $attributes['imageStyles']['objectPosition'] ) ? $attributes['imageStyles']['objectPosition'] : '',
+	'color'    => array(
 		'overlay' => isset( $attributes['imageStyles']['overlay'] ) ? $attributes['imageStyles']['overlay'] : '',
 	),
 );
@@ -167,6 +169,7 @@ $rating_styles = array(
 );
 
 $cart_button = array(
+	'width'          => isset( $attributes['cartButton']['width'] ) ? $attributes['cartButton']['width'] : '',
 	'margin'         => array(
 		'top'    => isset( $attributes['cartButton']['margin']['top'] ) ? $attributes['cartButton']['margin']['top'] : '',
 		'bottom' => isset( $attributes['cartButton']['margin']['bottom'] ) ? $attributes['cartButton']['margin']['bottom'] : '',
@@ -217,7 +220,7 @@ $column2 = $attributes['gridOptions']['columnCount'] <= 2 ? $attributes['gridOpt
 
 $block_styles = "
 #$block_id .cozy-block-featured-product-tabs__tab-heading {
-	font-size: {$attributes['tabHeading']['fontSize']};
+	font-size: clamp(18px, calc(3vw + 4px), {$attributes['tabHeading']['fontSize']});
 	font-weight: {$attributes['tabHeading']['fontWeight']};
 	font-family: {$attributes['tabHeading']['fontFamily']};
 	text-transform: {$tab_heading['letter_case']};
@@ -246,7 +249,7 @@ $block_styles = "
     {$default_tab_border}
     background-color: {$tab_styles['default_bg_color']};
     color: {$tab_styles['default_color']};
-	font-size: {$attributes['tabStyles']['fontSize']};
+	font-size: clamp(16px, calc(3vw + 4px), {$attributes['tabStyles']['fontSize']});
     font-family: {$attributes['tabStyles']['fontFamily']};
     font-weight: {$attributes['tabStyles']['fontWeight']};
 	text-transform: {$tab_styles['letter_case']};
@@ -353,6 +356,17 @@ $block_styles = "
 #$block_id .cozy-block-featured-product-tabs__featured-image img {
     height: {$attributes['imageStyles']['height']};
     {$img_radius}
+	object-fit: {$product_image['fit']};
+	object-position: {$product_image['position']};
+}
+@media only screen and (max-width: 1024px) {
+	#$block_id.display-list .cozy-block-featured-product-tabs__featured-image {
+    	max-width: 100%;
+	}
+
+	#$block_id .cozy-block-featured-product-tabs__featured-image img {
+    	max-height: {$attributes['imageStyles']['height']};
+	}
 }
 
 #$block_id .post__image-background {
@@ -445,7 +459,7 @@ $block_styles = "
 #$block_id .cozy-block-featured-product-tabs__product-title, #$block_id .post__title {
 	margin-top: {$attributes['title']['marginTop']};
 	margin-bottom: {$attributes['title']['marginBottom']};
-    font-size: {$attributes['title']['fontSize']};
+    font-size: clamp(16px, calc(3vw + 4px), {$attributes['title']['fontSize']});
     font-family: {$attributes['title']['fontFamily']};
     font-weight: {$attributes['title']['fontWeight']};
 	text-transform: {$title_styles['letter_case']};
@@ -487,6 +501,7 @@ $block_styles = "
 }
 
 #$block_id .post__cart-button {
+	width: {$cart_button['width']};
     margin-top: {$cart_button['margin']['top']};
     margin-bottom: {$cart_button['margin']['bottom']};
     {$cart_button['padding']}
@@ -934,8 +949,10 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 				$output .= '<p>' . cozy_create_excerpt( $product_data['content'], $attributes['productOptions']['excerpt'] ) . '</p>';
 			}
 
+			$price_rating_display = isset( $attributes['priceRatingWrapper']['display'] ) ? $attributes['priceRatingWrapper']['display'] : 'flex';
+
 			$inline_styles   = array();
-			$inline_styles[] = 'display:flex';
+			$inline_styles[] = 'display:' . $price_rating_display . ';';
 			$inline_styles[] = 'align-items:center';
 			$inline_styles[] = 'flex-wrap:wrap';
 			$inline_styles[] = 'justify-content:' . $attributes['priceRatingWrapper']['justifyContent'];
@@ -946,7 +963,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 			}
 			if ( $attributes['productOptions']['rating'] && $product_data['review_count'] > 0 ) {
 				$rating_percent = ( $product_data['rating'] / 5 * 100 ) . '%';
-				$output        .= '<div style="font-size:14px;">';
+				$output        .= '<div class="cozy-block-featured-product-tabs__product-rating" style="font-size:14px;">';
 				$output        .= '<div class="post__rating" style="display:inline;background: linear-gradient(90deg, #fcb900 ' . $rating_percent . ', rgba(0, 0, 0, 0.2) ' . $rating_percent . ')">';
 				$output        .= '★★★★★';
 				$output        .= '</div>';

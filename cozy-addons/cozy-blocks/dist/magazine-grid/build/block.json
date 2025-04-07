@@ -87,7 +87,7 @@
       "default": ""
     },
     "offset": {
-      "type": "number",
+      "type": "string",
       "default": ""
     },
     "layout": {
@@ -389,6 +389,7 @@
         },
         "content": {
           "gap": "12px",
+          "rowGap": "10px",
           "padding": {
             "top": "0px",
             "right": "0px",

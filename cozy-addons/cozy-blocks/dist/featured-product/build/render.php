@@ -70,13 +70,15 @@ $post_item = array(
 );
 
 $post_image = array(
-	'margin'  => array(
+	'margin'   => array(
 		'top'    => isset( $attributes['postOptions']['image']['margin']['top'] ) ? $attributes['postOptions']['image']['margin']['top'] : '',
 		'bottom' => isset( $attributes['postOptions']['image']['margin']['bottom'] ) ? $attributes['postOptions']['image']['margin']['bottom'] : '',
 	),
-	'width'   => isset( $attributes['postOptions']['image']['width'] ) ? $attributes['postOptions']['image']['width'] : '',
-	'height'  => isset( $attributes['postOptions']['image']['height'] ) ? $attributes['postOptions']['image']['height'] : '',
-	'overlay' => isset( $attributes['postOptions']['image']['overlay'] ) ? $attributes['postOptions']['image']['overlay'] : '',
+	'width'    => isset( $attributes['postOptions']['image']['width'] ) ? $attributes['postOptions']['image']['width'] : '',
+	'height'   => isset( $attributes['postOptions']['image']['height'] ) ? $attributes['postOptions']['image']['height'] : '',
+	'fit'      => isset( $attributes['postOptions']['image']['objectFit'] ) ? $attributes['postOptions']['image']['objectFit'] : '',
+	'position' => isset( $attributes['postOptions']['image']['objectPosition'] ) ? $attributes['postOptions']['image']['objectPosition'] : '',
+	'overlay'  => isset( $attributes['postOptions']['image']['overlay'] ) ? $attributes['postOptions']['image']['overlay'] : '',
 );
 
 $sale_badge = array(
@@ -159,6 +161,7 @@ $product_summary = array(
 );
 
 $cart_btn = array(
+	'width'          => isset( $attributes['cartButton']['width'] ) ? $attributes['cartButton']['width'] : '',
 	'padding'        => isset( $attributes['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cartButton']['padding'] ) : '',
 	'border'         => isset( $attributes['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cartButton']['border'] ) : '',
 	'decoration'     => isset( $attributes['cartButton']['decoration'] ) ? $attributes['cartButton']['decoration'] : '',
@@ -214,7 +217,7 @@ $block_styles = "
     {$heading['padding']}
     {$heading['border']}
     {$heading['radius']}
-    font-size: {$attributes['headingStyles']['font']['size']};
+    font-size: clamp(20px, calc(3vw + 4px), {$attributes['headingStyles']['font']['size']});
     font-weight: {$attributes['headingStyles']['font']['weight']};
     font-family: {$attributes['headingStyles']['font']['family']};
     background-color: {$heading['bg']};
@@ -230,7 +233,7 @@ $block_styles = "
     {$sub_heading['padding']}
     {$sub_heading['border']}
 	border-radius: {$attributes['subHeading']['radius']};
-    font-size: {$attributes['subHeading']['font']['size']};
+    font-size: clamp(18px, calc(3vw + 4px), {$attributes['subHeading']['font']['size']});
     font-weight: {$attributes['subHeading']['font']['weight']};
     font-family: {$attributes['subHeading']['font']['family']};
 	text-transform: {$attributes['subHeading']['letterCase']};
@@ -318,6 +321,13 @@ $block_styles = "
 #$block_id .post__image img {
 	height: {$post_image['height']};
 	border-radius: {$attributes['postOptions']['image']['radius']};
+	object-fit: {$post_image['fit']};
+	object-position: {$post_image['position']};
+}
+@media only screen and (max-width: 1024px) {
+	#$block_id .post__image img {
+		max-height: {$post_image['height']};
+	}
 }
 
 #$block_id .post__image-background {
@@ -407,7 +417,7 @@ $block_styles = "
 #$block_id .post__title {
 	margin-top: {$attributes['postOptions']['title']['margin']['top']};
 	margin-bottom: {$attributes['postOptions']['title']['margin']['bottom']};
-	font-size: {$attributes['postOptions']['title']['font']['size']};
+	font-size: clamp(16px, calc(3vw + 4px), {$attributes['postOptions']['title']['font']['size']});
 	font-weight: {$attributes['postOptions']['title']['font']['weight']};
 	font-family: {$attributes['postOptions']['title']['font']['family']};
 	text-transform: {$attributes['postOptions']['title']['letterCase']};
@@ -452,6 +462,7 @@ $block_styles = "
 }
 
 #$block_id .post__cart-button {
+	width: {$cart_btn['width']};
     margin-top: {$attributes['cartButton']['margin']['top']};
     margin-bottom: {$attributes['cartButton']['margin']['bottom']};
     {$cart_btn['padding']}
@@ -765,7 +776,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 			$justify_content = 'space-between';
 		}
 
-		$output .= '<div style="display:flex;align-items:center;justify-content:' . $justify_content . ';">';
+		$output .= '<div style="display:flex;align-items:center;justify-content:' . $justify_content . ';flex-wrap:wrap;">';
 		if ( $attributes['enableOptions']['productPrice'] ) {
 			$output .= '<p class="post__price">';
 			$output .= $post_data['price'];

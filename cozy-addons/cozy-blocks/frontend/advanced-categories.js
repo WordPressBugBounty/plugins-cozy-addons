@@ -21,10 +21,7 @@
         el: `${blockID} .swiper-pagination`,
       },
       breakpoints: {
-        320: {
-          slidesPerView: 1,
-        },
-        400: {
+        100: {
           slidesPerView: 1,
         },
         767: {

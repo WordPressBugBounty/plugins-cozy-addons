@@ -179,6 +179,11 @@ $block_styles = "
 	height: {$attributes['imageStyles']['height']};
 	border-radius: {$attributes['imageStyles']['radius']};
 }
+@media only screen and (max-height: 1024px) {
+	#$block_id .cozy-block-trending-posts__image img {
+		max-height: {$attributes['imageStyles']['height']};
+	}	
+}
 
 #$block_id .cozy-block-trending-posts__post-categories {
 	gap: {$attributes['categoryStyles']['gap']};
@@ -208,7 +213,7 @@ $block_styles = "
 #$block_id .cozy-block-trending-posts__post-title {
 	margin-top: {$attributes['titleStyles']['marginTop']};
 	margin-bottom: {$attributes['titleStyles']['marginBottom']};
-    font-size: {$attributes['titleStyles']['fontSize']};
+    font-size: clamp(16px, calc(3vw + 4px), {$attributes['titleStyles']['fontSize']});
     font-family: {$attributes['titleStyles']['fontFamily']};
     font-weight: {$attributes['titleStyles']['fontWeight']};
 	text-transform: {$title_styles['letter_case']};
@@ -406,6 +411,8 @@ if ( ! function_exists( 'get_cozy_block_trending_posts_data' ) ) {
 				}
 				$post_data['post_categories'] = $post_categories;
 
+				$post_data['post_excerpt'] = get_the_excerpt( $post_id );
+
 				$post_data['post_author_name']    = get_the_author_meta( 'display_name', $post_data['post_author'] ) ?? '';
 				$post_data['post_author_url']     = get_author_posts_url( $post_data['post_author'] ) ?? '';
 				$post_data['post_link']           = $post_link;
@@ -549,7 +556,11 @@ foreach ( $additional_post_data as $post_data ) {
 	// Post Excerpt
 	if ( $attributes['enableOptions']['content'] ) {
 		$output .= '<p class="cozy-block-popular-posts__content">';
-		$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['excerpt'] );
+		if ( isset( $post_data['post_excerpt'] ) && ! empty( $post_data['post_excerpt'] ) ) {
+			$output .= $post_data['post_excerpt'];
+		} else {
+			$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['excerpt'] );
+		}
 		$output .= '</p>';
 	}
 

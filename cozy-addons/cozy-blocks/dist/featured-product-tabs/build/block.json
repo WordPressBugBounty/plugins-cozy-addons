@@ -343,6 +343,8 @@
         },
         "width": "",
         "height": "330px",
+        "objectFit": "cover",
+        "objectPosition": "top",
         "radius": {
           "top": "0px",
           "right": "0px",
@@ -476,6 +478,7 @@
     "priceRatingWrapper": {
       "type": "object",
       "default": {
+        "display": "flex",
         "justifyContent": "space-between",
         "gap": "26px"
       }
@@ -515,6 +518,7 @@
       "type": "object",
       "default": {
         "label": "Add to Cart",
+        "width": "",
         "padding": {
           "top": "8px",
           "right": "16px",

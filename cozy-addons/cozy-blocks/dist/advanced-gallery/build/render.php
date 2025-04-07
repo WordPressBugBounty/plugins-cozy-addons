@@ -236,6 +236,11 @@ $block_styles = "
 #$block_id .cozy-block-advanced-gallery__image-background {
 	background-color: {$image['color']['overlay']};
 }
+@media only screen and (max-width: 1024px) {
+	#$block_id .cozy-block-advanced-gallery__image {
+		max-height: {$image['height']};
+	}
+}
 
 #$block_id .cozy-block-advanced-gallery__image-caption {
 	text-align: {$attributes['image']['title']['align']};

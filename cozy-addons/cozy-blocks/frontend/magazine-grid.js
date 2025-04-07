@@ -29,6 +29,11 @@
                 }
 
                 if (response.success && response.data) {
+                  /* if (window.elementorFrontend) {
+                    window.elementorFrontend.initElements();
+                    console.log(window.elementorFrontend);
+                  } */
+
                   var $newPosts = $(response.data.render).hide(); // Hide new posts initially
                   $(blockID + " .cozy-block-magazine-grid__posts").append(
                     $newPosts

@@ -84,7 +84,7 @@ class QueryLoop {
 						),
 					);
 
-					if ( is_single() && isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] && isset( $parsed_block['attrs']['query']['parents'] ) && in_array( 'cozy-block/related-post', $parsed_block['attrs']['query']['parents'], true ) ) {
+					if ( is_single() && isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] && in_array( 'cozy-block/related-post', $parsed_block['attrs']['query']['parents'], true ) ) {
 						// Return the merged query.
 						$filtered_query = array_merge(
 							// $parsed_block['attrs']['query'],
@@ -124,7 +124,8 @@ class QueryLoop {
 						$query_args['post_type'] = 'product';
 
 						if ( ! array_key_exists( 'productGroup', $parent_block_attrs ) ) {
-							$query_args['tax_query']  = array();
+							// $query_args['tax_query']  = array();
+							$query_args['tax_query']  = $default_query['tax_query'];
 							$query_args['meta_key']   = '';
 							$query_args['meta_query'] = array();
 							$query_args['post__in']   = array();
@@ -133,7 +134,7 @@ class QueryLoop {
 						if ( array_key_exists( 'productGroup', $parent_block_attrs ) && 'best_selling' === $parent_block_attrs['productGroup'] ) {
 							$query_args['meta_key'] = 'total_sales';
 							$query_args['orderby']  = 'meta_value_num';
-							// $query_args['meta_query'] = WC()->query->get_meta_query();
+
 							$query_args['meta_query'] = array(
 								'relation' => 'AND',
 								array(
@@ -148,8 +149,9 @@ class QueryLoop {
 							);
 
 							// Setting other query parameters to default.
-							$query_args['post__in']  = array();
-							$query_args['tax_query'] = array();
+							$query_args['post__in'] = array();
+							// $query_args['tax_query'] = array();
+							$query_args['tax_query'] = $default_query['tax_query'];
 						}
 
 						if ( array_key_exists( 'productGroup', $parent_block_attrs ) && 'top_rated' === $parent_block_attrs['productGroup'] ) {
@@ -170,8 +172,9 @@ class QueryLoop {
 							);
 
 							// Setting other query parameters to default.
-							$query_args['post__in']  = array();
-							$query_args['tax_query'] = array();
+							$query_args['post__in'] = array();
+							// $query_args['tax_query'] = array();
+							$query_args['tax_query'] = $default_query['tax_query'];
 						}
 
 						if ( array_key_exists( 'productGroup', $parent_block_attrs ) && 'sale' === $parent_block_attrs['productGroup'] ) {
@@ -179,12 +182,14 @@ class QueryLoop {
 							$query_args['post__in'] = $product_ids_on_sale;
 
 							// Setting other query parameters to default.
-							$query_args['tax_query']  = array();
+							// $query_args['tax_query']  = array();
+							$query_args['tax_query']  = $default_query['tax_query'];
 							$query_args['meta_key']   = '';
 							$query_args['meta_query'] = array();
 						}
 
 						if ( array_key_exists( 'productGroup', $parent_block_attrs ) && 'category' === $parent_block_attrs['productGroup'] ) {
+							$query_args['tax_query'] = $default_query['tax_query'];
 							$query_args['tax_query'] = array(
 								array(
 									'taxonomy' => 'product_cat',

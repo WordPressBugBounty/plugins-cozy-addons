@@ -248,10 +248,16 @@ $block_styles = "
 #{$block_id} .cozy-block-featured-post-tabs__post-image  {
 	max-height: {$attributes['imageStyles']['height']};
 	min-width: {$attributes['imageStyles']['width']};
+	max-width: {$attributes['imageStyles']['width']};
 }
 #{$block_id} .cozy-block-featured-post-tabs__post-image img {
 	height: {$attributes['imageStyles']['height']};
 	border-radius: {$attributes['imageStyles']['radius']};
+}
+@media only screen and (max-width: 1024px) {
+	#{$block_id} .cozy-block-featured-post-tabs__post-image img {
+		max-height: {$attributes['imageStyles']['height']};
+	}
 }
 
 #$block_id .cozy-block-featured-post-tabs__post-categories {
@@ -282,7 +288,7 @@ $block_styles = "
 #$block_id .cozy-block-featured-post-tabs__post-title {
 	margin-top: {$attributes['titleStyles']['marginTop']};
 	margin-bottom: {$attributes['titleStyles']['marginBottom']};
-    font-size: {$attributes['titleStyles']['fontSize']};
+    font-size: clamp(16px, calc(3vw + 4px), {$attributes['titleStyles']['fontSize']});
     font-family: {$attributes['titleStyles']['fontFamily']};
     font-weight: {$attributes['titleStyles']['fontWeight']};
 	text-transform: {$title_styles['letter_case']};
@@ -438,7 +444,13 @@ if ( ! function_exists( 'cozy_render_featured_post_tab_data' ) ) {
 		$output .= '<h4 class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . $post['post_title'] . '</a></h4>';
 
 		if ( $attributes['postOptions']['postContent'] ) {
-			$output .= '<p class="cozy-block-featured-post-tabs__post-content">' . cozy_create_excerpt( $post['post_content'], $attributes['postOptions']['excerpt'] ) . '</p>';
+			$output .= '<p class="cozy-block-featured-post-tabs__post-content">';
+			if ( isset( $post['post_excerpt'] ) && ! empty( $post['post_excerpt'] ) ) {
+				$output .= $post['post_excerpt'];
+			} else {
+				$output .= cozy_create_excerpt( $post['post_content'], $attributes['postOptions']['excerpt'] );
+			}
+			$output .= '</p>';
 		}
 
 		if ( $attributes['postOptions']['postDate'] ) {
@@ -594,6 +606,8 @@ if ( ! function_exists( 'cozy_fetch_featured_post_tab_data' ) ) {
 						);
 					}
 					$post_data['post_categories'] = $post_categories;
+
+					$post_data['post_excerpt'] = get_the_excerpt( $post_id );
 
 					$post_data['post_link']           = $post_link;
 					$post_data['post_date_formatted'] = get_the_date( '', $post_id );

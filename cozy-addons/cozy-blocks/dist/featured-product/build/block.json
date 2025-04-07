@@ -283,6 +283,8 @@
           "height": "350px",
           "radius": "0px",
           "hoverEffect": true,
+          "objectFit": "cover",
+          "objectPosition": "top",
           "overlay": "#1c1c1c96"
         },
         "title": {
@@ -471,6 +473,7 @@
       "type": "object",
       "default": {
         "label": "Add to Cart",
+        "width": "",
         "padding": {
           "top": "8px",
           "right": "16px",

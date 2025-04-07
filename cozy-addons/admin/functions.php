@@ -246,6 +246,8 @@ if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
 						}
 						$post_data['post_categories'] = $post_categories;
 
+						$post_data['post_excerpt'] = get_the_excerpt( $post_id );
+
 						$post_data['post_author_name']    = get_the_author_meta( 'display_name', $post->post_author ) ?? '';
 						$post_data['post_author_url']     = get_author_posts_url( $post->post_author ) ?? '';
 						$post_data['post_link']           = $post_link;
@@ -376,7 +378,15 @@ if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
 				}
 				if ( filter_var( $attributes['enableOptions']['postContent'], FILTER_VALIDATE_BOOLEAN ) ) {
 					$output .= '<div class="post__content">';
-					$output .= '<div>' . cozy_block_magazine_grid_create_post_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] ) . '</div>';
+					$output .= '<div>';
+
+					if ( isset( $post_data['post_excerpt'] ) && ! empty( $post_data['post_excerpt'] ) ) {
+						$output .= $post_data['post_excerpt'];
+					} else {
+						$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] );
+					}
+
+					$output .= '</div>';
 					if ( filter_var( $attributes['enableOptions']['readMore'], FILTER_VALIDATE_BOOLEAN ) ) {
 						$open_new_tab = isset( $attributes['enableOptions']['readMoreNewTab'] ) && filter_var( $attributes['enableOptions']['readMoreNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
 						$output      .= '<span class="post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="' . $open_new_tab . '" rel="noopener">' . esc_html__( 'Read More', 'cozy-addons' ) . '</a></span>';
@@ -400,6 +410,25 @@ if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
 			'category__in'        => $selected_category,
 			'post__not_in'        => array(),
 		);
+
+		if ( isset( $attributes['offset'] ) && ! empty( $attributes['offset'] ) ) {
+			$offset_args = array(
+				'post_type'      => 'post',
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+				'fields'         => 'ids', // Corrected this line
+				'posts_per_page' => $attributes['offset'],
+			);
+
+			$offset_query = new \WP_Query( $offset_args );
+
+			if ( ! empty( $offset_query->posts ) ) {
+				$cozy_block_magazine_grid_args['post__not_in'] = array_merge(
+					$cozy_block_magazine_grid_args['post__not_in'],
+					$offset_query->posts
+				);
+			}
+		}
 
 		$excluded_post_ids = isset( $attributes['exclude'] ) ? explode( ',', sanitize_text_field( $attributes['exclude'] ) ) : array();
 		if ( is_array( $excluded_post_ids ) && ! empty( $excluded_post_ids ) ) {
@@ -506,6 +535,8 @@ if ( ! function_exists( 'cozy_block_magazine_list_load_content' ) ) {
 							);
 						}
 						$post_data['post_categories'] = $post_categories;
+
+						$post_data['post_excerpt'] = get_the_excerpt( $post_id );
 
 						$post_data['post_author_name']    = get_the_author_meta( 'display_name', $post->post_author ) ?? '';
 						$post_data['post_author_url']     = get_author_posts_url( $post->post_author ) ?? '';
@@ -635,7 +666,15 @@ if ( ! function_exists( 'cozy_block_magazine_list_load_content' ) ) {
 				}
 				if ( filter_var( $attributes['enableOptions']['postContent'], FILTER_VALIDATE_BOOLEAN ) ) {
 					$output .= '<div class="post__content">';
-					$output .= '<div>' . cozy_block_magazine_list_create_post_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] ) . '</div>';
+					$output .= '<div>';
+
+					if ( isset( $post_data['post_excerpt'] ) && ! empty( $post_data['post_excerpt'] ) ) {
+						$output .= $post_data['post_excerpt'];
+					} else {
+						$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] );
+					}
+
+					$output .= '</div>';
 					if ( filter_var( $attributes['enableOptions']['readMore'], FILTER_VALIDATE_BOOLEAN ) ) {
 						$open_new_tab = isset( $attributes['enableOptions']['readMoreNewTab'] ) && filter_var( $attributes['enableOptions']['readMoreNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
 						$output      .= '<span class="post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="' . $open_new_tab . '" rel="noopener">' . esc_html__( 'Read More', 'cozy-addons' ) . '</a></span>';
@@ -669,6 +708,25 @@ if ( ! function_exists( 'cozy_block_magazine_list_load_content' ) ) {
 			'category__in'        => $selected_category,
 			'post__not_in'        => array(),
 		);
+
+		if ( isset( $attributes['offset'] ) && ! empty( $attributes['offset'] ) ) {
+			$offset_args = array(
+				'post_type'      => 'post',
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+				'fields'         => 'ids', // Corrected this line
+				'posts_per_page' => $attributes['offset'],
+			);
+
+			$offset_query = new \WP_Query( $offset_args );
+
+			if ( ! empty( $offset_query->posts ) ) {
+				$cozy_block_magazine_list_args['post__not_in'] = array_merge(
+					$cozy_block_magazine_list_args['post__not_in'],
+					$offset_query->posts
+				);
+			}
+		}
 
 		$excluded_post_ids = isset( $attributes['exclude'] ) ? explode( ',', sanitize_text_field( $attributes['exclude'] ) ) : array();
 		if ( is_array( $excluded_post_ids ) && ! empty( $excluded_post_ids ) ) {

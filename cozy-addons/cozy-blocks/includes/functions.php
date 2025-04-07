@@ -674,6 +674,11 @@ if ( ! function_exists( 'cozy_create_excerpt' ) ) {
 	function cozy_create_excerpt( $content, $length = 20 ) {
 		// Strip HTML tags and shortcodes.
 		$content = wp_strip_all_tags( strip_shortcodes( $content ) );
+		// $content = do_blocks( $content );
+
+		if ( null === $length ) {
+			return $content;
+		}
 
 		// Split the content into words.
 		$words = explode( ' ', $content );

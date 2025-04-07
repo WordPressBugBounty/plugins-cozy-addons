@@ -187,10 +187,16 @@ $block_styles = "
 }
 #$block_id.display-list .cozy-block-popular-posts__image  {
 	min-width: {$attributes['imageStyles']['width']};
+	max-width: {$attributes['imageStyles']['width']};
 }
 #$block_id .cozy-block-popular-posts__image img {
 	height: {$attributes['imageStyles']['height']};
 	border-radius: {$attributes['imageStyles']['radius']};
+}
+@media only screen and (max-width: 1024px) {
+	#$block_id .cozy-block-popular-posts__image img {
+		max-height: {$attributes['imageStyles']['height']};
+	}
 }
 
 #$block_id .cozy-block-popular-posts__post-categories {
@@ -221,7 +227,7 @@ $block_styles = "
 #$block_id .cozy-block-popular-posts__post-title {
 	margin-top: {$attributes['titleStyles']['marginTop']};
 	margin-bottom: {$attributes['titleStyles']['marginBottom']};
-    font-size: {$attributes['titleStyles']['fontSize']};
+    font-size: clamp(16px, calc(3vw + 4px), {$attributes['titleStyles']['fontSize']});
     font-family: {$attributes['titleStyles']['fontFamily']};
     font-weight: {$attributes['titleStyles']['fontWeight']};
 	text-transform: {$title_styles['letter_case']};

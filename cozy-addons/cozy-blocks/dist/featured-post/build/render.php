@@ -159,7 +159,7 @@ $block_styles = "
     {$heading['padding']}
     {$heading['border']}
     {$heading['radius']}
-    font-size: {$attributes['headingStyles']['font']['size']};
+    font-size: clamp(20px, calc(3vw + 4px), {$attributes['headingStyles']['font']['size']});
     font-weight: {$attributes['headingStyles']['font']['weight']};
     font-family: {$attributes['headingStyles']['font']['family']};
 	text-transform: {$heading['letter_case']};
@@ -175,7 +175,7 @@ $block_styles = "
     {$sub_heading['padding']}
     {$sub_heading['border']}
 	border-radius: {$attributes['subHeading']['radius']};
-    font-size: {$attributes['subHeading']['font']['size']};
+    font-size: clamp(18px, calc(3vw + 4px), {$attributes['subHeading']['font']['size']});
     font-weight: {$attributes['subHeading']['font']['weight']};
     font-family: {$attributes['subHeading']['font']['family']};
 	text-transform: {$attributes['subHeading']['letterCase']};
@@ -271,6 +271,11 @@ $block_styles = "
 	height: {$post_image['height']};
 	border-radius: {$attributes['postOptions']['image']['radius']};
 }
+@media only screen and (max-width: 1024px) {
+	#$block_id .post__image img {
+		max-height: {$post_image['height']};
+	}
+}
 
 #$block_id .post__content-wrapper {
 	{$post_content['padding']}
@@ -305,7 +310,7 @@ $block_styles = "
 #$block_id .post__title {
 	margin-top: {$attributes['postOptions']['title']['margin']['top']};
 	margin-bottom: {$attributes['postOptions']['title']['margin']['bottom']};
-	font-size: {$attributes['postOptions']['title']['font']['size']};
+	font-size: clamp(16px, calc(3vw + 4px), {$attributes['postOptions']['title']['font']['size']});
 	font-weight: {$attributes['postOptions']['title']['font']['weight']};
 	font-family: {$post_content['title_font_family']};
 	text-transform: {$attributes['postOptions']['title']['letterCase']};
@@ -470,6 +475,8 @@ if ( ! function_exists( 'get_cozy_block_featured_post_data' ) ) {
 				}
 				$post_data['post_categories'] = $post_categories;
 
+				$post_data['post_excerpt'] = get_the_excerpt( $post_id );
+
 				$post_data['post_author_name']    = get_the_author_meta( 'display_name', $post->post_author ) ?? '';
 				$post_data['post_author_url']     = get_author_posts_url( $post->post_author ) ?? '';
 				$post_data['post_link']           = $post_link;
@@ -600,7 +607,14 @@ if ( ! function_exists( 'render_cozy_block_featured_post_data' ) ) {
 
 		if ( $attributes['enableOptions']['postContent'] ) {
 			$output .= '<div class="post__content">';
-			$output .= '<div>' . cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] ) . '</div>';
+			$output .= '<div>';
+			if ( isset( $post_data['post_excerpt'] ) && ! empty( $post_data['post_excerpt'] ) ) {
+				$output .= $post_data['post_excerpt'];
+			} else {
+				$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] );
+			}
+			$output .= '</div>';
+
 			if ( $attributes['enableOptions']['readMore'] ) {
 				$open_new_tab = isset( $attributes['enableOptions']['readMoreNewTab'] ) && $attributes['enableOptions']['readMoreNewTab'] ? '_blank' : '';
 				$output      .= '<span class="post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="' . $open_new_tab . '" rel="noopener">' . esc_html__( 'Read More', 'cozy-addons' ) . '</a></span>';

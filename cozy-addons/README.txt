@@ -4,7 +4,7 @@ Tags: blocks, gutenberg blocks, gutenberg, woocommerce blocks, block
 Requires PHP: 7.3
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 2.1.20
+Stable tag: 2.1.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
@@ -146,6 +146,9 @@ You can report any security bugs found in the source code of this plugin through
 6. Animation and Hover Effects
 
 == Changelog ==
+= 2.1.21 - April 07, 2025 = 
+* Fix: Block improvements.
+
 = 2.1.20 - March 24, 2025 = 
 * Fix: 'Related Post' block's render query.
 

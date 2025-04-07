@@ -53,7 +53,7 @@ $block_styles = "
 #$block_id.layout-custom .cozy-sidebar-panel-wrapper {
     width: {$attributes['width']}px;
 }
-#$block_id .sidebar-icon-wrapper svg {
+#$block_id .sidebar-icon-wrapper:not(.close-icon-wrapper) svg {
     width: {$attributes['iconSize']}px;
     height: {$attributes['iconSize']}px;
     rotate: {$attributes['iconRotate']}deg;

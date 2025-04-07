@@ -256,8 +256,8 @@
       "default": {
         "gap": "10px",
         "hoverEffect": true,
-        "width": "220px",
-        "height": "120px",
+        "width": "30%",
+        "height": "220px",
         "radius": ""
       }
     },

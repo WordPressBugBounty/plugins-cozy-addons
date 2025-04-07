@@ -1,3 +1,6 @@
+= 2.1.21 - April 07, 2025 = 
+* Fix: Block improvements.
+
 = 2.1.20 - March 24, 2025 = 
 * Fix: 'Related Post' block's render query.
 

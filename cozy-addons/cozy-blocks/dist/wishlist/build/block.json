@@ -11,6 +11,28 @@
     "postType",
     "queryId"
   ],
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "interactivity": {
+      "clientNavigation": true
+    }
+  },
   "attributes": {
     "cover": {
       "type": "string",
