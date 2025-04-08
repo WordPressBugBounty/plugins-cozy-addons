@@ -31,5 +31,11 @@
     sidebarCloseBtn.on("click", function () {
       closeSidebarPanel();
     });
+    // When the user presses the Escape key, close the modal
+    $(document).keydown(function (event) {
+      if (event.key === "Escape") {
+        closeSidebarPanel();
+      }
+    });
   };
 })(jQuery);

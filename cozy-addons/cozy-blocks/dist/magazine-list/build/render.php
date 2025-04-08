@@ -148,7 +148,7 @@ $block_styles = "
     {$heading['padding']}
     {$heading['border']}
     {$heading['radius']}
-    font-size: clamp(20px, calc(3vw + 4px), {$attributes['headingStyles']['font']['size']});
+    font-size: {$attributes['headingStyles']['font']['size']};
     font-weight: {$attributes['headingStyles']['font']['weight']};
     font-family: {$attributes['headingStyles']['font']['family']};
     text-transform: {$heading['letter_case']};
@@ -164,7 +164,7 @@ $block_styles = "
     {$sub_heading['padding']}
     {$sub_heading['border']}
 	border-radius: {$attributes['subHeading']['radius']};
-    font-size: clamp(18px, calc(3vw + 4px), {$attributes['subHeading']['font']['size']});
+    font-size: {$attributes['subHeading']['font']['size']};
     font-weight: {$attributes['subHeading']['font']['weight']};
     font-family: {$attributes['subHeading']['font']['family']};
 	text-transform: {$attributes['subHeading']['letterCase']};
@@ -277,7 +277,7 @@ $block_styles = "
 #$block_id .post__title {
 	margin-top: {$attributes['postOptions']['title']['margin']['top']};
 	margin-bottom: {$attributes['postOptions']['title']['margin']['bottom']};
-	font-size: 	clamp(16px, calc(3vw + 4px), {$attributes['postOptions']['title']['font']['size']});
+	font-size: 	clamp(18.956px, 1.185rem + ((1vw - 3.2px) * 0.673), {$attributes['postOptions']['title']['font']['size']});
 	font-weight: {$attributes['postOptions']['title']['font']['weight']};
 	font-family: {$post_content['title_font_family']};
 	text-transform: {$attributes['postOptions']['title']['letterCase']};
@@ -375,6 +375,18 @@ $block_styles = "
 }
 ";
 
+$valid_tags = array(
+	'h1',
+	'h2',
+	'h3',
+	'h4',
+	'h5',
+	'h6',
+	'div',
+	'p',
+	'span',
+);
+
 $classes   = array();
 $classes[] = 'cozy-block-magazine-list';
 $classes[] = $attributes['ajaxLoader']['enabled'] && 'scroll' === $attributes['ajaxLoader']['type'] ? 'has-infinite-scroll' : '';
@@ -384,10 +396,12 @@ $output = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">
 if ( $attributes['enableOptions']['heading'] || $attributes['enableOptions']['subHeading'] ) {
 	$output .= '<article class="cozy-block-magazine-list__header">';
 	if ( $attributes['enableOptions']['heading'] ) {
-		$output .= sprintf( '<%1$s class="cozy-block-magazine-list__heading">%2$s</%1$s>', $attributes['headingTag'], $attributes['headingLabel'] );
+		$heading_tag = in_array( $attributes['headingTag'], $valid_tags, true ) ? $attributes['headingTag'] : 'p';
+		$output     .= sprintf( '<%1$s class="cozy-block-magazine-list__heading">%2$s</%1$s>', $heading_tag, $attributes['headingLabel'] );
 	}
 	if ( $attributes['enableOptions']['subHeading'] ) {
-		$output .= sprintf( '<%1$s class="cozy-block-magazine-list__sub-heading">%2$s</%1$s>', $attributes['subHeading']['tag'], $attributes['subHeading']['label'] );
+		$subheading_tag = in_array( $attributes['subHeading']['tag'], $valid_tags, true ) ? $attributes['subHeading']['tag'] : 'p';
+		$output        .= sprintf( '<%1$s class="cozy-block-magazine-list__sub-heading">%2$s</%1$s>', $subheading_tag, $attributes['subHeading']['label'] );
 	}
 	$output .= '</article>';
 }
@@ -484,7 +498,7 @@ if ( ! function_exists( 'render_cozy_block_magazine_list_posts_data' ) ) {
 		if ( ! empty( $additional_classes ) ) {
 			$classes = array_merge( $classes, explode( ' ', $additional_classes ) );
 		}
-		$output .= '<h2 class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h2>';
+		$output .= '<h4 class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h4>';
 
 		if ( $attributes['enableOptions']['postAuthor'] || $attributes['enableOptions']['postComments'] || $attributes['enableOptions']['postDate'] ) {
 			$has_meta_link = isset( $attributes['enableOptions']['linkPostMeta'] ) && $attributes['enableOptions']['linkPostMeta'] ? true : false;
