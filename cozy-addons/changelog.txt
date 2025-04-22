@@ -1,3 +1,9 @@
+= 2.1.23 - April 22, 2025 = 
+* Fix: Block improvements.
+* Fix: REST API broken access control. 
+* Fix: 'Sidebar Panel' block style conflict with Spectra. 
+* Update: Compatible with WordPress 6.8
+
 = 2.1.22 - April 08, 2025 = 
 * Fix: Sidebar panel block.
 

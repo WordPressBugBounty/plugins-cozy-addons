@@ -409,6 +409,7 @@ if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
 			'ignore_sticky_posts' => $attributes['enableOptions']['ignoreSticky'],
 			'category__in'        => $selected_category,
 			'post__not_in'        => array(),
+			'post_status'         => 'publish',
 		);
 
 		if ( isset( $attributes['offset'] ) && ! empty( $attributes['offset'] ) ) {
@@ -418,6 +419,7 @@ if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
 				'order'          => 'DESC',
 				'fields'         => 'ids', // Corrected this line
 				'posts_per_page' => $attributes['offset'],
+				'post_status'    => 'publish',
 			);
 
 			$offset_query = new \WP_Query( $offset_args );
@@ -707,6 +709,7 @@ if ( ! function_exists( 'cozy_block_magazine_list_load_content' ) ) {
 			'ignore_sticky_posts' => $attributes['enableOptions']['ignoreSticky'],
 			'category__in'        => $selected_category,
 			'post__not_in'        => array(),
+			'post_status'         => 'publish',
 		);
 
 		if ( isset( $attributes['offset'] ) && ! empty( $attributes['offset'] ) ) {
@@ -716,6 +719,7 @@ if ( ! function_exists( 'cozy_block_magazine_list_load_content' ) ) {
 				'order'          => 'DESC',
 				'fields'         => 'ids', // Corrected this line
 				'posts_per_page' => $attributes['offset'],
+				'post_status'    => 'publish',
 			);
 
 			$offset_query = new \WP_Query( $offset_args );
@@ -1007,6 +1011,7 @@ if ( ! function_exists( 'cozy_block_popular_posts_load_content' ) ) {
 					'compare' => '>', // Check if the timestamp is greater than or equal to one week ago.
 				),
 			),
+			'post_status'         => 'publish',
 		);
 
 		$additional_post_data = get_cozy_block_popular_posts( $cozy_block_popular_posts_args );
@@ -1284,6 +1289,7 @@ if ( ! function_exists( 'cozy_block_trending_posts_load_content' ) ) {
 					'compare' => '>', // Check if the timestamp is greater than or equal to one week ago.
 				),
 			),
+			'post_status'    => 'publish',
 		);
 
 		$additional_post_data = get_cozy_block_trending_posts( $cozy_block_trending_posts_args );

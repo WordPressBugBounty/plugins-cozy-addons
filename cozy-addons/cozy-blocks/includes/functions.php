@@ -637,6 +637,18 @@ function cozy_render_TRBL( $type, $attributes ) {
 			}
 			return $css;
 
+		case 'outline':
+			// Check if any global border property exists.
+
+			if ( isset( $attributes['width'] ) || isset( $attributes['style'] ) || isset( $attributes['color'] ) ) {
+				$width = isset( $attributes['width'] ) ? esc_attr( $attributes['width'] ) : '';
+				$style = isset( $attributes['style'] ) ? esc_attr( $attributes['style'] ) : '';
+				$color = isset( $attributes['color'] ) ? esc_attr( $attributes['color'] ) : '';
+				return "outline:{$width} {$style} {$color};";
+			}
+
+			break;
+
 		case 'border-radius':
 			// Handle individual border radius for each side.
 			$top    = esc_attr( $attributes['top'] );

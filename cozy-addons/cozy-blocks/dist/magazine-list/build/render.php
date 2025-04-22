@@ -610,7 +610,7 @@ $cozy_block_magazine_list_args = array(
 	'ignore_sticky_posts' => $attributes['enableOptions']['ignoreSticky'],
 	'category__in'        => $selected_category,
 	'post__not_in'        => array(),
-	'status'              => 'published',
+	'post_status'         => 'publish',
 );
 
 $excluded_post_ids = isset( $attributes['exclude'] ) ? explode( ',', sanitize_text_field( $attributes['exclude'] ) ) : array();
@@ -629,6 +629,7 @@ if ( isset( $attributes['offset'] ) && ! empty( $attributes['offset'] ) ) {
 		'category__in'        => $selected_category,
 		'fields'              => 'ids',
 		'posts_per_page'      => $attributes['offset'],
+		'post_status'         => 'publish',
 	);
 	$offset_post_ids = get_posts( $offset_args );
 

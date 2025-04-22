@@ -13,6 +13,7 @@
   "editorScript": "file:./index.js",
   "parent": [
     "cozy-block/teams",
-    "cozy-block/testimonial"
+    "cozy-block/testimonial",
+    "cozy-block/featured-content-box"
   ]
 }

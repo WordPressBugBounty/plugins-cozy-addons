@@ -274,6 +274,8 @@
         "hoverEffect": true,
         "linkProduct": true,
         "linkNewTab": false,
+        "objectFit": "cover",
+        "objectPosition": "top",
         "overlay": "#1c1c1c96"
       }
     },
@@ -457,6 +459,7 @@
           "color": ""
         },
         "radius": "0px",
+        "width": "",
         "font": {
           "size": "14px",
           "weight": "500",

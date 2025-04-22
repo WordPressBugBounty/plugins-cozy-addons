@@ -225,7 +225,7 @@
 }
 
 .cozy-tab-panel .components-tab-panel__tabs button {
-  height: 34px;
+  height: 34px !important;
   transition: all 0.23s ease-in;
   width: 100%;
   justify-content: center;

@@ -82,6 +82,10 @@
       "type": "boolean",
       "default": true
     },
+    "hasZoomEffect": {
+      "type": "boolean",
+      "default": false
+    },
     "pagination": {
       "type": "object",
       "default": {

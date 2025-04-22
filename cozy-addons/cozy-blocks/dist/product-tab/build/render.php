@@ -75,12 +75,14 @@ $item_box = array(
 );
 
 $post_image = array(
-	'margin' => array(
+	'margin'          => array(
 		'top'    => isset( $attributes['imageStyles']['margin']['top'] ) ? $attributes['imageStyles']['margin']['top'] : '0px',
 		'bottom' => isset( $attributes['imageStyles']['margin']['bottom'] ) ? $attributes['imageStyles']['margin']['bottom'] : '0px',
 	),
-	'radius' => isset( $attributes['imageStyles']['radius'] ) ? $attributes['imageStyles']['radius'] : '',
-	'color'  => array(
+	'object_fit'      => isset( $attributes['imageStyles']['objectFit'] ) ? $attributes['imageStyles']['objectFit'] : '',
+	'object_position' => isset( $attributes['imageStyles']['objectPosition'] ) ? $attributes['imageStyles']['objectPosition'] : 'center',
+	'radius'          => isset( $attributes['imageStyles']['radius'] ) ? $attributes['imageStyles']['radius'] : '',
+	'color'           => array(
 		'overlay' => isset( $attributes['imageStyles']['overlay'] ) ? $attributes['imageStyles']['overlay'] : '',
 	),
 );
@@ -161,6 +163,7 @@ $cart_button = array(
 	'padding'        => isset( $attributes['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cartButton']['padding'] ) : '',
 	'border'         => isset( $attributes['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cartButton']['border'] ) : '',
 	'radius'         => isset( $attributes['cartButton']['radius'] ) ? $attributes['cartButton']['radius'] : '',
+	'width'         => isset( $attributes['cartButton']['width'] ) ? $attributes['cartButton']['width'] : '',
 	'font'           => array(
 		'size'   => isset( $attributes['cartButton']['font']['size'] ) ? $attributes['cartButton']['font']['size'] : '',
 		'weight' => isset( $attributes['cartButton']['font']['weight'] ) ? $attributes['cartButton']['font']['weight'] : '',
@@ -317,7 +320,7 @@ $block_styles = "
 	background-color: {$item_box['bg_hover']};
 	border-color: {$item_box['border_hover']};
 }
-#$block_id .cozy-block__product-tab-content.has-box-shadow .cozy-block-product:hover {
+#$block_id .cozy-block__product-tab-content.has-hover-box-shadow .cozy-block-product:hover {
 	box-shadow: {$item_box['shadow_hover']['horizontal']}px {$item_box['shadow_hover']['vertical']}px {$item_box['shadow_hover']['blur']}px {$item_box['shadow_hover']['spread']}px {$item_box['shadow_hover']['color']} {$item_box['shadow_hover']['position']};
 }
 
@@ -331,6 +334,8 @@ $block_styles = "
 #$block_id .cozy-block-product-tab__product-image img {
     height: {$attributes['imageStyles']['height']};
 	border-radius: {$post_image['radius']};
+	object-fit: {$post_image['object_fit']};
+	object-position: {$post_image['object_position']};
 }
 
 #$block_id .post__image-background {
@@ -448,6 +453,7 @@ $block_styles = "
     {$cart_button['padding']}
     {$cart_button['border']}
     border-radius: {$cart_button['radius']};
+    width: {$cart_button['width']};
     font-size: {$cart_button['font']['size']};
     font-weight: {$cart_button['font']['weight']};
     font-family: {$cart_button['font']['family']};
@@ -521,8 +527,8 @@ if ( ! function_exists( 'render_cozy_block_product_tab_data' ) ) {
 	function render_cozy_block_product_tab_data( $attributes, $products, &$output ) {
 		$classes   = array();
 		$classes[] = 'cozy-block__product-tab-content';
-		$classes[] = isset( $attributes['itemBoxStyles']['shadow']['enabled'] ) ? 'has-box-shadow' : '';
-		$classes[] = isset( $attributes['itemBoxStyles']['shadowHover']['enabled'] ) ? 'has-hover-box-shadow' : '';
+		$classes[] = isset( $attributes['itemBoxStyles']['shadow']['enabled'] ) && filter_var( $attributes['itemBoxStyles']['shadow']['enabled'], FILTER_VALIDATE_BOOLEAN ) ? 'has-box-shadow' : '';
+		$classes[] = isset( $attributes['itemBoxStyles']['shadowHover']['enabled'] ) && filter_var( $attributes['itemBoxStyles']['shadowHover']['enabled'], FILTER_VALIDATE_BOOLEAN ) ? 'has-hover-box-shadow' : '';
 		$classes[] = isset( $attributes['itemBoxStyles']['hoverEffect'] ) && $attributes['itemBoxStyles']['hoverEffect'] ? 'has-hover-effect' : '';
 		$output   .= '<li class="' . implode( ' ', $classes ) . '">';
 

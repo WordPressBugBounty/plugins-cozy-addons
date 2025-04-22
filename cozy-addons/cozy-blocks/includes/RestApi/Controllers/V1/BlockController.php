@@ -107,6 +107,10 @@ class BlockController extends RestControllerBase {
 	}
 
 	public function cozy_get_posts_collection( WP_REST_Request $request ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+
 		$type     = $request->get_param( 'type' ) ? $request->get_param( 'type' ) : 'latest';
 		$per_page = $request->get_param( 'per_page' ) ? $request->get_param( 'per_page' ) : 10;
 
@@ -207,6 +211,10 @@ class BlockController extends RestControllerBase {
 	}
 
 	public function cozy_get_sticky_posts( WP_REST_Request $request ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+
 		$args = array(
 			'post__in'            => get_option( 'sticky_posts' ),
 			'posts_per_page'      => -1, // To retrieve all sticky posts.
@@ -250,6 +258,10 @@ class BlockController extends RestControllerBase {
 	}
 
 	public function get_related_posts( WP_REST_Request $request ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+
 		global $post;
 		// Get the current post ID.
 		$current_post_id = get_the_ID();
@@ -286,6 +298,10 @@ class BlockController extends RestControllerBase {
 	}
 
 	public function get_popular_tags( WP_REST_Request $request ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+
 		$per_page = $request->get_param( 'per_page' ) ? $request->get_param( 'per_page' ) : 10;
 
 		$popular_tags = get_terms(
@@ -310,17 +326,28 @@ class BlockController extends RestControllerBase {
 	}
 
 	public function get_popular_comments( WP_REST_Request $request ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+
 		$per_page = $request->get_param( 'per_page' ) ? $request->get_param( 'per_page' ) : 10;
 
 		global $wpdb;
 
 		// Get all approved comments.
 		$all_comments = $wpdb->get_results(
-			"
-				SELECT comment_ID, comment_post_ID, comment_author, comment_author_email, comment_content, comment_date
-				FROM $wpdb->comments
-				WHERE comment_approved = '1' ORDER BY comment_date DESC
-			"
+			$wpdb->prepare(
+				"
+				SELECT c.comment_ID, c.comment_post_ID, c.comment_author, c.comment_author_email, c.comment_content, c.comment_date
+				FROM $wpdb->comments c
+				INNER JOIN $wpdb->posts p ON c.comment_post_ID = p.ID
+				WHERE c.comment_approved = '1'
+				AND p.post_type = 'post'
+				ORDER BY c.comment_date DESC
+				LIMIT %d
+				",
+				$per_page,
+			)
 		);
 
 		$comments_formatted = array();
@@ -361,6 +388,10 @@ class BlockController extends RestControllerBase {
 	}
 
 	public function get_post_categories( WP_REST_Request $request ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+		
 		$args = array(
 			'taxonomy'   => 'category',
 			'hide_empty' => true,

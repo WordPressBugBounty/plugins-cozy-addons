@@ -99,7 +99,11 @@
         saleBadge.appendChild(content);
         saleBadge.appendChild(labelAfter);
 
-        block.appendChild(saleBadge);
+        if (block.querySelector(".wp-block-post-featured-image")) {
+          block
+            .querySelector(".wp-block-post-featured-image")
+            .appendChild(saleBadge);
+        }
       }
     });
 

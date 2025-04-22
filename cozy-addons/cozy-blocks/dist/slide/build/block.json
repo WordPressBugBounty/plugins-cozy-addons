@@ -49,6 +49,8 @@
   "editorScript": [
     "cozy-block--slide"
   ],
-  "style": "file:./style-index.css",
+  "style": [
+    "cozy-block--slide--style"
+  ],
   "render": "file:./render.php"
 }

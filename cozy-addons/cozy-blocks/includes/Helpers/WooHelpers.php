@@ -3,6 +3,10 @@ namespace CozyBlock\Helpers;
 
 class WooHelpers {
 	public static function get_woo_product_reviews() {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+
 		$args = array(
 			'status'      => 'approve',
 			'post_status' => 'publish',
@@ -32,6 +36,10 @@ class WooHelpers {
 	}
 
 	public static function get_woo_total_product_reviews() {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+
 		global $wpdb;
 		$total_reviews_count = $wpdb->get_var(
 			"
@@ -45,6 +53,10 @@ class WooHelpers {
 	}
 
 	public static function get_woo_avg_product_reviews() {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+
 		global $wpdb;
 		$average_rating = $wpdb->get_var(
 			"

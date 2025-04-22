@@ -31,7 +31,11 @@ wp_add_inline_script( 'cozy-block--slider--frontend-script', 'document.addEventL
 
 $wrapper_attributes = get_block_wrapper_attributes();
 
-$output = '<div class="cozy-block-wrapper cozy-block-slider-wrapper"><div ' . $wrapper_attributes . '>';
+$classes   = array();
+$classes[] = 'cozy-block-wrapper';
+$classes[] = 'cozy-block-slider-wrapper';
+
+$output = '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><div ' . $wrapper_attributes . '>';
 
 add_action(
 	'wp_enqueue_scripts',

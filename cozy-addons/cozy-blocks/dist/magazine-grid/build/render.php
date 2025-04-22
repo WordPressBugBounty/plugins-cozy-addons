@@ -479,7 +479,7 @@ $block_styles = "
 #$block_id .post__title {
 	margin-top: {$attributes['postOptions']['title']['margin']['top']};
 	margin-bottom: {$attributes['postOptions']['title']['margin']['bottom']};
-	font-size: 	clamp(16px, calc(3vw + 4px), {$attributes['postOptions']['title']['font']['size']});
+	font-size: 	clamp(18.956px, 1.185rem + ((1vw - 3.2px) * 0.673), {$attributes['postOptions']['title']['font']['size']});
 	font-weight: {$attributes['postOptions']['title']['font']['weight']};
 	font-family: {$post_content['title_font_family']};
 	text-transform: {$attributes['postOptions']['title']['letterCase']};
@@ -987,7 +987,7 @@ $cozy_block_magazine_grid_args = array(
 	'ignore_sticky_posts' => $attributes['enableOptions']['ignoreSticky'],
 	'category__in'        => $selected_category,
 	'post__not_in'        => array(),
-	'status'              => 'published',
+	'post_status'         => 'publish',
 );
 
 $featured_post_data = array();
@@ -1000,6 +1000,7 @@ if ( $attributes['featuredPostOptions']['enabled'] ) {
 			'order'          => 'DESC',
 			'posts_per_page' => 1,
 			'category__in'   => $selected_category,
+			'post_status'    => 'publish',
 		);
 		$latest_post = get_cozy_block_magazine_grid_posts( $latest_args );
 		if ( is_array( $latest_post ) && ! empty( $latest_post ) ) {
@@ -1031,6 +1032,7 @@ if ( isset( $attributes['offset'] ) && ! empty( $attributes['offset'] ) ) {
 		'category__in'        => $selected_category,
 		'fields'              => 'ids',
 		'posts_per_page'      => $attributes['offset'],
+		'post_status'         => 'publish',
 	);
 	$offset_post_ids = get_posts( $offset_args );
 

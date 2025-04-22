@@ -128,16 +128,22 @@
         "rotate": 0,
         "bgColor": "#5566ca",
         "typography": {
-          "fontFamily": "sans-serif",
+          "fontFamily": "",
           "fontSize": 10,
-          "color": "#fff",
-          "fontWeight": 400
+          "fontWeight": 400,
+          "letterCase": "",
+          "lineHeight": "",
+          "letterSpacing": "",
+          "color": "#fff"
         },
         "labelTypography": {
-          "fontFamily": "sans-serif",
+          "fontFamily": "",
           "fontSize": 10,
           "color": "",
-          "fontWeight": 400
+          "fontWeight": 400,
+          "letterCase": "",
+          "lineHeight": "",
+          "letterSpacing": ""
         }
       }
     },

@@ -32,7 +32,7 @@ final class CozyBlockInit {
 		CozyRestApi::init();
 		QueryLoop::init();
 
-		add_filter( 'block_categories_all', array( $this, 'cozy_block_categories' ), PHP_INT_MAX, 2 );
+		add_filter( 'block_categories_all', array( $this, 'cozy_block_categories' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_cozy_block_editor_assets' ) );
 		add_action( 'enqueue_block_assets', array( $this, 'enqueue_cozy_block_assets' ) );
 
@@ -93,24 +93,6 @@ final class CozyBlockInit {
 			COZY_ADDONS_VERSION
 		);
 
-		/*
-		wp_enqueue_style(
-			'cozy-block-form-styler', // Handle name.
-			COZY_BLOCK_PLUGIN_URL . 'assets/css/cozy-form-styler.css',
-			array(),
-			COZY_ADDONS_VERSION
-		); */
-
-		// Pattern Block Script
-		/*
-		wp_enqueue_script(
-			'cozy-pattern-block-script', // Handle name.
-			COZY_BLOCK_PLUGIN_URL . 'assets/js/pattern-block-scripts.min.js', // Path to your JavaScript file.
-			array( 'jquery' ),
-			COZY_ADDONS_VERSION,
-			false
-		); */
-
 		wp_enqueue_style(
 			'cozy-aos-css', // Handle name.
 			COZY_BLOCK_PLUGIN_URL . 'assets/css/aos.css',
@@ -168,7 +150,7 @@ final class CozyBlockInit {
 			'carousel',
 			'grid',
 			'slide',
-			'pattern-lib',
+			// 'pattern-lib',
 		);
 
 		$premium_blocks = array(

@@ -17,11 +17,19 @@ $sale_badge_font_size   = isset( $attributes['saleBadge']['typography']['fontSiz
 $sale_badge_font_weight = isset( $attributes['saleBadge']['typography']['fontWeight'] ) ? $attributes['saleBadge']['typography']['fontWeight'] : '';
 $sale_badge_font_family = isset( $attributes['saleBadge']['typography']['fontFamily'] ) ? $attributes['saleBadge']['typography']['fontFamily'] : '';
 $sale_badge_font_color  = isset( $attributes['saleBadge']['typography']['color'] ) ? $attributes['saleBadge']['typography']['color'] : '';
+$sale_badge             = array(
+	'letter_case'    => isset( $attributes['saleBadge']['typography']['letterCase'] ) ? $attributes['saleBadge']['typography']['letterCase'] : '',
+	'line_height'    => isset( $attributes['saleBadge']['typography']['lineHeight'] ) ? $attributes['saleBadge']['typography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['saleBadge']['typography']['letterSpacing'] ) ? $attributes['saleBadge']['typography']['letterSpacing'] : '',
+);
 
 $sale_badge_label = array(
-	'font_size'   => isset( $attributes['saleBadge']['labelTypography']['fontSize'] ) ? $attributes['saleBadge']['labelTypography']['fontSize'] : '',
-	'font_weight' => isset( $attributes['saleBadge']['labelTypography']['fontWeight'] ) ? $attributes['saleBadge']['labelTypography']['fontWeight'] : '',
-	'font_family' => isset( $attributes['saleBadge']['labelTypography']['fontFamily'] ) ? $attributes['saleBadge']['labelTypography']['fontFamily'] : '',
+	'font_size'      => isset( $attributes['saleBadge']['labelTypography']['fontSize'] ) ? $attributes['saleBadge']['labelTypography']['fontSize'] : '',
+	'font_weight'    => isset( $attributes['saleBadge']['labelTypography']['fontWeight'] ) ? $attributes['saleBadge']['labelTypography']['fontWeight'] : '',
+	'font_family'    => isset( $attributes['saleBadge']['labelTypography']['fontFamily'] ) ? $attributes['saleBadge']['labelTypography']['fontFamily'] : '',
+	'letter_case'    => isset( $attributes['saleBadge']['labelTypography']['letterCase'] ) ? $attributes['saleBadge']['labelTypography']['letterCase'] : '',
+	'line_height'    => isset( $attributes['saleBadge']['labelTypography']['lineHeight'] ) ? $attributes['saleBadge']['labelTypography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['saleBadge']['labelTypography']['letterSpacing'] ) ? $attributes['saleBadge']['labelTypography']['letterSpacing'] : '',
 );
 
 $sale_badge_color = array(
@@ -100,6 +108,9 @@ $block_styles = "
     font-size: {$sale_badge_font_size}px;
     font-weight: {$sale_badge_font_weight};
     font-family: {$sale_badge_font_family};
+	text-transform: {$sale_badge['letter_case']};
+	line-height: {$sale_badge['line_height']};
+	letter-spacing: {$sale_badge['letter_spacing']};
     color: {$sale_badge_font_color};
 }
 #$block_id.on-sale.sale-badge-display-block .cozy-sale-badge * {
@@ -119,6 +130,9 @@ $block_styles = "
     font-size: {$sale_badge_label['font_size']}px;
     font-weight: {$sale_badge_label['font_weight']};
     font-family: {$sale_badge_label['font_family']};
+	text-transform: {$sale_badge_label['letter_case']};
+	line-height: {$sale_badge_label['line_height']};
+	letter-spacing: {$sale_badge_label['letter_spacing']};
     color: {$sale_badge_color['text']};
 }
 

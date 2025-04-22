@@ -75,7 +75,7 @@ class Cozy_Addons {
 		$this->plugin_name = 'cozy-addons';
 
 		$this->load_dependencies();
-		$this->set_locale();
+		// $this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 

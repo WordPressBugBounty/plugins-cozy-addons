@@ -475,11 +475,18 @@ if ( ! function_exists( 'cozy_fetch_featured_post_tab_data' ) ) {
 				$per_page = intval( $attributes['perPage'][ $tab ] );
 				// Get all approved comments.
 				$all_comments = $wpdb->get_results(
-					"
-				SELECT comment_ID, comment_post_ID, comment_author, comment_author_email, comment_content, comment_date
-				FROM $wpdb->comments
-				WHERE comment_approved = '1' ORDER BY comment_date DESC
-			"
+					$wpdb->prepare(
+						"
+						SELECT c.comment_ID, c.comment_post_ID, c.comment_author, c.comment_author_email, c.comment_content, c.comment_date
+						FROM $wpdb->comments c
+						INNER JOIN $wpdb->posts p ON c.comment_post_ID = p.ID
+						WHERE c.comment_approved = '1'
+						AND p.post_type = 'post'
+						ORDER BY c.comment_date DESC
+						LIMIT %d
+						",
+						$per_page,
+					)
 				);
 
 				$comments_formatted = array();
