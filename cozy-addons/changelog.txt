@@ -1,3 +1,6 @@
+= 2.1.24 - April 28, 2025 = 
+* Fix: Product Review block render.
+
 = 2.1.23 - April 22, 2025 = 
 * Fix: Block improvements.
 * Fix: REST API broken access control. 

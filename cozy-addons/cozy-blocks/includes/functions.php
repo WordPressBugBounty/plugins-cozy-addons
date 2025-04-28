@@ -651,10 +651,10 @@ function cozy_render_TRBL( $type, $attributes ) {
 
 		case 'border-radius':
 			// Handle individual border radius for each side.
-			$top    = esc_attr( $attributes['top'] );
-			$right  = esc_attr( $attributes['right'] );
-			$bottom = esc_attr( $attributes['bottom'] );
-			$left   = esc_attr( $attributes['left'] );
+			$top    = isset( $attributes['top'] ) ? esc_attr( $attributes['top'] ) : '';
+			$right  = isset( $attributes['right'] ) ? esc_attr( $attributes['right'] ) : '';
+			$bottom = isset( $attributes['bottom'] ) ? esc_attr( $attributes['bottom'] ) : '';
+			$left   = isset( $attributes['left'] ) ? esc_attr( $attributes['left'] ) : '';
 
 			return ( ! empty( $attributes['top'] ) ? "border-top-left-radius: {$top};" : '' ) .
 			( ! empty( $attributes['right'] ) ? "border-top-right-radius: {$right};" : '' ) .
