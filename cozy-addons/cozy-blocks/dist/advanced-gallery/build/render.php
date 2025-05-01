@@ -656,7 +656,7 @@ Lightbox */
 if ( $attributes['enableOptions']['lightbox'] && ! empty( $attributes['mediaCollection'] ) ) {
 	$output .= '<div class="cozy-block-advanced-gallery__lightbox-wrapper display-none">';
 
-	$output .= '<div class="cozy-block-advanced-gallery__toolbar-wrapper" style="display:flex;justify-content:space-between;">';
+	$output .= '<div class="cozy-block-advanced-gallery__toolbar-wrapper" style="display:flex;justify-content:space-between;position:relative;z-index:99999;">';
 	$output .= '<div class="swiper-pagination lightbox-pagination"></div>';
 
 	/* Toolbar Buttons */
