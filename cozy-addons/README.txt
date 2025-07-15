@@ -1,10 +1,10 @@
-=== Cozy Blocks – Page Builder for Gutenberg & Site Editor with Post Blocks, WooCommerce Blocks, Magazine Blocks & WordPress Gutenberg Blocks ===
+=== Cozy Blocks – A Powerful Page Builder for Gutenberg ===
 Contributors: CozyThemes
 Tags: blocks, gutenberg blocks, gutenberg, woocommerce blocks, block
 Requires PHP: 7.3
 Requires at least: 5.8
 Tested up to: 6.8
-Stable tag: 2.1.25
+Stable tag: 2.1.26
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
@@ -35,11 +35,11 @@ Streamline your website designs with our library of advanced blocks designed to 
 <li>Advanced Gallery with multiple layouts</li>
 </ul>
 
-[Cozy Blocks](https://cozythemes.com/cozy-addons/) is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Seamlessly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it offers a robust library of over 50 advanced, customizable Gutenberg blocks. Designed for ease of use, [Cozy Blocks](https://cozythemes.com/cozy-addons/) caters to both experienced developers and beginners, enabling users to effortlessly design dynamic, visually stunning websites.
+[Cozy Blocks](https://cozythemes.com/cozy-addons/) is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Seamlessly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it offers a robust library of over 50 advanced, customizable Gutenberg blocks. Designed for ease of use, Cozy Blocks caters to both experienced developers and beginners, enabling users to effortlessly design dynamic, visually stunning websites.
 
-Whether you’re building an e-commerce store, a news platform, a corporate site, or any other type of web presence, [Cozy Blocks](https://cozythemes.com/cozy-addons/) provides the powerful tools you need. Supported by flexible customization options and robust support, this plugin empowers you to embrace the future of web design and unlock your creative potential.
+Whether you’re building an e-commerce store, a news platform, a corporate site, or any other type of web presence, Cozy Blocks provides the powerful tools you need. Supported by flexible customization options and robust support, this plugin empowers you to embrace the future of web design and unlock your creative potential.
 
-Join the [Cozy Blocks](https://cozythemes.com/cozy-addons/) movement today and build your website with ease.
+Join the Cozy Blocks movement today and build your website with ease.
 
 Watch our step-by-step tutorial on installing [Cozy Blocks](https://cozythemes.com/cozy-addons/)!
 
@@ -146,23 +146,8 @@ You can report any security bugs found in the source code of this plugin through
 6. Animation and Hover Effects
 
 == Changelog ==
-= 2.1.25 - May 01, 2025 = 
-* Fix: Advanced Gallery block's lightbox active slide visibility.
-
-= 2.1.24 - April 28, 2025 = 
-* Fix: Product Review block render.
-
-= 2.1.23 - April 22, 2025 = 
-* Fix: Block improvements.
-* Fix: REST API broken access control. 
-* Fix: 'Sidebar Panel' block style conflict with Spectra. 
-* Update: Compatible with WordPress 6.8
-
-= 2.1.22 - April 08, 2025 = 
-* Fix: Sidebar panel block.
-
-= 2.1.21 - April 07, 2025 = 
-* Fix: Block improvements.
+= 2.1.26 - July 15, 2025 = 
+* Fix: Keyword stuffing in plugin title.
 
 [See changes for all the versions here.](https://plugins.svn.wordpress.org/cozy-addons/trunk/changelog.txt)
 

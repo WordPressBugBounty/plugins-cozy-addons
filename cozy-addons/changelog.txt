@@ -1,3 +1,6 @@
+= 2.1.26 - July 15, 2025 = 
+* Fix: Keyword stuffing in plugin title.
+
 = 2.1.25 - May 01, 2025 = 
 * Fix: Advanced Gallery block's lightbox active slide visibility.
 
