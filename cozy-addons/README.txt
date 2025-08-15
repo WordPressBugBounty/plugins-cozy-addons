@@ -1,10 +1,10 @@
-=== Cozy Blocks – A Powerful Page Builder for Gutenberg ===
+=== Cozy Blocks - All-in-One Page Builder Blocks for Gutenberg and Full Site Editing (FSE) ===
 Contributors: CozyThemes
 Tags: blocks, gutenberg blocks, gutenberg, woocommerce blocks, block
 Requires PHP: 7.3
 Requires at least: 5.8
 Tested up to: 6.8
-Stable tag: 2.1.26
+Stable tag: 2.1.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
@@ -128,11 +128,28 @@ https://www.youtube.com/watch?v=GP4NxSbikS4
 
 == Frequently Asked Questions ==
 
-= Is Cozy Blocks for Free? =
-Yes, it's free and provides additional premium features.
+= What is Cozy Blocks? =
+Cozy Blocks is a powerful WordPress plugin that offers 50+ advanced Gutenberg blocks built specifically for the Full Site Editing (FSE) experience. It allows you to design complete websites visually — including post grids, WooCommerce layouts, galleries, portfolios, and more — all without using third-party page builders or custom code.
 
-= Can I use this plugin with any theme? =
-Absolutely! Our plugin seamlessly integrates with themes supporting Full Site Editing (FSE) and the Gutenberg Editor, unlocking the complete potential of Cozy Blocks. Furthermore, upon activating the Elementor plugin, you gain access to dedicated Elementor widgets, expanding your design possibilities. In essence, you can employ Cozy Blocks with any theme of your choice.
+= Is Cozy Blocks compatible with all WordPress themes? =
+Cozy Blocks is only compatible with block-based (FSE) WordPress themes. It does not support classic themes or the Classic Editor. To get the full benefits of Cozy Blocks, you must use it with a modern block theme like [SaasLauncher](https://wordpress.org/themes/saaslauncher/), [Jetnews Magazine](https://wordpress.org/themes/jetnews-magazine/), [WoxStore](https://wordpress.org/themes/woxstore/), or any compatible Full Site Editing theme available on WordPress.org.
+
+= Can I use Cozy Blocks to build an online store? =
+Yes! Cozy Blocks includes several WooCommerce-specific blocks, such as Product Grid, Add to Cart, Quick View, Wishlist, and more. You can build custom product sections, landing pages, and full WooCommerce store layouts using the visual block editor — perfect for store owners and eCommerce developers who want design freedom.
+
+= Is Cozy Blocks beginner-friendly? =
+Absolutely! Cozy Blocks is designed to be user-friendly and beginner-focused. You can simply drag and drop blocks, customize layouts visually, and use ready-made patterns to build your website — no coding skills required. It’s also a great tool for freelancers and agencies who want to build sites faster using the block editor.
+
+= Can I customize the appearance of Cozy Blocks? =
+Yes, Cozy Blocks offers advanced styling controls for each block — including typography, color, spacing, alignment, visibility, and device-specific settings. You can fully customize how your site looks and feels directly within the Site Editor, and even use global styles from your theme for consistency.
+
+= Is Cozy Blocks for Free? =
+The free version offers 30+ essential Full Site Editing (FSE) blocks — perfect for creating custom layouts, content sections, and WooCommerce pages. 
+
+For users who want more power and flexibility, a Pro version is available with 50+ premium blocks that include advanced features, enhanced design controls, and extended support for WooCommerce and dynamic content.
+
+= Where can I get support or ask questions? =
+You can get support for Cozy Blocks via the [support forum](https://wordpress.org/support/plugin/cozy-addons/). You can also ask pre-sale questions, or request features through the official support channels provided by [CozyThemes](https://cozythemes.com/), the plugin’s developer.
 
 = Where do I report security bugs? =
 You can report any security bugs found in the source code of this plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/cozy-addons). The Patchstack team will assist you with verification, CVE assignment and take care of notifying the developers of this plugin.
@@ -146,6 +163,9 @@ You can report any security bugs found in the source code of this plugin through
 6. Animation and Hover Effects
 
 == Changelog ==
+= 2.1.27 - August 15, 2025 = 
+* Fix: Portfolio Gallery block.
+
 = 2.1.26 - July 15, 2025 = 
 * Fix: Keyword stuffing in plugin title.
 
