@@ -101,6 +101,10 @@ class Utils {
 	 *               product name, product rating, product URL, comment rating, and reviewer name.
 	 */
 	public static function get_woo_product_reviews() {
+		if ( ! is_woocommerce_active() ) {
+			return array();
+		}
+
 		$args = array(
 			'status'      => 'approve',
 			'post_status' => 'publish',

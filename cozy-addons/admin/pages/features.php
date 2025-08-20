@@ -331,4 +331,12 @@ $features = array(
 			</tbody>
 		</table>
 	</div>
+
+	<div class="ct-plugin-link right__align">
+		<a class="ca__primary-btn btn-large" href="<?php echo ! cozy_addons_premium_access() ? 'https://cozythemes.com/cozy-addons/' : '#'; ?>" target="<?php echo ! cozy_addons_premium_access() ? '_blank' : ''; ?>">
+			<img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" />
+			<?php esc_html_e( 'Upgrade to Pro', 'cozy-addons' ); ?></a>
+
+	</div>
+
 </div>

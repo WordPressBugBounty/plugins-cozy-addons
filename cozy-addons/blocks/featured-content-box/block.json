@@ -121,7 +121,8 @@
         "centeredSlides": false,
         "slidesPerView": 3,
         "spaceBetween": 30,
-        "speed": 700
+        "speed": 700,
+        "smoothTransition": false
       }
     }
   },

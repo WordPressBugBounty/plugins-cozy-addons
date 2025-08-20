@@ -214,6 +214,13 @@
 
 			rollbackBtn.attr("href", updatedURL);
 		});
+
+		// Features list redirection
+		$("#ca-features-list").on("click", function () {
+			const lastTab = $(".ct-tab").last().data("index");
+
+			changeTab(lastTab);
+		});
 	});
 
 	function changeTab(index) {

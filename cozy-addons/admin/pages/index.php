@@ -74,7 +74,7 @@ if ( ! cozy_addons_premium_access() ) :
 			<img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" />
 			<?php esc_html_e( 'Upgrade to Pro', 'cozy-addons' ); ?></a>
 
-			<a class="ca__secondary-btn btn-large"><?php esc_html_e( 'See Full Comparison List', 'cozy-addons' ); ?></a>
+			<a href="#" id="ca-features-list" class="ca__secondary-btn btn-large"><?php esc_html_e( 'See Full Comparison List', 'cozy-addons' ); ?></a>
 	</div>
 </div>
 	<?php

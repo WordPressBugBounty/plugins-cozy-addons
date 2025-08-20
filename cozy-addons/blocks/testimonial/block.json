@@ -88,13 +88,14 @@
           "autoplay": {
             "enabled": true,
             "pauseOnMouseEnter": true,
-            "reverseDirection": false,
             "delay": 2500
           },
+          "reverseDirection": false,
           "centeredSlides": false,
           "slidesPerView": 1,
           "spaceBetween": 30,
-          "speed": 700
+          "speed": 700,
+          "smoothTransition": false
         }
       }
     }

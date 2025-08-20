@@ -1,6 +1,9 @@
 <?php
 $client_id = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $teams_var = 'cozyTeams_' . str_replace( '-', '_', $client_id );
+
+$attributes['isPremium'] = cozy_addons_premium_access();
+
 wp_localize_script( 'cozy-block--teams--frontend-script', $teams_var, $attributes );
 wp_add_inline_script( 'cozy-block--teams--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockTeamsInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
@@ -71,8 +74,6 @@ $block_styles = "
 }
 ";
 
-$output = '<div class="cozy-block-wrapper">';
-
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
@@ -80,7 +81,11 @@ add_action(
 	}
 );
 
-$output .= $content;
-$output .= '</div>';
+$classes   = array();
+$classes[] = 'cozy-block-wrapper';
+$classes[] = cozy_addons_premium_access() && 'carousel' === $attributes['layout'] && isset( $attributes['carouselOptions']['sliderOptions']['smoothTransition'] ) && $attributes['carouselOptions']['sliderOptions']['smoothTransition'] ? 'swiper__smooth-transition' : '';
+?>
 
-echo $output;
+<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
+	<?php echo $content; ?>
+</div>

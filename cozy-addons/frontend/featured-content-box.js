@@ -12,12 +12,8 @@
 			slidesPerView: blockOptions.sliderOptions.slidesPerView,
 			spaceBetween: blockOptions.sliderOptions.spaceBetween,
 			navigation: {
-				nextEl: !blockOptions.sliderOptions?.reverseDirection
-					? `${featuredContentBoxClass} .swiper-button-next.cozy-block-button-next`
-					: `${featuredContentBoxClass} .swiper-button-prev.cozy-block-button-prev`,
-				prevEl: !blockOptions.sliderOptions?.reverseDirection
-					? `${featuredContentBoxClass} .swiper-button-prev.cozy-block-button-prev`
-					: `${featuredContentBoxClass} .swiper-button-next.cozy-block-button-next`,
+				nextEl: `${featuredContentBoxClass} .swiper-button-next.cozy-block-button-next`,
+				prevEl: `${featuredContentBoxClass} .swiper-button-prev.cozy-block-button-prev`,
 			},
 			pagination: {
 				clickable: true,
@@ -47,6 +43,17 @@
 
 		if (blockOptions.sliderOptions.autoplay.status) {
 			sliderAttr.autoplay = { ...blockOptions.sliderOptions.autoplay };
+			if (
+				blockOptions.isPremium &&
+				blockOptions.sliderOptions?.reverseDirection
+			) {
+				sliderAttr.autoplay = {
+					...sliderAttr.autoplay,
+					reverseDirection: true,
+				};
+			} else {
+				delete sliderAttr.autoplay.reverseDirection;
+			}
 		} else {
 			delete sliderAttr.autoplay;
 		}

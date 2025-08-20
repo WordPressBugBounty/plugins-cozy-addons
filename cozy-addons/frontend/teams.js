@@ -136,12 +136,8 @@
 			slidesPerView: blockOptions.carouselOptions.sliderOptions.slidesPerView,
 			spaceBetween: blockOptions.carouselOptions.sliderOptions.spaceBetween,
 			navigation: {
-				nextEl: !blockOptions.carouselOptions?.sliderOptions?.reverseDirection
-					? `${teamsClass} .swiper-button-next.cozy-block-button-next`
-					: `${teamsClass} .swiper-button-prev.cozy-block-button-prev`,
-				prevEl: !blockOptions.carouselOptions?.sliderOptions?.reverseDirection
-					? `${teamsClass} .swiper-button-prev.cozy-block-button-prev`
-					: `${teamsClass} .swiper-button-next.cozy-block-button-next`,
+				nextEl: `${teamsClass} .swiper-button-next.cozy-block-button-next`,
+				prevEl: `${teamsClass} .swiper-button-prev.cozy-block-button-prev`,
 			},
 			pagination: {
 				clickable: true,
@@ -174,6 +170,18 @@
 			carouselAttr.autoplay = {
 				...blockOptions.carouselOptions.sliderOptions.autoplay,
 			};
+
+			if (
+				blockOptions.isPremium &&
+				blockOptions.carouselOptions.sliderOptions?.reverseDirection
+			) {
+				carouselAttr.autoplay = {
+					...carouselAttr.autoplay,
+					reverseDirection: true,
+				};
+			} else {
+				delete carouselAttr.autoplay.reverseDirection;
+			}
 		} else {
 			delete carouselAttr.autoplay;
 		}

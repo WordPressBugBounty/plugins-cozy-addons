@@ -3,6 +3,8 @@
 $client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $cozy_block_var = 'cozyFeaturedContentBox_' . str_replace( '-', '_', $client_id );
 
+$attributes['isPremium'] = cozy_addons_premium_access();
+
 wp_localize_script( 'cozy-block--featured-content-box--frontend-script', $cozy_block_var, $attributes );
 wp_add_inline_script( 'cozy-block--featured-content-box--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedContentBoxInit( "' . esc_html( $client_id ) . '" ) }) ' );
 
@@ -160,8 +162,6 @@ $block_styles = "
 }
 ";
 
-$output = '<div class="cozy-block-wrapper">';
-
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
@@ -169,7 +169,11 @@ add_action(
 	}
 );
 
-$output .= $content;
-$output .= '</div>';
+$classes   = array();
+$classes[] = 'cozy-block-wrapper';
+$classes[] = cozy_addons_premium_access() && 'carousel' === $attributes['display'] && isset( $attributes['sliderOptions']['smoothTransition'] ) && $attributes['sliderOptions']['smoothTransition'] ? 'swiper__smooth-transition' : '';
+?>
 
-echo $output;
+<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
+	<?php echo $content; ?>
+</div>

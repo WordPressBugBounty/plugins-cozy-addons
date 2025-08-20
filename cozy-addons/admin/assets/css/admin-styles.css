@@ -577,6 +577,11 @@ p.ca__has-light-color {
 	width: 100px;
 }
 
+.ct-companion-dashboard .features__list .ct-plugin-link.right__align {
+	justify-content: right;
+	margin-top: 26px;
+}
+
 /* Check / cross styling */
 .ct-companion-dashboard .feature-table .col-free,
 .ct-companion-dashboard .feature-table .col-pro {

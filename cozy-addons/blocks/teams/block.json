@@ -86,6 +86,7 @@
         "sliderOptions": {
           "loop": false,
           "speed": 700,
+          "smoothTransition": false,
           "autoplay": {
             "enabled": true,
             "pauseOnMouseEnter": true,

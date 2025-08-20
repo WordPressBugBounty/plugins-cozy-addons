@@ -3402,7 +3402,8 @@ return array(
 					'centeredSlides' => false,
 					'slidesPerView' => 3,
 					'spaceBetween' => 30,
-					'speed' => 700
+					'speed' => 700,
+					'smoothTransition' => false
 				)
 			)
 		),
@@ -12651,6 +12652,7 @@ return array(
 					'sliderOptions' => array(
 						'loop' => false,
 						'speed' => 700,
+						'smoothTransition' => false,
 						'autoplay' => array(
 							'enabled' => true,
 							'pauseOnMouseEnter' => true,
@@ -12769,13 +12771,14 @@ return array(
 						'autoplay' => array(
 							'enabled' => true,
 							'pauseOnMouseEnter' => true,
-							'reverseDirection' => false,
 							'delay' => 2500
 						),
+						'reverseDirection' => false,
 						'centeredSlides' => false,
 						'slidesPerView' => 1,
 						'spaceBetween' => 30,
-						'speed' => 700
+						'speed' => 700,
+						'smoothTransition' => false
 					)
 				)
 			)

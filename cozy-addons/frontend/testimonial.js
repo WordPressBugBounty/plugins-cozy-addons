@@ -1,5 +1,9 @@
+console.log('Testimonial script init!');
+
 (function ($) {
 	window["cozyBlockTestimonialInit"] = (e) => {
+		console.log(e);
+
 		const n = e.replace(/-/gi, "_");
 		const blockOptions = window[`cozyTestimonial_${n}`];
 		const testimonialClass = `#cozyBlock_${n}`;
@@ -136,12 +140,8 @@
 			slidesPerView: blockOptions.carouselOptions.sliderOptions.slidesPerView,
 			spaceBetween: blockOptions.carouselOptions.sliderOptions.spaceBetween,
 			navigation: {
-				nextEl: !blockOptions.carouselOptions?.sliderOptions?.reverseDirection
-					? `${testimonialClass} .swiper-button-next.cozy-block-button-next`
-					: `${testimonialClass} .swiper-button-prev.cozy-block-button-prev`,
-				prevEl: !blockOptions.carouselOptions?.sliderOptions?.reverseDirection
-					? `${testimonialClass} .swiper-button-prev.cozy-block-button-prev`
-					: `${testimonialClass} .swiper-button-next.cozy-block-button-next`,
+				nextEl: `${testimonialClass} .swiper-button-next.cozy-block-button-next`,
+				prevEl: `${testimonialClass} .swiper-button-prev.cozy-block-button-prev`,
 			},
 			pagination: {
 				clickable: true,
@@ -174,6 +174,18 @@
 			carouselAttr.autoplay = {
 				...blockOptions.carouselOptions.sliderOptions.autoplay,
 			};
+
+			if (
+				blockOptions.isPremium &&
+				blockOptions.carouselOptions.sliderOptions?.reverseDirection
+			) {
+				carouselAttr.autoplay = {
+					...carouselAttr.autoplay,
+					reverseDirection: true,
+				};
+			} else {
+				delete carouselAttr.autoplay.reverseDirection;
+			}
 		} else {
 			delete carouselAttr.autoplay;
 		}
