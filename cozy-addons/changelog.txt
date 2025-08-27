@@ -1,3 +1,6 @@
+= 2.1.29 - August 27, 2025 = 
+* Fix: Cozy Animation.
+
 = 2.1.28 - August 20, 2025 = 
 * Fix: Admin links redirection.
 * Add: Smooth slide transition and reverse slider direction feature in Featured Content Box, Teams and Testimonial blocks.

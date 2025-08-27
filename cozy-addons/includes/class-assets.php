@@ -106,13 +106,6 @@ class Assets {
 	 * @return void
 	 */
 	public function load_frontend_assets() {
-		// AOS animation lib.
-		$animation_status = $this->get_utility_function_status( 'animation' );
-		if ( $animation_status ) {
-			wp_enqueue_script( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.js', array(), COZY_ADDONS_VERSION, false );
-			wp_enqueue_style( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.css', array(), COZY_ADDONS_VERSION, 'all' );
-		}
-
 		// Luxon.
 		wp_enqueue_script(
 			'cozy-dep-luxon', // Handle name.
@@ -132,7 +125,7 @@ class Assets {
 	 */
 	private function block_assets() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'load_block_editor_assets' ) );
-		add_action( 'enqueue_block_assets', array( $this, 'load_block_frontend_assets' ) );
+		add_action( 'enqueue_block_assets', array( $this, 'load_block_assets' ) );
 	}
 
 	/**
@@ -146,12 +139,6 @@ class Assets {
 	public function load_block_editor_assets() {
 		// Block Editor CSS.
 		wp_enqueue_style( 'cozy-addons--editor--style', self::$url . 'css/cozy-block-editor.css', array(), COZY_ADDONS_VERSION, 'all' );
-
-		// Animation Attribute.
-		$animation_status = $this->get_utility_function_status( 'animation' );
-		if ( $animation_status ) {
-			wp_enqueue_script( 'cozy-addons--animation-settings', self::$url . 'js/cozy-animation.min.js', array( 'react-jsx-runtime', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-hooks', 'wp-i18n' ), COZY_ADDONS_VERSION, true );
-		}
 
 		// Utility attributes.
 		$styles_status = $this->get_utility_function_status( 'styles' );
@@ -174,11 +161,20 @@ class Assets {
 	 *
 	 * @return void
 	 */
-	public function load_block_frontend_assets() {
+	public function load_block_assets() {
 		// Block CSS.
 		wp_enqueue_style( 'cozy-addons--blocks--style', self::$url . 'css/cozy-block.css', array(), COZY_ADDONS_VERSION, 'all' );
 
 		// Responsive Script.
 		wp_enqueue_script( 'cozy-addons--block-responsive', self::$url . 'js/cozy-responsive.js', array( 'jquery' ), COZY_ADDONS_VERSION, false );
+
+		// AOS animation lib.
+		$animation_status = $this->get_utility_function_status( 'animation' );
+		if ( $animation_status ) {
+			wp_enqueue_script( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.js', array( 'jquery' ), COZY_ADDONS_VERSION, true );
+			wp_enqueue_style( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.css', array(), COZY_ADDONS_VERSION, 'all' );
+
+			wp_enqueue_script( 'cozy-addons--animation-settings', self::$url . 'js/cozy-animation.min.js', array( 'react-jsx-runtime', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-hooks', 'wp-i18n' ), COZY_ADDONS_VERSION, true );
+		}
 	}
 }
