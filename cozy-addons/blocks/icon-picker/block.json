@@ -18,6 +18,10 @@
       "type": "string",
       "default": ""
     },
+    "align": {
+      "type": "string",
+      "default": "center"
+    },
     "view": {
       "type": "string",
       "default": "default"
@@ -88,6 +92,15 @@
         "borderRadius": 50,
         "bgColor": "#b2bcf9",
         "bgColorHover": ""
+      }
+    },
+    "link": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "url": "",
+        "newTab": false,
+        "noFollow": false
       }
     }
   },

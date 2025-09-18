@@ -2375,7 +2375,7 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 				$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( $existing_class ) . '" style="' . $appended_styles . '"', $block_content );
 			}
 
-			$block_content = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $custom_font . ':wght@400;500;600;700;800" />' . $block_content;
+			$block_content = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $custom_font . ':wght@100;200;300;400;500;600;700;800;900" />' . $block_content;
 
 		}
 	}

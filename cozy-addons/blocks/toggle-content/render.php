@@ -40,7 +40,7 @@ $wrapper_styles = array(
 		'bottom' => isset( $attributes['wrapperStyles']['margin']['bottom'] ) ? $attributes['wrapperStyles']['margin']['bottom'] : '',
 	),
 	'border'      => isset( $attributes['wrapperStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['wrapperStyles']['border'] ) : '',
-	'radius'      => isset( $attributes['wrapperStyles']['radius'] ) ? cozy_render_TRBL( 'radius', $attributes['wrapperStyles']['radius'] ) : '',
+	'radius'      => isset( $attributes['wrapperStyles']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['wrapperStyles']['radius'] ) : '',
 	'color'       => array(
 		'bg' => isset( $attributes['wrapperStyles']['color']['bg'] ) ? $attributes['wrapperStyles']['color']['bg'] : '',
 	),
@@ -239,6 +239,7 @@ add_action(
 $classes   = array();
 $classes[] = 'cozy-block-toggle-content';
 $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
+
 ?>
 
 <div class="cozy-block-wrapper">
@@ -257,11 +258,72 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 					<ul class="toggle-content__tabs">
 						<?php
 						foreach ( $attributes['tabs'] as $key => $tab_item ) {
+							$highlight = array(
+								'show_on_active' => isset( $tab_item['highlight']['showOnActive'] ) && filter_var( $tab_item['highlight']['showOnActive'], FILTER_VALIDATE_BOOLEAN ) ? true : false,
+								'content'        => isset( $tab_item['highlight']['content'] ) ? sanitize_text_field( $tab_item['highlight']['content'] ) : '',
+								'align'          => isset( $tab_item['highlight']['align'] ) ? $tab_item['highlight']['align'] : 'right',
+								'padding'        => isset( $tab_item['highlight']['padding'] ) ? cozy_render_TRBL( 'padding', $tab_item['highlight']['padding'] ) : '',
+								'border'         => isset( $tab_item['highlight']['border'] ) ? cozy_render_TRBL( 'border', $tab_item['highlight']['border'] ) : '',
+								'radius'         => isset( $tab_item['highlight']['radius'] ) ? cozy_render_TRBL( 'border-radius', $tab_item['highlight']['radius'] ) : '',
+								'font'           => array(
+									'size'   => isset( $tab_item['highlight']['font']['size'] ) ? $tab_item['highlight']['font']['size'] : '',
+									'weight' => isset( $tab_item['highlight']['font']['weight'] ) ? $tab_item['highlight']['font']['weight'] : '',
+									'family' => isset( $tab_item['highlight']['font']['family'] ) ? $tab_item['highlight']['font']['family'] : '',
+								),
+								'letter_case'    => isset( $tab_item['highlight']['letterCase'] ) ? $tab_item['highlight']['letterCase'] : '',
+								'decoration'     => isset( $tab_item['highlight']['decoration'] ) ? $tab_item['highlight']['decoration'] : '',
+								'line_height'    => isset( $tab_item['highlight']['lineHeight'] ) ? $tab_item['highlight']['lineHeight'] : '',
+								'letter_spacing' => isset( $tab_item['highlight']['letterSpacing'] ) ? $tab_item['highlight']['letterSpacing'] : '',
+								'color'          => array(
+									'text' => isset( $tab_item['highlight']['color']['text'] ) ? $tab_item['highlight']['color']['text'] : '',
+									'bg'   => isset( $tab_item['highlight']['color']['bg'] ) ? $tab_item['highlight']['color']['bg'] : '',
+								),
+								'v_offset'       => isset( $tab_item['highlight']['vOffset'] ) ? $tab_item['highlight']['vOffset'] : '',
+								'h_offset'       => isset( $tab_item['highlight']['hOffset'] ) ? $tab_item['highlight']['hOffset'] : '',
+								'rotate'         => isset( $tab_item['highlight']['rotate'] ) ? $tab_item['highlight']['rotate'] : '',
+							);
+
 							$classes   = array();
 							$classes[] = 'tab-item';
 							$classes[] = 0 === $key ? 'active-tab' : '';
+							$classes[] = isset( $tab_item['highlight']['enabled'] ) && filter_var( $tab_item['highlight']['enabled'], FILTER_VALIDATE_BOOLEAN ) ? 'has-highlight-text' : '';
+							$classes[] = isset( $tab_item['highlight']['enabled'], $tab_item['highlight']['showOnActive'] ) && filter_var( $tab_item['highlight']['enabled'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $tab_item['highlight']['showOnActive'], FILTER_VALIDATE_BOOLEAN ) ? 'show-on-active' : '';
+
+							if ( isset( $tab_item['highlight']['enabled'] ) && filter_var( $tab_item['highlight']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+								$tab_styles = "
+								#{$tab_item['blockID']}.tab-item.has-highlight-text:after {
+									content: '{$highlight['content']}';
+									{$highlight['padding']}
+									{$highlight['border']}
+									{$highlight['radius']}
+									font-size: {$highlight['font']['size']};
+									font-weight: {$highlight['font']['weight']};
+									font-family: {$highlight['font']['family']};
+									text-transform: {$highlight['letter_case']};
+									text-decoration: {$highlight['decoration']};
+									line-height: {$highlight['line_height']};
+									letter-spacing: {$highlight['letter_spacing']};
+									background-color: {$highlight['color']['bg']};
+									color: {$highlight['color']['text']};
+									top: {$highlight['v_offset']};
+									{$highlight['align']}: {$highlight['h_offset']};
+									transform: rotate({$highlight['rotate']}deg);
+								}
+								";
+								?>
+								<style>
+									<?php
+									if ( ! empty( $highlight['font']['family'] ) ) {
+										$font_query = 'https://fonts.googleapis.com/css2?family=' . $highlight['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900';
+										echo '@import url("' . $font_query . '");';
+									}
+									echo $tab_styles;
+									?>
+								</style>
+								<?php
+							}
 							?>
-							<li class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>" data-index="<?php echo esc_attr( $key ); ?>" data-client-id="<?php echo esc_attr( $tab_item['clientId'] ); ?>"><?php echo esc_html( $tab_item['tabLabel'] ); ?></li>
+							<li id="<?php echo esc_attr( $tab_item['blockID'] ); ?>" class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>" data-index="<?php echo esc_attr( $key ); ?>" data-client-id="<?php echo esc_attr( $tab_item['clientId'] ); ?>"><?php echo esc_html( $tab_item['tabLabel'] ); ?></li>
 							<?php
 						}
 						?>
@@ -270,14 +332,135 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 				}
 
 				if ( 'toggle' === $attributes['type'] && count( $attributes['tabs'] ) >= 2 ) {
+					$classes   = array();
+					$classes[] = 'tab-item';
+					$classes[] = 'first-element';
+					$classes[] = 'active-tab';
+					$classes[] = isset( $attributes['tabs'][0]['highlight']['enabled'] ) && filter_var( $attributes['tabs'][0]['highlight']['enabled'], FILTER_VALIDATE_BOOLEAN ) ? 'has-highlight-text' : '';
+					$classes[] = isset( $attributes['tabs'][0]['highlight']['enabled'], $attributes['tabs'][0]['highlight']['showOnActive'] ) && filter_var( $attributes['tabs'][0]['highlight']['enabled'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['tabs'][0]['highlight']['showOnActive'], FILTER_VALIDATE_BOOLEAN ) ? 'show-on-active' : '';
+
+					$highlight = array(
+						'content'        => isset( $attributes['tabs'][0]['highlight']['content'] ) ? sanitize_text_field( $attributes['tabs'][0]['highlight']['content'] ) : '',
+						'align'          => isset( $attributes['tabs'][0]['highlight']['align'] ) ? $attributes['tabs'][0]['highlight']['align'] : '',
+						'padding'        => isset( $attributes['tabs'][0]['highlight']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['tabs'][0]['highlight']['padding'] ) : '',
+						'border'         => isset( $attributes['tabs'][0]['highlight']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabs'][0]['highlight']['border'] ) : '',
+						'radius'         => isset( $attributes['tabs'][0]['highlight']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['tabs'][0]['highlight']['radius'] ) : '',
+						'font'           => array(
+							'size'   => isset( $attributes['tabs'][0]['highlight']['font']['size'] ) ? $attributes['tabs'][0]['highlight']['font']['size'] : '',
+							'family' => isset( $attributes['tabs'][0]['highlight']['font']['family'] ) ? $attributes['tabs'][0]['highlight']['font']['family'] : '',
+							'weight' => isset( $attributes['tabs'][0]['highlight']['font']['weight'] ) ? $attributes['tabs'][0]['highlight']['font']['weight'] : '',
+						),
+						'letter_case'    => isset( $attributes['tabs'][0]['highlight']['letterCase'] ) ? $attributes['tabs'][0]['highlight']['letterCase'] : '',
+						'decoration'     => isset( $attributes['tabs'][0]['highlight']['decoration'] ) ? $attributes['tabs'][0]['highlight']['decoration'] : '',
+						'line_height'    => isset( $attributes['tabs'][0]['highlight']['lineHeight'] ) ? $attributes['tabs'][0]['highlight']['lineHeight'] : '',
+						'letter_spacing' => isset( $attributes['tabs'][0]['highlight']['letterSpacing'] ) ? $attributes['tabs'][0]['highlight']['letterSpacing'] : '',
+						'color'          => array(
+							'text' => isset( $attributes['tabs'][0]['highlight']['color']['text'] ) ? $attributes['tabs'][0]['highlight']['color']['text'] : '',
+							'bg'   => isset( $attributes['tabs'][0]['highlight']['color']['bg'] ) ? $attributes['tabs'][0]['highlight']['color']['bg'] : '',
+						),
+						'v_offset'       => isset( $attributes['tabs'][0]['highlight']['vOffset'] ) ? $attributes['tabs'][0]['highlight']['vOffset'] : '',
+						'h_offset'       => isset( $attributes['tabs'][0]['highlight']['hOffset'] ) ? $attributes['tabs'][0]['highlight']['hOffset'] : '',
+						'rotate'         => isset( $attributes['tabs'][0]['highlight']['rotate'] ) ? $attributes['tabs'][0]['highlight']['rotate'] : '',
+					);
+
+					$element_style = "
+						#$block_id .tab-item.first-element.has-highlight-text:after {
+							content: '{$highlight['content']}';
+							{$highlight['padding']}
+							{$highlight['border']}
+							{$highlight['radius']}
+							font-size: {$highlight['font']['size']};
+							font-weight: {$highlight['font']['weight']};
+							font-family: {$highlight['font']['family']};
+							text-transform: {$highlight['letter_case']};
+							text-decoration: {$highlight['decoration']};
+							line-height: {$highlight['line_height']};
+							letter-spacing: {$highlight['letter_spacing']};
+							background-color: {$highlight['color']['bg']};
+							color: {$highlight['color']['text']};
+							top: {$highlight['v_offset']};
+							{$highlight['align']}: {$highlight['h_offset']};
+							transform: rotate({$highlight['rotate']}deg);
+						}
+					";
 					?>
 					<div class="toggle-content__slider">
-						<p class="tab-item" data-index="0"><?php echo esc_html( $attributes['tabs'][0]['tabLabel'] ); ?></p>
+						<style>
+							<?php
+							if ( ! empty( $highlight['font']['family'] ) ) {
+								$font_query = 'https://fonts.googleapis.com/css2?family=' . $highlight['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900';
+								echo '@import url("' . $font_query . '");';
+							}
+							echo $element_style;
+							?>
+						</style>
+						<p class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>" data-index="0"><?php echo esc_html( $attributes['tabs'][0]['tabLabel'] ); ?></p>
 						<label class="switch">
 							<input id="toggle-switch" type="checkbox" />
 							<span class="slider"></span>
 						</label>
-						<p class="tab-item" data-index="1"><?php echo esc_html( $attributes['tabs'][1]['tabLabel'] ); ?></p>
+						<?php
+						$classes   = array();
+						$classes[] = 'tab-item';
+						$classes[] = 'second-element';
+						$classes[] = isset( $attributes['tabs'][1]['highlight']['enabled'] ) && filter_var( $attributes['tabs'][1]['highlight']['enabled'], FILTER_VALIDATE_BOOLEAN ) ? 'has-highlight-text' : '';
+						$classes[] = isset( $attributes['tabs'][1]['highlight']['enabled'], $attributes['tabs'][1]['highlight']['showOnActive'] ) && filter_var( $attributes['tabs'][1]['highlight']['enabled'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['tabs'][1]['highlight']['showOnActive'], FILTER_VALIDATE_BOOLEAN ) ? 'show-on-active' : '';
+
+						$highlight = array(
+							'content'        => isset( $attributes['tabs'][1]['highlight']['content'] ) ? sanitize_text_field( $attributes['tabs'][1]['highlight']['content'] ) : '',
+							'align'          => isset( $attributes['tabs'][1]['highlight']['align'] ) ? $attributes['tabs'][1]['highlight']['align'] : '',
+							'padding'        => isset( $attributes['tabs'][1]['highlight']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['tabs'][1]['highlight']['padding'] ) : '',
+							'border'         => isset( $attributes['tabs'][1]['highlight']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabs'][1]['highlight']['border'] ) : '',
+							'radius'         => isset( $attributes['tabs'][1]['highlight']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['tabs'][1]['highlight']['radius'] ) : '',
+							'font'           => array(
+								'size'   => isset( $attributes['tabs'][1]['highlight']['font']['size'] ) ? $attributes['tabs'][1]['highlight']['font']['size'] : '',
+								'family' => isset( $attributes['tabs'][1]['highlight']['font']['family'] ) ? $attributes['tabs'][1]['highlight']['font']['family'] : '',
+								'weight' => isset( $attributes['tabs'][1]['highlight']['font']['weight'] ) ? $attributes['tabs'][1]['highlight']['font']['weight'] : '',
+							),
+							'letter_case'    => isset( $attributes['tabs'][1]['highlight']['letterCase'] ) ? $attributes['tabs'][1]['highlight']['letterCase'] : '',
+							'decoration'     => isset( $attributes['tabs'][1]['highlight']['decoration'] ) ? $attributes['tabs'][1]['highlight']['decoration'] : '',
+							'line_height'    => isset( $attributes['tabs'][1]['highlight']['lineHeight'] ) ? $attributes['tabs'][1]['highlight']['lineHeight'] : '',
+							'letter_spacing' => isset( $attributes['tabs'][1]['highlight']['letterSpacing'] ) ? $attributes['tabs'][1]['highlight']['letterSpacing'] : '',
+							'color'          => array(
+								'text' => isset( $attributes['tabs'][1]['highlight']['color']['text'] ) ? $attributes['tabs'][1]['highlight']['color']['text'] : '',
+								'bg'   => isset( $attributes['tabs'][1]['highlight']['color']['bg'] ) ? $attributes['tabs'][1]['highlight']['color']['bg'] : '',
+							),
+							'v_offset'       => isset( $attributes['tabs'][1]['highlight']['vOffset'] ) ? $attributes['tabs'][1]['highlight']['vOffset'] : '',
+							'h_offset'       => isset( $attributes['tabs'][1]['highlight']['hOffset'] ) ? $attributes['tabs'][1]['highlight']['hOffset'] : '',
+							'rotate'         => isset( $attributes['tabs'][1]['highlight']['rotate'] ) ? $attributes['tabs'][1]['highlight']['rotate'] : '',
+						);
+
+						$element_style = "
+						#$block_id .tab-item.second-element.has-highlight-text:after {
+							content: '{$highlight['content']}';
+							{$highlight['padding']}
+							{$highlight['border']}
+							{$highlight['radius']}
+							font-size: {$highlight['font']['size']};
+							font-weight: {$highlight['font']['weight']};
+							font-family: {$highlight['font']['family']};
+							text-transform: {$highlight['letter_case']};
+							text-decoration: {$highlight['decoration']};
+							line-height: {$highlight['line_height']};
+							letter-spacing: {$highlight['letter_spacing']};
+							background-color: {$highlight['color']['bg']};
+							color: {$highlight['color']['text']};
+							top: {$highlight['v_offset']};
+							{$highlight['align']}: {$highlight['h_offset']};
+							transform: rotate({$highlight['rotate']}deg);
+						}
+					";
+						?>
+						<style>
+							<?php
+							if ( ! empty( $highlight['font']['family'] ) ) {
+								$font_query = 'https://fonts.googleapis.com/css2?family=' . $highlight['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900';
+								echo '@import url("' . $font_query . '");';
+							}
+							echo $element_style;
+							?>
+						</style>
+						<p class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>" data-index="1"><?php echo esc_html( $attributes['tabs'][1]['tabLabel'] ); ?></p>
 					</div>
 					<?php
 				}

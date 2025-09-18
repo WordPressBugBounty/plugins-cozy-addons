@@ -166,13 +166,15 @@
       "default": {
         "loop": false,
         "centeredSlides": false,
+        "gap": 0,
+        "slidesPerView": 3,
         "responsive": {
           "enabled": false,
           "viewport": 768,
           "width": "40px",
           "height": "40px"
         },
-        "width": "150px",
+        "width": "",
         "height": "150px",
         "horizontalSpacing": "0px",
         "verticalSpacing": "0px",
@@ -180,7 +182,6 @@
         "horizontalJustify": "center",
         "verticalJustify": "center",
         "position": "left",
-        "gap": "0px",
         "radius": "0px",
         "default": {
           "border": {
@@ -189,7 +190,7 @@
             "color": ""
           },
           "offset": 0,
-          "opacity": 100
+          "opacity": 50
         },
         "active": {
           "border": {

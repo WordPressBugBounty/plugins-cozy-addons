@@ -43,8 +43,6 @@ $block_styles = "
 }
 ";
 
-$output = '<div class="cozy-block-wrapper">';
-
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
@@ -52,7 +50,12 @@ add_action(
 	}
 );
 
-$output .= $content;
-$output .= '</div>';
+$classes   = array();
+$classes[] = 'cozy-block-wrapper';
+$classes[] = 'cozy-block-post-slider-wrapper';
+$classes[] = isset( $attributes['carouselOptions']['smoothTransition'] ) && $attributes['carouselOptions']['smoothTransition'] ? 'swiper__smooth-transition' : '';
+?>
 
-echo $output;
+<div class="<?php echo esc_html( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
+	<?php echo $content; ?>
+</div>

@@ -19,6 +19,7 @@
       "type": "object",
       "default": {
         "featured": false,
+        "icon": true,
         "heading": true,
         "subHeading": false,
         "price": true,
@@ -30,6 +31,7 @@
     "order": {
       "type": "array",
       "default": [
+        "icon",
         "heading",
         "description",
         "subHeading",
@@ -98,6 +100,46 @@
         "color": {
           "text": "#fff",
           "bg": "#0c50ff"
+        }
+      }
+    },
+    "icon": {
+      "type": "object",
+      "default": {
+        "source": "default",
+        "id": "",
+        "url": "",
+        "alt": "",
+        "path": "",
+        "viewBox": {
+          "vx": "",
+          "vy": "",
+          "vw": "",
+          "vh": ""
+        },
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "size": "20px",
+        "boxWidth": "36px",
+        "boxHeight": "36px",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "align": "center",
+        "color": {
+          "text": "#0c50ff",
+          "bg": ""
         }
       }
     },
@@ -204,7 +246,8 @@
         "content": "Upgrade to Pro",
         "link": {
           "url": "#",
-          "newtab": false
+          "newtab": false,
+          "noFollow": false
         },
         "width": "100%",
         "padding": {

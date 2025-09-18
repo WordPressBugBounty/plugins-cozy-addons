@@ -4,6 +4,10 @@ $block_id           = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 $box_bg_color       = isset( $attributes['boxStyles']['bgColor'] ) ? $attributes['boxStyles']['bgColor'] : '';
 $box_bg_color_hover = isset( $attributes['boxStyles']['bgColorHover'] ) ? $attributes['boxStyles']['bgColorHover'] : '';
 
+$wrapper_styles = array(
+	'align' => isset( $attributes['align'] ) ? $attributes['align'] : 'center',
+);
+
 $margin = array(
 	'top'    => isset( $attributes['margin']['top'] ) ? $attributes['margin']['top'] : '',
 	'right'  => isset( $attributes['margin']['right'] ) ? $attributes['margin']['right'] : '',
@@ -20,6 +24,10 @@ $icon_color = array(
 $stroke_hover_color = 'outline' === $attributes['layout'] ? $icon_color['hover'] : '';
 
 $block_styles = "
+.cozy-block-icon-wrapper {
+	justify-content: {$wrapper_styles['align']};
+}
+	
 #$block_id {
     margin-top: {$margin['top']}px;
     margin-right: {$margin['right']}px;
@@ -53,8 +61,6 @@ $block_styles = "
 }
 ";
 
-$output = '<div class="cozy-block-wrapper cozy-block-icon-wrapper">';
-
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
@@ -62,7 +68,28 @@ add_action(
 	}
 );
 
-$output .= $content;
-$output .= '</div>';
+$wrapper_attributes = get_block_wrapper_attributes();
 
-echo $output;
+?>
+
+<div class="cozy-block-wrapper cozy-block-icon-wrapper">
+	<div <?php echo $wrapper_attributes; ?>>
+		<?php
+		if ( isset( $attributes['link']['enabled'], $attributes['link']['url'] ) && $attributes['link']['enabled'] && ! empty( $attributes['link']['url'] ) ) {
+			$new_tab  = isset( $attributes['link']['newTab'] ) && $attributes['link']['newTab'] ? '_blank' : '';
+			$nofollow = isset( $attributes['link']['noFollow'] ) && $attributes['link']['noFollow'] ? 'nofollow' : '';
+			?>
+			<a href="<?php echo esc_url( $attributes['link']['url'] ); ?>" target="<?php echo esc_attr( $new_tab ); ?>" rel="<?php echo esc_attr( $nofollow ); ?>">
+			<?php
+		}
+
+		echo $content;
+
+		if ( isset( $attributes['link']['enabled'], $attributes['link']['url'] ) && $attributes['link']['enabled'] && ! empty( $attributes['link']['url'] ) ) {
+			?>
+			</a>
+			<?php
+		}
+		?>
+	</div>
+</div>

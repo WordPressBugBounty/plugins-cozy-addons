@@ -222,7 +222,7 @@
 					<?php esc_html_e( 'Contact Form 7 Styler', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -304,7 +304,7 @@
 					<?php esc_html_e( 'Countdown Timer', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -524,7 +524,7 @@
 					<?php esc_html_e( 'Before/After Image', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -564,7 +564,7 @@
 					<?php esc_html_e( 'Popup Builder', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -847,7 +847,7 @@
 					<?php esc_html_e( 'Toggle Content', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -919,7 +919,7 @@
 					<?php esc_html_e( 'Advanced Categories', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -962,7 +962,7 @@
 					<?php esc_html_e( 'Categorized Post Tabs', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1007,7 +1007,7 @@
 					<?php esc_html_e( 'Featured Post', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1044,7 +1044,7 @@
 					<?php esc_html_e( 'Featured Post Tabs', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1085,7 +1085,7 @@
 					<?php esc_html_e( 'Magazine Grid', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1127,7 +1127,7 @@
 					<?php esc_html_e( 'Magazine List', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1162,7 +1162,7 @@
 					<?php esc_html_e( 'News Ticker', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1200,7 +1200,7 @@
 					<?php esc_html_e( 'Popular Post', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1265,7 +1265,7 @@
 					<?php esc_html_e( 'Post Comments', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1304,7 +1304,7 @@
 					<?php esc_html_e( 'Post Slider', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1335,7 +1335,7 @@
 					<?php esc_html_e( 'Post Views', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1373,7 +1373,7 @@
 					<?php esc_html_e( 'Related Post', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1414,7 +1414,7 @@
 					<?php esc_html_e( 'Trending Post', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1592,7 +1592,7 @@
 					<?php esc_html_e( 'Featured Product', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1612,9 +1612,7 @@
 							esc_html_e( ' to enable this block!', 'cozy-addons' );
 						}
 						if ( ! is_woocommerce_active() ) {
-							$space  = false === cozy_addons_premium_access() ? ' ' : '';
-							$space .= 'This block requires the WooCommerce plugin to be installed and activated.';
-							esc_html( $space );
+							esc_html_e( 'This block requires the WooCommerce plugin to be installed and activated.', 'cozy-addons' );
 						}
 						?>
 					</div>
@@ -1650,7 +1648,7 @@
 					<?php esc_html_e( 'Featured Product Tabs', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1670,9 +1668,7 @@
 							esc_html_e( ' to enable this block!', 'cozy-addons' );
 						}
 						if ( ! is_woocommerce_active() ) {
-							$space  = false === cozy_addons_premium_access() ? ' ' : '';
-							$space .= 'This block requires the WooCommerce plugin to be installed and activated.';
-							esc_html( $space );
+							esc_html_e( 'This block requires the WooCommerce plugin to be installed and activated.', 'cozy-addons' );
 						}
 						?>
 					</div>
@@ -1827,7 +1823,7 @@
 					<?php esc_html_e( 'Product Slider', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1881,7 +1877,7 @@
 					<?php esc_html_e( 'Product Showcase Tabs', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1928,7 +1924,7 @@
 					<?php esc_html_e( 'Quick View', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">
@@ -1971,7 +1967,7 @@
 					<?php esc_html_e( 'Wishlist', 'cozy-addons' ); ?>
 				</p>
 			</a>
-			<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+			<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 		</div>
 		<div class="cozy-block-toggle">
 			<label class="switch">

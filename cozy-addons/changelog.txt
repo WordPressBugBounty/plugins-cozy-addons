@@ -1,3 +1,7 @@
+= 2.1.30 - September 18, 2025 = 
+* Fix: Minor block improvements.
+* Fix: User role check for Contact Form Styler API.
+
 = 2.1.29 - August 27, 2025 = 
 * Fix: Cozy Animation.
 

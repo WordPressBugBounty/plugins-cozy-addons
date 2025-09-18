@@ -54,7 +54,9 @@ class CF7 {
 				array(
 					'methods'             => \WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'cozy_addons_get_cf7_render' ),
-					'permission_callback' => '__return_true',
+					'permission_callback' => function () {
+						return current_user_can( 'manage_options' );
+					},
 				)
 			);
 

@@ -74,6 +74,10 @@
       "type": "boolean",
       "default": true
     },
+    "linkNoFollow": {
+      "type": "boolean",
+      "default": true
+    },
     "listStyle": {
       "type": "string",
       "default": "vertical"
@@ -142,6 +146,7 @@
     "enableTitle": "enableTitle",
     "linkType": "linkType",
     "linkNewTab": "linkNewTab",
+    "linkNoFollow": "linkNoFollow",
     "iconPosition": "iconPosition"
   },
   "editorScript": [

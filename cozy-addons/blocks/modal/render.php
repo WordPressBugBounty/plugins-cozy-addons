@@ -6,6 +6,13 @@ wp_add_inline_script( 'cozy-block--modal--frontend-script', 'document.addEventLi
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
+$wrapper_styles = array(
+	'margin' => array(
+		'top'    => isset( $attributes['margin']['top'] ) ? $attributes['margin']['top'] : '',
+		'bottom' => isset( $attributes['margin']['bottom'] ) ? $attributes['margin']['bottom'] : '',
+	),
+);
+
 $color = array(
 	'bg'         => isset( $attributes['backgroundColor'] ) ? $attributes['backgroundColor'] : '',
 	'icon'       => isset( $attributes['iconStyles']['iconColor'] ) ? $attributes['iconStyles']['iconColor'] : '',
@@ -55,6 +62,8 @@ $overlay_styles = array(
 $block_styles = "
 .cozy-block-wrapper[data-block='{$client_id}'] {
     text-align: {$button_styles['justify']};
+	margin-top: {$wrapper_styles['margin']['top']};
+	margin-bottom: {$wrapper_styles['margin']['bottom']};
 }
 .cozy-block-wrapper[data-block='{$client_id}'] .cozy-block-modal__overlay {
 	background-color: {$overlay_styles['color']['bg']};
@@ -121,8 +130,6 @@ $block_styles = "
 }
 ";
 
-$output = '<div class="cozy-block-wrapper" data-block="' . esc_attr( $client_id ) . '">';
-
 $font_families = array();
 
 if ( isset( $attributes['clickButtonStyles']['fontFamily'] ) && ! empty( $attributes['clickButtonStyles']['fontFamily'] ) ) {
@@ -159,6 +166,7 @@ add_action(
 	}
 );
 
+$output = '<div class="cozy-block-wrapper" data-block="' . esc_attr( $client_id ) . '">';
 
 if ( 'default' === $attributes['modalType'] ) {
 	$output .= '<div class="cozy-block-modal__overlay display-none"></div>';

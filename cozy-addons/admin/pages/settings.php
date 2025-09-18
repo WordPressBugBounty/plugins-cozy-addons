@@ -11,7 +11,7 @@
 						<?php esc_html_e( 'Mega Menu Templates', 'cozy-addons' ); ?>
 					</p>
 					</a>
-					<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+					<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 				</div>
 				<div class="cozy-block-toggle">
 					<label class="switch">
@@ -37,7 +37,7 @@
 						<?php esc_html_e( 'Portfolio Gallery Templates', 'cozy-addons' ); ?>
 					</p>
 					</a>
-					<p class="cozy-block-pro-label"><?php esc_html_e( 'PRO', 'cozy-addons' ); ?></p>
+					<p class="cozy-block-pro-label"><img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/crown.png' ); ?>" /></p>
 				</div>
 				<div class="cozy-block-toggle">
 					<label class="switch">
@@ -82,9 +82,9 @@
 			<li>
 				<div>
 					<p class="function-title">
-						<?php esc_html_e( 'Cozy Styling Option', 'cozy-addons' ); ?>
+						<?php esc_html_e( 'Styling Options', 'cozy-addons' ); ?>
 					</p>
-					<p class="function-desc"><?php esc_html_e( 'Hover effect, responsive visibility and google fonts attribute in core WordPress blocks (e.g: Group, Columns, ...).', 'cozy-addons' ); ?></p>
+					<p class="function-desc"><?php esc_html_e( '\'Cozy Advanced Effects\', \'Cozy Responsive Visibility\' and \'Google Fonts\' attribute in core WordPress blocks (e.g: Group, Columns, ...).', 'cozy-addons' ); ?></p>
 				</div>
 				<div class="cozy-block-toggle">
 					<label class="switch">

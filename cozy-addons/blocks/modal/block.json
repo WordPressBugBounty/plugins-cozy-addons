@@ -40,7 +40,7 @@
     },
     "backgroundColor": {
       "type": "string",
-      "default": "#fff"
+      "default": ""
     },
     "iconStyles": {
       "type": "object",
@@ -107,6 +107,13 @@
         "right": 50,
         "bottom": 50,
         "left": 50
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "bottom": ""
       }
     }
   },

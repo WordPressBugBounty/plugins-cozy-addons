@@ -55,6 +55,7 @@ class Blocks {
 		'countdown-timer',
 		'cf7-styler',
 		'img-compare',
+		'portfolio-gallery-meta',
 	);
 
 	private static $woocommerce_blocks = array(
@@ -198,6 +199,13 @@ class Blocks {
 				}
 
 				wp_register_script( $script_handle, $frontend_script_url, $deps, COZY_ADDONS_VERSION, true );
+			}
+
+			if ( 'portfolio-gallery-meta' === $block_name ) {
+				$is_portfolio_active = get_option( 'cozy-block--portfolio-gallery' );
+				if ( '0' === $is_portfolio_active ) {
+					continue;
+				}
 			}
 
 			// Block registration.

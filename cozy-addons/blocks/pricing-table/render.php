@@ -58,6 +58,30 @@ $featured = array(
 	'rotate'         => isset( $attributes['featured']['rotate'] ) ? sanitize_text_field( $attributes['featured']['rotate'] ) : '',
 );
 
+$icon = array(
+	'padding'    => isset( $attributes['icon']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['icon']['padding'] ) : '',
+	'margin'     => array(
+		'top'    => isset( $attributes['icon']['margin']['top'] ) ? $attributes['icon']['margin']['top'] : '',
+		'bottom' => isset( $attributes['icon']['margin']['bottom'] ) ? $attributes['icon']['margin']['bottom'] : '',
+	),
+	'box_width'  => isset( $attributes['icon']['boxWidth'] ) ? $attributes['icon']['boxWidth'] : '',
+	'box_height' => isset( $attributes['icon']['boxHeight'] ) ? $attributes['icon']['boxHeight'] : '',
+	'viewBox'    => array(
+		'vx' => isset( $attributes['icon']['viewBox']['vx'] ) ? $attributes['icon']['viewBox']['vx'] : '',
+		'vy' => isset( $attributes['icon']['viewBox']['vy'] ) ? $attributes['icon']['viewBox']['vy'] : '',
+		'vw' => isset( $attributes['icon']['viewBox']['vw'] ) ? $attributes['icon']['viewBox']['vw'] : '',
+		'vh' => isset( $attributes['icon']['viewBox']['vh'] ) ? $attributes['icon']['viewBox']['vh'] : '',
+	),
+	'path'       => isset( $attributes['icon']['path'] ) ? $attributes['icon']['path'] : '',
+	'size'       => isset( $attributes['icon']['size'] ) ? $attributes['icon']['size'] : '',
+	'border'     => isset( $attributes['icon']['border'] ) ? cozy_render_TRBL( 'border', $attributes['icon']['border'] ) : '',
+	'radius'     => isset( $attributes['icon']['radius'] ) ? $attributes['icon']['radius'] : '',
+	'color'      => array(
+		'text' => isset( $attributes['icon']['color']['text'] ) ? $attributes['icon']['color']['text'] : '',
+		'bg'   => isset( $attributes['icon']['color']['bg'] ) ? $attributes['icon']['color']['bg'] : '',
+	),
+);
+
 $heading = array(
 	'font'           => array(
 		'size'   => isset( $attributes['heading']['font']['size'] ) ? sanitize_text_field( $attributes['heading']['font']['size'] ) : '',
@@ -238,6 +262,34 @@ $block_styles = "
 }
 #$block_id .pricing-table__featured.position-absolute.align-right{
 	right: {$featured['position']['right']};
+}
+
+#$block_id .pricing-table__icon-wrap {
+	{$icon['padding']}
+	margin-top: {$icon['margin']['top']};
+	margin-bottom: {$icon['margin']['bottom']};
+	width: {$icon['box_width']};
+	height: {$icon['box_height']};
+	{$icon['border']}
+	border-radius: {$icon['radius']};
+	background-color: {$icon['color']['bg']};
+	color: {$icon['color']['text']};
+}
+#$block_id .pricing-table__icon-wrap svg {
+	width: {$icon['size']};
+	height: {$icon['size']};
+}
+#$block_id .pricing-table__img-wrap {
+	margin-top: {$icon['margin']['top']};
+	margin-bottom: {$icon['margin']['bottom']};
+	border-radius: {$icon['radius']};
+	max-width: {$icon['size']};
+	max-height: {$icon['size']};
+}
+#$block_id .pricing-table__img-wrap img {
+	width: {$icon['size']};
+	height: {$icon['size']};
+	border-radius: {$icon['radius']};
 }
 
 #$block_id .pricing-table__heading {
@@ -576,7 +628,7 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 					?>
 							</ul>
 					<?php
-				} elseif ( 'list' !== $key && in_array( $key, $safe_values, true ) && $attributes['enabled'][ $key ] ) {
+				} elseif ( 'list' !== $key && 'icon' !== $key && in_array( $key, $safe_values, true ) && $attributes['enabled'][ $key ] ) {
 					if ( 'button' === $key || 'price' === $key ) {
 						$classes   = array();
 						$classes[] = 'pricing-table__' . $key . '-wrap';
@@ -591,9 +643,10 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 						$classes .= ' display-' . $attributes['price']['display'];
 					}
 
-					if ( 'button' === $key ) {
-						$new_tab = isset( $attributes['button']['link']['newtab'] ) && $attributes['button']['link']['newtab'] ? '_blank' : '';
-						printf( '<%1$s class="pricing-table__%2$s" href="%4$s" target="%5$s">%3$s</%1$s>', esc_attr( in_array( $attributes[ $key ]['tag'], $allowed_tags, true ) ? $attributes[ $key ]['tag'] : 'p' ), esc_attr( $classes ), esc_html( $attributes[ $key ]['content'] ), esc_url( $attributes['button']['link']['url'] ), esc_attr( $new_tab ) );
+					if ( 'button' === $key && isset( $attributes['button']['link']['url'] ) && ! empty( $attributes['button']['link']['url'] ) ) {
+						$new_tab  = isset( $attributes['button']['link']['newtab'] ) && $attributes['button']['link']['newtab'] ? '_blank' : '';
+						$nofollow = isset( $attributes['button']['link']['noFollow'] ) && $attributes['button']['link']['noFollow'] ? 'nofollow' : '';
+						printf( '<%1$s class="pricing-table__%2$s" href="%4$s" target="%5$s" rel="%6$s">%3$s</%1$s>', esc_attr( in_array( $attributes[ $key ]['tag'], $allowed_tags, true ) ? $attributes[ $key ]['tag'] : 'p' ), esc_attr( $classes ), esc_html( $attributes[ $key ]['content'] ), esc_url( $attributes['button']['link']['url'] ), esc_attr( $new_tab ), esc_attr( $nofollow ) );
 					} else {
 						printf( '<%1$s class="pricing-table__%2$s">%3$s</%1$s>', esc_attr( in_array( $attributes[ $key ]['tag'], $allowed_tags, true ) ? $attributes[ $key ]['tag'] : 'p' ), esc_attr( $classes ), esc_html( $attributes[ $key ]['content'] ) );
 					}
@@ -604,6 +657,28 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 					if ( 'button' === $key || 'price' === $key ) {
 						?>
 						</div>
+						<?php
+					}
+				} elseif ( isset( $attributes['enabled']['icon'] ) && 'icon' === $key && $attributes['enabled'][ $key ] ) {
+					if ( isset( $attributes['icon']['source'] ) && 'default' === $attributes['icon']['source'] ) {
+						?>
+						<div class="pricing-table__icon-wrap">
+							<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor"
+								viewBox="<?php echo esc_html( $icon['viewBox']['vx'] ) . ' ' . esc_html( $icon['viewBox']['vy'] ) . ' ' . esc_html( $icon['viewBox']['vw'] ) . ' ' . esc_html( $icon['viewBox']['vh'] ); ?>"
+							>
+								<path d="<?php echo esc_html( $icon['path'] ); ?>" />
+							</svg>
+						</div>
+						<?php
+					} elseif ( cozy_addons_premium_access() && isset( $attributes['icon']['source'] ) && 'media' === $attributes['icon']['source'] ) {
+						$img_src = isset( $attributes['icon']['url'] ) ? sanitize_url( $attributes['icon']['url'] ) : '';
+						$alt     = isset( $attributes['icon']['alt'] ) ? sanitize_text_field( $attributes['icon']['alt'] ) : '';
+						?>
+							<figure
+								class="pricing-table__img-wrap"
+							>
+								<img src="<?php echo esc_url( $img_src ); ?>" alt="<?php echo esc_attr( $alt ); ?>" />
+							</figure>
 						<?php
 					}
 				}

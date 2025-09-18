@@ -1,9 +1,5 @@
-console.log('Testimonial script init!');
-
 (function ($) {
 	window["cozyBlockTestimonialInit"] = (e) => {
-		console.log(e);
-
 		const n = e.replace(/-/gi, "_");
 		const blockOptions = window[`cozyTestimonial_${n}`];
 		const testimonialClass = `#cozyBlock_${n}`;

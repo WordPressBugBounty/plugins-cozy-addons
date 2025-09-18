@@ -33,6 +33,7 @@
     "carouselOptions": {
       "type": "object",
       "default": {
+        "smoothTransition": false,
         "pagination": {
           "enabled": true,
           "width": 10,

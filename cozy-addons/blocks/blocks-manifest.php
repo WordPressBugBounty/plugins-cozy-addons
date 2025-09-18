@@ -5746,6 +5746,10 @@ return array(
 				'type' => 'boolean',
 				'default' => true
 			),
+			'linkNoFollow' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
 			'listStyle' => array(
 				'type' => 'string',
 				'default' => 'vertical'
@@ -5814,6 +5818,7 @@ return array(
 			'enableTitle' => 'enableTitle',
 			'linkType' => 'linkType',
 			'linkNewTab' => 'linkNewTab',
+			'linkNoFollow' => 'linkNoFollow',
 			'iconPosition' => 'iconPosition'
 		),
 		'editorScript' => array(
@@ -5843,6 +5848,10 @@ return array(
 			'blockClientId' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'align' => array(
+				'type' => 'string',
+				'default' => 'center'
 			),
 			'view' => array(
 				'type' => 'string',
@@ -5914,6 +5923,15 @@ return array(
 					'borderRadius' => 50,
 					'bgColor' => '#b2bcf9',
 					'bgColorHover' => ''
+				)
+			),
+			'link' => array(
+				'type' => 'object',
+				'default' => array(
+					'enabled' => false,
+					'url' => '',
+					'newTab' => false,
+					'noFollow' => false
 				)
 			)
 		),
@@ -7464,7 +7482,7 @@ return array(
 			),
 			'backgroundColor' => array(
 				'type' => 'string',
-				'default' => '#fff'
+				'default' => ''
 			),
 			'iconStyles' => array(
 				'type' => 'object',
@@ -7531,6 +7549,13 @@ return array(
 					'right' => 50,
 					'bottom' => 50,
 					'left' => 50
+				)
+			),
+			'margin' => array(
+				'type' => 'object',
+				'default' => array(
+					'top' => '',
+					'bottom' => ''
 				)
 			)
 		),
@@ -9094,6 +9119,7 @@ return array(
 			'carouselOptions' => array(
 				'type' => 'object',
 				'default' => array(
+					'smoothTransition' => false,
 					'pagination' => array(
 						'enabled' => true,
 						'width' => 10,
@@ -9397,6 +9423,7 @@ return array(
 				'type' => 'object',
 				'default' => array(
 					'featured' => false,
+					'icon' => true,
 					'heading' => true,
 					'subHeading' => false,
 					'price' => true,
@@ -9408,6 +9435,7 @@ return array(
 			'order' => array(
 				'type' => 'array',
 				'default' => array(
+					'icon',
 					'heading',
 					'description',
 					'subHeading',
@@ -9476,6 +9504,46 @@ return array(
 					'color' => array(
 						'text' => '#fff',
 						'bg' => '#0c50ff'
+					)
+				)
+			),
+			'icon' => array(
+				'type' => 'object',
+				'default' => array(
+					'source' => 'default',
+					'id' => '',
+					'url' => '',
+					'alt' => '',
+					'path' => '',
+					'viewBox' => array(
+						'vx' => '',
+						'vy' => '',
+						'vw' => '',
+						'vh' => ''
+					),
+					'padding' => array(
+						'top' => '',
+						'right' => '',
+						'bottom' => '',
+						'left' => ''
+					),
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
+					),
+					'size' => '20px',
+					'boxWidth' => '36px',
+					'boxHeight' => '36px',
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'align' => 'center',
+					'color' => array(
+						'text' => '#0c50ff',
+						'bg' => ''
 					)
 				)
 			),
@@ -9582,7 +9650,8 @@ return array(
 					'content' => 'Upgrade to Pro',
 					'link' => array(
 						'url' => '#',
-						'newtab' => false
+						'newtab' => false,
+						'noFollow' => false
 					),
 					'width' => '100%',
 					'padding' => array(
@@ -12235,13 +12304,15 @@ return array(
 				'default' => array(
 					'loop' => false,
 					'centeredSlides' => false,
+					'gap' => 0,
+					'slidesPerView' => 3,
 					'responsive' => array(
 						'enabled' => false,
 						'viewport' => 768,
 						'width' => '40px',
 						'height' => '40px'
 					),
-					'width' => '150px',
+					'width' => '',
 					'height' => '150px',
 					'horizontalSpacing' => '0px',
 					'verticalSpacing' => '0px',
@@ -12249,7 +12320,6 @@ return array(
 					'horizontalJustify' => 'center',
 					'verticalJustify' => 'center',
 					'position' => 'left',
-					'gap' => '0px',
 					'radius' => '0px',
 					'default' => array(
 						'border' => array(
@@ -12258,7 +12328,7 @@ return array(
 							'color' => ''
 						),
 						'offset' => 0,
-						'opacity' => 100
+						'opacity' => 50
 					),
 					'active' => array(
 						'border' => array(
