@@ -3,8 +3,8 @@ $client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', 
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $image = array(
-	'width'    => isset( $attributes['media']['width'] ) ? $attributes['media']['width'] : '',
-	'height'   => isset( $attributes['media']['height'] ) ? $attributes['media']['height'] : '',
+	'width'    => isset( $attributes['media']['width'] ) ? esc_attr( $attributes['media']['width'] ) : '',
+	'height'   => isset( $attributes['media']['height'] ) ? esc_attr( $attributes['media']['height'] ) : '',
 	'position' => array(
 		'x' => isset( $attributes['media']['position']['x'] ) ? floatval( $attributes['media']['position']['x'] ) * 100 : '',
 		'y' => isset( $attributes['media']['position']['y'] ) ? floatval( $attributes['media']['position']['y'] ) * 100 : '',
@@ -39,7 +39,7 @@ $block_styles = "
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
-		wp_add_inline_style( 'cozy-addons--blocks--style', esc_html( $block_styles ) );
+		wp_add_inline_style( 'cozy-block--global-block-styles', cozy_addons_clean_empty_css( $block_styles ) );
 	}
 );
 

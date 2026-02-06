@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/portfolio-gallery",
   "title": "Portfolio Gallery",
-  "description": "Showcase your work with finesse using the 'Portfolio Gallery' block, designed for creating advanced and visually stunning layouts to present your portfolio in a captivating manner.",
   "category": "cozy-block",
   "keywords": [
     "gallery",
@@ -117,6 +116,10 @@
           "enabled": true,
           "newTab": false,
           "noFollow": false
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
         },
         "font": {
           "size": "",
@@ -361,9 +364,7 @@
       "default": {
         "textAlign": "left",
         "icon": {
-          "top": "",
-          "right": "",
-          "size": "15px",
+          "size": "28px",
           "viewBox": {
             "vx": 0,
             "vy": 0,
@@ -374,10 +375,10 @@
           "boxWidth": "",
           "boxHeight": "",
           "padding": {
-            "top": "10px",
-            "right": "10p",
-            "bottom": "10px",
-            "left": "10px"
+            "top": "5px",
+            "right": "5px",
+            "bottom": "5px",
+            "left": "5px"
           },
           "border": {
             "width": "",
@@ -391,6 +392,25 @@
           "height": "",
           "objectFit": "cover",
           "objectPosition": "top"
+        },
+        "closeIcon": {
+          "top": "",
+          "right": "",
+          "size": "15px",
+          "boxWidth": "26px",
+          "boxHeight": "26px",
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "100px"
         },
         "navIcon": {
           "size": "15px",
@@ -415,6 +435,11 @@
           "iconBg": "#fff",
           "iconBgHover": "#f90",
           "iconBorderHover": "",
+          "closeIcon": "#000",
+          "closeIconHover": "#fff",
+          "closeIconBg": "#fff",
+          "closeIconBgHover": "#f90",
+          "closeIconBorderHover": "#f90",
           "bullet": "#fff",
           "navIcon": "#000",
           "navIconHover": "#fff",
@@ -626,7 +651,8 @@
   "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
-    "cozy-swiper-bundle"
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
   ],
   "viewScript": [
     "cozy-block--portfolio-gallery--frontend-script",

@@ -16,27 +16,47 @@ $label_wrapper_circum = $attributes['layoutCircle']['circumference'] - $attribut
 $label_color          = array(
 	'text' => isset( $attributes['labelTypography']['color'] ) ? $attributes['labelTypography']['color'] : '',
 );
+$label_styles         = array(
+	'letter_case'    => isset( $attributes['labelTypography']['letterCase'] ) ? $attributes['labelTypography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['labelTypography']['decoration'] ) ? $attributes['labelTypography']['decoration'] : '',
+	'line_height'    => isset( $attributes['labelTypography']['lineHeight'] ) ? $attributes['labelTypography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['labelTypography']['letterSpacing'] ) ? $attributes['labelTypography']['letterSpacing'] : '',
+);
+
+$typography = array(
+	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
+	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
+);
 
 $bar_color = array(
 	'bg' => isset( $attributes['bgColor'] ) ? $attributes['bgColor'] : '',
 );
 
 $block_styles = "
-#$block_id, #$block_id .label-wrapper.display-flex.justify-spread {
+.cozy-block-wrapper.$block_id .label-wrapper.display-flex.justify-spread {
+    margin-bottom: {$attributes['label']['marginBottom']}px;
     font-weight: {$attributes['typography']['fontWeight']};
     font-size: {$attributes['typography']['fontSize']}px;
     font-family: {$attributes['typography']['fontFamily']};
+    text-transform: {$typography['letter_case']};
+    text-decoration: {$typography['decoration']};
+    line-height: {$typography['line_height']};
+    letter-spacing: {$typography['letter_spacing']};
     color: {$container_color['text']};
 }
-#$block_id .before-progress, #$block_id .after-progress, #$block_id .label-wrapper.display-flex.justify-spread .before-progress, #$block_id .label-wrapper.display-flex.justify-spread .after-progress {
+.cozy-block-wrapper.$block_id .before-progress, .cozy-block-wrapper.$block_id .after-progress {
     font-weight: {$attributes['labelTypography']['fontWeight']};
     font-size: {$attributes['labelTypography']['fontSize']}px;
     font-family: {$attributes['labelTypography']['fontFamily']};
+    text-transform: {$label_styles['letter_case']};
+    text-decoration: {$label_styles['decoration']};
+    line-height: {$label_styles['line_height']};
+    letter-spacing: {$label_styles['letter_spacing']};
     color: {$label_color['text']};
 }
-.cozy-block-wrapper.$block_id .label-wrapper.display-flex.justify-spread {
-    margin-bottom: {$attributes['label']['marginBottom']}px;
-}
+
 #$block_id {
     border-style: {$attributes['containerStyles']['border']['type']};
     border-width: {$attributes['containerStyles']['border']['width']['top']}px {$attributes['containerStyles']['border']['width']['right']}px {$attributes['containerStyles']['border']['width']['bottom']}px {$attributes['containerStyles']['border']['width']['left']}px;
@@ -93,34 +113,28 @@ if ( isset( $attributes['labelTypography']['fontFamily'] ) && ! empty( $attribut
 if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
 	$font_families[] = $attributes['typography']['fontFamily'];
 }
-
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
-
-$font_query = '';
-
+$font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
-
 if ( ! empty( $font_query ) ) {
 	// Generate the inline style for the Google Fonts link.
-	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query;
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query . '&display=swap';
 
-	// Add the Google Fonts URL as an inline style.
-	$font_url = '@import url("' . $google_fonts_url . '");';
-	echo '<style> ' . $font_url . '  </style>';
+	echo '<link rel="stylesheet" href="' . $google_fonts_url . '"/>';
 }
 
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
-		wp_add_inline_style( 'cozy-addons--blocks--style', esc_html( $block_styles ) );
+		wp_add_inline_style( 'cozy-block--global-block-styles', cozy_addons_clean_empty_css( $block_styles ) );
 	}
 );
 

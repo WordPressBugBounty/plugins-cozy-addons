@@ -1,11 +1,14 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/advanced-tab",
   "title": "Advanced Tabs",
-  "description": "Elevate navigation and content organization with our 'Advanced Tabs' block, offering a sophisticated tabbed interface that lets you present diverse content sections in a visually appealing and structured way. Enhance user engagement by providing an intuitive and interactive browsing experience.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
+  "keywords": [
+    "tabbable",
+    "compact"
+  ],
   "supports": {
     "html": false
   },
@@ -57,6 +60,13 @@
     "title": {
       "type": "string",
       "default": "Advanced Tabs"
+    },
+    "titleStyles": {
+      "type": "object",
+      "default": {
+        "gap": "0px",
+        "flexWrap": true
+      }
     },
     "innerBlocks": {
       "type": "array",
@@ -155,6 +165,10 @@
           "bottom": 10,
           "left": 10
         },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
         "border": {
           "width": {
             "top": 1,
@@ -209,7 +223,7 @@
   "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
-    "cozy-addons--blocks--style"
+    "cozy-block--global-block-styles"
   ],
   "viewScript": [
     "cozy-block--advanced-tab--frontend-script"

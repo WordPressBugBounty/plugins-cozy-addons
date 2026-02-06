@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/product-category",
   "title": "Product Category",
-  "description": "Elevate your product presentation with the 'Product Category' block, providing advanced layout options like lists, grids, and carousels to showcase WooCommerce product categories in a visually appealing and organized manner.",
   "category": "cozy-block/woocommerce",
   "keywords": [
     "product",
@@ -237,7 +236,8 @@
   "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
-    "cozy-swiper-bundle"
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
   ],
   "viewScript": [
     "cozy-block--product-category--frontend-script"

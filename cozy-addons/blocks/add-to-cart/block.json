@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/add-to-cart",
   "title": "Add to Cart",
-  "description": "With the 'Add to Cart' block allows you to easily add products to your cart, featuring a customizable button that can display a label, an icon, or both.",
   "category": "cozy-block/woocommerce",
   "textdomain": "cozy-addons",
   "supports": {
@@ -152,6 +151,9 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "render": "file:./render.php"
 }

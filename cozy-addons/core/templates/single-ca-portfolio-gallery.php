@@ -13,12 +13,12 @@
 
 <!-- wp:column {"width":"40%","style":{"spacing":{"blockGap":"0"}}} -->
 <div class="wp-block-column" style="flex-basis:40%"><!-- wp:group {"style":{"position":{"type":"sticky","top":"0px"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|40","left":"var:preset|spacing|40","bottom":"var:preset|spacing|30"}}},"layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group" style="padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--40)"><!-- wp:post-title {"textAlign":"left","level":1} /--></div>
+<div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"padding":{"right":"30px","left":"30px","bottom":"20px"}}},"layout":{"type":"constrained","contentSize":"980px"}} -->
+<div class="wp-block-group" style="padding-right:30px;padding-bottom:20px;padding-left:30px"><!-- wp:post-title {"textAlign":"left","level":1} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|70","left":"var:preset|spacing|50","right":"var:preset|spacing|50"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"860px"}} -->
-<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--50)"><!-- wp:post-content /-->
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"60px","left":"40px","right":"40px"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"860px"}} -->
+<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:40px;padding-bottom:60px;padding-left:40px"><!-- wp:post-content /-->
 
 <!-- wp:cozy-block/portfolio-gallery-meta {"clientId":"a1b6fe8d-08d0-470d-bd51-420adccbccd7","className":"wp-block-cozy-block-portfolio-gallery-meta"} /-->
 

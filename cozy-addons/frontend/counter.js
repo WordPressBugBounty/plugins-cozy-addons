@@ -1,68 +1,74 @@
 (function ($) {
-  window["cozyBlockCounterInit"] = (e) => {
-    const n = e.replace(/-/gi, "_");
-    const blockOptions = window[`cozyCounter_${n}`];
-    const counterClass = `#cozyBlock_${n}`;
-    const cozyCounter = document.querySelector(counterClass);
+	window["cozyBlockCounterInit"] = (e) => {
+		const n = e.replace(/-/gi, "_");
+		const blockOptions = window[`cozyCounter_${n}`];
+		const counterClass = `#cozyBlock_${n}`;
+		const cozyCounter = document.querySelector(counterClass);
 
-    const counter = cozyCounter.querySelector("span");
+		if (!cozyCounter) return;
 
-    function isElementInViewport(el) {
-      var rect = el.getBoundingClientRect();
-      return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <=
-          (window.innerWidth || document.documentElement.clientWidth)
-      );
-    }
+		const counter = cozyCounter.querySelector("span");
 
-    let animationTriggered = false;
+		function isElementInViewport(el) {
+			if (!el) return;
 
-    function addCounterAnimation() {
-      if (!animationTriggered && isElementInViewport(cozyCounter)) {
-        animationTriggered = true;
+			var rect = el.getBoundingClientRect();
+			return (
+				rect.top >= 0 &&
+				rect.left >= 0 &&
+				rect.bottom <=
+					(window.innerHeight || document.documentElement.clientHeight) &&
+				rect.right <=
+					(window.innerWidth || document.documentElement.clientWidth)
+			);
+		}
 
-        const time =
-          blockOptions.animationDuration &&
-          Math.floor(Math.abs(blockOptions.animationDuration)) > 499
-            ? Math.floor(Math.abs(blockOptions.animationDuration)) - 200
-            : 300;
+		let animationTriggered = false;
 
-        const endTarget = blockOptions.endNumber
-          ? Math.floor(Math.abs(blockOptions.endNumber))
-          : 0;
+		function addCounterAnimation() {
+			if (!cozyCounter) return;
 
-        let cleanStartValue = 0;
+			if (!animationTriggered && isElementInViewport(cozyCounter)) {
+				animationTriggered = true;
 
-        const increaseBy = ((endTarget - cleanStartValue) / time) * 53;
-        let timeoutIdInside;
+				const time =
+					blockOptions.animationDuration &&
+					Math.floor(Math.abs(blockOptions.animationDuration)) > 499
+						? Math.floor(Math.abs(blockOptions.animationDuration)) - 200
+						: 300;
 
-        const timeoutId = setTimeout(() => {
-          function updateCount() {
-            cleanStartValue += increaseBy;
-            counter.innerHTML = Math.floor(cleanStartValue).toLocaleString();
-            if (cleanStartValue < endTarget) {
-              timeoutIdInside = setTimeout(() => {
-                updateCount();
-              }, 53);
-            } else {
-              counter.innerHTML = Math.floor(endTarget).toLocaleString();
-            }
-          }
-          updateCount();
-        }, 200);
+				const endTarget = blockOptions.endNumber
+					? Math.floor(Math.abs(blockOptions.endNumber))
+					: 0;
 
-        return () => {
-          clearTimeout(timeoutId);
-          clearTimeout(timeoutIdInside);
-        };
-      }
-    }
-    addCounterAnimation();
+				let cleanStartValue = 0;
 
-    window.addEventListener("scroll", addCounterAnimation);
-  };
+				const increaseBy = ((endTarget - cleanStartValue) / time) * 53;
+				let timeoutIdInside;
+
+				const timeoutId = setTimeout(() => {
+					function updateCount() {
+						cleanStartValue += increaseBy;
+						counter.innerHTML = Math.floor(cleanStartValue).toLocaleString();
+						if (cleanStartValue < endTarget) {
+							timeoutIdInside = setTimeout(() => {
+								updateCount();
+							}, 53);
+						} else {
+							counter.innerHTML = Math.floor(endTarget).toLocaleString();
+						}
+					}
+					updateCount();
+				}, 200);
+
+				return () => {
+					clearTimeout(timeoutId);
+					clearTimeout(timeoutIdInside);
+				};
+			}
+		}
+		addCounterAnimation();
+
+		window.addEventListener("scroll", addCounterAnimation);
+	};
 })(jQuery);

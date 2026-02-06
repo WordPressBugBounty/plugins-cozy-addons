@@ -18,36 +18,44 @@
 
 		// Function to handle AOS initialization in the active slide
 		function handleAosInit(swiper) {
-			const $activeSlide = $(swiper.slides[swiper.activeIndex]); // Get the active slide as a jQuery object
+			const activeIndex = swiper.activeIndex; // Gets the true logical index
+
+			const $activeSlide = $(swiper.slides[activeIndex]); // Get the active slide as a jQuery object
+
 			const $innerChild = $activeSlide.find(".cozy-animation__initialized"); // Find the inner child element
 
 			const aosInitValue = $innerChild.length
-				? $innerChild.attr("data-aos-init")
+				? $innerChild.data("aos-init")
 				: "false";
-			const aosType = $innerChild.length
-				? $innerChild.attr("data-aos")
-				: "none";
+			const aosType = $innerChild.length ? $innerChild.data("aos") : "none";
 
-			if (aosType !== "none") {
-				if (aosInitValue === "false") {
-					$activeSlide
-						.find(".cozy-animation__initialized")
-						.hide(0)
-						.removeClass("aos-init aos-animate")
-						.attr("data-aos-init", true);
-				}
+			if (aosType !== "none" && aosInitValue === "false") {
+				$activeSlide.find(".cozy-animation__initialized").hide(0);
 			}
 		}
 
 		// Function to activate AOS for the active slide
-		function activateAos(swiperInstance) {
-			const $activeSlide = $(swiperInstance.slides[swiperInstance.activeIndex]); // Get the active slide as a jQuery object
-			$activeSlide
-				.find(".cozy-animation__initialized")
-				.show(0)
-				.addClass("aos-init aos-animate");
+		function activateAos(swiper) {
+			const activeIndex = swiper.activeIndex;
 
-			AOS.refresh();
+			const $activeSlide = $(swiperClass).find(".swiper-slide").eq(activeIndex); // Get the active slide as a jQuery object
+
+			const animateEl = $activeSlide.find(".cozy-animation__initialized");
+
+			const aosInit = animateEl.attr("data-aos-init");
+
+			if (aosInit === "false") {
+				// Tweak to remove the class and animate after 100 milliseconds.
+				animateEl.removeClass("aos-init aos-animate").show(0);
+
+				setTimeout(() => {
+					animateEl.addClass("aos-init aos-animate");
+				}, 100);
+
+				AOS.refresh();
+
+				animateEl.attr("data-aos-init", "true");
+			}
 		}
 
 		let swiperAttr = {

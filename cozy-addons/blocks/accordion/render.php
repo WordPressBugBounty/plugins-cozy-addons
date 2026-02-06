@@ -16,11 +16,28 @@ $item_color = array(
 	'border' => isset( $attributes['accordionStyles']['border']['color'] ) ? $attributes['accordionStyles']['border']['color'] : '',
 );
 
-$title_color = array(
-	'text' => isset( $attributes['titleTypography']['color'] ) ? $attributes['titleTypography']['color'] : '',
+$title_styles = array(
+	'margin'         => array(
+		'top'    => isset( $attributes['titleTypography']['margin']['top'] ) ? $attributes['titleTypography']['margin']['top'] : '',
+		'bottom' => isset( $attributes['titleTypography']['margin']['bottom'] ) ? $attributes['titleTypography']['margin']['bottom'] : '',
+	),
+	'letter_case'    => isset( $attributes['titleTypography']['letterCase'] ) ? $attributes['titleTypography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['titleTypography']['decoration'] ) ? $attributes['titleTypography']['decoration'] : '',
+	'line_height'    => isset( $attributes['titleTypography']['lineHeight'] ) ? $attributes['titleTypography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['titleTypography']['letterSpacing'] ) ? $attributes['titleTypography']['letterSpacing'] : '',
+);
+$title_color  = array(
+	'text'   => isset( $attributes['titleTypography']['color'] ) ? $attributes['titleTypography']['color'] : '',
+	'active' => isset( $attributes['titleTypography']['colorActive'] ) ? $attributes['titleTypography']['colorActive'] : '',
 );
 
-$content_color = array(
+$content_styles = array(
+	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
+	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
+);
+$content_color  = array(
 	'text' => isset( $attributes['typography']['color'] ) ? $attributes['typography']['color'] : '',
 );
 
@@ -63,16 +80,29 @@ $block_styles = "
 	gap: {$icon_styles['gap']};
 }
 #$block_id .cozy-block-accordion-item .cozy-accordion-title * {
+    margin-top: {$title_styles['margin']['top']};
+    margin-bottom: {$title_styles['margin']['bottom']};
     font-weight: {$attributes['titleTypography']['fontWeight']};
     font-size: {$attributes['titleTypography']['fontSize']}px;
-    font-family: {$attributes['titleTypography']['fontFamily']};
+    font-family: '{$attributes['titleTypography']['fontFamily']}';
+    text-transform: {$title_styles['letter_case']};
+    text-decoration: {$title_styles['decoration']};
+    line-height: {$title_styles['line_height']};
+    letter-spacing: {$title_styles['letter_spacing']};
     color: {$title_color['text']};
+}
+#$block_id .cozy-block-accordion-item .cozy-accordion-title.active * {
+    color: {$title_color['active']};
 }
 
 #$block_id .cozy-block-accordion-item .cozy-accordion-content {
     font-weight: {$attributes['typography']['fontWeight']};
     font-size: {$attributes['typography']['fontSize']}px;
-    font-family: {$attributes['typography']['fontFamily']};
+    font-family: '{$attributes['typography']['fontFamily']}';
+    text-transform: {$content_styles['letter_case']};
+    text-decoration: {$content_styles['decoration']};
+    line-height: {$content_styles['line_height']};
+    letter-spacing: {$content_styles['letter_spacing']};
     color: {$content_color['text']};
 }
 
@@ -126,35 +156,28 @@ if ( isset( $attributes['titleTypography']['fontFamily'] ) && ! empty( $attribut
 if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
 	$font_families[] = $attributes['typography']['fontFamily'];
 }
-
-		// Remove duplicate font families.
-		$font_families = array_unique( $font_families );
-
-		$font_query = '';
-
-		// Add other fonts.
+// Remove duplicate font families.
+$font_families = array_unique( $font_families );
+$font_query    = '';
+// Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
-
 if ( ! empty( $font_query ) ) {
 	// Generate the inline style for the Google Fonts link.
-	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query;
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query . '&display=swap';
 
-	// Add the Google Fonts URL as an inline style.
-	$font_url = '@import url("' . $google_fonts_url . '");';
-	echo '<style> ' . $font_url . '  </style>';
+	echo '<link rel="stylesheet" href="' . $google_fonts_url . '"/>';
 }
 
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
-		// wp_add_inline_style( 'cozy-block--accordion--style', esc_html( $block_styles ) );
-		wp_add_inline_style( 'cozy-addons--blocks--style', esc_html( $block_styles ) );
+		wp_add_inline_style( 'cozy-block--global-block-styles', cozy_addons_clean_empty_css( $block_styles ) );
 	}
 );
 

@@ -1,10 +1,10 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/portfolio-gallery-meta",
   "title": "Portfolio Gallery Meta",
-  "description": "Fetches the meta field for portfolio gallery.",
   "category": "cozy-block",
+  "textdomain": "cozy-addons",
   "supports": {
     "spacing": {
       "margin": true
@@ -112,7 +112,8 @@
   ],
   "editorStyle": "file:./index.css",
   "style": [
-    "file:./style-index.css"
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
   ],
   "render": "file:./render.php"
 }

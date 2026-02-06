@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/featured-post",
   "title": "Featured Post (Pro)",
-  "description": "'Featured Post' block allows you to handpick from your latest posts and showcase them in versatile display options such as grid, list, and carousel, enhancing your site's visual appeal and user engagement.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "magazine",
@@ -506,7 +505,8 @@
   "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
-    "cozy-swiper-bundle"
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
   ],
   "viewScript": [
     "cozy-block--featured-post--frontend-script"

@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/modal",
   "title": "Popup Builder (Pro)",
-  "description": "Capture attention with our 'Popup Builder' block, a pop-up window designed to showcase offers and promotions, providing a compelling way to communicate with your audience.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {
@@ -72,10 +71,10 @@
         },
         "content": "default",
         "label": "Open Popup",
-        "imgURL": "Open Popup",
+        "imgURL": "https://plugins.cozythemes.com/cozy-addons/assets/media/play-btn.png",
         "imgWidth": 100,
         "imgHeight": 100,
-        "imgRadius": 0,
+        "imgRadius": 100,
         "imgHasPulse": 0,
         "fontSize": 14,
         "fontFamily": "Public Sans",
@@ -122,7 +121,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "viewScript": [
     "cozy-block--modal--frontend-script"
   ],

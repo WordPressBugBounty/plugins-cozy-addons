@@ -61,6 +61,8 @@ class Core {
 		$this->register_plugin_api();
 
 		$this->add_custom_block_filters();
+
+		$this->register_block_patterns();
 	}
 
 	/**
@@ -92,6 +94,7 @@ class Core {
 		require_once self::$dir . 'api/class-block.php';
 		require_once self::$dir . 'api/class-cf7.php';
 		require_once self::$dir . 'api/class-woo.php';
+		require_once self::$dir . 'api/class-patterns.php';
 
 		add_action( 'rest_api_init', array( $this, 'register_api_routes' ) );
 	}
@@ -104,6 +107,7 @@ class Core {
 	public function register_api_routes() {
 		\Core\Api\Block::get_instance();
 		\Core\Api\CF7::get_instance();
+		\Core\Api\Patterns::get_instance();
 
 		if ( is_woocommerce_active() ) {
 			\Core\Api\Woo::get_instance();
@@ -122,5 +126,11 @@ class Core {
 		require_once self::$dir . 'filters/class-query-loop.php';
 
 		\Core\Filters\QueryLoop::get_instance();
+	}
+
+	private function register_block_patterns() {
+		require_once self::$dir . 'library/class-patterns.php';
+
+		\Core\Patterns::get_instance();
 	}
 }

@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/countdown-timer",
   "title": "Countdown Timer (Pro)",
-  "description": "The Countdown Timer Block creates urgency with a customizable timer for promotions or events, featuring automatic hiding after the offer ends.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "attributes": {
@@ -280,7 +279,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "viewScript": [
     "cozy-block--countdown-timer--frontend-script",
     "cozy-dep-luxon"

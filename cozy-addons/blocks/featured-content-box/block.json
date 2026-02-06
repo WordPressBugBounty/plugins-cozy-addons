@@ -1,11 +1,14 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/featured-content-box",
   "title": "Featured Content Box",
-  "description": "Presenting the 'Featured Content Box' block – your ultimate tool for showcasing standout content! Customize your display for a visually stunning presentation that captivates your audience.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
+  "keywords": [
+    "grid",
+    "carousel"
+  ],
   "supports": {
     "html": false
   },
@@ -133,7 +136,8 @@
   "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
-    "cozy-swiper-bundle"
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
   ],
   "viewScript": [
     "cozy-block--featured-content-box--frontend-script"

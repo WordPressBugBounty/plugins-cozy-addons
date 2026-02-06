@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/quick-view",
   "title": "Quick View (Pro)",
-  "description": "Preview product details in a stylish lightbox with the 'Quick View' block, providing a seamless and efficient way to view essential information without leaving the current page.",
   "category": "cozy-block/woocommerce",
   "textdomain": "cozy-addons",
   "supports": {
@@ -277,7 +276,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "viewScript": [
     "cozy-swiper-bundle"
   ],

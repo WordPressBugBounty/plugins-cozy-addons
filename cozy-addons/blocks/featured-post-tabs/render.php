@@ -446,7 +446,7 @@ if ( ! function_exists( 'cozy_render_featured_post_tab_data' ) ) {
 		if ( $attributes['postOptions']['postContent'] ) {
 			$output .= '<p class="cozy-block-featured-post-tabs__post-content">';
 			if ( isset( $post['post_excerpt'] ) && ! empty( $post['post_excerpt'] ) ) {
-				$output .= $post['post_excerpt'];
+				$output .= cozy_create_excerpt( $post['post_excerpt'], $attributes['postOptions']['excerpt'] );
 			} else {
 				$output .= cozy_create_excerpt( $post['post_content'], $attributes['postOptions']['excerpt'] );
 			}
@@ -706,34 +706,28 @@ if ( isset( $attributes['dateStyles']['fontFamily'] ) && ! empty( $attributes['d
 if ( isset( $attributes['tagStyles']['fontFamily'] ) && ! empty( $attributes['tagStyles']['fontFamily'] ) ) {
 	$font_families[] = $attributes['tagStyles']['fontFamily'];
 }
-
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
-
-$font_query = '';
-
+$font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
-
 if ( ! empty( $font_query ) ) {
 	// Generate the inline style for the Google Fonts link.
-	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query;
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query . '&display=swap';
 
-	// Add the Google Fonts URL as an inline style.
-	$font_url = '@import url("' . $google_fonts_url . '");';
-	echo '<style> ' . $font_url . '  </style>';
+	echo '<link rel="stylesheet" href="' . $google_fonts_url . '"/>';
 }
 
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
-		wp_add_inline_style( 'cozy-addons--blocks--style', esc_html( $block_styles ) );
+		wp_add_inline_style( 'cozy-block--global-block-styles', cozy_addons_clean_empty_css( $block_styles ) );
 	}
 );
 

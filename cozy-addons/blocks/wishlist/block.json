@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/wishlist",
   "title": "Wishlist (Pro)",
-  "description": "'Wishlist' block allows you to add and view your favorite products in a convenient, accessible sidebar for easy management and quick access.",
   "category": "cozy-block/woocommerce",
   "textdomain": "cozy-addons",
   "usesContext": [
@@ -349,7 +348,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "viewScript": [
     "cozy-block--wishlist--frontend-script"
   ],

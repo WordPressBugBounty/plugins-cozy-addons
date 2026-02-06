@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/featured-post-tabs",
   "title": "Featured Post Tabs (Pro)",
-  "description": "Highlight your best content with our 'Featured Post Tabs' block, providing five tabs—Latest, Popular, Trending, Tags, and Comments—to showcase your top articles and boost engagement.",
   "category": "cozy-block/post-magazine",
   "textdomain": "cozy-addons",
   "supports": {
@@ -452,7 +451,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "viewScript": [
     "cozy-block--featured-post-tabs--frontend-script"
   ],

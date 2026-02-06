@@ -1,282 +1,639 @@
 (function ($) {
-  window["cozyBlockMegaMenuInit"] = (e) => {
-    const n = e.replace(/-/gi, "_");
-    const blockOptions = window[`cozyMegaMenu_${n}`];
-    const megaMenuClass = `#cozyBlock_${n}`;
-    const cozyMegaMenu = document.querySelector(megaMenuClass);
+	window["cozyBlockMegaMenuInit"] = (e) => {
+		const n = e.replace(/-/gi, "_");
+		const attributes = window[`cozyMegaMenu_${n}`];
+		const megaMenuClass = `cozyBlock_${n}`;
+		const element = $(`#${megaMenuClass}`);
 
-    const responsiveOpenIcon = cozyMegaMenu.querySelector(
-      ".cozy-responsive-icon__wrapper.open-icon-wrapper"
-    );
-    const responsiveCloseIcon = cozyMegaMenu.querySelector(
-      ".cozy-responsive-icon__wrapper.close-icon-wrapper"
-    );
+		const body = $("body");
 
-    const cozyNavMenu = cozyMegaMenu.querySelector(
-      ".cozy-block-navigation-menu"
-    );
-    displayResponsiveMenu(cozyNavMenu);
-    window.addEventListener("resize", function () {
-      displayResponsiveMenu(cozyNavMenu);
-    });
+		const openIcon = element.find(
+			".cozy-responsive-icon__wrapper.open-icon-wrapper",
+		);
+		const overlay = $(
+			`.cozy-block-wrapper.${megaMenuClass} .cozy-mega-menu__overlay`,
+		);
+		const closeIcon = element.find(
+			".cozy-responsive-icon__wrapper.close-icon-wrapper",
+		);
+		const navMenu = element.find(".cozy-block-navigation-menu");
+		const $megaMenuNavItems = $(
+			".wp-block-navigation-item.cozy-mega-menu__item",
+		);
 
-    function displayResponsiveMenu(cozyNavMenu) {
-      const viewWidth = window.innerWidth;
+		function renderDropdownIcon(submenu) {
+			if (attributes.icon.enabled) {
+				const $submenu = submenu;
+				const $itemContent = $submenu.find(
+					".wp-block-navigation-item__content",
+				);
 
-      const displayEvent = "event-" + blockOptions.displayEvent;
+				// Check if icon wrapper already exists
+				const $iconWrapperExists = $submenu.find(".cozy-dropdown-icon-wrapper");
 
-      if (viewWidth <= blockOptions.responsive.width) {
-        responsiveOpenIcon.classList.remove("display-none");
+				if (!$iconWrapperExists.length) {
+					const iconAttrs =
+						attributes.icon.layout === "fill"
+							? `stroke="none" fill="${attributes.icon.color}"`
+							: attributes.icon.layout === "outline"
+							? `fill="none" stroke="${attributes.icon.color}"`
+							: "";
 
-        if (!cozyNavMenu.classList.contains("full-screen")) {
-          cozyNavMenu.classList.add("display-none");
-        }
+					const $iconWrapper = $(`
+						<div class="cozy-dropdown-icon-wrapper">
+							<svg
+								class="cozy-dropdown-icon"
+								width="${attributes.icon.size}"
+								height="${attributes.icon.size}"
+								${iconAttrs}
+								viewBox="${attributes.icon.viewBox.vx} ${attributes.icon.viewBox.vy} ${attributes.icon.viewBox.vw} ${attributes.icon.viewBox.vh}"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+								fill="currentColor"
+							>
+								<path d="${attributes.icon.path}" />
+							</svg>
+						</div>
+					`);
 
-        if (blockOptions.displayEvent === "hover") {
-          cozyMegaMenu.classList.remove(displayEvent);
-          cozyMegaMenu.classList.add("event-click");
-        }
-      } else {
-        $(megaMenuClass)
-          .find(".cozy-block-mega-menu__dropdown")
-          .removeClass("show-cozy-dropdown-content");
+					$iconWrapper.insertAfter($itemContent);
+				}
+			}
+		}
 
-        $("body").removeClass("overflow-hidden");
+		// Inject mega menu contents in the body
+		let isHoveringItem = false;
+		let isHoveringDropdown = false;
+		let closeTimer = null;
 
-        responsiveOpenIcon.classList.add("display-none");
-        cozyNavMenu.classList.remove("display-none");
-        cozyNavMenu.classList.remove("full-screen");
+		const menus = [];
+		$megaMenuNavItems.each(function () {
+			const $this = $(this);
+			const template = attributes.megaMenuTemplates.filter((template) =>
+				$this.hasClass("template-id-" + template.ID),
+			);
 
-        if (!cozyNavMenu.classList.contains("full-screen")) {
-          responsiveCloseIcon.classList.add("display-none");
-        }
+			if (!template.length) return;
 
-        if (blockOptions.displayEvent === "hover") {
-          cozyMegaMenu.classList.add(displayEvent);
-          cozyMegaMenu.classList.remove("event-click");
-        }
-      }
-    }
+			const templateID = template[0].ID;
 
-    let eventAttached = false;
-    responsiveOpenIcon.addEventListener("click", function () {
-      cozyNavMenu.classList.remove("display-none");
-      cozyNavMenu.classList.add("full-screen");
-      $("body").addClass("overflow-hidden");
+			renderDropdownIcon($this);
 
-      if (cozyNavMenu.classList.contains("full-screen")) {
-        responsiveCloseIcon.classList.remove("display-none");
+			const $dropdownContent = $("<div>", {
+				class: "cozy-block-mega-menu__dropdown template-id-" + templateID,
+				html: template[0].render,
+			});
 
-        if (blockOptions.displayEvent === "hover" && !eventAttached) {
-          navSubmenu.forEach((submenu) => {
-            addSubmenuClickEvent(submenu);
-          });
+			// default
+			let maxWidth = "1180";
 
-          cozyNavItem.forEach((navItem) => {
-            addMegaMenuClickEvent(navItem, cozyNavItem);
-          });
+			// read classes from nav item
+			($this.attr("class") || "").split(/\s+/).forEach((cls) => {
+				const match = cls.match(/^has-custom-width-(\d+)$/);
+				if (match) {
+					maxWidth = match[1];
+				}
+			});
 
-          eventAttached = true;
-        }
-      } else {
-        responsiveCloseIcon.classList.add("display-none");
-      }
-    });
+			// apply width rules
+			const responsiveMegaMenu = $dropdownContent.clone(true, true);
+			responsiveMegaMenu.addClass("responsive-only-mega-menu");
 
-    responsiveCloseIcon.addEventListener("click", function () {
-      cozyNavMenu.classList.add("display-none");
-      cozyNavMenu.classList.remove("full-screen");
-      $("body").removeClass("overflow-hidden");
-    });
+			if (!$this.find(responsiveMegaMenu).length) {
+				$this.append(responsiveMegaMenu);
+			}
 
-    // Mega menu navigation item.
-    const cozyNavItem = cozyMegaMenu.querySelectorAll(".cozy-mega-menu__item");
+			if (attributes?.responsive?.status === "always") {
+				return;
+			}
 
-    // Hide all cozy mega menu dropdown content elements.
-    function hideDisplayedMegaMenu(cozyNavItem, dropdownContent) {
-      cozyNavItem.forEach((item) => {
-        const content = item.querySelector(".cozy-block-mega-menu__dropdown");
-        if (content !== dropdownContent || dropdownContent === null) {
-          content.classList.remove("show-cozy-dropdown-content");
-        }
-      });
-    }
+			$dropdownContent.addClass(megaMenuClass);
+			if ($this.hasClass("full-width")) {
+				$dropdownContent.addClass("full-width");
+			} else {
+				$dropdownContent.addClass("has-custom-width-" + maxWidth);
+			}
 
-    const navSubmenu = cozyMegaMenu.querySelectorAll(
-      ".wp-block-navigation-submenu.has-child"
-    );
-    const navSubmenuContainers = cozyMegaMenu.querySelectorAll(
-      ".wp-block-navigation__submenu-container"
-    );
-    function hideAllSubmenus() {
-      navSubmenuContainers.forEach((container) => {
-        container.classList.remove("show-cozy-dropdown-content");
-      });
-    }
+			if (!body.find($dropdownContent).length) {
+				body.append($dropdownContent);
+				menus.push($dropdownContent[0]);
+			}
 
-    function hideSiblings(element) {
-      const siblings = $(element).siblings(
-        ".wp-block-navigation-submenu.has-child"
-      );
+			if (!attributes?.openOnClick) {
+				/* ───────── Hover logic ───────── */
+				function maybeClose() {
+					clearTimeout(closeTimer);
 
-      siblings.map((index) => {
-        const el = siblings[index];
-        const submenuChild = el.querySelector(
-          ".wp-block-navigation__submenu-container"
-        );
-        submenuChild.classList.remove("show-cozy-dropdown-content");
-      });
-    }
+					closeTimer = setTimeout(() => {
+						if (!isHoveringItem && !isHoveringDropdown) {
+							$dropdownContent.removeClass("is-active");
+							$dropdownContent.attr("style", "");
+							$this.removeClass("is-active");
+						}
+					}, 100);
+				}
 
-    function toggleSubmenu(submenuContainer, event) {
-      hideSiblings(submenuContainer.parentNode);
+				// Menu item
+				$this.on("mouseenter", function () {
+					clearTimeout(closeTimer);
 
-      submenuContainer.classList.toggle("show-cozy-dropdown-content");
-    }
+					isHoveringItem = true;
+					isHoveringDropdown = false;
 
-    function addSubmenuClickEvent(submenu) {
-      submenu.addEventListener("click", function (e) {
-        // Hide Mega menu if any displayed.
-        hideDisplayedMegaMenu(cozyNavItem, null);
+					menus.forEach((m) => $(m).removeClass("is-active"));
+					$megaMenuNavItems.removeClass("is-active");
 
-        const submenuContainer = this.querySelector(
-          ".wp-block-navigation__submenu-container"
-        );
+					const rect = this.getBoundingClientRect();
+					const initialTop = rect.bottom + 44;
 
-        if (submenuContainer) {
-          e.stopPropagation();
+					$dropdownContent.removeClass("is-active").css({
+						top: initialTop + "px",
+						transition: "top 0.3s ease",
+					});
 
-          toggleSubmenu(submenuContainer, e);
-        }
-      });
-    }
+					$dropdownContent[0].offsetHeight;
 
-    function addMegaMenuClickEvent(navItem, cozyNavItem) {
-      const dropdownContent = navItem.querySelector(
-        ".cozy-block-mega-menu__dropdown"
-      );
+					$dropdownContent.addClass("is-active");
+					$this.addClass("is-active");
+					$dropdownContent.css("top", rect.bottom + "px");
+				});
 
-      navItem.addEventListener("click", function (e) {
-        hideAllSubmenus();
+				$this.on("mouseleave", () => {
+					isHoveringItem = false;
+					maybeClose();
+				});
 
-        $(this)
-          .siblings(".cozy-mega-menu__item")
-          .find(".cozy-block-mega-menu__dropdown")
-          .removeClass("show-cozy-dropdown-content");
+				// Dropdown
+				$dropdownContent.on("mouseenter", () => {
+					clearTimeout(closeTimer);
 
-        const navItemChild = $(this).find(".wp-block-navigation-item__content");
+					isHoveringDropdown = true;
+				});
 
-        if (
-          dropdownContent.classList.contains("show-cozy-dropdown-content") &&
-          (e.target === this ||
-            e.target === navItemChild ||
-            $(navItemChild).has(e.target))
-        ) {
-          dropdownContent.classList.remove("show-cozy-dropdown-content");
-        } else {
-          dropdownContent.classList.add("show-cozy-dropdown-content");
-        }
-      });
-    }
+				$dropdownContent.on("mouseleave", () => {
+					isHoveringDropdown = false;
+					maybeClose();
+				});
+			}
+		});
 
-    function renderDropdownIcon(submenu) {
-      if (blockOptions.icon.enabled) {
-        const itemContent = submenu.querySelector(
-          ".wp-block-navigation-item__content"
-        );
+		function renderDeviceBasedMenu() {
+			const status = attributes?.responsive?.status;
+			const breakPoint = attributes?.responsive?.breakPoint || 767;
+			const screenWidth = $(window).width();
 
-        // Create icon wrapper element
-        var iconWrapper = document.createElement("div");
-        iconWrapper.className = "cozy-dropdown-icon-wrapper";
-        iconWrapper.innerHTML = `
-              <svg
-                class="cozy-dropdown-icon"
-                width="${blockOptions.icon.size}"
-                height="${blockOptions.icon.size}"
-                ${
-                  blockOptions.icon.layout === "fill"
-                    ? "stroke='none' fill='" + blockOptions.icon.color + "'"
-                    : ""
-                }
-                ${
-                  blockOptions.icon.layout === "outline"
-                    ? "fill='none' stroke='" + blockOptions.icon.color + "'"
-                    : ""
-                }
-                viewBox="${blockOptions.icon.viewBox.vx} ${
-          blockOptions.icon.viewBox.vy
-        } ${blockOptions.icon.viewBox.vw} ${blockOptions.icon.viewBox.vh}"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path d="${blockOptions.icon.path}"/>
-              </svg>
-            `;
+			// Reset everything first
+			openIcon.addClass("display-none");
+			closeIcon.addClass("display-none");
+			overlay.addClass("display-none");
+			body.removeClass("overflow-hidden");
+			element.removeClass("is-menu-visible");
 
-        //Check if '.cozy-dropdown-icon-wrapper' exists.
-        const iconWrapperExists = submenu.querySelector(
-          ".cozy-dropdown-icon-wrapper"
-        );
+			if (status === "always") {
+				openIcon.removeClass("display-none");
 
-        if (!iconWrapperExists) {
-          itemContent.parentNode.insertBefore(
-            iconWrapper,
-            itemContent.nextSibling
-          );
-        }
-      }
-    }
+				element
+					.find(".wp-block-navigation-item.has-child")
+					.on("click", function (e) {
+						e.preventDefault();
 
-    navSubmenu.forEach((submenu) => {
-      renderDropdownIcon(submenu);
+						const $this = $(this);
 
-      if (blockOptions.displayEvent === "click") {
-        addSubmenuClickEvent(submenu);
-      }
-    });
+						$this
+							.siblings($megaMenuNavItems)
+							.find(".cozy-block-mega-menu__dropdown.responsive-only-mega-menu")
+							.removeClass("is-active");
 
-    //Render mega menu template content in dropdown div.
-    const dropdownItem = cozyMegaMenu.querySelectorAll(
-      ".wp-block-navigation-item.cozy-mega-menu__item"
-    );
-    dropdownItem.forEach((item) => {
-      const template = blockOptions.megaMenuTemplates.filter((template) =>
-        item.classList.contains("template-id-" + template.ID)
-      );
+						// Only immediate submenu of this item
+						const $submenu = $this
+							.children(".wp-block-navigation__submenu-container")
+							.first();
 
-      renderDropdownIcon(item);
+						// Close other submenus at the same level
+						$this
+							.siblings(".wp-block-navigation-item.has-child")
+							.children(".wp-block-navigation__submenu-container")
+							.removeClass("show-submenu");
 
-      const dropdownContent = document.createElement("div");
-      dropdownContent.className = "cozy-block-mega-menu__dropdown";
+						// Toggle current submenu
+						$submenu.toggleClass("show-submenu");
 
-      dropdownContent.innerHTML = template[0].render;
+						e.stopPropagation();
+					});
 
-      item.appendChild(dropdownContent);
-    });
+				$megaMenuNavItems.each(function () {
+					const $this = $(this);
+					const $dropdown = $this.find(
+						".cozy-block-mega-menu__dropdown.responsive-only-mega-menu",
+					);
 
-    // Adding click event for display event "click".
-    if (
-      blockOptions.displayEvent === "click" ||
-      cozyNavMenu.classList.contains("full-screen")
-    ) {
-      cozyNavItem.forEach((navItem) => {
-        addMegaMenuClickEvent(navItem, cozyNavItem);
-      });
-    }
+					$this.click(function (e) {
+						const $parentSubmenu = $this.closest(
+							".wp-block-navigation__submenu-container",
+						);
 
-    // Add a click event listener to the document
-    document.addEventListener("click", function (event) {
-      const cozyMenuWrapper = $(megaMenuClass + " .cozy-menu-wrapper");
+						// Close other dropdowns
+						if ($parentSubmenu.length) {
+							// Item is inside a submenu: close only sibling submenus
+							$parentSubmenu
+								.children(".wp-block-navigation-item.has-child")
+								.find(".wp-block-navigation__submenu-container")
+								.removeClass("show-submenu");
 
-      // Check if the clicked element is inside the .cozy-menu-wrapper
-      if ($(cozyMenuWrapper).find(event.target).length <= 0) {
-        hideAllSubmenus();
+							// Optionally close sibling submenus one level up if nested
+							$parentSubmenu
+								.siblings(".wp-block-navigation-item")
+								.find(
+									".cozy-block-mega-menu__dropdown.responsive-only-mega-menu",
+								)
+								.removeClass("is-active");
+						} else {
+							element
+								.find(".wp-block-navigation__submenu-container")
+								.removeClass("show-submenu");
 
-        // Hide the dropdown.
-        $(cozyMenuWrapper)
-          .find(".cozy-block-mega-menu__dropdown")
-          .removeClass("show-cozy-dropdown-content");
-      }
-    });
-  };
+							// Item is a top-level nav item: close all other top-level dropdowns
+							$megaMenuNavItems
+								.not($this)
+								.find(
+									".cozy-block-mega-menu__dropdown.responsive-only-mega-menu",
+								)
+								.removeClass("is-active is-focused");
+						}
+
+						$megaMenuNavItems
+							.find(".cozy-block-mega-menu__dropdown.responsive-only-mega-menu")
+							.removeClass("is-active");
+						// Toggle the clicked dropdown
+						$dropdown.toggleClass("is-active");
+
+						// Scroll to nav item if the dropdown is active
+						if (
+							$dropdown.hasClass("is-active") &&
+							!$dropdown.hasClass("is-focused")
+						) {
+							const offsetTop = $this.offset().top;
+							const scrollTop = $(window).scrollTop();
+							const windowHeight = $(window).height();
+							const dropdownHeight = $dropdown.outerHeight();
+
+							// Only scroll if dropdown would go out of viewport
+							if (offsetTop + dropdownHeight > scrollTop + windowHeight) {
+								navMenu.stop().animate({ scrollTop: offsetTop }, 500, "swing"); // adjust duration as needed
+							}
+
+							$dropdown.toggleClass("is-focused");
+						}
+
+						e.stopPropagation();
+					});
+				});
+
+				// Close element if clicked outside of it
+				navMenu.click(function (e) {
+					// Responsive mega menu
+					const $activeMegaMenu = navMenu.find(
+						".cozy-block-mega-menu__dropdown.responsive-only-mega-menu.is-active",
+					);
+
+					const $activeSubmenu = navMenu.find(
+						".wp-block-navigation__submenu-container.show-submenu",
+					);
+					if (
+						!$activeMegaMenu.is(e.target) &&
+						$activeMegaMenu.has(e.target).length === 0
+					) {
+						$activeMegaMenu.removeClass("is-active");
+					}
+					if (
+						!$activeSubmenu.is(e.target) &&
+						$activeSubmenu.has(e.target).length === 0
+					) {
+						$activeSubmenu.removeClass("show-submenu");
+					}
+				});
+
+				return;
+			}
+
+			if (status === "off") {
+				return;
+			}
+
+			// Auto (responsive)
+			if (screenWidth <= breakPoint) {
+				openIcon.removeClass("display-none");
+				$megaMenuNavItems.off("mouseenter mouseleave");
+
+				if (attributes?.openOnClick) {
+					$megaMenuNavItems.off("click");
+				}
+
+				element
+					.find(".wp-block-navigation-item.has-child")
+					.on("click", function (e) {
+						e.preventDefault();
+
+						const $this = $(this);
+
+						$this
+							.siblings($megaMenuNavItems)
+							.find(".cozy-block-mega-menu__dropdown.responsive-only-mega-menu")
+							.removeClass("is-active");
+
+						// Only immediate submenu of this item
+						const $submenu = $this
+							.children(".wp-block-navigation__submenu-container")
+							.first();
+
+						// Close other submenus at the same level
+						$this
+							.siblings(".wp-block-navigation-item.has-child")
+							.children(".wp-block-navigation__submenu-container")
+							.removeClass("show-submenu");
+
+						// Toggle current submenu
+						$submenu.toggleClass("show-submenu");
+
+						e.stopPropagation();
+					});
+
+				$megaMenuNavItems.each(function () {
+					const $this = $(this);
+					const $dropdown = $this.find(
+						".cozy-block-mega-menu__dropdown.responsive-only-mega-menu",
+					);
+
+					$this.click(function (e) {
+						const $parentSubmenu = $this.closest(
+							".wp-block-navigation__submenu-container",
+						);
+
+						// Close other dropdowns
+						if ($parentSubmenu.length) {
+							// Item is inside a submenu: close only sibling submenus
+							$parentSubmenu
+								.children(".wp-block-navigation-item.has-child")
+								.find(".wp-block-navigation__submenu-container")
+								.removeClass("show-submenu");
+
+							// Optionally close sibling submenus one level up if nested
+							$parentSubmenu
+								.siblings(".wp-block-navigation-item")
+								.find(
+									".cozy-block-mega-menu__dropdown.responsive-only-mega-menu",
+								)
+								.removeClass("is-active");
+						} else {
+							element
+								.find(".wp-block-navigation__submenu-container")
+								.removeClass("show-submenu");
+
+							// Item is a top-level nav item: close all other top-level dropdowns
+							$megaMenuNavItems
+								.not($this)
+								.find(
+									".cozy-block-mega-menu__dropdown.responsive-only-mega-menu",
+								)
+								.removeClass("is-active is-focused");
+						}
+
+						$megaMenuNavItems
+							.find(".cozy-block-mega-menu__dropdown.responsive-only-mega-menu")
+							.removeClass("is-active");
+						// Toggle the clicked dropdown
+						$dropdown.addClass("is-active");
+
+						// Scroll to nav item if the dropdown is active
+						if (
+							$dropdown.hasClass("is-active") &&
+							!$dropdown.hasClass("is-focused")
+						) {
+							const offsetTop = $this.offset().top;
+							const scrollTop = $(window).scrollTop();
+							const windowHeight = $(window).height();
+							const dropdownHeight = $dropdown.outerHeight();
+
+							// Only scroll if dropdown would go out of viewport
+							if (offsetTop + dropdownHeight > scrollTop + windowHeight) {
+								navMenu.stop().animate({ scrollTop: offsetTop }, 500, "swing"); // adjust duration as needed
+							}
+
+							$dropdown.addClass("is-focused");
+						}
+
+						e.stopPropagation();
+					});
+				});
+
+				// Close element if clicked outside of it
+				navMenu.click(function (e) {
+					// Responsive mega menu
+					const $activeMegaMenu = navMenu.find(
+						".cozy-block-mega-menu__dropdown.responsive-only-mega-menu.is-active",
+					);
+
+					const $activeSubmenu = navMenu.find(
+						".wp-block-navigation__submenu-container.show-submenu",
+					);
+					if (
+						!$activeMegaMenu.is(e.target) &&
+						$activeMegaMenu.has(e.target).length === 0
+					) {
+						$activeMegaMenu.removeClass("is-active");
+					}
+					if (
+						!$activeSubmenu.is(e.target) &&
+						$activeSubmenu.has(e.target).length === 0
+					) {
+						$activeSubmenu.removeClass("show-submenu");
+					}
+				});
+			} else {
+				$megaMenuNavItems
+					.find(".cozy-block-mega-menu__dropdown")
+					.removeClass("is-active");
+				$megaMenuNavItems.off("click");
+
+				if (!attributes?.openOnClick) {
+					element.find(".wp-block-navigation-item.has-child").off("click");
+					navMenu.off("click");
+
+					$megaMenuNavItems.each(function () {
+						const $this = $(this);
+
+						$this.off("click");
+
+						const match = this.className.match(/template-id-(\d+)/);
+						const templateId = match?.[1];
+
+						if (!templateId) return;
+
+						const $dropdownContent = body.find(
+							`.cozy-block-mega-menu__dropdown.template-id-${templateId}:not(.responsive-only-mega-menu)`,
+						);
+
+						$this.on("mouseenter", function () {
+							clearTimeout(closeTimer);
+
+							isHoveringItem = true;
+
+							menus.forEach((m) => $(m).removeClass("is-active"));
+							element
+								.find(".wp-block-navigation-item.cozy-mega-menu__item")
+								.removeClass("is-active");
+
+							const rect = this.getBoundingClientRect();
+							const initialTop = rect.bottom + 44;
+
+							// reset + reflow
+							$dropdownContent.removeClass("is-active").css({
+								top: initialTop + "px",
+								transition: "top 0.3s ease",
+							});
+
+							$dropdownContent[0].offsetHeight;
+
+							// activate
+							$dropdownContent.addClass("is-active");
+							$this.addClass("is-active");
+							$dropdownContent.css("top", rect.bottom + "px");
+						});
+
+						function maybeClose() {
+							// delay avoids edge flicker, not a race fix
+							closeTimer = setTimeout(() => {
+								if (!isHoveringItem && !isHoveringDropdown) {
+									$dropdownContent.removeClass("is-active");
+									$dropdownContent.attr("style", "");
+									$this.removeClass("is-active");
+								}
+							}, 100);
+						}
+
+						$dropdownContent.on("mouseenter", () => {
+							clearTimeout(closeTimer);
+
+							isHoveringDropdown = true;
+						});
+
+						$this.on("mouseleave", () => {
+							isHoveringItem = false;
+							maybeClose();
+						});
+
+						$dropdownContent.on("mouseleave", function () {
+							isHoveringDropdown = false;
+							maybeClose();
+						});
+					});
+				} else {
+					$megaMenuNavItems.each(function () {
+						const $this = $(this);
+						const match = this.className.match(/template-id-(\d+)/);
+						const templateId = match?.[1];
+
+						if (!templateId) return;
+
+						const $dropdownContent = body.find(
+							`.cozy-block-mega-menu__dropdown.template-id-${templateId}:not(.responsive-only-mega-menu)`,
+						);
+
+						$this.click(function (e) {
+							menus.forEach((m) => $(m).removeClass("is-active"));
+							element
+								.find(".wp-block-navigation-item.cozy-mega-menu__item")
+								.removeClass("is-active");
+							$dropdownContent.attr("style", "");
+
+							const rect = this.getBoundingClientRect();
+							const initialTop = rect.bottom + 44;
+
+							// reset + reflow
+							$dropdownContent.removeClass("is-active").css({
+								top: initialTop + "px",
+								transition: "top 0.3s ease",
+							});
+
+							$dropdownContent[0].offsetHeight;
+
+							// activate
+							$dropdownContent.addClass("is-active");
+							$this.addClass("is-active");
+							$dropdownContent.css("top", rect.bottom + "px");
+
+							e.stopPropagation();
+						});
+					});
+
+					// Close element if clicked outside of it
+					document.addEventListener("click", function (e) {
+						// Responsive mega menu
+						const $activeMegaMenu = body
+							.find(".cozy-block-mega-menu__dropdown.is-active")
+							.not(".responsive-only-mega-menu");
+
+						const $activeSubmenu = navMenu.find(
+							".wp-block-navigation__submenu-container.show-submenu",
+						);
+						if (
+							!$activeMegaMenu.is(e.target) &&
+							$activeMegaMenu.has(e.target).length === 0
+						) {
+							$activeMegaMenu.removeClass("is-active");
+						}
+						if (
+							!$activeSubmenu.is(e.target) &&
+							$activeSubmenu.has(e.target).length === 0
+						) {
+							$activeSubmenu.removeClass("show-submenu");
+						}
+					});
+				}
+			}
+		}
+
+		renderDeviceBasedMenu();
+		$(window).on("resize", renderDeviceBasedMenu);
+
+		/* ───────── Open ───────── */
+
+		openIcon.on("click", function () {
+			overlay.removeClass("display-none");
+			closeIcon.removeClass("display-none");
+			body.addClass("overflow-hidden");
+
+			requestAnimationFrame(() => {
+				element.addClass("is-menu-visible");
+			});
+		});
+
+		/* ───────── Close ───────── */
+
+		function closeMobileMenu() {
+			if (!element.hasClass("is-menu-visible")) return;
+
+			element.removeClass("is-menu-visible");
+			closeIcon.addClass("display-none");
+			overlay.addClass("display-none");
+
+			body.removeClass("overflow-hidden");
+
+			// let resize logic decide what stays visible
+			renderDeviceBasedMenu();
+		}
+
+		closeIcon.add(overlay).on("click", closeMobileMenu);
+
+		/* ───────── ESC key ───────── */
+
+		$(document).on("keydown", function (e) {
+			if (
+				(e.key === "Escape" || e.keyCode === 27) &&
+				element.hasClass("is-menu-visible")
+			) {
+				closeMobileMenu();
+			}
+		});
+	};
 })(jQuery);

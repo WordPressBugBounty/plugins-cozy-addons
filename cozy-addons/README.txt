@@ -1,21 +1,26 @@
-=== Cozy Blocks - All-in-One Page Builder Blocks for Gutenberg and Full Site Editing (FSE) ===
+=== Cozy Blocks – All-in-One Website Builder with Gutenberg Blocks, 500+ Patterns and 40+ Homepage Templates for Full Site Editing (FSE) ===
 Contributors: CozyThemes
 Tags: blocks, gutenberg blocks, gutenberg, woocommerce blocks, block
 Requires PHP: 7.3
 Requires at least: 5.8
-Tested up to: 6.8
-Stable tag: 2.1.30
+Tested up to: 6.9
+Stable tag: 2.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
+Build stunning WordPress sites with 50+ advanced blocks, 500+ patterns, and 40+ templates—a fast, effortless website builder.
 
 == Description ==
 [Cozy Blocks](https://cozythemes.com/cozy-addons/)! A must-have WordPress plugin to powerfully enhance your website with the WordPress Gutenberg Editor.
 
 <a href="https://app.zipwp.com/wp?plugins=cozy-addons" target="_blank" rel="">Try Cozy Blocks on a dummy site!</a>
 
+Quick Links
+
+[Live Demo](https://cozythemes.com/cozy-addons/#cozy-blocks-list) | [World Class Support](https://cozythemes.com/support) | [Free vs Pro](https://cozythemes.com/pricing-and-plans/#free-vs-pro) | [Why Choose Us](https://cozythemes.com/reviews-ratings) | [Get Pro](https://cozythemes.com/pricing-and-plans)
+
 = Key Features That Enhance and Extend WordPress Blocks =
 <ul>
+<li>Design Library kit</li>
 <li>50+ Advanced Blocks to Extend the Site Editor</li>
 <li>WooCommerce Blocks</li>
 <li>Post and Magazine Blocks</li>
@@ -35,17 +40,59 @@ Streamline your website designs with our library of advanced blocks designed to 
 <li>Advanced Gallery with multiple layouts</li>
 </ul>
 
-[Cozy Blocks](https://cozythemes.com/cozy-addons/) is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Seamlessly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it offers a robust library of over 50 advanced, customizable Gutenberg blocks. Designed for ease of use, Cozy Blocks caters to both experienced developers and beginners, enabling users to effortlessly design dynamic, visually stunning websites.
+Cozy Blocks is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Seamlessly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it offers a robust library of over 50 advanced, customizable Gutenberg blocks. Designed for ease of use, Cozy Blocks caters to both experienced developers and beginners, enabling users to effortlessly design dynamic, visually stunning websites.
 
 Whether you’re building an e-commerce store, a news platform, a corporate site, or any other type of web presence, Cozy Blocks provides the powerful tools you need. Supported by flexible customization options and robust support, this plugin empowers you to embrace the future of web design and unlock your creative potential.
 
 Join the Cozy Blocks movement today and build your website with ease.
 
-Watch our step-by-step tutorial on installing [Cozy Blocks](https://cozythemes.com/cozy-addons/)!
+Watch our step-by-step tutorial on installing Cozy Blocks!
 
 https://www.youtube.com/watch?v=GP4NxSbikS4
 
-= Gutenberg Blocks and FSE =
+= Design Kit: 500+ Reusable Patterns and 40+ Homepage Templates =
+Starting from scratch? Looking for a quick, efficient, and effortless way to build beautiful pages? Our Design Kit gives you everything you need to get started with ease.
+
+<strong>What’s inside the Design Kit?</strong>
+
+1. <strong>500+ Professionally crafted patterns</strong>, organized into categories such as: 
+    * About Us
+    * Blog
+    * Brand Showcase
+    * Contact Us
+    * CTA
+    * FAQ
+    * Featured Products
+    * Features
+    * Footer
+    * Header
+    * Hero
+    * How we work
+    * Job Board
+    * Newsletter 
+    * Number and Stats
+    * Portfolio 
+    * Pricing Table
+    * Services
+    * Team
+    * Testimonials
+    * Why Choose Us
+
+2. <strong>40+ Ready-made homepage templates</strong>, available in: 
+    * Agency
+    * Author
+    * Blog
+    * Business
+    * Charity
+    * Education
+    * Home Services
+    * Hotels & Restaurants
+    * Photography
+    * Portfolio
+    * SaaS
+    * WooCommerce
+
+= Gutenberg Blocks for FSE =
 Enhance your website building experience with Gutenberg Blocks and Full Site Editing (FSE). Our plugin provides over 30 advanced blocks essential for effortlessly creating any type of website.
 
 * [**Accordion**](https://cozyblock.cozythemes.com/accordion-gutenberg-block/) - Streamline content presentation with our 'Accordion' block, allowing you to organize information in a compact and user-friendly manner. Users can easily expand and collapse sections to access the details they desire, creating a clean and efficient user experience.
@@ -157,15 +204,17 @@ You can report any security bugs found in the source code of this plugin through
 == Screenshots ==
 1. Gutenberg Blocks Collection
 2. Blocks Enable/Disable Option
-3. WooCommerce Blocks
-4. Post and Magazine Blocks
-5. Marketing and Social Blocks
-6. Animation and Hover Effects
+3. Block Patterns
+4. WooCommerce Blocks
+5. Post and Magazine Blocks
+6. Marketing and Social Blocks
+7. Advanced utility features like Animation and Hover Effects
+8. FSE Homepage templates
 
 == Changelog ==
-= 2.1.30 - September 18, 2025 = 
-* Fix: Minor block improvements.
-* Fix: User role check for Contact Form Styler API.
+= 2.2.7 - January 07, 2025 = 
+* Add: Patterns & Templates
+* Fix: Block improvements
 
 [See changes for all the versions here.](https://plugins.svn.wordpress.org/cozy-addons/trunk/changelog.txt)
 

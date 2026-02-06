@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/magazine-grid",
   "title": "Magazine Grid (Pro)",
-  "description": "Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Magazine Grid' block.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "magazine",
@@ -626,7 +625,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "viewScript": [
     "cozy-block--magazine-grid--frontend-script"
   ],

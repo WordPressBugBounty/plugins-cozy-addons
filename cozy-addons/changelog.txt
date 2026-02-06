@@ -1,3 +1,35 @@
+= 2.2.7 - January 07, 2025 = 
+* Add: Patterns & Templates
+* Fix: Block improvements
+
+= 2.2.6 - December 22, 2025 = 
+* Add: Patterns & Templates
+* Fix: Mega menu block
+* Fix: Minor block improvements
+
+= 2.2.5 - December 12, 2025 = 
+* Add: Patterns & Templates
+* Fix: Minor block improvements
+
+= 2.2.4 - December 05, 2025 = 
+* Add: Patterns & Templates
+* Fix: Minor block improvements
+
+= 2.2.3 - November 28, 2025 = 
+* Fix: Design Kit modal scroll.
+* Add: Patterns & Templates
+
+= 2.2.2 - November 20, 2025 = 
+* Add: Design Kit.
+* Fix: Minor block improvements.
+
+= 2.2.1 - November 20, 2025 = 
+* Add: Design Kit.
+* Fix: Minor block improvements.
+
+= 2.1.31 - October 27, 2025 = 
+* Fix: Minor block improvements.
+
 = 2.1.30 - September 18, 2025 = 
 * Fix: Minor block improvements.
 * Fix: User role check for Contact Form Styler API.

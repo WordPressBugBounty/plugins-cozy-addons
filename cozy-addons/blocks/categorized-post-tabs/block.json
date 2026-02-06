@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/categorized-post-tabs",
   "title": "Categorized Post Tabs (Pro)",
-  "description": "Showcase your posts categorically with multiple layout options, including grid and list. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Categorized Post Tabs' block.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "category",
@@ -597,7 +596,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "viewScript": [
     "cozy-block--categorized-post-tabs--frontend-script"
   ],

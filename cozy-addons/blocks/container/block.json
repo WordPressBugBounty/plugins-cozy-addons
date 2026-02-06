@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/container",
   "title": "Cozy Container",
-  "description": "Infuse life into your content with our 'Cozy Container' block, offering animation and customization options for a vibrant and personalized user experience.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {
@@ -186,7 +185,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "viewScript": [
     "cozy-block--container--frontend-script"
   ],

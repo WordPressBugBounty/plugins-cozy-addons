@@ -1,10 +1,10 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/img-compare",
   "title": "Before/After Image (Pro)",
-  "description": "Showcase stunning before-and-after images with a sleek, interactive Image Compare block for visual storytelling.",
   "category": "cozy-block",
+  "textdomain": "cozy-addons",
   "attributes": {
     "cover": {
       "type": "string",
@@ -97,7 +97,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "viewScript": [
     "cozy-block--img-compare--frontend-script"
   ],

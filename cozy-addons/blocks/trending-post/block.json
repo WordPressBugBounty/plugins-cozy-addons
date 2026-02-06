@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/trending-post",
   "title": "Trending Post (Pro)",
-  "description": "Stay ahead with our 'Trending Post' block, spotlighting the most popular and engaging content on your site for a dynamic and up-to-the-minute user experience.",
   "category": "cozy-block/post-magazine",
   "textdomain": "cozy-addons",
   "supports": {
@@ -378,7 +377,8 @@
   "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
-    "cozy-swiper-bundle"
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
   ],
   "viewScript": [
     "cozy-block--trending-post--frontend-script"

@@ -163,7 +163,7 @@ $block_styles = "
     border-radius: {$attributes['tabStyles']['radius']};
     font-size: {$attributes['tabStyles']['font']['size']};
     font-weight: {$attributes['tabStyles']['font']['weight']};
-    font-family: {$attributes['tabStyles']['font']['family']};
+    font-family: '{$attributes['tabStyles']['font']['family']}';
     text-transform: {$tab_item['letter_case']};
     text-decoration: {$tab_item['decoration']};
     line-height: {$tab_item['line_height']};
@@ -215,7 +215,7 @@ $block_styles = "
 		column-count: {$col2} !important;
 	}
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 568px) {
 	#$block_id .cozy-block-advanced-gallery__grid-wrapper:not(.has-masonry) {
 		grid-template-columns: repeat(1, 1fr) !important;
 	}
@@ -248,7 +248,7 @@ $block_styles = "
 	right: {$image['title']['right']};
 	font-size: {$attributes['image']['title']['font']['size']};
 	font-weight: {$attributes['image']['title']['font']['weight']};
-	font-family: {$attributes['image']['title']['font']['family']};
+	font-family: '{$attributes['image']['title']['font']['family']}';
 	text-transform: {$attributes['image']['title']['letterCase']};
 	text-decoration: {$image['title']['decoration']};
     line-height: {$image['title']['line_height']};
@@ -285,7 +285,7 @@ $block_styles = "
 	padding-right: {$lightbox['title']['right']};
 	font-size: {$attributes['lightbox']['title']['font']['size']};
 	font-weight: {$attributes['lightbox']['title']['font']['weight']};
-	font-family: {$attributes['lightbox']['title']['font']['family']};
+	font-family: '{$attributes['lightbox']['title']['font']['family']}';
 	text-transform: {$attributes['lightbox']['title']['letterCase']};
 	text-decoration: {$lightbox['title']['decoration']};
 	line-height: {$lightbox['title']['line_height']};
@@ -374,7 +374,7 @@ $block_styles = "
 	border-radius: {$attributes['ajaxLoader']['radius']};
 	font-size: {$attributes['ajaxLoader']['font']['size']};
 	font-weight: {$attributes['ajaxLoader']['font']['weight']};
-	font-family: {$ajax_loader['font_family']};
+	font-family: '{$ajax_loader['font_family']}';
 	text-transform: {$attributes['ajaxLoader']['letterCase']};
 	text-decoration: {$ajax_loader['decoration']};
 	line-height: {$ajax_loader['line_height']};
@@ -436,45 +436,8 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 }
 /* End Header */
 
-/* Body */
-if ( ! function_exists( 'render_cozy_block_advanced_gallery_item_data' ) ) {
-	function render_cozy_block_advanced_gallery_item_data( $attributes, $item_data, &$output ) {
-		$classes   = array();
-		$classes[] = 'cozy-block-advanced-gallery__item';
-		$classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
-		$classes[] = $attributes['enableOptions']['hoverTitle'] ? 'has-hover-caption' : '';
-		$output   .= '<li class="' . implode( ' ', $classes ) . '">';
-
-		$classes   = array();
-		$classes[] = 'cozy-block-advanced-gallery__image-wrapper';
-		$classes[] = $attributes['image']['hoverEffect'] ? 'has-hover-effect' : '';
-		$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
-		$output   .= '<span class="cozy-block-advanced-gallery__image-background"></span>';
-		$output   .= '<img class="cozy-block-advanced-gallery__image" src="' . esc_url( $item_data['url'] ) . '" alt="' . esc_html( $item_data['alt'] ) . '" />';
-
-		if ( $attributes['enableOptions']['hoverIcon'] ) {
-			$view_box   = array();
-			$view_box[] = $attributes['icon']['viewBox']['vx'];
-			$view_box[] = $attributes['icon']['viewBox']['vy'];
-			$view_box[] = $attributes['icon']['viewBox']['vw'];
-			$view_box[] = $attributes['icon']['viewBox']['vh'];
-			$output    .= '<div class="cozy-block-advanced-gallery__icon-wrapper">';
-			$output    .= '<svg class="cozy-block-advanced-gallery__icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="' . implode( ' ', $view_box ) . '">';
-			$output    .= '<path d="' . $attributes['icon']['path'] . '" />';
-			$output    .= '</svg>';
-			$output    .= '</div>';
-		}
-
-		if ( $attributes['enableOptions']['hoverTitle'] ) {
-			$output .= '<div class="cozy-block-advanced-gallery__image-caption">';
-			$output .= esc_html( $item_data['caption'] );
-			$output .= '</div>';
-		}
-		$output .= '</figure>';
-
-		$output .= '</li>';
-	}
-}
+/*
+Body */
 /* All Tab Content Body */
 if ( ( ( $attributes['tabOptions']['showDefaultTab'] && $attributes['enableOptions']['isotopeFilter'] && 'grid' === $attributes['display'] ) || ( ! $attributes['enableOptions']['isotopeFilter'] && 'grid' === $attributes['display'] ) || 'carousel' === $attributes['display'] ) && ! empty( $attributes['mediaCollection'] ) ) {
 	$all_media = array();
@@ -495,6 +458,7 @@ if ( ( ( $attributes['tabOptions']['showDefaultTab'] && $attributes['enableOptio
 	$classes[] = 'cozy-block-advanced-gallery__body';
 	$classes[] = 'carousel' === $attributes['display'] ? 'swiper-container' : '';
 	$classes[] = 'active-content';
+	$classes[] = 'animation__fade-in';
 	$output   .= '<div class="' . implode( ' ', $classes ) . '">';
 
 	$classes   = array();
@@ -504,7 +468,7 @@ if ( ( ( $attributes['tabOptions']['showDefaultTab'] && $attributes['enableOptio
 	$output   .= '<ul class="' . implode( ' ', $classes ) . '">';
 	/* Item */
 	foreach ( $all_media as $media ) {
-		render_cozy_block_advanced_gallery_item_data( $attributes, $media, $output );
+		\CozyAddons\Helpers\BlockRender::advanced_gallery_render( $attributes, $media, $output );
 	}
 	/* End Item */
 	$output .= '</ul>';
@@ -601,7 +565,7 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 		if ( ! empty( $all_media ) ) {
 			/* Item */
 			foreach ( $all_media as $media ) {
-				render_cozy_block_advanced_gallery_item_data( $attributes, $media, $output );
+				\CozyAddons\Helpers\BlockRender::advanced_gallery_render( $attributes, $media, $output );
 			}
 			/* End Item */
 		}
@@ -778,34 +742,28 @@ if ( isset( $attributes['lightbox']['title']['font']['family'] ) && ! empty( $at
 if ( isset( $attributes['ajaxLoader']['font']['family'] ) && ! empty( $attributes['ajaxLoader']['font']['family'] ) ) {
 	$font_families[] = $attributes['ajaxLoader']['font']['family'];
 }
-
-		// Remove duplicate font families.
-		$font_families = array_unique( $font_families );
-
-		$font_query = '';
-
-		// Add other fonts.
+// Remove duplicate font families.
+$font_families = array_unique( $font_families );
+$font_query    = '';
+// Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
-
 if ( ! empty( $font_query ) ) {
 	// Generate the inline style for the Google Fonts link.
-	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query;
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query . '&display=swap';
 
-	// Add the Google Fonts URL as an inline style.
-	$font_url = '@import url("' . $google_fonts_url . '");';
-	echo '<style> ' . $font_url . '  </style>';
+	echo '<link rel="stylesheet" href="' . $google_fonts_url . '"/>';
 }
 
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
-		wp_add_inline_style( 'cozy-addons--blocks--style', esc_html( $block_styles ) );
+		wp_add_inline_style( 'cozy-block--global-block-styles', cozy_addons_clean_empty_css( $block_styles ) );
 	}
 );
 

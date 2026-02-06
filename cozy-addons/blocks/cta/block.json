@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/cta",
   "title": "Call to Action",
-  "description": "Boost interaction with our 'Call to Action' block, strategically placed to inspire users to take the next step, whether it's making a purchase or subscribing.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

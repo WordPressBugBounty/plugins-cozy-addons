@@ -1,13 +1,13 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/ad",
   "title": "Advertisement",
-  "description": "'Advertisement' block seamlessly integrates custom ad scripts and clickable image links into your WordPress site, enhancing engagement and driving traffic.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "category",
-    "post"
+    "post",
+    "advertisement"
   ],
   "textdomain": "cozy-addons",
   "supports": {
@@ -104,6 +104,9 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "render": "file:./render.php"
 }

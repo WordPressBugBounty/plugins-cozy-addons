@@ -8,14 +8,11 @@ return array(
 		'version' => '1.0.0',
 		'title' => 'Accordion',
 		'category' => 'cozy-block',
-		'description' => 'Streamline content presentation with our \'Accordion\' block, allowing you to organize information in a compact and user-friendly manner. Users can easily expand and collapse sections to access the details they desire, creating a clean and efficient user experience.',
 		'keywords' => array(
-			'accordion'
+			'accordion',
+			'faq'
 		),
 		'textdomain' => 'cozy-addons',
-		'example' => array(
-			
-		),
 		'attributes' => array(
 			'cover' => array(
 				'type' => 'string',
@@ -143,10 +140,19 @@ return array(
 			'titleTypography' => array(
 				'type' => 'object',
 				'default' => array(
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
+					),
 					'fontFamily' => '',
 					'fontSize' => '',
 					'color' => '#000',
-					'fontWeight' => ''
+					'colorActive' => '#000',
+					'fontWeight' => '',
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => ''
 				)
 			),
 			'typography' => array(
@@ -155,7 +161,11 @@ return array(
 					'fontFamily' => '',
 					'fontSize' => 16,
 					'color' => '#000',
-					'fontWeight' => 400
+					'fontWeight' => 400,
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => ''
 				)
 			)
 		),
@@ -183,14 +193,14 @@ return array(
 	),
 	'ad' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/ad',
 		'title' => 'Advertisement',
-		'description' => '\'Advertisement\' block seamlessly integrates custom ad scripts and clickable image links into your WordPress site, enhancing engagement and driving traffic.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'category',
-			'post'
+			'post',
+			'advertisement'
 		),
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -287,15 +297,17 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'render' => 'file:./render.php'
 	),
 	'add-to-cart' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/add-to-cart',
 		'title' => 'Add to Cart',
-		'description' => 'With the \'Add to Cart\' block allows you to easily add products to your cart, featuring a customizable button that can display a label, an icon, or both.',
 		'category' => 'cozy-block/woocommerce',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -444,15 +456,17 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'render' => 'file:./render.php'
 	),
 	'advanced-categories' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/advanced-categories',
 		'title' => 'Advanced Categories (Pro)',
-		'description' => 'Showcase your post categories with images in various layouts—grid, list, or carousel—for a visually engaging and navigable experience with our \'Advanced Categories\' block.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'category',
@@ -796,7 +810,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'script' => array(
 			'cozy-swiper-bundle'
@@ -813,7 +828,6 @@ return array(
 		'version' => '1.0.0',
 		'title' => 'Advanced Gallery',
 		'category' => 'cozy-block',
-		'description' => '\'Advanced gallery\' block with a grid, masonry and carousel layout that opens images in a lightbox for a sleek, full-screen viewing experience.',
 		'keywords' => array(
 			'gallery',
 			'image'
@@ -1253,7 +1267,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--advanced-gallery--frontend-script'
@@ -1265,12 +1280,15 @@ return array(
 	),
 	'advanced-tab' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/advanced-tab',
 		'title' => 'Advanced Tabs',
-		'description' => 'Elevate navigation and content organization with our \'Advanced Tabs\' block, offering a sophisticated tabbed interface that lets you present diverse content sections in a visually appealing and structured way. Enhance user engagement by providing an intuitive and interactive browsing experience.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
+		'keywords' => array(
+			'tabbable',
+			'compact'
+		),
 		'supports' => array(
 			'html' => false
 		),
@@ -1322,6 +1340,13 @@ return array(
 			'title' => array(
 				'type' => 'string',
 				'default' => 'Advanced Tabs'
+			),
+			'titleStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'gap' => '0px',
+					'flexWrap' => true
+				)
 			),
 			'innerBlocks' => array(
 				'type' => 'array',
@@ -1424,6 +1449,10 @@ return array(
 						'bottom' => 10,
 						'left' => 10
 					),
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
+					),
 					'border' => array(
 						'width' => array(
 							'top' => 1,
@@ -1478,7 +1507,7 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-addons--blocks--style'
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--advanced-tab--frontend-script'
@@ -1487,15 +1516,18 @@ return array(
 	),
 	'back-to-top' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/back-to-top',
 		'title' => 'Back to Top',
-		'description' => 'Improve user experience with a convenient \'Back to Top\' button, enabling effortless return to the page\'s top for smooth and easy navigation.',
 		'category' => 'cozy-block',
 		'supports' => array(
 			'html' => false
 		),
 		'textdomain' => 'cozy-addons',
+		'keywords' => array(
+			'scroll',
+			'top'
+		),
 		'attributes' => array(
 			'cover' => array(
 				'type' => 'string',
@@ -1531,7 +1563,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--back-to-top--frontend-script'
 		),
@@ -1539,10 +1574,9 @@ return array(
 	),
 	'breadcrumb' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/breadcrumb',
 		'title' => 'Breadcrumbs',
-		'description' => 'Enhance navigation on your site with our \'Breadcrumb\' block, offering an intuitive trail of links that guides users through the hierarchical structure, ensuring a seamless and organized browsing experience.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -1579,7 +1613,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block-scripts'
 		),
@@ -1587,10 +1624,9 @@ return array(
 	),
 	'button' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/button',
 		'title' => 'Cozy Button',
-		'description' => 'Enhance user interaction with our stylish and versatile \'Button\' block, designed to seamlessly integrate into your site for a polished appearance.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -1615,8 +1651,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/carousel',
 		'version' => '1.0.0',
-		'title' => 'Item',
-		'description' => 'Supportive block for Team and Testimonials blocks.',
+		'title' => 'Carousel Item',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -1635,10 +1670,9 @@ return array(
 	),
 	'categorized-post-tabs' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/categorized-post-tabs',
 		'title' => 'Categorized Post Tabs (Pro)',
-		'description' => 'Showcase your posts categorically with multiple layout options, including grid and list. Easily feature a specific post to highlight important content. Enhance your site\'s look and keep visitors engaged with our versatile and customizable \'Categorized Post Tabs\' block.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'category',
@@ -2236,7 +2270,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--categorized-post-tabs--frontend-script'
 		),
@@ -2244,10 +2281,9 @@ return array(
 	),
 	'cf7-styler' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/cf7-styler',
 		'title' => 'Contact Form 7 Styler(Pro)',
-		'description' => 'Effortlessly customize and style your Contact Form 7 forms with unique designs using the Contact Form 7 Styler block.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'attributes' => array(
@@ -2607,15 +2643,17 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'render' => 'file:./render.php'
 	),
 	'container' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/container',
 		'title' => 'Cozy Container',
-		'description' => 'Infuse life into your content with our \'Cozy Container\' block, offering animation and customization options for a vibrant and personalized user experience.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -2798,7 +2836,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--container--frontend-script'
 		),
@@ -2806,10 +2847,9 @@ return array(
 	),
 	'countdown-timer' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/countdown-timer',
 		'title' => 'Countdown Timer (Pro)',
-		'description' => 'The Countdown Timer Block creates urgency with a customizable timer for promotions or events, featuring automatic hiding after the offer ends.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'attributes' => array(
@@ -3086,7 +3126,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--countdown-timer--frontend-script',
 			'cozy-dep-luxon'
@@ -3095,10 +3138,9 @@ return array(
 	),
 	'counter' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/counter',
 		'title' => 'Counter',
-		'description' => 'Highlight achievements and statistics with our \'Counter\' block, a sleek number counter that elegantly displays numbers and stats to captivate your audience.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -3140,7 +3182,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--counter--frontend-script'
 		),
@@ -3148,10 +3193,9 @@ return array(
 	),
 	'cta' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/cta',
 		'title' => 'Call to Action',
-		'description' => 'Boost interaction with our \'Call to Action\' block, strategically placed to inspire users to take the next step, whether it\'s making a purchase or subscribing.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -3170,10 +3214,9 @@ return array(
 	),
 	'current-time' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/date-time',
 		'title' => 'Date & Time',
-		'description' => 'Stay updated with our \'Date & Time\' block, effortlessly displaying the current time and date to keep your audience informed and engaged.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -3273,7 +3316,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--current-time--frontend-script'
 		),
@@ -3281,12 +3327,15 @@ return array(
 	),
 	'featured-content-box' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/featured-content-box',
 		'title' => 'Featured Content Box',
-		'description' => 'Presenting the \'Featured Content Box\' block – your ultimate tool for showcasing standout content! Customize your display for a visually stunning presentation that captivates your audience.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
+		'keywords' => array(
+			'grid',
+			'carousel'
+		),
 		'supports' => array(
 			'html' => false
 		),
@@ -3414,7 +3463,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--featured-content-box--frontend-script'
@@ -3426,10 +3476,9 @@ return array(
 	),
 	'featured-post' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/featured-post',
 		'title' => 'Featured Post (Pro)',
-		'description' => '\'Featured Post\' block allows you to handpick from your latest posts and showcase them in versatile display options such as grid, list, and carousel, enhancing your site\'s visual appeal and user engagement.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'magazine',
@@ -3934,7 +3983,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--featured-post--frontend-script'
@@ -3946,10 +3996,9 @@ return array(
 	),
 	'featured-post-tabs' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/featured-post-tabs',
 		'title' => 'Featured Post Tabs (Pro)',
-		'description' => 'Highlight your best content with our \'Featured Post Tabs\' block, providing five tabs—Latest, Popular, Trending, Tags, and Comments—to showcase your top articles and boost engagement.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -4398,7 +4447,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--featured-post-tabs--frontend-script'
 		),
@@ -4406,10 +4458,9 @@ return array(
 	),
 	'featured-product' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/featured-product',
 		'title' => 'Featured Product (Pro)',
-		'description' => '\'Featured Product\' block allows you to handpick from your latest products and showcase them in versatile display options such as grid, and carousel, enhancing your site\'s visual appeal and user engagement.',
 		'category' => 'cozy-block/woocommerce',
 		'keywords' => array(
 			'product'
@@ -4995,7 +5046,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--featured-product--frontend-script'
@@ -5007,10 +5059,9 @@ return array(
 	),
 	'featured-product-tabs' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/featured-product-tabs',
 		'title' => 'Featured Products Tab (Pro)',
-		'description' => 'Highlight your best content with our \'Featured Product Tabs\' block, providing four tabs—Latest, Best Seller, Top Rated, and On Sale—to showcase your top products and boost engagement.',
 		'category' => 'cozy-block/woocommerce',
 		'keywords' => array(
 			'product'
@@ -5637,7 +5688,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'script' => array(
 			'cozy-swiper-bundle'
@@ -5652,8 +5704,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/grid',
 		'version' => '1.0.0',
-		'title' => 'Item',
-		'description' => 'Supportive block for Team and Testimonials blocks.',
+		'title' => 'Grid Item',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -5672,10 +5723,9 @@ return array(
 	),
 	'icon-list' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/icon-list',
 		'title' => 'Icon List',
-		'description' => 'Elevate your lists with style using the \'Icon List\' block, offering advanced options to effortlessly integrate and customize icons for a visually appealing and informative presentation.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -5826,15 +5876,17 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'render' => 'file:./render.php'
 	),
 	'icon-picker' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/icon-picker',
 		'title' => 'Icon Picker',
-		'description' => 'Unlock endless possibilities with our \'Icon Picker\' block, providing a user-friendly interface to choose from a diverse range of icons, enhancing the visual appeal of your content.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -5940,16 +5992,19 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'render' => 'file:./render.php'
 	),
 	'img-compare' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/img-compare',
 		'title' => 'Before/After Image (Pro)',
-		'description' => 'Showcase stunning before-and-after images with a sleek, interactive Image Compare block for visual storytelling.',
 		'category' => 'cozy-block',
+		'textdomain' => 'cozy-addons',
 		'attributes' => array(
 			'cover' => array(
 				'type' => 'string',
@@ -6042,7 +6097,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--img-compare--frontend-script'
 		),
@@ -6050,10 +6108,9 @@ return array(
 	),
 	'magazine-grid' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/magazine-grid',
 		'title' => 'Magazine Grid (Pro)',
-		'description' => 'Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site\'s look and keep visitors engaged with our versatile and customizable \'Magazine Grid\' block.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'magazine',
@@ -6676,7 +6733,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--magazine-grid--frontend-script'
 		),
@@ -6684,10 +6744,9 @@ return array(
 	),
 	'magazine-list' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/magazine-list',
 		'title' => 'Magazine List (Pro)',
-		'description' => 'Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site\'s look and keep visitors engaged with our versatile and customizable \'Magazine List\' block.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'magazine',
@@ -7170,7 +7229,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--magazine-list--frontend-script'
 		),
@@ -7178,10 +7240,9 @@ return array(
 	),
 	'mega-menu' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/mega-menu',
 		'title' => 'Advanced Mega Menu',
-		'description' => 'Our user-friendly \'Advanced Mega Menu Block\' is the ultimate solution for effortlessly organizing your site\'s content into stylish and efficient multi-column layouts, enhancing navigation for your visitors.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'attributes' => array(
@@ -7197,60 +7258,12 @@ return array(
 				'type' => 'string',
 				'default' => 'cozy-block/mega-menu'
 			),
-			'menuDisplay' => array(
-				'type' => 'string',
-				'default' => 'horizontal'
-			),
-			'menuWidth' => array(
-				'type' => 'number',
-				'default' => 200
-			),
-			'displayEvent' => array(
-				'type' => 'string',
-				'default' => 'hover'
-			),
-			'dropdownWidth' => array(
-				'type' => 'number',
-				'default' => 980
-			),
-			'menuGap' => array(
-				'type' => 'number',
-				'default' => 30
-			),
-			'contentGap' => array(
-				'type' => 'number',
-				'default' => 40
-			),
-			'megaMenuContentGap' => array(
-				'type' => 'number',
-				'default' => 20
-			),
-			'icon' => array(
+			'megaMenu' => array(
 				'type' => 'object',
 				'default' => array(
-					'enabled' => true,
-					'viewBox' => array(
-						'vx' => 0,
-						'vy' => 0,
-						'vw' => 14,
-						'vh' => 25
-					),
-					'activeViewBox' => array(
-						'vx' => 0,
-						'vy' => 0,
-						'vw' => 14,
-						'vh' => 25
-					),
-					'path' => 'M10.8737 12.7121C10.9908 12.595 10.9908 12.405 10.8737 12.2879L1.00502 2.41924C0.887867 2.30208 0.887867 2.11213 1.00502 1.99497L1.99497 1.00502C2.11213 0.887867 2.30208 0.887867 2.41924 1.00502L13.7021 12.2879C13.8192 12.405 13.8192 12.595 13.7021 12.7121L2.41924 23.995C2.30208 24.1121 2.11213 24.1121 1.99497 23.995L1.00502 23.005C0.887867 22.8879 0.887868 22.6979 1.00503 22.5808L10.8737 12.7121Z',
-					'activePath' => '',
-					'view' => 'default',
-					'layout' => 'fill',
-					'size' => 10,
-					'gap' => 0,
-					'rotate' => 90,
-					'rotateActive' => 0,
-					'opacity' => 1,
-					'color' => '#5566ca'
+					'topOffset' => array(
+						'desktop' => '10px'
+					)
 				)
 			),
 			'template' => array(
@@ -7265,21 +7278,55 @@ return array(
 					
 				)
 			),
+			'openOnClick' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'icon' => array(
+				'type' => 'object',
+				'default' => array(
+					'enabled' => true,
+					'viewBox' => array(
+						'vx' => 0,
+						'vy' => 0,
+						'vw' => 14,
+						'vh' => 25
+					),
+					'path' => 'M10.8737 12.7121C10.9908 12.595 10.9908 12.405 10.8737 12.2879L1.00502 2.41924C0.887867 2.30208 0.887867 2.11213 1.00502 1.99497L1.99497 1.00502C2.11213 0.887867 2.30208 0.887867 2.41924 1.00502L13.7021 12.2879C13.8192 12.405 13.8192 12.595 13.7021 12.7121L2.41924 23.995C2.30208 24.1121 2.11213 24.1121 1.99497 23.995L1.00502 23.005C0.887867 22.8879 0.887868 22.6979 1.00503 22.5808L10.8737 12.7121Z',
+					'view' => 'default',
+					'size' => '10px',
+					'gap' => '0px',
+					'rotate' => 90,
+					'rotateActive' => 0,
+					'opacity' => 1,
+					'color' => '#0c50ff'
+				)
+			),
 			'responsive' => array(
 				'type' => 'object',
 				'default' => array(
-					'width' => 768,
+					'status' => 'mobile',
+					'align' => 'center',
+					'width' => array(
+						'desktop' => '480px',
+						'mobile' => '100%'
+					),
+					'breakPoint' => 767,
 					'slide' => 'left',
 					'padding' => array(
-						'top' => 20,
-						'right' => 5,
-						'bottom' => 5,
-						'left' => 5
+						'tablet' => array(
+							'top' => '44px',
+							'right' => '26px',
+							'bottom' => '44px',
+							'left' => '26px'
+						),
+						'mobile' => array(
+							'top' => '44px',
+							'right' => '26px',
+							'bottom' => '44px',
+							'left' => '26px'
+						)
 					),
-					'iconPosition' => 'right',
-					'iconTop' => 15,
-					'gap' => 10,
-					'bgColor' => '#e2e2e2',
 					'openIcon' => array(
 						'viewBox' => array(
 							'vx' => 0,
@@ -7297,13 +7344,7 @@ return array(
 						),
 						'radius' => '100px',
 						'size' => '14px',
-						'color' => array(
-							'icon' => '#fff',
-							'iconHover' => '',
-							'bg' => '#0c50ff',
-							'bgHover' => '#f90',
-							'borderHover' => ''
-						)
+						'align' => 'left'
 					),
 					'closeIcon' => array(
 						'viewBox' => array(
@@ -7313,7 +7354,6 @@ return array(
 							'vh' => 12
 						),
 						'path' => 'M10.9449 9.66003C11.3049 10.02 11.3049 10.58 10.9449 10.94C10.7649 11.12 10.5449 11.2 10.3049 11.2C10.0649 11.2 9.84493 11.12 9.66493 10.94L6.00492 7.28004L2.34491 10.94C2.16491 11.12 1.94492 11.2 1.70492 11.2C1.46492 11.2 1.24493 11.12 1.06493 10.94C0.704932 10.58 0.704932 10.02 1.06493 9.66003L4.72492 6.00004L1.06493 2.34004C0.704932 1.98004 0.704932 1.42004 1.06493 1.06004C1.42493 0.700037 1.98491 0.700037 2.34491 1.06004L6.00492 4.72003L9.66493 1.06004C10.0249 0.700037 10.5849 0.700037 10.9449 1.06004C11.3049 1.42004 11.3049 1.98004 10.9449 2.34004L7.2849 6.00004L10.9449 9.66003Z',
-						'horizontalSpacing' => 15,
 						'boxWidth' => '30px',
 						'boxHeight' => '30px',
 						'border' => array(
@@ -7323,106 +7363,33 @@ return array(
 						),
 						'radius' => '',
 						'size' => '14px',
-						'color' => array(
-							'icon' => '#fff',
-							'iconHover' => '',
-							'bg' => '#0c50ff',
-							'bgHover' => '#f90',
-							'borderHover' => ''
+						'position' => 'right',
+						'top' => array(
+							'desktop' => '0px'
+						),
+						'left' => array(
+							'desktop' => '0px'
+						),
+						'right' => array(
+							'desktop' => '0px'
 						)
+					),
+					'color' => array(
+						'menu' => '',
+						'submenu' => '',
+						'bg' => '#fffffe',
+						'overlay' => '#01010193',
+						'icon' => '#010101',
+						'iconHover' => '',
+						'iconBg' => '',
+						'iconBgHover' => '',
+						'iconBorderHover' => '',
+						'closeIcon' => '',
+						'closeIconHover' => '',
+						'closeIconBg' => '',
+						'closeIconBgHover' => '',
+						'closeIconBorderHover' => ''
 					)
-				)
-			),
-			'menuStyles' => array(
-				'type' => 'object',
-				'default' => array(
-					'padding' => array(
-						'top' => 16,
-						'right' => 5,
-						'bottom' => 16,
-						'left' => 5
-					),
-					'itemPadding' => array(
-						'top' => 5,
-						'right' => 5,
-						'bottom' => 5,
-						'left' => 5
-					),
-					'borderType' => 'none',
-					'borderWidth' => 1,
-					'borderColor' => '#000',
-					'borderRadius' => 10,
-					'itemBorderRadius' => 10,
-					'bgColor' => '#fff',
-					'bgColorActive' => '',
-					'colorActive' => '',
-					'textHoverColor' => '',
-					'itemHoverColor' => ''
-				)
-			),
-			'submenuStyles' => array(
-				'type' => 'object',
-				'default' => array(
-					'padding' => array(
-						'top' => 5,
-						'right' => 5,
-						'bottom' => 5,
-						'left' => 5
-					),
-					'minWidth' => 150,
-					'itemSpacing' => 10,
-					'boxShadow' => array(
-						'enabled' => false,
-						'color' => '#000',
-						'marginTop' => 0,
-						'horizontal' => 0,
-						'vertical' => 0,
-						'blur' => 10,
-						'spread' => 0,
-						'position' => ''
-					),
-					'borderType' => 'none',
-					'borderWidth' => 1,
-					'borderColor' => '#000',
-					'borderRadius' => 10,
-					'bgColor' => '#fff',
-					'textHoverColor' => '',
-					'itemHoverColor' => ''
-				)
-			),
-			'iconBoxStyles' => array(
-				'type' => 'object',
-				'default' => array(
-					'padding' => array(
-						'top' => 0,
-						'right' => 0,
-						'bottom' => 0,
-						'left' => 0
-					),
-					'width' => '20px',
-					'height' => '20px',
-					'borderType' => 'none',
-					'borderWidth' => 1,
-					'borderColor' => '#000',
-					'borderColorHover' => '',
-					'borderRadius' => 50,
-					'bgColor' => '',
-					'bgColorHover' => ''
-				)
-			),
-			'typography' => array(
-				'type' => 'object',
-				'default' => array(
-					'fontFamily' => 'Public Sans',
-					'fontSize' => 16,
-					'letterCase' => 'none',
-					'decoration' => 'none',
-					'lineHeight' => '',
-					'letterSpacing' => '',
-					'color' => '#000',
-					'bgColorActive' => '',
-					'colorActive' => '',
-					'fontWeight' => 400
 				)
 			)
 		),
@@ -7433,7 +7400,8 @@ return array(
 			'file:./index.css'
 		),
 		'style' => array(
-			'file:./style-index.css'
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--mega-menu--frontend-script'
@@ -7442,10 +7410,9 @@ return array(
 	),
 	'modal' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/modal',
 		'title' => 'Popup Builder (Pro)',
-		'description' => 'Capture attention with our \'Popup Builder\' block, a pop-up window designed to showcase offers and promotions, providing a compelling way to communicate with your audience.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -7514,10 +7481,10 @@ return array(
 					),
 					'content' => 'default',
 					'label' => 'Open Popup',
-					'imgURL' => 'Open Popup',
+					'imgURL' => 'https://plugins.cozythemes.com/cozy-addons/assets/media/play-btn.png',
 					'imgWidth' => 100,
 					'imgHeight' => 100,
-					'imgRadius' => 0,
+					'imgRadius' => 100,
 					'imgHasPulse' => 0,
 					'fontSize' => 14,
 					'fontFamily' => 'Public Sans',
@@ -7564,7 +7531,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--modal--frontend-script'
 		),
@@ -7572,10 +7542,9 @@ return array(
 	),
 	'news-ticker' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/news-ticker',
 		'title' => 'News Ticker (Pro)',
-		'description' => 'Stay informed with our \'News Ticker\' block, delivering real-time headlines in a scrolling format for an engaging and dynamic user experience.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -7631,7 +7600,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--news-ticker--frontend-script'
@@ -7643,10 +7613,9 @@ return array(
 	),
 	'popular-post' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/popular-post',
 		'title' => 'Popular Post (Pro)',
-		'description' => 'Explore trending topics effortlessly with our \'Popular Post\' block, showcasing a curated selection of the latest and most engaging content for a quick and dynamic browsing experience.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -8025,7 +7994,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--popular-post--frontend-script'
@@ -8037,10 +8007,9 @@ return array(
 	),
 	'portfolio-gallery' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/portfolio-gallery',
 		'title' => 'Portfolio Gallery',
-		'description' => 'Showcase your work with finesse using the \'Portfolio Gallery\' block, designed for creating advanced and visually stunning layouts to present your portfolio in a captivating manner.',
 		'category' => 'cozy-block',
 		'keywords' => array(
 			'gallery',
@@ -8162,6 +8131,10 @@ return array(
 						'enabled' => true,
 						'newTab' => false,
 						'noFollow' => false
+					),
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
 					),
 					'font' => array(
 						'size' => '',
@@ -8406,9 +8379,7 @@ return array(
 				'default' => array(
 					'textAlign' => 'left',
 					'icon' => array(
-						'top' => '',
-						'right' => '',
-						'size' => '15px',
+						'size' => '28px',
 						'viewBox' => array(
 							'vx' => 0,
 							'vy' => 0,
@@ -8419,10 +8390,10 @@ return array(
 						'boxWidth' => '',
 						'boxHeight' => '',
 						'padding' => array(
-							'top' => '10px',
-							'right' => '10p',
-							'bottom' => '10px',
-							'left' => '10px'
+							'top' => '5px',
+							'right' => '5px',
+							'bottom' => '5px',
+							'left' => '5px'
 						),
 						'border' => array(
 							'width' => '',
@@ -8436,6 +8407,25 @@ return array(
 						'height' => '',
 						'objectFit' => 'cover',
 						'objectPosition' => 'top'
+					),
+					'closeIcon' => array(
+						'top' => '',
+						'right' => '',
+						'size' => '15px',
+						'boxWidth' => '26px',
+						'boxHeight' => '26px',
+						'padding' => array(
+							'top' => '',
+							'right' => '',
+							'bottom' => '',
+							'left' => ''
+						),
+						'border' => array(
+							'width' => '',
+							'style' => '',
+							'color' => ''
+						),
+						'radius' => '100px'
 					),
 					'navIcon' => array(
 						'size' => '15px',
@@ -8460,6 +8450,11 @@ return array(
 						'iconBg' => '#fff',
 						'iconBgHover' => '#f90',
 						'iconBorderHover' => '',
+						'closeIcon' => '#000',
+						'closeIconHover' => '#fff',
+						'closeIconBg' => '#fff',
+						'closeIconBgHover' => '#f90',
+						'closeIconBorderHover' => '#f90',
 						'bullet' => '#fff',
 						'navIcon' => '#000',
 						'navIconHover' => '#fff',
@@ -8671,7 +8666,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--portfolio-gallery--frontend-script',
@@ -8681,11 +8677,11 @@ return array(
 	),
 	'portfolio-gallery-meta' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/portfolio-gallery-meta',
 		'title' => 'Portfolio Gallery Meta',
-		'description' => 'Fetches the meta field for portfolio gallery.',
 		'category' => 'cozy-block',
+		'textdomain' => 'cozy-addons',
 		'supports' => array(
 			'spacing' => array(
 				'margin' => true
@@ -8793,16 +8789,16 @@ return array(
 		),
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
-			'file:./style-index.css'
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
 		),
 		'render' => 'file:./render.php'
 	),
 	'post-carousel' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/post-carousel',
 		'title' => 'Post Grid/Carousel',
-		'description' => 'Immerse yourself in an engaging browsing journey using our \'Post Carousel\' block, showcasing visually stunning and interactive featured content for effortless exploration.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'post',
@@ -8905,7 +8901,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--post-carousel--frontend-script'
@@ -8917,10 +8914,9 @@ return array(
 	),
 	'post-comments' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/post-comments',
 		'title' => 'Post Comments (Pro)',
-		'description' => 'Unlock the Conversation Power! See what sparks discussions with our \'Post Comments\' block. Gain valuable insights to refine your engagement strategy and foster meaningful interactions.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -9081,15 +9077,17 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'render' => 'file:./render.php'
 	),
 	'post-slider' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/post-slider',
 		'title' => 'Post Slider (Pro)',
-		'description' => 'Discover an interactive showcase of content through our \'Post Slider\' feature, presenting a visually captivating carousel of posts for an engaging and dynamic browsing experience.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'post',
@@ -9225,7 +9223,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--post-slider--frontend-script'
@@ -9237,10 +9236,9 @@ return array(
 	),
 	'post-views' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/post-views',
 		'title' => 'Post Views (Pro)',
-		'description' => 'Unlock the Engagement Power! See what captivates your audience with our \'Post Views\' block. Gain valuable insights to refine your content strategy and maximize impact.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -9399,15 +9397,17 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'render' => 'file:./render.php'
 	),
 	'pricing-table' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/pricing-table',
 		'title' => 'Pricing Table',
-		'description' => 'Explore pricing options with this clean and organized pricing table. It includes a simple container displaying pricing elements, allowing users to view prices and features at a glance.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'attributes' => array(
@@ -9906,7 +9906,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--pricing-table--frontend-script'
 		),
@@ -9914,10 +9917,9 @@ return array(
 	),
 	'product-carousel' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/product-carousel',
 		'title' => 'Product Grid/Carousel',
-		'description' => 'Engage your audience with our \'Product Grid/Carousel\' block, offering a visually appealing and interactive way to display WooCommerce products in a carousel format for an enhanced browsing experience.',
 		'category' => 'cozy-block/woocommerce',
 		'keywords' => array(
 			'product',
@@ -10217,16 +10219,16 @@ return array(
 		),
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'render' => 'file:./render.php'
 	),
 	'product-category' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/product-category',
 		'title' => 'Product Category',
-		'description' => 'Elevate your product presentation with the \'Product Category\' block, providing advanced layout options like lists, grids, and carousels to showcase WooCommerce product categories in a visually appealing and organized manner.',
 		'category' => 'cozy-block/woocommerce',
 		'keywords' => array(
 			'product',
@@ -10460,7 +10462,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--product-category--frontend-script'
@@ -10472,10 +10475,9 @@ return array(
 	),
 	'product-review' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/product-review',
 		'title' => 'All Product Reviews',
-		'description' => 'Revolutionize your product displays with our \'All Product Reviews\' block. Showcase customer feedback in style with multiple layout options, including list, grid, and carousel. Increase trust and engagement by strategically placing authentic reviews anywhere on your WordPress site for maximum impact.',
 		'category' => 'cozy-block/woocommerce',
 		'keywords' => array(
 			'product',
@@ -10774,7 +10776,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--product-review--frontend-script'
@@ -10786,10 +10789,9 @@ return array(
 	),
 	'product-slider' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/product-slider',
 		'title' => 'Product Slider (Pro)',
-		'description' => 'Highlight your WooCommerce products dynamically with the \'Product Slider\' block, allowing smooth sliding to showcase your products in an attractive and interactive manner.',
 		'category' => 'cozy-block/woocommerce',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -10924,7 +10926,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--product-slider--frontend-script'
@@ -10936,10 +10939,9 @@ return array(
 	),
 	'product-tab' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/product-tab',
 		'title' => 'Products Showcase Tabs (Pro)',
-		'description' => 'Effortlessly organize and present your WooCommerce products with our \'Products Showcase Tabs\' block. Explore a user-friendly approach to displaying items in categorized tabs, enhancing navigation and optimizing the shopping experience for your visitors.',
 		'category' => 'cozy-block/woocommerce',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -11453,7 +11455,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--product-tab--frontend-script',
@@ -11463,10 +11466,9 @@ return array(
 	),
 	'progress-bar' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/progress-bar',
 		'title' => 'Progress Bar',
-		'description' => 'Keep your audience informed and intrigued with our \'Progress Bar\' block, offering dynamic circular, horizontal, and vertical progress indicators for an interactive and visually engaging user experience.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -11571,7 +11573,11 @@ return array(
 					'fontFamily' => '',
 					'fontSize' => 16,
 					'color' => '#fff',
-					'fontWeight' => 400
+					'fontWeight' => 400,
+					'letterCase' => 'none',
+					'decoration' => 'none',
+					'lineHeight' => '',
+					'letterSpacing' => ''
 				)
 			),
 			'labelTypography' => array(
@@ -11580,7 +11586,11 @@ return array(
 					'fontFamily' => '',
 					'fontSize' => 16,
 					'color' => '',
-					'fontWeight' => 400
+					'fontWeight' => 400,
+					'letterCase' => 'none',
+					'decoration' => 'none',
+					'lineHeight' => '',
+					'letterSpacing' => ''
 				)
 			)
 		),
@@ -11589,7 +11599,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--progress-bar--frontend-script'
 		),
@@ -11597,10 +11610,9 @@ return array(
 	),
 	'quick-view' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/quick-view',
 		'title' => 'Quick View (Pro)',
-		'description' => 'Preview product details in a stylish lightbox with the \'Quick View\' block, providing a seamless and efficient way to view essential information without leaving the current page.',
 		'category' => 'cozy-block/woocommerce',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -11874,7 +11886,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-swiper-bundle'
 		),
@@ -11883,10 +11898,9 @@ return array(
 	),
 	'related-post' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/related-post',
 		'title' => 'Related Post (Pro)',
-		'description' => 'Uncover additional relevant content using our \'Related Post\' block, offering curated suggestions tailored to your interests for an engaging exploration of aligned topics.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -11922,10 +11936,9 @@ return array(
 	),
 	'sidebar-panel' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/sidebar-panel',
 		'title' => 'Sidebar Panel',
-		'description' => 'Maximize versatility with our \'Sidebar Panel\' block, seamlessly integrating a customizable sidebar drawer to display menus, latest posts, popular content, or any desired elements for a user-friendly and organized layout.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -12075,7 +12088,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--sidebar-panel--frontend-script'
 		),
@@ -12087,7 +12103,6 @@ return array(
 		'name' => 'cozy-block/slide',
 		'version' => '1.0.0',
 		'title' => 'Slide',
-		'description' => 'Support block for the slider block.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'attributes' => array(
@@ -12138,10 +12153,9 @@ return array(
 	),
 	'slider' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/slider',
 		'title' => 'Slider',
-		'description' => 'Immerse your audience in captivating visuals with our versatile \'Slider\' block, perfect for showcasing images or content in a dynamic and engaging carousel.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -12372,7 +12386,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--slider--frontend-script'
@@ -12384,10 +12399,9 @@ return array(
 	),
 	'social-icon' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/social-icon',
 		'title' => 'Social Icons',
-		'description' => 'Foster online connections effortlessly using our \'Social Icons\' block, allowing you to effortlessly integrate and showcase your social media profiles directly on your website.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -12463,15 +12477,17 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'render' => 'file:./render.php'
 	),
 	'social-share' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/social-share',
 		'title' => 'Social Shares',
-		'description' => 'Encourage seamless content sharing with our \'Social Shares\' block, featuring eye-catching social media icons for enhanced engagement and wider reach.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -12631,15 +12647,17 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'render' => 'file:./render.php'
 	),
 	'teams' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/teams',
 		'title' => 'Teams',
-		'description' => 'Introduce your team in style with our \'Team\' block, offering both grid and carousel layouts for a visually appealing display of your talented lineup.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -12743,7 +12761,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--teams--frontend-script',
@@ -12753,10 +12772,9 @@ return array(
 	),
 	'testimonial' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/testimonial',
 		'title' => 'Testimonials',
-		'description' => 'Build trust and credibility with our \'Testimonial\' block, providing grid and carousel layouts to elegantly showcase user feedback and positive experiences.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -12860,7 +12878,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--testimonial--frontend-script'
@@ -12870,10 +12889,9 @@ return array(
 	),
 	'toggle-content' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/toggle-content',
 		'title' => 'Toggle Content (Pro)',
-		'description' => 'The toggle content, featuring a switcher or tab-style design, allows users to seamlessly switch between different content sections for a more organized and interactive experience.',
 		'category' => 'cozy-block',
 		'allowedBlocks' => array(
 			'cozy-block/toggle-content-item'
@@ -13073,7 +13091,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--toggle-content--frontend-script'
 		),
@@ -13081,10 +13102,9 @@ return array(
 	),
 	'trending-post' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/trending-post',
 		'title' => 'Trending Post (Pro)',
-		'description' => 'Stay ahead with our \'Trending Post\' block, spotlighting the most popular and engaging content on your site for a dynamic and up-to-the-minute user experience.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -13459,7 +13479,8 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
-			'cozy-swiper-bundle'
+			'cozy-swiper-bundle',
+			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
 			'cozy-block--trending-post--frontend-script'
@@ -13471,10 +13492,9 @@ return array(
 	),
 	'wishlist' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'cozy-block/wishlist',
 		'title' => 'Wishlist (Pro)',
-		'description' => '\'Wishlist\' block allows you to add and view your favorite products in a convenient, accessible sidebar for easy management and quick access.',
 		'category' => 'cozy-block/woocommerce',
 		'textdomain' => 'cozy-addons',
 		'usesContext' => array(
@@ -13820,7 +13840,10 @@ return array(
 			'file:../index.js'
 		),
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
 		'viewScript' => array(
 			'cozy-block--wishlist--frontend-script'
 		),

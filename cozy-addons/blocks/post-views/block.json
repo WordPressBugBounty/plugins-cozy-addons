@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/post-views",
   "title": "Post Views (Pro)",
-  "description": "Unlock the Engagement Power! See what captivates your audience with our 'Post Views' block. Gain valuable insights to refine your content strategy and maximize impact.",
   "category": "cozy-block/post-magazine",
   "textdomain": "cozy-addons",
   "supports": {
@@ -162,6 +161,9 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "render": "file:./render.php"
 }

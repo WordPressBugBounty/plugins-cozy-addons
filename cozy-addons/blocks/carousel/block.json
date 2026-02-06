@@ -3,8 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/carousel",
   "version": "1.0.0",
-  "title": "Item",
-  "description": "Supportive block for Team and Testimonials blocks.",
+  "title": "Carousel Item",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

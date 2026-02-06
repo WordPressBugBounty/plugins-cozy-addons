@@ -5,12 +5,11 @@
   "version": "1.0.0",
   "title": "Accordion",
   "category": "cozy-block",
-  "description": "Streamline content presentation with our 'Accordion' block, allowing you to organize information in a compact and user-friendly manner. Users can easily expand and collapse sections to access the details they desire, creating a clean and efficient user experience.",
   "keywords": [
-    "accordion"
+    "accordion",
+    "faq"
   ],
   "textdomain": "cozy-addons",
-  "example": {},
   "attributes": {
     "cover": {
       "type": "string",
@@ -138,10 +137,19 @@
     "titleTypography": {
       "type": "object",
       "default": {
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
         "fontFamily": "",
         "fontSize": "",
         "color": "#000",
-        "fontWeight": ""
+        "colorActive": "#000",
+        "fontWeight": "",
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "typography": {
@@ -150,7 +158,11 @@
         "fontFamily": "",
         "fontSize": 16,
         "color": "#000",
-        "fontWeight": 400
+        "fontWeight": 400,
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     }
   },

@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/post-carousel",
   "title": "Post Grid/Carousel",
-  "description": "Immerse yourself in an engaging browsing journey using our 'Post Carousel' block, showcasing visually stunning and interactive featured content for effortless exploration.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "post",
@@ -106,7 +105,8 @@
   "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
-    "cozy-swiper-bundle"
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
   ],
   "viewScript": [
     "cozy-block--post-carousel--frontend-script"

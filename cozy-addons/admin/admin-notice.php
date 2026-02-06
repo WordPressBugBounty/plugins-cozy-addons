@@ -37,12 +37,15 @@ function cozy_addons_activation_admin_notice() {
 		?>
 		<div class="notice notice-info is-dismissible cozy-addons-admin-notice">
 			<div class="notice-content">
+				<figure id="brand__icon">
+					<img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . '/admin/assets/img/cozy_addons_icon_white.png' ); ?>" />
+				</figure>
 				<div class="notice-holder">
 					<h4>
-						<?php esc_html_e( 'Welcome to Cozy Blocks — Let’s Build Something Great!', 'cozy-addons' ); ?>🚀
+						<?php esc_html_e( 'Build Stunning Websites Faster & Effortlessly with Cozy Blocks!', 'cozy-addons' ); ?>🚀
 					</h4>
 					<p>
-						<?php esc_html_e( 'Cozy Blocks adds 50+ powerful and highly customizable blocks to your WordPress editor. Build faster, design better, and keep full control — all without writing a single line of code.', 'cozy-addons' ); ?></p>
+						<?php esc_html_e( 'Cozy Blocks give you 50+ advanced blocks, 40+ homepage templates and 500+ patterns to build beautiful, fully customizable websites faster than ever — all visually inside the WordPress Site Editor, no coding required.', 'cozy-addons' ); ?></p>
 					<a href="<?php echo esc_url( admin_url() ); ?>admin.php?page=_cozy_companions" class="ca__admin-notice-btn"><?php esc_html_e( "Let's Get Started", 'cozy-addons' ); ?></a>
 				</div>
 			</div>

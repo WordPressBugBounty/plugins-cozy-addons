@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/button",
   "title": "Cozy Button",
-  "description": "Enhance user interaction with our stylish and versatile 'Button' block, designed to seamlessly integrate into your site for a polished appearance.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

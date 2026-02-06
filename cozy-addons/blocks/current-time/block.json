@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/date-time",
   "title": "Date & Time",
-  "description": "Stay updated with our 'Date & Time' block, effortlessly displaying the current time and date to keep your audience informed and engaged.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {
@@ -103,7 +102,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
   "viewScript": [
     "cozy-block--current-time--frontend-script"
   ],

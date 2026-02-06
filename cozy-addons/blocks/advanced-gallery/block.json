@@ -5,7 +5,6 @@
   "version": "1.0.0",
   "title": "Advanced Gallery",
   "category": "cozy-block",
-  "description": "'Advanced gallery' block with a grid, masonry and carousel layout that opens images in a lightbox for a sleek, full-screen viewing experience.",
   "keywords": [
     "gallery",
     "image"
@@ -441,7 +440,8 @@
   "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
-    "cozy-swiper-bundle"
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
   ],
   "viewScript": [
     "cozy-block--advanced-gallery--frontend-script"

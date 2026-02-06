@@ -15,6 +15,8 @@ $title_color  = array(
 	'text' => isset( $attributes['titleTypography']['color'] ) ? $attributes['titleTypography']['color'] : '',
 );
 $title_styles = array(
+	'gap'            => isset( $attributes['titleStyles']['gap'] ) ? $attributes['titleStyles']['gap'] : '',
+	'flex_wrap'      => isset( $attributes['titleStyles']['flexWrap'] ) && $attributes['titleStyles']['flexWrap'] ? 'wrap' : 'nowrap',
 	'letter_case'    => isset( $attributes['titleTypography']['letterCase'] ) ? $attributes['titleTypography']['letterCase'] : '',
 	'decoration'     => isset( $attributes['titleTypography']['decoration'] ) ? $attributes['titleTypography']['decoration'] : '',
 	'line_height'    => isset( $attributes['titleTypography']['lineHeight'] ) ? $attributes['titleTypography']['lineHeight'] : '',
@@ -47,7 +49,13 @@ $icon_color = array(
 	'active_icon' => isset( $attributes['typography']['colorActive'] ) ? $attributes['typography']['colorActive'] : '',
 );
 
-$content_color = array(
+$content_styles = array(
+	'margin' => array(
+		'top'    => isset( $attributes['contentStyles']['margin']['top'] ) ? $attributes['contentStyles']['margin']['top'] : '',
+		'bottom' => isset( $attributes['contentStyles']['margin']['bottom'] ) ? $attributes['contentStyles']['margin']['bottom'] : '',
+	),
+);
+$content_color  = array(
 	'border' => isset( $attributes['contentStyles']['border']['color'] ) ? $attributes['contentStyles']['border']['color'] : '',
 	'bg'     => isset( $attributes['contentStyles']['bgColor'] ) ? $attributes['contentStyles']['bgColor'] : '',
 );
@@ -65,7 +73,7 @@ $block_styles = "
 #$block_id .advanced-tab-title {
     font-weight: {$attributes['titleTypography']['fontWeight']};
     font-size: {$attributes['titleTypography']['fontSize']}px;
-    font-family: {$attributes['titleTypography']['fontFamily']};
+    font-family: '{$attributes['titleTypography']['fontFamily']}';
     color: {$title_color['text']};
     text-tranform: {$title_styles['letter_case']};
     text-decoration: {$title_styles['decoration']};
@@ -80,7 +88,7 @@ $block_styles = "
     border-color: {$tab_title_color['border']};
     font-weight: {$attributes['typography']['fontWeight']};
     font-size: {$attributes['typography']['fontSize']}px;
-    font-family: {$attributes['typography']['fontFamily']};
+    font-family: '{$attributes['typography']['fontFamily']}';
     text-tranform: {$tab_styles['letter_case']};
     text-decoration: {$tab_styles['decoration']};
     line-height: {$tab_styles['line_height']};
@@ -88,6 +96,13 @@ $block_styles = "
     color: {$tab_title_color['text']};
 }
 
+#$block_id .layout-wrapper {
+    gap: {$title_styles['gap']};
+    flex-wrap: {$title_styles['flex_wrap']};
+}
+#$block_id.layout-horizontal .layout-wrapper {
+    justify-content: {$attributes['tabAlign']};
+}
 #$block_id.layout-horizontal .cozy-tab-title {
     gap: {$attributes['columnGap']}px;
     justify-content: {$attributes['tabAlign']};
@@ -104,6 +119,17 @@ $block_styles = "
 
 #$block_id.layout-vertical .cozy-tab-title .cozy-tab-button {
     width: {$tab_width}px;
+}
+#$block_id.layout-vertical {
+    gap: {$attributes['columnGap']}px;
+}
+#$block_id.layout-vertical .cozy-tab-title {
+    gap: {$attributes['rowGap']}px;
+}
+@media only screen and (max-width: 1024px) {
+    #$block_id.layout-vertical .layout-wrapper {
+        margin-bottom: {$attributes['columnGap']}px;
+    }
 }
 
 #$block_id .cozy-tab-title .cozy-tab-button .display-flex {
@@ -145,16 +171,10 @@ $block_styles = "
     fill: none;
 }
 
-#$block_id.layout-vertical {
-    gap: {$attributes['columnGap']}px;
-}
-
-#$block_id.layout-vertical .cozy-tab-title {
-    gap: {$attributes['rowGap']}px;
-}
-
 #$block_id .cozy-advanced-tab-wrapper {
     padding: {$attributes['contentStyles']['padding']['top']}px {$attributes['contentStyles']['padding']['right']}px {$attributes['contentStyles']['padding']['bottom']}px {$attributes['contentStyles']['padding']['left']}px;
+    margin-top: {$content_styles['margin']['top']};
+    margin-bottom: {$content_styles['margin']['bottom']};
     border-style: {$attributes['contentStyles']['border']['type']};
     border-width: {$attributes['contentStyles']['border']['width']['top']}px {$attributes['contentStyles']['border']['width']['right']}px {$attributes['contentStyles']['border']['width']['bottom']}px {$attributes['contentStyles']['border']['width']['left']}px;
     border-color: {$content_color['border']};
@@ -174,34 +194,28 @@ if ( isset( $attributes['titleTypography']['fontFamily'] ) && ! empty( $attribut
 if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
 	$font_families[] = $attributes['typography']['fontFamily'];
 }
-
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
-
-$font_query = '';
-
+$font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . $family . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
-
 if ( ! empty( $font_query ) ) {
 	// Generate the inline style for the Google Fonts link.
-	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query;
+	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query . '&display=swap';
 
-	// Add the Google Fonts URL as an inline style.
-	$font_url = '@import url("' . $google_fonts_url . '");';
-	echo '<style> ' . $font_url . '  </style>';
+	echo '<link rel="stylesheet" href="' . $google_fonts_url . '"/>';
 }
 
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
-		wp_add_inline_style( 'cozy-addons--blocks--style', esc_html( $block_styles ) );
+		wp_add_inline_style( 'cozy-block--global-block-styles', cozy_addons_clean_empty_css( $block_styles ) );
 	}
 );
 

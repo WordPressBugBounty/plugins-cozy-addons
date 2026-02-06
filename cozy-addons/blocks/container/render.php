@@ -40,7 +40,7 @@ $output = '<div class="cozy-block-wrapper ' . ( 'sticky' === $attributes['positi
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
-		wp_add_inline_style( 'cozy-addons--blocks--style', $block_styles );
+		wp_add_inline_style( 'cozy-block--global-block-styles', cozy_addons_clean_empty_css( $block_styles ) );
 	}
 );
 

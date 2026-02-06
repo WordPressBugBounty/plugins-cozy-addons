@@ -1,9 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "cozy-block/advanced-categories",
   "title": "Advanced Categories (Pro)",
-  "description": "Showcase your post categories with images in various layouts—grid, list, or carousel—for a visually engaging and navigable experience with our 'Advanced Categories' block.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "category",
@@ -345,7 +344,8 @@
   "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
-    "cozy-swiper-bundle"
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
   ],
   "script": [
     "cozy-swiper-bundle"

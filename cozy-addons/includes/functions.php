@@ -580,7 +580,7 @@ function cozy_block_magazine_grid_load_content() {
 				$output .= '<div>';
 
 				if ( isset( $post_data['post_excerpt'] ) && ! empty( $post_data['post_excerpt'] ) ) {
-					$output .= $post_data['post_excerpt'];
+					$output .= cozy_create_excerpt( $post_data['post_excerpt'], $attributes['enableOptions']['postExcerpt'] );
 				} else {
 					$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] );
 				}
@@ -853,7 +853,7 @@ function cozy_block_magazine_list_load_content() {
 				$output .= '<div>';
 
 				if ( isset( $post_data['post_excerpt'] ) && ! empty( $post_data['post_excerpt'] ) ) {
-					$output .= $post_data['post_excerpt'];
+					$output .= cozy_create_excerpt( $post_data['post_excerpt'], $attributes['enableOptions']['postExcerpt'] );
 				} else {
 					$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] );
 				}
@@ -1020,142 +1020,6 @@ function cozy_block_popular_posts_load_content() {
 			return array();
 		}
 	}
-	/* Posts Render */
-	if ( ! function_exists( 'render_cozy_block_popular_posts_load_more_data' ) ) {
-		function render_cozy_block_popular_posts_load_more_data( $attributes, $post_data, &$output ) {
-			$item_classes   = array();
-			$item_classes[] = 'cozy-block-popular-posts__item';
-			$output        .= '<li class="' . implode( ' ', $item_classes ) . '" data-post-id="' . esc_attr( $post_data['ID'] ) . '">';
-			if ( 'list' === $attributes['display'] ) {
-				$output .= '<div class="item__flex" style="display:flex;gap:' . $attributes['imageStyles']['gap'] . '">';
-			}
-
-			// Post Image.
-			if ( filter_var( $attributes['enableOptions']['image'], FILTER_VALIDATE_BOOLEAN ) && ! empty( $post_data['post_image_url'] ) ) {
-				$figure_classes   = array();
-				$figure_classes[] = 'cozy-block-popular-posts__image';
-				$figure_classes[] = $attributes['imageStyles']['hoverEffect'] ? 'has-hover-effect' : '';
-				$output          .= '<figure class="' . implode( ' ', $figure_classes ) . '">';
-				$has_post_link    = isset( $attributes['enableOptions']['imgLinkPost'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
-				$open_new_tab     = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['imgLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
-				$output          .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
-				$output          .= '<img alt="' . esc_html( $post_data['post_title'] ) . '" src="' . esc_url( $post_data['post_image_url'] ) . '" />';
-				$output          .= '</a>';
-				$output          .= '</figure>';
-			}
-
-			$output .= '<div>';
-			// Post Category.
-			if ( filter_var( $attributes['enableOptions']['category'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$category_classes   = array();
-				$category_classes[] = 'cozy-block-popular-posts__post-categories';
-				$category_classes[] = $attributes['categoryStyles']['hoverEffect'] ? 'has-hover-effect' : '';
-				$output            .= '<div class="' . implode( ' ', $category_classes ) . '">';
-				$open_new_tab       = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['catNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
-				foreach ( $post_data['post_categories'] as $cat_data ) {
-					$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
-					$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">';
-					$output      .= esc_html( $cat_data['name'] );
-					$output      .= '</a>';
-				}
-				$output .= '</div>';
-			}
-
-			// Post Title.
-			$has_post_link    = isset( $attributes['enableOptions']['titleLinkPost'] ) && filter_var( $attributes['enableOptions']['titleLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
-			$open_new_tab     = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && filter_var( $attributes['enableOptions']['titleLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['titleLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
-			$classes          = array();
-			$classes[]        = 'cozy-block-popular-posts__post-title';
-			$addition_classes = isset( $attributes['titleStyles']['className'] ) ? $attributes['titleStyles']['className'] : '';
-			if ( ! empty( $addition_classes ) ) {
-				$classes = array_merge( $classes, explode( ' ', $addition_classes ) );
-			}
-			$output .= '<h4 class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h4>';
-
-			if ( ( isset( $attributes['enableOptions']['author'] ) && filter_var( $attributes['enableOptions']['author'], FILTER_VALIDATE_BOOLEAN ) ) || ( isset( $attributes['enableOptions']['comments'] ) && filter_var( $attributes['enableOptions']['comments'], FILTER_VALIDATE_BOOLEAN ) ) || filter_var( $attributes['enableOptions']['date'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$output .= '<div class="post__meta">';
-
-				$has_meta_link = isset( $attributes['enableOptions']['linkPostMeta'] ) && $attributes['enableOptions']['linkPostMeta'] ? true : false;
-				$open_new_tab  = isset( $attributes['enableOptions']['linkPostMeta'], $attributes['enableOptions']['postMetaNewTab'] ) && $attributes['enableOptions']['linkPostMeta'] && $attributes['enableOptions']['postMetaNewTab'] ? '_blank' : '';
-				$show_icon     = isset( $attributes['enableOptions']['enableMetaIcon'] ) && $attributes['enableOptions']['enableMetaIcon'] ? true : false;
-
-				if ( isset( $attributes['enableOptions']['author'] ) && filter_var( $attributes['enableOptions']['author'], FILTER_VALIDATE_BOOLEAN ) ) {
-					$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_author_url'] ) . '"' : '';
-					$output   .= '<a class="post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
-					if ( $show_icon ) {
-						$output .= '<svg
-													width="' . $attributes['dateStyles']['fontSize'] . '"
-													height="' . $attributes['dateStyles']['fontSize'] . '"
-													xmlns="http://www.w3.org/2000/svg"
-													aria-hidden="true"
-													viewBox="0 0 12 15"
-												>
-													<path d="M11.2972 14.6667H0.630493V13.3333C0.630493 12.4493 0.981683 11.6014 1.6068 10.9763C2.23193 10.3512 3.07977 10 3.96383 10H7.96383C8.84788 10 9.69573 10.3512 10.3208 10.9763C10.946 11.6014 11.2972 12.4493 11.2972 13.3333V14.6667ZM5.96383 8.66667C5.43854 8.66667 4.9184 8.5632 4.43309 8.36218C3.94779 8.16117 3.50683 7.86653 3.1354 7.49509C2.76396 7.12366 2.46933 6.6827 2.26831 6.1974C2.06729 5.7121 1.96383 5.19195 1.96383 4.66667C1.96383 4.14138 2.06729 3.62124 2.26831 3.13593C2.46933 2.65063 2.76396 2.20967 3.1354 1.83824C3.50683 1.4668 3.94779 1.17217 4.43309 0.971148C4.9184 0.770129 5.43854 0.666666 5.96383 0.666666C7.02469 0.666666 8.04211 1.08809 8.79225 1.83824C9.5424 2.58838 9.96383 3.6058 9.96383 4.66667C9.96383 5.72753 9.5424 6.74495 8.79225 7.49509C8.04211 8.24524 7.02469 8.66667 5.96383 8.66667Z" />
-												</svg>';
-					}
-
-					$output .= '<p>' . esc_html( $post_data['post_author_name'] ) . '</p>';
-					$output .= '</a>';
-				}
-
-				if ( isset( $attributes['enableOptions']['comments'] ) && filter_var( $attributes['enableOptions']['comments'], FILTER_VALIDATE_BOOLEAN ) && intval( $post_data['comment_count'] ) > 0 ) {
-					$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['comment_link'] ) . '"' : '';
-					$output   .= '<a class="post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
-					if ( $show_icon ) {
-						$output .= '<svg
-												width="' . $attributes['dateStyles']['fontSize'] . '"
-												height="' . $attributes['dateStyles']['fontSize'] . '"
-												xmlns="http://www.w3.org/2000/svg"
-												aria-hidden="true"
-												viewBox="0 0 25 20"
-											>
-												<path d="M18.0556 6.94444C18.0556 3.10764 14.0148 0 9.02778 0C4.0408 0 0 3.10764 0 6.94444C0 8.43316 0.611979 9.80469 1.64931 10.9375C1.06771 12.2483 0.108507 13.2899 0.0954861 13.3029C0 13.4028 -0.0260417 13.5503 0.0303819 13.6806C0.0868056 13.8108 0.208333 13.8889 0.347222 13.8889C1.93576 13.8889 3.25087 13.355 4.19705 12.8038C5.59462 13.4852 7.24826 13.8889 9.02778 13.8889C14.0148 13.8889 18.0556 10.7812 18.0556 6.94444ZM23.3507 16.4931C24.388 15.3646 25 13.9887 25 12.5C25 9.59635 22.678 7.10937 19.388 6.07205C19.4271 6.35851 19.4444 6.6493 19.4444 6.94444C19.4444 11.5408 14.77 15.2778 9.02778 15.2778C8.55903 15.2778 8.1033 15.2431 7.65191 15.1953C9.0191 17.691 12.2309 19.4444 15.9722 19.4444C17.7517 19.4444 19.4054 19.0451 20.8029 18.3594C21.7491 18.9106 23.0642 19.4444 24.6528 19.4444C24.7917 19.4444 24.9175 19.362 24.9696 19.2361C25.026 19.1102 25 18.9627 24.9045 18.8585C24.8915 18.8455 23.9323 17.8082 23.3507 16.4931Z" />
-											</svg>';
-					}
-
-					$output .= '<p>' . esc_html( $post_data['comment_count'] ) . '</p>';
-					$output .= '</a>';
-				}
-
-				// Post Date.
-				if ( filter_var( $attributes['enableOptions']['date'], FILTER_VALIDATE_BOOLEAN ) ) {
-					$meta_link   = $has_meta_link ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
-						$output .= '<a class="post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
-					if ( $show_icon ) {
-						$output .= '<svg
-													width="' . $attributes['dateStyles']['fontSize'] . '"
-													height="' . $attributes['dateStyles']['fontSize'] . '"
-													xmlns="http://www.w3.org/2000/svg"
-													viewBox="0 0 16 18"
-													aria-hidden="true"
-												>
-													<path d="M7.66699 10.6666C7.43088 10.6666 7.23296 10.5868 7.07324 10.427C6.91352 10.2673 6.83366 10.0694 6.83366 9.83329C6.83366 9.59718 6.91352 9.39927 7.07324 9.23954C7.23296 9.07982 7.43088 8.99996 7.66699 8.99996C7.9031 8.99996 8.10102 9.07982 8.26074 9.23954C8.42046 9.39927 8.50033 9.59718 8.50033 9.83329C8.50033 10.0694 8.42046 10.2673 8.26074 10.427C8.10102 10.5868 7.9031 10.6666 7.66699 10.6666ZM4.33366 10.6666C4.09755 10.6666 3.89963 10.5868 3.73991 10.427C3.58019 10.2673 3.50033 10.0694 3.50033 9.83329C3.50033 9.59718 3.58019 9.39927 3.73991 9.23954C3.89963 9.07982 4.09755 8.99996 4.33366 8.99996C4.56977 8.99996 4.76769 9.07982 4.92741 9.23954C5.08713 9.39927 5.16699 9.59718 5.16699 9.83329C5.16699 10.0694 5.08713 10.2673 4.92741 10.427C4.76769 10.5868 4.56977 10.6666 4.33366 10.6666ZM11.0003 10.6666C10.7642 10.6666 10.5663 10.5868 10.4066 10.427C10.2469 10.2673 10.167 10.0694 10.167 9.83329C10.167 9.59718 10.2469 9.39927 10.4066 9.23954C10.5663 9.07982 10.7642 8.99996 11.0003 8.99996C11.2364 8.99996 11.4344 9.07982 11.5941 9.23954C11.7538 9.39927 11.8337 9.59718 11.8337 9.83329C11.8337 10.0694 11.7538 10.2673 11.5941 10.427C11.4344 10.5868 11.2364 10.6666 11.0003 10.6666ZM7.66699 14C7.43088 14 7.23296 13.9201 7.07324 13.7604C6.91352 13.6007 6.83366 13.4027 6.83366 13.1666C6.83366 12.9305 6.91352 12.7326 7.07324 12.5729C7.23296 12.4132 7.43088 12.3333 7.66699 12.3333C7.9031 12.3333 8.10102 12.4132 8.26074 12.5729C8.42046 12.7326 8.50033 12.9305 8.50033 13.1666C8.50033 13.4027 8.42046 13.6007 8.26074 13.7604C8.10102 13.9201 7.9031 14 7.66699 14ZM4.33366 14C4.09755 14 3.89963 13.9201 3.73991 13.7604C3.58019 13.6007 3.50033 13.4027 3.50033 13.1666C3.50033 12.9305 3.58019 12.7326 3.73991 12.5729C3.89963 12.4132 4.09755 12.3333 4.33366 12.3333C4.56977 12.3333 4.76769 12.4132 4.92741 12.5729C5.08713 12.7326 5.16699 12.9305 5.16699 13.1666C5.16699 13.4027 5.08713 13.6007 4.92741 13.7604C4.76769 13.9201 4.56977 14 4.33366 14ZM11.0003 14C10.7642 14 10.5663 13.9201 10.4066 13.7604C10.2469 13.6007 10.167 13.4027 10.167 13.1666C10.167 12.9305 10.2469 12.7326 10.4066 12.5729C10.5663 12.4132 10.7642 12.3333 11.0003 12.3333C11.2364 12.3333 11.4344 12.4132 11.5941 12.5729C11.7538 12.7326 11.8337 12.9305 11.8337 13.1666C11.8337 13.4027 11.7538 13.6007 11.5941 13.7604C11.4344 13.9201 11.2364 14 11.0003 14ZM1.83366 17.3333C1.37533 17.3333 0.982964 17.1701 0.656576 16.8437C0.330187 16.5173 0.166992 16.125 0.166992 15.6666V3.99996C0.166992 3.54163 0.330187 3.14926 0.656576 2.82288C0.982964 2.49649 1.37533 2.33329 1.83366 2.33329H2.66699V0.666626H4.33366V2.33329H11.0003V0.666626H12.667V2.33329H13.5003C13.9587 2.33329 14.351 2.49649 14.6774 2.82288C15.0038 3.14926 15.167 3.54163 15.167 3.99996V15.6666C15.167 16.125 15.0038 16.5173 14.6774 16.8437C14.351 17.1701 13.9587 17.3333 13.5003 17.3333H1.83366ZM1.83366 15.6666H13.5003V7.33329H1.83366V15.6666Z" />
-												</svg>';
-					}
-
-						$output .= '<p>' . esc_html( $post_data['post_date_formatted'] ) . '</p>';
-						$output .= '</a>';
-				}
-
-				$output .= '</div>';
-
-			}
-
-			// Post Excerpt
-			if ( filter_var( $attributes['enableOptions']['content'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$output .= '<p class="cozy-block-popular-posts__content">';
-				$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['excerpt'] );
-				$output .= '</p>';
-			}
-			$output .= '</div>';
-
-			if ( 'list' === $attributes['display'] ) {
-				$output .= '</div>';
-			}
-
-			$output .= '</li>';
-		}
-	}
 
 	$cozy_block_popular_posts_args = array(
 		'post_type'           => 'post',
@@ -1207,7 +1071,7 @@ function cozy_block_popular_posts_load_content() {
 		$output = '';
 		foreach ( $remaining_posts_chunk as $post_data ) {
 			// Customize the HTML structure as per your requirement .
-			render_cozy_block_popular_posts_load_more_data( $attributes, $post_data, $output );
+			\CozyAddons\Helpers\BlockRender::popular_posts_render( $attributes, $post_data, $output );
 		}
 		$return_data = array(
 			'render'           => $output,
@@ -1280,144 +1144,6 @@ function cozy_block_trending_posts_load_content() {
 			return array();
 		}
 	}
-	/* Posts Render */
-	if ( ! function_exists( 'render_cozy_block_trending_posts_load_more_data' ) ) {
-		function render_cozy_block_trending_posts_load_more_data( $attributes, $post_data, &$output ) {
-			$item_classes   = array();
-			$item_classes[] = 'cozy-block-trending-posts__item';
-			$output        .= '<li class="' . implode( ' ', $item_classes ) . '" data-post-id="' . esc_attr( $post_data['ID'] ) . '">';
-
-			if ( 'list' === $attributes['display'] ) {
-				$output .= '<div class="item__flex" style="display:flex;gap:' . $attributes['imageStyles']['gap'] . '">';
-			}
-
-			// Post Image.
-			if ( filter_var( $attributes['enableOptions']['image'], FILTER_VALIDATE_BOOLEAN ) && ! empty( $post_data['post_image_url'] ) ) {
-				$figure_classes   = array();
-				$figure_classes[] = 'cozy-block-trending-posts__image';
-				$figure_classes[] = $attributes['imageStyles']['hoverEffect'] ? 'has-hover-effect' : '';
-				$output          .= '<figure class="' . implode( ' ', $figure_classes ) . '">';
-				$has_post_link    = isset( $attributes['enableOptions']['imgLinkPost'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
-				$open_new_tab     = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['imgLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
-				$output          .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
-				$output          .= '<img alt="' . esc_html( $post_data['post_title'] ) . '" src="' . esc_url( $post_data['post_image_url'] ) . '" />';
-				$output          .= '</a>';
-				$output          .= '</figure>';
-			}
-
-			$output .= '<div>';
-			// Post Category.
-			if ( filter_var( $attributes['enableOptions']['category'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$category_classes   = array();
-				$category_classes[] = 'cozy-block-trending-posts__post-categories';
-				$category_classes[] = $attributes['categoryStyles']['hoverEffect'] ? 'has-hover-effect' : '';
-				$output            .= '<div class="' . implode( ' ', $category_classes ) . '">';
-				$open_new_tab       = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['catNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
-				foreach ( $post_data['post_categories'] as $cat_data ) {
-					$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
-					$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">';
-					$output      .= esc_html( $cat_data['name'] );
-					$output      .= '</a>';
-				}
-				$output .= '</div>';
-			}
-
-			// Post Title.
-			$has_post_link      = isset( $attributes['enableOptions']['titleLinkPost'] ) && filter_var( $attributes['enableOptions']['titleLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
-			$open_new_tab       = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && filter_var( $attributes['enableOptions']['titleLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['titleLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
-			$classes            = array();
-			$classes[]          = 'cozy-block-trending-posts__post-title';
-			$additional_classes = isset( $attributes['titleStyles']['className'] ) ? $attributes['titleStyles']['className'] : '';
-			if ( ! empty( $additional_classes ) ) {
-				$classes = array_merge( $classes, explode( ' ', $additional_classes ) );
-			}
-			$output .= '<h4 class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h4>';
-
-			if ( ( isset( $attributes['enableOptions']['author'] ) && filter_var( $attributes['enableOptions']['author'], FILTER_VALIDATE_BOOLEAN ) ) || ( isset( $attributes['enableOptions']['comments'] ) && filter_var( $attributes['enableOptions']['comments'], FILTER_VALIDATE_BOOLEAN ) ) || filter_var( $attributes['enableOptions']['date'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$output .= '<div class="post__meta">';
-
-				$has_meta_link = isset( $attributes['enableOptions']['linkPostMeta'] ) && $attributes['enableOptions']['linkPostMeta'] ? true : false;
-				$open_new_tab  = isset( $attributes['enableOptions']['linkPostMeta'], $attributes['enableOptions']['postMetaNewTab'] ) && $attributes['enableOptions']['linkPostMeta'] && $attributes['enableOptions']['postMetaNewTab'] ? '_blank' : '';
-				$show_icon     = isset( $attributes['enableOptions']['enableMetaIcon'] ) && $attributes['enableOptions']['enableMetaIcon'] ? true : false;
-
-				if ( isset( $attributes['enableOptions']['author'] ) && filter_var( $attributes['enableOptions']['author'], FILTER_VALIDATE_BOOLEAN ) ) {
-					$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_author_url'] ) . '"' : '';
-					$output   .= '<a class="post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
-					if ( $show_icon ) {
-						$output .= '<svg
-													width="' . $attributes['dateStyles']['fontSize'] . '"
-													height="' . $attributes['dateStyles']['fontSize'] . '"
-													xmlns="http://www.w3.org/2000/svg"
-													aria-hidden="true"
-													viewBox="0 0 12 15"
-												>
-													<path d="M11.2972 14.6667H0.630493V13.3333C0.630493 12.4493 0.981683 11.6014 1.6068 10.9763C2.23193 10.3512 3.07977 10 3.96383 10H7.96383C8.84788 10 9.69573 10.3512 10.3208 10.9763C10.946 11.6014 11.2972 12.4493 11.2972 13.3333V14.6667ZM5.96383 8.66667C5.43854 8.66667 4.9184 8.5632 4.43309 8.36218C3.94779 8.16117 3.50683 7.86653 3.1354 7.49509C2.76396 7.12366 2.46933 6.6827 2.26831 6.1974C2.06729 5.7121 1.96383 5.19195 1.96383 4.66667C1.96383 4.14138 2.06729 3.62124 2.26831 3.13593C2.46933 2.65063 2.76396 2.20967 3.1354 1.83824C3.50683 1.4668 3.94779 1.17217 4.43309 0.971148C4.9184 0.770129 5.43854 0.666666 5.96383 0.666666C7.02469 0.666666 8.04211 1.08809 8.79225 1.83824C9.5424 2.58838 9.96383 3.6058 9.96383 4.66667C9.96383 5.72753 9.5424 6.74495 8.79225 7.49509C8.04211 8.24524 7.02469 8.66667 5.96383 8.66667Z" />
-												</svg>';
-					}
-
-					$output .= '<p>' . esc_html( $post_data['post_author_name'] ) . '</p>';
-					$output .= '</a>';
-				}
-
-				if ( isset( $attributes['enableOptions']['comments'] ) && filter_var( $attributes['enableOptions']['comments'], FILTER_VALIDATE_BOOLEAN ) && intval( $post_data['comment_count'] ) > 0 ) {
-					$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['comment_link'] ) . '"' : '';
-					$output   .= '<a class="post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
-					if ( $show_icon ) {
-						$output .= '<svg
-												width="' . $attributes['dateStyles']['fontSize'] . '"
-												height="' . $attributes['dateStyles']['fontSize'] . '"
-												xmlns="http://www.w3.org/2000/svg"
-												aria-hidden="true"
-												viewBox="0 0 25 20"
-											>
-												<path d="M18.0556 6.94444C18.0556 3.10764 14.0148 0 9.02778 0C4.0408 0 0 3.10764 0 6.94444C0 8.43316 0.611979 9.80469 1.64931 10.9375C1.06771 12.2483 0.108507 13.2899 0.0954861 13.3029C0 13.4028 -0.0260417 13.5503 0.0303819 13.6806C0.0868056 13.8108 0.208333 13.8889 0.347222 13.8889C1.93576 13.8889 3.25087 13.355 4.19705 12.8038C5.59462 13.4852 7.24826 13.8889 9.02778 13.8889C14.0148 13.8889 18.0556 10.7812 18.0556 6.94444ZM23.3507 16.4931C24.388 15.3646 25 13.9887 25 12.5C25 9.59635 22.678 7.10937 19.388 6.07205C19.4271 6.35851 19.4444 6.6493 19.4444 6.94444C19.4444 11.5408 14.77 15.2778 9.02778 15.2778C8.55903 15.2778 8.1033 15.2431 7.65191 15.1953C9.0191 17.691 12.2309 19.4444 15.9722 19.4444C17.7517 19.4444 19.4054 19.0451 20.8029 18.3594C21.7491 18.9106 23.0642 19.4444 24.6528 19.4444C24.7917 19.4444 24.9175 19.362 24.9696 19.2361C25.026 19.1102 25 18.9627 24.9045 18.8585C24.8915 18.8455 23.9323 17.8082 23.3507 16.4931Z" />
-											</svg>';
-					}
-
-					$output .= '<p>' . esc_html( $post_data['comment_count'] ) . '</p>';
-					$output .= '</a>';
-				}
-
-				// Post Date.
-				if ( filter_var( $attributes['enableOptions']['date'], FILTER_VALIDATE_BOOLEAN ) ) {
-					$meta_link   = $has_meta_link ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
-						$output .= '<a class="post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
-					if ( $show_icon ) {
-						$output .= '<svg
-													width="' . $attributes['dateStyles']['fontSize'] . '"
-													height="' . $attributes['dateStyles']['fontSize'] . '"
-													xmlns="http://www.w3.org/2000/svg"
-													viewBox="0 0 16 18"
-													aria-hidden="true"
-												>
-													<path d="M7.66699 10.6666C7.43088 10.6666 7.23296 10.5868 7.07324 10.427C6.91352 10.2673 6.83366 10.0694 6.83366 9.83329C6.83366 9.59718 6.91352 9.39927 7.07324 9.23954C7.23296 9.07982 7.43088 8.99996 7.66699 8.99996C7.9031 8.99996 8.10102 9.07982 8.26074 9.23954C8.42046 9.39927 8.50033 9.59718 8.50033 9.83329C8.50033 10.0694 8.42046 10.2673 8.26074 10.427C8.10102 10.5868 7.9031 10.6666 7.66699 10.6666ZM4.33366 10.6666C4.09755 10.6666 3.89963 10.5868 3.73991 10.427C3.58019 10.2673 3.50033 10.0694 3.50033 9.83329C3.50033 9.59718 3.58019 9.39927 3.73991 9.23954C3.89963 9.07982 4.09755 8.99996 4.33366 8.99996C4.56977 8.99996 4.76769 9.07982 4.92741 9.23954C5.08713 9.39927 5.16699 9.59718 5.16699 9.83329C5.16699 10.0694 5.08713 10.2673 4.92741 10.427C4.76769 10.5868 4.56977 10.6666 4.33366 10.6666ZM11.0003 10.6666C10.7642 10.6666 10.5663 10.5868 10.4066 10.427C10.2469 10.2673 10.167 10.0694 10.167 9.83329C10.167 9.59718 10.2469 9.39927 10.4066 9.23954C10.5663 9.07982 10.7642 8.99996 11.0003 8.99996C11.2364 8.99996 11.4344 9.07982 11.5941 9.23954C11.7538 9.39927 11.8337 9.59718 11.8337 9.83329C11.8337 10.0694 11.7538 10.2673 11.5941 10.427C11.4344 10.5868 11.2364 10.6666 11.0003 10.6666ZM7.66699 14C7.43088 14 7.23296 13.9201 7.07324 13.7604C6.91352 13.6007 6.83366 13.4027 6.83366 13.1666C6.83366 12.9305 6.91352 12.7326 7.07324 12.5729C7.23296 12.4132 7.43088 12.3333 7.66699 12.3333C7.9031 12.3333 8.10102 12.4132 8.26074 12.5729C8.42046 12.7326 8.50033 12.9305 8.50033 13.1666C8.50033 13.4027 8.42046 13.6007 8.26074 13.7604C8.10102 13.9201 7.9031 14 7.66699 14ZM4.33366 14C4.09755 14 3.89963 13.9201 3.73991 13.7604C3.58019 13.6007 3.50033 13.4027 3.50033 13.1666C3.50033 12.9305 3.58019 12.7326 3.73991 12.5729C3.89963 12.4132 4.09755 12.3333 4.33366 12.3333C4.56977 12.3333 4.76769 12.4132 4.92741 12.5729C5.08713 12.7326 5.16699 12.9305 5.16699 13.1666C5.16699 13.4027 5.08713 13.6007 4.92741 13.7604C4.76769 13.9201 4.56977 14 4.33366 14ZM11.0003 14C10.7642 14 10.5663 13.9201 10.4066 13.7604C10.2469 13.6007 10.167 13.4027 10.167 13.1666C10.167 12.9305 10.2469 12.7326 10.4066 12.5729C10.5663 12.4132 10.7642 12.3333 11.0003 12.3333C11.2364 12.3333 11.4344 12.4132 11.5941 12.5729C11.7538 12.7326 11.8337 12.9305 11.8337 13.1666C11.8337 13.4027 11.7538 13.6007 11.5941 13.7604C11.4344 13.9201 11.2364 14 11.0003 14ZM1.83366 17.3333C1.37533 17.3333 0.982964 17.1701 0.656576 16.8437C0.330187 16.5173 0.166992 16.125 0.166992 15.6666V3.99996C0.166992 3.54163 0.330187 3.14926 0.656576 2.82288C0.982964 2.49649 1.37533 2.33329 1.83366 2.33329H2.66699V0.666626H4.33366V2.33329H11.0003V0.666626H12.667V2.33329H13.5003C13.9587 2.33329 14.351 2.49649 14.6774 2.82288C15.0038 3.14926 15.167 3.54163 15.167 3.99996V15.6666C15.167 16.125 15.0038 16.5173 14.6774 16.8437C14.351 17.1701 13.9587 17.3333 13.5003 17.3333H1.83366ZM1.83366 15.6666H13.5003V7.33329H1.83366V15.6666Z" />
-												</svg>';
-					}
-
-						$output .= '<p>' . esc_html( $post_data['post_date_formatted'] ) . '</p>';
-						$output .= '</a>';
-				}
-
-				$output .= '</div>';
-
-			}
-
-			// Post Excerpt
-			if ( filter_var( $attributes['enableOptions']['content'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$output .= '<p class="cozy-block-trending-posts__content">';
-				$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['excerpt'] );
-				$output .= '</p>';
-			}
-
-			$output .= '</div>';
-
-			if ( 'list' === $attributes['display'] ) {
-				$output .= '</div>';
-			}
-
-			$output .= '</li>';
-		}
-	}
 
 	$cozy_block_trending_posts_args = array(
 		'post_type'      => 'post',
@@ -1468,7 +1194,7 @@ function cozy_block_trending_posts_load_content() {
 		$output = '';
 		foreach ( $remaining_posts_chunk as $post_data ) {
 			// Customize the HTML structure as per your requirement .
-			render_cozy_block_trending_posts_load_more_data( $attributes, $post_data, $output );
+			\CozyAddons\Helpers\BlockRender::trending_posts_render( $attributes, $post_data, $output );
 		}
 		$return_data = array(
 			'render'           => $output,
@@ -1492,54 +1218,15 @@ function cozy_block_advanced_gallery_load_content() {
 	$attributes = isset( $_POST['attributes'] ) ? json_decode( sanitize_text_field( wp_unslash( $_POST['attributes'] ) ), true ) : array();
 
 	$offset   = isset( $_POST['offset'] ) ? intval( $_POST['offset'] ) : 0;
-	$tab_slug = isset( $_POST['tabSlug'] ) && '' !== $_POST['tabSlug'] ? sanitize_text_field( wp_unslash( $_POST['tabSlug'] ) ) : 'all';
+	$tab_slug = isset( $_POST['tabSlug'] ) && '' !== $_POST['tabSlug'] ? sanitize_text_field( wp_unslash( $_POST['tabSlug'] ) ) : '';
 
 	if ( empty( $attributes ) ) {
 		return;
 	}
 
 	/* Gallery Render */
-	if ( ! function_exists( 'render_cozy_block_advanced_gallery_load_more_data' ) ) {
-		function render_cozy_block_advanced_gallery_load_more_data( $attributes, $item_data, &$output ) {
-			$classes   = array();
-			$classes[] = 'cozy-block-advanced-gallery__item';
-			$classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
-			$classes[] = filter_var( $attributes['enableOptions']['hoverTitle'], FILTER_VALIDATE_BOOLEAN ) ? 'has-hover-caption' : '';
-			$output   .= '<li class="' . implode( ' ', $classes ) . '">';
-
-			$classes   = array();
-			$classes[] = 'cozy-block-advanced-gallery__image-wrapper';
-			$classes[] = filter_var( $attributes['image']['hoverEffect'], FILTER_VALIDATE_BOOLEAN ) ? 'has-hover-effect' : '';
-			$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
-			$output   .= '<span class="cozy-block-advanced-gallery__image-background"></span>';
-			$output   .= '<img class="cozy-block-advanced-gallery__image" src="' . esc_url( $item_data['url'] ) . '" alt="' . esc_html( $item_data['alt'] ) . '" />';
-
-			if ( filter_var( $attributes['enableOptions']['hoverIcon'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$view_box   = array();
-				$view_box[] = $attributes['icon']['viewBox']['vx'];
-				$view_box[] = $attributes['icon']['viewBox']['vy'];
-				$view_box[] = $attributes['icon']['viewBox']['vw'];
-				$view_box[] = $attributes['icon']['viewBox']['vh'];
-				$output    .= '<div class="cozy-block-advanced-gallery__icon-wrapper">';
-				$output    .= '<svg class="cozy-block-advanced-gallery__icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="' . implode( ' ', $view_box ) . '">';
-				$output    .= '<path d="' . $attributes['icon']['path'] . '" />';
-				$output    .= '</svg>';
-				$output    .= '</div>';
-			}
-
-			if ( filter_var( $attributes['enableOptions']['hoverTitle'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$output .= '<div class="cozy-block-advanced-gallery__image-caption">';
-				$output .= esc_html( $item_data['caption'] );
-				$output .= '</div>';
-			}
-			$output .= '</figure>';
-
-			$output .= '</li>';
-		}
-	}
-
 	if ( 'grid' === $attributes['display'] ) {
-		if ( 'all' === $tab_slug ) {
+		if ( 'all' == $tab_slug ) {
 			$limit                 = count( (array) $attributes['mediaCollection'] ) - 1;
 			$remaining_posts       = array_slice( (array) $attributes['mediaCollection'], $attributes['perPage'], $limit );
 			$posts_per_page        = isset( $attributes['ajaxLoader']['content'] ) ? intval( $attributes['ajaxLoader']['content'] ) : 10;
@@ -1554,7 +1241,7 @@ function cozy_block_advanced_gallery_load_content() {
 				$output = '';
 				foreach ( $remaining_posts_chunk as $media ) {
 					// Customize the HTML structure as per your requirement .
-					render_cozy_block_advanced_gallery_load_more_data( $attributes, $media, $output );
+					\CozyAddons\Helpers\BlockRender::advanced_gallery_render( $attributes, $media, $output );
 				}
 				$return_data = array(
 					'render'           => $output,
@@ -1587,7 +1274,7 @@ function cozy_block_advanced_gallery_load_content() {
 				$output = '';
 				foreach ( $remaining_posts_chunk as $media ) {
 					// Customize the HTML structure as per your requirement .
-					render_cozy_block_advanced_gallery_load_more_data( $attributes, $media, $output );
+					\CozyAddons\Helpers\BlockRender::advanced_gallery_render( $attributes, $media, $output );
 				}
 				$return_data = array(
 					'render'           => $output,
@@ -2039,7 +1726,7 @@ function cozy_addons_activate_rollback_version_callback() {
 
 		if ( file_exists( trailingslashit( WP_PLUGIN_DIR ) . 'cozy-addons' ) ) {
 			// if ( is_wp_error( uninstall_plugin( 'cozy-addons/cozy-addons.php' ) ) ) {
-			// 	wp_send_json_error();
+			// wp_send_json_error();
 			// }
 
 			if ( is_wp_error( delete_plugins( array( 'cozy-addons/cozy-addons.php' ) ) ) ) {
@@ -2080,6 +1767,8 @@ function append_cozy_responsive_data_attributes( &$block_content, &$block ) {
 		'core/group',
 		'core/heading',
 		'core/paragraph',
+		'core/image',
+		'cozy-block/grid',
 	);
 
 	if ( ! isset( $block['attrs']['cozyResponsiveShow'] ) && ! in_array( $block['blockName'], $enabled_blocks, true ) ) {
@@ -2118,6 +1807,17 @@ function append_cozy_responsive_data_attributes( &$block_content, &$block ) {
 				$block_content = preg_replace( '/<p(\s+class="' . preg_quote( $existing_class ) . '.*?)?"/', '<p class="' . esc_attr( $updated_class ) . '"' . $cozy_responsive_string, $block_content );
 			} else {
 				$block_content = preg_replace( '/<p/', '<p class="' . esc_attr( $updated_class ) . '"' . $cozy_responsive_string, $block_content, 1 );
+			}
+		} elseif ( 'core/image' === $block['blockName'] ) {
+			preg_match( '/<figure(?:\s+class="([^"]+)")?/', $block_content, $matches );
+			$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+
+			$updated_class = trim( $existing_class . ' cozy-responsive-show__initialized' );
+
+			if ( $existing_class ) {
+				$block_content = preg_replace( '/<figure(\s+class="' . preg_quote( $existing_class ) . '.*?)?"/', '<figure class="' . esc_attr( $updated_class ) . '"' . $cozy_responsive_string, $block_content );
+			} else {
+				$block_content = preg_replace( '/<figure/', '<figure class="' . esc_attr( $updated_class ) . '"' . $cozy_responsive_string, $block_content, 1 );
 			}
 		} else {
 			$block_content = preg_replace(
@@ -2320,6 +2020,7 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 		'core/columns',
 		'core/column',
 		'core/heading',
+		'core/site-title',
 		'core/paragraph',
 		'cozy-block/mega-menu',
 	);
@@ -2340,11 +2041,11 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 			$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
 
 			// Append your styles to the existing styles
-			$new_styles      = 'font-family: ' . $custom_font . ' !important;';
+			$new_styles      = 'font-family: \'' . $custom_font . '\' !important;';
 			$appended_styles = $existing_styles ? $existing_styles . '; ' . $new_styles : $new_styles;
 
 			if ( 'core/heading' === $block['blockName'] ) {
-				$level = $block['attrs']['level'] ?? '2';
+				$level = isset( $block['attrs']['level'] ) ? $block['attrs']['level'] : '2';
 
 				preg_match( '/<h' . $level . ' class="([^"]+)"/', $block_content, $matches );
 				$existing_class = isset( $matches[1] ) ? $matches[1] : '';
@@ -2355,6 +2056,46 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 
 				$block_content = preg_replace( '/<h' . $level . ' class="' . preg_quote( $existing_class ) . '.*?"/', '<h' . $level . ' class="' . esc_attr( $existing_class ) . '" style="' . $appended_styles . '"', $block_content );
 
+			} elseif ( 'core/site-title' === $block['blockName'] ) {
+				$level = isset( $block['attrs']['level'] ) ? $block['attrs']['level'] : '1';
+
+				if ( $level > '0' ) {
+					preg_match(
+						'/<h' . $level . '\b[^>]*\bclass="([^"]+)"/i',
+						$block_content,
+						$matches
+					);
+					$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+
+					preg_match(
+						'/<h' . $level . '\b[^>]*\bstyle="([^"]+)"/i',
+						$block_content,
+						$matches
+					);
+					$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
+
+					$appended_styles = $existing_styles ? $existing_styles . $new_styles : $new_styles;
+					$block_content   = preg_replace( '/<h' . $level . '\b[^>]*\bclass="' . $existing_class . '"/i', '<h' . $level . ' style="' . $appended_styles . '" class="' . $existing_class . '"', $block_content );
+				} elseif ( 0 == $level ) {
+					preg_match(
+						'/<p\b[^>]*\bclass="([^"]+)"/i',
+						$block_content,
+						$matches
+					);
+					$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+
+					preg_match(
+						'/<p\b[^>]*\bstyle="([^"]+)"/i',
+						$block_content,
+						$matches
+					);
+					$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
+
+					$appended_styles = $existing_styles ? $existing_styles . $new_styles : $new_styles;
+					$block_content   = preg_replace( '/<p\b[^>]*\bclass="' . $existing_class . '"/i', '<p style="' . $appended_styles . '" class="' . $existing_class . '"', $block_content );
+				} else {
+					return $block_content;
+				}
 			} elseif ( 'core/paragraph' === $block['blockName'] ) {
 				preg_match( '/<p(?:\s+class="([^"]+)")?/', $block_content, $matches );
 				$existing_class = isset( $matches[1] ) ? $matches[1] : '';
@@ -2375,7 +2116,7 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 				$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( $existing_class ) . '" style="' . $appended_styles . '"', $block_content );
 			}
 
-			$block_content = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $custom_font . ':wght@100;200;300;400;500;600;700;800;900" />' . $block_content;
+			$block_content = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $custom_font . ':wght@400;500;600;700;800" />' . $block_content;
 
 		}
 	}
@@ -2394,6 +2135,7 @@ function apply_cozy_block_animation_responsive_hover_filter( $block_content, $bl
 		'core/cover',
 		'core/group',
 		'core/heading',
+		'core/site-title',
 		'core/columns',
 		'core/column',
 		'core/image',
@@ -2402,6 +2144,7 @@ function apply_cozy_block_animation_responsive_hover_filter( $block_content, $bl
 		'cozy-block/post-slider',
 		'cozy-block/product-slider',
 		'cozy-block/mega-menu',
+		'cozy-block/grid',
 	);
 
 	if ( ! isset( $block['attrs']['cozyAnimation'] ) && ! in_array( $block['blockName'], $enabled_blocks, true ) ) {
@@ -2495,12 +2238,13 @@ add_filter( 'render_block', 'apply_cozy_block_animation_responsive_hover_filter'
  * @param array  $block The parsed block.
  */
 function add_cozy_hover_color_styles( $block_content, $block ) {
-	if ( ! isset( $block['attrs']['cozyHoverStyles'] ) && ! isset( $block['attrs']['cozyHoverColor'] ) && ! isset( $block['attrs']['cozyMenuPadding'] ) ) {
-		return $block_content;
-	}
-
 	// Check if it's a core/button block
 	if ( 'core/button' === $block['blockName'] ) {
+		if ( ! isset( $block['attrs']['cozyHoverStyles'] ) && ! isset( $block['attrs']['cozyHoverColor'] ) && ! isset( $block['attrs']['icon'] ) ) {
+			return $block_content;
+		}
+		// print_r( $block['attrs'] );
+
 		// Extract the existing class attribute
 		// preg_match( '/<div class="([^"]+)"/', $block_content, $matches );
 		preg_match( '/<div\s[^>]*\bclass="(.*?)"/', $block_content, $matches );
@@ -2508,18 +2252,18 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 
 		// Extract the custom styles from block attributes
 		$custom_styles = array(
-			'--cozyButtonBgColorHover' => 'inherit',
-			'--cozyButtonColorHover'   => 'inherit',
-			'--cozyButtonBorderHover'  => 'inherit',
+			'--cozyButtonBgColorHover' => 'currentColor',
+			'--cozyButtonColorHover'   => 'currentColor',
+			'--cozyButtonBorderHover'  => 'currentColor',
 		);
 
 		if ( isset( $block['attrs']['cozyHoverStyles'] ) ) {
 			$cozyHoverStyles = $block['attrs']['cozyHoverStyles'];
 
 			$custom_styles = array(
-				'--cozyButtonBgColorHover' => strtolower( $cozyHoverStyles['bgColor'] ?? 'inherit' ),
-				'--cozyButtonColorHover'   => strtolower( $cozyHoverStyles['color'] ?? 'inherit' ),
-				'--cozyButtonBorderHover'  => strtolower( $cozyHoverStyles['borderColor'] ?? 'inherit' ),
+				'--cozyButtonBgColorHover' => isset( $cozyHoverStyles['bgColor'] ) ? strtolower( $cozyHoverStyles['bgColor'] ) : 'currentColor',
+				'--cozyButtonColorHover'   => isset( $cozyHoverStyles['color'] ) ? strtolower( $cozyHoverStyles['color'] ) : 'currentColor',
+				'--cozyButtonBorderHover'  => isset( $cozyHoverStyles['borderColor'] ) ? strtolower( $cozyHoverStyles['borderColor'] ) : 'currentColor',
 			);
 		}
 
@@ -2536,8 +2280,50 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 		$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
 		$appended_styles = $existing_styles . '; ' . $inline_styles;
 
-		$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( $updated_class ) . '" style="' . $appended_styles . '"', $block_content );
+		// Icon Styles
+		if ( isset( $block['attrs']['icon']['enabled'] ) && filter_var( $block['attrs']['icon']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+			$icon_attr = $block['attrs']['icon'];
 
+			$updated_class .= ' cozy-button__has-icon icon-position__' . $icon_attr['position'];
+
+			$size     = isset( $icon_attr['size'] ) ? $icon_attr['size'] : '16'; // e.g. from your attributes
+			$view_box = isset( $icon_attr['viewBox']['vx'], $icon_attr['viewBox']['vy'], $icon_attr['viewBox']['vw'], $icon_attr['viewBox']['vh'] ) ? $icon_attr['viewBox']['vx'] . ' ' . $icon_attr['viewBox']['vy'] . ' ' . $icon_attr['viewBox']['vw'] . ' ' . $icon_attr['viewBox']['vh'] : '';
+			$path     = isset( $icon_attr['path'] ) ? $icon_attr['path'] : ''; // example path
+
+			$svg      = '<svg xmlns="http://www.w3.org/2000/svg" width="' . $size . '" height="' . $size . '" viewBox="' . $view_box . '"><path fill="currentColor" d="' . $path . '"/></svg>';
+			$data_uri = "url('data:image/svg+xml;utf8," . rawurlencode( $svg ) . "')";
+
+			$custom_styles = array(
+				'--cozy--icon--box-width'      => isset( $icon_attr['boxWidth'] ) ? $icon_attr['boxWidth'] : '',
+				'--cozy--icon--box-height'     => isset( $icon_attr['boxHeight'] ) ? $icon_attr['boxHeight'] : '',
+				'--cozy--icon--size'           => isset( $icon_attr['size'] ) ? $icon_attr['size'] : '',
+				'--cozy--icon--rotate'         => isset( $icon_attr['rotate'] ) ? $icon_attr['rotate'] . 'deg' : '',
+				// '--cozy--icon--padding--top'    => isset( $icon_attr['padding']['top'] ) ? $icon_attr['padding']['top'] : '',
+				// '--cozy--icon--padding--right'  => isset( $icon_attr['padding']['right'] ) ? $icon_attr['padding']['right'] : '',
+				// '--cozy--icon--padding--bottom' => isset( $icon_attr['padding']['bottom'] ) ? $icon_attr['padding']['bottom'] : '',
+				// '--cozy--icon--padding--left'   => isset( $icon_attr['padding']['left'] ) ? $icon_attr['padding']['left'] : '',
+				'--cozy--icon--margin--top'    => isset( $icon_attr['margin']['top'] ) ? $icon_attr['margin']['top'] : '',
+				'--cozy--icon--margin--bottom' => isset( $icon_attr['margin']['bottom'] ) ? $icon_attr['margin']['bottom'] : '',
+				// '--cozy--icon--border--width'   => isset( $icon_attr['border']['width'] ) ? $icon_attr['border']['width'] : '',
+				// '--cozy--icon--border--style'   => isset( $icon_attr['border']['style'] ) ? $icon_attr['border']['style'] : '',
+				// '--cozy--icon--border--color'   => isset( $icon_attr['border']['color'] ) ? $icon_attr['border']['color'] : '',
+				// '--cozy--icon--radius'          => isset( $icon_attr['radius'] ) ? $icon_attr['radius'] : '',
+				'--cozy--icon--gap'            => isset( $icon_attr['gap'] ) ? $icon_attr['gap'] : '',
+				'--cozy--icon--color'          => isset( $icon_attr['color']['text'] ) ? $icon_attr['color']['text'] : 'currentColor',
+				'--cozy--icon--color-hover'    => isset( $icon_attr['color']['textHover'] ) ? $icon_attr['color']['textHover'] : 'currentColor',
+				'--cozy--icon--svg'            => $data_uri,
+			);
+
+			// Build the inline style string.
+			foreach ( $custom_styles as $style => $value ) {
+				$inline_styles .= "$style: $value; ";
+			}
+			// print_r( $inline_styles );
+
+			$appended_styles = $existing_styles . $inline_styles;
+		}
+
+		$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( $updated_class ) . '" style="' . $appended_styles . '"', $block_content );
 	}
 
 	if ( 'core/navigation' === $block['blockName'] ) {
@@ -2580,7 +2366,7 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 		$block_content = preg_replace(
 			// '/<ul class=".*?\b' . preg_quote( $existing_class_attribute, '/' ) . '\b.*?"/',
 			'/<ul[^>]*?\s+class="([^"]+)"/',
-			'<ul class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( $existing_style_attribute . $inline_styles ) . '"',
+			'<ul class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( $existing_style_attribute . cozy_addons_clean_empty_css( $inline_styles ) ) . '"',
 			$block_content,
 			1
 		);
@@ -2682,4 +2468,22 @@ function cozy_render_TRBL( $type, $attributes ) {
 		default:
 			return '';
 	}
+}
+
+/**
+ * Remove empty CSS properties from a string of CSS.
+ *
+ * This function scans the provided CSS string and removes any property
+ * declarations that have empty values, including:
+ *   - Completely empty values (e.g., `color: ;`)
+ *   - Empty strings with single or double quotes (e.g., `font-family: '';`, `border: "";`)
+ *
+ * This is useful before adding inline styles via wp_add_inline_style
+ * to ensure no invalid or empty CSS properties are output.
+ *
+ * @param string $styles The CSS string to clean.
+ * @return string The cleaned CSS string with empty properties removed.
+ */
+function cozy_addons_clean_empty_css( $styles ) {
+	return preg_replace( '/[a-zA-Z-]+\s*:\s*(["\']{0,1})\s*\1\s*;\s*/', '', $styles );
 }

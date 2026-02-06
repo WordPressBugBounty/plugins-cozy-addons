@@ -97,6 +97,28 @@
 				</div>
 			</li>
 		</ul>
+
+		<!-- Patterns Library -->
+		<h2 class="mt-34"><?php esc_html_e( 'Library', 'cozy-addons' ); ?></h2>
+		<ul class="utility-functions blocks-holder">
+			<li>
+				<div>
+					<p class="function-title">
+						<?php esc_html_e( 'Design Kit', 'cozy-addons' ); ?>
+					</p>
+					<p class="function-desc"><?php esc_html_e( 'Lightweight Patterns & Homepage Templates to make website building easier.', 'cozy-addons' ); ?></p>
+				</div>
+				<div class="cozy-block-toggle">
+					<label class="switch">
+						<?php
+						$checked = get_option( 'ca--utility--pattern-library' );
+						?>
+						<input type="checkbox" class="ca__utility-function" name="pattern-library" id="cozy-addons--utility--pattern-library" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
+						<span class="cozy-toggle-slider round"></span>
+					</label>
+				</div>
+			</li>
+		</ul>
 	
 		<?php
 	}

@@ -1,8 +1,9 @@
 <div class="dashboard-box">
 	<div class="dashboard-main">
 		<div class="dasboard-content">
-			<h2 class="welcome-title"><strong><em><?php esc_html_e( 'Welcome! ', 'cozy-addons' ); ?></em></strong><?php esc_html_e( 'Supercharge Your Site with 50+ Advanced Gutenberg Blocks', 'cozy-addons' ); ?></h2>
+			<h2 class="welcome-title"><strong><em><?php esc_html_e( 'Welcome! ', 'cozy-addons' ); ?></em></strong><?php esc_html_e( 'Supercharge Your Site with 50+ Advanced Gutenberg Blocks and Design Kit', 'cozy-addons' ); ?></h2>
 			<p class="ca__has-light-color"><?php esc_html_e( 'Design faster and smarter with over 50 beautifully crafted blocks—from dynamic content layouts and WooCommerce tools to engaging sliders, popups, and animation features. Fully compatible with Gutenberg and Full Site Editing.', 'cozy-addons' ); ?></p>
+			<p class="ca__has-light-color"><?php esc_html_e( 'To make your workflow easier and more efficient, use our collection of 500+ patterns and 40+ homepage templates, carefully crafted to streamline your website-building experience and give you exactly what you need to create stunning websites.', 'cozy-addons' ); ?></p>
 
 			<div class="ct-dashboard-row">
 				<a class="ca__primary-btn btn-large ct-plugin-link" href="https://cozythemes.com/cozy-addons" target="_blank"><?php echo esc_html_e( 'Explore All Blocks', 'cozy-addons' ); ?></a>

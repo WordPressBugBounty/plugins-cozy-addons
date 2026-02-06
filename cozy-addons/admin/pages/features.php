@@ -1,6 +1,6 @@
 <?php
 $features = array(
-	'General Blocks'     => array(
+	'General Blocks'           => array(
 		array(
 			'label' => 'Accordion',
 			'free'  => true,
@@ -117,7 +117,7 @@ $features = array(
 			'pro'   => true,
 		),
 	),
-	'Post Blocks'        => array(
+	'Post Blocks'              => array(
 		array(
 			'label' => 'Advertisement',
 			'free'  => true,
@@ -194,7 +194,7 @@ $features = array(
 			'pro'   => true,
 		),
 	),
-	'WooCommerce Blocks' => array(
+	'WooCommerce Blocks'       => array(
 		array(
 			'label' => 'Add to Cart',
 			'free'  => true,
@@ -246,7 +246,19 @@ $features = array(
 			'pro'   => true,
 		),
 	),
-	'Utility Functions'  => array(
+	'Design Kit' => array(
+		array(
+			'label' => 'Patterns',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Homepage Templates',
+			'free'  => true,
+			'pro'   => true,
+		),
+	),
+	'Utility Functions'        => array(
 		array(
 			'label' => 'Cozy Animation',
 			'free'  => true,

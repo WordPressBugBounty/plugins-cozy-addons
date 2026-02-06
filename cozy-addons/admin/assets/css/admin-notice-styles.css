@@ -26,18 +26,34 @@
 	margin-top: 16px;
 	margin-bottom: 16px;
 	justify-content: space-between;
-	align-items: center;
-	border-left-color: #4b7cb3;
-	font-family: Inter;
+	align-items: end;
+	border-left-color: #5c37ff;
+	font-family: "Inter";
 	font-size: 16px;
 }
 .cozy-addons-admin-notice .notice-content {
 	padding: 20px 5% 20px 20px;
 	width: 60%;
 	display: flex;
+	align-items: start;
+}
+.cozy-addons-admin-notice .notice-content #brand__icon {
+	background-color: #5c37ff;
+	padding: 10px;
+	border-radius: 100px;
+	display: flex;
+	justify-content: center;
 	align-items: center;
+	margin: 20px 12px 0 0;
+
+	& img {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+	}
 }
 .cozy-addons-admin-notice .notice-holder h4 {
+	color: #010e11;
 	font-weight: 600;
 	font-size: 28px;
 	line-height: 1.3;
@@ -48,7 +64,7 @@
 	margin: 0;
 }
 .cozy-addons-admin-notice .ca__admin-notice-btn {
-	background-color: #4b7cb3;
+	background-color: #5c37ff;
 	color: #fff;
 	padding: 12px 26px;
 	text-decoration: none;
@@ -74,4 +90,5 @@
 }
 .cozy-addons-admin-notice .plugin-screen img {
 	max-height: 214px;
+	margin-bottom: -5px;
 }
