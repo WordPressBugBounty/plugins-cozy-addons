@@ -1,6 +1,10 @@
 <?php
 namespace Core\Api;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use WP_REST_Request;
 
 class Block {
@@ -492,8 +496,9 @@ class Block {
 			'taxonomy'   => 'category',
 			'hide_empty' => true,
 			'number'     => $request->get_param( 'per_page' ) ?? 10,
-			'order'      => 'DESC',
-			'orderby'    => 'count',
+			'order'      => $request->get_param( 'order' ) ?? 'DESC',
+			'orderby'    => $request->get_param( 'orderby' ) ?? 'count',
+			'exclude'    => $request->get_param( 'exclude' ) ?? '',
 		);
 
 		$categories = get_categories( $args );

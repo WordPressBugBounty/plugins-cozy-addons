@@ -1,6 +1,10 @@
 <?php
 namespace CozyAddons;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Loads the core functionality for the Cozy Addons plugin.
  *

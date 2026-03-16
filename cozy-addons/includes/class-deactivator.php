@@ -1,6 +1,10 @@
 <?php
 namespace CozyAddons;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Fired during plugin deactivation.
  *

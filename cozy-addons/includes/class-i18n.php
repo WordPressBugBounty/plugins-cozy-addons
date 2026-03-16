@@ -1,6 +1,10 @@
 <?php
 namespace CozyAddons;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Handles internationalization (i18n) for the Cozy Addons plugin.
  *

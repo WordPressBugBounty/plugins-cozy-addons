@@ -1,3 +1,9 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
+
 <div class="dashboard-box">
 	<div class="dashboard-main">
 		<div class="dasboard-content">

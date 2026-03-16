@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -612,7 +616,7 @@ if ( ! function_exists( 'add_to_wishlist_cookie' ) ) {
 if ( ! is_user_logged_in() ) {
 	?>
 
-<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'public/js/jquery.js'; ?>"></script>
+<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'vendor/jquery/jquery.js'; ?>"></script>
 <script type="text/javascript">
 	// var wishlistCount = document.querySelector('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count');
 	var wishlistData = getLocalWishlist();
@@ -725,7 +729,7 @@ if ( ! is_user_logged_in() ) {
 
 if ( 'wishlist' === $attributes['variation'] && is_user_logged_in() ) {
 	?>
-<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'public/js/jquery.js'; ?>"></script>
+<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'vendor/jquery/jquery.js'; ?>"></script>
 <script type="text/javascript">
 	var showWishlistCount = <?php echo 'sidebar' === $attributes['variation'] && isset( $attributes['sidebar']['count']['enabled'] ) && $attributes['sidebar']['count']['enabled'] ? '1' : '0'; ?>;
 

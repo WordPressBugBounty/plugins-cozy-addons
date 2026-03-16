@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $client_id = $attributes['blockClientId'];
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', sanitize_key( $client_id ) );
 

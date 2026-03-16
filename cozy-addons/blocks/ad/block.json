@@ -70,12 +70,22 @@
       "type": "string",
       "default": "default"
     },
+    "figCaption": {
+      "type": "object",
+      "default": {
+        "caption": "",
+        "marginTop": "5px",
+        "align": "right"
+      }
+    },
     "media": {
       "type": "object",
       "default": {
         "id": 0,
         "url": "",
         "link": "",
+        "title": "",
+        "alt": "",
         "openNewTab": true,
         "dimensionType": "",
         "width": "765px",

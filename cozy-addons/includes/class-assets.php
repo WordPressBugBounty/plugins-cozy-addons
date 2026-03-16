@@ -1,6 +1,10 @@
 <?php
 namespace CozyAddons;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Manages static assets for the Cozy Addons plugin.
  *

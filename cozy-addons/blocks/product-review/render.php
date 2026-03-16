@@ -1,6 +1,9 @@
 <?php
-
 use CozyAddons\Helpers\Utils;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 $client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyProductReview_' . str_replace( '-', '_', $client_id );

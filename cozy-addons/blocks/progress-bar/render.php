@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyProgressBar_' . str_replace( '-', '_', $client_id );
 wp_localize_script( 'cozy-block--progress-bar--frontend-script', $cozy_block_var, $attributes );
@@ -35,6 +39,16 @@ $bar_color = array(
 );
 
 $block_styles = "
+.cozy-block-wrapper.$block_id .label-wrapper .progress{
+    font-weight: {$attributes['typography']['fontWeight']};
+    font-size: {$attributes['typography']['fontSize']}px;
+    font-family: {$attributes['typography']['fontFamily']};
+    text-transform: {$typography['letter_case']};
+    text-decoration: {$typography['decoration']};
+    line-height: {$typography['line_height']};
+    letter-spacing: {$typography['letter_spacing']};
+    color: {$container_color['text']};
+}
 .cozy-block-wrapper.$block_id .label-wrapper.display-flex.justify-spread {
     margin-bottom: {$attributes['label']['marginBottom']}px;
     font-weight: {$attributes['typography']['fontWeight']};

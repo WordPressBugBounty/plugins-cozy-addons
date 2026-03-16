@@ -1,6 +1,10 @@
 <?php
 namespace Core\Filters;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class QueryLoop {
 	/**
 	 * The singleton instance of the class.

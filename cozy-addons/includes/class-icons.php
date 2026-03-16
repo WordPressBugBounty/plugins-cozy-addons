@@ -2,6 +2,10 @@
 
 namespace CozyAddons;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Icons {
 	public static function get_cozy_icon_collection() {
 		$icons_stub = array(

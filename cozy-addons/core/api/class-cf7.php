@@ -1,6 +1,10 @@
 <?php
 namespace Core\Api;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use WP_REST_Request;
 
 class CF7 {

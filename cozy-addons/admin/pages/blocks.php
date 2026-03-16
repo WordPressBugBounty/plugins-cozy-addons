@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <div style="display:flex;justify-content:space-between;align-items:center">
 	<h2><?php esc_html_e( 'Control Settings for Blocks', 'cozy-addons' ); ?></h2>
 	<div style="font-size:14px;font-weight:500;cursor:pointer;color:#fff">

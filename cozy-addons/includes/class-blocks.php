@@ -2,7 +2,9 @@
 
 namespace CozyAddons;
 
-use CozyAddons\Helpers\Utils;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Handles the registration and management of custom Gutenberg blocks
@@ -192,12 +194,14 @@ class Blocks {
 			$script_handle        = 'cozy-block--' . $block_name . '--frontend-script';
 
 			if ( file_exists( $frontend_script_path ) ) {
-				$deps = array( 'jquery', 'cozy-addons--aos', 'cozy-swiper-bundle' );
-
+				$deps           = array( 'jquery', 'cozy-swiper-bundle' );
+				$animation_load = get_option( 'ca--utility--animation', '1' );
+				if ( '1' === $animation_load ) {
+					$deps[] = 'cozy-addons--aos';
+				}
 				if ( 'countdown-timer' === $block_name ) {
 					$deps[] = 'cozy-dep-luxon';
 				}
-
 				wp_register_script( $script_handle, $frontend_script_url, $deps, COZY_ADDONS_VERSION, true );
 			}
 

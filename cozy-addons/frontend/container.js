@@ -51,8 +51,13 @@
 				value: `cozyFade ${blockOptions.animation.duration}s forwards ${blockOptions.animation.delay}s`,
 			},
 		];
-
-		if (blockOptions.backgroundColorHover.length > 0) {
+		if (blockOptions.backgroundColor) {
+			containerStyles.push({
+				property: "--cozyContainerBgColor",
+				value: blockOptions.backgroundColor,
+			});
+		}
+		if (blockOptions.backgroundColorHover) {
 			containerStyles.push({
 				property: "--cozyContainerBgColorHover",
 				value: blockOptions.backgroundColorHover,
@@ -63,7 +68,6 @@
 				value: blockOptions.backgroundColor,
 			});
 		}
-
 		if (blockOptions.border.type !== "none") {
 			containerStyles.push({
 				property: "--cozyContainerBorderWidth",
@@ -176,7 +180,7 @@
 			if (isElementInViewport(cozyContainer)) {
 				if (blockOptions.animation.effect !== "none") {
 					cozyContainer.classList.add(
-						"effect-" + blockOptions.animation.effect
+						"effect-" + blockOptions.animation.effect,
 					);
 					cozyContainer.classList.remove("visibility-none");
 				}
@@ -187,7 +191,7 @@
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					cozyContainer.classList.add(
-						"effect-" + blockOptions.animation.effect
+						"effect-" + blockOptions.animation.effect,
 					);
 					cozyContainer.classList.remove("visibility-none");
 				}
@@ -233,7 +237,7 @@
 		) {
 			function setFixedPositionStyle() {
 				const stickyDiv = $(containerClass).find(
-					".wp-block-cozy-block-container"
+					".wp-block-cozy-block-container",
 				);
 
 				if (this.window.scrollY > 0) {
@@ -260,7 +264,7 @@
 
 			function setStickyPositionStyle() {
 				const stickyDiv = document.querySelector(
-					".cozy-block-wrapper.position-sticky " + containerClass
+					".cozy-block-wrapper.position-sticky " + containerClass,
 				);
 				const rect = stickyDiv.getBoundingClientRect();
 
@@ -268,7 +272,7 @@
 					// The cozyContainer background is set when stickyDiv is at top
 					cozyContainer.style.setProperty(
 						"background",
-						blockOptions.stickyStyles.bgColor
+						blockOptions.stickyStyles.bgColor,
 					);
 				} else {
 					// Reset the cozyContainer background if stickyDiv is not at the top

@@ -1,4 +1,7 @@
-= 2.2.7 - January 07, 2025 = 
+= 2.2.8 - March 16, 2026 = 
+* Fix: Block improvements
+
+= 2.2.7 - January 07, 2026 = 
 * Add: Patterns & Templates
 * Fix: Block improvements
 

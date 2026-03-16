@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 $client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $cozy_block_var = 'cozyScrollTop_' . str_replace( '-', '_', $client_id );
@@ -15,6 +18,9 @@ $color = array(
 );
 
 $block_styles = "
+.cozy-block-back-to-top-zindex.position-fixed{
+    z-index:{$attributes['position']['zIndex']};
+}
 #$block_id {
     width: {$attributes['styles']['boxWidth']}px;
     height: {$attributes['styles']['boxHeight']}px;
@@ -39,7 +45,7 @@ $block_styles = "
 }
 ";
 
-$output = '<div class="cozy-block-wrapper position-fixed">';
+$output = '<div class="cozy-block-wrapper cozy-block-back-to-top-zindex position-fixed">';
 
 add_action(
 	'wp_enqueue_scripts',

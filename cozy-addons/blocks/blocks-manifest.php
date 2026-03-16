@@ -263,12 +263,22 @@ return array(
 				'type' => 'string',
 				'default' => 'default'
 			),
+			'figCaption' => array(
+				'type' => 'object',
+				'default' => array(
+					'caption' => '',
+					'marginTop' => '5px',
+					'align' => 'right'
+				)
+			),
 			'media' => array(
 				'type' => 'object',
 				'default' => array(
 					'id' => 0,
 					'url' => '',
 					'link' => '',
+					'title' => '',
+					'alt' => '',
 					'openNewTab' => true,
 					'dimensionType' => '',
 					'width' => '765px',
@@ -532,6 +542,26 @@ return array(
 			'perPage' => array(
 				'type' => 'number',
 				'default' => -1
+			),
+			'order' => array(
+				'type' => 'string',
+				'default' => 'DESC'
+			),
+			'orderBy' => array(
+				'type' => 'string',
+				'default' => 'count'
+			),
+			'excludeID' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'excludeCategories' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
 			),
 			'showNestedCategory' => array(
 				'type' => 'boolean',
@@ -1541,7 +1571,8 @@ return array(
 				'type' => 'object',
 				'default' => array(
 					'right' => 25,
-					'bottom' => 25
+					'bottom' => 25,
+					'zIndex' => 9999
 				)
 			),
 			'styles' => array(
@@ -2657,14 +2688,7 @@ return array(
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
-			'html' => false,
-			'background' => array(
-				'backgroundImage' => true,
-				'backgroundSize' => true,
-				'__experimentalDefaultControls' => array(
-					'backgroundImage' => true
-				)
-			)
+			'html' => false
 		),
 		'attributes' => array(
 			'cover' => array(
@@ -2798,6 +2822,10 @@ return array(
 					'spread' => 0,
 					'position' => ''
 				)
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
 			),
 			'backgroundColorHover' => array(
 				'type' => 'string',

@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['clientId'] ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -33,6 +37,10 @@ $block_styles = "
 }
 #$block_id .object-fit-cover .cozy-block-ad__image {
     object-position: {$image['position']['x']}% {$image['position']['y']}%;
+}
+#$block_id .cozy-block-ad__caption{
+	justify-content: {$attributes['figCaption']['align']};
+	margin-top: {$attributes['figCaption']['marginTop']};
 }
 ";
 

@@ -97,3 +97,9 @@ export function renderTRBL(type, attr) {
 		return "";
 	}
 }
+
+export function handleWhiteSpace(font) {
+	if (font.includes(" ")) {
+		return font.replace(/ /g, "+");
+	}
+}

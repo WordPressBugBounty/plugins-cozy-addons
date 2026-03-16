@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $client_id     = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $container_var = 'cozyContainer_' . str_replace( '-', '_', $client_id );
 
@@ -31,7 +35,7 @@ $block_styles = "
 #$block_id .cozy-shape-divider-wrapper svg {
     margin: {$attributes['shapeDivider']['margin']['top']}px {$attributes['shapeDivider']['margin']['right']}px {$attributes['shapeDivider']['margin']['bottom']}px {$attributes['shapeDivider']['margin']['left']}px;
     height: {$attributes['shapeDivider']['height']}px;
-    fill: {$attributes['shapeDivider']['color']};
+    fill: " . ( ! empty( $attributes['shapeDivider']['color'] ) ? $attributes['shapeDivider']['color'] : '' ) . ";
 }
 ";
 

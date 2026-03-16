@@ -69,6 +69,22 @@
       "type": "number",
       "default": -1
     },
+    "order": {
+      "type": "string",
+      "default": "DESC"
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "count"
+    },
+    "excludeID": {
+      "type": "array",
+      "default": []
+    },
+    "excludeCategories": {
+      "type": "array",
+      "default": []
+    },
     "showNestedCategory": {
       "type": "boolean",
       "default": true

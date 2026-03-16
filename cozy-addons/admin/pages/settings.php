@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <div class="settings-page">
 	<?php
 	if ( wp_is_block_theme() ) {

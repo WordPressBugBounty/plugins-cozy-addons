@@ -6,14 +6,7 @@
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {
-    "html": false,
-    "background": {
-      "backgroundImage": true,
-      "backgroundSize": true,
-      "__experimentalDefaultControls": {
-        "backgroundImage": true
-      }
-    }
+    "html": false
   },
   "attributes": {
     "cover": {
@@ -147,6 +140,10 @@
         "spread": 0,
         "position": ""
       }
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
     },
     "backgroundColorHover": {
       "type": "string",

@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyModal_' . str_replace( '-', '_', $client_id );
 wp_localize_script( 'cozy-block--modal--frontend-script', $cozy_block_var, $attributes );
@@ -93,8 +97,8 @@ $block_styles = "
     border-radius: {$button_styles['img']['radius']}px;
 }
 .cozy-modal-open[data-type='{$client_id}']:hover {
-    color: {$button_styles['text_hover']};
-    background-color: {$button_styles['bg_hover']};
+    color: {$button_styles['text_hover']} !important;
+    background-color: {$button_styles['bg_hover']} !important;
 }
 #$block_id {
     padding: {$attributes['padding']['top']}px {$attributes['padding']['right']}px {$attributes['padding']['bottom']}px {$attributes['padding']['left']}px;

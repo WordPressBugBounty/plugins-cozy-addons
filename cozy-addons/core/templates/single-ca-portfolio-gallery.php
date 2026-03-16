@@ -1,3 +1,9 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
+
 <!-- wp:template-part {"slug": "header", "area":"header"} /-->
 
 <!-- wp:group {"layout":{"type":"constrained","contentSize":"100%"}} -->

@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Sets or updates the post view count for a specific post.
  *
@@ -261,6 +265,7 @@ function cozy_addons_toggle_ca_utility_function_status_callback() {
 	$allowed_options = array(
 		'animation',
 		'styles',
+		'pattern-library',
 	);
 
 	$request_option = isset( $_POST['functionName'] ) ? sanitize_text_field( wp_unslash( $_POST['functionName'] ) ) : '';
@@ -2022,6 +2027,7 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 		'core/heading',
 		'core/site-title',
 		'core/paragraph',
+		'core/post-title',
 		'cozy-block/mega-menu',
 	);
 
@@ -2096,6 +2102,22 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 				} else {
 					return $block_content;
 				}
+			} elseif ( 'core/post-title' === $block['blockName'] ) {
+				preg_match( '/<(h\d)\b[^>]*\bclass="([^"]+)"/i', $block_content, $matches );
+
+				$tag_name       = isset( $matches[1] ) ? $matches[1] : 'h2';
+				$existing_class = isset( $matches[2] ) ? $matches[2] : '';
+				preg_match( '/<h\d\b[^>]*\bstyle="([^"]+)"/i', $block_content, $matches );
+				$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
+
+				$appended_styles = $existing_styles ? $existing_styles . $new_styles : $new_styles;
+
+				$block_content = preg_replace(
+					'/<h\d\b[^>]*\bclass="' . preg_quote( $existing_class, '/' ) . '"/i',
+					'<' . $tag_name . ' style="' . esc_attr( $appended_styles ) . '" class="' . esc_attr( $existing_class ) . '"',
+					$block_content,
+					1
+				);
 			} elseif ( 'core/paragraph' === $block['blockName'] ) {
 				preg_match( '/<p(?:\s+class="([^"]+)")?/', $block_content, $matches );
 				$existing_class = isset( $matches[1] ) ? $matches[1] : '';
@@ -2116,7 +2138,7 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 				$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( $existing_class ) . '" style="' . $appended_styles . '"', $block_content );
 			}
 
-			$block_content = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $custom_font . ':wght@400;500;600;700;800" />' . $block_content;
+			$block_content = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . str_replace( ' ', '+', trim( $custom_font ) ) . ':wght@400;500;600;700;800" />' . $block_content;
 
 		}
 	}
@@ -2135,6 +2157,7 @@ function apply_cozy_block_animation_responsive_hover_filter( $block_content, $bl
 		'core/cover',
 		'core/group',
 		'core/heading',
+		'core/post-title',
 		'core/site-title',
 		'core/columns',
 		'core/column',
@@ -2200,12 +2223,6 @@ function apply_cozy_block_animation_responsive_hover_filter( $block_content, $bl
 			$block_content = preg_replace( '/<figure class="' . preg_quote( $existing_class ) . '.*?"/', '<figure class="' . esc_attr( $updated_class ) . '"' . $aos_string, $block_content );
 
 		} else {
-			// $block_content = preg_replace(
-			// '/<div class="' . preg_quote( $existing_class ) . '.*?"/',
-			// '<div class="' . esc_attr( $updated_class ) . '"' . $aos_string,
-			// $block_content
-			// );
-
 			$found         = false;
 			$block_content = preg_replace_callback(
 				'/<div class="' . preg_quote( $existing_class, '/' ) . '.*?"/',

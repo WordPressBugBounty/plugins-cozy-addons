@@ -2,6 +2,10 @@
 
 namespace CozyAddons\Helpers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class BlockRender {
 
 	/**

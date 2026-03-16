@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -349,7 +353,7 @@ echo $render;
 
 
 ?>
-<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'public/js/jquery.js'; ?>"></script>
+<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'vendor/jquery/jquery.js'; ?>"></script>
 <script type="text/javascript">
 	function handleQuickViewIconClick(productId, attributes) {
 		if ($('body').find('.cozy-block-quick-view__lightbox-wrapper').length === 0) {
@@ -524,5 +528,3 @@ echo $render;
 	
 	}
 </script>
-
-<?php

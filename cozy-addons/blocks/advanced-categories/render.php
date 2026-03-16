@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['clientId'] ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -296,7 +300,6 @@ $block_styles = "
 }
 ";
 // Block Styles END.
-
 $output = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
 
 $display_wrapper_classes   = array();
@@ -307,10 +310,10 @@ $output                   .= '<div class="' . implode( ' ', $display_wrapper_cla
 $args = array(
 	'taxonomy'   => 'category',
 	'hide_empty' => true,
-	'number'     => -1 !== $attributes['perPage'] ? $attributes['perPage'] : '',
-	'order'      => 'DESC',
-	'orderby'    => 'count',
-	// 'parent'     => 0,
+	'number'     => -1 !== $attributes['perPage'] ? absint( $attributes['perPage'] ) : '',
+	'order'      => isset( $attributes['order'] ) ? sanitize_text_field( $attributes['order'] ) : 'DESC',
+	'orderby'    => isset( $attributes['orderBy'] ) ? sanitize_text_field( $attributes['orderBy'] ) : 'count',
+	'exclude'    => isset( $attributes['excludeID'] ) ? array_map( 'absint', $attributes['excludeID'] ) : array(),
 );
 
 if ( isset( $attributes['showNestedCategory'] ) && ! filter_var( $attributes['showNestedCategory'], FILTER_VALIDATE_BOOLEAN ) ) {

@@ -1,6 +1,10 @@
 <?php
 namespace CozyAddons\Helpers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Utility helper functions for the Cozy Addons plugin.
  *

@@ -1,6 +1,10 @@
 <?php
 namespace Core\Api;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use WP_REST_Request;
 
 class Patterns {
@@ -71,6 +75,18 @@ class Patterns {
 				)
 			);
 
+			register_rest_route(
+				'cozy-block/v1',
+				'/page-content',
+				array(
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_page_content' ),
+					'permission_callback' => function () {
+						return __return_true();
+					},
+				)
+			);
+
 		} catch ( \Exception $e ) {
 			// error_log( 'Error registering route: ' . $e->getMessage() );
 		}
@@ -135,6 +151,47 @@ class Patterns {
 			}
 
 			return $serialized_blocks;
+		}
+
+		return '';
+	}
+
+	/**
+	 * Get page content from a local PHP template file via REST API.
+	 *
+	 * This method retrieves a page slug from the REST request, validates it,
+	 * and attempts to load a matching PHP file from the plugin’s
+	 * `core/library/pages/` directory.
+	 *
+	 * The loaded PHP file is buffered, parsed into Gutenberg blocks,
+	 * and returned as serialized block content.
+	 *
+	 * File resolution:
+	 * - core/library/pages/{slug_part}.php
+	 *
+	 * @param \WP_REST_Request $request REST request object.
+	 *
+	 * @return string Serialized block content on success.
+	 *                Empty string if the slug is invalid or file not found.
+	 */
+	public function get_page_content( \WP_REST_Request $request ) {
+		$page_slug = $request->get_param( 'slug' ) ? sanitize_text_field( wp_unslash( $request->get_param( 'slug' ) ) ) : '';
+
+		if ( empty( $page_slug ) ) {
+			return;
+		}
+
+		$page_filename = explode( '/', $page_slug );
+
+		if ( count( $page_filename ) === 2 && file_exists( COZY_ADDONS_PLUGIN_DIR . 'core/library/pages/' . $page_filename[1] . '.php' ) ) {
+			ob_start();
+
+			$pattern_file = ( COZY_ADDONS_PLUGIN_DIR . 'core/library/pages/' . $page_filename[1] . '.php' );
+			include_once $pattern_file;
+
+			$content = ob_get_clean();
+
+			return serialize_blocks( parse_blocks( $content ) );
 		}
 
 		return '';

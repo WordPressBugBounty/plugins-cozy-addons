@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 $ca_mega_menu_enabled         = get_option( 'ca-cpt--mega-menu-templates' );
 $ca_portfolio_gallery_enabled = get_option( 'ca-cpt--portfolio-gallery-templates' );

@@ -1,6 +1,10 @@
 <?php
 namespace CozyAddons;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Handles admin-specific functionality for the Cozy Addons plugin.
  *

@@ -1,3 +1,8 @@
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <div class="ct-companion-dashboard">
 	<div class="dashboard-container">
 		<div class="ct-dashboard-nav">

@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $client_id = ! empty( $attributes['clientId'] ) ? cozy_remove_special_chars( $attributes['clientId'] ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
@@ -170,7 +174,7 @@ echo $render;
 
 ?>
 
-<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'public/js/jquery.js'; ?>"></script>
+<script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'vendor/jquery/jquery.js'; ?>"></script>
 <script type="text/javascript">
 	function handleAddToCartClick(productId) {
 		if ($('body').find('.cozy-block-add-to-cart__toast').length === 0) {
