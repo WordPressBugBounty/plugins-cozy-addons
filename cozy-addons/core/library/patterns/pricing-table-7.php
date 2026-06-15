@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"border":{"width":"0px","style":"none"},"color":{"text":"#202020","background":"#fffffe"},"elements":{"link":{"color":{"text":"#202020"}}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"}},"layout":{"type":"constrained","contentSize":"733px"},"cozyCustomFont":"Public Sans"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="border-style:none;border-width:0px;color:#202020;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"#16b1ff"}}},"color":{"text":"#16b1ff"},"typography":{"textTransform":"uppercase"}}} -->
 <p class="has-text-align-center has-text-color has-link-color" style="color:#16b1ff;text-transform:uppercase"><?php esc_html_e( 'Pricing & Plans', 'cozy-addons' ); ?></p>

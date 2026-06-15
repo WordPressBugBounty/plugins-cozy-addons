@@ -168,10 +168,6 @@ class Assets {
 	public function load_block_assets() {
 		// Block CSS.
 		wp_enqueue_style( 'cozy-addons--blocks--style', self::$url . 'css/cozy-block.css', array(), COZY_ADDONS_VERSION, 'all' );
-
-		// Responsive Script.
-		wp_enqueue_script( 'cozy-addons--block-responsive', self::$url . 'js/cozy-responsive.js', array( 'jquery' ), COZY_ADDONS_VERSION, false );
-
 		// AOS animation lib.
 		$animation_status = $this->get_utility_function_status( 'animation' );
 		if ( $animation_status ) {

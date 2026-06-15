@@ -130,9 +130,13 @@ $block_styles = "
 #$block_id.layout-vertical .cozy-tab-title {
     gap: {$attributes['rowGap']}px;
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 767px) {
     #$block_id.layout-vertical .layout-wrapper {
         margin-bottom: {$attributes['columnGap']}px;
+    }
+    #$block_id.layout-vertical .cozy-tab-title .cozy-tab-button {
+        max-width: {$tab_width}px;
+        width: 100%;
     }
 }
 

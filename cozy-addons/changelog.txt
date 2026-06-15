@@ -1,3 +1,9 @@
+= 2.2.9 - June 15, 2026 = 
+* Fix: Block improvements
+* Fix: 'Cozy Responsive Visiblity' glitch on load.
+* Fix: Pattern library script conflict with WooCommerce cart page.
+* Update: Compatible with WP v7.0
+
 = 2.2.8 - March 16, 2026 = 
 * Fix: Block improvements
 

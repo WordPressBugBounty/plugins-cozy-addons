@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"},"blockGap":"0","margin":{"top":"0","bottom":"0"}},"color":{"background":"#f6f6f6","text":"#505857"},"elements":{"link":{"color":{"text":"#505857"}}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyHoverEffect":{"hasOverflow":true,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#505857;background-color:#f6f6f6;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"60px"}}},"layout":{"type":"constrained","contentSize":"716px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:60px"><!-- wp:group {"style":{"spacing":{"margin":{"bottom":"6px"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->

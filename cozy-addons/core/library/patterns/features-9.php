@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"color":{"text":"#4c4c4c","background":"#fffffe"},"elements":{"link":{"color":{"text":"#4c4c4c"}}},"typography":{"fontSize":"16px","lineHeight":"1.6","fontStyle":"normal","fontWeight":"400"}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Be Vietnam Pro"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#4c4c4c;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"792px"}} -->
 <div class="wp-block-group"><!-- wp:heading {"textAlign":"center","style":{"color":{"text":"#1f1306"},"elements":{"link":{"color":{"text":"#1f1306"}}},"typography":{"fontSize":"44px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.2"}},"cozyCustomFont":"Roboto Slab"} -->

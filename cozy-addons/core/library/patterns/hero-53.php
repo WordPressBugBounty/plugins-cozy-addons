@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"0","left":"0","top":"0","bottom":"0"}},"color":{"text":"#6a6a6a"},"elements":{"link":{"color":{"text":"#6a6a6a"},":hover":{"color":{"text":"#567835"}}}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"400","lineHeight":"1.6"}},"layout":{"type":"constrained","contentSize":"100%"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-link-color" style="color:#6a6a6a;margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;font-size:18px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:cozy-block/container {"blockClientId":"f344a20c-0f2f-4220-b67c-8f39487ea59a","position":"fixed","stickyStyles":{"bgColor":"#56783587"},"zIndex":"9999"} -->
 <div class="wp-block-cozy-block-container"><div class="cozy-block-container visibility-none border-none hover-border-none

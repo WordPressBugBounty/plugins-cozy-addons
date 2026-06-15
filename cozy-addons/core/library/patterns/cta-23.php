@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:columns {"verticalAlignment":null,"style":{"spacing":{"blockGap":{"top":"0","left":"26px"},"margin":{"top":"0","bottom":"0"},"padding":{"right":"0","left":"0","top":"0","bottom":"0"}},"color":{"text":"#e9e8e8","background":"#3e11d1"},"elements":{"link":{"color":{"text":"#e9e8e8"}}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"}},"cozyCustomFont":"Inter","cozyAnimation":{"type":"fade-up","easingFunction":"ease","anchorPlacement":"top-center","duration":800}} -->
 <div class="wp-block-columns has-text-color has-background has-link-color" style="color:#e9e8e8;background-color:#3e11d1;margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:column {"style":{"spacing":{"blockGap":"0","padding":{"right":"0","left":"0","top":"0","bottom":"0"}}}} -->
 <div class="wp-block-column" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"url":"https://plugins.cozythemes.com/cozy-addons/assets/media/cta-15.png","dimRatio":0,"minHeight":550,"isDark":false} -->

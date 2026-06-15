@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"}},"typography":{"fontSize":"24px","lineHeight":"1.7","fontStyle":"normal","fontWeight":"400"},"color":{"background":"#0c50ff","text":"#fffffe"},"elements":{"link":{"color":{"text":"#fffffe"}}}},"layout":{"type":"constrained","contentSize":"960px"},"cozyCustomFont":"Unbounded"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#fffffe;background-color:#0c50ff;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:24px;font-style:normal;font-weight:400;line-height:1.7"><!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px","bottom":"10px"}}}} -->
 <p style="margin-top:0px;margin-bottom:10px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>

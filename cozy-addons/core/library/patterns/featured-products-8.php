@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"80px","bottom":"80px","left":"26px","right":"26px"},"blockGap":"0"},"typography":{"fontSize":"18px","lineHeight":"1.6","fontStyle":"normal","fontWeight":"500"},"color":{"text":"#6a6a6a","background":"#fffffe"},"elements":{"link":{"color":{"text":"#6a6a6a"}}}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#6a6a6a;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:18px;font-style:normal;font-weight:500;line-height:1.6"><!-- wp:heading {"textAlign":"center","style":{"typography":{"fontSize":"44px","fontStyle":"normal","fontWeight":"400","lineHeight":"1.2"},"color":{"text":"#1C1C02"},"elements":{"link":{"color":{"text":"#1C1C02"}}}},"cozyCustomFont":"Inter"} -->
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#1C1C02;font-size:44px;font-style:normal;font-weight:400;line-height:1.2"><?php esc_html_e( 'Family Room Styling', 'cozy-addons' ); ?></h2>

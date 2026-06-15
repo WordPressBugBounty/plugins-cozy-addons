@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 return array(
 	'cozy-addons/hero-24',
 	'cozy-addons/about-us-30',

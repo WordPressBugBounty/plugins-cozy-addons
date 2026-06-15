@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"80px","bottom":"80px","left":"26px","right":"26px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"color":{"background":"#ffc907","text":"#4c4c4c"},"elements":{"link":{"color":{"text":"#4c4c4c"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"}},"layout":{"type":"constrained","contentSize":"878px"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#011436","horizontal":0,"vertical":0,"blur":16,"spread":-12,"position":""},"boxShadowHover":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#4c4c4c;background-color:#ffc907;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400"><!-- wp:heading {"textAlign":"center","style":{"elements":{"link":{"color":{"text":"#1f1306"}}},"color":{"text":"#1f1306"},"typography":{"fontSize":"44px","fontStyle":"normal","fontWeight":"600"},"spacing":{"padding":{"top":"0px"}}},"cozyCustomFont":"Roboto Slab"} -->
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#1f1306;padding-top:0px;font-size:44px;font-style:normal;font-weight:600"><?php esc_html_e( 'Make a Difference Rescue a Child Today!', 'cozy-addons' ); ?></h2>

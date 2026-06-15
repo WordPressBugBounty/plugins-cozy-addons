@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/icon-picker",
   "title": "Icon Picker",
+  "description": "Unlock endless possibilities with our 'Icon Picker' block, providing a user-friendly interface to choose from a diverse range of icons, enhancing the visual appeal of your content.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"color":{"background":"#fffffe","text":"#011436"},"elements":{"link":{"color":{"text":"#011436"}}},"typography":{"fontSize":"16px","lineHeight":"1.6","fontStyle":"normal","fontWeight":"300"}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Urbanist"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#011436;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:300;line-height:1.6"><!-- wp:image {"sizeSlug":"large"} -->
 <figure class="wp-block-image size-large"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/service-24.png" alt=""/></figure>

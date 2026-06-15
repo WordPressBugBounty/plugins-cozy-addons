@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"color":{"background":"#fbffff","text":"#505050"},"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"top":"0","bottom":"0","left":"0","right":"0"}},"background":{"backgroundImage":{"url":"https://plugins.cozythemes.com/cozy-addons/assets/media/footer-1.png","id":2112,"source":"file","title":"footer-1"},"backgroundSize":"cover","backgroundPosition":"50% 20%"},"elements":{"link":{"color":{"text":"#505050"},":hover":{"color":{"text":"#0043ec"}}}}},"layout":{"type":"constrained","contentSize":"100%"},"cozyCustomFont":"Be Vietnam Pro"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#505050;background-color:#fbffff;margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:group {"style":{"spacing":{"padding":{"right":"26px","left":"26px","top":"100px","bottom":"80px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"1180px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:100px;padding-right:26px;padding-bottom:80px;padding-left:26px"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"44px","left":"26px"},"padding":{"top":"0","right":"0","bottom":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->

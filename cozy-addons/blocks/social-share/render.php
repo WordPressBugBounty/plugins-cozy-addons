@@ -28,6 +28,9 @@ $attr_wrapper_styles = array(
 		'bg' => isset( $attributes['wrapperStyles']['color']['bg'] ) ? $attributes['wrapperStyles']['color']['bg'] : '',
 	),
 );
+$justify_content = isset( $attributes['display']['layout'] ) && $attributes['display']['layout'] === 'default'
+    ? "justify-content: {$attributes['display']['position']};"
+    : '';
 $attr_icon           = array(
 	'label_gap'      => isset( $attributes['icon']['labelGap'] ) ? $attributes['icon']['labelGap'] : '',
 	'view'           => isset( $attributes['icon']['view'] ) ? $attributes['icon']['view'] : 'stacked',
@@ -68,6 +71,7 @@ $block_styles = "
 	gap: {$attr_icon['gap']};
 	row-gap: {$attr_icon['row_gap']};
 	flex-wrap: {$attr_wrapper_styles['stack_layout']};
+	{$justify_content}
 }
 
 #$block_id .social-share__icon a {

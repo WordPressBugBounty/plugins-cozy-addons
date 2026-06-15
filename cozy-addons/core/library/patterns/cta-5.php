@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"100px","bottom":"100px"},"blockGap":"0"},"color":{"text":"#fffffe","background":"#011436"},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"},"elements":{"link":{"color":{"text":"#fffffe"}}}},"layout":{"type":"constrained","contentSize":"774px"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#fffffe;background-color:#011436;margin-top:0;margin-bottom:0;padding-top:100px;padding-right:26px;padding-bottom:100px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400"><!-- wp:heading {"textAlign":"center","style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"44px","fontStyle":"normal","fontWeight":"500","textTransform":"uppercase","lineHeight":"1.4"},"spacing":{"padding":{"top":"0px"}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Inter"} -->
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#fffffe;padding-top:0px;font-size:44px;font-style:normal;font-weight:500;line-height:1.4;text-transform:uppercase"><?php esc_html_e( 'Discover unforgettable experiences worth savoring.', 'cozy-addons' ); ?></h2>

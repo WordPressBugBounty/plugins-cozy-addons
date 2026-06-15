@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/img-compare",
   "title": "Before/After Image (Pro)",
+  "description": "Showcase stunning before-and-after images with a sleek, interactive Image Compare block for visual storytelling.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "attributes": {

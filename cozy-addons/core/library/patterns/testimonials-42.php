@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"80px","bottom":"80px","left":"26px","right":"26px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"color":{"background":"#f8f8f8","text":"#7c7c7c"},"elements":{"link":{"color":{"text":"#7c7c7c"}}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Open Sans"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#7c7c7c;background-color:#f8f8f8;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:cozy-block/testimonial {"blockClientId":"880551a3-c29b-4608-8cf7-8ab46801b7f5","layout":"grid","gridOptions":{"displayColumn":2,"masonryEnabled":false,"columnGap":26}} -->
 <div class="cozy-block-testimonial display-grid    hover-show" id="cozyBlock_880551a3_c29b_4608_8cf7_8ab46801b7f5"><div class="cozy-block-grid-wrapper "><!-- wp:cozy-block/grid -->

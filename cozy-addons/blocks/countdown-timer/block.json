@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/countdown-timer",
   "title": "Countdown Timer (Pro)",
+  "description": "The Countdown Timer Block creates urgency with a customizable timer for promotions or events, featuring automatic hiding after the offer ends.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "attributes": {

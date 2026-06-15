@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/sidebar-panel",
   "title": "Sidebar Panel",
+  "description": "Maximize versatility with our 'Sidebar Panel' block, seamlessly integrating a customizable sidebar drawer to display menus, latest posts, popular content, or any desired elements for a user-friendly and organized layout.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

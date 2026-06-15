@@ -8,9 +8,8 @@
   "supports": {
     "html": false,
     "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
+      "background": false,
+      "link": false,
       "text": true
     },
     "spacing": {
@@ -21,18 +20,6 @@
       ],
       "__experimentalDefaultControls": {
         "padding": true
-      }
-    },
-    "__experimentalBorder": {
-      "color": true,
-      "radius": true,
-      "style": true,
-      "width": true,
-      "__experimentalDefaultControls": {
-        "color": true,
-        "radius": true,
-        "style": true,
-        "width": true
       }
     },
     "typography": {

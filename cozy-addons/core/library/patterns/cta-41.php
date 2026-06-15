@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0","padding":{"right":"0","left":"0","top":"0","bottom":"0"}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"400","lineHeight":"1.6"}},"layout":{"type":"constrained","contentSize":"100%"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;font-size:18px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:cover {"url":"https://plugins.cozythemes.com/cozy-addons/assets/media/cta-33.png","hasParallax":true,"dimRatio":0,"minHeight":500,"isDark":false,"style":{"spacing":{"padding":{"right":"26px","left":"26px"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->
 <div class="wp-block-cover is-light has-parallax" style="padding-right:26px;padding-left:26px;min-height:500px"><div class="wp-block-cover__image-background has-parallax" style="background-position:50% 50%;background-image:url(https://plugins.cozythemes.com/cozy-addons/assets/media/cta-33.png)"></div><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"style":{"spacing":{"padding":{"top":"0px","bottom":"0px","left":"0","right":"0"},"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"630px","justifyContent":"left"}} -->

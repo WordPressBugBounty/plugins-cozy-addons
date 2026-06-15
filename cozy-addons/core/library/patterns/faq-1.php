@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"color":{"text":"#1d201f","background":"#f1f6ff"},"elements":{"link":{"color":{"text":"#1d201f"}}},"spacing":{"blockGap":"0","padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"}},"typography":{"fontSize":"16px"}},"layout":{"type":"constrained","contentSize":"956px","justifyContent":"center"},"cozyCustomFont":"Urbanist"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#1d201f;background-color:#f1f6ff;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px"><!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"22px","fontStyle":"normal","fontWeight":"500"}}} -->
 <p class="has-text-align-center" style="font-size:22px;font-style:normal;font-weight:500"><?php esc_html_e( 'FAQs', 'cozy-addons' ); ?></p>

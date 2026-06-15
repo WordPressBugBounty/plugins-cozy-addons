@@ -3,28 +3,23 @@
   "apiVersion": 3,
   "name": "cozy-block/add-to-cart",
   "title": "Add to Cart",
+  "description": "With the 'Add to Cart' block allows you to easily add products to your cart, featuring a customizable button that can display a label, an icon, or both.",
   "category": "cozy-block/woocommerce",
   "textdomain": "cozy-addons",
   "supports": {
     "html": false,
-    "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
-      "text": true
+    "interactivity": {
+      "clientNavigation": true
     },
     "spacing": {
-      "padding": true,
+      "padding": false,
       "margin": [
         "top",
         "bottom"
       ],
       "__experimentalDefaultControls": {
-        "padding": true
+        "padding": false
       }
-    },
-    "interactivity": {
-      "clientNavigation": true
     }
   },
   "usesContext": [
@@ -49,9 +44,13 @@
       "type": "object",
       "default": {
         "enabled": false,
-        "label": "Add to cart",
+        "padding": {
+          "top": "6px",
+          "right": "26px",
+          "bottom": "6px",
+          "left": "26px"
+        },
         "width": "100%",
-        "height": "40px",
         "gap": "6px",
         "justify": "center",
         "border": {
@@ -86,6 +85,9 @@
           "family": ""
         },
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "#090b10",
           "textHover": "#fff",
@@ -131,18 +133,47 @@
         }
       }
     },
+    "openInNewTab": {
+      "type": "object",
+      "default": {
+        "external": true,
+        "variable": false,
+        "grouped": false
+      }
+    },
     "toast": {
       "type": "object",
       "default": {
         "font": {
-          "size": "14px",
-          "weight": "500",
+          "size": "16px",
+          "weight": "600",
           "family": ""
         },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "#fff",
           "bg": "#28a745"
-        }
+        },
+        "padding": {
+          "top": "8px",
+          "right": "20px",
+          "bottom": "8px",
+          "left": "20px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "0px",
+        "position": {
+          "vertical": "10px",
+          "horizontal": "10px"
+        },
+        "errorText": "Failed To Add Item To Cart"
       }
     }
   },
@@ -151,6 +182,10 @@
     "file:../index.js"
   ],
   "editorStyle": "file:./index.css",
+  "viewScript": [
+    "cozy-block--add-to-cart--frontend-script",
+    "wc-cart-fragments"
+  ],
   "style": [
     "file:./style-index.css",
     "cozy-block--global-block-styles"

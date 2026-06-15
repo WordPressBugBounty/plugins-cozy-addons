@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"},"color":{"background":"#fffffe","text":"#011436"},"elements":{"link":{"color":{"text":"#011436"}}}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Inter Tight"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#011436;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400"><!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"bottom":"40px"}},"typography":{"fontSize":"28px"}}} -->
 <p class="has-text-align-center" style="margin-bottom:40px;font-size:28px"><?php esc_html_e( 'But I must explain to you how all this mistaken idea!', 'cozy-addons' ); ?></p>

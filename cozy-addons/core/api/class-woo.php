@@ -75,6 +75,7 @@ class Woo {
 					'methods'             => \WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_product_by_category' ),
 					'permission_callback' => '__return_true',
+
 				)
 			);
 		} catch ( \Exception $e ) {
@@ -88,6 +89,19 @@ class Woo {
 				array(
 					'methods'             => \WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_woo_products' ),
+					'permission_callback' => '__return_true',
+				)
+			);
+		} catch ( \Exception $e ) {
+			// error_log( 'Error registering route: ' . $e->getMessage() );
+		}
+		try {
+			register_rest_route(
+				'cozy-block/v1',
+				'/add-to-cart',
+				array(
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_woo_cart_text' ),
 					'permission_callback' => '__return_true',
 				)
 			);
@@ -210,6 +224,7 @@ class Woo {
 					'discount_amt'        => $discount_amt,
 					'discount_percentage' => $discount_percentage,
 					'on_sale'             => $product->is_on_sale(),
+					'add_to_cart_text'    => $product->add_to_cart_text(),
 					'rating'              => $product->get_average_rating(), // Get the product rating.
 				);
 			}
@@ -367,6 +382,7 @@ class Woo {
 					'link'                => get_permalink(),
 					'price'               => $price, // Get the product price.
 					'discount_amt'        => $discount_amt,
+					'add_to_cart_text'    => $product->add_to_cart_text(),
 					'discount_percentage' => $discount_percentage,
 					'on_sale'             => $product->is_on_sale(),
 					'rating'              => $product->get_average_rating(), // Get the product rating.
@@ -379,5 +395,32 @@ class Woo {
 		wp_reset_postdata();
 
 		return rest_ensure_response( $products );
+	}
+
+	/**
+	 * Retrieves the add to cart button text for a specific product via REST API.
+	 *
+	 * @param \WP_REST_Request $request The REST API request object containing the product ID.
+	 * @return \WP_REST_Response|WP_Error The response containing the product ID and add to cart text.
+	 */
+	public function get_woo_cart_text( \WP_REST_Request $request ) {
+		$product_id = $request->get_param( 'product_id' );
+
+		if ( empty( $product_id ) ) {
+			return new WP_Error( 'invalid_product_id', 'Invalid product ID', array( 'status' => 400 ) );
+		}
+
+		$product = wc_get_product( $product_id );
+
+		if ( ! $product ) {
+			return new WP_Error( 'product_not_found', 'Product not found', array( 'status' => 404 ) );
+		}
+
+		return rest_ensure_response(
+			array(
+				'product_id'       => $product_id,
+				'add_to_cart_text' => $product->add_to_cart_text(),
+			)
+		);
 	}
 }

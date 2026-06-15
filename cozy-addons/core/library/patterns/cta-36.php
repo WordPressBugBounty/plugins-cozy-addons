@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"background":{"backgroundImage":{"url":"https://plugins.cozythemes.com/cozy-addons/assets/media/cta-30.png","id":5329,"source":"file","title":"cta-30"},"backgroundSize":"cover"},"spacing":{"padding":{"top":"120px","bottom":"120px","left":"26px","right":"26px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"elements":{"link":{"color":{"text":"#f8f8f8"}}},"color":{"text":"#f8f8f8","background":"#001e5f"},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400","lineHeight":"1.6"}},"layout":{"type":"constrained","contentSize":"770px"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#f8f8f8;background-color:#001e5f;margin-top:0;margin-bottom:0;padding-top:120px;padding-right:26px;padding-bottom:120px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:heading {"textAlign":"center","style":{"color":{"text":"#fffffe"},"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"54px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.2"}},"cozyCustomFont":"Inter"} -->
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#fffffe;font-size:54px;font-style:normal;font-weight:600;line-height:1.2"><?php esc_html_e( 'Make Your Appointment Today, Contact Us!', 'cozy-addons' ); ?></h2>

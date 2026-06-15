@@ -4,6 +4,7 @@
   "name": "cozy-block/advanced-gallery",
   "version": "1.0.0",
   "title": "Advanced Gallery",
+  "description": "'Advanced gallery' block with a grid, masonry and carousel layout that opens images in a lightbox for a sleek, full-screen viewing experience.",
   "category": "cozy-block",
   "keywords": [
     "gallery",
@@ -12,12 +13,6 @@
   "textdomain": "cozy-addons",
   "supports": {
     "html": false,
-    "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
-      "text": true
-    },
     "spacing": {
       "padding": true,
       "margin": [
@@ -26,34 +21,6 @@
       ],
       "__experimentalDefaultControls": {
         "padding": true
-      }
-    },
-    "__experimentalBorder": {
-      "color": true,
-      "radius": true,
-      "style": true,
-      "width": true,
-      "__experimentalDefaultControls": {
-        "color": true,
-        "radius": true,
-        "style": true,
-        "width": true
-      }
-    },
-    "typography": {
-      "fontSize": true,
-      "lineHeight": true,
-      "__experimentalFontStyle": true,
-      "__experimentalFontWeight": true,
-      "__experimentalTextTransform": true,
-      "__experimentalFontFamily": true,
-      "__experimentalLetterSpacing": true,
-      "__experimentalTextDecoration": true,
-      "__experimentalSkipSerialization": [
-        "textDecoration"
-      ],
-      "__experimentalDefaultControls": {
-        "fontSize": true
       }
     }
   },

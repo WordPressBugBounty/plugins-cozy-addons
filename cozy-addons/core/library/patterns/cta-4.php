@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"120px","bottom":"120px"},"blockGap":"0"},"color":{"gradient":"linear-gradient(135deg,rgb(12,80,255) 0%,rgb(12,80,255) 62%,rgb(129,164,254) 83%,rgb(12,80,255) 100%)","text":"#fffffe"},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"},"elements":{"link":{"color":{"text":"#fffffe"}}}},"layout":{"type":"constrained","contentSize":"774px"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#fffffe;background:linear-gradient(135deg,rgb(12,80,255) 0%,rgb(12,80,255) 62%,rgb(129,164,254) 83%,rgb(12,80,255) 100%);margin-top:0;margin-bottom:0;padding-top:120px;padding-right:26px;padding-bottom:120px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400"><!-- wp:heading {"textAlign":"center","style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"54px","fontStyle":"normal","fontWeight":"500"},"spacing":{"padding":{"top":"0px"}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#fffffe;padding-top:0px;font-size:54px;font-style:normal;font-weight:500"><?php esc_html_e( 'Let’s make something extraordinary.', 'cozy-addons' ); ?></h2>

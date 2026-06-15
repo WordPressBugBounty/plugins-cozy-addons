@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe","background":"#fffffe"},"spacing":{"padding":{"right":"26px","left":"26px","top":"60px","bottom":"60px"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1024px"},"cozyCustomFont":"Urbanist"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#fffffe;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:60px;padding-right:26px;padding-bottom:60px;padding-left:26px;font-size:18px;font-style:normal;font-weight:500"><!-- wp:group {"style":{"color":{"background":"#0c50ff"},"background":{"backgroundImage":{"url":"http://localhost:8010/wp-content/uploads/2025/11/cta-1.png","id":1622,"source":"file","title":"cta-1"},"backgroundSize":"cover"},"spacing":{"padding":{"top":"0px","bottom":"80px","left":"26px","right":"26px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"border":{"radius":"20px"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-radius:20px;background-color:#0c50ff;margin-top:0;margin-bottom:0;padding-top:0px;padding-right:26px;padding-bottom:80px;padding-left:26px"><!-- wp:heading {"textAlign":"center","style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"},"typography":{"fontSize":"54px","fontStyle":"normal","fontWeight":"700"},"spacing":{"padding":{"top":"64px"}}},"cozyCustomFont":"Inter Tight"} -->

@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/portfolio-gallery",
   "title": "Portfolio Gallery",
+  "description": "Showcase your work with finesse using the 'Portfolio Gallery' block, designed for creating advanced and visually stunning layouts to present your portfolio in a captivating manner.",
   "category": "cozy-block",
   "keywords": [
     "gallery",

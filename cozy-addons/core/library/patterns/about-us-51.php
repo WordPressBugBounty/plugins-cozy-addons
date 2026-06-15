@@ -1,3 +1,9 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"80px","bottom":"0","left":"26px","right":"26px"},"blockGap":"0"},"color":{"background":"#000000","text":"#acacac"},"elements":{"link":{"color":{"text":"#acacac"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400","lineHeight":"1.6"}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Plus Jakarta Sans"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#acacac;background-color:#000000;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:0;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:columns {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":{"top":"34px","left":"26px"}}}} -->
 <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"width":"40%","layout":{"type":"constrained","contentSize":"465px","justifyContent":"left"}} -->

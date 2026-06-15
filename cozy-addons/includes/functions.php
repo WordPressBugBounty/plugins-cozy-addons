@@ -1029,23 +1029,12 @@ function cozy_block_popular_posts_load_content() {
 	$cozy_block_popular_posts_args = array(
 		'post_type'           => 'post',
 		'meta_key'            => 'cozy_post_views_count', // Replace with your popularity field.
-		'orderby'             => 'cozy_post_views_count',
+		'orderby'             => 'meta_value_num',
 		'order'               => 'DESC',
 		'posts_per_page'      => $attributes['perPage'], // Number of popular posts to retrieve.
 		'ignore_sticky_posts' => true,
-		'meta_query'          => array(
-			'relation' => 'AND',
-			array(
-				'key'     => 'cozy_post_views_count',
-				'compare' => 'EXISTS', // Check if the timestamp is greater than or equal to one week ago.
-			),
-			array(
-				'key'     => 'cozy_post_views_count',
-				'value'   => '0',
-				'compare' => '>', // Check if the timestamp is greater than or equal to one week ago.
-			),
-		),
 		'post_status'         => 'publish',
+
 	);
 
 	$additional_post_data = get_cozy_block_popular_posts( $cozy_block_popular_posts_args );
@@ -1103,7 +1092,6 @@ function cozy_block_trending_posts_load_content() {
 		return;
 	}
 
-	/* Fetch Posts */
 	if ( ! function_exists( 'get_cozy_block_trending_posts' ) ) {
 		function get_cozy_block_trending_posts( $args = array() ) {
 			if ( ! empty( $args ) ) {
@@ -1114,11 +1102,10 @@ function cozy_block_trending_posts_load_content() {
 					$post_image_url = get_the_post_thumbnail_url( $post_data->ID );
 					$post_link      = get_permalink( $post_data->ID );
 
-					// Get categories and their links.
 					$categories                  = get_the_category( $post_data->ID );
 					$post_categories             = array();
 					$post_id                     = $post_data->ID;
-					$post_data                   = (array) $post_data; // Convert WP_Post object to an array.
+					$post_data                   = (array) $post_data;
 					$post_data['post_image_url'] = $post_image_url;
 
 					foreach ( $categories as $category ) {
@@ -1150,63 +1137,40 @@ function cozy_block_trending_posts_load_content() {
 		}
 	}
 
+	$offset         = isset( $_POST['offset'] ) ? intval( $_POST['offset'] ) : 0;
+	$posts_per_page = isset( $attributes['ajaxLoader']['content'] ) ? intval( $attributes['ajaxLoader']['content'] ) : 10;
+
 	$cozy_block_trending_posts_args = array(
-		'post_type'      => 'post',
-		'orderby'        => 'cozy_trending_post_views',
-		'order'          => 'DESC',
-		'posts_per_page' => $attributes['perPage'], // Number of trending posts to retrieve.
-		'meta_key'       => 'cozy_trending_post_views', // Replace with your popularity field.
-		'meta_query'     => array(
-			'relation' => 'AND',
-			array(
-				'key'     => 'cozy_trending_post_views',
-				'compare' => 'EXISTS', // Check if the timestamp is greater than or equal to one week ago.
-			),
-			array(
-				'key'     => 'cozy_trending_post_views',
-				'value'   => '0',
-				'compare' => '>', // Check if the timestamp is greater than or equal to one week ago.
-			),
-		),
-		'post_status'    => 'publish',
+		'post_type'           => 'post',
+		'meta_key'            => 'cozy_trending_post_views',
+		'orderby'             => 'meta_value_num',
+		'order'               => 'DESC',
+		'post_status'         => 'publish',
+		'ignore_sticky_posts' => true,
+		'posts_per_page'      => $posts_per_page,
+		'offset'              => $attributes['perPage'] + $offset,
 	);
 
-	$additional_post_data = get_cozy_block_trending_posts( $cozy_block_trending_posts_args );
-
-	$cozy_block_trending_posts_args['posts_per_page'] = -1;
-	$all_posts                                        = get_cozy_block_trending_posts( $cozy_block_trending_posts_args );
-
-	$remaining_posts = array_udiff(
-		$all_posts,
-		$additional_post_data,
-		function ( $a, $b ) {
-			return $a['ID'] - $b['ID'];
-		}
-	);
-
-	// Assuming you have pagination or offset to get remaining posts in chunks.
-	$offset                = isset( $_POST['offset'] ) ? intval( $_POST['offset'] ) : 0;
-	$posts_per_page        = isset( $attributes['ajaxLoader']['content'] ) ? intval( $attributes['ajaxLoader']['content'] ) : 10;
-	$remaining_posts_chunk = array_slice( $remaining_posts, $offset, $posts_per_page );
-	$next_chunk            = array_slice( $remaining_posts, $offset + $posts_per_page, $posts_per_page );
+	$remaining_posts_chunk             = get_cozy_block_trending_posts( $cozy_block_trending_posts_args );
+	$next_chunk_args                   = $cozy_block_trending_posts_args;
+	$next_chunk_args['offset']         = $attributes['perPage'] + $offset + $posts_per_page;
+	$next_chunk_args['posts_per_page'] = 1;
+	$next_chunk                        = get_cozy_block_trending_posts( $next_chunk_args );
 
 	if ( empty( $remaining_posts_chunk ) ) {
 		wp_send_json_error( '' );
 	}
 
-	if ( ! empty( $remaining_posts_chunk ) ) {
-		// Output the posts.
-		$output = '';
-		foreach ( $remaining_posts_chunk as $post_data ) {
-			// Customize the HTML structure as per your requirement .
-			\CozyAddons\Helpers\BlockRender::trending_posts_render( $attributes, $post_data, $output );
-		}
-		$return_data = array(
-			'render'           => $output,
-			'next_chunk_count' => count( $next_chunk ),
-		);
-		wp_send_json_success( $return_data );
+	$output = '';
+	foreach ( $remaining_posts_chunk as $post_data ) {
+		\CozyAddons\Helpers\BlockRender::trending_posts_render( $attributes, $post_data, $output );
 	}
+
+	$return_data = array(
+		'render'           => $output,
+		'next_chunk_count' => count( $next_chunk ),
+	);
+	wp_send_json_success( $return_data );
 }
 add_action( 'wp_ajax_cozy_block_trending_posts_loader', 'cozy_block_trending_posts_load_content' );
 add_action( 'wp_ajax_nopriv_cozy_block_trending_posts_loader', 'cozy_block_trending_posts_load_content' );
@@ -1303,29 +1267,67 @@ add_action( 'wp_ajax_nopriv_cozy_block_advanced_gallery_loader', 'cozy_block_adv
  */
 function cozy_addons_wishlist_render_data_sidebar() {
 	check_ajax_referer( 'cozy_block_wishlist_render_data_sidebar', 'sidebarNonce', true );
+	$before_label = isset( $_POST['beforeLabel'] ) ? sanitize_text_field( wp_unslash( $_POST['beforeLabel'] ) ) : '';
+	$after_label  = isset( $_POST['afterLabel'] ) ? sanitize_text_field( wp_unslash( $_POST['afterLabel'] ) ) : '';
+	$alignment    = isset( $_POST['alignment'] ) ? sanitize_text_field( wp_unslash( $_POST['alignment'] ) ) : '';
 
-	$wishlist_data = isset( $_POST['wishlistData'] ) ? json_decode( sanitize_text_field( wp_unslash( $_POST['wishlistData'] ) ), true ) : '';
+	if ( isset( $_POST['wishlistData'] ) && is_array( $_POST['wishlistData'] ) ) {
+		$wishlist_data = array_map( 'intval', $_POST['wishlistData'] );
+	} elseif ( isset( $_POST['wishlistData'] ) ) {
+		$wishlist_data = json_decode( sanitize_text_field( wp_unslash( $_POST['wishlistData'] ) ), true );
+	} else {
+		$wishlist_data = array();
+	}
 
-	$output = '<ul class="cozy-block-wishlist__product-data-wrapper">';
+	$wishlist_data  = is_array( $wishlist_data ) ? $wishlist_data : array();
+	$wishlist_count = count( $wishlist_data );
+	$output         = '';
 
-	if ( is_array( $wishlist_data ) ) {
+	if ( $before_label || $after_label ) {
+		$output .= '<div class="cozy-block-wishlist__sidebar-header">';
+		$output .= '<p class="sidebar-header-title title-align-' . esc_attr( $alignment ) . '">';
+		$output .= esc_html( $before_label ) . ' ' . absint( $wishlist_count ) . ' ' . esc_html( $after_label );
+		$output .= '</p>';
+		$output .= '</div>';
+	}
+
+	$output .= '<ul class="cozy-block-wishlist__product-data-wrapper">';
+
+	if ( empty( $wishlist_data ) ) {
+		$output .= '<li class="cozy-block-wishlist__empty">';
+		$output .= '<h2 class="cozy-block-wishlist__heading">' . esc_html__( 'Wishlist Empty!', 'cozy-addons' ) . '</h2>';
+		$output .= '<p>' . esc_html__( 'Empty for now, but full of potential.', 'cozy-addons' ) . '</p>';
+		$output .= '</li>';
+	} else {
 		krsort( $wishlist_data );
 
 		foreach ( $wishlist_data as $product_id ) {
-			// Get the product object.
 			$product = wc_get_product( $product_id );
 
 			if ( $product ) {
-				// Get product details.
 				$product_name        = $product->get_name();
 				$product_link        = get_permalink( $product_id );
 				$product_price       = wc_price( $product->get_price() );
-				$product_description = $product->get_description();
+				$product_description = $product->get_short_description() ? $product->get_short_description() : get_the_excerpt( $product_id );
 				$product_image       = wp_get_attachment_url( $product->get_image_id() );
-				$is_in_stock         = $product->get_stock_status();
+				$product_type        = $product->get_type();
+				$cart_btn_text       = $product->add_to_cart_text();
+				$is_in_stock         = $product->is_in_stock();
+				$product_url         = 'external' !== $product_type ? get_permalink( $product_id ) : $product->get_product_url();
+
+				$trash_icon = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="25" viewBox="0 0 22 25" fill="currentColor">
+                <path d="M1.5625 22.6563C1.5625 23.2779 1.80943 23.874 2.24897 24.3135C2.68851 24.7531 3.28465 25 3.90625 25H17.9688C18.5904 25 19.1865 24.7531 19.626 24.3135C20.0656 23.874 20.3125 23.2779 20.3125 22.6563V6.25001H1.5625V22.6563ZM14.8438 10.1563C14.8438 9.94906 14.9261 9.75034 15.0726 9.60383C15.2191 9.45732 15.4178 9.37501 15.625 9.37501C15.8322 9.37501 16.0309 9.45732 16.1774 9.60383C16.3239 9.75034 16.4062 9.94906 16.4062 10.1563V21.0938C16.4062 21.301 16.3239 21.4997 16.1774 21.6462C16.0309 21.7927 15.8322 21.875 15.625 21.875C15.4178 21.875 15.2191 21.7927 15.0726 21.6462C14.9261 21.4997 14.8438 21.301 14.8438 21.0938V10.1563ZM10.1562 10.1563C10.1562 9.94906 10.2386 9.75034 10.3851 9.60383C10.5316 9.45732 10.7303 9.37501 10.9375 9.37501C11.1447 9.37501 11.3434 9.45732 11.4899 9.60383C11.6364 9.75034 11.7188 9.94906 11.7188 10.1563V21.0938C11.7188 21.301 11.6364 21.4997 11.4899 21.6462C11.3434 21.7927 11.1447 21.875 10.9375 21.875C10.7303 21.875 10.5316 21.7927 10.3851 21.6462C10.2386 21.4997 10.1562 21.301 10.1562 21.0938V10.1563ZM5.46875 10.1563C5.46875 9.94906 5.55106 9.75034 5.69757 9.60383C5.84409 9.45732 6.0428 9.37501 6.25 9.37501C6.4572 9.37501 6.65591 9.45732 6.80243 9.60383C6.94894 9.75034 7.03125 9.94906 7.03125 10.1563V21.0938C7.03125 21.301 6.94894 21.4997 6.80243 21.6462C6.65591 21.7927 6.4572 21.875 6.25 21.875C6.0428 21.875 5.84409 21.7927 5.69757 21.6462C5.55106 21.4997 5.46875 21.301 5.46875 21.0938V10.1563ZM21.0938 1.56251H15.2344L14.7754 0.649423C14.6782 0.454215 14.5284 0.29001 14.3429 0.175281C14.1575 0.0605526 13.9437 -0.00014785 13.7256 8.5609e-06H8.14453C7.92694 -0.000827891 7.71352 0.0596463 7.52871 0.174503C7.34391 0.289359 7.19519 0.453951 7.09961 0.649423L6.64062 1.56251H0.78125C0.57405 1.56251 0.375336 1.64482 0.228823 1.79133C0.08231 1.93784 0 2.13656 0 2.34376L0 3.90626C0 4.11346 0.08231 4.31217 0.228823 4.45869C0.375336 4.6052 0.57405 4.68751 0.78125 4.68751H21.0938C21.301 4.68751 21.4997 4.6052 21.6462 4.45869C21.7927 4.31217 21.875 4.11346 21.875 3.90626V2.34376C21.875 2.13656 21.7927 1.93784 21.6462 1.79133C21.4997 1.64482 21.301 1.56251 21.0938 1.56251Z"/>
+            </svg>';
+
+				$is_linked = 'external' === $product_type || 'variable' === $product_type || 'grouped' === $product_type || ! $is_in_stock;
+
+				$classes   = array( 'cozy-block-wishlist__sidebar-button' );
+				$classes[] = $is_linked ? ( $is_in_stock ? '' : 'out-of-stock' ) : 'add__cart';
+				$classes   = array_filter( $classes );
 
 				$output .= '<li class="cozy-block-wishlist__product-data post-' . $product_id . '">';
-				/* Product Image */
+
+					/* Image */
 				if ( ! empty( $product_image ) ) {
 					$output .= '<figure class="cozy-block-wishlist__product-image">';
 					$output .= '<a href="' . esc_url( $product_link ) . '" rel="noopener" target="_blank">';
@@ -1333,39 +1335,57 @@ function cozy_addons_wishlist_render_data_sidebar() {
 					$output .= '</a>';
 					$output .= '</figure>';
 				}
-				/* End Product Image */
+				/* End Image */
 
-				/* Product Details */
-				$output .= '<div style="width:100%;">';
+				/* Content */
+				$output .= '<div class="cozy-block-wishlist__product-content">';
+
+				/* Title + Price */
+				$output .= '<div class="cozy-block-wishlist__product-title-price">';
 				$output .= '<p class="cozy-block-wishlist__product-title"><a href="' . esc_url( $product_link ) . '" rel="noopener" target="_blank">' . esc_html( $product_name ) . '</a></p>';
-				$output .= '<p class="cozy-block-wishlist__product-summary">' . cozy_create_excerpt( $product_description, 15 ) . '</p>';
 				$output .= '<p class="cozy-block-wishlist__product-price">' . $product_price . '</p>';
+				$output .= '</div>';
+				/* End Title + Price */
 
-				/* Add/Remove Buttons */
-				$output     .= '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">';
-				$stock_label = 'instock' === $is_in_stock ? 'Add to Cart' : 'Out of Stock';
-				$classes     = array();
-				$classes[]   = 'cozy-block-wishlist__sidebar-button';
-				$classes[]   = 'instock' === $is_in_stock ? 'add__cart' : 'out-of-stock';
-				$output     .= '<div class="' . implode( ' ', $classes ) . '" data-product-id="' . $product_id . '">' . $stock_label . '</div>';
-				$output     .= '<div class="cozy-block-wishlist__sidebar-button remove__wishlist" data-product-id="' . $product_id . '">' . esc_html__( 'Remove', 'cozy-addons' ) . '</div>';
-				$output     .= '</div>';
-				/* End Add/Remove Buttons */
+				/* Summary */
+				$output .= '<p class="cozy-block-wishlist__product-summary">' . $product_description . '</p>';
+				/* End Summary */
 
+				/* Buttons */
+				$output .= '<div class="cozy-block-wishlist__btn-wrapper">';
+
+				if ( $is_linked ) {
+					$output .= '<a class="cozy-block-add-btn-has-link" href="' . esc_url( $product_url ) . '" rel="noopener" target="_blank">';
+					$output .= '<div class="' . implode( ' ', $classes ) . '">' . $cart_btn_text . '</div>';
+					$output .= '</a>';
+				} else {
+										$output .= '<div class="' . implode( ' ', $classes ) . ' " data-product-id="' . $product_id . '"><span class="wishlist__add-to-cart_text">' . $cart_btn_text . '</span></div>';
+
+				}
+
+				$output .= '<div class="cozy-block-wishlist-sidebar-remove-button-wrapper">';
+				$output .= '<div class="cozy-block-wishlist__sidebar-button remove__wishlist" data-product-id="' . $product_id . '" data-product-name="' . esc_attr( $product_name ) . '">' . $trash_icon . '</div>';
 				$output .= '</div>';
 
-				/* End Product Details */
-				$output .= '</li>';
+				$output .= '</div>';
+				/* End Buttons */
 
+				$output .= '</div>';
+				/* End Content */
+
+				$output .= '</li>';
 			}
 		}
 	}
 
 	$output .= '</ul>';
+	/* End Product List */
 
 	wp_send_json_success(
 		array(
-			'render' => $output,
+			'render'        => $output,
+			'count'         => $wishlist_count,
+			'wishlist_data' => $wishlist_data,
 		)
 	);
 }
@@ -1418,20 +1438,52 @@ if ( ! function_exists( 'cozy_block_wishlist_update_user_wishlist_callback' ) ) 
 /* Add product to cart */
 add_action( 'wp_ajax_cozy_block_wishlist_add_to_cart', 'cozy_block_wishlist_add_to_cart_callback' );
 add_action( 'wp_ajax_nopriv_cozy_block_wishlist_add_to_cart', 'cozy_block_wishlist_add_to_cart_callback' );
+
 if ( ! function_exists( 'cozy_block_wishlist_add_to_cart_callback' ) ) {
 	function cozy_block_wishlist_add_to_cart_callback() {
 		check_ajax_referer( 'cozy_block_wishlist_add_to_cart', 'cartNonce', true );
 
-		$product_id = isset( $_POST['productId'] ) ? intval( sanitize_text_field( wp_unslash( $_POST['productId'] ) ) ) : '';
-
-		$quantity = isset( $_POST['productQuantity'] ) ? sanitize_text_field( wp_unslash( $_POST['productQuantity'] ) ) : 1;
+		$product_id   = isset( $_POST['productId'] ) ? intval( sanitize_text_field( wp_unslash( $_POST['productId'] ) ) ) : '';
+		$product      = wc_get_product( $product_id );
+		$product_type = $product ? $product->get_type() : '';
+		$quantity     = isset( $_POST['productQuantity'] ) ? intval( sanitize_text_field( wp_unslash( $_POST['productQuantity'] ) ) ) : 1;
 
 		$added = WC()->cart->add_to_cart( $product_id, $quantity );
 
+		ob_start();
+		woocommerce_mini_cart();
+		$mini_cart = ob_get_clean();
+
 		if ( $added ) {
-			wp_send_json_success( 'Product added to cart' );
+			wp_send_json_success(
+				array(
+					'message'       => 'Product Added To Cart',
+					'product_name'  => get_the_title( $product_id ),
+					'product_type'  => $product_type,
+					'product_id'    => $product_id,
+					'product_url'   => 'external' !== $product_type ? get_permalink( $product_id ) : $product->get_product_url(),
+					'cart_btn_text' => $product->add_to_cart_text(),
+					'cart_btn_url'  => $product->add_to_cart_url(),
+					'cart_count'    => WC()->cart->get_cart_contents_count(),
+					'cart_total'    => WC()->cart->get_cart_total(),
+					'fragments'     => apply_filters(
+						'woocommerce_add_to_cart_fragments',
+						array(
+							'div.widget_shopping_cart_content' =>
+								'<div class="widget_shopping_cart_content">' . $mini_cart . '</div>',
+						)
+					),
+					'cart_hash'     => WC()->cart->get_cart_hash(),
+				)
+			);
 		} else {
-			wp_send_json_error( 'Could not add product to cart' );
+			wp_send_json_error(
+				array(
+					'message'      => 'Failed To Add Cart',
+					'product_type' => $product_type,
+					'product_url'  => 'external' !== $product_type ? get_permalink( $product_id ) : $product->get_product_url(),
+				)
+			);
 		}
 	}
 }
@@ -1442,9 +1494,6 @@ add_action( 'wp_ajax_nopriv_cozy_block_quick_view_lightbox_render', 'render_cozy
 if ( ! function_exists( 'render_cozy_block_quick_view_lightbox_body' ) ) {
 	function render_cozy_block_quick_view_lightbox_body() {
 		check_ajax_referer( 'cozy_block_quick_view_render_data_lightbox', 'quickViewNonce', true );
-
-		$attributes = isset( $_POST['attributes'] ) ? json_decode( sanitize_text_field( wp_unslash( $_POST['attributes'] ) ), true ) : array();
-
 		$product_id = isset( $_POST['productId'] ) ? intval( sanitize_text_field( wp_unslash( $_POST['productId'] ) ) ) : '';
 
 		$product = wc_get_product( $product_id );
@@ -1478,8 +1527,12 @@ if ( ! function_exists( 'render_cozy_block_quick_view_lightbox_body' ) ) {
 			$product_price        = $price;
 			$product_description  = get_the_content( '', '', $product_id );
 			$product_image        = get_the_post_thumbnail_url( $product_id );
+			$product_type         = $product->get_type();
+			$btn_text             = $product->add_to_cart_text();
 			$product_rating_count = $product->get_review_count();
-			$product_rating       = $product->get_average_rating(); // Get the product rating.
+			$product_rating       = $product->get_average_rating();
+			$product_categories   = get_the_terms( $product_id, 'product_cat' );
+			$is_in_stock          = $product->is_in_stock();
 
 			/* Close Button */
 			$output .= '<div class="quick-view__lightbox-toolbar-button lightbox__close-button">';
@@ -1502,6 +1555,14 @@ if ( ! function_exists( 'render_cozy_block_quick_view_lightbox_body' ) ) {
 			/* Product Details */
 			$output .= '<div class="quick-view__product-detail">';
 			$output .= '<h3 class="post__title"><a href="' . esc_url( $product_link ) . '" rel="noopener" target="_blank">' . esc_html( $product_name ) . '</a></h3>';
+			$output .= '<div class="quick-view__product-taxonomies-wrapper">';
+			if ( ! empty( $product_categories ) && ! is_wp_error( $product_categories ) ) {
+				foreach ( $product_categories as $category ) {
+					$category_link = get_term_link( $category );
+					$output       .= '<a href="' . esc_url( $category_link ) . '" class="quick-view__product-category" rel="noopener" target="_blank">' . esc_html( $category->name ) . '</a>';
+				}
+			}
+			$output .= '</div>';
 			$output .= '<p class="post__content">' . cozy_create_excerpt( $product_description ) . '</p>';
 
 			$output .= '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">';
@@ -1521,30 +1582,43 @@ if ( ! function_exists( 'render_cozy_block_quick_view_lightbox_body' ) ) {
 
 			/* Add to Cart */
 			$output .= '<div class="quick-view__cart-wrapper">';
-			$output .= '<div class="quick-view__quantity">';
-			$output .= '<span class="quantity__increase"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path d="M17.3051 12.1C17.3051 12.6 16.9051 13 16.4051 13H12.8051V16.4C12.8051 16.9 12.4051 17.3 11.9051 17.3C11.4051 17.3 11.0051 16.9 11.0051 16.4V13H7.60511C7.10511 13 6.70511 12.6 6.70511 12.1C6.70511 11.6 7.10511 11.2 7.60511 11.2H11.0051V7.6C11.0051 7.1 11.4051 6.7 11.9051 6.7C12.4051 6.7 12.8051 7.1 12.8051 7.6V11.2H16.4051C16.9051 11.2 17.3051 11.6 17.3051 12.1Z" />
-			</svg></span>';
-			$output .= '<input class="quick-view__quantity-input" type="text" value="1" disabled />';
-			$output .= '<span class="quantity__decrease opacity-50"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			<path d="M5 11.25h14v1.5H5z" />
-			</svg></span>';
-			$output .= '</div>';
 
-			$output .= '<div class="quick-view__cart-tooltip visibility-hidden"></div>';
+			// Only show quantity counter for simple in-stock products.
+			if ( 'simple' === $product_type && $is_in_stock ) {
+				$output .= '<div class="quick-view__quantity">';
+				$output .= '<span class="quantity__increase"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M17.3051 12.1C17.3051 12.6 16.9051 13 16.4051 13H12.8051V16.4C12.8051 16.9 12.4051 17.3 11.9051 17.3C11.4051 17.3 11.0051 16.9 11.0051 16.4V13H7.60511C7.10511 13 6.70511 12.6 6.70511 12.1C6.70511 11.6 7.10511 11.2 7.60511 11.2H11.0051V7.6C11.0051 7.1 11.4051 6.7 11.9051 6.7C12.4051 6.7 12.8051 7.1 12.8051 7.6V11.2H16.4051C16.9051 11.2 17.3051 11.6 17.3051 12.1Z" />
+				</svg></span>';
+				$output .= '<input class="quick-view__quantity-input" type="text" value="1" disabled />';
+				$output .= '<span class="quantity__decrease opacity-50"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+				<path d="M5 11.25h14v1.5H5z" />
+				</svg></span>';
+				$output .= '</div>';
+			}
+			$output .= '<div class="quick-view__cart-buttons">';
 
-			$output       .= '<div class="quick-view__cart-buttons">';
-			$cart_label    = $attributes['cartButton']['label'] ? $attributes['cartButton']['label'] : 'Add to cart';
-			$output       .= '<div class="quick-view__cart-button post__cart-button">';
-			$output       .= '<svg class="loader-icon display-none" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-				<path d="M7.99998 2.66666C9.72665 2.66666 11.2626 3.48666 12.238 4.762L10.6666 6.33333H14.6666V2.33333L13.1873 3.81266C12.5631 3.03781 11.773 2.41284 10.8753 1.98376C9.97754 1.55467 8.99499 1.33241 7.99998 1.33333C4.31798 1.33333 1.33331 4.318 1.33331 8H2.66665C2.66665 6.58551 3.22855 5.22896 4.22874 4.22876C5.22894 3.22857 6.58549 2.66666 7.99998 2.66666ZM13.3333 8C13.3333 9.11533 12.9837 10.2026 12.3336 11.1089C11.6835 12.0151 10.7656 12.6948 9.7091 13.0522C8.65259 13.4096 7.51062 13.4268 6.44382 13.1014C5.37703 12.776 4.4391 12.1243 3.76198 11.238L5.33331 9.66666H1.33331V13.6667L2.81265 12.1873C3.43687 12.9622 4.22694 13.5872 5.12468 14.0162C6.02242 14.4453 7.00497 14.6676 7.99998 14.6667C11.682 14.6667 14.6666 11.682 14.6666 8H13.3333Z" />
-				</svg>';
-			$output       .= '<span class="cart-button__label">' . esc_html( $cart_label ) . '</span>';
-			$output       .= '</div>';
-			$cart_page_url = wc_get_cart_url();
-			$output       .= '<a class="quick-view__cart-view" href="' . esc_url( $cart_page_url ) . '" rel="noopener" target="_blank">' . esc_html__( 'View my cart', 'cozy-addons' ) . '</a>';
-			$output       .= '</div>';
+			if ( 'simple' === $product_type ) {
+				// Simple product — AJAX add to cart with spinner.
+				$output .= '<div class="quick-view__cart-button post__cart-button product_type_simple">';
+				$output .= '<svg class="loader-icon display-none" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					<path d="M7.99998 2.66666C9.72665 2.66666 11.2626 3.48666 12.238 4.762L10.6666 6.33333H14.6666V2.33333L13.1873 3.81266C12.5631 3.03781 11.773 2.41284 10.8753 1.98376C9.97754 1.55467 8.99499 1.33241 7.99998 1.33333C4.31798 1.33333 1.33331 4.318 1.33331 8H2.66665C2.66665 6.58551 3.22855 5.22896 4.22874 4.22876C5.22894 3.22857 6.58549 2.66666 7.99998 2.66666ZM13.3333 8C13.3333 9.11533 12.9837 10.2026 12.3336 11.1089C11.6835 12.0151 10.7656 12.6948 9.7091 13.0522C8.65259 13.4096 7.51062 13.4268 6.44382 13.1014C5.37703 12.776 4.4391 12.1243 3.76198 11.238L5.33331 9.66666H1.33331V13.6667L2.81265 12.1873C3.43687 12.9622 4.22694 13.5872 5.12468 14.0162C6.02242 14.4453 7.00497 14.6676 7.99998 14.6667C11.682 14.6667 14.6666 11.682 14.6666 8H13.3333Z" />
+					</svg>';
+				$output .= '<span class="cart-button__label">' . esc_html( $btn_text ) . '</span>';
+				$output .= '</div>';
+				$output .= '<a class="quick-view__cart-view" href="' . esc_url( wc_get_cart_url() ) . '" rel="noopener" target="_blank">' . esc_html__( 'View My Cart', 'cozy-addons' ) . '</a>';
+			} elseif ( 'external' === $product_type ) {
+				// External product — link to external URL.
+				$output .= '<a class="quick-view__cart-button post__cart-button" href="' . esc_url( $product->get_product_url() ) . '" rel="noopener" target="_blank">';
+				$output .= '<span class="cart-button__label">' . esc_html( $btn_text ) . '</span>';
+				$output .= '</a>';
+			} else {
+				// Variable, grouped, etc — link to the product page.
+				$output .= '<a class="quick-view__cart-button post__cart-button" href="' . esc_url( $product_link ) . '" rel="noopener" target="_blank">';
+				$output .= '<span class="cart-button__label">' . esc_html( $btn_text ) . '</span>';
+				$output .= '</a>';
+			}
 
+			$output .= '</div>'; // .quick-view__cart-buttons
 			$output .= '</div>';
 			/* End Add to Cart */
 
@@ -1555,7 +1629,7 @@ if ( ! function_exists( 'render_cozy_block_quick_view_lightbox_body' ) ) {
 				$args    = array(
 					'post_type' => 'product',
 					'post_id'   => $product_id,
-					'status'    => 'approve', // Only get approved comments
+					'status'    => 'approve',
 					'orderby'   => 'date',
 					'order'     => 'DESC',
 				);
@@ -1597,7 +1671,8 @@ if ( ! function_exists( 'render_cozy_block_quick_view_lightbox_body' ) ) {
 
 			wp_send_json_success(
 				array(
-					'render' => $output,
+					'render'     => $output,
+					'attributes' => $attributes,
 				)
 			);
 		}
@@ -1776,61 +1851,105 @@ function append_cozy_responsive_data_attributes( &$block_content, &$block ) {
 		'cozy-block/grid',
 	);
 
-	if ( ! isset( $block['attrs']['cozyResponsiveShow'] ) && ! in_array( $block['blockName'], $enabled_blocks, true ) ) {
+	if ( ! isset( $block['attrs']['cozyResponsiveShow'] ) || ! in_array( $block['blockName'], $enabled_blocks, true ) ) {
 		return $block_content;
 	}
 
-	if ( isset( $block['attrs']['cozyResponsiveShow'] ) && in_array( $block['blockName'], $enabled_blocks, true ) ) {
-		$cozy_responsive_show = $block['attrs']['cozyResponsiveShow'];
+	$cozy_responsive_show = $block['attrs']['cozyResponsiveShow'];
 
-		// Extract the existing class attribute.
-		preg_match( '/<div class="([^"]+)"/', $block_content, $matches );
+	$desktop_class = $cozy_responsive_show['desktopShow'] ? 'cozy-responsive-desktop-show' : 'cozy-responsive-desktop-hide';
+	$tablet_class  = $cozy_responsive_show['tabletShow'] ? 'cozy-responsive-tablet-show' : 'cozy-responsive-tablet-hide';
+	$mobile_class  = $cozy_responsive_show['mobileShow'] ? 'cozy-responsive-mobile-show' : 'cozy-responsive-mobile-hide';
+
+	$tablet_viewport = intval( $cozy_responsive_show['tabletViewport'] );
+	$mobile_viewport = intval( $cozy_responsive_show['mobileViewport'] );
+
+	$responsive_classes = ' ' . $desktop_class . ' ' . $tablet_class . ' ' . $mobile_class;
+
+	// Generate and inject CSS
+	$css = '
+		@media (max-width: ' . $tablet_viewport . 'px) {
+			.cozy-responsive-tablet-hide { display: none !important; }
+			.cozy-responsive-tablet-show { display: block !important; }
+		}
+		@media (min-width: ' . ( $tablet_viewport + 1 ) . 'px) {
+			.cozy-responsive-desktop-hide { display: none !important; }
+			.cozy-responsive-desktop-show { display: block !important; }
+		}
+		@media (max-width: ' . $mobile_viewport . 'px) {
+			.cozy-responsive-mobile-hide { display: none !important; }
+			.cozy-responsive-mobile-show { display: block !important; }
+		}
+	';
+
+	add_action(
+		'wp_head',
+		function () use ( $css ) {
+			echo '<style>' . $css . '</style>';
+		}
+	);
+
+	if ( 'core/heading' === $block['blockName'] ) {
+		$level = $block['attrs']['level'] ?? '2';
+
+		preg_match( '/<h' . $level . ' class="([^"]+)"/', $block_content, $matches );
 		$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+		$updated_class  = trim( $existing_class . $responsive_classes );
 
-		// Append the custom class and inline styles to the class attribute
-		$updated_class = trim( $existing_class . ' cozy-responsive-show__initialized' );
+		$block_content = preg_replace(
+			'/<h' . $level . ' class="' . preg_quote( $existing_class ) . '.*?"/',
+			'<h' . $level . ' class="' . esc_attr( $updated_class ) . '"',
+			$block_content
+		);
 
-		$cozy_responsive_string = ' data-desktop-show="' . $cozy_responsive_show['desktopShow'] . '" data-tablet-show="' . $cozy_responsive_show['tabletShow'] . '" data-tablet-viewport-width="' . $cozy_responsive_show['tabletViewport'] . '" data-mobile-show="' . $cozy_responsive_show['mobileShow'] . '" data-mobile-viewport-width="' . $cozy_responsive_show['mobileViewport'] . '"';
+	} elseif ( 'core/paragraph' === $block['blockName'] ) {
+		preg_match( '/<p(?:\s+class="([^"]+)")?/', $block_content, $matches );
+		$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+		$updated_class  = trim( $existing_class . $responsive_classes );
 
-		if ( 'core/heading' === $block['blockName'] ) {
-			$level = $block['attrs']['level'] ?? '2';
-
-			preg_match( '/<h' . $level . ' class="([^"]+)"/', $block_content, $matches );
-			$existing_class = isset( $matches[1] ) ? $matches[1] : '';
-
-			$updated_class = trim( $existing_class . ' cozy-responsive-show__initialized' );
-
-			$block_content = preg_replace( '/<h' . $level . ' class="' . preg_quote( $existing_class ) . '.*?"/', '<h' . $level . ' class="' . esc_attr( $updated_class ) . '"' . $cozy_responsive_string, $block_content );
-
-		} elseif ( 'core/paragraph' === $block['blockName'] ) {
-			preg_match( '/<p(?:\s+class="([^"]+)")?/', $block_content, $matches );
-			$existing_class = isset( $matches[1] ) ? $matches[1] : '';
-
-			$updated_class = trim( $existing_class . ' cozy-responsive-show__initialized' );
-
-			if ( $existing_class ) {
-				$block_content = preg_replace( '/<p(\s+class="' . preg_quote( $existing_class ) . '.*?)?"/', '<p class="' . esc_attr( $updated_class ) . '"' . $cozy_responsive_string, $block_content );
-			} else {
-				$block_content = preg_replace( '/<p/', '<p class="' . esc_attr( $updated_class ) . '"' . $cozy_responsive_string, $block_content, 1 );
-			}
-		} elseif ( 'core/image' === $block['blockName'] ) {
-			preg_match( '/<figure(?:\s+class="([^"]+)")?/', $block_content, $matches );
-			$existing_class = isset( $matches[1] ) ? $matches[1] : '';
-
-			$updated_class = trim( $existing_class . ' cozy-responsive-show__initialized' );
-
-			if ( $existing_class ) {
-				$block_content = preg_replace( '/<figure(\s+class="' . preg_quote( $existing_class ) . '.*?)?"/', '<figure class="' . esc_attr( $updated_class ) . '"' . $cozy_responsive_string, $block_content );
-			} else {
-				$block_content = preg_replace( '/<figure/', '<figure class="' . esc_attr( $updated_class ) . '"' . $cozy_responsive_string, $block_content, 1 );
-			}
-		} else {
+		if ( $existing_class ) {
 			$block_content = preg_replace(
-				'/<div class="' . preg_quote( $existing_class ) . '.*?"/',
-				'<div class="' . esc_attr( $updated_class ) . '"' . $cozy_responsive_string,
+				'/<p(\s+class="' . preg_quote( $existing_class ) . '.*?)?"/',
+				'<p class="' . esc_attr( $updated_class ) . '"',
 				$block_content
 			);
+		} else {
+			$block_content = preg_replace(
+				'/<p/',
+				'<p class="' . esc_attr( $updated_class ) . '"',
+				$block_content,
+				1
+			);
 		}
+	} elseif ( 'core/image' === $block['blockName'] ) {
+		preg_match( '/<figure(?:\s+class="([^"]+)")?/', $block_content, $matches );
+		$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+		$updated_class  = trim( $existing_class . $responsive_classes );
+
+		if ( $existing_class ) {
+			$block_content = preg_replace(
+				'/<figure(\s+class="' . preg_quote( $existing_class ) . '.*?)?"/',
+				'<figure class="' . esc_attr( $updated_class ) . '"',
+				$block_content
+			);
+		} else {
+			$block_content = preg_replace(
+				'/<figure/',
+				'<figure class="' . esc_attr( $updated_class ) . '"',
+				$block_content,
+				1
+			);
+		}
+	} else {
+		preg_match( '/<div class="([^"]+)"/', $block_content, $matches );
+		$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+		$updated_class  = trim( $existing_class . $responsive_classes );
+
+		$block_content = preg_replace(
+			'/<div class="' . preg_quote( $existing_class ) . '.*?"/',
+			'<div class="' . esc_attr( $updated_class ) . '"',
+			$block_content
+		);
 	}
 
 	return $block_content;

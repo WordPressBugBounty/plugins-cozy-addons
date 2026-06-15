@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"0","left":"0","top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"100%"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"url":"https://plugins.cozythemes.com/cozy-addons/assets/media/testimonial-17.png","dimRatio":80,"customOverlayColor":"#011a08","isUserOverlayColor":true,"minHeight":700,"className":"ca-pattern__responsive-cover","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"0px","bottom":"0px"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->
 <div class="wp-block-cover ca-pattern__responsive-cover" style="margin-top:0;margin-bottom:0;padding-top:0px;padding-right:26px;padding-bottom:0px;padding-left:26px;min-height:700px"><img class="wp-block-cover__image-background" alt="" src="https://plugins.cozythemes.com/cozy-addons/assets/media/testimonial-17.png" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-80 has-background-dim" style="background-color:#011a08"></span><div class="wp-block-cover__inner-container"><!-- wp:columns {"verticalAlignment":null,"style":{"spacing":{"blockGap":{"top":"44px","left":"16px"},"margin":{"top":"0","bottom":"0"},"padding":{"top":"80px","bottom":"80px","left":"0","right":"0"}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400","lineHeight":1.6},"color":{"text":"#ebebeb"},"elements":{"link":{"color":{"text":"#ebebeb"}}}},"cozyCustomFont":"Public Sans"} -->

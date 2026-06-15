@@ -4,6 +4,7 @@
   "name": "cozy-block/accordion",
   "version": "1.0.0",
   "title": "Accordion",
+  "description": "Streamline content presentation with our 'Accordion' block, allowing you to organize information in a compact and user-friendly manner. Users can easily expand and collapse sections to access the details they desire, creating a clean and efficient user experience.",
   "category": "cozy-block",
   "keywords": [
     "accordion",

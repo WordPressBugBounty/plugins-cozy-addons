@@ -382,22 +382,11 @@ $output .= '<ul class="' . implode( ' ', $ul_classes ) . '">';
 $args    = array(
 	'post_type'           => 'post',
 	'meta_key'            => 'cozy_post_views_count', // Replace with your popularity field.
-	'orderby'             => 'cozy_post_views_count',
+	'orderby'             => 'meta_value_num',
 	'order'               => 'DESC',
 	'posts_per_page'      => $attributes['perPage'], // Number of popular posts to retrieve.
 	'ignore_sticky_posts' => true,
-	'meta_query'          => array(
-		'relation' => 'AND',
-		array(
-			'key'     => 'cozy_post_views_count',
-			'compare' => 'EXISTS', // Check if the timestamp is greater than or equal to one week ago.
-		),
-		array(
-			'key'     => 'cozy_post_views_count',
-			'value'   => '0',
-			'compare' => '>', // Check if the timestamp is greater than or equal to one week ago.
-		),
-	),
+	'post_status'         => 'publish',
 );
 
 if ( ! function_exists( 'get_cozy_block_popular_posts_data' ) ) {

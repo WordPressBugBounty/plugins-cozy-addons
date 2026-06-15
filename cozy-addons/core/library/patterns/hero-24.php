@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"color":{"text":"#4c4c4c"},"elements":{"link":{"color":{"text":"#4c4c4c"}}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"}},"layout":{"type":"constrained","contentSize":"100%"},"cozyCustomFont":"Urbanist"} -->
 <div class="wp-block-group has-text-color has-link-color" style="color:#4c4c4c;margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:cozy-block/container {"blockClientId":"ddf667df-78cb-454d-85bc-5d43aac11987","shapeDivider":{"enabled":true,"margin":{"top":"0","right":"0","bottom":"0","left":"0"},"height":360,"position":"bottom","flip":"right","svg":"\u003csvg viewBox=\u00220 0 519 134\u0022 fill=\u0022none\u0022 xmlns=\u0022http://www.w3.org/2000/svg\u0022 preserveAspectRatio=\u0022none\u0022\u003e\n\t\t\t\u003cpath d=\u0022M0 134H519V0L0 134Z\u0022 width=\u0022519\u0022/\u003e\n\t\t  \t\u003c/svg\u003e","color":"#fff"},"style":{"color":{"background":"#cdff04"}}} -->
 <div class="wp-block-cozy-block-container has-background" style="background-color:#cdff04"><div class="cozy-block-container visibility-none border-none hover-border-none

@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"0","left":"0","top":"80px","bottom":"80px"}},"color":{"text":"#f6f9fb","background":"#130700"},"elements":{"link":{"color":{"text":"#f6f9fb"}}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"},"background":{"backgroundImage":{"url":"https://plugins.cozythemes.com/cozy-addons/assets/media/portfolio-34.png","id":430,"source":"file","title":"portfolio-34"},"backgroundSize":"cover"}},"layout":{"type":"constrained","contentSize":"100%"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#f6f9fb;background-color:#130700;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:0;padding-bottom:80px;padding-left:0;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:group {"style":{"spacing":{"margin":{"bottom":"44px"},"padding":{"right":"26px","left":"26px"}}},"layout":{"type":"constrained","contentSize":"1180px","justifyContent":"center"}} -->
 <div class="wp-block-group" style="margin-bottom:44px;padding-right:26px;padding-left:26px"><!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"686px","justifyContent":"left"}} -->

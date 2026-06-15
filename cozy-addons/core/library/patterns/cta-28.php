@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"right":"0px","left":"0px","top":"0px","bottom":"0px"},"blockGap":"0"},"color":{"text":"#f8f8f8","gradient":"linear-gradient(135deg,rgb(32,184,255) 0%,rgb(0,38,226) 67%)"},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400","lineHeight":"1.7"},"elements":{"link":{"color":{"text":"#f8f8f8"}}}},"layout":{"type":"default"},"cozyCustomFont":"Public Sans"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#f8f8f8;background:linear-gradient(135deg,rgb(32,184,255) 0%,rgb(0,38,226) 67%);margin-top:0;margin-bottom:0;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;font-size:16px;font-style:normal;font-weight:400;line-height:1.7"><!-- wp:cozy-block/container {"blockClientId":"95ab763f-3ee9-4e59-b593-31033540e0c1","mediaId":2212,"mediaUrl":"https://plugins.cozythemes.com/cozy-addons/assets/media/cta-19.png"} -->
 <div class="wp-block-cozy-block-container"><div class="cozy-block-container visibility-none border-none hover-border-none

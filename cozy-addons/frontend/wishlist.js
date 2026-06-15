@@ -1,337 +1,334 @@
 (function ($) {
-  window["cozyBlockWishlist"] = (e) => {
-    const n = e.replace(/-/gi, "_");
-    const attributes = window[`cozyBlock_${n}`];
-    const blockID = `#cozyBlock_${n}`;
+	window["cozyBlockWishlist"] = (e) => {
+		const n = e.replace(/-/gi, "_");
+		const attributes = window[`cozyBlock_${n}`];
+		const blockID = `#cozyBlock_${n}`;
 
-    function getLocalWishlist() {
-      let wishlist =
-        JSON.parse(localStorage.getItem("cozy_block_wishlist_data")) || [];
-      return wishlist;
-    }
+		function getLocalWishlist() {
+			let wishlist =
+				JSON.parse(localStorage.getItem("cozy_block_wishlist_data")) || [];
+			return wishlist;
+		}
 
-    // Function to toggle product ID in the wishlist
-    function removeLocalWishlist(productId) {
-      let wishlist =
-        JSON.parse(localStorage.getItem("cozy_block_wishlist_data")) || [];
+		function removeLocalWishlist(productId) {
+			let wishlist =
+				JSON.parse(localStorage.getItem("cozy_block_wishlist_data")) || [];
 
-      // Check if productId is already in the wishlist
-      if (wishlist.includes(productId)) {
-        // Remove the productId from the wishlist
-        wishlist = wishlist.filter(
-          (id) => parseInt(id) !== parseInt(productId)
-        );
-      }
+			if (wishlist.includes(productId)) {
+				wishlist = wishlist.filter(
+					(id) => parseInt(id) !== parseInt(productId),
+				);
+			}
 
-      // Update the localStorage with the new wishlist
-      localStorage.setItem(
-        "cozy_block_wishlist_data",
-        JSON.stringify(wishlist)
-      );
-    }
+			localStorage.setItem(
+				"cozy_block_wishlist_data",
+				JSON.stringify(wishlist),
+			);
+		}
 
-    function addToCart(el) {
-      const productId = $(el).attr("data-product-id");
-      $.ajax({
-        url: attributes.ajaxUrl,
-        method: "POST",
-        data: {
-          action: "cozy_block_wishlist_add_to_cart",
-          cartNonce: attributes.cartNonce,
-          productId: productId,
-        },
-        success: function (response) {
-          // Add to Cart
-          $(blockID + " .cozy-block-wishlist__sidebar-button.add__cart").on(
-            "click",
-            function () {
-              addToCart(this);
-            }
-          );
+		function showToast(message) {
+			const toastId = blockID.replace("#", "");
+			$("body > #" + toastId + ".cozy-block-wishlist__toast").remove();
+			$("body").append(
+				'<div id="' +
+					toastId +
+					'" class="cozy-block-wishlist__toast visibility-hidden"></div>',
+			);
+			const $toast = $("body > #" + toastId + ".cozy-block-wishlist__toast");
+			$toast.html(message).removeClass("visibility-hidden");
+			setTimeout(() => {
+				$toast.addClass("visibility-hidden");
+			}, 2500);
+			setTimeout(() => {
+				$toast.remove();
+			}, 2800);
+		}
 
-          // Trigger Toast Message
-          const variationClass = "variation-" + attributes.variation;
-          $(
-            ".cozy-block-wishlist." +
-              variationClass +
-              " .cozy-block-wishlist__toast"
-          ).html("Cart Updated!");
-          $(
-            ".cozy-block-wishlist." +
-              variationClass +
-              " .cozy-block-wishlist__toast"
-          ).removeClass("visibility-hidden");
-          setTimeout(() => {
-            $(
-              ".cozy-block-wishlist." +
-                variationClass +
-                " .cozy-block-wishlist__toast"
-            ).addClass("visibility-hidden");
-          }, 2000);
-        },
-        error: function (error) {
-          console.log("Unable to add to cart...");
-        },
-      });
-    }
+		function addToCart(el) {
+			const productId = $(el).attr("data-product-id");
+			$.ajax({
+				url: attributes.ajaxUrl,
+				method: "POST",
+				data: {
+					action: "cozy_block_wishlist_add_to_cart",
+					cartNonce: attributes.cartNonce,
+					productId: productId,
+				},
+				beforeSend: function () {
+					$(el).addClass("is-loading-spinner");
+				},
+				success: function (response) {
+					if (response.data.fragments) {
+						$(document.body).trigger("added_to_cart", [
+							response.data.fragments,
+							response.data.cart_hash,
+						]);
+					}
 
-    function arraysAreDifferent(array1, array2) {
-      if (array1.length !== array2.length) {
-        return true;
-      }
+					const productName = response.data.product_name;
+					showToast(`${productName} has been added to cart.`);
+				},
+				complete: function () {
+					$(el).removeClass("is-loading-spinner");
+				},
+				error: function (error) {
+					console.log("Unable to add to cart...");
+				},
+			});
+		}
 
-      let set2 = new Set(array2);
-      return (
-        array1.some((item) => !set2.has(item)) ||
-        array2.some((item) => !new Set(array1).has(item))
-      );
-    }
+		function arraysAreDifferent(array1, array2) {
+			if (array1.length !== array2.length) {
+				return true;
+			}
 
-    if (attributes.variation === "sidebar") {
-      function closeSidebar() {
-        $(blockID + " .cozy-block-wishlist__sidebar-wrapper").addClass(
-          "visibility-hidden"
-        );
-        $("body").removeClass("overflow-hidden");
-      }
+			let set2 = new Set(array2);
+			return (
+				array1.some((item) => !set2.has(item)) ||
+				array2.some((item) => !new Set(array1).has(item))
+			);
+		}
 
-      function updateSidebarRender(wishlistData = []) {
-        if (!attributes.isUserLoggedIn) {
-          const wishlistData = getLocalWishlist();
+		if (attributes.variation === "sidebar") {
+			function closeSidebar() {
+				$(blockID + " .cozy-block-wishlist__sidebar-wrapper").addClass(
+					"visibility-hidden",
+				);
+				$("body").removeClass("overflow-hidden");
+			}
 
-          if (wishlistData.length > 0) {
-            $.ajax({
-              url: attributes.ajaxUrl,
-              method: "POST",
-              data: {
-                action: "cozy_block_wishlist_render_data_sidebar",
-                sidebarNonce: attributes.sidebarNonce,
-                attributes: attributes,
-                wishlistData: JSON.stringify(wishlistData),
-              },
-              success: function (response) {
-                if (response.data) {
-                  $(blockID + " .cozy-block-wishlist__sidebar-body").append(
-                    response.data.render
-                  );
-                }
+			function updateSidebarRender(wishlistData = []) {
+				if (!attributes.isUserLoggedIn) {
+					const wishlistData = getLocalWishlist();
+					$.ajax({
+						url: attributes.ajaxUrl,
+						method: "POST",
+						data: {
+							action: "cozy_block_wishlist_render_data_sidebar",
+							sidebarNonce: attributes.sidebarNonce,
+							wishlistData: JSON.stringify(wishlistData),
+							beforeLabel: attributes.sidebar.sidebarTitle.beforeText,
+							afterLabel: attributes.sidebar.sidebarTitle.afterText,
+							alignment: attributes.sidebar.sidebarTitle.alignment,
+						},
+						success: function (response) {
+							if (response.data) {
+								$(blockID + " .cozy-block-wishlist__sidebar-body").html(
+									response.data.render,
+								);
 
-                // Add to Cart
-                $(
-                  blockID + " .cozy-block-wishlist__sidebar-button.add__cart"
-                ).on("click", function () {
-                  addToCart(this);
-                });
+								if (attributes.sidebar.count.enabled) {
+									const count = response.data.count || 0;
+									if (count > 0) {
+										if ($(blockID + " .cozy-block-wishlist__count").length) {
+											$(blockID + " .cozy-block-wishlist__count").html(count);
+										} else {
+											$(blockID + " .sidebar__icon-wrapper").append(
+												`<span class="cozy-block-wishlist__count">${count}</span>`,
+											);
+										}
+									} else {
+										$(blockID + " .cozy-block-wishlist__count").remove();
+									}
+								}
+							}
+						},
+						error: function (error) {
+							console.log("Unable to load data...");
+						},
+					});
+				}
 
-                // Remove from Wishlist
-                $(
-                  blockID +
-                    " .cozy-block-wishlist__sidebar-button.remove__wishlist"
-                ).on("click", function (e) {
-                  $(this).addClass("opacity-50");
-                  console.log("Removing from Local...");
+				if (attributes.isUserLoggedIn) {
+					$.ajax({
+						url: attributes.ajaxUrl,
+						method: "POST",
+						data: {
+							action: "cozy_block_wishlist_render_data_sidebar",
+							sidebarNonce: attributes.sidebarNonce,
+							wishlistData: JSON.stringify(wishlistData),
+							beforeLabel: attributes.sidebar.sidebarTitle.beforeText,
+							afterLabel: attributes.sidebar.sidebarTitle.afterText,
+							alignment: attributes.sidebar.sidebarTitle.alignment,
+						},
+						success: function (response) {
+							if (response.data) {
+								$(".cozy-block-wishlist__sidebar-body").html(
+									response.data.render,
+								);
+								if (
+									attributes.sidebar &&
+									attributes.sidebar.count &&
+									attributes.sidebar.count.enabled
+								) {
+									const count = response.data.count || 0;
+									if (count > 0) {
+										if ($(blockID + " .cozy-block-wishlist__count").length) {
+											$(blockID + " .cozy-block-wishlist__count").html(count);
+										} else {
+											$(blockID + " .sidebar__icon-wrapper").append(
+												`<span class="cozy-block-wishlist__count">${count}</span>`,
+											);
+										}
+									} else {
+										$(blockID + " .cozy-block-wishlist__count").remove();
+									}
+								}
+							}
+						},
+						error: function (error) {
+							console.log("Unable to load data...");
+						},
+					});
+				}
+			}
 
-                  const productId = $(this).attr("data-product-id");
-                  removeLocalWishlist(parseInt(productId));
-                  $(
-                    ".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__product-data.post-" +
-                      productId
-                  ).remove();
+			function removeFromWishlist(el) {
+				const productId = $(el).attr("data-product-id");
+				const productName = $(el).attr("data-product-name");
+				const wishlistIcon = $(
+					`.wishlist__icon-wrapper[data-product-id="${productId}"]`,
+				);
 
-                  const updatedWishlistData = getLocalWishlist();
+				if (attributes.isUserLoggedIn) {
+					$.ajax({
+						url: attributes.ajaxUrl,
+						method: "POST",
+						data: {
+							action: "cozy_block_wishlist_update_user_wishlist",
+							wishlistNonce: attributes.wishlistNonce,
+							productId: productId,
+							userId: attributes.userID,
+						},
+						beforeSend: function () {
+							$(el).addClass("is-loading-spinner");
+							wishlistIcon.addClass("is-loading-spinner");
+						},
+						success: function (response) {
+							if (response.data.user_wishlist.includes(parseInt(productId))) {
+								wishlistIcon.addClass("is-active");
+							} else {
+								wishlistIcon.removeClass("is-active");
+							}
 
-                  $(
-                    ".cozy-block-wishlist.variation-wishlist .post-" + productId
-                  ).removeClass("is-active");
+							const isNowActive = response.data.user_wishlist.includes(
+								parseInt(productId),
+							);
+							const actionLabel = isNowActive ? "added to" : "removed from";
+							showToast(`${productName} has been ${actionLabel} Wishlist`);
 
-                  if (attributes.sidebar.count?.enabled) {
-                    if (updatedWishlistData.length > 0) {
-                      if (
-                        $(
-                          ".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count"
-                        ).length
-                      ) {
-                        // If it exists, update its content
-                        $(
-                          ".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count"
-                        ).html(updatedWishlistData.length);
-                      } else {
-                        // If it does not exist, create it and append it to the parent container
-                        $(
-                          ".cozy-block-wishlist.variation-sidebar .sidebar__icon-wrapper"
-                        ).append(
-                          `<span class="cozy-block-wishlist__count">${updatedWishlistData.length}</span>`
-                        );
-                      }
-                    } else {
-                      $(
-                        ".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count"
-                      ).remove();
-                    }
-                  }
-                });
-              },
-              error: function (error) {
-                console.log("Unable to load data...");
-              },
-            });
-          }
-        }
+							if (attributes.sidebar.count?.enabled) {
+								if (response.data.user_wishlist.length > 0) {
+									if (
+										$(
+											".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count",
+										).length
+									) {
+										$(
+											".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count",
+										).html(response.data.user_wishlist.length);
+									} else {
+										$(
+											".cozy-block-wishlist.variation-sidebar .sidebar__icon-wrapper",
+										).append(
+											`<span class="cozy-block-wishlist__count">${response.data.user_wishlist.length}</span>`,
+										);
+									}
+								} else {
+									$(
+										".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count",
+									).remove();
+								}
+							}
 
-        if (attributes.isUserLoggedIn) {
-          if (wishlistData.length > 0) {
-            $.ajax({
-              url: attributes.ajaxUrl,
-              method: "POST",
-              data: {
-                action: "cozy_block_wishlist_render_data_sidebar",
-                sidebarNonce: attributes.sidebarNonce,
-                wishlistData: JSON.stringify(wishlistData),
-              },
-              success: function (response) {
-                if (response.data) {
-                  $(".cozy-block-wishlist__sidebar-body").html(
-                    response.data.render
-                  );
+							updateSidebarRender(response.data.user_wishlist);
+						},
+						complete: function () {
+							$(el).removeClass("is-loading-spinner");
+							wishlistIcon.removeClass("is-loading-spinner");
+						},
+						error: function (error) {
+							console.log("Unable to update wishlist...");
+						},
+					});
+				} else {
+					const $icon = $(
+						'.cozy-block-wrapper .wishlist__icon-wrapper[data-product-id="' +
+							productId +
+							'"]',
+					);
+					$icon.addClass("is-loading-spinner");
 
-                  // Add to Cart
-                  $(
-                    blockID + " .cozy-block-wishlist__sidebar-button.add__cart"
-                  ).on("click", function () {
-                    addToCart(this);
-                  });
+					removeLocalWishlist(parseInt(productId));
 
-                  // Remove from Wishlist
-                  $(
-                    blockID +
-                      " .cozy-block-wishlist__sidebar-button.remove__wishlist"
-                  ).on("click", function (e) {
-                    $(this).addClass("opacity-50");
-                    removeFromWishlist(this);
-                  });
-                }
-              },
-              error: function (error) {
-                console.log("Unable to load data...");
-              },
-            });
-          }
-        }
-      }
+					const updatedWishlist = getLocalWishlist();
 
-      function removeFromWishlist(el) {
-        const productId = $(el).attr("data-product-id");
+					$(
+						".cozy-block-wishlist.variation-wishlist .post-" + productId,
+					).removeClass("is-active");
+					$icon.removeClass("is-active").removeClass("is-loading-spinner");
 
-        if (attributes.isUserLoggedIn) {
-          $.ajax({
-            url: attributes.ajaxUrl,
-            method: "POST",
-            data: {
-              action: "cozy_block_wishlist_update_user_wishlist",
-              wishlistNonce: attributes.wishlistNonce,
-              productId: productId,
-              userId: attributes.userID,
-            },
-            success: function (response) {
-              if (response.data.user_wishlist.includes(parseInt(productId))) {
-                $(
-                  ".cozy-block-wishlist.variation-wishlist .post-" + productId
-                ).addClass("is-active");
-              } else {
-                $(
-                  ".cozy-block-wishlist.variation-wishlist .post-" + productId
-                ).removeClass("is-active");
-              }
+					showToast(`${productName} has been removed from Wishlist`);
 
-              if (attributes.sidebar.count?.enabled) {
-                if (response.data.user_wishlist.length > 0) {
-                  if (
-                    $(
-                      ".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count"
-                    ).length
-                  ) {
-                    // If it exists, update its content
-                    $(
-                      ".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count"
-                    ).html(response.data.user_wishlist.length);
-                  } else {
-                    // If it does not exist, create it and append it to the parent container
-                    $(
-                      ".cozy-block-wishlist.variation-sidebar .sidebar__icon-wrapper"
-                    ).append(
-                      `<span class="cozy-block-wishlist__count">${response.data.user_wishlist.length}</span>`
-                    );
-                  }
-                } else {
-                  $(
-                    ".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count"
-                  ).remove();
-                }
-              }
+					updateSidebarRender(updatedWishlist);
+				}
+			}
 
-              if (response.data.user_wishlist.length <= 0) {
-                $(".cozy-block-wishlist__sidebar-body").html("");
-              }
+			let oldWishlistData = getLocalWishlist();
+			const initialWishlistData = attributes.isUserLoggedIn
+				? attributes.userWishlistData || []
+				: getLocalWishlist();
+			updateSidebarRender(initialWishlistData);
 
-              updateSidebarRender(response.data.user_wishlist);
-            },
-            error: function (error) {
-              console.log("Unable to update wishlist...");
-            },
-          });
-        }
-      }
+			// Open Sidebar
+			$(blockID + " .sidebar__icon-wrapper").click(function (e) {
+				const updatedWishlistData = getLocalWishlist();
+				if (arraysAreDifferent(oldWishlistData, updatedWishlistData)) {
+					$(blockID + " .cozy-block-wishlist__sidebar-body").empty();
+					oldWishlistData = updatedWishlistData;
+					updateSidebarRender();
+				}
 
-      let oldWishlistData = getLocalWishlist();
-      updateSidebarRender();
+				$(blockID + " .cozy-block-wishlist__sidebar-wrapper").removeClass(
+					"visibility-hidden",
+				);
+				$("body").addClass("overflow-hidden");
+			});
 
-      // Open Sidebar
-      $(blockID + " .sidebar__icon-wrapper").click(function (e) {
-        const updatedWishlistData = getLocalWishlist();
-        if (arraysAreDifferent(oldWishlistData, updatedWishlistData)) {
-          $(blockID + " .cozy-block-wishlist__sidebar-body").empty();
-          oldWishlistData = updatedWishlistData;
-          updateSidebarRender();
-        }
+			// Close Sidebar
+			$(
+				blockID + " .cozy-block-wishlist__toolbar-button.sidebar-close-button",
+			).click(function () {
+				closeSidebar();
+			});
+			$(blockID + " .cozy-block-wishlist__sidebar-wrapper").on(
+				"click",
+				function (event) {
+					if (event.target === event.currentTarget) {
+						closeSidebar();
+					}
+				},
+			);
 
-        $(blockID + " .cozy-block-wishlist__sidebar-wrapper").removeClass(
-          "visibility-hidden"
-        );
-        $("body").addClass("overflow-hidden");
-      });
+			// Sidebar buttons
+			// Add to Cart
+			$(`${blockID} .cozy-block-wishlist__sidebar`).on(
+				"click",
+				`.cozy-block-wishlist__sidebar-button.add__cart`,
+				function () {
+					addToCart(this);
+				},
+			);
 
-      // Close Sidebar
-      $(
-        blockID + " .cozy-block-wishlist__toolbar-button.sidebar-close-button"
-      ).click(function () {
-        closeSidebar();
-      });
-      $(blockID + " .cozy-block-wishlist__sidebar-wrapper").on(
-        "click",
-        function (event) {
-          if (event.target === event.currentTarget) {
-            closeSidebar();
-          }
-        }
-      );
-
-      // Sidebar buttons
-      // Add to Cart
-      $(blockID + " .cozy-block-wishlist__sidebar-button.add__cart").on(
-        "click",
-        function () {
-          addToCart(this);
-        }
-      );
-
-      // Remove from wishlist
-      $(blockID + " .cozy-block-wishlist__sidebar-button.remove__wishlist").on(
-        "click",
-        function (e) {
-          $(this).addClass("opacity-50");
-          removeFromWishlist(this);
-        }
-      );
-    }
-  };
+			// Remove from wishlist
+			$(`${blockID} .cozy-block-wishlist__sidebar`).on(
+				"click",
+				`.cozy-block-wishlist__sidebar-button.remove__wishlist`,
+				function (e) {
+					$(this).addClass("opacity-50");
+					removeFromWishlist(this);
+				},
+			);
+		}
+	};
 })(jQuery);

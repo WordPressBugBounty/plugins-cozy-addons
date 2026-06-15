@@ -3,24 +3,19 @@
   "apiVersion": 3,
   "name": "cozy-block/quick-view",
   "title": "Quick View (Pro)",
+  "description": "Preview product details in a stylish lightbox with the 'Quick View' block, providing a seamless and efficient way to view essential information without leaving the current page.",
   "category": "cozy-block/woocommerce",
   "textdomain": "cozy-addons",
   "supports": {
     "html": false,
-    "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
-      "text": true
-    },
     "spacing": {
-      "padding": true,
+      "padding": false,
       "margin": [
         "top",
         "bottom"
       ],
       "__experimentalDefaultControls": {
-        "padding": true
+        "padding": false
       }
     },
     "interactivity": {
@@ -70,7 +65,7 @@
         "color": {
           "text": "#5566ca",
           "textHover": "#fff",
-          "bg": "",
+          "bg": "#FFFFFF",
           "bgHover": "#f90",
           "borderHover": ""
         }
@@ -114,6 +109,29 @@
         }
       }
     },
+    "productCategories": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "6px",
+          "right": "8px",
+          "bottom": "6px",
+          "left": "8px"
+        },
+        "font": {
+          "size": "12px",
+          "weight": "600",
+          "family": ""
+        },
+        "letterCase": "none",
+        "color": {
+          "text": "#FFFFFF",
+          "textHover": "#FFFFFF",
+          "background": "#5566ca",
+          "backgroundHover": "#090b10"
+        }
+      }
+    },
     "productSummary": {
       "type": "object",
       "default": {
@@ -143,7 +161,6 @@
     "cartButton": {
       "type": "object",
       "default": {
-        "label": "Add to Cart",
         "padding": {
           "top": "6px",
           "right": "14px",
@@ -172,6 +189,32 @@
           "bg": "#5566ca",
           "bgHover": "#090b10",
           "borderHover": ""
+        }
+      }
+    },
+    "toastCard": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "8px",
+          "right": "20px",
+          "bottom": "8px",
+          "left": "20px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "font": {
+          "size": "16px",
+          "family": "",
+          "weight": "600"
+        },
+        "radius": "0px",
+        "color": {
+          "text": "#fff",
+          "bg": "#28a745"
         }
       }
     },

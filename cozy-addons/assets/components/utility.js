@@ -71,30 +71,87 @@ export function createExcerpt(text, maxLength = 40) {
 	return text;
 }
 
-export function renderTRBL(type, attr) {
-	if (attr && Object.keys(attr).length < 4) {
-		if (Object.keys(attr).length === 1) {
-			return `
-      ${type}: ${attr};
-    `;
-		}
-		return `
-      ${type}: ${attr.width} ${attr.style} ${attr.color};
-    `;
-	} else if (attr && Object.keys(attr).length === 4) {
-		if (type === "border") {
-			return `
-        border-top: ${attr.top.width} ${attr.top.style} ${attr.top.color};
-        border-right: ${attr.right.width} ${attr.right.style} ${attr.right.color};
-        border-bottom: ${attr.bottom.width} ${attr.bottom.style} ${attr.bottom.color};
-        border-left: ${attr.left.width} ${attr.left.style} ${attr.left.color};
-      `;
-		}
-		return `
-    ${type}: ${attr.top} ${attr.right} ${attr.bottom} ${attr.left};
-  `;
-	} else {
+export function renderTRBL(type, attributes) {
+	if (!attributes || !type) {
 		return "";
+	}
+
+	const sides = ["top", "right", "bottom", "left"];
+	const generateProperty = (prop, side) => {
+		return attributes[side] ? `${prop}-${side}: ${attributes[side]};` : "";
+	};
+
+	switch (type) {
+		case "border":
+			if (attributes?.width || attributes?.style || attributes?.color) {
+				return `
+						${attributes?.width ? `border-width: ${attributes?.width};` : ""}
+						${attributes?.style ? `border-style: ${attributes?.style};` : ""}
+						${attributes?.color ? `border-color: ${attributes?.color};` : ""}
+					`;
+			} else if (
+				attributes?.top ||
+				attributes?.right ||
+				attributes?.bottom ||
+				attributes?.left
+			) {
+				return sides
+					.map((side) =>
+						attributes[side]?.width &&
+						attributes[side]?.style &&
+						attributes[side]?.color
+							? `border-${side}: ${attributes[side].width} ${attributes[side].style} ${attributes[side].color};`
+							: "",
+					)
+					.join("\n");
+			}
+
+			return "";
+
+		case "outline":
+			if (attributes?.width || attributes?.style || attributes?.color) {
+				return `
+						${attributes?.width ? `outline-width: ${attributes?.width};` : ""}
+						${attributes?.style ? `outline-style: ${attributes?.style};` : ""}
+						${attributes?.color ? `outline-color: ${attributes?.color};` : ""}
+					`;
+			}
+			break;
+
+		case "radius":
+			if (typeof attributes === "string") {
+				return `border-radius: ${attributes};`;
+			}
+			if (
+				attributes?.top ||
+				attributes?.right ||
+				attributes?.bottom ||
+				attributes?.left
+			) {
+				return `border-radius: ${attributes?.top ?? 0} ${
+					attributes?.right ?? 0
+				} ${attributes?.bottom ?? 0} ${attributes?.left ?? 0};`;
+			}
+			if (
+				attributes?.topL ||
+				attributes?.topR ||
+				attributes?.bottomR ||
+				attributes?.bottomL
+			) {
+				return `border-radius: ${attributes?.topL ?? 0} ${
+					attributes?.topR ?? 0
+				} ${attributes?.bottomR ?? 0} ${attributes?.bottomL ?? 0};`;
+			}
+			return "";
+
+		case "padding":
+			return sides.map((side) => generateProperty("padding", side)).join("\n");
+
+		case "margin":
+			return sides.map((side) => generateProperty("margin", side)).join("\n");
+
+		default:
+			return "";
 	}
 }
 

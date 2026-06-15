@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/ad",
   "title": "Advertisement",
+  "description": "'Advertisement' block seamlessly integrates custom ad scripts and clickable image links into your WordPress site, enhancing engagement and driving traffic.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "category",

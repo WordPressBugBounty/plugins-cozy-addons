@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"layout":{"type":"constrained","contentSize":"100%"},"cozyCustomFont":"Quicksand"} -->
 <div class="wp-block-group has-text-color has-link-color" style="color:#fffffe;margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:cozy-block/container {"blockClientId":"4de66e59-0936-4317-81f1-b48f80712e0c","mediaId":2146,"mediaUrl":"https://plugins.cozythemes.com/cozy-addons/assets/media/hero-52.png","position":"absolute","zIndex":"1","shapeDivider":{"enabled":false,"margin":{"top":0,"right":0,"bottom":0,"left":0},"height":200,"position":"bottom","flip":"right","svg":"\u003csvg viewBox=\u00220 0 519 109\u0022 fill=\u0022none\u0022 xmlns=\u0022http://www.w3.org/2000/svg\u0022 preserveAspectRatio=\u0022none\u0022\u003e\n\t\t\t\u003cpath d=\u0022M519 0C369 137.5 122.5 134.5 0 0V109H519V0Z\u0022/\u003e\n\t\t  \t\u003c/svg\u003e","color":"#fff"}} -->
 <div class="wp-block-cozy-block-container"><div class="cozy-block-container visibility-none border-none hover-border-none

@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/counter",
   "title": "Counter",
+  "description": "Highlight achievements and statistics with our 'Counter' block, a sleek number counter that elegantly displays numbers and stats to captivate your audience.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

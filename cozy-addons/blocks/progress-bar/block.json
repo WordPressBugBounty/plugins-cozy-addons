@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/progress-bar",
   "title": "Progress Bar",
+  "description": "Keep your audience informed and intrigued with our 'Progress Bar' block, offering dynamic circular, horizontal, and vertical progress indicators for an interactive and visually engaging user experience.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

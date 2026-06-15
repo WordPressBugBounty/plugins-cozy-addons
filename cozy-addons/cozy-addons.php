@@ -16,15 +16,15 @@
  * Plugin Name:       Cozy Blocks
  * Plugin URI:        https://cozythemes.com/cozy-addons
  * Description:       Build stunning WordPress sites with 50+ advanced blocks, 500+ patterns, and 40+ templates—a fast, effortless website builder.
- * Version:           2.2.8
+ * Version:           2.2.9
  * Author:            CozyThemes
  * Author URI:        https://cozythemes.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       cozy-addons
  * Domain Path:       /languages/
- * Requires at least: 5.8
- * Requires PHP: 7.3
+ * Requires at least: 6.7
+ * Requires PHP: 7.4
  */
 
 // If this file is called directly, abort.
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'COZY_ADDONS_VERSION', '2.2.8' );
+define( 'COZY_ADDONS_VERSION', '2.2.9' );
 define( 'COZY_ADDONS_PLUGIN_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'COZY_ADDONS_PLUGIN_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 

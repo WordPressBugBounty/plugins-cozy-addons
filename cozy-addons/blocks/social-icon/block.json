@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/social-icon",
   "title": "Social Icons",
+  "description": "Foster online connections effortlessly using our 'Social Icons' block, allowing you to effortlessly integrate and showcase your social media profiles directly on your website.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

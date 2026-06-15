@@ -3,14 +3,14 @@
   "apiVersion": 3,
   "name": "cozy-block/trending-post",
   "title": "Trending Post (Pro)",
+  "description": "Stay ahead with our 'Trending Post' block, spotlighting the most popular and engaging content on your site for a dynamic and up-to-the-minute user experience.",
   "category": "cozy-block/post-magazine",
   "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
+      "background": false,
+      "link": false,
       "text": true
     },
     "spacing": {
@@ -21,18 +21,6 @@
       ],
       "__experimentalDefaultControls": {
         "padding": true
-      }
-    },
-    "__experimentalBorder": {
-      "color": true,
-      "radius": true,
-      "style": true,
-      "width": true,
-      "__experimentalDefaultControls": {
-        "color": true,
-        "radius": true,
-        "style": true,
-        "width": true
       }
     },
     "typography": {

@@ -220,7 +220,6 @@
             fetchNewContent();
           }
         }, 200); // Adjust the debounce delay as needed
-
         window.addEventListener("scroll", handleScroll);
       }
     }

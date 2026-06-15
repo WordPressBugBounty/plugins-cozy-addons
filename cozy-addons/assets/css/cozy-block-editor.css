@@ -17,6 +17,17 @@
 	& > div {
 		width: 100%;
 	}
+	& > div .components-base-control__field,
+	& .components-base-control {
+		margin-bottom: 0;
+	}
+}
+
+.cozy-block-editor__datetime {
+	& .components-datetime__time-wrapper {
+		-webkit-box-align: start;
+		align-items: flex-start;
+	}
 }
 
 .has-light-border-top {
@@ -30,12 +41,20 @@
 .cozy-box-control {
 	position: relative;
 
+	& .components-base-control__label {
+		margin-bottom: 0 !important;
+	}
+
 	& .components-flex {
 		align-items: center;
 
 		& .components-base-control.components-input-control {
 			margin-bottom: 0;
 		}
+	}
+
+	& .components-grid {
+		margin-top: -14px !important;
 	}
 }
 
@@ -107,6 +126,9 @@
 }
 
 /* Color Panel Settings */
+.cozy-panel-color-setting{
+	
+}
 .cozy-color-control {
 	padding: 20px 0 !important;
 }

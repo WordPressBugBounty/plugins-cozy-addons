@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"100px","bottom":"120px"},"blockGap":"0"},"color":{"background":"#f1f6ff","text":"#011436"},"elements":{"link":{"color":{"text":"#011436"}}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"400","lineHeight":"1.6"}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Urbanist"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#011436;background-color:#f1f6ff;margin-top:0;margin-bottom:0;padding-top:100px;padding-right:26px;padding-bottom:120px;padding-left:26px;font-size:18px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:heading {"textAlign":"center","style":{"color":{"text":"#011436"},"elements":{"link":{"color":{"text":"#011436"}}},"typography":{"fontStyle":"normal","fontWeight":"600","fontSize":"44px","lineHeight":"1.2"}},"cozyCustomFont":"Inter Tight"} -->
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#011436;font-size:44px;font-style:normal;font-weight:600;line-height:1.2"><?php esc_html_e( 'Choose your Plan!', 'cozy-addons' ); ?></h2>

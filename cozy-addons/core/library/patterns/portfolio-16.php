@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"80px","bottom":"80px","left":"26px","right":"26px"},"blockGap":"0","margin":{"top":"0","bottom":"0"}},"color":{"text":"#151313","background":"#151313"},"elements":{"link":{"color":{"text":"#151313"}}},"background":{"backgroundImage":{"url":"https://plugins.cozythemes.com/cozy-addons/assets/media/portfolio-44.png","id":2020,"source":"file","title":"portfolio-44"},"backgroundSize":"cover"}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#151313;background-color:#151313;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px"><!-- wp:heading {"textAlign":"center","style":{"color":{"text":"#fffffe"},"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"44px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.2"}},"cozyCustomFont":"Inter"} -->
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#fffffe;font-size:44px;font-style:normal;font-weight:600;line-height:1.2"><?php esc_html_e( 'Our Projects & Gallery', 'cozy-addons' ); ?></h2>

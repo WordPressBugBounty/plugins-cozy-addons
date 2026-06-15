@@ -540,6 +540,7 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 		$classes   = array();
 		$classes[] = 'cozy-block-advanced-gallery__body';
 		$classes[] = ! $attributes['tabOptions']['showDefaultTab'] && 0 === $key ? 'active-content' : '';
+		$classes[] = ! $attributes['tabOptions']['showDefaultTab'] && 0 === $key ? 'animation__fade-in' : '';
 		$output   .= '<div class="' . implode( ' ', $classes ) . '">';
 
 		$classes   = array();

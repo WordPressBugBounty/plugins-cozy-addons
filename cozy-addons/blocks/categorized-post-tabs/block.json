@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/categorized-post-tabs",
   "title": "Categorized Post Tabs (Pro)",
+  "description": "Showcase your posts categorically with multiple layout options, including grid and list. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Categorized Post Tabs' block.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "category",
@@ -12,10 +13,9 @@
   "supports": {
     "html": false,
     "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
-      "text": true
+      "text": true,
+      "background": false,
+      "link": false
     },
     "spacing": {
       "padding": true,
@@ -25,18 +25,6 @@
       ],
       "__experimentalDefaultControls": {
         "padding": true
-      }
-    },
-    "__experimentalBorder": {
-      "color": true,
-      "radius": true,
-      "style": true,
-      "width": true,
-      "__experimentalDefaultControls": {
-        "color": true,
-        "radius": true,
-        "style": true,
-        "width": true
       }
     },
     "typography": {

@@ -1,4 +1,4 @@
-<?php 
+<?php
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="ct-tab" data-index="<?php echo cozy_addons_is_block_theme() ? esc_attr( 2 ) : esc_attr( 1 ); ?>"><?php esc_html_e( 'Settings', 'cozy-addons' ); ?></div>
 
 					<div class="ct-tab" data-index="<?php echo cozy_addons_is_block_theme() ? esc_attr( 3 ) : esc_attr( 2 ); ?>"><?php esc_html_e( 'Free VS Pro', 'cozy-addons' ); ?></div>
+
+					<div class="ct-tab" data-index="<?php echo cozy_addons_is_block_theme() ? esc_attr( 4 ) : esc_attr( 3 ); ?>"><?php esc_html_e( 'License', 'cozy-addons' ); ?></div>
 				</div>
 			</div>
 			<div class="ct-plugin-link">
@@ -52,6 +54,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="tab-content" id="<?php echo cozy_addons_is_block_theme() ? esc_attr( 'content4' ) : esc_attr( 'content3' ); ?>">
 			<?php require_once COZY_ADDONS_PLUGIN_DIR . 'admin/pages/features.php'; ?>
+		</div>
+
+		<div class="tab-content" id="<?php echo cozy_addons_is_block_theme() ? esc_attr( 'content5' ) : esc_attr( 'content4' ); ?>">
+			<?php require_once COZY_ADDONS_PLUGIN_DIR . 'admin/pages/license.php'; ?>
 		</div>
 	</div>
 </div>

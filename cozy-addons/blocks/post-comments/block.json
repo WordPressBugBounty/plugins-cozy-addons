@@ -3,36 +3,24 @@
   "apiVersion": 3,
   "name": "cozy-block/post-comments",
   "title": "Post Comments (Pro)",
+  "description": "Unlock the Conversation Power! See what sparks discussions with our 'Post Comments' block. Gain valuable insights to refine your engagement strategy and foster meaningful interactions.",
   "category": "cozy-block/post-magazine",
   "textdomain": "cozy-addons",
   "supports": {
     "html": false,
     "color": {
-      "background": true,
-      "gradients": true,
+      "background": false,
       "link": true,
       "text": true
     },
     "spacing": {
-      "padding": true,
+      "padding": false,
       "margin": [
         "top",
         "bottom"
       ],
       "__experimentalDefaultControls": {
-        "padding": true
-      }
-    },
-    "__experimentalBorder": {
-      "color": true,
-      "radius": true,
-      "style": true,
-      "width": true,
-      "__experimentalDefaultControls": {
-        "color": true,
-        "radius": true,
-        "style": true,
-        "width": true
+        "padding": false
       }
     },
     "typography": {
@@ -61,6 +49,14 @@
     "cover": {
       "type": "string",
       "default": ""
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "16px"
+        }
+      }
     },
     "clientId": {
       "type": "string",
@@ -154,6 +150,10 @@
         "fontSize": "14px",
         "fontFamily": "",
         "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": ""
       }
     }

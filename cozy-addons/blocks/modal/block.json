@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/modal",
   "title": "Popup Builder (Pro)",
+  "description": "Capture attention with our 'Popup Builder' block, a pop-up window designed to showcase offers and promotions, providing a compelling way to communicate with your audience.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

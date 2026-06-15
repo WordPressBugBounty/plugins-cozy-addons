@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"80px","bottom":"80px","left":"26px","right":"26px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"400","lineHeight":"1.6"},"color":{"text":"#121205"},"elements":{"link":{"color":{"text":"#121205"}}}},"layout":{"type":"constrained","contentSize":"990px"},"cozyCustomFont":"Mona Sans"} -->
 <div class="wp-block-group has-text-color has-link-color" style="color:#121205;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:18px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"750px"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"align":"center"} -->

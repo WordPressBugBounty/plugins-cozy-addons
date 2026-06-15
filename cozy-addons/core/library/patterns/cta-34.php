@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"0","left":"0","top":"80px","bottom":"0"}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"},"color":{"background":"#fffffe"}},"layout":{"type":"constrained","contentSize":"100%"},"cozyCustomFont":"Public Sans"} -->
 <div class="wp-block-group has-background" style="background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:0;padding-bottom:0;padding-left:0;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"top":"0px"}},"color":{"text":"#010101"},"elements":{"link":{"color":{"text":"#010101"}}},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"500"}}} -->
 <p class="has-text-align-center has-text-color has-link-color" style="color:#010101;margin-top:0px;font-style:normal;font-weight:500;text-transform:uppercase"><?php esc_html_e( 'Follow us on Instagram', 'cozy-addons' ); ?></p>

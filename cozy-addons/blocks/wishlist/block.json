@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/wishlist",
   "title": "Wishlist (Pro)",
+  "description": "'Wishlist' block allows you to add and view your favorite products in a convenient, accessible sidebar for easy management and quick access.",
   "category": "cozy-block/woocommerce",
   "textdomain": "cozy-addons",
   "usesContext": [
@@ -12,20 +13,14 @@
   ],
   "supports": {
     "html": false,
-    "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
-      "text": true
-    },
     "spacing": {
-      "padding": true,
+      "padding": false,
       "margin": [
         "top",
         "bottom"
       ],
       "__experimentalDefaultControls": {
-        "padding": true
+        "padding": false
       }
     },
     "interactivity": {
@@ -102,6 +97,34 @@
     "sidebar": {
       "type": "object",
       "default": {
+        "sidebarTitle": {
+          "toggle": true,
+          "beforeText": "Wishlist (",
+          "afterText": " )",
+          "alignment": "left",
+          "margin": {
+            "top": "0px",
+            "bottom": "0px"
+          },
+          "padding": {
+            "top": "34px",
+            "right": "24px",
+            "bottom": "24px",
+            "left": "18px"
+          },
+          "font": {
+            "size": "30px",
+            "weight": "600",
+            "family": ""
+          },
+          "letterCase": "none",
+          "textDecoration": "none",
+          "lineHeight": "",
+          "letterSpace": "",
+          "color": {
+            "text": "#000"
+          }
+        },
         "icon": {
           "size": "20px",
           "path": "M8.00068 3.01933C8.76254 2.33777 9.75642 1.97375 10.7783 2.00201C11.8001 2.03028 12.7723 2.44869 13.4953 3.17133C14.2176 3.89346 14.6362 4.86449 14.6655 5.88539C14.6947 6.90628 14.3324 7.8997 13.6527 8.662L7.99935 14.3233L2.34735 8.662C1.66685 7.8993 1.30415 6.90503 1.33371 5.88332C1.36326 4.8616 1.78283 3.88996 2.50628 3.16788C3.22972 2.4458 4.20215 2.02807 5.22392 2.00044C6.24569 1.97281 7.23927 2.33739 8.00068 3.01933ZM12.5513 4.11333C12.0696 3.63237 11.4221 3.35388 10.7416 3.33492C10.0611 3.31595 9.39916 3.55795 8.89135 4.01133L8.00135 4.81L7.11068 4.012C6.60513 3.55992 5.94632 3.31746 5.26833 3.33394C4.59033 3.35043 3.94408 3.62462 3.4611 4.10073C2.97811 4.57683 2.69467 5.21908 2.66846 5.89677C2.64226 6.57446 2.87524 7.23668 3.32002 7.74866L8.00002 12.436L12.68 7.74933C13.1229 7.2396 13.3559 6.58082 13.3321 5.90598C13.3082 5.23113 13.0292 4.59048 12.5513 4.11333Z",
@@ -162,7 +185,7 @@
           "position": "right",
           "top": "10px",
           "left": "10px",
-          "right": "10px",
+          "right": "0px",
           "box": {
             "width": "40px",
             "height": "40px",
@@ -175,25 +198,28 @@
           },
           "color": {
             "text": "",
-            "textHover": "#fff",
-            "bg": "#fff",
-            "bgHover": "#f90",
+            "textHover": "#5566ca",
+            "bg": "",
+            "bgHover": "",
             "borderHover": ""
           }
         },
         "selectedTypography": "title",
         "productImage": {
-          "width": "80px",
-          "height": "80px",
-          "radius": ""
+          "width": "115px",
+          "height": "140px",
+          "radius": "24px"
         },
         "productTitle": {
           "font": {
-            "size": "16px",
+            "size": "18px",
             "weight": "600",
             "family": ""
           },
           "letterCase": "none",
+          "textDecoration": "none",
+          "lineHeight": "1.2",
+          "letterSpace": "",
           "color": {
             "text": "#000",
             "textHover": "#f90"
@@ -206,46 +232,55 @@
             "family": ""
           },
           "letterCase": "none",
+          "textDecoration": "none",
+          "lineHeight": "1.2",
+          "letterSpace": "",
           "color": {
             "text": "#6a6a6a"
           }
         },
         "productPrice": {
           "font": {
-            "size": "14px",
+            "size": "18px",
             "weight": "500",
             "family": ""
           },
           "letterCase": "none",
+          "textDecoration": "none",
+          "lineHeight": "1.2",
+          "letterSpace": "",
           "color": {
             "text": "#090b10"
           }
         },
         "button": {
           "padding": {
-            "top": "6px",
-            "right": "12px",
-            "bottom": "6px",
-            "left": "12px"
+            "top": "14px",
+            "right": "18px",
+            "bottom": "14px",
+            "left": "18px"
           },
           "font": {
-            "size": "12px",
+            "size": "14px",
             "weight": "500",
             "family": ""
           },
           "letterCase": "none",
+          "textDecoration": "none",
+          "lineHeight": "1.2",
+          "letterSpace": "",
           "cart": {
             "border": {
               "width": "",
               "style": "",
               "color": ""
             },
-            "radius": "100px",
+            "radius": "24px",
             "color": {
               "text": "#fff",
               "textHover": "",
-              "bg": "#5566ca",
-              "bgHover": "#f90",
+              "bg": "#000000",
+              "bgHover": "#5566ca",
               "borderHover": ""
             }
           },
@@ -257,30 +292,31 @@
             },
             "radius": "100px",
             "color": {
-              "text": "#fff",
-              "textHover": "",
-              "bg": "#cf2e2e",
-              "bgHover": "#f90",
+              "text": "#6a615b",
+              "textHover": "#b9473d",
+              "bg": "#b9473d1a",
+              "bgHover": "",
               "borderHover": ""
             }
           }
         },
-        "width": "30%",
+        "width": "550px",
         "position": "right",
-        "contentGap": "26px",
+        "contentGap": "12px",
         "padding": {
-          "top": "20px",
-          "right": "20px",
-          "bottom": "20px",
-          "left": "20px"
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
         },
         "color": {
-          "bg": "#fff",
-          "overlay": "#282828d6",
           "cartText": "#fff",
           "cartTextHover": "#fff",
           "cartBg": "#5566ca",
-          "cartBgHover": "#f90"
+          "cartBgHover": "#f90",
+          "bg": "#fff",
+          "overlay": "#282828d6",
+          "borderColor": "#e3ddd5"
         }
       }
     },
@@ -288,19 +324,14 @@
       "type": "object",
       "default": {
         "padding": {
-          "top": "0px",
-          "right": "0px",
-          "bottom": "0px",
-          "left": "0px"
+          "top": "0",
+          "right": "24px",
+          "bottom": "26px",
+          "left": "24px"
         },
         "margin": {
           "top": "0px",
           "bottom": "0px"
-        },
-        "border": {
-          "width": "",
-          "style": "",
-          "color": ""
         },
         "radius": "0px",
         "color": {
@@ -328,14 +359,39 @@
         }
       }
     },
-    "toast": {
+    "openLinkinNewTab": {
       "type": "object",
       "default": {
-        "font": {
-          "size": "14px",
-          "weight": "500",
-          "family": ""
+        "external": true,
+        "variable": false,
+        "grouped": false,
+        "outofStock": false
+      }
+    },
+    "toastCard": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "8px",
+          "right": "20px",
+          "bottom": "8px",
+          "left": "20px"
         },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "font": {
+          "size": "16px",
+          "family": "",
+          "weight": "600"
+        },
+        "letterCase": "none",
+        "textDecoration": "none",
+        "lineHeight": "1.2",
+        "letterSpace": "",
+        "radius": "0px",
         "color": {
           "text": "#fff",
           "bg": "#28a745"

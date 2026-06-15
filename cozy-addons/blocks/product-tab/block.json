@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/product-tab",
   "title": "Products Showcase Tabs (Pro)",
+  "description": "Effortlessly organize and present your WooCommerce products with our 'Products Showcase Tabs' block. Explore a user-friendly approach to displaying items in categorized tabs, enhancing navigation and optimizing the shopping experience for your visitors.",
   "category": "cozy-block/woocommerce",
   "textdomain": "cozy-addons",
   "supports": {
@@ -24,19 +25,18 @@
       }
     },
     "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
+      "background": false,
+      "link": false,
       "text": true
     },
     "spacing": {
-      "padding": true,
+      "padding": false,
       "margin": [
         "top",
         "bottom"
       ],
       "__experimentalDefaultControls": {
-        "padding": true
+        "padding": false
       }
     },
     "interactivity": {
@@ -51,6 +51,14 @@
     "clientId": {
       "type": "string",
       "default": ""
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "16px"
+        }
+      }
     },
     "siteURL": {
       "type": "string",
@@ -111,6 +119,14 @@
     "excerpt": {
       "type": "number",
       "default": 20
+    },
+    "openLinkInNewTab": {
+      "type": "object",
+      "default": {
+        "external": true,
+        "grouped": false,
+        "variation": false
+      }
     },
     "gridOptions": {
       "type": "object",
@@ -350,6 +366,154 @@
         }
       }
     },
+    "quickViewModal": {
+      "type": "object",
+      "default": {
+        "selectedTypography": "title",
+        "selectedButton": "add-to-cart",
+        "productTitle": {
+          "font": {
+            "size": "18px",
+            "weight": "600",
+            "family": ""
+          },
+          "marginTop": "12px",
+          "marginBottom": "12px",
+          "letterCase": "none",
+          "color": {
+            "text": "#090b10",
+            "textHover": "#f90"
+          }
+        },
+        "productCategories": {
+          "padding": {
+            "top": "2px",
+            "right": "10px",
+            "bottom": "2px",
+            "left": "10px"
+          },
+          "color": {
+            "text": "#fff",
+            "textHover": "",
+            "bg": "#5566ca",
+            "bgHover": "#f90"
+          },
+          "font": {
+            "size": "13px",
+            "family": "",
+            "weight": "500"
+          },
+          "letterCase": "none"
+        },
+        "productContent": {
+          "font": {
+            "size": "14px",
+            "weight": "400",
+            "family": ""
+          },
+          "marginTop": "18px",
+          "marginBottom": "12px",
+          "letterCase": "none",
+          "color": {
+            "text": "#090b10"
+          }
+        },
+        "productPrice": {
+          "font": {
+            "size": "16px",
+            "weight": "500",
+            "family": ""
+          },
+          "letterCase": "none",
+          "color": {
+            "text": "#090b10"
+          }
+        },
+        "cartButton": {
+          "padding": {
+            "top": "8px",
+            "right": "16px",
+            "bottom": "8px",
+            "left": "16px"
+          },
+          "font": {
+            "size": "14px",
+            "weight": "500",
+            "family": "Public Sans"
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "24px",
+          "letterCase": "none",
+          "color": {
+            "text": "#fff",
+            "textHover": "",
+            "bg": "#5566ca",
+            "bgHover": "#f90",
+            "borderHover": ""
+          }
+        },
+        "viewCartButton": {
+          "padding": {
+            "top": "8px",
+            "right": "16px",
+            "bottom": "8px",
+            "left": "16px"
+          },
+          "font": {
+            "size": "14px",
+            "weight": "500",
+            "family": "Public Sans"
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "24px",
+          "letterCase": "none",
+          "color": {
+            "text": "#fff",
+            "textHover": "",
+            "bg": "#f90",
+            "bgHover": "#5566ca"
+          }
+        }
+      }
+    },
+    "toast": {
+      "type": "object",
+      "default": {
+        "font": {
+          "size": "16px",
+          "weight": "600",
+          "family": ""
+        },
+        "color": {
+          "text": "#fff",
+          "bg": "#28a745"
+        },
+        "padding": {
+          "top": "8px",
+          "right": "20px",
+          "bottom": "8px",
+          "left": "20px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "0px",
+        "position": {
+          "vertical": "10px",
+          "horizontal": "10px"
+        }
+      }
+    },
     "productCategory": {
       "type": "object",
       "default": {
@@ -441,7 +605,6 @@
     "cartButton": {
       "type": "object",
       "default": {
-        "label": "Add to Cart",
         "padding": {
           "top": "8px",
           "right": "16px",

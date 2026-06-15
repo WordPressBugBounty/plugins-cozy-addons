@@ -107,6 +107,9 @@
 			fadeEffect: {
 				crossFade: true,
 			},
+			keyboard: {
+				enabled: true,
+			},
 			navigation: {
 				prevEl: `${blockID} .swiper-button-prev.lightbox-button-prev`,
 				nextEl: `${blockID} .swiper-button-next.lightbox-button-next`,
@@ -139,9 +142,6 @@
 			function exitFullscreen() {
 				if (document.fullscreenElement) {
 					document.exitFullscreen();
-					// document.mozCancelFullScreen();
-					// document.webkitRequestFullscreen();
-					// document.msExitFullscreen();
 				}
 			}
 
@@ -167,6 +167,27 @@
 				blockID +
 					" .cozy-block-advanced-gallery__toolbar-button.lightbox-close-button",
 			).click(closeLightBox);
+			// Close lightbox when clicking outside the image area
+			$(blockID + " .cozy-block-advanced-gallery__lightbox-wrapper").on(
+				"click",
+				function (e) {
+					const $clicked = $(e.target);
+
+					const isInsideImage = $clicked.closest(
+						".cozy-block-advanced-gallery__lightbox-image-wrapper",
+					).length;
+					const isToolbar = $clicked.closest(
+						".cozy-block-advanced-gallery__toolbar-wrapper",
+					).length;
+					const isNavButton = $clicked.closest(
+						".swiper-button-prev, .swiper-button-next",
+					).length;
+
+					if (!isInsideImage && !isToolbar && !isNavButton) {
+						closeLightBox();
+					}
+				},
+			);
 			// When the user presses the Escape key, close the modal
 			$(document).keydown(function (event) {
 				if (event.key === "Escape") {

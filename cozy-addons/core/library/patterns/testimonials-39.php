@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0","padding":{"right":"26px","left":"26px","top":"80px","bottom":"120px"}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400","lineHeight":1.6},"color":{"text":"#646464","background":"#f4f4f4"},"elements":{"link":{"color":{"text":"#646464"}}}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Public Sans"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#646464;background-color:#f4f4f4;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:120px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:paragraph {"align":"center","style":{"color":{"text":"#0db6fe"},"elements":{"link":{"color":{"text":"#0db6fe"}}},"typography":{"textTransform":"uppercase"}},"cozyCustomFont":"Inter Tight"} -->
 <p class="has-text-align-center has-text-color has-link-color" style="color:#0db6fe;text-transform:uppercase"><?php esc_html_e( 'Testimonials!', 'cozy-addons' ); ?></p>

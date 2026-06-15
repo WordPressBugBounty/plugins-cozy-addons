@@ -99,7 +99,7 @@ $sale_badge = array(
 	),
 );
 
-$icon = array(
+$icon             = array(
 	'margin' => array(
 		'top'    => 'top' === $attributes['icon']['align']['vertical'] ? $attributes['icon']['margin']['top'] . 'px' : '',
 		'right'  => 'right' === $attributes['icon']['align']['horizontal'] ? $attributes['icon']['margin']['right'] : '',
@@ -118,8 +118,115 @@ $icon = array(
 		'border_active' => isset( $attributes['icon']['color']['borderActive'] ) ? $attributes['icon']['color']['borderActive'] : '',
 	),
 );
+$toast_card       = array(
+	'font'     => array(
+		'size'   => isset( $attributes['toast']['font']['size'] ) ? $attributes['toast']['font']['size'] : '',
+		'family' => isset( $attributes['toast']['font']['family'] ) ? $attributes['toast']['font']['family'] : '',
+		'weight' => isset( $attributes['toast']['font']['weight'] ) ? $attributes['toast']['font']['size'] : '',
+	),
+	'color'    => array(
+		'text' => isset( $attributes['toast']['color']['text'] ) ? $attributes['toast']['color']['text'] : '',
+		'bg'   => isset( $attributes['toast']['color']['bg'] ) ? $attributes['toast']['color']['bg'] : '',
+	),
+	'padding'  => isset( $attributes['toast']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['toast']['padding'] ) : '',
+	'border'   => isset( $attributes['toast']['border'] ) ? cozy_render_TRBL( 'border', $attributes['toast']['border'] ) : '',
+	'radius'   => isset( $attributes['toast']['radius'] ) ? $attributes['toast']['radius'] : '',
+	'position' => array(
+		'vertical'   => isset( $attributes['toast']['position']['vertical'] ) ? $attributes['toast']['position']['vertical'] : '',
+		'horizontal' => isset( $attributes['toast']['position']['horizontal'] ) ? $attributes['toast']['position']['horizontal'] : '',
+	),
+);
+$quick_view_modal = array(
 
-$post_title = array(
+	'title'       => array(
+		'font'         => array(
+			'size'   => isset( $attributes['quickViewModal']['productTitle']['font']['size'] ) ? $attributes['quickViewModal']['productTitle']['font']['size'] : '',
+			'family' => isset( $attributes['quickViewModal']['productTitle']['font']['family'] ) ? $attributes['quickViewModal']['productTitle']['font']['family'] : '',
+			'weight' => isset( $attributes['quickViewModal']['productTitle']['font']['weight'] ) ? $attributes['quickViewModal']['productTitle']['font']['weight'] : '',
+		),
+		'lettercase'   => isset( $attributes['quickViewModal']['productTitle']['letterCase'] ) ? $attributes['quickViewModal']['productTitle']['letterCase'] : '',
+		'color'        => array(
+			'text'       => isset( $attributes['quickViewModal']['productTitle']['color']['text'] ) ? $attributes['quickViewModal']['productTitle']['color']['text'] : '',
+			'text_hover' => isset( $attributes['quickViewModal']['productTitle']['color']['textHover'] ) ? $attributes['quickViewModal']['productTitle']['color']['textHover'] : '',
+		),
+		'marginTop'    => isset( $attributes['quickViewModal']['productTitle']['marginTop'] ) ? $attributes['quickViewModal']['productTitle']['marginTop'] : '',
+		'marginBottom' => isset( $attributes['quickViewModal']['productTitle']['marginBottom'] ) ? $attributes['quickViewModal']['productTitle']['marginBottom'] : '',
+	),
+	'categories'  => array(
+		'padding'    => array( $attributes['quickViewModal']['productCategories']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['quickViewModal']['productCategories']['padding'] ) : '',
+		'font'       => array(
+			'size'   => isset( $attributes['quickViewModal']['productCategories']['font']['size'] ) ? $attributes['quickViewModal']['productCategories']['font']['size'] : '',
+			'family' => isset( $attributes['quickViewModal']['productCategories']['font']['family'] ) ? $attributes['quickViewModal']['productCategories']['font']['family'] : '',
+			'weight' => isset( $attributes['quickViewModal']['productCategories']['font']['weight'] ) ? $attributes['quickViewModal']['productCategories']['font']['weight'] : '',
+		),
+		'lettercase' => isset( $attributes['quickViewModal']['productCategories']['letterCase'] ) ? $attributes['quickViewModal']['productCategories']['letterCase'] : '',
+		'color'      => array(
+			'text'             => isset( $attributes['quickViewModal']['productCategories']['color']['text'] ) ? $attributes['quickViewModal']['productCategories']['color']['text'] : '',
+			'text_hover'       => isset( $attributes['quickViewModal']['productCategories']['color']['textHover'] ) ? $attributes['quickViewModal']['productCategories']['color']['textHover'] : '',
+			'background'       => isset( $attributes['quickViewModal']['productCategories']['color']['textHover'] ) ? $attributes['quickViewModal']['productCategories']['color']['bg'] : '',
+			'background_hover' => isset( $attributes['quickViewModal']['productCategories']['color']['textHover'] ) ? $attributes['quickViewModal']['productCategories']['color']['bgHover'] : '',
+		),
+	),
+	'content'     => array(
+		'font'         => array(
+			'size'   => isset( $attributes['quickViewModal']['productContent']['font']['size'] ) ? $attributes['quickViewModal']['productContent']['font']['size'] : '',
+			'family' => isset( $attributes['quickViewModal']['productContent']['font']['family'] ) ? $attributes['quickViewModal']['productContent']['font']['family'] : '',
+			'weight' => isset( $attributes['quickViewModal']['productContent']['font']['weight'] ) ? $attributes['quickViewModal']['productContent']['font']['weight'] : '',
+		),
+		'lettercase'   => isset( $attributes['quickViewModal']['productContent']['letterCase'] ) ? $attributes['quickViewModal']['productContent']['letterCase'] : '',
+		'color'        => array(
+			'text' => isset( $attributes['quickViewModal']['productContent']['color']['text'] ) ? $attributes['quickViewModal']['productContent']['color']['text'] : '',
+		),
+		'marginTop'    => isset( $attributes['quickViewModal']['productContent']['marginTop'] ) ? $attributes['quickViewModal']['productContent']['marginTop'] : '',
+		'marginBottom' => isset( $attributes['quickViewModal']['productContent']['marginBottom'] ) ? $attributes['quickViewModal']['productContent']['marginBottom'] : '',
+	),
+	'price'       => array(
+		'font'       => array(
+			'size'   => isset( $attributes['quickViewModal']['productPrice']['font']['size'] ) ? $attributes['quickViewModal']['productPrice']['font']['size'] : '',
+			'family' => isset( $attributes['quickViewModal']['productPrice']['font']['family'] ) ? $attributes['quickViewModal']['productPrice']['font']['family'] : '',
+			'weight' => isset( $attributes['quickViewModal']['productPrice']['font']['weight'] ) ? $attributes['quickViewModal']['productPrice']['font']['weight'] : '',
+		),
+		'lettercase' => isset( $attributes['quickViewModal']['productPrice']['letterCase'] ) ? $attributes['quickViewModal']['productPrice']['letterCase'] : '',
+		'color'      => array(
+			'text' => isset( $attributes['quickViewModal']['productPrice']['color']['text'] ) ? $attributes['quickViewModal']['productPrice']['color']['text'] : '',
+		),
+	),
+	'cart_button' => array(
+		'padding'    => isset( $attributes['quickViewModal']['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['quickViewModal']['cartButton']['padding'] ) : '',
+		'font'       => array(
+			'size'   => isset( $attributes['quickViewModal']['cartButton']['font']['size'] ) ? $attributes['quickViewModal']['cartButton']['font']['size'] : '',
+			'family' => isset( $attributes['quickViewModal']['cartButton']['font']['family'] ) ? $attributes['quickViewModal']['cartButton']['font']['family'] : '',
+			'weight' => isset( $attributes['quickViewModal']['cartButton']['font']['weight'] ) ? $attributes['quickViewModal']['cartButton']['font']['weight'] : '',
+		),
+		'lettercase' => isset( $attributes['quickViewModal']['cartButton']['letterCase'] ) ? $attributes['quickViewModal']['cartButton']['letterCase'] : '',
+		'border'     => isset( $attributes['quickViewModal']['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['quickViewModal']['cartButton']['border'] ) : '',
+		'radius'     => isset( $attributes['quickViewModal']['cartButton']['radius'] ) ? $attributes['quickViewModal']['cartButton']['radius'] : '',
+		'color'      => array(
+			'text'       => isset( $attributes['quickViewModal']['cartButton']['color']['text'] ) ? $attributes['quickViewModal']['cartButton']['color']['text'] : '',
+			'text_hover' => isset( $attributes['quickViewModal']['cartButton']['color']['textHover'] ) ? $attributes['quickViewModal']['cartButton']['color']['textHover'] : '',
+			'bg'         => isset( $attributes['quickViewModal']['cartButton']['color']['bg'] ) ? $attributes['quickViewModal']['cartButton']['color']['bg'] : '',
+			'bg_hover'   => isset( $attributes['quickViewModal']['cartButton']['color']['bgHover'] ) ? $attributes['quickViewModal']['cartButton']['color']['bgHover'] : '',
+		),
+	),
+	'view_button' => array(
+		'padding'    => isset( $attributes['quickViewModal']['viewCartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['quickViewModal']['viewCartButton']['padding'] ) : '',
+		'font'       => array(
+			'size'   => isset( $attributes['quickViewModal']['viewCartButton']['font']['size'] ) ? $attributes['quickViewModal']['viewCartButton']['font']['size'] : '',
+			'family' => isset( $attributes['quickViewModal']['viewCartButton']['font']['family'] ) ? $attributes['quickViewModal']['viewCartButton']['font']['family'] : '',
+			'weight' => isset( $attributes['quickViewModal']['viewCartButton']['font']['weight'] ) ? $attributes['quickViewModal']['viewCartButton']['font']['weight'] : '',
+		),
+		'lettercase' => isset( $attributes['quickViewModal']['viewCartButton']['letterCase'] ) ? $attributes['quickViewModal']['viewCartButton']['letterCase'] : '',
+		'border'     => isset( $attributes['quickViewModal']['viewCartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['quickViewModal']['viewCartButton']['border'] ) : '',
+		'radius'     => isset( $attributes['quickViewModal']['viewCartButton']['radius'] ) ? $attributes['quickViewModal']['viewCartButton']['radius'] : '',
+		'color'      => array(
+			'text'       => isset( $attributes['quickViewModal']['viewCartButton']['color']['text'] ) ? $attributes['quickViewModal']['viewCartButton']['color']['text'] : '',
+			'text_hover' => isset( $attributes['quickViewModal']['viewCartButton']['color']['textHover'] ) ? $attributes['quickViewModal']['viewCartButton']['color']['textHover'] : '',
+			'bg'         => isset( $attributes['quickViewModal']['viewCartButton']['color']['bg'] ) ? $attributes['quickViewModal']['viewCartButton']['color']['bg'] : '',
+			'bg_hover'   => isset( $attributes['quickViewModal']['viewCartButton']['color']['bgHover'] ) ? $attributes['quickViewModal']['viewCartButton']['color']['bgHover'] : '',
+		),
+	),
+);
+$post_title       = array(
 	'decoration'     => isset( $attributes['postOptions']['title']['decoration'] ) ? $attributes['postOptions']['title']['decoration'] : '',
 	'line_height'    => isset( $attributes['postOptions']['title']['lineHeight'] ) ? $attributes['postOptions']['title']['lineHeight'] : '',
 	'letter_spacing' => isset( $attributes['postOptions']['title']['letterSpacing'] ) ? $attributes['postOptions']['title']['letterSpacing'] : '',
@@ -206,6 +313,17 @@ $bullets = array(
 );
 
 $block_styles = "
+body #$block_id.cozy-featured-product.toast-message{
+    {$toast_card['padding']}
+    {$toast_card['border']}
+	font-size: {$toast_card['font']['size']};
+	font-family: {$toast_card['font']['family']};
+	font-weight: {$toast_card['font']['weight']};
+	color: {$toast_card['color']['text']};
+	background-color: {$toast_card['color']['bg']};
+	margin-right:{$toast_card['position']['horizontal']};
+	margin-bottom:{$toast_card['position']['vertical']};
+}
 #$block_id .cozy-block-featured-product__header {
     {$header_box['padding']}
     margin-top: {$attributes['headerBox']['margin']['top']};
@@ -385,6 +503,10 @@ $block_styles = "
     height: {$attributes['icon']['size']};
     fill: {$icon['color']['text']};
 }
+.cozy-block-featured-product__icon-container .is-loading-spinner::after{
+	border-color:{$icon['color']['text']} !important;
+	border-top-color:{$icon['color']['bg']} !important;
+}
 #$block_id .cozy-block-featured-product__icon-wrapper:hover svg {
     fill: {$icon['color']['text_hover']};
 }
@@ -392,7 +514,7 @@ $block_styles = "
     fill: {$icon['color']['text_active']};
 }
 
-#$block_id .post__categories {
+#$block_id .post__content-wrapper .post__categories {
 	gap: {$attributes['productCategory']['gap']};
 	margin-top: {$attributes['productCategory']['margin']['top']};
     margin-bottom: {$attributes['productCategory']['margin']['bottom']};
@@ -404,7 +526,7 @@ $block_styles = "
 	letter-spacing: {$product_category['letter_spacing']};
     justify-content: {$attributes['postOptions']['textAlign']};
 }
-#$block_id .post__categories a {
+#$block_id .post__content-wrapper .post__categories a {
 	{$product_category['padding']}
 	{$product_category['border']}
 	border-radius: {$attributes['productCategory']['radius']};
@@ -412,13 +534,13 @@ $block_styles = "
 	color: {$product_category['color']['text']};
 	background-color: {$product_category['color']['bg']};
 }
-#$block_id .post__categories a:hover {
+#$block_id .post__content-wrapper .post__categories a:hover {
 	color: {$product_category['color']['text_hover']};
 	background-color: {$product_category['color']['bg_hover']};
 	border-color: {$product_category['color']['border_hover']};
 }
 
-#$block_id .post__title {
+#$block_id .post__content-wrapper .post__title {
 	margin-top: {$attributes['postOptions']['title']['margin']['top']};
 	margin-bottom: {$attributes['postOptions']['title']['margin']['bottom']};
 	font-size: clamp(16px, calc(3vw + 4px), {$attributes['postOptions']['title']['font']['size']});
@@ -428,15 +550,15 @@ $block_styles = "
 	line-height: {$post_title['line_height']};
 	letter-spacing: {$post_title['letter_spacing']};
 }
-#$block_id .post__title a {
+#$block_id .post__content-wrapper .post__title a {
 	text-decoration: {$post_title['decoration']};
 	color: {$post_title['color']['text']};
 }
-#$block_id .post__title:hover a {
+#$block_id .post__content-wrapper .post__title:hover a {
 	color: {$post_title['color']['text_hover']};
 }
 
-#$block_id .post__price {
+#$block_id .post__content-wrapper .post__price {
 	margin-top: {$attributes['productPrice']['margin']['top']};
 	margin-bottom: {$attributes['productPrice']['margin']['bottom']};
 	font-size: {$attributes['productPrice']['font']['size']};
@@ -448,11 +570,11 @@ $block_styles = "
 	letter-spacing: {$product_price['letter_spacing']};
 	color: {$product_price['color']['text']};
 }
-#$block_id .post__price * {
+#$block_id .post__content-wrapper .post__price * {
 	color: {$product_price['color']['text']};
 }
 
-#$block_id .post__content {
+#$block_id .post__content-wrapper .post__content {
 	margin-top: {$attributes['productSummary']['margin']['top']};
 	margin-bottom: {$attributes['productSummary']['margin']['bottom']};
 	font-size: {$attributes['productSummary']['font']['size']};
@@ -465,7 +587,7 @@ $block_styles = "
 	color: {$product_summary['color']['text']};
 }
 
-#$block_id .post__cart-button {
+#$block_id .post__content-wrapper .post__cart-button {
 	width: {$cart_btn['width']};
     margin-top: {$attributes['cartButton']['margin']['top']};
     margin-bottom: {$attributes['cartButton']['margin']['bottom']};
@@ -482,12 +604,80 @@ $block_styles = "
     color: {$cart_btn['color']['text']};
     background-color: {$cart_btn['color']['bg']};
 }
-#$block_id .post__cart-button:hover {
+#$block_id .post__content-wrapper .post__cart-button:hover {
     color: {$cart_btn['color']['text_hover']};
     background-color: {$cart_btn['color']['bg_hover']};
     border-color: {$cart_btn['color']['border_hover']};
 }
-
+#$block_id .quick-view__lightbox-body .quick-view__product-detail .post__title{
+	margin-top:{$quick_view_modal['title']['marginTop']};
+	margin-bottom:{$quick_view_modal['title']['marginBottom']};
+	font-size: {$quick_view_modal['title']['font']['size']};
+	font-family: {$quick_view_modal['title']['font']['family']};
+	font-weight:{$quick_view_modal['title']['font']['weight']};
+	text-transform: {$quick_view_modal['title']['lettercase']};
+	color:{$quick_view_modal['title']['color']['text']};
+}
+#$block_id .quick-view__lightbox-body .quick-view__product-detail .post__title a:hover{
+	color: {$quick_view_modal['title']['color']['text_hover']};
+}
+#$block_id .quick-view__lightbox-body .quick-view__product-detail .quick-view__product-category{
+	{$quick_view_modal['categories']['padding']}
+	font-size: {$quick_view_modal['categories']['font']['size']};
+	font-family: {$quick_view_modal['categories']['font']['family']};
+	font-weight:{$quick_view_modal['categories']['font']['weight']};
+	text-transform: {$quick_view_modal['categories']['lettercase']};
+	color:{$quick_view_modal['categories']['color']['text']};
+	background-color: {$quick_view_modal['categories']['color']['background']};
+}
+#$block_id .quick-view__lightbox-body .quick-view__product-detail .quick-view__product-category:hover{
+	color:{$quick_view_modal['categories']['color']['text_hover']};
+	background-color:{$quick_view_modal['categories']['color']['background_hover']};
+}
+#$block_id .quick-view__lightbox-body .quick-view__product-detail .post__content{
+margin-top:{$quick_view_modal['content']['marginTop']};
+	margin-bottom:{$quick_view_modal['content']['marginBottom']};
+	font-size:{$quick_view_modal['content']['font']['size']};
+	font-family:{$quick_view_modal['content']['font']['family']};
+	font-weight:{$quick_view_modal['content']['font']['weight']};
+	text-transform:{$quick_view_modal['content']['lettercase']};
+	color:{$quick_view_modal['content']['color']['text']};
+}
+#$block_id .quick-view__lightbox-body .quick-view__product-detail .post__price{
+	font-size:{$quick_view_modal['price']['font']['size']};
+	font-family:{$quick_view_modal['price']['font']['family']};
+	font-weight:{$quick_view_modal['price']['font']['weight']};
+	text-transform:{$quick_view_modal['price']['lettercase']};
+	color:{$quick_view_modal['price']['color']['text']};
+}
+#$block_id .quick-view__lightbox-body .quick-view__product-detail .quick-view__cart-wrapper .quick-view__cart-button{
+	{$quick_view_modal['cart_button']['padding']}
+	{$quick_view_modal['cart_button']['border']}
+	border-radius:{$quick_view_modal['cart_button']['radius']};
+	color:{$quick_view_modal['cart_button']['color']['text']};
+	background-color:{$quick_view_modal['cart_button']['color']['bg']};
+	font-size:{$quick_view_modal['cart_button']['font']['size']};
+	font-family:{$quick_view_modal['cart_button']['font']['family']};
+	font-weight:{$quick_view_modal['cart_button']['font']['weight']};
+}
+#$block_id .quick-view__lightbox-body .quick-view__product-detail .quick-view__cart-wrapper .quick-view__cart-button:hover{
+	color:{$quick_view_modal['cart_button']['color']['text_hover']};
+	background-color:{$quick_view_modal['cart_button']['color']['bg_hover']};
+}
+#$block_id .quick-view__lightbox-body .quick-view__product-detail .quick-view__cart-wrapper .quick-view__cart-view{
+	{$quick_view_modal['view_button']['padding']}
+	{$quick_view_modal['view_button']['border']}
+	border-radius:{$quick_view_modal['view_button']['radius']};
+	color:{$quick_view_modal['view_button']['color']['text']};
+	background-color:{$quick_view_modal['view_button']['color']['bg']};
+	font-size:{$quick_view_modal['view_button']['font']['size']};
+	font-family:{$quick_view_modal['view_button']['font']['family']};
+	font-weight:{$quick_view_modal['view_button']['font']['weight']};
+}
+#$block_id .quick-view__lightbox-body .quick-view__product-detail .quick-view__cart-wrapper .quick-view__cart-view:hover{
+	color:{$quick_view_modal['view_button']['color']['text_hover']};
+	background-color:{$quick_view_modal['view_button']['color']['bg_hover']};
+}
 #$block_id .swiper-button-prev::after,
 #$block_id .swiper-button-next::after {
     font-size: {$attributes['navigation']['size']};
@@ -623,6 +813,9 @@ if ( ! function_exists( 'get_cozy_block_featured_product_data' ) ) {
 				$post_data['rating']              = $product->get_average_rating();
 				$post_data['review_count']        = $product->get_review_count();
 				$post_data['categories']          = $product_categories;
+				$post_data['type']                = $product->get_type();
+				$post_data['cart_text']           = $product->add_to_cart_text();
+				$post_data['in_stock']            = $product->is_in_stock();
 
 				$additional_post_data[] = $post_data;
 			}
@@ -644,7 +837,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 		$classes[] = $attributes['postBoxStyles']['hoverEffect'] ? 'has-hover-effect' : '';
 		$classes[] = $attributes['postBoxStyles']['shadow']['enabled'] ? 'has-box-shadow' : '';
 		$classes[] = $attributes['postBoxStyles']['shadowHover']['enabled'] ? 'has-hover-box-shadow' : '';
-		$output   .= '<li class="' . implode( ' ', $classes ) . '" data-product-id="' . $post_data['ID'] . '">';
+		$output   .= '<li class="' . implode( ' ', $classes ) . '" data-product-id="' . $post_data['ID'] . '" >';
 
 		// Toast
 		$output .= '<div class="post__toast visibility-hidden">';
@@ -723,11 +916,24 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 				$classes[] = $attributes['icon']['hoverShow'] ? 'has-hover-show' : '';
 				$output   .= '<div class="' . implode( ' ', $classes ) . '">';
 				if ( $attributes['enableOptions']['cart'] ) {
-					$output .= '<div class="cozy-block-featured-product__icon-wrapper cart__icon-wrapper" data-product-id="' . $post_data['ID'] . '">';
-					$output .= '<svg viewBox="0 0 12 15" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">';
-					$output .= '<path d="M4 3.99999C4 3.46956 4.21071 2.96085 4.58579 2.58578C4.96086 2.2107 5.46957 1.99999 6 1.99999C6.53043 1.99999 7.03914 2.2107 7.41421 2.58578C7.78929 2.96085 8 3.46956 8 3.99999H4ZM2.66667 3.99999H0.666667C0.489856 3.99999 0.320286 4.07023 0.195262 4.19525C0.0702379 4.32028 0 4.48985 0 4.66666V14C0 14.1768 0.0702379 14.3464 0.195262 14.4714C0.320286 14.5964 0.489856 14.6667 0.666667 14.6667H11.3333C11.5101 14.6667 11.6797 14.5964 11.8047 14.4714C11.9298 14.3464 12 14.1768 12 14V4.66666C12 4.48985 11.9298 4.32028 11.8047 4.19525C11.6797 4.07023 11.5101 3.99999 11.3333 3.99999H9.33333C9.33333 3.11593 8.98214 2.26809 8.35702 1.64297C7.7319 1.01785 6.88406 0.666656 6 0.666656C5.11595 0.666656 4.2681 1.01785 3.64298 1.64297C3.01786 2.26809 2.66667 3.11593 2.66667 3.99999ZM4 6.66666C4 7.19709 4.21071 7.7058 4.58579 8.08087C4.96086 8.45594 5.46957 8.66666 6 8.66666C6.53043 8.66666 7.03914 8.45594 7.41421 8.08087C7.78929 7.7058 8 7.19709 8 6.66666H9.33333C9.33333 7.55071 8.98214 8.39856 8.35702 9.02368C7.7319 9.6488 6.88406 9.99999 6 9.99999C5.11595 9.99999 4.2681 9.6488 3.64298 9.02368C3.01786 8.39856 2.66667 7.55071 2.66667 6.66666H4Z" />';
-					$output .= '</svg>';
-					$output .= '</div>';
+					$product_type = $post_data['type'];
+					$in_stock     = $post_data['in_stock'];
+					$is_simple    = 'simple' === $product_type;
+					$use_link     = ! $is_simple || ! $in_stock;
+
+					$svg = '<svg viewBox="0 0 12 15" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        						<path d="M4 3.99999C4 3.46956 4.21071 2.96085 4.58579 2.58578C4.96086 2.2107 5.46957 1.99999 6 1.99999C6.53043 1.99999 7.03914 2.2107 7.41421 2.58578C7.78929 2.96085 8 3.46956 8 3.99999H4ZM2.66667 3.99999H0.666667C0.489856 3.99999 0.320286 4.07023 0.195262 4.19525C0.0702379 4.32028 0 4.48985 0 4.66666V14C0 14.1768 0.0702379 14.5964 0.195262 14.4714C0.320286 14.5964 0.489856 14.6667 0.666667 14.6667H11.3333C11.5101 14.6667 11.6797 14.5964 11.8047 14.4714C11.9298 14.3464 12 14.1768 12 14V4.66666C12 4.48985 11.9298 4.32028 11.8047 4.19525C11.6797 4.07023 11.5101 3.99999 11.3333 3.99999H9.33333C9.33333 3.11593 8.98214 2.26809 8.35702 1.64297C7.7319 1.01785 6.88406 0.666656 6 0.666656C5.11595 0.666656 4.2681 1.01785 3.64298 1.64297C3.01786 2.26809 2.66667 3.11593 2.66667 3.99999ZM4 6.66666C4 7.19709 4.21071 7.7058 4.58579 8.08087C4.96086 8.45594 5.46957 8.66666 6 8.66666C6.53043 8.66666 7.03914 8.45594 7.41421 8.08087C7.78929 7.7058 8 7.19709 8 6.66666H9.33333C9.33333 7.55071 8.98214 8.39856 8.35702 9.02368C7.7319 9.6488 6.88406 9.99999 6 9.99999C5.11595 9.99999 4.2681 9.6488 3.64298 9.02368C3.01786 8.39856 2.66667 7.55071 2.66667 6.66666H4Z" />
+    						</svg>';
+
+					if ( $use_link ) {
+						$output .= '<a href="' . esc_url( $post_data['post_link'] ) . '" class="cozy-block-featured-product__icon-wrapper cart__icon-wrapper" data-product-id="' . $post_data['ID'] . '">';
+						$output .= $svg;
+						$output .= '</a>';
+					} else {
+						$output .= '<div class="cozy-block-featured-product__icon-wrapper cart__icon-wrapper product_type_' . esc_html( $product_type ) . '"data-product-id="' . $post_data['ID'] . '">';
+						$output .= $svg;
+						$output .= '</div>';
+					}
 				}
 
 				if ( $attributes['enableOptions']['wishlist'] ) {
@@ -736,7 +942,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 					$classes[]          = 'cozy-block-featured-product__icon-wrapper';
 					$classes[]          = 'wishlist__icon-wrapper';
 					$classes[]          = is_array( $wishlist_user_meta ) && is_user_logged_in() && in_array( intval( $post_data['ID'] ), $wishlist_user_meta ) ? 'is-active' : '';
-					$output            .= '<div class="' . implode( ' ', $classes ) . '" data-product-id="' . $post_data['ID'] . '">';
+					$output            .= '<div class="' . implode( ' ', $classes ) . '" data-product-id="' . $post_data['ID'] . '" data-product-name="' . esc_attr( $post_data['post_title'] ) . '">';
 					$output            .= '<svg viewBox="0 0 14 12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">';
 					$output            .= '<path d="M12.6411 0.820517C11.1427 -0.430353 8.91423 -0.205357 7.53886 1.1848L7.0002 1.72854L6.46154 1.1848C5.08891 -0.205357 2.8577 -0.430353 1.35929 0.820517C-0.357861 2.25621 -0.448093 4.83294 1.0886 6.38917L6.37951 11.7409C6.7213 12.0864 7.27637 12.0864 7.61816 11.7409L12.9091 6.38917C14.4485 4.83294 14.3583 2.25621 12.6411 0.820517Z" />';
 					$output            .= '</svg>';
@@ -770,9 +976,11 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 			$output .= '</div>';
 		}
 
-		$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
-		$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleLinkNewTab'] ? '_blank' : '';
-		$output       .= '<h2 class="post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h2>';
+		if ( $attributes['enableOptions']['title'] ) {
+				$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+				$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleLinkNewTab'] ? '_blank' : '';
+				$output       .= '<h2 class="post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h2>';
+		}
 
 		$justify_content = $attributes['postOptions']['textAlign'];
 
@@ -805,12 +1013,23 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 		}
 
 		if ( $attributes['enableOptions']['cartButton'] ) {
-			$output .= '<div class="post__cart-button" data-product-id="' . $post_data['ID'] . '">';
-			$output .= '<svg class="loader-icon display-none" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-				<path d="M7.99998 2.66666C9.72665 2.66666 11.2626 3.48666 12.238 4.762L10.6666 6.33333H14.6666V2.33333L13.1873 3.81266C12.5631 3.03781 11.773 2.41284 10.8753 1.98376C9.97754 1.55467 8.99499 1.33241 7.99998 1.33333C4.31798 1.33333 1.33331 4.318 1.33331 8H2.66665C2.66665 6.58551 3.22855 5.22896 4.22874 4.22876C5.22894 3.22857 6.58549 2.66666 7.99998 2.66666ZM13.3333 8C13.3333 9.11533 12.9837 10.2026 12.3336 11.1089C11.6835 12.0151 10.7656 12.6948 9.7091 13.0522C8.65259 13.4096 7.51062 13.4268 6.44382 13.1014C5.37703 12.776 4.4391 12.1243 3.76198 11.238L5.33331 9.66666H1.33331V13.6667L2.81265 12.1873C3.43687 12.9622 4.22694 13.5872 5.12468 14.0162C6.02242 14.4453 7.00497 14.6676 7.99998 14.6667C11.682 14.6667 14.6666 11.682 14.6666 8H13.3333Z" />
-				</svg>';
-			$output .= '<span class="cart-button__label">' . esc_html( $attributes['cartButton']['label'] ) . '</span>';
-			$output .= '</div>';
+			$product_type = $post_data['type'];
+			$in_stock     = $post_data['in_stock'];
+			$is_simple    = 'simple' === $product_type;
+			$use_link     = ! $is_simple || ! $in_stock;
+
+			if ( $use_link ) {
+				$output .= '<a href="' . esc_url( $post_data['post_link'] ) . '" class="post__cart-button" data-product-id="' . $post_data['ID'] . '">';
+				$output .= '<span class="cart-button__label">' . esc_html( $post_data['cart_text'] ) . '</span>';
+				$output .= '</a>';
+			} else {
+				$output .= '<div class="post__cart-button product_type_' . esc_html( $product_type ) . ' " data-product-id="' . $post_data['ID'] . '">';
+				$output .= '<svg class="loader-icon display-none" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            					<path d="M7.99998 2.66666C9.72665 2.66666 11.2626 3.48666 12.238 4.762L10.6666 6.33333H14.6666V2.33333L13.1873 3.81266C12.5631 3.03781 11.773 2.41284 10.8753 1.98376C9.97754 1.55467 8.99499 1.33241 7.99998 1.33333C4.31798 1.33333 1.33331 4.318 1.33331 8H2.66665C2.66665 6.58551 3.22855 5.22896 4.22874 4.22876C5.22894 3.22857 6.58549 2.66666 7.99998 2.66666ZM13.3333 8C13.3333 9.11533 12.9837 10.2026 12.3336 11.1089C11.6835 12.0151 10.7656 12.6948 9.7091 13.0522C8.65259 13.4096 7.51062 13.4268 6.44382 13.1014C5.37703 12.776 4.4391 12.1243 3.76198 11.238L5.33331 9.66666H1.33331V13.6667L2.81265 12.1873C3.43687 12.9622 4.22694 13.5872 5.12468 14.0162C6.02242 14.4453 7.00497 14.6676 7.99998 14.6667C11.682 14.6667 14.6666 11.682 14.6666 8H13.3333Z" />
+            				</svg>';
+				$output .= '<span class="cart-button__label">' . esc_html( $post_data['cart_text'] ) . '</span>';
+				$output .= '</div>';
+			}
 		}
 
 		$output .= '</div>';
@@ -891,6 +1110,24 @@ if ( isset( $attributes['headingStyles']['font']['family'] ) && ! empty( $attrib
 }
 if ( isset( $attributes['subHeading']['font']['family'] ) && ! empty( $attributes['subHeading']['font']['family'] ) ) {
 	$font_families[] = $attributes['subHeading']['font']['family'];
+}
+if ( isset( $attributes['quickViewModal']['productTitle']['font']['family'] ) && ! empty( $attributes['quickViewModal']['productTitle']['font']['family'] ) ) {
+	$font_families[] = $attributes['quickViewModal']['productTitle']['font']['family'];
+}
+if ( isset( $attributes['quickViewModal']['productCategories']['font']['family'] ) && ! empty( $attributes['quickViewModal']['productCategories']['font']['family'] ) ) {
+	$font_families[] = $attributes['quickViewModal']['productCategories']['font']['family'];
+}
+if ( isset( $attributes['quickViewModal']['productContent']['font']['family'] ) && ! empty( $attributes['quickViewModal']['productContent']['font']['family'] ) ) {
+	$font_families[] = $attributes['quickViewModal']['productContent']['font']['family'];
+}
+if ( isset( $attributes['quickViewModal']['productPrice']['font']['family'] ) && ! empty( $attributes['quickViewModal']['productPrice']['font']['family'] ) ) {
+	$font_families[] = $attributes['quickViewModal']['productPrice']['font']['family'];
+}
+if ( isset( $attributes['quickViewModal']['cartButton']['font']['family'] ) && ! empty( $attributes['quickViewModal']['cartButton']['font']['family'] ) ) {
+	$font_families[] = $attributes['quickViewModal']['cartButton']['font']['family'];
+}
+if ( isset( $attributes['quickViewModal']['viewCartButton']['font']['family'] ) && ! empty( $attributes['quickViewModal']['viewCartButton']['font']['family'] ) ) {
+	$font_families[] = $attributes['quickViewModal']['viewCartButton']['font']['family'];
 }
 if ( isset( $attributes['postOptions']['title']['font']['family'] ) && ! empty( $attributes['postOptions']['title']['font']['family'] ) ) {
 	$font_families[] = $attributes['postOptions']['title']['font']['family'];

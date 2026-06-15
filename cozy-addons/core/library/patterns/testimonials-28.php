@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"16px","left":"16px","top":"75px","bottom":"75px"}},"color":{"background":"#fffffe","text":"#151a1c"},"elements":{"link":{"color":{"text":"#151a1c"}}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"},"dimensions":{"minHeight":""}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#151a1c;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:75px;padding-right:16px;padding-bottom:75px;padding-left:16px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:heading {"textAlign":"center","style":{"typography":{"fontSize":"44px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"600"},"elements":{"link":{"color":{"text":"#151a1c"}}},"color":{"text":"#151a1c"},"spacing":{"margin":{"bottom":"60px"}}},"cozyCustomFont":"Manrope"} -->
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#151a1c;margin-bottom:60px;font-size:44px;font-style:normal;font-weight:600;line-height:1.2"><?php esc_html_e( 'Trusted by 20,000+ Customer\'s', 'cozy-addons' ); ?></h2>

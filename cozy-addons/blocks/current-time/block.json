@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/date-time",
   "title": "Date & Time",
+  "description": "Stay updated with our 'Date & Time' block, effortlessly displaying the current time and date to keep your audience informed and engaged.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

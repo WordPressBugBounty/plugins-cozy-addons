@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/advanced-categories",
   "title": "Advanced Categories (Pro)",
+  "description": "Showcase your post categories with images in various layouts—grid, list, or carousel—for a visually engaging and navigable experience with our 'Advanced Categories' block.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "category",
@@ -11,12 +12,6 @@
   "textdomain": "cozy-addons",
   "supports": {
     "html": false,
-    "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
-      "text": true
-    },
     "spacing": {
       "padding": true,
       "margin": [
@@ -25,34 +20,6 @@
       ],
       "__experimentalDefaultControls": {
         "padding": true
-      }
-    },
-    "__experimentalBorder": {
-      "color": true,
-      "radius": true,
-      "style": true,
-      "width": true,
-      "__experimentalDefaultControls": {
-        "color": true,
-        "radius": true,
-        "style": true,
-        "width": true
-      }
-    },
-    "typography": {
-      "fontSize": true,
-      "lineHeight": true,
-      "__experimentalFontStyle": true,
-      "__experimentalFontWeight": true,
-      "__experimentalTextTransform": true,
-      "__experimentalFontFamily": true,
-      "__experimentalLetterSpacing": true,
-      "__experimentalTextDecoration": true,
-      "__experimentalSkipSerialization": [
-        "textDecoration"
-      ],
-      "__experimentalDefaultControls": {
-        "fontSize": true
       }
     }
   },

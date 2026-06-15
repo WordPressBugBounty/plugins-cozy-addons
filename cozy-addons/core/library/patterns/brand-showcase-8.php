@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"80px","bottom":"80px","left":"26px","right":"26px"},"margin":{"top":"0","bottom":"0"}},"border":{"bottom":{"color":"#24242429","style":"solid","width":"1px"}},"typography":{"fontSize":"16px"},"color":{"text":"#202020","background":"#fffffe"},"elements":{"link":{"color":{"text":"#202020"}}}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Public Sans"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="border-bottom-color:#24242429;border-bottom-style:solid;border-bottom-width:1px;color:#202020;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px"><!-- wp:paragraph {"align":"center"} -->
 <p class="has-text-align-center"><strong><?php esc_html_e( 'But I must explain to you how all this', 'cozy-addons' ); ?> <mark style="background-color:rgba(0, 0, 0, 0);color:#16b1ff" class="has-inline-color"><?php esc_html_e( 'mistaken idea!', 'cozy-addons' ); ?></mark></strong></p>

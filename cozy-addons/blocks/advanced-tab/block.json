@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/advanced-tab",
   "title": "Advanced Tabs",
+  "description": "Elevate your site’s navigation with the Advanced Tabs block — a sleek, interactive tabbed layout that organizes content beautifully and enhances user engagement.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "keywords": [
@@ -128,7 +129,7 @@
     "tabStyles": {
       "type": "object",
       "default": {
-        "width": 60,
+        "width": 120,
         "padding": {
           "top": 5,
           "right": 10,

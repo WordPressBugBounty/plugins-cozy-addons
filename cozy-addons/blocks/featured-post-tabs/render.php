@@ -470,6 +470,15 @@ if ( ! function_exists( 'cozy_render_featured_post_tab_data' ) ) {
 }
 
 if ( ! function_exists( 'cozy_fetch_featured_post_tab_data' ) ) {
+
+	/**
+	 * Fetches featured post tab data.
+	 *
+	 * Retrieves the data needed to populate the featured post tab,
+	 * including post information and metadata.
+	 *
+	 * @return array Featured post tab data.
+	 */
 	function cozy_fetch_featured_post_tab_data( $tab, $attributes ) {
 		$data = array();
 
@@ -539,45 +548,25 @@ if ( ! function_exists( 'cozy_fetch_featured_post_tab_data' ) ) {
 				switch ( $tab ) {
 					case 'popular':
 						$args = array(
-							'post_type'      => 'post',
-							'meta_key'       => 'cozy_post_views_count', // Replace with your popularity field.
-							'orderby'        => 'cozy_post_views_count',
-							'order'          => 'DESC',
-							'posts_per_page' => $per_page, // Number of popular posts to retrieve.
-							'meta_query'     => array(
-								'relation' => 'AND',
-								array(
-									'key'     => 'cozy_post_views_count',
-									'compare' => 'EXISTS', // Check if the timestamp is greater than or equal to one week ago.
-								),
-								array(
-									'key'     => 'cozy_post_views_count',
-									'value'   => '0',
-									'compare' => '>', // Check if the timestamp is greater than or equal to one week ago.
-								),
-							),
+							'post_type'           => 'post',
+							'meta_key'            => 'cozy_post_views_count', // Replace with your popularity field.
+							'orderby'             => 'meta_value_num',
+							'order'               => 'DESC',
+							'post_status'         => 'publish',
+							'ignore_sticky_posts' => 1,
+							'posts_per_page'      => $per_page, // Number of popular posts to retrieve.
 						);
 						break;
 
 					case 'trending':
 						$args = array(
-							'post_type'      => 'post',
-							'meta_key'       => 'cozy_trending_post_views', // Replace with your popularity field.
-							'orderby'        => 'cozy_trending_post_views',
-							'order'          => 'DESC',
-							'posts_per_page' => $per_page, // Number of popular posts to retrieve.
-							'meta_query'     => array(
-								'relation' => 'AND',
-								array(
-									'key'     => 'cozy_trending_post_views',
-									'compare' => 'EXISTS', // Check if the timestamp is greater than or equal to one week ago.
-								),
-								array(
-									'key'     => 'cozy_trending_post_views',
-									'value'   => '0',
-									'compare' => '>', // Check if the timestamp is greater than or equal to one week ago.
-								),
-							),
+							'post_type'           => 'post',
+							'meta_key'            => 'cozy_trending_post_views', // Replace with your popularity field.
+							'orderby'             => 'meta_value_num',
+							'order'               => 'DESC',
+							'post_status'         => 'publish',
+							'ignore_sticky_posts' => 1,
+							'posts_per_page'      => $per_page, // Number of popular posts to retrieve.
 						);
 						break;
 
@@ -586,11 +575,13 @@ if ( ! function_exists( 'cozy_fetch_featured_post_tab_data' ) ) {
 							'post_type'      => 'post',
 							'orderby'        => 'date',
 							'order'          => 'DESC',
+							'post_status'    => 'publish',
 							'posts_per_page' => $per_page, // Number of popular posts to retrieve.
 						);
-
+						if ( isset( $attributes['enableOptions']['excludeStickyPost'] ) && $attributes['enableOptions']['excludeStickyPost'] === true ) {
+							$args['post__not_in'] = get_option( 'sticky_posts' );
+						}
 				}
-
 				$latest_posts = new \WP_Query( $args );
 
 				$additional_post_data = array();

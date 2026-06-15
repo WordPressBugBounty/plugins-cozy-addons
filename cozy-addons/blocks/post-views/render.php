@@ -62,10 +62,13 @@ $icon_color       = array(
 
 $label_color  = isset( $attributes['label']['color'] ) ? $attributes['label']['color'] : '';
 $label_styles = array(
-	'letter_case'    => isset( $attributes['label']['letterCase'] ) ? $attributes['label']['letterCase'] : '',
-	'decoration'     => isset( $attributes['label']['decoration'] ) ? $attributes['label']['decoration'] : '',
-	'line_height'    => isset( $attributes['label']['lineHeight'] ) ? $attributes['label']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['label']['letterSpacing'] ) ? $attributes['label']['letterSpacing'] : '',
+	'font_size'      => isset( $attributes['label']['fontSize'] ) ? esc_attr( $attributes['label']['fontSize'] ) : '',
+	'font_weight'    => isset( $attributes['label']['fontWeight'] ) ? esc_attr( $attributes['label']['fontWeight'] ) : '',
+	'font_family'    => isset( $attributes['label']['fontFamily'] ) ? esc_attr( $attributes['label']['fontFamily'] ) : '',
+	'letter_case'    => isset( $attributes['label']['letterCase'] ) ? esc_attr( $attributes['label']['letterCase'] ) : '',
+	'decoration'     => isset( $attributes['label']['decoration'] ) ? esc_attr( $attributes['label']['decoration'] ) : '',
+	'line_height'    => isset( $attributes['label']['lineHeight'] ) ? esc_attr( $attributes['label']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['label']['letterSpacing'] ) ? esc_attr( $attributes['label']['letterSpacing'] ) : '',
 );
 
 $block_styles = "
@@ -96,9 +99,9 @@ $block_styles = "
 }
 
 #$block_id .cozy-block-post-views__label {
-	font-size: {$attributes['label']['fontSize']};
-	font-family: {$attributes['label']['fontFamily']};
-	font-weight: {$attributes['label']['fontWeight']};
+	font-size: {$label_styles['font_size']};
+	font-weight: {$label_styles['font_weight']};
+	font-family: {$label_styles['font_family']};
 	text-transform: {$label_styles['letter_case']};
 	text-decoration: {$label_styles['decoration']};
 	line-height: {$label_styles['line_height']};

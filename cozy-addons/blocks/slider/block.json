@@ -3,16 +3,11 @@
   "apiVersion": 3,
   "name": "cozy-block/slider",
   "title": "Slider",
+  "description": "Immerse your audience in captivating visuals with our versatile 'Slider' block, perfect for showcasing images or content in a dynamic and engaging carousel.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {
     "html": false,
-    "color": {
-      "background": true,
-      "gradients": true,
-      "link": true,
-      "text": true
-    },
     "spacing": {
       "padding": true,
       "margin": [
@@ -21,34 +16,6 @@
       ],
       "__experimentalDefaultControls": {
         "padding": true
-      }
-    },
-    "__experimentalBorder": {
-      "color": true,
-      "radius": true,
-      "style": true,
-      "width": true,
-      "__experimentalDefaultControls": {
-        "color": true,
-        "radius": true,
-        "style": true,
-        "width": true
-      }
-    },
-    "typography": {
-      "fontSize": true,
-      "lineHeight": true,
-      "__experimentalFontStyle": true,
-      "__experimentalFontWeight": true,
-      "__experimentalTextTransform": true,
-      "__experimentalFontFamily": true,
-      "__experimentalLetterSpacing": true,
-      "__experimentalTextDecoration": true,
-      "__experimentalSkipSerialization": [
-        "textDecoration"
-      ],
-      "__experimentalDefaultControls": {
-        "fontSize": true
       }
     }
   },

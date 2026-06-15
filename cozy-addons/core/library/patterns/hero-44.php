@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"0","left":"0","top":"0","bottom":"0"}},"color":{"background":"#191919","text":"#191919"},"elements":{"link":{"color":{"text":"#191919"}}},"background":{"backgroundImage":{"url":"https://plugins.cozythemes.com/cozy-addons/assets/media/hero-59.png","id":2564,"source":"file","title":"hero-59"},"backgroundSize":"cover"}},"layout":{"type":"constrained","contentSize":"100%"},"cozyCustomFont":"Fjalla One"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#191919;background-color:#191919;margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:group {"style":{"color":{"gradient":"linear-gradient(90deg,rgb(25,25,25) 26%,rgb(215,252,0) 26%)"},"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"0px","bottom":"0px"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->
 <div class="wp-block-group has-background" style="background:linear-gradient(90deg,rgb(25,25,25) 26%,rgb(215,252,0) 26%);margin-top:0;margin-bottom:0;padding-top:0px;padding-right:26px;padding-bottom:0px;padding-left:26px"><!-- wp:group {"style":{"spacing":{"blockGap":"26px","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->

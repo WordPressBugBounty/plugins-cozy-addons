@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"color":{"text":"#646464","background":"#fffffe"},"elements":{"link":{"color":{"text":"#646464"}}},"typography":{"fontSize":"16px","lineHeight":"1.5","fontStyle":"normal","fontWeight":"400"}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Work Sans"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#646464;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.5"><!-- wp:heading {"textAlign":"center","style":{"elements":{"link":{"color":{"text":"#1e262b"}}},"typography":{"fontSize":"40px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.2"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#1e262b"}},"cozyCustomFont":"Work Sans"} -->
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#1e262b;margin-top:0px;margin-bottom:0px;font-size:40px;font-style:normal;font-weight:600;line-height:1.2"><?php esc_html_e( 'Clients Reviews', 'cozy-addons' ); ?></h2>

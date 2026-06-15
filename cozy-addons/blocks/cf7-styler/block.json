@@ -2,7 +2,8 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "cozy-block/cf7-styler",
-  "title": "Contact Form 7 Styler(Pro)",
+  "title": "Contact Form 7 Styler (Pro)",
+  "description": "Effortlessly customize and style your Contact Form 7 forms with unique designs using the Contact Form 7 Styler block.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "attributes": {

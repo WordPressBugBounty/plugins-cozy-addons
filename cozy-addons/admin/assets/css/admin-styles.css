@@ -608,3 +608,65 @@ p.ca__has-light-color {
 	color: var(--cozy-addons--error) !important; /* red for no */
 	font-weight: bold;
 }
+
+.ct-companion-dashboard .license-page {
+	& h3 {
+		margin: 0;
+	}
+
+	& .plan__pill {
+		margin: 0;
+	}
+}
+.ct-companion-dashboard .license-page .plan__details {
+	max-width: 960px;
+	margin: 0 auto;
+	margin-bottom: 26px;
+	background-color: #fff;
+	padding: 26px 20px;
+
+	& .plan__type {
+		display: flex;
+		gap: 10px;
+	}
+
+	& .plan__pill {
+		color: #9ca3af;
+		background-color: #f9fafb;
+		font-size: 13px;
+		font-weight: 400;
+		padding: 1px 10px;
+		border-radius: 100px;
+		margin-top: -2px;
+
+		&.pro {
+			color: #fff;
+			background-color: #f90;
+		}
+	}
+}
+
+.ct-companion-dashboard .license-page .license__management {
+	max-width: 960px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 26px 20px;
+}
+.ct-companion-dashboard .license-page .upsell__notice {
+	max-width: 960px;
+	margin: 0 auto;
+	margin-top: 26px;
+	background-color: #fff;
+	padding: 26px 20px 32px 20px;
+	display: flex;
+	gap: 12px;
+
+	& .pro__crown {
+		height: 16px;
+		color: #fff;
+	}
+
+	& p {
+		margin: 8px 0 20px 0;
+	}
+}

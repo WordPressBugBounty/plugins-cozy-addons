@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"},"color":{"text":"#434343","background":"#b7ff00"},"elements":{"link":{"color":{"text":"#434343"}}}},"layout":{"type":"constrained","contentSize":"958px"},"cozyCustomFont":"Inter","cozyAnimation":{"type":"zoom-in-up","easingFunction":"ease","anchorPlacement":"top-center","duration":800}} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#434343;background-color:#b7ff00;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:heading {"textAlign":"center","style":{"typography":{"fontSize":"48px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"300"},"color":{"text":"#0e0e0e"},"elements":{"link":{"color":{"text":"#0e0e0e"}}}},"cozyCustomFont":"Plus Jakarta Sans"} -->
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#0e0e0e;font-size:48px;font-style:normal;font-weight:300;line-height:1.2"><?php esc_html_e( 'Experts in interior design, architectural brilliance, and inspiring décor.', 'cozy-addons' ); ?></h2>

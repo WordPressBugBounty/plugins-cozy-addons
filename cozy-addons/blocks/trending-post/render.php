@@ -366,23 +366,13 @@ $ul_classes[] = ( 'grid' === $attributes['display'] || 'list' === $attributes['d
 
 $output .= '<ul class="' . implode( ' ', $ul_classes ) . '">';
 $args    = array(
-	'post_type'      => 'post',
-	'orderby'        => 'cozy_trending_post_views',
-	'order'          => 'DESC',
-	'posts_per_page' => $attributes['perPage'], // Number of trending posts to retrieve.
-	'meta_key'       => 'cozy_trending_post_views', // Replace with your popularity field.
-	'meta_query'     => array(
-		'relation' => 'AND',
-		array(
-			'key'     => 'cozy_trending_post_views',
-			'compare' => 'EXISTS', // Check if the timestamp is greater than or equal to one week ago.
-		),
-		array(
-			'key'     => 'cozy_trending_post_views',
-			'value'   => '0',
-			'compare' => '>', // Check if the timestamp is greater than or equal to one week ago.
-		),
-	),
+	'post_type'           => 'post',
+	'meta_key'            => 'cozy_trending_post_views', // Replace with your popularity field.
+	'orderby'             => 'meta_value_num',
+	'order'               => 'DESC',
+	'posts_per_page'      => $attributes['perPage'], // Number of trending posts to retrieve.
+	'ignore_sticky_posts' => true,
+	'post_status'         => 'publish',
 );
 
 if ( ! function_exists( 'get_cozy_block_trending_posts_data' ) ) {

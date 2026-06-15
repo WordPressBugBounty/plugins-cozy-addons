@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/post-slider",
   "title": "Post Slider (Pro)",
+  "description": "Discover an interactive showcase of content through our 'Post Slider' feature, presenting a visually captivating carousel of posts for an engaging and dynamic browsing experience.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "post",

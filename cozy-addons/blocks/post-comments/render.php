@@ -64,6 +64,18 @@ $icon_color       = array(
 	'text'       => isset( $attributes['label']['color'] ) ? $attributes['label']['color'] : '',
 );
 
+$label = array(
+	'font'           => array(
+		'size'   => isset( $attributes['label']['fontSize'] ) ? esc_attr( $attributes['label']['fontSize'] ) : '',
+		'weight' => isset( $attributes['label']['fontWeight'] ) ? esc_attr( $attributes['label']['fontWeight'] ) : '',
+		'family' => isset( $attributes['label']['fontFamily'] ) ? esc_attr( $attributes['label']['fontFamily'] ) : '',
+	),
+	'letter_case'    => isset( $attributes['label']['letterCase'] ) ? esc_attr( $attributes['label']['letterCase'] ) : '',
+	'decoration'     => isset( $attributes['label']['decoration'] ) ? esc_attr( $attributes['label']['decoration'] ) : '',
+	'line_height'    => isset( $attributes['label']['lineHeight'] ) ? esc_attr( $attributes['label']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['label']['letterSpacing'] ) ? esc_attr( $attributes['label']['letterSpacing'] ) : '',
+);
+
 
 $block_styles = "
 #$block_id.display-block {
@@ -102,9 +114,13 @@ $block_styles = "
 }
 
 #$block_id .cozy-block-post-comments__label {
-	font-size: {$attributes['label']['fontSize']};
-	font-family: {$attributes['label']['fontFamily']};
-	font-weight: {$attributes['label']['fontWeight']};
+	font-size: {$label['font']['size']};
+	font-weight: {$label['font']['weight']};
+	font-family: {$label['font']['family']};
+	text-transform: {$label['letter_case']};
+	text-decoration: {$label['decoration']};
+	line-height: {$label['line_height']};
+	letter-spacing: {$label['letter_spacing']};
 	color: {$icon_color['text']};
 }
 ";

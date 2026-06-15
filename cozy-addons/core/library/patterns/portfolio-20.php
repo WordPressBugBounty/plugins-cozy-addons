@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"},"color":{"text":"#6a6a6a","background":"#fffffe"},"elements":{"link":{"color":{"text":"#6a6a6a"}}},"border":{"top":{"color":"#0d0d0d42","style":"solid","width":"1px"}}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="border-top-color:#0d0d0d42;border-top-style:solid;border-top-width:1px;color:#6a6a6a;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:heading {"style":{"typography":{"fontSize":"48px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"300"},"color":{"text":"#0e0e0e"},"elements":{"link":{"color":{"text":"#0e0e0e"}}},"spacing":{"margin":{"bottom":"44px"}}},"cozyCustomFont":"Plus Jakarta Sans"} -->
 <h2 class="wp-block-heading has-text-color has-link-color" style="color:#0e0e0e;margin-bottom:44px;font-size:48px;font-style:normal;font-weight:300;line-height:1.2"><?php esc_html_e( 'Portfolio & Gallery', 'cozy-addons' ); ?></h2>

@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"0","left":"0","top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"100%"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cozy-block/testimonial {"blockClientId":"f1afa29b-6002-4d07-85c7-351df5d1731e","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":4,"activeBorderRadius":10,"activeColor":"#fffffe","color":"#fffffe","colorHover":"#ffc907","activeBorderHover":"","align":"center","positionVertical":10,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":50,"borderType":"solid","borderWidth":1,"borderColor":"#ffffff4d","borderColorHover":"#a3a3a300","backgroundColor":"#ffffff0f","color":"#fffffe","backgroundColorHover":"#ffc907","colorHover":"#fffffe","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":false,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":20,"speed":1500,"smoothTransition":false}}} -->
 <div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_f1afa29b_6002_4d07_85c7_351df5d1731e"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->

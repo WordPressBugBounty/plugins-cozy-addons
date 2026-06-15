@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use WP_REST_Request;
 
+use function PHPSTORM_META\type;
+
 class Block {
 	/**
 	 * Holds the singleton instance of the Block class.
@@ -147,53 +149,34 @@ class Block {
 			return array();
 		}
 
-		$type     = $request->get_param( 'type' ) ? $request->get_param( 'type' ) : 'latest';
-		$per_page = $request->get_param( 'per_page' ) ? $request->get_param( 'per_page' ) : 10;
+		$type        = $request->get_param( 'type' ) ? $request->get_param( 'type' ) : 'latest';
+		$per_page    = $request->get_param( 'per_page' ) ? $request->get_param( 'per_page' ) : 10;
+		$sticky_post = $request->get_param( 'exclude_sticky' ) === 'true';
 
 		$args = array();
 
 		switch ( $type ) {
 			case 'popular':
 				$args = array(
-					'post_type'      => 'post',
-					'meta_key'       => 'cozy_post_views_count', // Replace with your popularity field.
-					'orderby'        => 'cozy_post_views_count',
-					'order'          => 'DESC',
-					'posts_per_page' => $per_page, // Number of popular posts to retrieve.
-					'meta_query'     => array(
-						'relation' => 'AND',
-						array(
-							'key'     => 'cozy_post_views_count',
-							'compare' => 'EXISTS', // Check if the timestamp is greater than or equal to one week ago.
-						),
-						array(
-							'key'     => 'cozy_post_views_count',
-							'value'   => '0',
-							'compare' => '>', // Check if the timestamp is greater than or equal to one week ago.
-						),
-					),
+					'post_type'           => 'post',
+					'meta_key'            => 'cozy_post_views_count', // Replace with your popularity field.
+					'orderby'             => 'meta_value_num', // Converts string to integer.
+					'order'               => 'DESC',
+					'post_status'         => 'publish',
+					'ignore_sticky_posts' => 1,
+					'posts_per_page'      => $per_page, // Number of popular posts to retrieve.
 				);
 				break;
 
 			case 'trending':
 				$args = array(
-					'post_type'      => 'post',
-					'meta_key'       => 'cozy_trending_post_views', // Replace with your popularity field.
-					'orderby'        => 'cozy_trending_post_views',
-					'order'          => 'DESC',
-					'posts_per_page' => $per_page, // Number of popular posts to retrieve.
-					'meta_query'     => array(
-						'relation' => 'AND',
-						array(
-							'key'     => 'cozy_trending_post_views',
-							'compare' => 'EXISTS', // Check if the timestamp is greater than or equal to one week ago.
-						),
-						array(
-							'key'     => 'cozy_trending_post_views',
-							'value'   => '0',
-							'compare' => '>', // Check if the timestamp is greater than or equal to one week ago.
-						),
-					),
+					'post_type'           => 'post',
+					'meta_key'            => 'cozy_trending_post_views', // Replace with your popularity field.
+					'orderby'             => 'meta_value_num', // Converts string to integer.
+					'order'               => 'DESC',
+					'post_status'         => 'publish',
+					'ignore_sticky_posts' => 1,
+					'posts_per_page'      => $per_page, // Number of popular posts to retrieve.
 				);
 				break;
 
@@ -202,13 +185,15 @@ class Block {
 					'post_type'      => 'post',
 					'orderby'        => 'date',
 					'order'          => 'DESC',
+					'post_status'    => 'publish',
 					'posts_per_page' => $per_page, // Number of popular posts to retrieve.
 				);
-
+				if ( $sticky_post ) {
+					$args['post__not_in'] = get_option( 'sticky_posts' );
+				}
 		}
 
-		$latest_posts = new \WP_Query( $args );
-
+		$latest_posts         = new \WP_Query( $args );
 		$additional_post_data = array();
 
 		foreach ( $latest_posts->posts as $post ) {
@@ -262,6 +247,7 @@ class Block {
 
 		$args = array(
 			'post__in'            => get_option( 'sticky_posts' ),
+			'post_status'         => 'publish',
 			'posts_per_page'      => -1, // To retrieve all sticky posts.
 			'ignore_sticky_posts' => 1, // To exclude sticky posts from regular queries.
 			'orderby'             => 'date',
@@ -454,7 +440,6 @@ class Block {
 	public function get_post_views( WP_REST_Request $request ) {
 		$post_id          = $request->get_param( 'post_id' );
 		$post_views_count = get_post_meta( $post_id, 'cozy_post_views_count', true );
-
 		wp_reset_postdata();
 
 		return $post_views_count;
