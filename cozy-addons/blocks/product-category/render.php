@@ -11,6 +11,10 @@ wp_add_inline_script( 'cozy-block--product-category--frontend-script', 'document
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
+$grid = array(
+	'gap' => isset( $attributes['gridOptions']['gap'] ) ? esc_attr( $attributes['gridOptions']['gap'] ) : '',
+);
+
 $width1 = $attributes['gridOptions']['displayColumn'] <= 3 ? $attributes['gridOptions']['displayColumn'] : 3;
 $width2 = $attributes['gridOptions']['displayColumn'] <= 2 ? $attributes['gridOptions']['displayColumn'] : 2;
 
@@ -34,6 +38,15 @@ $item_styles  = array(
 	'decoration'         => isset( $attributes['containerStyles']['decoration'] ) ? $attributes['containerStyles']['decoration'] : '',
 	'line_height'        => isset( $attributes['containerStyles']['lineHeight'] ) ? $attributes['containerStyles']['lineHeight'] : '',
 	'letter_spacing'     => isset( $attributes['containerStyles']['letterSpacing'] ) ? $attributes['containerStyles']['letterSpacing'] : '',
+);
+
+$img = array(
+	'margin' => array(
+		'bottom' => isset( $attributes['featuredImage']['marginBottom'] ) ? esc_attr( $attributes['featuredImage']['marginBottom'] ) : '',
+	),
+	'width'  => isset( $attributes['featuredImage']['width'] ) ? esc_attr( $attributes['featuredImage']['width'] ) : '',
+	'height' => isset( $attributes['featuredImage']['height'] ) ? esc_attr( $attributes['featuredImage']['height'] ) : '',
+	'radius' => isset( $attributes['featuredImage']['radius'] ) ? esc_attr( $attributes['featuredImage']['radius'] ) : '',
 );
 
 $count_padding = cozy_render_TRBL( 'padding', $attributes['productCount']['padding'] );
@@ -80,8 +93,8 @@ $block_styles = "
 
 #$block_id.display-grid .woo-product-category-wrapper {
     grid-template-columns: repeat({$attributes['gridOptions']['displayColumn']}, 1fr);
-    row-gap: {$attributes['gridOptions']['gap']};
-    column-gap: {$attributes['gridOptions']['gap']};
+    row-gap: {$grid['gap']};
+    column-gap: {$grid['gap']};
 }
 @media screen and (max-width: 1024px) {
     .cozy-block-product-category.display-grid .woo-product-category-wrapper {
@@ -128,13 +141,13 @@ $block_styles = "
 }
 
 #$block_id .cozy-block-product-category__image {
-    margin-bottom: {$attributes['featuredImage']['marginBottom']};
-    max-height: {$attributes['featuredImage']['height']};
+    margin-bottom: {$img['margin']['bottom']};
+    max-height: {$img['height']};
 }
 #$block_id .cozy-block-product-category__image img {
-    width: {$attributes['featuredImage']['width']};
-    height: {$attributes['featuredImage']['height']};
-    border-radius: {$attributes['featuredImage']['radius']};
+    width: {$img['width']};
+    height: {$img['height']};
+    border-radius: {$img['radius']};
 }
 
 #$block_id .woo-product-category .product-count {

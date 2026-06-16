@@ -4,7 +4,7 @@ Tags: gutenberg blocks, page builder, block patterns, woocommerce blocks, full s
 Requires PHP: 7.4
 Requires at least: 6.7
 Tested up to: 7.0
-Stable tag: 2.2.9
+Stable tag: 2.2.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Build any WordPress site without Elementor or Divi. 57 Gutenberg blocks, 500+ ready-made patterns & 40+ FSE templates. No page builder needed.
@@ -178,6 +178,9 @@ You can report any security bugs found in the source code of this plugin through
 8. FSE Homepage templates
 
 == Changelog ==
+= 2.2.10 - June 16, 2026 = 
+* Fix: Undefined attributes warning in 'Featured Product' block.
+
 = 2.2.9 - June 15, 2026 = 
 * Fix: Block improvements.
 * Fix: 'Cozy Responsive Visiblity' glitch on load.
@@ -192,8 +195,11 @@ This plugin is licensed under the GPLv2 or later license. See [LICENSE](https://
 
 == Upgrade Notice ==
 
+= 2.2.10 =
+The minimum WordPress version required for the plugin is 6.7
+
 = 2.2.9 =
-UPDATE: The minimum WordPress version required for the plugin is 6.7
+The minimum WordPress version required for the plugin is 6.7
 
 = 2.1.0 =
 Elementor support has been deprecated and is no longer actively maintained.

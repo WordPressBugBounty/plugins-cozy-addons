@@ -7870,6 +7870,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/popular-post',
 		'title' => 'Popular Post (Pro)',
+		'description' => 'Explore trending topics effortlessly with our \'Popular Post\' block, showcasing a curated selection of the latest and most engaging content for a quick and dynamic browsing experience.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -8922,6 +8923,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/portfolio-gallery-meta',
 		'title' => 'Portfolio Gallery Meta',
+		'description' => 'Fetches the meta field for \'Portfolio Gallery\' block.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(

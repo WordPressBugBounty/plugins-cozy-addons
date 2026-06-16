@@ -976,7 +976,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 			$output .= '</div>';
 		}
 
-		if ( $attributes['enableOptions']['title'] ) {
+		if ( isset( $attributes['enableOptions']['title'] ) && $attributes['enableOptions']['title'] ) {
 				$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
 				$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleLinkNewTab'] ? '_blank' : '';
 				$output       .= '<h2 class="post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h2>';
@@ -1006,13 +1006,13 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 		}
 		$output .= '</div>';
 
-		if ( $attributes['enableOptions']['postContent'] ) {
+		if ( isset( $attributes['enableOptions']['postContent'] ) && $attributes['enableOptions']['postContent'] ) {
 			$output .= '<div class="post__content">';
 			$output .= cozy_create_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] );
 			$output .= '</div>';
 		}
 
-		if ( $attributes['enableOptions']['cartButton'] ) {
+		if ( isset( $attributes['enableOptions']['cartButton'] ) && $attributes['enableOptions']['postContent'] ) {
 			$product_type = $post_data['type'];
 			$in_stock     = $post_data['in_stock'];
 			$is_simple    = 'simple' === $product_type;

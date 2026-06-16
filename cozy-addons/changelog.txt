@@ -1,3 +1,6 @@
+= 2.2.10 - June 16, 2026 = 
+* Fix: Undefined attributes warning in 'Featured Product' block.
+
 = 2.2.9 - June 15, 2026 = 
 * Fix: Block improvements
 * Fix: 'Cozy Responsive Visiblity' glitch on load.
