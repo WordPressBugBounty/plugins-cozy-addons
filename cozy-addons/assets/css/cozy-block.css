@@ -142,6 +142,7 @@
 /* Cozy Block Wrapper */
 .cozy-block-wrapper {
 	position: relative;
+	margin-block-start: 0 !important;
 }
 
 /* Cozy Icon Picker List */

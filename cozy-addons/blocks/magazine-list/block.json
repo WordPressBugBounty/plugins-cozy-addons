@@ -176,6 +176,10 @@
           "bottom": "0px",
           "left": "0px"
         },
+        "margin": {
+          "top": "0px",
+          "bottom": "0px"
+        },
         "clipPath": "",
         "font": {
           "size": "18px",

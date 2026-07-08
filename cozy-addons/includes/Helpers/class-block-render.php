@@ -929,4 +929,83 @@ class BlockRender {
 
 		$output .= '</li>';
 	}
+
+	public static function list_scroll_tab_render( $attributes ) {
+		if ( ! isset( $attributes['childAttrs'] ) || empty( $attributes['childAttrs'] ) ) {
+			return '';
+		}
+
+		ob_start();
+
+		$classes   = array();
+		$classes[] = 'list-item__tabs';
+		$classes[] = 'tab-position-' . $attributes['listScroll']['tabPosition'];
+		?>
+		<ul class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
+			<?php
+			$allowed_tags = array(
+				'h1',
+				'h2',
+				'h3',
+				'h4',
+				'h5',
+				'h6',
+				'p',
+			);
+			$title_tag    = in_array( $attributes['listScroll']['title']['tag'], $allowed_tags, true ) ? $attributes['listScroll']['title']['tag'] : 'p';
+			foreach ( $attributes['childAttrs'] as $key => $tab ) {
+				$classes   = array();
+				$classes[] = 'list-item__tab';
+				$classes[] = 0 === $key ? 'is-active' : '';
+				?>
+				<li id="cozyBlock_<?php echo esc_attr( str_replace( '-', '_', $tab['clientId'] ) ); ?>" class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
+					<div class="tab-container">
+						<?php
+						// Render icon.
+						if ( isset( $attributes['listScroll']['icon']['enabled'] ) && filter_var( $attributes['listScroll']['icon']['enabled'], FILTER_VALIDATE_BOOLEAN ) && ! empty( $tab['icon']['path'] ) ) {
+							printf( '<i class="tab__icon-wrapper"><svg class="tab__icon" width="16" height="16" viewBox="%1$s %2$s %3$s %4$s" fill="currentColor"><path d="%5$s"></path></svg></i>', esc_attr( $tab['icon']['viewBox']['vx'] ), esc_attr( $tab['icon']['viewBox']['vy'] ), esc_attr( $tab['icon']['viewBox']['vw'] ), esc_attr( $tab['icon']['viewBox']['vh'] ), esc_attr( $tab['icon']['path'] ) );
+						}
+
+						if ( isset( $attributes['listScroll']['title']['enabled'] ) || isset( $attributes['listScroll']['description']['enabled'] ) || filter_var( $attributes['listScroll']['title']['enabled'], FILTER_VALIDATE_BOOLEAN ) || filter_var( $attributes['listScroll']['description']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+							?>
+							<div class="tab-content__wrapper">
+							<?php
+							// Render title.
+							if ( isset( $attributes['listScroll']['title']['enabled'] ) && filter_var( $attributes['listScroll']['title']['enabled'], FILTER_VALIDATE_BOOLEAN ) && ! empty( $tab['title'] ) ) {
+								$classes   = array();
+								$classes[] = 'tab__title';
+								$classes[] = isset( $attributes['listScroll']['icon']['enabled'], $attributes['listScroll']['title']['indexNumber'] ) && ! filter_var( $attributes['listScroll']['icon']['enabled'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['listScroll']['title']['indexNumber'], FILTER_VALIDATE_BOOLEAN ) ? 'has-index-number' : '';
+								printf( '<%1$s class="%2$s">%3$s</%1$s>', esc_attr( $title_tag ), esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ), esc_html( $tab['title'] ) );
+							}
+
+							// Render description.
+							if ( isset( $attributes['listScroll']['description']['enabled'] ) && filter_var( $attributes['listScroll']['description']['enabled'], FILTER_VALIDATE_BOOLEAN ) && ! empty( $tab['description'] ) ) {
+								$is_collapsible = isset( $attributes['listScroll']['collapse'] ) && filter_var( $attributes['listScroll']['collapse'], FILTER_VALIDATE_BOOLEAN ) ? true : false;
+								$classes        = array();
+								$classes[]      = 'tab__description';
+								$classes[]      = $is_collapsible ? 'is-collapsible' : '';
+								$classes[]      = $is_collapsible && 0 === $key ? 'is-open' : '';
+								printf( '<p class="%1$s">%2$s</p>', esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ), esc_html( $tab['description'] ) );
+							}
+
+							?>
+							</div>
+							<?php
+						}
+						?>
+					</div>
+					<?php
+					if ( 'click' === $attributes['listScroll']['variation'] && isset( $attributes['listScroll']['autoplay']['enabled'], $attributes['listScroll']['autoplay']['progressBar'] ) && filter_var( $attributes['listScroll']['autoplay']['enabled'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['listScroll']['autoplay']['progressBar'], FILTER_VALIDATE_BOOLEAN ) ) {
+						printf( '<div class="tab__progress-bar"><div class="progress"></div></div>' );
+					}
+					?>
+				</li>
+				<?php
+			}
+			?>
+		</ul>
+		<?php
+
+		return ob_get_clean();
+	}
 }

@@ -662,18 +662,30 @@ return array(
 					'hoverEffect' => true,
 					'width' => '',
 					'height' => '430px',
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
 					'radius' => array(
 						'top' => '0px',
 						'right' => '0px',
 						'bottom' => '0px',
 						'left' => '0px'
 					),
-					'overlayColor' => '#090A0F57'
+					'overlayColor' => '#090A0F57',
+					'borderColorHover' => ''
 				)
 			),
 			'title' => array(
 				'type' => 'object',
 				'default' => array(
+					'padding' => array(
+						'top' => '8px',
+						'right' => '12px',
+						'bottom' => '8px',
+						'left' => '12px'
+					),
 					'fontSize' => '18px',
 					'fontFamily' => '',
 					'fontWeight' => '600',
@@ -682,7 +694,10 @@ return array(
 					'lineHeight' => '',
 					'letterSpacing' => '',
 					'color' => '#5566ca',
-					'colorHover' => '#f90'
+					'colorHover' => '#f90',
+					'background' => '',
+					'backgroundHover' => '',
+					'borderRadius' => ''
 				)
 			),
 			'iconBox' => array(
@@ -7183,6 +7198,10 @@ return array(
 						'bottom' => '0px',
 						'left' => '0px'
 					),
+					'margin' => array(
+						'top' => '0px',
+						'bottom' => '0px'
+					),
 					'clipPath' => '',
 					'font' => array(
 						'size' => '18px',
@@ -12365,6 +12384,303 @@ return array(
 		'style' => 'file:./style-index.css',
 		'viewScript' => array(
 			'cozy-block--related-post--frontend-script'
+		),
+		'render' => 'file:./render.php'
+	),
+	'scroll-animation' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'cozy-block/scroll-animation',
+		'title' => 'Scroll Animation (Pro)',
+		'description' => 'Turn any section into a horizontally scrolling, scroll-triggered animation — pin, slide, and reveal content as visitors scroll down the page.',
+		'category' => 'cozy-block',
+		'textdomain' => 'cozy-addons',
+		'supports' => array(
+			'html' => false,
+			'color' => array(
+				'background' => false,
+				'link' => false,
+				'text' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalSkipSerialization' => array(
+					'textDecoration'
+				),
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true
+				)
+			)
+		),
+		'attributes' => array(
+			'clientId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'style' => array(
+				'type' => 'object',
+				'default' => array(
+					'typography' => array(
+						'fontSize' => '14px',
+						'lineHeight' => '1.4'
+					)
+				)
+			),
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'default'
+			),
+			'scrollDirection' => array(
+				'type' => 'string',
+				'default' => 'vertical'
+			),
+			'headerBox' => array(
+				'type' => 'object',
+				'default' => array(
+					'enabled' => false,
+					'width' => '1180px',
+					'elements' => array(
+						'heading' => true,
+						'text' => true,
+						'button' => true
+					),
+					'padding' => array(
+						'top' => '0px',
+						'right' => '26px',
+						'bottom' => '0px',
+						'left' => '26px'
+					),
+					'margin' => array(
+						'top' => '0px',
+						'bottom' => '26px'
+					),
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'font' => array(
+						'size' => '',
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'decoration' => 'none',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'align' => 'center',
+					'heading' => array(
+						'tag' => 'h2',
+						'content' => 'Unlock the Story',
+						'margin' => array(
+							'top' => '0px',
+							'bottom' => '10px'
+						),
+						'font' => array(
+							'size' => '32px',
+							'weight' => '600',
+							'family' => ''
+						),
+						'letterCase' => 'none',
+						'decoration' => 'none',
+						'lineHeight' => '',
+						'letterSpacing' => ''
+					),
+					'textContent' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+					'button' => array(
+						'label' => 'View More',
+						'url' => '',
+						'newTab' => false,
+						'noFollow' => false,
+						'padding' => array(
+							'top' => '18px',
+							'right' => '36px',
+							'bottom' => '18px',
+							'left' => '36px'
+						),
+						'margin' => array(
+							'top' => '0px',
+							'bottom' => '0px'
+						),
+						'border' => array(
+							'width' => '',
+							'style' => '',
+							'color' => ''
+						),
+						'radius' => '100px',
+						'font' => array(
+							'size' => '14px',
+							'weight' => '',
+							'family' => ''
+						),
+						'letterCase' => 'none',
+						'decoration' => 'none',
+						'lineHeight' => '',
+						'letterSpacing' => ''
+					),
+					'color' => array(
+						'text' => '#010101',
+						'heading' => '#010101',
+						'button' => '#fff',
+						'buttonBg' => '#010101',
+						'buttonHover' => '',
+						'buttonBgHover' => '#0c50ff',
+						'buttonBorderHover' => '',
+						'bg' => ''
+					)
+				)
+			),
+			'slider' => array(
+				'type' => 'object',
+				'default' => array(
+					'slidesPerView' => 1.5,
+					'spaceBetween' => 30,
+					'reverseDirection' => false,
+					'alignMiddle' => true
+				)
+			),
+			'verticalScroll' => array(
+				'type' => 'object',
+				'default' => array(
+					'top' => '80px',
+					'gap' => '30px',
+					'desktopOnly' => true,
+					'animation' => 'opacity',
+					'stackOffset' => '10px'
+				)
+			),
+			'listScroll' => array(
+				'type' => 'object',
+				'default' => array(
+					'width' => '40%',
+					'gap' => '26px',
+					'tabPosition' => 'left',
+					'tabLayout' => 'inline',
+					'variation' => 'click',
+					'collapse' => true,
+					'autoplay' => array(
+						'enabled' => true,
+						'progressBar' => true,
+						'delay' => 3500
+					),
+					'tabGap' => '16px',
+					'itemGap' => '26px',
+					'tabJustify' => 'center',
+					'tabStyles' => array(
+						'layout' => 'inline',
+						'containerPadding' => array(
+							'top' => '',
+							'right' => '26px',
+							'bottom' => '',
+							'left' => '26px'
+						),
+						'padding' => array(
+							'top' => '10px',
+							'right' => '16px',
+							'bottom' => '10px',
+							'left' => '16px'
+						),
+						'border' => array(
+							'width' => '',
+							'style' => '',
+							'color' => ''
+						),
+						'radius' => ''
+					),
+					'title' => array(
+						'enabled' => true,
+						'indexNumber' => true,
+						'tag' => 'h3',
+						'margin' => array(
+							'top' => '0px',
+							'bottom' => '4px'
+						),
+						'font' => array(
+							'size' => '16px',
+							'weight' => '500',
+							'family' => ''
+						),
+						'letterCase' => 'none',
+						'decoration' => 'none',
+						'lineHeight' => '1.3em',
+						'letterSpacing' => ''
+					),
+					'icon' => array(
+						'enabled' => true,
+						'margin' => array(
+							'top' => '2px',
+							'bottom' => ''
+						),
+						'boxWidth' => '32px',
+						'boxHeight' => '32px',
+						'border' => array(
+							'width' => '',
+							'style' => '',
+							'color' => ''
+						),
+						'radius' => '100px',
+						'size' => '18px'
+					),
+					'description' => array(
+						'enabled' => true
+					),
+					'progressBar' => array(
+						'margin' => array(
+							'top' => '16px',
+							'bottom' => ''
+						)
+					),
+					'color' => array(
+						'title' => '#010101',
+						'icon' => '#fff',
+						'iconBg' => '#0c50ff',
+						'tabBg' => '',
+						'activeTabText' => '#fff',
+						'activeTabBody' => '',
+						'activeTabBg' => '#0c50ff',
+						'activeTabBorder' => '#0c50ff',
+						'progressPrimary' => '#010101',
+						'progressSecondary' => '#e2e2e2'
+					)
+				)
+			),
+			'childAttrs' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			)
+		),
+		'providesContext' => array(
+			'layout' => 'layout',
+			'listScroll' => 'listScroll',
+			'scrollDirection' => 'scrollDirection',
+			'parentClientId' => 'clientId'
+		),
+		'editorScript' => array(
+			'file:./index.js',
+			'file:../index.js'
+		),
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
+		'viewScript' => array(
+			'cozy-block--scroll-animation--frontend-script',
+			'cozy-swiper-bundle',
+			'cozy-animejs'
+		),
+		'viewStyle' => array(
+			'cozy-swiper-bundle'
 		),
 		'render' => 'file:./render.php'
 	),

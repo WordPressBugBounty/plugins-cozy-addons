@@ -22,31 +22,34 @@ $classes[] = 'carousel' === $attributes['display'] && $attributes['navigation'][
 $column1 = $attributes['gridOptions']['columnCount'] <= 3 ? $attributes['gridOptions']['columnCount'] : 3;
 $column2 = $attributes['gridOptions']['columnCount'] <= 2 ? $attributes['gridOptions']['columnCount'] : 2;
 
-$item_div_padding = cozy_render_TRBL( 'padding', $attributes['categoryItem']['padding'] );
-$item_div_border  = isset( $attributes['categoryItem']['border'] ) ? cozy_render_TRBL( 'border', $attributes['categoryItem']['border'] ) : '';
-$item_div_radius  = cozy_render_TRBL( 'border-radius', $attributes['categoryItem']['radius'] );
-$item_styles      = array(
+$item_div_padding        = cozy_render_TRBL( 'padding', $attributes['categoryItem']['padding'] );
+$item_div_border         = isset( $attributes['categoryItem']['border'] ) ? cozy_render_TRBL( 'border', $attributes['categoryItem']['border'] ) : '';
+$item_div_radius         = cozy_render_TRBL( 'border-radius', $attributes['categoryItem']['radius'] );
+$item_styles             = array(
 	'shadow_color'       => isset( $attributes['categoryItem']['shadow']['color'] ) ? $attributes['categoryItem']['shadow']['color'] : '',
 	'bg_color'           => isset( $attributes['categoryItem']['bgColor'] ) ? $attributes['categoryItem']['bgColor'] : '',
 	'bg_color_hover'     => isset( $attributes['categoryItem']['bgColorHover'] ) ? $attributes['categoryItem']['bgColorHover'] : '',
 	'border_color_hover' => isset( $attributes['categoryItem']['borderColorHover'] ) ? $attributes['categoryItem']['borderColorHover'] : '',
 );
-
-$image_radius = cozy_render_TRBL( 'border-radius', $attributes['image']['radius'] );
-
+$image_styles            = array(
+	'border'       => isset( $attributes['image']['border'] ) ? cozy_render_TRBL( 'border', $attributes['image']['border'] ) : '',
+	'radius'       => isset( $attributes['image']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['image']['radius'] ) : '',
+	'overlay'      => isset( $attributes['image']['overlayColor'] ) ? $attributes['image']['overlayColor'] : '',
+	'border_color' => isset( $attributes['image']['borderColorHover'] ) ? cozy_render_TRBL( 'border', $attributes['image']['borderColorHover'] ) : '',
+);
 $content_wrapper_padding = cozy_render_TRBL( 'padding', $attributes['contentBox']['padding'] );
 
-$image_color = array(
-	'overlay' => isset( $attributes['image']['overlayColor'] ) ? $attributes['image']['overlayColor'] : '',
-);
-
 $title_styles = array(
+	'padding'        => isset( $attributes['title']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['title']['padding'] ) : '',
+	'radius'         => isset( $attributes['title']['borderRadius'] ) ? $attributes['title']['borderRadius'] : '',
 	'letter_case'    => isset( $attributes['title']['letterCase'] ) ? $attributes['title']['letterCase'] : '',
 	'decoration'     => isset( $attributes['title']['decoration'] ) ? $attributes['title']['decoration'] : '',
 	'line_height'    => isset( $attributes['title']['lineHeight'] ) ? $attributes['title']['lineHeight'] : '',
 	'letter_spacing' => isset( $attributes['title']['letterSpacing'] ) ? $attributes['title']['letterSpacing'] : '',
 	'color'          => isset( $attributes['title']['color'] ) ? $attributes['title']['color'] : '',
+	'bg'             => isset( $attributes['title']['background'] ) ? $attributes['title']['background'] : '',
 	'color_hover'    => isset( $attributes['title']['colorHover'] ) ? $attributes['title']['colorHover'] : '',
+	'bg_hover'       => isset( $attributes['title']['backgroundHover'] ) ? $attributes['title']['backgroundHover'] : '',
 );
 
 $icon_box_padding = cozy_render_TRBL( 'padding', $attributes['iconBox']['padding'] );
@@ -119,7 +122,7 @@ $block_styles = "
         ) !important;
     }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 568px) {
     #$block_id.display-grid .grid-wrapper {
         grid-template-columns: repeat(
             1,
@@ -136,7 +139,7 @@ $block_styles = "
 	{$item_div_border}
 	{$item_div_radius}
 	background-color: {$item_styles['bg_color']};
-	
+
 	&.has-box-shadow {
 		box-shadow: {$attributes['categoryItem']['shadow']['horizontal']}px {$attributes['categoryItem']['shadow']['vertical']}px {$attributes['categoryItem']['shadow']['blur']}px {$attributes['categoryItem']['shadow']['spread']}px {$item_styles['shadow_color']} {$attributes['categoryItem']['shadow']['position']};
 	}
@@ -148,8 +151,8 @@ $block_styles = "
 #$block_id.display-list .cozy-block-advanced-categories__category-item {
 	height: {$attributes['listOptions']['height']};
 }
-
 #$block_id.display-list .cozy-block-advanced-categories__image {
+	{$image_styles['border']}
 	max-height: {$attributes['listOptions']['height']};
 }
 #$block_id.display-list .cozy-block-advanced-categories__image img {
@@ -157,17 +160,21 @@ $block_styles = "
 }
 #$block_id:not(.display-list) .cozy-block-advanced-categories__image {
 	max-height: {$attributes['image']['height']};
+	{$image_styles['border']}
+
 }
 #$block_id:not(.display-list) .cozy-block-advanced-categories__image img {
 	width: {$attributes['image']['width']};
 	height: {$attributes['image']['height']};
 }
-#$block_id .cozy-block-advanced-categories__image img {
-	{$image_radius}
+#$block_id .cozy-block-advanced-categories__image {
+	{$image_styles['radius']};
 }
-
+#$block_id.layout-cover .cozy-block-advanced-categories__category-item:hover .cozy-block-advanced-categories__image{
+	border-color: 	{$image_styles['border_color']};
+}
 #$block_id.layout-cover .cozy-block-advanced-categories__category-item:hover .cozy-block-advanced-categories__background {
-	background-color: {$image_color['overlay']};
+	background-color: {$image_styles['overlay']};
 }
 
 #$block_id .cozy-block-advanced-categories__content-wrapper {
@@ -216,6 +223,8 @@ $block_styles = "
 }
 
 #$block_id .cozy-block-advanced-categories__name {
+	{$title_styles['padding']}
+	border-radius:{$title_styles['radius']};
 	font-size: {$attributes['title']['fontSize']};
 	font-family: '{$attributes['title']['fontFamily']}';
 	font-weight: {$attributes['title']['fontWeight']};
@@ -224,12 +233,17 @@ $block_styles = "
 	line-height: {$title_styles['line_height']};
 	letter-spacing: {$title_styles['letter_spacing']};
 	color: {$title_styles['color']};
+	background-color:{$title_styles['bg']};
+
 }
+#$block_id.layout-cover .cozy-block-advanced-categories__category-item:hover .cozy-block-advanced-categories__name,
 #$block_id.layout-default .cozy-block-advanced-categories__category-item:hover .cozy-block-advanced-categories__name {
 	color: {$title_styles['color_hover']};
-}
+	background-color: {$title_styles['bg_hover']};
+	}
 #$block_id.layout-cover .cozy-block-advanced-categories__content-wrapper:hover .cozy-block-advanced-categories__name {
 	color: {$title_styles['color_hover']};
+	background-color: {$title_styles['bg_hover']};
 }
 
 #$block_id .cozy-block-advanced-categories__count {

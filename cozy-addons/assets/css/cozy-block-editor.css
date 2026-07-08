@@ -126,8 +126,7 @@
 }
 
 /* Color Panel Settings */
-.cozy-panel-color-setting{
-	
+.cozy-panel-color-setting {
 }
 .cozy-color-control {
 	padding: 20px 0 !important;
@@ -533,5 +532,36 @@
 			opacity: 1;
 			visibility: visible;
 		}
+	}
+}
+
+/* Icon picker modal variant */
+.cozy-modal__icons-holder {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 44px;
+
+	& .components-button {
+		display: block;
+
+		& svg {
+			width: 18px;
+			height: 18px;
+		}
+
+		& p {
+			margin: 0;
+			/* margin-top: 6px; */
+		}
+	}
+}
+@media only screen and (max-width: 1260px) {
+	.cozy-modal__icons-holder {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+@media only screen and (max-width: 568px) {
+	.cozy-modal__icons-holder {
+		grid-template-columns: repeat(2, 1fr);
 	}
 }

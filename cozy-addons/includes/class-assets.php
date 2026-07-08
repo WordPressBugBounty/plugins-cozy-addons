@@ -100,6 +100,24 @@ class Assets {
 		// Swiper.js bundle.
 		wp_register_script( 'cozy-swiper-bundle', COZY_ADDONS_PLUGIN_URL . 'vendor/swiper/swiper-bundle.js', array( 'jquery' ), COZY_ADDONS_VERSION, false );
 		wp_register_style( 'cozy-swiper-bundle', COZY_ADDONS_PLUGIN_URL . 'vendor/swiper/swiper-bundle.css', array(), COZY_ADDONS_VERSION, 'all' );
+
+		// Luxon.
+		wp_register_script(
+			'cozy-dep-luxon', // Handle name.
+			COZY_ADDONS_PLUGIN_URL . 'vendor/luxon/luxon.js', // Path to your JavaScript file.
+			array(),
+			COZY_ADDONS_VERSION,
+			true
+		);
+
+		// Animejs.
+		wp_register_script(
+			'cozy-animejs', // Handle name.
+			COZY_ADDONS_PLUGIN_URL . 'vendor/animejs/animejs.js', // Path to your JavaScript file.
+			array(),
+			COZY_ADDONS_VERSION,
+			true
+		);
 	}
 
 	/**
@@ -110,14 +128,6 @@ class Assets {
 	 * @return void
 	 */
 	public function load_frontend_assets() {
-		// Luxon.
-		wp_enqueue_script(
-			'cozy-dep-luxon', // Handle name.
-			COZY_ADDONS_PLUGIN_URL . 'vendor/luxon/luxon.js', // Path to your JavaScript file.
-			array(),
-			COZY_ADDONS_VERSION,
-			true
-		);
 	}
 
 	/**
@@ -147,7 +157,7 @@ class Assets {
 		// Utility attributes.
 		$styles_status = $this->get_utility_function_status( 'styles' );
 		if ( $styles_status ) {
-			wp_enqueue_script( 'cozy-core-block-scripts', self::$url . 'js/cozy-common-block-scripts.js', array( 'react-jsx-runtime', 'wp-block-editor', 'wp-components', 'wp-blocks', 'wp-element', 'wp-hooks' ), COZY_ADDONS_VERSION, true );
+			wp_enqueue_script( 'cozy-core-block-scripts', self::$url . 'js/cozy-common-block-scripts.js', array( 'react-jsx-runtime', 'wp-block-editor', 'wp-components', 'wp-blocks', 'wp-element', 'wp-hooks', 'wp-i18n' ), COZY_ADDONS_VERSION, true );
 			wp_localize_script(
 				'cozy-core-block-scripts',
 				'googleFonts',
@@ -155,6 +165,18 @@ class Assets {
 					'collection' => cozy_addons_google_fonts(),
 				)
 			);
+		}
+
+		// AOS animation lib.
+		$animation_status = $this->get_utility_function_status( 'animation' );
+		if ( $animation_status ) {
+			wp_enqueue_script( 'cozy-addons--animation-settings', self::$url . 'js/cozy-animation.min.js', array( 'react-jsx-runtime', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-hooks', 'wp-i18n' ), COZY_ADDONS_VERSION, true );
+		}
+
+		// Core Post Terms.
+		$post_terms_utility = $this->get_utility_function_status( 'post-terms' );
+		if ( $post_terms_utility ) {
+			wp_enqueue_script( 'cozy-categories-variation', self::$url . 'js/core-post-terms.js', array( 'react-jsx-runtime', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-hooks', 'wp-i18n' ), COZY_ADDONS_VERSION, true );
 		}
 	}
 
@@ -173,8 +195,6 @@ class Assets {
 		if ( $animation_status ) {
 			wp_enqueue_script( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.js', array( 'jquery' ), COZY_ADDONS_VERSION, true );
 			wp_enqueue_style( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.css', array(), COZY_ADDONS_VERSION, 'all' );
-
-			wp_enqueue_script( 'cozy-addons--animation-settings', self::$url . 'js/cozy-animation.min.js', array( 'react-jsx-runtime', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-hooks', 'wp-i18n' ), COZY_ADDONS_VERSION, true );
 		}
 	}
 }

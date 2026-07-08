@@ -48,7 +48,7 @@ function cozy_addons_activation_admin_notice() {
 						<?php esc_html_e( 'Build Stunning Websites Faster & Effortlessly with Cozy Blocks!', 'cozy-addons' ); ?>🚀
 					</h4>
 					<p>
-						<?php esc_html_e( 'Cozy Blocks give you 50+ advanced blocks, 40+ homepage templates and 500+ patterns to build beautiful, fully customizable websites faster than ever — all visually inside the WordPress Site Editor, no coding required.', 'cozy-addons' ); ?></p>
+						<?php esc_html_e( 'Cozy Blocks give you 50+ advanced blocks, 40+ homepage templates and 600+ patterns to build beautiful, fully customizable websites faster than ever — all visually inside the WordPress Site Editor, no coding required.', 'cozy-addons' ); ?></p>
 					<a href="<?php echo esc_url( admin_url() ); ?>admin.php?page=_cozy_companions" class="ca__admin-notice-btn"><?php esc_html_e( "Let's Get Started", 'cozy-addons' ); ?></a>
 				</div>
 			</div>

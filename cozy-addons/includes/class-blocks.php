@@ -58,6 +58,7 @@ class Blocks {
 		'cf7-styler',
 		'img-compare',
 		'portfolio-gallery-meta',
+		'scroll-animation',
 	);
 
 	private static $woocommerce_blocks = array(
@@ -195,14 +196,7 @@ class Blocks {
 			$script_handle        = 'cozy-block--' . $block_name . '--frontend-script';
 
 			if ( file_exists( $frontend_script_path ) ) {
-				$deps           = array( 'jquery', 'cozy-swiper-bundle' );
-				$animation_load = get_option( 'ca--utility--animation', '1' );
-				if ( '1' === $animation_load ) {
-					$deps[] = 'cozy-addons--aos';
-				}
-				if ( 'countdown-timer' === $block_name ) {
-					$deps[] = 'cozy-dep-luxon';
-				}
+				$deps = array( 'jquery' );
 				wp_register_script( $script_handle, $frontend_script_url, $deps, COZY_ADDONS_VERSION, true );
 			}
 

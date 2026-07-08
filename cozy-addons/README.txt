@@ -1,16 +1,16 @@
-=== Cozy Blocks – Page Builder for Gutenberg Editor & FSE with 500+ Patterns, 57 Blocks & Templates ===
+=== Cozy Blocks – Page Builder for Gutenberg Editor & FSE with 600+ Patterns, 58 Blocks & Templates ===
 Contributors: CozyThemes
 Tags: gutenberg blocks, page builder, block patterns, woocommerce blocks, full site editing
 Requires PHP: 7.4
 Requires at least: 6.7
 Tested up to: 7.0
-Stable tag: 2.2.10
+Stable tag: 2.2.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Build any WordPress site without Elementor or Divi. 57 Gutenberg blocks, 500+ ready-made patterns & 40+ FSE templates. No page builder needed.
+Build any WordPress site without Elementor or Divi. 57 Gutenberg blocks, 600+ ready-made patterns & 40+ FSE templates. No page builder needed.
 
 == Description ==
-[Cozy Blocks](https://cozythemes.com/cozy-addons/) is a powerful Gutenberg page builder plugin that extends the WordPress Block Editor with 57 advanced blocks, 500+ professionally designed block patterns across 20+ categories, and 40+ complete FSE homepage templates for 12 niches — all native to the WordPress Site Editor.
+[Cozy Blocks](https://cozythemes.com/cozy-addons/) is a powerful Gutenberg page builder plugin that extends the WordPress Block Editor with 57 advanced blocks, 600+ professionally designed block patterns across 20+ categories, and 40+ complete FSE homepage templates for 12 niches — all native to the WordPress Site Editor.
 
 No Elementor. No Divi. No shortcodes. Just fast, clean, native blocks that work exactly the way WordPress is built to work.
 
@@ -58,10 +58,10 @@ Watch our step-by-step tutorial on installing Cozy Blocks!
 
 https://www.youtube.com/watch?v=GP4NxSbikS4
 
-= 🎨 Design Library — 500+ Patterns & 40+ Full Site Templates =
+= 🎨 Design Library — 600+ Patterns & 40+ Full Site Templates =
 The largest ready-made design library for the WordPress Block Editor. Every pattern and template is 100% native to Gutenberg — no imports, no proprietary formats, no lock-in.
 
-<strong>500+ Block Patterns in 20+ categories — one-click import:</strong>
+<strong>600+ Block Patterns in 20+ categories — one-click import:</strong>
 Hero Sections | Page Headers | Footers | About Us | Services & Features | Pricing Tables |
 Testimonials | Team | Portfolio | Blog & Posts | Call to Action | FAQ | Contact Us |
 Newsletter | Job Board | Stats & Numbers | Brand Showcase | Why Choose Us |
@@ -73,7 +73,7 @@ Featured Products | WooCommerce
 🚀 SaaS & Startup | 🛒 WooCommerce Store
 
 
-= ⚡ 57 Advanced Gutenberg Blocks — Built for the Block Editor & FSE =
+= ⚡ 58 Advanced Gutenberg Blocks — Built for the Block Editor & FSE =
 Every block is built natively for the WordPress Site Editor. No legacy shortcode wrappers, no inline JavaScript hacks — clean semantic markup that loads only what your page actually uses.
 
 <strong>Layout & Structure:</strong>
@@ -82,7 +82,7 @@ Every block is built natively for the WordPress Site Editor. No legacy shortcode
 
 <strong>Content & Marketing:</strong>
 [Slider](https://cozyblock.cozythemes.com/slider-gutenberg-block/) | [Advanced Gallery](https://cozyblock.cozythemes.com/advanced-gallery-gutenberg-block/) | [Featured Content Box](https://cozyblock.cozythemes.com/featured-content-box-gutenberg-block/) | [Icon List](https://cozyblock.cozythemes.com/icon-list-gutenberg-block/) | [Icon Picker](https://cozyblock.cozythemes.com/icon-picker-gutenberg-block/) | [Call to Action(CTA)](https://cozyblock.cozythemes.com/call-to-action-gutenberg-block/) |
-[Counter](https://cozyblock.cozythemes.com/counter-gutenberg-block/) | [Progress Bar](https://cozyblock.cozythemes.com/progress-bar-gutenberg-block/) | [Pricing Table](https://cozyblock.cozythemes.com/pricing-table-gutenberg-block/) | [Countdown Timer](https://cozyblock.cozythemes.com/countdown-timer-gutenberg-block/) | [Popup Builder](https://cozyblock.cozythemes.com/popup-builder-gutenberg-block/)
+[Counter](https://cozyblock.cozythemes.com/counter-gutenberg-block/) | [Progress Bar](https://cozyblock.cozythemes.com/progress-bar-gutenberg-block/) | [Pricing Table](https://cozyblock.cozythemes.com/pricing-table-gutenberg-block/) | [Countdown Timer](https://cozyblock.cozythemes.com/countdown-timer-gutenberg-block/) | [Popup Builder](https://cozyblock.cozythemes.com/popup-builder-gutenberg-block/) | [Scroll Animation](https://cozyblock.cozythemes.com/scroll-animation-gutenberg-block/)
 
 <strong>Blog, Posts & Magazine:</strong>
 [Post Grid/Carousel](https://cozyblock.cozythemes.com/post-carousel-gutenberg-block/) | [Post Slider](https://cozyblock.cozythemes.com/post-slider-gutenberg-block/) | [Popular Post](https://cozyblock.cozythemes.com/popular-post-gutenberg-block/) | [Trending Post](https://cozyblock.cozythemes.com/trending-post-gutenberg-block/) |
@@ -148,7 +148,7 @@ Product grids, category blocks, quick view, wishlist, product sliders, and add-t
 Post grids, news tickers, trending posts, magazine-style layouts, and categorized post tabs are all included — no theme dependency.
 
 = New to WordPress? =
-The 500+ ready-made patterns and 40+ homepage templates mean you can start with a professionally designed page, not a blank screen.
+The 600+ ready-made patterns and 40+ homepage templates mean you can start with a professionally designed page, not a blank screen.
 
 = Will Cozy Blocks slow down my website? =
 No. The built-in Block Manager lets you enable only the blocks your site actually uses. Any disabled block loads zero scripts or styles on the front end. Sites built with Cozy Blocks regularly achieve 90+ PageSpeed scores.
@@ -178,14 +178,11 @@ You can report any security bugs found in the source code of this plugin through
 8. FSE Homepage templates
 
 == Changelog ==
-= 2.2.10 - June 16, 2026 = 
-* Fix: Undefined attributes warning in 'Featured Product' block.
-
-= 2.2.9 - June 15, 2026 = 
-* Fix: Block improvements.
-* Fix: 'Cozy Responsive Visiblity' glitch on load.
-* Fix: Pattern library script conflict with WooCommerce cart page.
-* Update: Compatible with WP v7.0
+= 2.2.11 - Jul 08, 2026 = 
+* Add: Scroll Animation block.
+* Add: Blog Magazine patterns.
+* Add: Core block 'Post Terms' styling options.
+* Performance: Plugin asset optimization.
 
 [See changes for all the versions here.](https://plugins.svn.wordpress.org/cozy-addons/trunk/changelog.txt)
 
@@ -199,7 +196,7 @@ This plugin is licensed under the GPLv2 or later license. See [LICENSE](https://
 The minimum WordPress version required for the plugin is 6.7
 
 = 2.2.9 =
-The minimum WordPress version required for the plugin is 6.7
+UPDATE: The minimum WordPress version required for the plugin is 6.7
 
 = 2.1.0 =
 Elementor support has been deprecated and is no longer actively maintained.

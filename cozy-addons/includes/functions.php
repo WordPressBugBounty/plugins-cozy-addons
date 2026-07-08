@@ -266,6 +266,7 @@ function cozy_addons_toggle_ca_utility_function_status_callback() {
 		'animation',
 		'styles',
 		'pattern-library',
+		'post-terms',
 	);
 
 	$request_option = isset( $_POST['functionName'] ) ? sanitize_text_field( wp_unslash( $_POST['functionName'] ) ) : '';
@@ -2294,7 +2295,8 @@ function apply_cozy_block_animation_responsive_hover_filter( $block_content, $bl
 	}
 
 	if ( isset( $block['attrs']['cozyAnimation'] ) && in_array( $block['blockName'], $enabled_blocks, true ) ) {
-		if ( 'none' === $block['attrs']['cozyAnimation'] ) {
+		$animation_status = get_option( 'ca--utility--animation' );
+		if ( 'none' === $block['attrs']['cozyAnimation'] || '0' === $animation_status ) {
 			return $block_content;
 		}
 
@@ -2357,11 +2359,15 @@ function apply_cozy_block_animation_responsive_hover_filter( $block_content, $bl
 		}
 	}
 
-	append_cozy_responsive_data_attributes( $block_content, $block );
+	$styles_status = get_option( 'ca--utility--styles' );
 
-	append_cozy_hover_effect_data_attributes( $block_content, $block );
+	if ( '1' === $styles_status || '' == $styles_status ) {
+		append_cozy_responsive_data_attributes( $block_content, $block );
 
-	append_cozy_custom_font_data_attributes( $block_content, $block );
+		append_cozy_hover_effect_data_attributes( $block_content, $block );
+
+		append_cozy_custom_font_data_attributes( $block_content, $block );
+	}
 
 	return $block_content;
 }

@@ -1,0 +1,295 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cozy-block/scroll-animation",
+  "title": "Scroll Animation (Pro)",
+  "description": "Turn any section into a horizontally scrolling, scroll-triggered animation — pin, slide, and reveal content as visitors scroll down the page.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false,
+    "color": {
+      "background": false,
+      "link": false,
+      "text": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalFontWeight": true,
+      "__experimentalTextTransform": true,
+      "__experimentalFontFamily": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalSkipSerialization": [
+        "textDecoration"
+      ],
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    }
+  },
+  "attributes": {
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "14px",
+          "lineHeight": "1.4"
+        }
+      }
+    },
+    "layout": {
+      "type": "string",
+      "default": "default"
+    },
+    "scrollDirection": {
+      "type": "string",
+      "default": "vertical"
+    },
+    "headerBox": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "width": "1180px",
+        "elements": {
+          "heading": true,
+          "text": true,
+          "button": true
+        },
+        "padding": {
+          "top": "0px",
+          "right": "26px",
+          "bottom": "0px",
+          "left": "26px"
+        },
+        "margin": {
+          "top": "0px",
+          "bottom": "26px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "align": "center",
+        "heading": {
+          "tag": "h2",
+          "content": "Unlock the Story",
+          "margin": {
+            "top": "0px",
+            "bottom": "10px"
+          },
+          "font": {
+            "size": "32px",
+            "weight": "600",
+            "family": ""
+          },
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": ""
+        },
+        "textContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "button": {
+          "label": "View More",
+          "url": "",
+          "newTab": false,
+          "noFollow": false,
+          "padding": {
+            "top": "18px",
+            "right": "36px",
+            "bottom": "18px",
+            "left": "36px"
+          },
+          "margin": {
+            "top": "0px",
+            "bottom": "0px"
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "100px",
+          "font": {
+            "size": "14px",
+            "weight": "",
+            "family": ""
+          },
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": ""
+        },
+        "color": {
+          "text": "#010101",
+          "heading": "#010101",
+          "button": "#fff",
+          "buttonBg": "#010101",
+          "buttonHover": "",
+          "buttonBgHover": "#0c50ff",
+          "buttonBorderHover": "",
+          "bg": ""
+        }
+      }
+    },
+    "slider": {
+      "type": "object",
+      "default": {
+        "slidesPerView": 1.5,
+        "spaceBetween": 30,
+        "reverseDirection": false,
+        "alignMiddle": true
+      }
+    },
+    "verticalScroll": {
+      "type": "object",
+      "default": {
+        "top": "80px",
+        "gap": "30px",
+        "desktopOnly": true,
+        "animation": "opacity",
+        "stackOffset": "10px"
+      }
+    },
+    "listScroll": {
+      "type": "object",
+      "default": {
+        "width": "40%",
+        "gap": "26px",
+        "tabPosition": "left",
+        "tabLayout": "inline",
+        "variation": "click",
+        "collapse": true,
+        "autoplay": {
+          "enabled": true,
+          "progressBar": true,
+          "delay": 3500
+        },
+        "tabGap": "16px",
+        "itemGap": "26px",
+        "tabJustify": "center",
+        "tabStyles": {
+          "layout": "inline",
+          "containerPadding": {
+            "top": "",
+            "right": "26px",
+            "bottom": "",
+            "left": "26px"
+          },
+          "padding": {
+            "top": "10px",
+            "right": "16px",
+            "bottom": "10px",
+            "left": "16px"
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": ""
+        },
+        "title": {
+          "enabled": true,
+          "indexNumber": true,
+          "tag": "h3",
+          "margin": {
+            "top": "0px",
+            "bottom": "4px"
+          },
+          "font": {
+            "size": "16px",
+            "weight": "500",
+            "family": ""
+          },
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "1.3em",
+          "letterSpacing": ""
+        },
+        "icon": {
+          "enabled": true,
+          "margin": {
+            "top": "2px",
+            "bottom": ""
+          },
+          "boxWidth": "32px",
+          "boxHeight": "32px",
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "100px",
+          "size": "18px"
+        },
+        "description": {
+          "enabled": true
+        },
+        "progressBar": {
+          "margin": {
+            "top": "16px",
+            "bottom": ""
+          }
+        },
+        "color": {
+          "title": "#010101",
+          "icon": "#fff",
+          "iconBg": "#0c50ff",
+          "tabBg": "",
+          "activeTabText": "#fff",
+          "activeTabBody": "",
+          "activeTabBg": "#0c50ff",
+          "activeTabBorder": "#0c50ff",
+          "progressPrimary": "#010101",
+          "progressSecondary": "#e2e2e2"
+        }
+      }
+    },
+    "childAttrs": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "providesContext": {
+    "layout": "layout",
+    "listScroll": "listScroll",
+    "scrollDirection": "scrollDirection",
+    "parentClientId": "clientId"
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--scroll-animation--frontend-script",
+    "cozy-swiper-bundle",
+    "cozy-animejs"
+  ],
+  "viewStyle": [
+    "cozy-swiper-bundle"
+  ],
+  "render": "file:./render.php"
+}

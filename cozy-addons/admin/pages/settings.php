@@ -101,6 +101,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</label>
 				</div>
 			</li>
+
+			<li>
+				<div>
+					<p class="function-title">
+						<?php esc_html_e( 'Core Post Terms Styling Options', 'cozy-addons' ); ?>
+					</p>
+					<p class="function-desc"><?php esc_html_e( 'Handy styling features for WP Post Terms block.', 'cozy-addons' ); ?></p>
+				</div>
+				<div class="cozy-block-toggle">
+					<label class="switch">
+						<?php
+						$checked = get_option( 'ca--utility--post-terms' );
+						?>
+						<input type="checkbox" class="ca__utility-function" name="post-terms" id="cozy-addons--utility--post-terms" <?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
+						<span class="cozy-toggle-slider round"></span>
+					</label>
+				</div>
+			</li>
 		</ul>
 
 		<!-- Patterns Library -->

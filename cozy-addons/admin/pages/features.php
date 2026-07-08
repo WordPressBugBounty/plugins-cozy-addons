@@ -91,6 +91,11 @@ $features = array(
 			'pro'   => true,
 		),
 		array(
+			'label' => 'Scroll Animation',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
 			'label' => 'Sidebar Panel',
 			'free'  => true,
 			'pro'   => true,

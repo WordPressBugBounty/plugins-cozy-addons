@@ -145,18 +145,30 @@
         "hoverEffect": true,
         "width": "",
         "height": "430px",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
         "radius": {
           "top": "0px",
           "right": "0px",
           "bottom": "0px",
           "left": "0px"
         },
-        "overlayColor": "#090A0F57"
+        "overlayColor": "#090A0F57",
+        "borderColorHover": ""
       }
     },
     "title": {
       "type": "object",
       "default": {
+        "padding": {
+          "top": "8px",
+          "right": "12px",
+          "bottom": "8px",
+          "left": "12px"
+        },
         "fontSize": "18px",
         "fontFamily": "",
         "fontWeight": "600",
@@ -165,7 +177,10 @@
         "lineHeight": "",
         "letterSpacing": "",
         "color": "#5566ca",
-        "colorHover": "#f90"
+        "colorHover": "#f90",
+        "background": "",
+        "backgroundHover": "",
+        "borderRadius": ""
       }
     },
     "iconBox": {

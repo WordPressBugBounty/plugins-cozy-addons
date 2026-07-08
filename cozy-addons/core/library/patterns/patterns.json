@@ -394,7 +394,7 @@
 	{
 		"label": "Blog",
 		"slug": "cozy-addons/blog-4",
-		"category": ["blog"],
+		"category": ["blog-magazine"],
 		"image": "blog-4.png",
 		"isPremium": false
 	},
@@ -625,14 +625,14 @@
 	{
 		"label": "Blog grid with overlay",
 		"slug": "cozy-addons/blog-37",
-		"category": ["blog"],
+		"category": ["blog-magazine"],
 		"image": "blog-37.png",
 		"isPremium": true
 	},
 	{
 		"label": "Blog",
 		"slug": "cozy-addons/blog-38",
-		"category": ["blog"],
+		"category": ["blog-magazine"],
 		"image": "blog-38.png",
 		"isPremium": true
 	},
@@ -653,7 +653,7 @@
 	{
 		"label": "Blog with ajax loader",
 		"slug": "cozy-addons/blog-41",
-		"category": ["blog"],
+		"category": ["blog-magazine"],
 		"image": "blog-41.png",
 		"isPremium": true
 	},
@@ -662,6 +662,321 @@
 		"slug": "cozy-addons/blog-42",
 		"category": ["blog"],
 		"image": "blog-42.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-1",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-1.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-2",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-2.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-3",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-3.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-4",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-4.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-5",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-5.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-6",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-6.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-7",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-7.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-8",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-8.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-9",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-9.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-10",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-10.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-11",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-11.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-12",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-12.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-13",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-13.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-14",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-14.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-15",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-15.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-16",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-16.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-17",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-17.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-18",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-18.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-19",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-19.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-20",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-20.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-21",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-21.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-22",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-22.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-23",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-23.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-24",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-24.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-25",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-25.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-26",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-26.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-27",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-27.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-28",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-28.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-29",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-29.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-32",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-32.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-33",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-33.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-36",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-36.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-37",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-37.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-38",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-38.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-39",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-39.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-40",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-40.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-41",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-41.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-42",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-42.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-43",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-43.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-44",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-44.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-45",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-45.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-46",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-46.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-47",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-47.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-48",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-48.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-49",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-49.png",
 		"isPremium": true
 	},
 	{

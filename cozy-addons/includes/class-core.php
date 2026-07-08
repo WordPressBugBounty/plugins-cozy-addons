@@ -59,6 +59,9 @@ class Core {
 	private function __construct() {
 		require_once self::$dir . 'cpt/cpt-init.php';
 
+		// Block markups.
+		require_once self::$dir . 'block-markups/extend-blocks.php';
+
 		// Core initialization logic (e.g., helpers, utilities) goes here.
 		$this->register_block_templates();
 

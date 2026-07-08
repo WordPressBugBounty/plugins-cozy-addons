@@ -19,6 +19,10 @@ $header_box = array(
 
 $heading = array(
 	'padding'        => cozy_render_TRBL( 'padding', $attributes['headingStyles']['padding'] ),
+	'margin'         => array(
+		'top'    => isset( $attributes['headingStyles']['margin']['top'] ) ? $attributes['headingStyles']['margin']['top'] : '',
+		'bottom' => isset( $attributes['headingStyles']['margin']['bottom'] ) ? $attributes['headingStyles']['margin']['bottom'] : '',
+	),
 	'border'         => isset( $attributes['headingStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['headingStyles']['border'] ) : '',
 	'radius'         => cozy_render_TRBL( 'border-radius', $attributes['headingStyles']['radius'] ),
 	'bg'             => isset( $attributes['headingStyles']['color']['bg'] ) ? $attributes['headingStyles']['color']['bg'] : '',
@@ -152,6 +156,8 @@ $block_styles = "
     {$heading['padding']}
     {$heading['border']}
     {$heading['radius']}
+	margin-top:{$heading['margin']['top']};
+	margin-bottom:{$heading['margin']['bottom']};
     font-size: {$attributes['headingStyles']['font']['size']};
     font-weight: {$attributes['headingStyles']['font']['weight']};
     font-family: {$attributes['headingStyles']['font']['family']};
@@ -167,6 +173,8 @@ $block_styles = "
 #$block_id .cozy-block-magazine-list__sub-heading {
     {$sub_heading['padding']}
     {$sub_heading['border']}
+	margin-top:{$heading['margin']['top']};
+	margin-bottom:{$heading['margin']['bottom']};
 	border-radius: {$attributes['subHeading']['radius']};
     font-size: {$attributes['subHeading']['font']['size']};
     font-weight: {$attributes['subHeading']['font']['weight']};

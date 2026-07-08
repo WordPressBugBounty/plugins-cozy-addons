@@ -526,6 +526,11 @@ p.ca__has-light-color {
 .ct-companion-dashboard .utility-functions.blocks-holder li {
 	min-height: 65px;
 	height: auto;
+	align-items: flex-start;
+
+	& .cozy-block-toggle {
+		margin-top: 12px;
+	}
 }
 
 /* Features Page */
@@ -544,6 +549,10 @@ p.ca__has-light-color {
 	font-size: 15px;
 	background: #fff;
 	border: 1px solid #e2e8f0;
+}
+.ct-companion-dashboard .feature-table thead {
+	position: sticky;
+	top: 32px;
 }
 .ct-companion-dashboard .feature-table th,
 .ct-companion-dashboard .feature-table td {
