@@ -15,6 +15,7 @@ $vertical_scroll = array(
 );
 
 $header_box = array(
+	'align'          => isset( $attributes['headerBox']['align'] ) ? esc_attr( sanitize_text_field( $attributes['headerBox']['align'] ) ) : '',
 	'width'          => isset( $attributes['headerBox']['width'] ) ? esc_attr( $attributes['headerBox']['width'] ) : '',
 	'padding'        => isset( $attributes['headerBox']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['headerBox']['padding'] ) : '',
 	'margin'         => isset( $attributes['headerBox']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['headerBox']['margin'] ) : '',
@@ -60,7 +61,7 @@ $button     = array(
 	'padding'        => isset( $attributes['headerBox']['button']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['headerBox']['button']['padding'] ) : '',
 	'margin'         => isset( $attributes['headerBox']['button']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['headerBox']['button']['margin'] ) : '',
 	'border'         => isset( $attributes['headerBox']['button']['border'] ) ? cozy_render_TRBL( 'border', $attributes['headerBox']['button']['border'] ) : '',
-	'radius'         => isset( $attributes['headerBox']['button']['radius'] ) ? esc_attr( $attributes['headerBox']['button']['radius'] ) : '',
+	'radius'         => isset( $attributes['headerBox']['button']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['headerBox']['button']['radius'] ) : '',
 	'font'           => array(
 		'size'   => isset( $attributes['headerBox']['button']['font']['size'] ) ? esc_attr( $attributes['headerBox']['button']['font']['size'] ) : '',
 		'weight' => isset( $attributes['headerBox']['button']['font']['weight'] ) ? esc_attr( $attributes['headerBox']['button']['font']['weight'] ) : '',
@@ -104,8 +105,12 @@ $list_scroll = array(
 		'radius'     => isset( $attributes['listScroll']['icon']['radius'] ) ? esc_attr( $attributes['listScroll']['icon']['radius'] ) : '',
 		'size'       => isset( $attributes['listScroll']['icon']['size'] ) ? esc_attr( $attributes['listScroll']['icon']['size'] ) : '',
 	),
+	'description' => array(
+		'padding' => isset( $attributes['listScroll']['description']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['listScroll']['description']['padding'] ) : '',
+	),
 	'progress'    => array(
 		'margin' => isset( $attributes['listScroll']['progressBar']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['listScroll']['progressBar']['margin'] ) : '',
+		'height' => isset( $attributes['listScroll']['progressBar']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['listScroll']['progressBar']['height'] ) : '',
 	),
 	'color'       => array(
 		'title'              => isset( $attributes['listScroll']['color']['title'] ) ? esc_attr( $attributes['listScroll']['color']['title'] ) : '',
@@ -121,6 +126,8 @@ $list_scroll = array(
 	),
 );
 
+$total_tab_items = count( $attributes['childAttrs'] );
+
 $block_styles = "
 #$block_id .cozy-block-sa-header-box {
 	max-width: {$header_box['width']};
@@ -128,7 +135,7 @@ $block_styles = "
 	{$header_box['margin']}
 	{$header_box['border']}
 	border-radius: {$header_box['radius']};
-	align-items: {$attributes['headerBox']['align']};
+	align-items: {$header_box['align']};
 	font-size: {$header_box['font']['size']};
 	font-weight: {$header_box['font']['weight']};
 	font-family: {$header_box['font']['family']};
@@ -175,6 +182,11 @@ $block_styles = "
 	gap: {$vertical_scroll['gap']};
 }
 
+@media( width > 1024px ) {
+	.block-wrapper-$client_id .wp-block-cozy-block-scroll-animation:has(#$block_id.layout-list.variation-scroll) {
+		height: calc({$total_tab_items} * 100vh);
+	}
+}
 #$block_id.layout-list.tab-display-inline {
 	gap: {$list_scroll['gap']};
 }
@@ -216,10 +228,12 @@ $block_styles = "
 
 	& .tab__progress-bar {
 		{$list_scroll['progress']['margin']}
+		height: {$list_scroll['progress']['height']};
 		background-color: {$list_scroll['color']['progress_secondary']};
 
 		& .progress {
 			background-color: {$list_scroll['color']['progress_primary']};
+			height: {$list_scroll['progress']['height']};
 		}
 	}
 }
@@ -248,24 +262,29 @@ $block_styles = "
 	letter-spacing: {$list_scroll['title']['letter_spacing']};
 	color: {$list_scroll['color']['title']};
 }
-#$block_id.layout-list.variation-scroll .content__wrapper .cozy-block-scroll-item:not(:last-child) {
-	margin-bottom: {$list_scroll['item_gap']};
+#$block_id.layout-list .tab__description-inner {
+	{$list_scroll['description']['padding']}
+}
+@media (width > 1024px) {
+	#$block_id.layout-list.variation-scroll .content__wrapper .cozy-block-scroll-item:not(:last-child) {
+		margin-bottom: {$list_scroll['item_gap']};
+	}
 }
 ";
 
 $font_families = array();
 
 if ( isset( $attributes['headerBox']['font']['family'] ) && ! empty( $attributes['headerBox']['font']['family'] ) ) {
-	$font_families[] = $attributes['headerBox']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['headerBox']['font']['family'] );
 }
 if ( isset( $attributes['headerBox']['heading']['font']['family'] ) && ! empty( $attributes['headerBox']['heading']['font']['family'] ) ) {
-	$font_families[] = $attributes['headerBox']['heading']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['headerBox']['heading']['font']['family'] );
 }
 if ( isset( $attributes['headerBox']['button']['font']['family'] ) && ! empty( $attributes['headerBox']['button']['font']['family'] ) ) {
-	$font_families[] = $attributes['headerBox']['button']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['headerBox']['button']['font']['family'] );
 }
 if ( isset( $attributes['listScroll']['title']['font']['family'] ) && ! empty( $attributes['listScroll']['title']['font']['family'] ) ) {
-	$font_families[] = $attributes['listScroll']['title']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['listScroll']['title']['font']['family'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -273,9 +292,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {
@@ -341,9 +360,12 @@ $classes[] = 'block-wrapper-' . $client_id;
 				<?php
 			}
 
-			if ( 'default' === $attributes['layout'] && 'horizontal' === $attributes['scrollDirection'] ) {
+			if ( ( 'default' === $attributes['layout'] && 'horizontal' === $attributes['scrollDirection'] ) || ( 'list' === $attributes['layout'] && 'scroll' === $attributes['listScroll']['variation'] ) ) {
+				$classes   = array();
+				$classes[] = 'default' === $attributes['layout'] && 'horizontal' === $attributes['scrollDirection'] ? 'swiper-wrapper' : '';
+				$classes[] = 'list' === $attributes['layout'] && 'scroll' === $attributes['listScroll']['variation'] ? 'sticky-viewport' : '';
 				?>
-			<div class="swiper-wrapper">
+			<div class="<?php echo esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ); ?>">
 				<?php
 			}
 
@@ -363,7 +385,7 @@ $classes[] = 'block-wrapper-' . $client_id;
 				echo \CozyAddons\Helpers\BlockRender::list_scroll_tab_render( $attributes );
 			}
 
-			if ( 'default' === $attributes['layout'] && 'horizontal' === $attributes['scrollDirection'] ) {
+			if ( 'default' === $attributes['layout'] && 'horizontal' === $attributes['scrollDirection'] || ( 'list' === $attributes['layout'] && 'scroll' === $attributes['listScroll']['variation'] ) ) {
 				?>
 			</div>
 				<?php

@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : '';
 $cozy_block_var = 'cozyProductReview_' . str_replace( '-', '_', $client_id );
 
-$blockId = 'cozyBlock_' . str_replace( '-', '_', $client_id );
+$block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $woo_product_comments = Utils::get_woo_product_reviews();
 
@@ -31,78 +31,185 @@ wp_add_inline_script( 'cozy-block--product-review--frontend-script', 'document.a
 $displayColumn1 = ( $attributes['gridOptions']['displayColumn'] <= 3 ) ? $attributes['gridOptions']['displayColumn'] : 3;
 $displayColumn2 = ( $attributes['gridOptions']['displayColumn'] <= 2 ) ? $attributes['gridOptions']['displayColumn'] : 2;
 
-$container_color = array(
-	'text'         => isset( $attributes['typography']['color'] ) ? $attributes['typography']['color'] : '',
-	'border'       => isset( $attributes['containerStyles']['border']['color'] ) ? $attributes['containerStyles']['border']['color'] : '',
-	'bg'           => isset( $attributes['containerStyles']['bgColor'] ) ? $attributes['containerStyles']['bgColor'] : '',
-	'shadow'       => isset( $attributes['containerStyles']['boxShadow']['color'] ) ? $attributes['containerStyles']['boxShadow']['color'] : '',
-	'shadow_hover' => isset( $attributes['containerStyles']['boxShadow']['colorHover'] ) ? $attributes['containerStyles']['boxShadow']['colorHover'] : '',
-	'border_hover' => isset( $attributes['containerStyles']['border']['colorHover'] ) ? $attributes['containerStyles']['border']['colorHover'] : '',
-	'bg_hover'     => isset( $attributes['containerStyles']['bgColorHover'] ) ? $attributes['containerStyles']['bgColorHover'] : '',
-);
-
-$heading_styles = array(
-	'letter_case'    => isset( $attributes['headingOptions']['letterCase'] ) ? $attributes['headingOptions']['letterCase'] : '',
-	'decoration'     => isset( $attributes['headingOptions']['decoration'] ) ? $attributes['headingOptions']['decoration'] : '',
-	'line_height'    => isset( $attributes['headingOptions']['lineHeight'] ) ? $attributes['headingOptions']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['headingOptions']['letterSpacing'] ) ? $attributes['headingOptions']['letterSpacing'] : '',
-);
-$heading_color  = array(
-	'text'      => isset( $attributes['headingOptions']['color'] ) ? $attributes['headingOptions']['color'] : '',
-	'rating_bg' => isset( $attributes['headingOptions']['iconBgColor'] ) ? $attributes['headingOptions']['iconBgColor'] : '',
-);
-
-$title_color  = array(
-	'text'       => isset( $attributes['reviewTitle']['textColor'] ) ? $attributes['reviewTitle']['textColor'] : '',
-	'text_hover' => isset( $attributes['reviewTitle']['titleColorHover'] ) ? $attributes['reviewTitle']['titleColorHover'] : '',
-);
-$title_styles = array(
-	'letter_case'    => isset( $attributes['reviewTitle']['titleTypography']['letterCase'] ) ? $attributes['reviewTitle']['titleTypography']['letterCase'] : '',
-	'decoration'     => isset( $attributes['reviewTitle']['titleTypography']['decoration'] ) ? $attributes['reviewTitle']['titleTypography']['decoration'] : '',
-	'line_height'    => isset( $attributes['reviewTitle']['titleTypography']['lineHeight'] ) ? $attributes['reviewTitle']['titleTypography']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['reviewTitle']['titleTypography']['letterSpacing'] ) ? $attributes['reviewTitle']['titleTypography']['letterSpacing'] : '',
-);
-
-$loader_color  = array(
-	'border'       => isset( $attributes['ajaxButton']['border']['color'] ) ? $attributes['ajaxButton']['border']['color'] : '',
-	'text'         => isset( $attributes['ajaxButton']['color'] ) ? $attributes['ajaxButton']['color'] : '',
-	'bg'           => isset( $attributes['ajaxButton']['bgColor'] ) ? $attributes['ajaxButton']['bgColor'] : '',
-	'border_hover' => isset( $attributes['ajaxButton']['border']['colorHover'] ) ? $attributes['ajaxButton']['border']['colorHover'] : '',
-	'text_hover'   => isset( $attributes['ajaxButton']['colorHover'] ) ? $attributes['ajaxButton']['colorHover'] : '',
-	'bg_hover'     => isset( $attributes['ajaxButton']['bgColorHover'] ) ? $attributes['ajaxButton']['bgColorHover'] : '',
-);
-$loader_styles = array(
-	'letter_case'    => isset( $attributes['ajaxButton']['letterCase'] ) ? $attributes['ajaxButton']['letterCase'] : '',
-	'decoration'     => isset( $attributes['ajaxButton']['decoration'] ) ? $attributes['ajaxButton']['decoration'] : '',
-	'line_height'    => isset( $attributes['ajaxButton']['lineHeight'] ) ? $attributes['ajaxButton']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['ajaxButton']['letterSpacing'] ) ? $attributes['ajaxButton']['letterSpacing'] : '',
-);
-
-$block_typography = array(
+$typography = array(
+	'font'           => array(
+		'size'   => isset( $attributes['typography']['fontSize'] ) ? esc_attr( $attributes['typography']['fontSize'] ) : '',
+		'weight' => isset( $attributes['typography']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['typography']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['fontFamily'] ) ) : '',
+	),
 	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
 	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
 	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
 	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
 );
 
-$nav_styles = array(
-	'border' => isset( $attributes['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['navigation']['border'] ) : '',
+$container_styles = array(
+	'padding'      => array(
+		'top'    => isset( $attributes['containerStyles']['padding']['top'] ) ? esc_attr( $attributes['containerStyles']['padding']['top'] ) : '',
+		'right'  => isset( $attributes['containerStyles']['padding']['right'] ) ? esc_attr( $attributes['containerStyles']['padding']['right'] ) : '',
+		'bottom' => isset( $attributes['containerStyles']['padding']['bottom'] ) ? esc_attr( $attributes['containerStyles']['padding']['bottom'] ) : '',
+		'left'   => isset( $attributes['containerStyles']['padding']['left'] ) ? esc_attr( $attributes['containerStyles']['padding']['left'] ) : '',
+	),
+	'border'       => array(
+		'style'        => isset( $attributes['containerStyles']['border']['type'] ) ? esc_attr( sanitize_text_field( $attributes['containerStyles']['border']['type'] ) ) : '',
+		'width_top'    => isset( $attributes['containerStyles']['border']['width']['top'] ) ? esc_attr( $attributes['containerStyles']['border']['width']['top'] ) : '',
+		'width_right'  => isset( $attributes['containerStyles']['border']['width']['right'] ) ? esc_attr( $attributes['containerStyles']['border']['width']['right'] ) : '',
+		'width_bottom' => isset( $attributes['containerStyles']['border']['width']['bottom'] ) ? esc_attr( $attributes['containerStyles']['border']['width']['bottom'] ) : '',
+		'width_left'   => isset( $attributes['containerStyles']['border']['width']['left'] ) ? esc_attr( $attributes['containerStyles']['border']['width']['left'] ) : '',
+		'color'        => isset( $attributes['containerStyles']['border']['color'] ) ? esc_attr( sanitize_text_field( $attributes['containerStyles']['border']['color'] ) ) : '',
+	),
+	'radius'       => array(
+		'top'    => isset( $attributes['containerStyles']['borderRadius']['top'] ) ? esc_attr( $attributes['containerStyles']['borderRadius']['top'] ) : '',
+		'right'  => isset( $attributes['containerStyles']['borderRadius']['right'] ) ? esc_attr( $attributes['containerStyles']['borderRadius']['right'] ) : '',
+		'bottom' => isset( $attributes['containerStyles']['borderRadius']['bottom'] ) ? esc_attr( $attributes['containerStyles']['borderRadius']['bottom'] ) : '',
+		'left'   => isset( $attributes['containerStyles']['borderRadius']['left'] ) ? esc_attr( $attributes['containerStyles']['borderRadius']['left'] ) : '',
+	),
+	'shadow'       => array(
+		'horizontal' => isset( $attributes['containerStyles']['boxShadow']['horizontal'] ) ? esc_attr( $attributes['containerStyles']['boxShadow']['horizontal'] ) : '',
+		'vertical'   => isset( $attributes['containerStyles']['boxShadow']['vertical'] ) ? esc_attr( $attributes['containerStyles']['boxShadow']['vertical'] ) : '',
+		'blur'       => isset( $attributes['containerStyles']['boxShadow']['blur'] ) ? esc_attr( $attributes['containerStyles']['boxShadow']['blur'] ) : '',
+		'spread'     => isset( $attributes['containerStyles']['boxShadow']['spread'] ) ? esc_attr( $attributes['containerStyles']['boxShadow']['spread'] ) : '',
+		'color'      => isset( $attributes['containerStyles']['boxShadow']['color'] ) ? esc_attr( sanitize_text_field( $attributes['containerStyles']['boxShadow']['color'] ) ) : '',
+		'position'   => isset( $attributes['containerStyles']['boxShadow']['position'] ) ? esc_attr( sanitize_text_field( $attributes['containerStyles']['boxShadow']['position'] ) ) : '',
+	),
+	'shadow_hover' => array(
+		'blur'   => isset( $attributes['containerStyles']['boxShadow']['blurHover'] ) ? esc_attr( $attributes['containerStyles']['boxShadow']['blurHover'] ) : '',
+		'spread' => isset( $attributes['containerStyles']['boxShadow']['spreadHover'] ) ? esc_attr( $attributes['containerStyles']['boxShadow']['spreadHover'] ) : '',
+		'color'  => isset( $attributes['containerStyles']['boxShadow']['colorHover'] ) ? esc_attr( sanitize_text_field( $attributes['containerStyles']['boxShadow']['colorHover'] ) ) : '',
+	),
+	'text'         => isset( $attributes['typography']['color'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['color'] ) ) : '',
+	'bg'           => isset( $attributes['containerStyles']['bgColor'] ) ? esc_attr( sanitize_text_field( $attributes['containerStyles']['bgColor'] ) ) : '',
+	'border_hover' => isset( $attributes['containerStyles']['border']['colorHover'] ) ? esc_attr( sanitize_text_field( $attributes['containerStyles']['border']['colorHover'] ) ) : '',
+	'bg_hover'     => isset( $attributes['containerStyles']['bgColorHover'] ) ? esc_attr( sanitize_text_field( $attributes['containerStyles']['bgColorHover'] ) ) : '',
 );
-$nav_color  = array(
-	'icon'         => isset( $attributes['navigation']['color'] ) ? $attributes['navigation']['color'] : '',
-	'bg'           => isset( $attributes['navigation']['backgroundColor'] ) ? $attributes['navigation']['backgroundColor'] : '',
-	'icon_hover'   => isset( $attributes['navigation']['colorHover'] ) ? $attributes['navigation']['colorHover'] : '',
-	'bg_hover'     => isset( $attributes['navigation']['backgroundColorHover'] ) ? $attributes['navigation']['backgroundColorHover'] : '',
-	'border_hover' => isset( $attributes['navigation']['borderHover'] ) ? $attributes['navigation']['borderHover'] : '',
+
+$heading_styles = array(
+	'margin'         => array(
+		'bottom' => isset( $attributes['headingOptions']['verticalGap'] ) ? esc_attr( $attributes['headingOptions']['verticalGap'] ) : '',
+	),
+	'justify'        => isset( $attributes['headingOptions']['blockAlign'] ) ? esc_attr( sanitize_text_field( $attributes['headingOptions']['blockAlign'] ) ) : '',
+	'gap'            => isset( $attributes['headingOptions']['gap'] ) ? esc_attr( $attributes['headingOptions']['gap'] ) : '',
+	'font'           => array(
+		'size'   => isset( $attributes['headingOptions']['fontSize'] ) ? esc_attr( $attributes['headingOptions']['fontSize'] ) : '',
+		'weight' => isset( $attributes['headingOptions']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['headingOptions']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['headingOptions']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['headingOptions']['fontFamily'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['headingOptions']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['headingOptions']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['headingOptions']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['headingOptions']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['headingOptions']['lineHeight'] ) ? esc_attr( $attributes['headingOptions']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['headingOptions']['letterSpacing'] ) ? esc_attr( $attributes['headingOptions']['letterSpacing'] ) : '',
+);
+$heading_color  = array(
+	'text'      => isset( $attributes['headingOptions']['color'] ) ? esc_attr( $attributes['headingOptions']['color'] ) : '',
+	'rating_bg' => isset( $attributes['headingOptions']['iconBgColor'] ) ? esc_attr( $attributes['headingOptions']['iconBgColor'] ) : '',
+);
+
+$grid = array(
+	'column' => isset( $attributes['gridOptions']['displayColumn'] ) ? esc_attr( $attributes['gridOptions']['displayColumn'] ) : '',
+	'gap'    => isset( $attributes['gridOptions']['columnGap'] ) ? esc_attr( $attributes['gridOptions']['columnGap'] ) : '',
+	'align'  => isset( $attributes['gridOptions']['blockAlign'] ) ? esc_attr( sanitize_text_field( $attributes['gridOptions']['blockAlign'] ) ) : '',
+);
+
+$list = array(
+	'gap'   => isset( $attributes['listOptions']['rowGap'] ) ? esc_attr( $attributes['listOptions']['rowGap'] ) : '',
+	'align' => isset( $attributes['listOptions']['textAlign'] ) ? esc_attr( sanitize_text_field( $attributes['listOptions']['textAlign'] ) ) : '',
+);
+
+$img_styles = array(
+	'width'  => isset( $attributes['reviewImage']['width'] ) ? esc_attr( $attributes['reviewImage']['width'] ) : '',
+	'height' => isset( $attributes['reviewImage']['height'] ) ? esc_attr( $attributes['reviewImage']['height'] ) : '',
+	'radius' => isset( $attributes['reviewImage']['borderRadius'] ) ? esc_attr( $attributes['reviewImage']['borderRadius'] ) : '',
+);
+
+$title_styles = array(
+	'wrapper_margin' => array(
+		'top'    => isset( $attributes['reviewContent']['margin']['top'] ) ? esc_attr( $attributes['reviewContent']['margin']['top'] ) : '',
+		'right'  => isset( $attributes['reviewContent']['margin']['right'] ) ? esc_attr( $attributes['reviewContent']['margin']['right'] ) : '',
+		'bottom' => isset( $attributes['reviewContent']['margin']['bottom'] ) ? esc_attr( $attributes['reviewContent']['margin']['bottom'] ) : '',
+		'left'   => isset( $attributes['reviewContent']['margin']['left'] ) ? esc_attr( $attributes['reviewContent']['margin']['left'] ) : '',
+	),
+	'margin'         => array(
+		'left' => isset( $attributes['reviewTitle']['marginLeft'] ) ? esc_attr( $attributes['reviewTitle']['marginLeft'] ) : '',
+	),
+	'font'           => array(
+		'size'   => isset( $attributes['reviewTitle']['titleTypography']['fontSize'] ) ? esc_attr( $attributes['reviewTitle']['titleTypography']['fontSize'] ) : '',
+		'weight' => isset( $attributes['reviewTitle']['titleTypography']['fontWeight'] ) ? esc_attr( $attributes['reviewTitle']['titleTypography']['fontWeight'] ) : '',
+		'family' => isset( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) ? esc_attr( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) : '',
+	),
+	'rating_size'    => isset( $attributes['reviewTitle']['ratingSize'] ) ? esc_attr( $attributes['reviewTitle']['ratingSize'] ) : '',
+	'letter_case'    => isset( $attributes['reviewTitle']['titleTypography']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['reviewTitle']['titleTypography']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['reviewTitle']['titleTypography']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['reviewTitle']['titleTypography']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['reviewTitle']['titleTypography']['lineHeight'] ) ? esc_attr( $attributes['reviewTitle']['titleTypography']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['reviewTitle']['titleTypography']['letterSpacing'] ) ? esc_attr( $attributes['reviewTitle']['titleTypography']['letterSpacing'] ) : '',
+);
+$title_color  = array(
+	'text'       => isset( $attributes['reviewTitle']['textColor'] ) ? esc_attr( $attributes['reviewTitle']['textColor'] ) : '',
+	'text_hover' => isset( $attributes['reviewTitle']['titleColorHover'] ) ? esc_attr( $attributes['reviewTitle']['titleColorHover'] ) : '',
+);
+
+$loader_styles = array(
+	'margin'         => array(
+		'top' => isset( $attributes['ajaxButton']['marginTop'] ) ? esc_attr( $attributes['ajaxButton']['marginTop'] ) : '',
+	),
+	'padding'        => array(
+		'top'    => isset( $attributes['ajaxButton']['padding']['top'] ) ? esc_attr( $attributes['ajaxButton']['padding']['top'] ) : '',
+		'right'  => isset( $attributes['ajaxButton']['padding']['right'] ) ? esc_attr( $attributes['ajaxButton']['padding']['right'] ) : '',
+		'bottom' => isset( $attributes['ajaxButton']['padding']['bottom'] ) ? esc_attr( $attributes['ajaxButton']['padding']['bottom'] ) : '',
+		'left'   => isset( $attributes['ajaxButton']['padding']['left'] ) ? esc_attr( $attributes['ajaxButton']['padding']['left'] ) : '',
+	),
+	'border'         => array(
+		'style' => isset( $attributes['ajaxButton']['border']['type'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxButton']['border']['type'] ) ) : '',
+		'width' => isset( $attributes['ajaxButton']['border']['width'] ) ? esc_attr( $attributes['ajaxButton']['border']['width'] ) : '',
+	),
+	'radius'         => isset( $attributes['ajaxButton']['borderRadius'] ) ? esc_attr( $attributes['ajaxButton']['borderRadius'] ) : '',
+	'font'           => array(
+		'size'   => isset( $attributes['ajaxButton']['fontSize'] ) ? esc_attr( $attributes['ajaxButton']['fontSize'] ) : '',
+		'weight' => isset( $attributes['ajaxButton']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxButton']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['ajaxButton']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxButton']['fontFamily'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['ajaxButton']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxButton']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['ajaxButton']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxButton']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['ajaxButton']['lineHeight'] ) ? esc_attr( $attributes['ajaxButton']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['ajaxButton']['letterSpacing'] ) ? esc_attr( $attributes['ajaxButton']['letterSpacing'] ) : '',
+);
+$loader_color  = array(
+	'border'       => isset( $attributes['ajaxButton']['border']['color'] ) ? esc_attr( $attributes['ajaxButton']['border']['color'] ) : '',
+	'text'         => isset( $attributes['ajaxButton']['color'] ) ? esc_attr( $attributes['ajaxButton']['color'] ) : '',
+	'bg'           => isset( $attributes['ajaxButton']['bgColor'] ) ? esc_attr( $attributes['ajaxButton']['bgColor'] ) : '',
+	'border_hover' => isset( $attributes['ajaxButton']['border']['colorHover'] ) ? esc_attr( $attributes['ajaxButton']['border']['colorHover'] ) : '',
+	'text_hover'   => isset( $attributes['ajaxButton']['colorHover'] ) ? esc_attr( $attributes['ajaxButton']['colorHover'] ) : '',
+	'bg_hover'     => isset( $attributes['ajaxButton']['bgColorHover'] ) ? esc_attr( $attributes['ajaxButton']['bgColorHover'] ) : '',
+);
+
+$nav       = array(
+	'size'       => isset( $attributes['navigation']['iconSize'] ) ? esc_attr( $attributes['navigation']['iconSize'] ) : '',
+	'box_width'  => isset( $attributes['navigation']['iconBoxWidth'] ) ? esc_attr( $attributes['navigation']['iconBoxWidth'] ) : '',
+	'box_height' => isset( $attributes['navigation']['iconBoxHeight'] ) ? esc_attr( $attributes['navigation']['iconBoxHeight'] ) : '',
+	'border'     => isset( $attributes['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['navigation']['border'] ) : '',
+	'radius'     => isset( $attributes['navigation']['borderRadius'] ) ? esc_attr( $attributes['navigation']['borderRadius'] ) : '',
+	'top'        => isset( $attributes['navigation']['verticalPosition'] ) ? esc_attr( $attributes['navigation']['verticalPosition'] ) : '',
+);
+$nav_color = array(
+	'icon'         => isset( $attributes['navigation']['color'] ) ? esc_attr( $attributes['navigation']['color'] ) : '',
+	'bg'           => isset( $attributes['navigation']['backgroundColor'] ) ? esc_attr( $attributes['navigation']['backgroundColor'] ) : '',
+	'icon_hover'   => isset( $attributes['navigation']['colorHover'] ) ? esc_attr( $attributes['navigation']['colorHover'] ) : '',
+	'bg_hover'     => isset( $attributes['navigation']['backgroundColorHover'] ) ? esc_attr( $attributes['navigation']['backgroundColorHover'] ) : '',
+	'border_hover' => isset( $attributes['navigation']['borderHover'] ) ? esc_attr( $attributes['navigation']['borderHover'] ) : '',
 );
 
 $bullet       = array(
+	'bottom' => isset( $attributes['pagination']['verticalPosition'] ) ? esc_attr( $attributes['pagination']['verticalPosition'] ) : '',
 	'align'  => isset( $attributes['pagination']['align'] ) ? $attributes['pagination']['align'] : 'center',
 	'left'   => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? 'padding-left: ' . $attributes['pagination']['left'] . ';' : '',
 	'right'  => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? 'padding-right: ' . $attributes['pagination']['right'] . ';' : '',
+	'width'  => isset( $attributes['pagination']['width'] ) ? esc_attr( $attributes['pagination']['width'] ) : '',
+	'height' => isset( $attributes['pagination']['height'] ) ? esc_attr( $attributes['pagination']['height'] ) : '',
+	'radius' => isset( $attributes['pagination']['borderRadius'] ) ? esc_attr( $attributes['pagination']['borderRadius'] ) : '',
 	'active' => array(
-		'height' => isset( $attributes['pagination']['activeHeight'] ) ? $attributes['pagination']['activeHeight'] : '',
+		'width'  => isset( $attributes['pagination']['activeWidth'] ) ? esc_attr( $attributes['pagination']['activeWidth'] ) : '',
+		'height' => isset( $attributes['pagination']['activeHeight'] ) ? esc_attr( $attributes['pagination']['activeHeight'] ) : '',
 		'border' => isset( $attributes['pagination']['activeBorder'] ) ? cozy_render_TRBL( 'outline', $attributes['pagination']['activeBorder'] ) : '',
+		'radius' => isset( $attributes['pagination']['activeBorderRadius'] ) ? esc_attr( $attributes['pagination']['activeBorderRadius'] ) : '',
 		'offset' => isset( $attributes['pagination']['activeOffset'] ) ? $attributes['pagination']['activeOffset'] : '',
 	),
 	'gap'    => isset( $attributes['pagination']['gap'] ) ? $attributes['pagination']['gap'] : '',
@@ -115,192 +222,206 @@ $bullet_color = array(
 );
 
 $block_styles = "
-    #{$blockId} {
-        font-size: {$attributes['typography']['fontSize']}px;
-        font-weight: {$attributes['typography']['fontWeight']};
-        font-family: {$attributes['typography']['fontFamily']};
-        text-transform: {$block_typography['letter_case']};
-        text-decoration: {$block_typography['decoration']};
-        line-height: {$block_typography['line_height']};
-        letter-spacing: {$block_typography['letter_spacing']};
-        color: {$container_color['text']};
+#$block_id {
+    font-size: {$typography['font']['size']}px;
+    font-weight: {$typography['font']['weight']};
+    font-family: {$typography['font']['family']};
+    text-transform: {$typography['letter_case']};
+    text-decoration: {$typography['decoration']};
+    line-height: {$typography['line_height']};
+    letter-spacing: {$typography['letter_spacing']};
+    color: {$container_styles['text']};
+}
+#$block_id .woo-product-review {
+    padding-top: {$container_styles['padding']['top']}px;
+    padding-right: {$container_styles['padding']['right']}px;
+    padding-bottom: {$container_styles['padding']['bottom']}px;
+    padding-left: {$container_styles['padding']['left']}px;
+    border-style: {$container_styles['border']['style']};
+    border-top-width: {$container_styles['border']['width_top']}px;
+    border-right-width: {$container_styles['border']['width_right']}px;
+    border-bottom-width: {$container_styles['border']['width_bottom']}px;
+    border-left-width: {$container_styles['border']['width_left']}px;
+    border-color: {$container_styles['border']['color']};
+    background-color: {$container_styles['bg']};
+    border-top-left-radius: {$container_styles['radius']['top']}px;
+    border-top-right-radius: {$container_styles['radius']['right']}px;
+    border-bottom-right-radius: {$container_styles['radius']['bottom']}px;
+    border-bottom-left-radius: {$container_styles['radius']['left']}px;
+}
+#$block_id.has-box-shadow .woo-product-review {
+    box-shadow: {$container_styles['shadow']['horizontal']}px {$container_styles['shadow']['vertical']}px {$container_styles['shadow']['blur']}px {$container_styles['shadow']['spread']}px {$container_styles['shadow']['color']} {$container_styles['shadow']['position']};
+}
+#$block_id .woo-product-review:hover {
+    border-color: {$container_styles['border_hover']};
+    background-color: {$container_styles['bg_hover']};
+}
+#$block_id.has-box-shadow .woo-product-review:hover {
+    box-shadow: {$container_styles['shadow']['horizontal']}px {$container_styles['shadow']['vertical']}px {$container_styles['shadow_hover']['blur']}px {$container_styles['shadow_hover']['spread']}px {$container_styles['shadow_hover']['color']} {$container_styles['shadow']['position']};
+}
+#$block_id .review-heading-wrapper {
+    margin-bottom: {$heading_styles['margin']['bottom']}px;
+    justify-content: {$heading_styles['justify']};
+    gap: {$heading_styles['gap']}px;
+}
+#$block_id .review-heading-wrapper .review-heading{
+    font-size: {$heading_styles['font']['size']}px;
+    font-weight: {$heading_styles['font']['weight']};
+    font-family: {$heading_styles['font']['family']};
+    text-transform: {$heading_styles['letter_case']};
+    text-decoration: {$heading_styles['decoration']};
+    line-height: {$heading_styles['line_height']};
+    letter-spacing: {$heading_styles['letter_spacing']};
+    color: {$heading_color['text']};
+}
+#$block_id .review-heading-wrapper .total-avg-rating-wrapper {
+    background-color: {$heading_color['rating_bg']};
+}
+#$block_id.layout-grid .woo-product-review-wrapper {
+    grid-template-columns: repeat({$grid['column']}, 1fr);
+    gap: {$grid['gap']}px;
+    text-align: {$grid['align']};
+}
+@media screen and (max-width: 1024px) {
+    .cozy-block-product-review.layout-grid .woo-product-review-wrapper {
+        grid-template-columns: repeat(
+        {$displayColumn1},
+        1fr
+        ) !important;
     }
-    #{$blockId} .woo-product-review {
-        padding: {$attributes['containerStyles']['padding']['top']}px {$attributes['containerStyles']['padding']['right']}px {$attributes['containerStyles']['padding']['bottom']}px {$attributes['containerStyles']['padding']['left']}px;
-        border-style: {$attributes['containerStyles']['border']['type']};
-        border-width: {$attributes['containerStyles']['border']['width']['top']}px {$attributes['containerStyles']['border']['width']['right']}px {$attributes['containerStyles']['border']['width']['bottom']}px {$attributes['containerStyles']['border']['width']['left']}px;
-        border-color: {$container_color['border']};
-        background-color: {$container_color['bg']};
-        border-radius: {$attributes['containerStyles']['borderRadius']['top']}px {$attributes['containerStyles']['borderRadius']['right']}px {$attributes['containerStyles']['borderRadius']['bottom']}px {$attributes['containerStyles']['borderRadius']['left']}px;
+}
+@media screen and (max-width: 767px) {
+    .cozy-block-product-review.layout-grid .woo-product-review-wrapper {
+        grid-template-columns: repeat(
+        {$displayColumn2},
+        1fr
+        ) !important;
     }
-    #{$blockId}.has-box-shadow .woo-product-review {
-        box-shadow: {$attributes['containerStyles']['boxShadow']['horizontal']}px {$attributes['containerStyles']['boxShadow']['vertical']}px {$attributes['containerStyles']['boxShadow']['blur']}px {$attributes['containerStyles']['boxShadow']['spread']}px {$container_color['shadow']} {$attributes['containerStyles']['boxShadow']['position']};
+}
+@media screen and (max-width: 400px) {
+    .cozy-block-product-review.layout-grid .woo-product-review-wrapper {
+        grid-template-columns: repeat(
+        1,
+        1fr
+        ) !important;
     }
-    #{$blockId} .woo-product-review:hover {
-        border-color: {$container_color['border_hover']};
-        background-color: {$container_color['bg_hover']};
-    }
-    #{$blockId}.has-box-shadow .woo-product-review:hover {
-        box-shadow: {$attributes['containerStyles']['boxShadow']['horizontal']}px {$attributes['containerStyles']['boxShadow']['vertical']}px {$attributes['containerStyles']['boxShadow']['blurHover']}px {$attributes['containerStyles']['boxShadow']['spreadHover']}px {$container_color['shadow_hover']} {$attributes['containerStyles']['boxShadow']['position']};
-    }
-    #{$blockId} .review-heading-wrapper {
-        margin-bottom: {$attributes['headingOptions']['verticalGap']}px;
-        justify-content: {$attributes['headingOptions']['blockAlign']};
-        gap: {$attributes['headingOptions']['gap']}px;
-    }
-    #{$blockId} .review-heading-wrapper .review-heading{
-        font-size: {$attributes['headingOptions']['fontSize']}px;
-        font-weight: {$attributes['headingOptions']['fontWeight']};
-        font-family: {$attributes['headingOptions']['fontFamily']};
-        text-transform: {$heading_styles['letter_case']};
-        text-decoration: {$heading_styles['decoration']};
-        line-height: {$heading_styles['line_height']};
-        letter-spacing: {$heading_styles['letter_spacing']};
-        color: {$heading_color['text']};
-    }
-    #{$blockId} .review-heading-wrapper .total-avg-rating-wrapper {
-        background-color: {$heading_color['rating_bg']};
-    }
-    #{$blockId}.layout-grid .woo-product-review-wrapper {
-        grid-template-columns: repeat({$attributes['gridOptions']['displayColumn']}, 1fr);
-        row-gap: {$attributes['gridOptions']['columnGap']}px;
-        column-gap: {$attributes['gridOptions']['columnGap']}px;
-        text-align: {$attributes['gridOptions']['blockAlign']};
-    }
-    @media screen and (max-width: 1024px) {
-        .cozy-block-product-review.layout-grid .woo-product-review-wrapper {
-            grid-template-columns: repeat(
-            {$displayColumn1},
-            1fr
-            ) !important;
-        }
-    }
-    @media screen and (max-width: 767px) {
-        .cozy-block-product-review.layout-grid .woo-product-review-wrapper {
-            grid-template-columns: repeat(
-            {$displayColumn2},
-            1fr
-            ) !important;
-        }
-    }
-    @media screen and (max-width: 400px) {
-        .cozy-block-product-review.layout-grid .woo-product-review-wrapper {
-            grid-template-columns: repeat(
-            1,
-            1fr
-            ) !important;
-        }
-    }
-    #{$blockId}.layout-list .woo-product-review {
-        margin: 0 0 {$attributes['listOptions']['rowGap']}px 0;
-        text-align: {$attributes['listOptions']['textAlign']};
-    }
-    #{$blockId} .woo-product-review figure {
-        width: {$attributes['reviewImage']['width']}px;
-        height: {$attributes['reviewImage']['height']}px;
-        border-radius: {$attributes['reviewImage']['borderRadius']}px;
-    }
-    #{$blockId} .woo-product-review figure img {
-        border-radius: {$attributes['reviewImage']['borderRadius']}px;
-    }
-    #{$blockId} .woo-product-review .display-grid .display-flex.align-start.flex-column {
-        margin-left: {$attributes['reviewTitle']['marginLeft']}px;
-        color: {$title_color['text']};
-    }
-    #{$blockId} .woo-product-review .display-grid .display-flex.align-start.flex-column .review-date:before {
-        border-right-color: {$title_color['text']};
-    }
-    #{$blockId} .product-name {
-        font-size: {$attributes['reviewTitle']['titleTypography']['fontSize']}px;
-        font-weight: {$attributes['reviewTitle']['titleTypography']['fontWeight']};
-        font-family: {$attributes['reviewTitle']['titleTypography']['fontFamily']};
-        text-transform: {$title_styles['letter_case']};
-        text-decoration: {$title_styles['decoration']};
-        line-height: {$title_styles['line_height']};
-        letter-spacing: {$title_styles['letter_spacing']};
-        color: {$title_color['text']};
-    }
-    #{$blockId} .product-name:hover {
-        color: {$title_color['text_hover']};
-    }
-    #{$blockId} .product-rating-wrapper {
-        font-size: {$attributes['reviewTitle']['ratingSize']}px;
-    }
-    #{$blockId} .review-content-wrapper {
-        margin: {$attributes['reviewContent']['margin']['top']}px {$attributes['reviewContent']['margin']['right']}px {$attributes['reviewContent']['margin']['bottom']}px {$attributes['reviewContent']['margin']['left']}px;
-    }
-    #{$blockId} .cozy-dynamic-loader {
-        margin-top: {$attributes['ajaxButton']['marginTop']}px;
-        padding: {$attributes['ajaxButton']['padding']['top']}px {$attributes['ajaxButton']['padding']['right']}px {$attributes['ajaxButton']['padding']['bottom']}px {$attributes['ajaxButton']['padding']['left']}px;
-        border-style: {$attributes['ajaxButton']['border']['type']};
-        border-width: {$attributes['ajaxButton']['border']['width']}px;
-        border-color: {$loader_color['border']};
-        border-radius: {$attributes['ajaxButton']['borderRadius']}px;
-        background-color: {$loader_color['bg']};
-        color: {$loader_color['text']};
-        font-size: {$attributes['ajaxButton']['fontSize']}px;
-        font-weight: {$attributes['ajaxButton']['fontWeight']};
-        font-family: {$attributes['ajaxButton']['fontFamily']};
-        text-transform: {$loader_styles['letter_case']};
-        text-decoration: {$loader_styles['decoration']};
-        line-height: {$loader_styles['line_height']};
-        letter-spacing: {$loader_styles['letter_spacing']};
-    }
-    #{$blockId} .cozy-dynamic-loader:hover {
-        border-color: {$loader_color['border_hover']};
-        color: {$loader_color['text_hover']};
-        background-color: {$loader_color['bg_hover']};
-    }
-    #{$blockId} .swiper-button-prev::after,
-    #{$blockId} .swiper-button-next::after {
-        font-size: {$attributes['navigation']['iconSize']}px;
-    }
-    #{$blockId} .swiper-button-prev,
-    #{$blockId} .swiper-button-next {
-        width: {$attributes['navigation']['iconBoxWidth']}px;
-        height: {$attributes['navigation']['iconBoxHeight']}px;
-        {$nav_styles['border']}
-        border-radius: {$attributes['navigation']['borderRadius']}px;
-        color: {$nav_color['icon']};
-        background-color: {$nav_color['bg']};
-        top: var(--swiper-navigation-top-offset, {$attributes['navigation']['verticalPosition']}%);
-    }
-    #{$blockId} .swiper-button-prev:hover,
-    #{$blockId} .swiper-button-next:hover {
-        color: {$nav_color['icon_hover']};
-        background-color: {$nav_color['bg_hover']};
-        border-color: {$nav_color['border_hover']};
-    }
+}
+#$block_id.layout-list .woo-product-review {
+    margin: 0 0 {$list['gap']}px 0;
+    text-align: {$list['align']};
+}
+#$block_id .woo-product-review figure {
+    width: {$img_styles['width']}px;
+    height: {$img_styles['height']}px;
+    border-radius: {$img_styles['radius']}px;
+}
+#$block_id .woo-product-review figure img {
+    border-radius: {$img_styles['radius']}px;
+}
+#$block_id .woo-product-review .display-grid .display-flex.align-start.flex-column {
+    margin-left: {$title_styles['margin']['left']}px;
+    color: {$title_color['text']};
+}
+#$block_id .woo-product-review .display-grid .display-flex.align-start.flex-column .review-date:before {
+    border-right-color: {$title_color['text']};
+}
+#$block_id .product-name {
+    font-size: {$title_styles['font']['size']}px;
+    font-weight: {$title_styles['font']['weight']};
+    font-family: {$title_styles['font']['family']};
+    text-transform: {$title_styles['letter_case']};
+    text-decoration: {$title_styles['decoration']};
+    line-height: {$title_styles['line_height']};
+    letter-spacing: {$title_styles['letter_spacing']};
+    color: {$title_color['text']};
+}
+#$block_id .product-name:hover {
+    color: {$title_color['text_hover']};
+}
+#$block_id .product-rating-wrapper {
+    font-size: {$title_styles['rating_size']}px;
+}
+#$block_id .review-content-wrapper {
+    margin-top: {$title_styles['wrapper_margin']['top']}px;
+    margin-right: {$title_styles['wrapper_margin']['right']}px;
+    margin-bottom: {$title_styles['wrapper_margin']['bottom']}px;
+    margin-left: {$title_styles['wrapper_margin']['left']}px;
+}
+#$block_id .cozy-dynamic-loader {
+    margin-top: {$loader_styles['margin']['top']}px;
+    padding-top: {$loader_styles['padding']['top']}px;
+    padding-right: {$loader_styles['padding']['right']}px;
+    padding-bottom: {$loader_styles['padding']['bottom']}px;
+    padding-left: {$loader_styles['padding']['left']}px;
+    border-style: {$loader_styles['border']['style']};
+    border-width: {$loader_styles['border']['width']}px;
+    border-color: {$loader_color['border']};
+    border-radius: {$loader_styles['radius']}px;
+    background-color: {$loader_color['bg']};
+    color: {$loader_color['text']};
+    font-size: {$loader_styles['font']['size']}px;
+    font-weight: {$loader_styles['font']['weight']};
+    font-family: {$loader_styles['font']['family']};
+    text-transform: {$loader_styles['letter_case']};
+    text-decoration: {$loader_styles['decoration']};
+    line-height: {$loader_styles['line_height']};
+    letter-spacing: {$loader_styles['letter_spacing']};
+}
+#$block_id .cozy-dynamic-loader:hover {
+    border-color: {$loader_color['border_hover']};
+    color: {$loader_color['text_hover']};
+    background-color: {$loader_color['bg_hover']};
+}
+#$block_id .swiper-button-prev::after,
+#$block_id .swiper-button-next::after {
+    font-size: {$nav['size']}px;
+}
+#$block_id .swiper-button-prev,
+#$block_id .swiper-button-next {
+    width: {$nav['box_width']}px;
+    height: {$nav['box_height']}px;
+    {$nav['border']}
+    border-radius: {$nav['radius']}px;
+    color: {$nav_color['icon']};
+    background-color: {$nav_color['bg']};
+    top: var(--swiper-navigation-top-offset, {$nav['top']}%);
+}
+#$block_id .swiper-button-prev:hover,
+#$block_id .swiper-button-next:hover {
+    color: {$nav_color['icon_hover']};
+    background-color: {$nav_color['bg_hover']};
+    border-color: {$nav_color['border_hover']};
+}
 
-    #{$blockId} .swiper-pagination {
-        bottom: {$attributes['pagination']['verticalPosition']}px;
-        text-align: {$bullet['align']};
-        {$bullet['left']}
-        {$bullet['right']}
-    }
-    #{$blockId} .swiper-pagination .swiper-pagination-bullet {
-        margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet['gap']}px);
-    }
-    #{$blockId} .swiper-pagination .swiper-pagination-bullet {
-        width: {$attributes['pagination']['width']}px;
-        height: {$attributes['pagination']['height']}px;
-        border-radius: {$attributes['pagination']['borderRadius']}px;
-        background-color: {$bullet_color['default_bg']};
-    }
-    #{$blockId} .swiper-pagination .swiper-pagination-bullet-active {
-        width: {$attributes['pagination']['activeWidth']}px;
-        height: {$bullet['active']['height']}px;
-        {$bullet['active']['border']}
-        outline-offset: {$bullet['active']['offset']}px;
-        border-radius: {$attributes['pagination']['activeBorderRadius']}px;
-        background-color: {$bullet_color['active_bg']};
-    }
-    #{$blockId} .swiper-pagination .swiper-pagination-bullet:hover {
-        background-color: {$bullet_color['default_bg_hover']};
-    }
-    #{$blockId} .swiper-pagination .swiper-pagination-bullet-active:hover {
-        background-color: {$bullet_color['active_bg_hover']};
-    }
+#$block_id .swiper-pagination {
+    bottom: {$bullet['bottom']}px;
+    text-align: {$bullet['align']};
+    {$bullet['left']}
+    {$bullet['right']}
+}
+#$block_id .swiper-pagination .swiper-pagination-bullet {
+    margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet['gap']}px);
+}
+#$block_id .swiper-pagination .swiper-pagination-bullet {
+    width: {$bullet['width']}px;
+    height: {$bullet['height']}px;
+    border-radius: {$bullet['radius']}px;
+    background-color: {$bullet_color['default_bg']};
+}
+#$block_id .swiper-pagination .swiper-pagination-bullet-active {
+    width: {$bullet['width']}px;
+    height: {$bullet['active']['height']}px;
+    {$bullet['active']['border']}
+    outline-offset: {$bullet['active']['offset']}px;
+    border-radius: {$bullet['active']['radius']}px;
+    background-color: {$bullet_color['active_bg']};
+}
+#$block_id .swiper-pagination .swiper-pagination-bullet:hover {
+    background-color: {$bullet_color['default_bg_hover']};
+}
+#$block_id .swiper-pagination .swiper-pagination-bullet-active:hover {
+    background-color: {$bullet_color['active_bg_hover']};
+}
 ";
 
 $months = array(
@@ -353,19 +474,19 @@ echo '<div class="cozy-block-wrapper">';
 $font_families = array();
 
 if ( isset( $attributes['ajaxButton']['fontFamily'] ) && ! empty( $attributes['ajaxButton']['fontFamily'] ) ) {
-	$font_families[] = $attributes['ajaxButton']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['ajaxButton']['fontFamily'] );
 }
 
 if ( isset( $attributes['headingOptions']['fontFamily'] ) && ! empty( $attributes['headingOptions']['fontFamily'] ) ) {
-	$font_families[] = $attributes['headingOptions']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['headingOptions']['fontFamily'] );
 }
 
 if ( isset( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) && ! empty( $attributes['reviewTitle']['titleTypography']['fontFamily'] ) ) {
-	$font_families[] = $attributes['reviewTitle']['titleTypography']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['reviewTitle']['titleTypography']['fontFamily'] );
 }
 
 if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
-	$font_families[] = $attributes['typography']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['typography']['fontFamily'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -373,9 +494,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {
@@ -385,7 +506,7 @@ if ( ! empty( $font_query ) ) {
 	echo '<link rel="stylesheet" href="' . $google_fonts_url . '"/>';
 }
 
-echo '<div class="cozy-block-product-review layout-' . esc_attr( $attributes['layout'] ) . ' ' . ( $attributes['hoverShow'] ? 'hover-show' : '' ) . ' ' . ( $attributes['containerStyles']['boxShadow']['enabled'] ? 'has-box-shadow' : '' ) . ' ' . ( $attributes['reviewImage']['hoverEffect'] ? 'has-image-hover-effect' : '' ) . '" id="' . esc_attr( $blockId ) . '">';
+echo '<div class="cozy-block-product-review layout-' . esc_attr( sanitize_html_class( $attributes['layout'] ) ) . ' ' . ( $attributes['hoverShow'] ? 'hover-show' : '' ) . ' ' . ( $attributes['containerStyles']['boxShadow']['enabled'] ? 'has-box-shadow' : '' ) . ' ' . ( $attributes['reviewImage']['hoverEffect'] ? 'has-image-hover-effect' : '' ) . '" id="' . esc_attr( $block_id ) . '">';
 
 if ( $attributes['headingOptions']['enabled'] ) {
 	echo '<div class="review-heading-wrapper">';
@@ -406,7 +527,7 @@ if ( $attributes['headingOptions']['enabled'] ) {
 }
 
 echo '<div class="cozy-product-review__swiper-container">';
-echo '<ul class="woo-product-review-wrapper ' . ( $attributes['layout'] === 'carousel' ? 'swiper-wrapper' : '' ) . '">';
+echo '<ul class="woo-product-review-wrapper ' . ( 'carousel' === $attributes['layout'] ? 'swiper-wrapper' : '' ) . '">';
 
 if ( ! empty( $reviewsToDisplay ) ) {
 	foreach ( $reviewsToDisplay as $review ) {
@@ -436,15 +557,16 @@ if ( ! empty( $reviewsToDisplay ) ) {
 
 		$percent = $comment_rating / 5 * 100;
 
-		$varPercent = "
-            #$blockId .product-rating-wrapper[data-rating='{$comment_rating}']:before {
+		$rating_color = isset( $attributes['reviewTitle']['ratingColor'] ) ? esc_attr( $attributes['reviewTitle']['ratingColor'] ) : '';
+		$varPercent   = "
+            #$block_id .product-rating-wrapper[data-rating='{$comment_rating}']:before {
                 --percent: calc($percent%);
-                background: linear-gradient(90deg, {$attributes['reviewTitle']['ratingColor']} $percent%, rgba(0,0,0,0.2) $percent%);
+                background: linear-gradient(90deg, {$rating_color} $percent%, rgba(0,0,0,0.2) $percent%);
             }
         ";
 
 		echo '<style>' . $varPercent . '</style>';
-		echo '<li class="woo-product-review ' . ( $attributes['layout'] === 'carousel' ? 'swiper-slide' : '' ) . '" data-comment-id="' . esc_attr( $review->comment_ID ) . '">';
+		echo '<li class="woo-product-review ' . ( 'carousel' === $attributes['layout'] ? 'swiper-slide' : '' ) . '" data-comment-id="' . esc_attr( $review->comment_ID ) . '">';
 
 		if ( $attributes['enableOptions']['reviewContent'] && 'top' === $attributes['reviewContent']['position'] ) {
 			echo '<div class="review-content-wrapper">';

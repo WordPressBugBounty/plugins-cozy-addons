@@ -55,12 +55,12 @@
 				spaceBetween: attributes.sliderOptions.spaceBetween,
 				effect: attributes.sliderOptions.effect,
 				navigation: {
-					nextEl: `${blockID} .swiper-button-next`,
-					prevEl: `${blockID} .swiper-button-prev`,
+					nextEl: `${blockID} .swiper-button-next.carousel-btn-next`,
+					prevEl: `${blockID} .swiper-button-prev.carousel-btn-prev`,
 				},
 				pagination: {
 					clickable: true,
-					el: `${blockID} .swiper-pagination`,
+					el: `${blockID} .swiper-pagination.carousel-pagination`,
 				},
 				breakpoints: {
 					100: {

@@ -72,7 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:cozy-block/grid -->
 <div class="cozy-block-grid"><!-- wp:group {"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:image {"width":"560px","height":"580px","scale":"cover","sizeSlug":"large","align":"center","style":{"border":{"radius":"16px"}}} -->
-<figure class="wp-block-image aligncenter size-large is-resized has-custom-border"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/portfolio-1.png" alt="" style="border-radius:16px;object-fit:cover;width:560px;height:580px"/></figure>
+<figure class="wp-block-image aligncenter size-large is-resized has-custom-border"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/portfolio-4.png" alt="" style="border-radius:16px;object-fit:cover;width:560px;height:580px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.6","textTransform":"uppercase"},"spacing":{"margin":{"top":"16px","bottom":"6px"}}}} -->

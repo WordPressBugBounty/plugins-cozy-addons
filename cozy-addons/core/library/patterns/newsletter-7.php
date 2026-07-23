@@ -26,8 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"width":"33%","style":{"spacing":{"blockGap":"0","padding":{"top":"40px","bottom":"40px","left":"26px","right":"26px"}},"color":{"text":"#151313"},"elements":{"link":{"color":{"text":"#151313"}}}},"backgroundColor":"base","layout":{"type":"constrained","contentSize":"325px"},"cozyAnimation":{"type":"slide-left","easingFunction":"ease-in","anchorPlacement":"top-center","duration":600}} -->
-<div class="wp-block-column has-base-background-color has-text-color has-background has-link-color" style="color:#151313;padding-top:40px;padding-right:26px;padding-bottom:40px;padding-left:26px;flex-basis:33%"><!-- wp:paragraph {"style":{"typography":{"fontSize":"16px"}}} -->
+<!-- wp:column {"width":"33%","style":{"spacing":{"blockGap":"0","padding":{"top":"40px","bottom":"40px","left":"26px","right":"26px"}},"color":{"text":"#151313","background":"#fffffe"},"elements":{"link":{"color":{"text":"#151313"}}}},"layout":{"type":"constrained","contentSize":"325px"},"cozyAnimation":{"type":"slide-left","easingFunction":"ease-in","anchorPlacement":"top-center","duration":600}} -->
+<div class="wp-block-column has-text-color has-background has-link-color" style="color:#151313;background-color:#fffffe;padding-top:40px;padding-right:26px;padding-bottom:40px;padding-left:26px;flex-basis:33%"><!-- wp:paragraph {"style":{"typography":{"fontSize":"16px"}}} -->
 <p style="font-size:16px"><?php esc_html_e( 'Recommended snippet for Contact Form 7 \' [text* your-name autocomplete:name placeholder"First Name"]', 'cozy-addons' ); ?><br><?php esc_html_e( '[text* your-name autocomplete:name placeholder"Last Name"]', 'cozy-addons' ); ?><br><?php esc_html_e( '[email* your-email placeholder"Enter your email"][submit "Join Us"]\'', 'cozy-addons' ); ?></p>
 <!-- /wp:paragraph -->
 

@@ -62,8 +62,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:column -->
 
 <!-- wp:column {"width":"","style":{"spacing":{"blockGap":"16px"}}} -->
-<div class="wp-block-column"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"18px"}},"textColor":"base","cozyCustomFont":"Unbounded"} -->
-<p class="has-base-color has-text-color has-link-color" style="font-size:18px;font-style:normal;font-weight:400"><?php esc_html_e( 'Lorem ipsum dolor sit amet consectetur. Vel aliquam feugiat proin tincidunt feugiat viverra. Commodo etiam vestibulum quam tristique non venenatis sed. Lorem ipsum dolor sit amet consectetur.', 'cozy-addons' ); ?></p>
+<div class="wp-block-column"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"18px"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
+<p class="has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:400"><?php esc_html_e( 'Lorem ipsum dolor sit amet consectetur. Vel aliquam feugiat proin tincidunt feugiat viverra. Commodo etiam vestibulum quam tristique non venenatis sed. Lorem ipsum dolor sit amet consectetur.', 'cozy-addons' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

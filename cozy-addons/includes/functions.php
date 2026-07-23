@@ -102,7 +102,7 @@ remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
  *
  * Common use cases include membership validation, license checking, or feature gating.
  *
- * @return void
+ * @return bool
  */
 function cozy_addons_premium_access() {
 	$premium_status = false;
@@ -527,8 +527,8 @@ function cozy_block_magazine_grid_load_content() {
 					$output   .= '<a class="post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
 					if ( $show_icon ) {
 						$output .= '<svg
-								width="' . $attributes['postMeta']['font']['size'] . '"
-								height="' . $attributes['postMeta']['font']['size'] . '"
+								width="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
+								height="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
 								xmlns="http://www.w3.org/2000/svg"
 								aria-hidden="true"
 								viewBox="0 0 12 15"
@@ -546,8 +546,8 @@ function cozy_block_magazine_grid_load_content() {
 					$output   .= '<a class="post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
 					if ( $show_icon ) {
 						$output .= '<svg
-								width="' . $attributes['postMeta']['font']['size'] . '"
-								height="' . $attributes['postMeta']['font']['size'] . '"
+								width="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
+								height="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
 								xmlns="http://www.w3.org/2000/svg"
 								aria-hidden="true"
 								viewBox="0 0 25 20"
@@ -565,8 +565,8 @@ function cozy_block_magazine_grid_load_content() {
 					$output   .= '<a class="post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
 					if ( $show_icon ) {
 						$output .= '<svg
-								width="' . $attributes['postMeta']['font']['size'] . '"
-								height="' . $attributes['postMeta']['font']['size'] . '"
+								width="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
+								height="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 16 18"
 								aria-hidden="true"
@@ -800,8 +800,8 @@ function cozy_block_magazine_list_load_content() {
 					$output   .= '<a class="post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
 					if ( $show_icon ) {
 						$output .= '<svg
-								width="' . $attributes['postMeta']['font']['size'] . '"
-								height="' . $attributes['postMeta']['font']['size'] . '"
+								width="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
+								height="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
 								xmlns="http://www.w3.org/2000/svg"
 								aria-hidden="true"
 								viewBox="0 0 12 15"
@@ -819,8 +819,8 @@ function cozy_block_magazine_list_load_content() {
 					$output   .= '<a class="post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
 					if ( $show_icon ) {
 						$output .= '<svg
-								width="' . $attributes['postMeta']['font']['size'] . '"
-								height="' . $attributes['postMeta']['font']['size'] . '"
+								width="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
+								height="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
 								xmlns="http://www.w3.org/2000/svg"
 								aria-hidden="true"
 								viewBox="0 0 25 20"
@@ -838,8 +838,8 @@ function cozy_block_magazine_list_load_content() {
 					$output   .= '<a class="post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
 					if ( $show_icon ) {
 						$output .= '<svg
-								width="' . $attributes['postMeta']['font']['size'] . '"
-								height="' . $attributes['postMeta']['font']['size'] . '"
+								width="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
+								height="' . esc_attr( $attributes['postMeta']['font']['size'] ) . '"
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 16 18"
 								aria-hidden="true"
@@ -1867,7 +1867,7 @@ function append_cozy_responsive_data_attributes( &$block_content, &$block ) {
 
 	$responsive_classes = ' ' . $desktop_class . ' ' . $tablet_class . ' ' . $mobile_class;
 
-	// Generate and inject CSS
+	// Generate and inject CSS.
 	$css = '
 		@media (max-width: ' . $tablet_viewport . 'px) {
 			.cozy-responsive-tablet-hide { display: none !important; }
@@ -1886,7 +1886,7 @@ function append_cozy_responsive_data_attributes( &$block_content, &$block ) {
 	add_action(
 		'wp_head',
 		function () use ( $css ) {
-			echo '<style>' . $css . '</style>';
+			echo '<style>' . esc_attr( $css ) . '</style>';
 		}
 	);
 
@@ -2001,11 +2001,11 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 			$updated_class .= ' cozy-hover-effect__has-hover-box-shadow';
 		}
 
-		$cozy_hover_string = ' style="';
+		$cozy_hover_string = '';
 
 		// Hover Transform.
 		if ( isset( $cozy_hover_effect['transformEnabled'] ) && filter_var( $cozy_hover_effect['transformEnabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-			$cozy_hover_string .= '--cozyHoverTranslateX:' . esc_attr( $cozy_hover_effect['transform']['translateX'] ) . 'px; --cozyHoverTranslateY:' . esc_attr( $cozy_hover_effect['transform']['translateY'] ) . 'px; --cozyHoverRotate: ' . esc_attr( $cozy_hover_effect['transform']['rotate'] ) . 'deg; --cozyHoverScale: ' . esc_attr( $cozy_hover_effect['transform']['scale'] ) . ';';
+			$cozy_hover_string .= ';--cozyHoverTranslateX:' . esc_attr( $cozy_hover_effect['transform']['translateX'] ) . 'px;--cozyHoverTranslateY:' . esc_attr( $cozy_hover_effect['transform']['translateY'] ) . 'px;--cozyHoverRotate: ' . esc_attr( $cozy_hover_effect['transform']['rotate'] ) . 'deg;--cozyHoverScale: ' . esc_attr( $cozy_hover_effect['transform']['scale'] );
 		}
 
 		$shadow_color = array(
@@ -2014,16 +2014,16 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 		);
 		// Default Box Shadow.
 		if ( isset( $cozy_hover_effect['boxShadow']['enabled'] ) && filter_var( $cozy_hover_effect['boxShadow']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-			$cozy_hover_string .= '--cozyDefaultBoxShadow: ' . $cozy_hover_effect['boxShadow']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadow']['vertical'] . 'px ' . $cozy_hover_effect['boxShadow']['blur'] . 'px ' . $cozy_hover_effect['boxShadow']['spread'] . 'px ' . $shadow_color['default'] . ' ' . $cozy_hover_effect['boxShadow']['position'] . ';';
+			$cozy_hover_string .= ';--cozyDefaultBoxShadow:' . $cozy_hover_effect['boxShadow']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadow']['vertical'] . 'px ' . $cozy_hover_effect['boxShadow']['blur'] . 'px ' . $cozy_hover_effect['boxShadow']['spread'] . 'px ' . $shadow_color['default'] . ' ' . $cozy_hover_effect['boxShadow']['position'];
 		}
 		// Hover Box Shadow.
 		if ( isset( $cozy_hover_effect['boxShadowHover']['enabled'] ) && filter_var( $cozy_hover_effect['boxShadowHover']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-			$cozy_hover_string .= '--cozyHoverBoxShadow: ' . $cozy_hover_effect['boxShadowHover']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadowHover']['vertical'] . 'px ' . $cozy_hover_effect['boxShadowHover']['blur'] . 'px ' . $cozy_hover_effect['boxShadowHover']['spread'] . 'px ' . $shadow_color['hover'] . ' ' . $cozy_hover_effect['boxShadowHover']['position'] . ';';
+			$cozy_hover_string .= ';--cozyHoverBoxShadow:' . $cozy_hover_effect['boxShadowHover']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadowHover']['vertical'] . 'px ' . $cozy_hover_effect['boxShadowHover']['blur'] . 'px ' . $cozy_hover_effect['boxShadowHover']['spread'] . 'px ' . $shadow_color['hover'] . ' ' . $cozy_hover_effect['boxShadowHover']['position'];
 		}
 
 		// Z Index attribute.
 		if ( isset( $cozy_hover_effect['hasZIndex'] ) && filter_var( $cozy_hover_effect['hasZIndex'], FILTER_VALIDATE_BOOLEAN ) ) {
-			$cozy_hover_string .= 'z-index:' . $cozy_hover_effect['zIndex'] . ';';
+			$cozy_hover_string .= ';z-index:' . $cozy_hover_effect['zIndex'];
 		}
 
 		// Transform Default.
@@ -2034,7 +2034,7 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 			$scale       = isset( $cozy_hover_effect['transformDefault']['scale'] ) ? 'scale(' . esc_attr( $cozy_hover_effect['transformDefault']['scale'] ) . ')' : '';
 
 			if ( ! empty( $translate_x ) || ! empty( $translate_y ) || ! empty( $rotate ) || ! empty( $scale ) ) {
-				$cozy_hover_string .= 'transform: ' . $translate_x . $translate_y . $rotate . $scale . ';';
+				$cozy_hover_string .= ';transform: ' . $translate_x . $translate_y . $rotate . $scale;
 			}
 		}
 
@@ -2043,10 +2043,9 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 			$updated_class .= ' cozy-hover-effect__overflow-' . $cozy_hover_effect['overflow'] . ' ';
 		}
 
-		if ( 'core/button' === $block['blockName'] ) {
-			$cozy_hover_string .= '"';
-		} else {
-			$cozy_hover_string .= $existing_styles . '"';
+		if ( 'core/button' !== $block['blockName'] && 'core/image' !== $block['blockName'] ) {
+			$cozy_hover_string  = esc_attr( $cozy_hover_string );
+			$cozy_hover_string .= ';' . $existing_styles;
 		}
 
 		if ( 'core/image' === $block['blockName'] ) {
@@ -2070,71 +2069,24 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 				$updated_class .= ' cozy-hover-effect__has-hover-box-shadow';
 			}
 
-			$cozy_hover_string = ' style="';
-
-			// Hover Transform.
-			if ( isset( $cozy_hover_effect['transformEnabled'] ) && filter_var( $cozy_hover_effect['transformEnabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$cozy_hover_string .= '--cozyHoverTranslateX:' . esc_attr( $cozy_hover_effect['transform']['translateX'] ) . 'px; --cozyHoverTranslateY:' . esc_attr( $cozy_hover_effect['transform']['translateY'] ) . 'px; --cozyHoverRotate: ' . esc_attr( $cozy_hover_effect['transform']['rotate'] ) . 'deg; --cozyHoverScale: ' . esc_attr( $cozy_hover_effect['transform']['scale'] ) . ';';
-			}
-
-			$shadow_color = array(
-				'default' => isset( $cozy_hover_effect['boxShadow']['color'] ) ? $cozy_hover_effect['boxShadow']['color'] : '',
-				'hover'   => isset( $cozy_hover_effect['boxShadowHover']['color'] ) ? $cozy_hover_effect['boxShadowHover']['color'] : '',
-			);
-			// Default Box Shadow.
-			if ( isset( $cozy_hover_effect['boxShadow']['enabled'] ) && filter_var( $cozy_hover_effect['boxShadow']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$cozy_hover_string .= '--cozyDefaultBoxShadow: ' . $cozy_hover_effect['boxShadow']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadow']['vertical'] . 'px ' . $cozy_hover_effect['boxShadow']['blur'] . 'px ' . $cozy_hover_effect['boxShadow']['spread'] . 'px ' . $shadow_color['default'] . ' ' . $cozy_hover_effect['boxShadow']['position'] . ';';
-			}
-			// Hover Box Shadow.
-			if ( isset( $cozy_hover_effect['boxShadowHover']['enabled'] ) && filter_var( $cozy_hover_effect['boxShadowHover']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$cozy_hover_string .= '--cozyHoverBoxShadow: ' . $cozy_hover_effect['boxShadowHover']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadowHover']['vertical'] . 'px ' . $cozy_hover_effect['boxShadowHover']['blur'] . 'px ' . $cozy_hover_effect['boxShadowHover']['spread'] . 'px ' . $shadow_color['hover'] . ' ' . $cozy_hover_effect['boxShadowHover']['position'] . ';';
-			}
-
-			// Z Index attribute.
-			if ( isset( $cozy_hover_effect['hasZIndex'] ) && filter_var( $cozy_hover_effect['hasZIndex'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$cozy_hover_string .= 'z-index:' . $cozy_hover_effect['zIndex'] . ';';
-			}
-
-			// Transform Default.
-			if ( isset( $cozy_hover_effect['transformDefaultEnabled'] ) && filter_var( $cozy_hover_effect['transformDefaultEnabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$translate_x = isset( $cozy_hover_effect['transformDefault']['translateX'] ) ? 'translateX(' . esc_attr( $cozy_hover_effect['transformDefault']['translateX'] ) . 'px) ' : '';
-				$translate_y = isset( $cozy_hover_effect['transformDefault']['translateY'] ) ? 'translateY(' . esc_attr( $cozy_hover_effect['transformDefault']['translateY'] ) . 'px) ' : '';
-				$rotate      = isset( $cozy_hover_effect['transformDefault']['rotate'] ) ? 'rotate(' . esc_attr( $cozy_hover_effect['transformDefault']['rotate'] ) . 'deg) ' : '';
-				$scale       = isset( $cozy_hover_effect['transformDefault']['scale'] ) ? 'scale(' . esc_attr( $cozy_hover_effect['transformDefault']['scale'] ) . ')' : '';
-
-				if ( ! empty( $translate_x ) || ! empty( $translate_y ) || ! empty( $rotate ) || ! empty( $scale ) ) {
-					$cozy_hover_string .= 'transform: ' . $translate_x . $translate_y . $rotate . $scale . ';';
-				}
-			}
-
-			// Overflow.
-			if ( isset( $cozy_hover_effect['hasOverflow'] ) && filter_var( $cozy_hover_effect['hasOverflow'], FILTER_VALIDATE_BOOLEAN ) ) {
-				// $cozy_hover_string .= 'overflow:' . $cozy_hover_effect['overflow'] . ';';
-				$updated_class .= ' cozy-hover-effect__overflow-' . $cozy_hover_effect['overflow'] . ' ';
-			}
-
-			$cozy_hover_string .= $existing_styles . '"';
-
-			// $block_content = preg_replace( '/<figure class="' . preg_quote( $existing_class ) . '.*?"/', '<figure class="' . esc_attr( $updated_class ) . '"' . $cozy_hover_string, $block_content );
-
 			$block_content = preg_replace(
 				'/<figure class=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"/',
-				'<figure class="' . esc_attr( $updated_class ) . '"' . $cozy_hover_string,
+				'<figure class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( trim( $cozy_hover_string, '; ' ) ) . $existing_styles . '"',
 				$block_content,
 				1
 			);
 
 		} else {
-			// $cozy_hover_string .= $existing_styles . '"';
-
 			$block_content = preg_replace(
 				'/<div class=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"/',
-				'<div class="' . esc_attr( $updated_class ) . '"' . $cozy_hover_string,
+				'<div class="' . esc_attr( $updated_class ) . '" style="' . trim( $cozy_hover_string, '; ' ) . '"',
 				$block_content,
 				1
 			);
 		}
 	}
+
+	return $block_content;
 }
 
 function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
@@ -2157,9 +2109,10 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 
 	if ( isset( $block['attrs']['cozyCustomFont'] ) && in_array( $block['blockName'], $enabled_blocks, true ) ) {
 
-		$custom_font = $block['attrs']['cozyCustomFont'];
+		$custom_font = ! empty( $block['attrs']['cozyCustomFont'] ) && preg_match( "/^[A-Za-z0-9 \-_']+$/", $block['attrs']['cozyCustomFont'] );
 
-		if ( ! empty( $custom_font ) ) {
+		if ( $custom_font ) {
+			$custom_font = sanitize_text_field( $block['attrs']['cozyCustomFont'] );
 			preg_match( '/<div(?:\s+class="([^"]+)")?/', $block_content, $matches );
 			$existing_class = isset( $matches[1] ) ? $matches[1] : '';
 
@@ -2167,8 +2120,8 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 			$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
 
 			// Append your styles to the existing styles
-			$new_styles      = 'font-family: \'' . $custom_font . '\' !important;';
-			$appended_styles = $existing_styles ? $existing_styles . '; ' . $new_styles : $new_styles;
+			$new_styles      = ';font-family:\'' . $custom_font . '\' !important';
+			$appended_styles = $existing_styles ? $existing_styles . ';' . esc_attr( $new_styles ) : esc_attr( $new_styles );
 
 			if ( 'core/heading' === $block['blockName'] ) {
 				$level = isset( $block['attrs']['level'] ) ? $block['attrs']['level'] : '2';
@@ -2178,9 +2131,9 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 
 				preg_match( '/<h' . $level . '\s[^>]*\bstyle="(.*?)"/', $block_content, $matches );
 				$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
-				$appended_styles = $existing_styles ? $existing_styles . '; ' . $new_styles : $new_styles;
+				$appended_styles = $existing_styles ? $existing_styles . '; ' . esc_attr( $new_styles ) : esc_attr( $new_styles );
 
-				$block_content = preg_replace( '/<h' . $level . ' class="' . preg_quote( $existing_class ) . '.*?"/', '<h' . $level . ' class="' . esc_attr( $existing_class ) . '" style="' . $appended_styles . '"', $block_content );
+				$block_content = preg_replace( '/<h' . $level . ' class="' . preg_quote( $existing_class ) . '.*?"/', '<h' . $level . ' class="' . esc_attr( $existing_class ) . '" style="' . trim( $appended_styles, '; ' ) . '"', $block_content );
 
 			} elseif ( 'core/site-title' === $block['blockName'] ) {
 				$level = isset( $block['attrs']['level'] ) ? $block['attrs']['level'] : '1';
@@ -2200,8 +2153,8 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 					);
 					$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
 
-					$appended_styles = $existing_styles ? $existing_styles . $new_styles : $new_styles;
-					$block_content   = preg_replace( '/<h' . $level . '\b[^>]*\bclass="' . $existing_class . '"/i', '<h' . $level . ' style="' . $appended_styles . '" class="' . $existing_class . '"', $block_content );
+					$appended_styles = $existing_styles ? $existing_styles . esc_attr( $new_styles ) : esc_attr( $new_styles );
+					$block_content   = preg_replace( '/<h' . $level . '\b[^>]*\bclass="' . $existing_class . '"/i', '<h' . $level . ' style="' . trim( $appended_styles, '; ' ) . '" class="' . $existing_class . '"', $block_content );
 				} elseif ( 0 == $level ) {
 					preg_match(
 						'/<p\b[^>]*\bclass="([^"]+)"/i',
@@ -2217,8 +2170,8 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 					);
 					$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
 
-					$appended_styles = $existing_styles ? $existing_styles . $new_styles : $new_styles;
-					$block_content   = preg_replace( '/<p\b[^>]*\bclass="' . $existing_class . '"/i', '<p style="' . $appended_styles . '" class="' . $existing_class . '"', $block_content );
+					$appended_styles = $existing_styles ? $existing_styles . esc_attr( $new_styles ) : esc_attr( $new_styles );
+					$block_content   = preg_replace( '/<p\b[^>]*\bclass="' . $existing_class . '"/i', '<p style="' . trim( $appended_styles, '; ' ) . '" class="' . $existing_class . '"', $block_content );
 				} else {
 					return $block_content;
 				}
@@ -2230,11 +2183,11 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 				preg_match( '/<h\d\b[^>]*\bstyle="([^"]+)"/i', $block_content, $matches );
 				$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
 
-				$appended_styles = $existing_styles ? $existing_styles . $new_styles : $new_styles;
+				$appended_styles = $existing_styles ? $existing_styles . ';' . $new_styles : $new_styles;
 
 				$block_content = preg_replace(
 					'/<h\d\b[^>]*\bclass="' . preg_quote( $existing_class, '/' ) . '"/i',
-					'<' . $tag_name . ' style="' . esc_attr( $appended_styles ) . '" class="' . esc_attr( $existing_class ) . '"',
+					'<' . $tag_name . ' style="' . trim( $appended_styles, '; ' ) . '" class="' . esc_attr( $existing_class ) . '"',
 					$block_content,
 					1
 				);
@@ -2245,23 +2198,25 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 				preg_match( '/<p\s[^>]*\bstyle="(.*?)"/', $block_content, $matches );
 				$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
 
-				$appended_styles = $existing_styles ? $existing_styles . '; ' . $new_styles : $new_styles;
+				$appended_styles = $existing_styles ? $existing_styles . '; ' . esc_attr( $new_styles ) : esc_attr( $new_styles );
 
 				if ( $existing_class ) {
-					$block_content = preg_replace( '/<p class="' . preg_quote( $existing_class ) . '.*?"/', '<p class="' . esc_attr( $existing_class ) . '" style="' . $appended_styles . '"', $block_content );
+					$block_content = preg_replace( '/<p class="' . preg_quote( $existing_class ) . '.*?"/', '<p class="' . esc_attr( $existing_class ) . '" style="' . trim( $appended_styles, '; ' ) . '"', $block_content );
 
 				} else {
-					$block_content = preg_replace( '/<p/', '<p style="' . $appended_styles . '"', $block_content, 1 );
+					$block_content = preg_replace( '/<p/', '<p style="' . trim( $appended_styles, '; ' ) . '"', $block_content, 1 );
 				}
 			} else {
 				// Replace the existing style attribute with the appended styles.
-				$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( $existing_class ) . '" style="' . $appended_styles . '"', $block_content );
+				$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( $existing_class ) . '" style="' . trim( $appended_styles, '; ' ) . '"', $block_content );
 			}
 
-			$block_content = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . str_replace( ' ', '+', trim( $custom_font ) ) . ':wght@400;500;600;700;800" />' . $block_content;
+			$block_content = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . esc_attr( str_replace( ' ', '+', trim( $custom_font ) ) ) . ':wght@100;200;300;400;500;600;700;800;900" />' . $block_content;
 
 		}
 	}
+
+	return $block_content;
 }
 
 /**
@@ -2303,59 +2258,62 @@ function apply_cozy_block_animation_responsive_hover_filter( $block_content, $bl
 		// Extract the existing class attribute
 		preg_match( '/<div class="([^"]+)"/', $block_content, $matches );
 		$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+		$cozy_animation = ! empty( $block['attrs']['cozyAnimation'] );
 
-		$cozy_animation = $block['attrs']['cozyAnimation'];
+		if ( $cozy_animation ) {
+			$cozy_animation = $block['attrs']['cozyAnimation'];
 
-		// Append the custom class and inline styles to the class attribute
-		$updated_class = trim( $existing_class . ' cozy-animation__initialized' );
-
-		$aos_string = '';
-		if ( 'none' !== $cozy_animation['type'] ) {
-			$aos_string = ' data-aos="' . esc_attr( $cozy_animation['type'] ) . '" data-aos-easing="' . esc_attr( $cozy_animation['easingFunction'] ) . '" data-aos-anchor-placement="' . esc_attr( $cozy_animation['anchorPlacement'] ?? '' ) . '" data-aos-duration="' . esc_attr( $cozy_animation['duration'] ?? '600' ) . '"';
-		}
-
-		if ( 'core/heading' === $block['blockName'] ) {
-
-			$level = $block['attrs']['level'] ?? '2';
-
-			preg_match( '/<h' . $level . ' class="([^"]+)"/', $block_content, $matches );
-			$existing_class = isset( $matches[1] ) ? $matches[1] : '';
-
+			// Append the custom class and inline styles to the class attribute
 			$updated_class = trim( $existing_class . ' cozy-animation__initialized' );
 
-			$block_content = preg_replace( '/<h' . $level . ' class="' . preg_quote( $existing_class ) . '.*?"/', '<h' . $level . ' class="' . esc_attr( $updated_class ) . '"' . $aos_string, $block_content );
-		} elseif ( 'core/paragraph' === $block['blockName'] ) {
-			preg_match( '/<p(?:\s+class="([^"]+)")?/', $block_content, $matches );
-			$existing_class = isset( $matches[1] ) ? $matches[1] : '';
-
-			$updated_class = trim( $existing_class . ' cozy-animation__initialized' );
-
-			if ( $existing_class ) {
-				$block_content = preg_replace( '/<p(\s+class="' . preg_quote( $existing_class ) . '.*?)?"/', '<p class="' . esc_attr( $updated_class ) . '"' . $aos_string, $block_content );
-			} else {
-				$block_content = preg_replace( '/<p/', '<p class="' . esc_attr( $updated_class ) . '"' . $aos_string, $block_content, 1 );
+			$aos_string = '';
+			if ( 'none' !== $cozy_animation['type'] ) {
+				$aos_string = ' data-aos="' . esc_attr( $cozy_animation['type'] ) . '" data-aos-easing="' . esc_attr( $cozy_animation['easingFunction'] ) . '" data-aos-anchor-placement="' . esc_attr( $cozy_animation['anchorPlacement'] ?? '' ) . '" data-aos-duration="' . esc_attr( $cozy_animation['duration'] ?? '600' ) . '"';
 			}
-		} elseif ( 'core/image' === $block['blockName'] ) {
-			preg_match( '/<figure class="([^"]+)"/', $block_content, $matches );
-			$existing_class = isset( $matches[1] ) ? $matches[1] : '';
 
-			$updated_class = trim( $existing_class . ' cozy-animation__initialized' );
+			if ( 'core/heading' === $block['blockName'] ) {
 
-			$block_content = preg_replace( '/<figure class="' . preg_quote( $existing_class ) . '.*?"/', '<figure class="' . esc_attr( $updated_class ) . '"' . $aos_string, $block_content );
+				$level = $block['attrs']['level'] ?? '2';
 
-		} else {
-			$found         = false;
-			$block_content = preg_replace_callback(
-				'/<div class="' . preg_quote( $existing_class, '/' ) . '.*?"/',
-				function ( $matches ) use ( $updated_class, $aos_string, &$found ) {
-					if ( ! $found ) {
-						$found = true;
-						return '<div class="' . esc_attr( $updated_class ) . '"' . $aos_string;
-					}
-					return $matches[0]; // Return the original match for subsequent occurrences.
-				},
-				$block_content
-			);
+				preg_match( '/<h' . $level . ' class="([^"]+)"/', $block_content, $matches );
+				$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+
+				$updated_class = trim( $existing_class . ' cozy-animation__initialized' );
+
+				$block_content = preg_replace( '/<h' . $level . ' class="' . preg_quote( $existing_class ) . '.*?"/', '<h' . $level . ' class="' . esc_attr( $updated_class ) . '"' . $aos_string, $block_content );
+			} elseif ( 'core/paragraph' === $block['blockName'] ) {
+				preg_match( '/<p(?:\s+class="([^"]+)")?/', $block_content, $matches );
+				$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+
+				$updated_class = trim( $existing_class . ' cozy-animation__initialized' );
+
+				if ( $existing_class ) {
+					$block_content = preg_replace( '/<p(\s+class="' . preg_quote( $existing_class ) . '.*?)?"/', '<p class="' . esc_attr( $updated_class ) . '"' . $aos_string, $block_content );
+				} else {
+					$block_content = preg_replace( '/<p/', '<p class="' . esc_attr( $updated_class ) . '"' . $aos_string, $block_content, 1 );
+				}
+			} elseif ( 'core/image' === $block['blockName'] ) {
+				preg_match( '/<figure class="([^"]+)"/', $block_content, $matches );
+				$existing_class = isset( $matches[1] ) ? $matches[1] : '';
+
+				$updated_class = trim( $existing_class . ' cozy-animation__initialized' );
+
+				$block_content = preg_replace( '/<figure class="' . preg_quote( $existing_class ) . '.*?"/', '<figure class="' . esc_attr( $updated_class ) . '"' . $aos_string, $block_content );
+
+			} else {
+				$found         = false;
+				$block_content = preg_replace_callback(
+					'/<div class="' . preg_quote( $existing_class, '/' ) . '.*?"/',
+					function ( $matches ) use ( $updated_class, $aos_string, &$found ) {
+						if ( ! $found ) {
+							$found = true;
+							return '<div class="' . esc_attr( $updated_class ) . '"' . $aos_string;
+						}
+						return $matches[0]; // Return the original match for subsequent occurrences.
+					},
+					$block_content
+				);
+			}
 		}
 	}
 
@@ -2394,33 +2352,38 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 
 		// Extract the custom styles from block attributes
 		$custom_styles = array(
-			'--cozyButtonBgColorHover' => 'currentColor',
-			'--cozyButtonColorHover'   => 'currentColor',
-			'--cozyButtonBorderHover'  => 'currentColor',
+			'--cozyButtonBgColorHover' => '',
+			'--cozyButtonColorHover'   => '',
+			'--cozyButtonBorderHover'  => '',
 		);
 
 		if ( isset( $block['attrs']['cozyHoverStyles'] ) ) {
 			$cozyHoverStyles = $block['attrs']['cozyHoverStyles'];
 
 			$custom_styles = array(
-				'--cozyButtonBgColorHover' => isset( $cozyHoverStyles['bgColor'] ) ? strtolower( $cozyHoverStyles['bgColor'] ) : 'currentColor',
-				'--cozyButtonColorHover'   => isset( $cozyHoverStyles['color'] ) ? strtolower( $cozyHoverStyles['color'] ) : 'currentColor',
-				'--cozyButtonBorderHover'  => isset( $cozyHoverStyles['borderColor'] ) ? strtolower( $cozyHoverStyles['borderColor'] ) : 'currentColor',
+				'--cozyButtonBgColorHover' => isset( $cozyHoverStyles['bgColor'] ) ? strtolower( $cozyHoverStyles['bgColor'] ) : '',
+				'--cozyButtonColorHover'   => isset( $cozyHoverStyles['color'] ) ? strtolower( $cozyHoverStyles['color'] ) : '',
+				'--cozyButtonBorderHover'  => isset( $cozyHoverStyles['borderColor'] ) ? strtolower( $cozyHoverStyles['borderColor'] ) : '',
 			);
 		}
 
 		// Build the inline style string
 		$inline_styles = '';
 		foreach ( $custom_styles as $style => $value ) {
-			$inline_styles .= "$style: $value; ";
+			$inline_styles .= ";$style:$value";
 		}
 
-		// Append the custom class and inline styles to the class attribute
-		$updated_class = trim( $existing_class . ' cozy-button-hover-styles' );
+		$updated_class = $existing_class;
+
+		if ( array_filter( $custom_styles ) ) {
+			// at least one value is set.
+			// Append the custom class and inline styles to the class attribute.
+			$updated_class .= ' cozy-button-hover-styles';
+		}
 
 		preg_match( '/<div\s[^>]*\bstyle="(.*?)"/', $block_content, $matches );
 		$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
-		$appended_styles = $existing_styles . '; ' . $inline_styles;
+		$appended_styles = $existing_styles . '; ' . esc_attr( $inline_styles );
 
 		// Icon Styles
 		if ( isset( $block['attrs']['icon']['enabled'] ) && filter_var( $block['attrs']['icon']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
@@ -2430,9 +2393,9 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 
 			$size     = isset( $icon_attr['size'] ) ? $icon_attr['size'] : '16'; // e.g. from your attributes
 			$view_box = isset( $icon_attr['viewBox']['vx'], $icon_attr['viewBox']['vy'], $icon_attr['viewBox']['vw'], $icon_attr['viewBox']['vh'] ) ? $icon_attr['viewBox']['vx'] . ' ' . $icon_attr['viewBox']['vy'] . ' ' . $icon_attr['viewBox']['vw'] . ' ' . $icon_attr['viewBox']['vh'] : '';
-			$path     = isset( $icon_attr['path'] ) ? $icon_attr['path'] : ''; // example path
+			$path     = isset( $icon_attr['path'] ) ? $icon_attr['path'] : ''; // example path.
 
-			$svg      = '<svg xmlns="http://www.w3.org/2000/svg" width="' . $size . '" height="' . $size . '" viewBox="' . $view_box . '"><path fill="currentColor" d="' . $path . '"/></svg>';
+			$svg      = '<svg xmlns="http://www.w3.org/2000/svg" width="' . esc_attr( $size ) . '" height="' . esc_attr( $size ) . '" viewBox="' . esc_attr( $view_box ) . '"><path fill="currentColor" d="' . esc_attr( $path ) . '"/></svg>';
 			$data_uri = "url('data:image/svg+xml;utf8," . rawurlencode( $svg ) . "')";
 
 			$custom_styles = array(
@@ -2458,14 +2421,13 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 
 			// Build the inline style string.
 			foreach ( $custom_styles as $style => $value ) {
-				$inline_styles .= "$style: $value; ";
+				$inline_styles .= ";$style:$value";
 			}
-			// print_r( $inline_styles );
 
-			$appended_styles = $existing_styles . $inline_styles;
+			$appended_styles = $existing_styles . esc_attr( $inline_styles );
 		}
 
-		$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( $updated_class ) . '" style="' . $appended_styles . '"', $block_content );
+		$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( trim( $updated_class, ' ' ) ) . '" style="' . trim( cozy_addons_clean_empty_css( $appended_styles ), '; ' ) . '"', $block_content );
 	}
 
 	if ( 'core/navigation' === $block['blockName'] ) {
@@ -2508,7 +2470,7 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 		$block_content = preg_replace(
 			// '/<ul class=".*?\b' . preg_quote( $existing_class_attribute, '/' ) . '\b.*?"/',
 			'/<ul[^>]*?\s+class="([^"]+)"/',
-			'<ul class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( $existing_style_attribute . cozy_addons_clean_empty_css( $inline_styles ) ) . '"',
+			'<ul class="' . esc_attr( $updated_class ) . '" style="' . $existing_style_attribute . esc_attr( trim( cozy_addons_clean_empty_css( $inline_styles ), '; ' ) ) . '"',
 			$block_content,
 			1
 		);
@@ -2580,6 +2542,7 @@ function cozy_render_TRBL( $type, $attributes ) {
 			break;
 
 		case 'border-radius':
+		case 'radius':
 			// Handle individual border radius for each side.
 			$top    = isset( $attributes['top'] ) ? esc_attr( $attributes['top'] ) : '';
 			$right  = isset( $attributes['right'] ) ? esc_attr( $attributes['right'] ) : '';
@@ -2628,4 +2591,51 @@ function cozy_render_TRBL( $type, $attributes ) {
  */
 function cozy_addons_clean_empty_css( $styles ) {
 	return preg_replace( '/[a-zA-Z-]+\s*:\s*(["\']{0,1})\s*\1\s*;\s*/', '', $styles );
+}
+
+/**
+ * Sanitize a CSS dimension value (e.g. margin, letter-spacing).
+ *
+ * Validates that the given value is a numeric string optionally
+ * followed by a supported CSS unit (px, em, rem, %). Supports
+ * negative and decimal values (e.g. -0.5em, 1.5rem). Returns an
+ * empty string if the value is empty or does not match the
+ * expected format, so invalid input is never output into inline
+ * CSS.
+ *
+ * @since 1.0.0
+ *
+ * @param string $value Raw dimension value from block attributes,
+ *                       e.g. '10px', '-0.5em', '100%'.
+ *
+ * @return string Sanitized dimension value, or an empty string
+ *                if the input is empty or invalid.
+ */
+function cozy_addons_sanitize_dimension( $value ) {
+	if ( empty( $value ) ) {
+		return '';
+	}
+	// matches: 10px, 1.5em, 100%, -0.5rem, 2, etc.
+	if ( preg_match( '/^-?\d+(\.\d+)?(px|em|rem|%|vw|vh)?$/', trim( $value ) ) ) {
+		return esc_attr( trim( $value ) );
+	}
+
+	return ''; // invalid — drop it rather than output garbage.
+}
+
+/**
+ * Sanitize an array of CSS class names into a single space-separated string.
+ *
+ * Each class in the array is passed through WordPress's sanitize_html_class()
+ * before being joined together. Non-array or empty input returns an empty string.
+ *
+ * @param array $classes Array of class names to sanitize.
+ * @return string Space-separated string of sanitized class names, or '' if invalid input.
+ */
+function cozy_addons_sanitize_html_class( $classes ) {
+	if ( ! is_array( $classes ) || empty( $classes ) ) {
+		return '';
+	}
+
+	return trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) );
 }

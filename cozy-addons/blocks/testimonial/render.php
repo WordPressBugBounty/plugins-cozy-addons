@@ -13,18 +13,18 @@ wp_add_inline_script( 'cozy-block--testimonial--frontend-script', 'document.addE
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
-$width1 = $attributes['gridOptions']['displayColumn'] <= 3 ? $attributes['gridOptions']['displayColumn'] : 3;
-$width2 = $attributes['gridOptions']['displayColumn'] <= 2 ? $attributes['gridOptions']['displayColumn'] : 2;
+$width1 = $attributes['gridOptions']['displayColumn'] <= 3 ? esc_attr( $attributes['gridOptions']['displayColumn'] ) : 3;
+$width2 = $attributes['gridOptions']['displayColumn'] <= 2 ? esc_attr( $attributes['gridOptions']['displayColumn'] ) : 2;
 
 $bullet_styles = array(
-	'gap'    => isset( $attributes['carouselOptions']['pagination']['gap'] ) ? $attributes['carouselOptions']['pagination']['gap'] : 4,
+	'gap'    => isset( $attributes['carouselOptions']['pagination']['gap'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['gap'] ) : 4,
 	'active' => array(
-		'height' => isset( $attributes['carouselOptions']['pagination']['activeHeight'] ) ? $attributes['carouselOptions']['pagination']['activeHeight'] : 10,
+		'height' => isset( $attributes['carouselOptions']['pagination']['activeHeight'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['activeHeight'] ) : 10,
 		'border' => isset( $attributes['carouselOptions']['pagination']['activeBorder'] ) ? cozy_render_TRBL( 'outline', $attributes['carouselOptions']['pagination']['activeBorder'] ) : '',
-		'offset' => isset( $attributes['carouselOptions']['pagination']['activeOffset'] ) ? $attributes['carouselOptions']['pagination']['activeOffset'] : '',
+		'offset' => isset( $attributes['carouselOptions']['pagination']['activeOffset'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['activeOffset'] ) : '',
 	),
 	'color'  => array(
-		'active_border_hover' => isset( $attributes['carouselOptions']['pagination']['activeBorderHover'] ) ? $attributes['carouselOptions']['pagination']['activeBorderHover'] : '',
+		'active_border_hover' => isset( $attributes['carouselOptions']['pagination']['activeBorderHover'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['activeBorderHover'] ) : '',
 	),
 );
 

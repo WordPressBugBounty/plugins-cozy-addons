@@ -235,71 +235,38 @@
 			blockOptions.position === "sticky" ||
 			blockOptions.position === "fixed"
 		) {
-			function setFixedPositionStyle() {
-				const stickyDiv = $(containerClass).find(
-					".wp-block-cozy-block-container",
-				);
-
-				if (this.window.scrollY > 0) {
-					// The stickyDiv has touched or passed the top of the window
-					stickyDiv.attr("style", function (i, style) {
-						/// If no background property exists, just add the background style
-						if (!style || !style.includes("background")) {
-							return (
-								style +
-								`;background: ${blockOptions.stickyStyles.bgColor} !important;`
-							);
-						}
-						// If background already exists, replace it with the new one
-						return (
-							style.replace(/background:[^;]+;/, "") +
-							`background: ${blockOptions.stickyStyles.bgColor} !important;`
-						);
-					});
-				} else {
-					// Reset the background if the element is back at the top
-					stickyDiv.css("background", "initial");
-				}
-			}
-
-			function setStickyPositionStyle() {
-				const stickyDiv = document.querySelector(
-					".cozy-block-wrapper.position-sticky " + containerClass,
-				);
-				const rect = stickyDiv.getBoundingClientRect();
-
-				if (rect.top <= 0) {
-					// The cozyContainer background is set when stickyDiv is at top
-					cozyContainer.style.setProperty(
-						"background",
-						blockOptions.stickyStyles.bgColor,
-					);
-				} else {
-					// Reset the cozyContainer background if stickyDiv is not at the top
-					cozyContainer.style.setProperty("background", "");
-				}
-			}
-			window.addEventListener("scroll", function () {
-				// For fixed positioning:
-				if (blockOptions.position === "fixed") {
-					setFixedPositionStyle();
-				}
-
-				// For sticky positioning:
+			function initializeSticky() {
 				if (blockOptions.position === "sticky") {
-					setStickyPositionStyle();
+					const stickyDiv = document.querySelector(
+						".cozy-block-wrapper.position-sticky.cozyBlock_" + n,
+					);
+
+					const rect = stickyDiv.getBoundingClientRect();
+
+					if (rect.top <= 0) {
+						stickyDiv.classList.add("is-sticky");
+					} else {
+						stickyDiv.classList.remove("is-sticky");
+					}
 				}
+
+				if (blockOptions.position === "fixed") {
+					const stickyDiv = $(
+						".cozyBlock_" + n + ".position-fixed.cozy-block-wrapper",
+					);
+
+					if (this.window.scrollY > 0) {
+						stickyDiv.addClass("is-sticky");
+					} else {
+						stickyDiv.removeClass("is-sticky");
+					}
+				}
+			}
+
+			window.addEventListener("scroll", function () {
+				initializeSticky();
 			});
-
-			// For fixed positioning:
-			if (blockOptions.position === "fixed") {
-				setFixedPositionStyle();
-			}
-
-			// For sticky positioning:
-			if (blockOptions.position === "sticky") {
-				setStickyPositionStyle();
-			}
+			initializeSticky();
 		}
 	};
 })(jQuery);

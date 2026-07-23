@@ -33,8 +33,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <figure class="wp-block-image aligncenter size-large is-resized has-custom-border"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/hero-43.png" alt="" style="border-radius:100px;object-fit:cover;width:64px;height:64px"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"20px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500","textTransform":"capitalize"},"spacing":{"margin":{"top":"22px","bottom":"16px"}}},"cozyCustomFont":"Libre Caslon Text"} -->
-<h3 class="wp-block-heading has-text-align-center" style="margin-top:22px;margin-bottom:16px;font-size:20px;font-style:normal;font-weight:500;line-height:1.2;text-transform:capitalize"><?php esc_html_e( 'Undergraduate Program', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"20px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500","textTransform":"capitalize","textAlign":"center"},"spacing":{"margin":{"top":"22px","bottom":"16px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Libre Caslon Text"} -->
+<h3 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#fffffe;margin-top:22px;margin-bottom:16px;font-size:20px;font-style:normal;font-weight:500;line-height:1.2;text-transform:capitalize"><?php esc_html_e( 'Undergraduate Program', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center"} -->
@@ -53,8 +53,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <figure class="wp-block-image aligncenter size-large is-resized has-custom-border"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/hero-44.png" alt="" style="border-radius:100px;object-fit:cover;width:64px;height:64px"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"20px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500","textTransform":"capitalize"},"spacing":{"margin":{"top":"22px","bottom":"16px"}}},"cozyCustomFont":"Libre Caslon Text"} -->
-<h3 class="wp-block-heading has-text-align-center" style="margin-top:22px;margin-bottom:16px;font-size:20px;font-style:normal;font-weight:500;line-height:1.2;text-transform:capitalize"><?php esc_html_e( 'Graduate Program', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"20px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500","textTransform":"capitalize","textAlign":"center"},"spacing":{"margin":{"top":"22px","bottom":"16px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Libre Caslon Text"} -->
+<h3 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#fffffe;margin-top:22px;margin-bottom:16px;font-size:20px;font-style:normal;font-weight:500;line-height:1.2;text-transform:capitalize"><?php esc_html_e( 'Graduate Program', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center"} -->
@@ -73,8 +73,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <figure class="wp-block-image aligncenter size-large is-resized has-custom-border"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/hero-45.png" alt="" style="border-radius:100px;object-fit:cover;width:64px;height:64px"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"20px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500","textTransform":"capitalize"},"spacing":{"margin":{"top":"22px","bottom":"16px"}}},"cozyCustomFont":"Libre Caslon Text"} -->
-<h3 class="wp-block-heading has-text-align-center" style="margin-top:22px;margin-bottom:16px;font-size:20px;font-style:normal;font-weight:500;line-height:1.2;text-transform:capitalize"><?php esc_html_e( 'Online Education', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"20px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500","textTransform":"capitalize","textAlign":"center"},"spacing":{"margin":{"top":"22px","bottom":"16px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Libre Caslon Text"} -->
+<h3 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#fffffe;margin-top:22px;margin-bottom:16px;font-size:20px;font-style:normal;font-weight:500;line-height:1.2;text-transform:capitalize"><?php esc_html_e( 'Online Education', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center"} -->

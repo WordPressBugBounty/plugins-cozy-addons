@@ -160,6 +160,7 @@
 			centeredSlides: blockOptions.carouselOptions.sliderOptions.centeredSlides,
 			slidesPerView: blockOptions.carouselOptions.sliderOptions.slidesPerView,
 			spaceBetween: blockOptions.carouselOptions.sliderOptions.spaceBetween,
+			effect: blockOptions.carouselOptions.sliderOptions.scrollAnimation,
 			navigation: {
 				nextEl: `${postSliderClass} .swiper-button-next.cozy-block-button-next`,
 				prevEl: `${postSliderClass} .swiper-button-prev.cozy-block-button-prev`,

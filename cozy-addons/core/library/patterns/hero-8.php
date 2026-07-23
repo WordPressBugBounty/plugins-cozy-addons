@@ -9,11 +9,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wp-block-group" style="padding-top:0px;padding-right:0;padding-bottom:0px;padding-left:0"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:site-logo {"style":{"layout":{"selfStretch":"fixed","flexSize":"45px"}}} /-->
 
-<!-- wp:site-title {"style":{"typography":{"fontSize":"24px","fontStyle":"normal","fontWeight":"600"},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}}} /--></div>
+<!-- wp:site-logo {"width":44,"style":{"layout":{"selfStretch":"fixed","flexSize":"45px"}}} /--></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"44px"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
-<div class="wp-block-group"><!-- wp:navigation {"ref":1715,"customTextColor":"#fffffe","customOverlayTextColor":"#011436","layout":{"type":"flex","justifyContent":"center"}} /-->
+<div class="wp-block-group"><!-- wp:navigation {"customTextColor":"#fffffe","customOverlayTextColor":"#011436","layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:home-link {"label":"Home"} /-->
+<!-- wp:navigation-link {"label":"About Us","url":"#","kind":"custom","className":""} /-->
+<!-- wp:navigation-link {"label":"Features","url":"#","kind":"custom","className":""} /-->
+<!-- wp:navigation-link {"label":"Blog","url":"#","kind":"custom","className":""} /-->
+<!-- wp:navigation-link {"label":"Pricing","url":"#","kind":"custom","className":""} /-->
+<!-- /wp:navigation -->
 
 <!-- wp:buttons {"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","textTransform":"uppercase"},"spacing":{"margin":{"top":"0px","bottom":"0"}}},"layout":{"type":"flex","justifyContent":"left"}} -->
 <div class="wp-block-buttons has-custom-font-size" style="margin-top:0px;margin-bottom:0;font-size:16px;font-style:normal;font-weight:500;text-transform:uppercase"><!-- wp:button {"style":{"spacing":{"padding":{"left":"26px","right":"26px","top":"14px","bottom":"14px"}},"elements":{"link":{"color":{"text":"#011436"}}},"color":{"text":"#011436","background":"#fffffe"}},"cozyHoverStyles":{"bgColor":"#ff9900","color":"#fffffe","borderColor":""}} -->

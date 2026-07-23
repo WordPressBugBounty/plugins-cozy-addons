@@ -41,6 +41,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"26px","left":"26px","top":"12px","bottom":"12px"},"blockGap":"0","margin":{"top":"0","bottom":"0"}},"border":{"top":{"color":"#2a29291a","style":"solid","width":"1px"}}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":true,"color":"#2a29291a","horizontal":0,"vertical":4,"blur":16,"spread":-10,"position":""},"boxShadowHover":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
-<div class="wp-block-group alignfull" style="border-top-color:#2a29291a;border-top-style:solid;border-top-width:1px;margin-top:0;margin-bottom:0;padding-top:12px;padding-right:26px;padding-bottom:12px;padding-left:26px"><!-- wp:navigation {"ref":1272,"className":"ca-pattern__navigation","style":{"typography":{"fontSize":"16px"},"spacing":{"blockGap":"26px"}},"layout":{"type":"flex","justifyContent":"center"}} /--></div>
+<div class="wp-block-group alignfull" style="border-top-color:#2a29291a;border-top-style:solid;border-top-width:1px;margin-top:0;margin-bottom:0;padding-top:12px;padding-right:26px;padding-bottom:12px;padding-left:26px">
+<!-- wp:navigation {"className":"ca-pattern__navigation","style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500"}},"layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:home-link /-->
+
+<!-- wp:navigation-link {"label":"About Us","url":"#","kind":"custom","className":""} /-->
+
+<!-- wp:navigation-link {"label":"Features","url":"#","kind":"custom","className":""} /-->
+
+<!-- wp:navigation-link {"label":"Blog","url":"#","kind":"custom","className":""} /-->
+
+<!-- wp:navigation-link {"label":"Pricing","url":"#","kind":"custom","className":""} /-->
+<!-- /wp:navigation -->
+</div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

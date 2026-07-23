@@ -1,3 +1,7 @@
+:root {
+	--cozy-addons--primary: #5253f9;
+}
+
 /* Pro Label */
 .cozy-block-pro-label {
 	background-color: #fd1321;
@@ -69,7 +73,7 @@
 .cozy-block-styles__navigator {
 	& .components-button.components-navigator-button {
 		margin: 4px;
-		background-color: #0c50ff;
+		background-color: var(--cozy-addons--primary);
 	}
 
 	& .components-button.components-navigator-back-button {
@@ -126,8 +130,6 @@
 }
 
 /* Color Panel Settings */
-.cozy-panel-color-setting {
-}
 .cozy-color-control {
 	padding: 20px 0 !important;
 }
@@ -149,7 +151,7 @@
 	justify-content: center;
 }
 .cozy-tab-panel .components-tab-panel__tabs .active-tab {
-	background-color: #0c50ff;
+	background-color: var(--cozy-addons--primary);
 	color: #ffffff;
 }
 .cozy-tab-panel .components-tab-panel__tabs .active-tab::after {
@@ -189,23 +191,27 @@
 	outline: none !important;
 	box-shadow: none !important;
 	color: #fff !important;
-	background-color: #0c50ff !important;
+	background-color: var(--cozy-addons--primary) !important;
 	font-weight: 500;
 	font-size: 14px;
-	padding: 10px 16px;
-	border-radius: 3px;
+	padding: 8px 16px;
+	border-radius: 10px;
 	cursor: pointer;
 	min-width: 170px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	& .ca__icon {
-		width: 16px;
+		width: 24px;
+		height: 24px;
 		display: inline-flex;
 		vertical-align: bottom;
 		margin: 0 8px -1px 0;
 	}
 
 	&:hover {
-		background-color: #1f4fc7 !important;
+		background-color: #3c3cbf !important;
 	}
 }
 /* Patterns Modal */
@@ -564,4 +570,14 @@
 	.cozy-modal__icons-holder {
 		grid-template-columns: repeat(2, 1fr);
 	}
+}
+
+/* Product image hover element styles */
+.product-image__wrapper {
+	position: relative !important;
+}
+.product-image__wrapper .product-image__el-fade-in-right {
+	position: absolute !important;
+	right: 0;
+	z-index: 99 !important;
 }

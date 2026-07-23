@@ -10,6 +10,20 @@ wp_add_inline_script( 'cozy-block--news-ticker--frontend-script', 'document.addE
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
+$styles = array(
+	'height'     => isset( $attributes['height'] ) ? esc_attr( $attributes['height'] ) : '',
+	'box_width'  => isset( $attributes['carouselOptions']['navigation']['iconBoxWidth'] ) ? esc_attr( $attributes['carouselOptions']['navigation']['iconBoxWidth'] ) : '',
+	'box_height' => isset( $attributes['carouselOptions']['navigation']['iconBoxHeight'] ) ? esc_attr( $attributes['carouselOptions']['navigation']['iconBoxHeight'] ) : '',
+	'margin'     => array(
+		'top' => isset( $attributes['carouselOptions']['navigation']['verticalGap'] ) ? esc_attr( $attributes['carouselOptions']['navigation']['verticalGap'] ) : '',
+	),
+	'radius'     => isset( $attributes['carouselOptions']['navigation']['borderRadius'] ) ? esc_attr( $attributes['carouselOptions']['navigation']['borderRadius'] ) : '',
+	'gap'        => isset( $attributes['carouselOptions']['navigation']['horizontalGap'] ) ? esc_attr( $attributes['carouselOptions']['navigation']['horizontalGap'] ) : '',
+);
+
+$nav       = array(
+	'size' => isset( $attributes['carouselOptions']['navigation']['iconSize'] ) ? esc_attr( $attributes['carouselOptions']['navigation']['iconSize'] ) : '',
+);
 $nav_color = array(
 	'bg'         => isset( $attributes['carouselOptions']['navigation']['backgroundColor'] ) ? $attributes['carouselOptions']['navigation']['backgroundColor'] : '',
 	'icon'       => isset( $attributes['carouselOptions']['navigation']['color'] ) ? $attributes['carouselOptions']['navigation']['color'] : '',
@@ -19,21 +33,21 @@ $nav_color = array(
 
 $block_styles = "
 #$block_id .swiper-container {
-    max-height: {$attributes['height']}px;
+    max-height: {$styles['height']}px;
 }
 
 #$block_id .swiper-button-prev::after,
 #$block_id .swiper-button-next::after {
-    font-size: {$attributes['carouselOptions']['navigation']['iconSize']}px;
+    font-size: {$nav['size']}px;
 }
 #$block_id .swiper-button-prev,
 #$block_id .swiper-button-next {
-    width: {$attributes['carouselOptions']['navigation']['iconBoxWidth']}px;
-    height: {$attributes['carouselOptions']['navigation']['iconBoxHeight']}px;
-    border-radius: {$attributes['carouselOptions']['navigation']['borderRadius']}px;
+    width: {$styles['box_width']}px;
+    height: {$styles['box_height']}px;
+    border-radius: {$styles['radius']}px;
     color: {$nav_color['icon']};
     background-color: {$nav_color['bg']};
-    margin-top: {$attributes['carouselOptions']['navigation']['verticalGap']}px;
+    margin-top: {$styles['margin']['top']}px;
 }
 #$block_id .swiper-button-prev:hover,
 #$block_id .swiper-button-next:hover {
@@ -41,7 +55,7 @@ $block_styles = "
     background-color: {$nav_color['bg_hover']};
 }
 #$block_id .swiper-button-prev {
-    right: var(--swiper-navigation-sides-offset, {$attributes['carouselOptions']['navigation']['horizontalGap']}px);
+    right: var(--swiper-navigation-sides-offset, {$styles['gap']}px);
 }
 ";
 

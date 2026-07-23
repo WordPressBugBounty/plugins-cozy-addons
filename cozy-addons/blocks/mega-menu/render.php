@@ -11,9 +11,9 @@ $attributes['megaMenuTemplates'] = \CozyAddons\Helpers\Utils::get_instance()->ge
 
 $mega_menu = array(
 	'padding_top' => array(
-		'desktop' => isset( $attributes['megaMenu']['topOffset']['desktop'] ) ? esc_attr( $attributes['megaMenu']['topOffset']['desktop'] ) : '',
-		'tablet'  => isset( $attributes['megaMenu']['topOffset']['tablet'] ) ? esc_attr( $attributes['megaMenu']['topOffset']['tablet'] ) : '',
-		'mobile'  => isset( $attributes['megaMenu']['topOffset']['mobile'] ) ? esc_attr( $attributes['megaMenu']['topOffset']['mobile'] ) : '',
+		'desktop' => isset( $attributes['megaMenu']['topOffset']['desktop'] ) ? cozy_addons_sanitize_dimension( $attributes['megaMenu']['topOffset']['desktop'] ) : '',
+		'tablet'  => isset( $attributes['megaMenu']['topOffset']['tablet'] ) ? cozy_addons_sanitize_dimension( $attributes['megaMenu']['topOffset']['tablet'] ) : '',
+		'mobile'  => isset( $attributes['megaMenu']['topOffset']['mobile'] ) ? cozy_addons_sanitize_dimension( $attributes['megaMenu']['topOffset']['mobile'] ) : '',
 	),
 );
 

@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:cover {"useFeaturedImage":true,"dimRatio":10,"overlayColor":"heading-color","isUserOverlayColor":true,"minHeight":400,"contentPosition":"bottom left","className":"is-style-default","style":{"spacing":{"padding":{"right":"30px","left":"30px","top":"30px","bottom":"30px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"layout":{"type":"constrained","contentSize":"600px"}} -->
 <div class="wp-block-cover has-custom-content-position is-position-bottom-left is-style-default" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;margin-top:0;margin-bottom:0;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;min-height:400px"><span aria-hidden="true" class="wp-block-cover__background has-heading-color-background-color has-background-dim-10 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:post-terms {"term":"category","separator":"","style":{"typography":{"fontSize":"12px"}},"cozyItemStyles":{"padding":{"top":"6px","right":"10px","bottom":"6px","left":"10px"},"border":{"width":"","style":"","color":""},"radius":"4px","primaryColor":{"text":"#FFFFFE","bg":"#0052FF","textHover":"","bgHover":""},"secondaryColor":{"text":"currentColor","bg":"#D8B4E2","textHover":"","bgHover":""},"gap":"4px","alternateColor":false}} /-->
 
-<!-- wp:post-title {"level":3,"isLink":true,"linkTarget":"_blank","style":{"spacing":{"margin":{"top":"16px"}},"elements":{"link":{"color":{"text":"var:preset|color|light-color"},":hover":{"color":{"text":"var:preset|color|primary"}}}},"typography":{"fontSize":"28px"}},"textColor":"light-color"} /-->
+<!-- wp:post-title {"level":3,"isLink":true,"linkTarget":"_blank","style":{"spacing":{"margin":{"top":"16px"}},"elements":{"link":{"color":{"text":"#fffffe"},":hover":{"color":{"text":"var:preset|color|primary"}}}},"typography":{"fontSize":"24px"},"color":{"text":"#fffffe"}}} /-->
 
 <!-- wp:group {"style":{"typography":{"textTransform":"capitalize","fontSize":"12px"},"spacing":{"blockGap":"0","padding":{"right":"0","left":"0"},"margin":{"top":"16px","bottom":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group has-base-color has-text-color has-link-color" style="margin-top:16px;margin-bottom:0;padding-right:0;padding-left:0;font-size:12px;text-transform:capitalize"><!-- wp:post-author-name {"style":{"spacing":{"padding":{"right":"10px","top":"0","bottom":"0","left":"0"},"margin":{"right":"10px","top":"0","bottom":"0","left":"0"}},"border":{"right":{"color":"var:preset|color|light-color","width":"2px"},"top":[],"bottom":[],"left":[]}}} /-->
@@ -22,9 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:query-no-results -->
 <!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results.","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-<p class="has-contrast-color has-text-color has-link-color"><?php
-	esc_html_e( 'Oops! Blogs Not Found', 'cozy-addons' );
-?>.</p>
+<p class="has-contrast-color has-text-color has-link-color">Oops! Blogs Not Found.</p>
 <!-- /wp:paragraph -->
 <!-- /wp:query-no-results --></div>
 <!-- /wp:query --></div>
@@ -36,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:group {"layout":{"type":"constrained","contentSize":"100%"}} -->
 <div class="wp-block-group"><!-- wp:post-featured-image {"isLink":true,"width":"100%","height":"220px","style":{"border":{"radius":{"topLeft":"4px","topRight":"4px","bottomLeft":"4px","bottomRight":"4px"}}}} /-->
 
-<!-- wp:post-title {"level":3,"isLink":true,"style":{"elements":{"link":{"color":{"text":"var:preset|color|dark-color"}}},"spacing":{"margin":{"top":"16px"}}},"textColor":"dark-color","fontSize":"medium"} /-->
+<!-- wp:post-title {"level":3,"isLink":true,"style":{"elements":{"link":{"color":{"text":"#101112"}}},"spacing":{"margin":{"top":"16px"}},"color":{"text":"#101112"},"typography":{"fontSize":"18px"}}} /-->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"4px","margin":{"top":"12px"}},"typography":{"textTransform":"capitalize","fontSize":"12px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 <div class="wp-block-group" style="margin-top:12px;font-size:12px;text-transform:capitalize"><!-- wp:post-author-name {"style":{"spacing":{"padding":{"right":"4px"}},"border":{"top":{"width":"0px","style":"none"},"right":{"color":"var:preset|color|foreground","width":"1px"},"bottom":{"width":"0px","style":"none"},"left":{"width":"0px","style":"none"}},"typography":{"textAlign":"left"}}} /-->
@@ -48,9 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:query-no-results -->
 <!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results."} -->
-<p><?php
-	esc_html_e( 'Oops! Blogs Not Found', 'cozy-addons' );
-?></p>
+<p>Oops! Blogs Not Found</p>
 <!-- /wp:paragraph -->
 <!-- /wp:query-no-results --></div>
 <!-- /wp:query --></div>

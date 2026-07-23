@@ -8,125 +8,129 @@ $client_id = isset( $attributes['clientId'] ) ? str_replace( '-', '_', sanitize_
 $block_id = 'cozyBlock_' . $client_id;
 
 $styles = array(
+	'justify'        => isset( $attributes['align'] ) ? esc_attr( sanitize_text_field( $attributes['align'] ) ) : '',
+	'gap'            => isset( $attributes['gap'] ) ? esc_attr( $attributes['gap'] ) : '',
 	'padding'        => isset( $attributes['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['padding'] ) : '',
 	'border'         => isset( $attributes['border'] ) ? cozy_render_TRBL( 'border', $attributes['border'] ) : '',
 	'radius'         => isset( $attributes['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['radius'] ) : '',
-	'gap'            => isset( $attributes['gap'] ) ? $attributes['gap'] : '',
 	'font'           => array(
-		'size'   => isset( $attributes['font']['size'] ) ? $attributes['font']['size'] : '',
-		'family' => isset( $attributes['font']['family'] ) ? $attributes['font']['family'] : '',
+		'size'   => isset( $attributes['font']['size'] ) ? esc_attr( $attributes['font']['size'] ) : '',
+		'weight' => isset( $attributes['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['font']['family'] ) ) : '',
 	),
-	'line_height'    => isset( $attributes['lineHeight'] ) ? $attributes['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['letterSpacing'] ) ? $attributes['letterSpacing'] : '',
+	'line_height'    => isset( $attributes['lineHeight'] ) ? esc_attr( $attributes['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['letterSpacing'] ) ? esc_attr( $attributes['letterSpacing'] ) : '',
 	'shadow'         => array(
-		'horizontal' => isset( $attributes['shadow']['horizontal'] ) ? $attributes['shadow']['horizontal'] : '',
-		'vertical'   => isset( $attributes['shadow']['vertical'] ) ? $attributes['shadow']['vertical'] : '',
-		'blur'       => isset( $attributes['shadow']['blur'] ) ? $attributes['shadow']['blur'] : '',
-		'spread'     => isset( $attributes['shadow']['spread'] ) ? $attributes['shadow']['spread'] : '',
-		'color'      => isset( $attributes['shadow']['color'] ) ? $attributes['shadow']['color'] : '',
-		'position'   => isset( $attributes['shadow']['position'] ) ? $attributes['shadow']['position'] : '',
+		'horizontal' => isset( $attributes['shadow']['horizontal'] ) ? esc_attr( $attributes['shadow']['horizontal'] ) : '',
+		'vertical'   => isset( $attributes['shadow']['vertical'] ) ? esc_attr( $attributes['shadow']['vertical'] ) : '',
+		'blur'       => isset( $attributes['shadow']['blur'] ) ? esc_attr( $attributes['shadow']['blur'] ) : '',
+		'spread'     => isset( $attributes['shadow']['spread'] ) ? esc_attr( $attributes['shadow']['spread'] ) : '',
+		'color'      => isset( $attributes['shadow']['color'] ) ? esc_attr( $attributes['shadow']['color'] ) : '',
+		'position'   => isset( $attributes['shadow']['position'] ) ? esc_attr( sanitize_text_field( $attributes['shadow']['position'] ) ) : '',
 	),
 	'color'          => array(
-		'text' => isset( $attributes['color']['text'] ) ? $attributes['color']['text'] : '',
-		'bg'   => isset( $attributes['color']['bg'] ) ? $attributes['color']['bg'] : '',
+		'text' => isset( $attributes['color']['text'] ) ? esc_attr( $attributes['color']['text'] ) : '',
+		'bg'   => isset( $attributes['color']['bg'] ) ? esc_attr( $attributes['color']['bg'] ) : '',
 	),
 );
 
 $item_styles = array(
-	'width'  => isset( $attributes['itemStyles']['width'] ) ? $attributes['itemStyles']['width'] : '',
-	'height' => isset( $attributes['itemStyles']['height'] ) ? $attributes['itemStyles']['height'] : '',
-	'margin' => array(
-		'top'    => isset( $attributes['itemStyles']['margin']['top'] ) ? $attributes['itemStyles']['margin']['top'] : '',
-		'bottom' => isset( $attributes['itemStyles']['margin']['bottom'] ) ? $attributes['itemStyles']['margin']['bottom'] : '',
-	),
+	'width'  => isset( $attributes['itemStyles']['width'] ) ? esc_attr( $attributes['itemStyles']['width'] ) : '',
+	'height' => isset( $attributes['itemStyles']['height'] ) ? esc_attr( $attributes['itemStyles']['height'] ) : '',
+	'margin' => isset( $attributes['itemStyles']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['itemStyles']['margin'] ) : '',
 	'border' => isset( $attributes['itemStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['itemStyles']['border'] ) : '',
-	'radius' => isset( $attributes['itemStyles']['radius'] ) ? $attributes['itemStyles']['radius'] : '',
+	'radius' => isset( $attributes['itemStyles']['radius'] ) ? esc_attr( $attributes['itemStyles']['radius'] ) : '',
 	'shadow' => array(
-		'horizontal' => isset( $attributes['itemStyles']['shadow']['horizontal'] ) ? $attributes['itemStyles']['shadow']['horizontal'] : '',
-		'vertical'   => isset( $attributes['itemStyles']['shadow']['vertical'] ) ? $attributes['itemStyles']['shadow']['vertical'] : '',
-		'blur'       => isset( $attributes['itemStyles']['shadow']['blur'] ) ? $attributes['itemStyles']['shadow']['blur'] : '',
-		'spread'     => isset( $attributes['itemStyles']['shadow']['spread'] ) ? $attributes['itemStyles']['shadow']['spread'] : '',
-		'color'      => isset( $attributes['itemStyles']['shadow']['color'] ) ? $attributes['itemStyles']['shadow']['color'] : '',
-		'position'   => isset( $attributes['itemStyles']['shadow']['position'] ) ? $attributes['itemStyles']['shadow']['position'] : '',
+		'horizontal' => isset( $attributes['itemStyles']['shadow']['horizontal'] ) ? esc_attr( $attributes['itemStyles']['shadow']['horizontal'] ) : '',
+		'vertical'   => isset( $attributes['itemStyles']['shadow']['vertical'] ) ? esc_attr( $attributes['itemStyles']['shadow']['vertical'] ) : '',
+		'blur'       => isset( $attributes['itemStyles']['shadow']['blur'] ) ? esc_attr( $attributes['itemStyles']['shadow']['blur'] ) : '',
+		'spread'     => isset( $attributes['itemStyles']['shadow']['spread'] ) ? esc_attr( $attributes['itemStyles']['shadow']['spread'] ) : '',
+		'color'      => isset( $attributes['itemStyles']['shadow']['color'] ) ? esc_attr( $attributes['itemStyles']['shadow']['color'] ) : '',
+		'position'   => isset( $attributes['itemStyles']['shadow']['position'] ) ? esc_attr( sanitize_text_field( $attributes['itemStyles']['shadow']['position'] ) ) : '',
 	),
 	'color'  => array(
-		'text' => isset( $attributes['itemStyles']['color']['text'] ) ? $attributes['itemStyles']['color']['text'] : '',
-		'bg'   => isset( $attributes['itemStyles']['color']['bg'] ) ? $attributes['itemStyles']['color']['bg'] : '',
+		'text' => isset( $attributes['itemStyles']['color']['text'] ) ? esc_attr( $attributes['itemStyles']['color']['text'] ) : '',
+		'bg'   => isset( $attributes['itemStyles']['color']['bg'] ) ? esc_attr( $attributes['itemStyles']['color']['bg'] ) : '',
+	),
+);
+
+$separator = array(
+	'content' => isset( $attributes['separator']['content'] ) ? htmlentities( $attributes['separator']['content'] ) : '',
+	'margin'  => isset( $attributes['separator']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['separator']['margin'] ) : '',
+	'size'    => isset( $attributes['separator']['size'] ) ? esc_attr( $attributes['separator']['size'] ) : '',
+	'color'   => array(
+		'text' => isset( $attributes['separator']['color']['text'] ) ? esc_attr( $attributes['separator']['color']['text'] ) : '',
 	),
 );
 
 $timer_styles = array(
 	'padding'        => isset( $attributes['timerStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['timerStyles']['padding'] ) : '',
 	'border'         => isset( $attributes['timerStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['timerStyles']['border'] ) : '',
-	'radius'         => isset( $attributes['timerStyles']['radius'] ) ? $attributes['timerStyles']['radius'] : '',
+	'radius'         => isset( $attributes['timerStyles']['radius'] ) ? esc_attr( $attributes['timerStyles']['radius'] ) : '',
 	'font'           => array(
-		'size'   => isset( $attributes['timerStyles']['font']['size'] ) ? $attributes['timerStyles']['font']['size'] : '44px',
-		'weight' => isset( $attributes['timerStyles']['font']['weight'] ) ? $attributes['timerStyles']['font']['weight'] : '600',
-		'family' => isset( $attributes['timerStyles']['font']['family'] ) ? $attributes['timerStyles']['font']['family'] : '',
+		'size'   => isset( $attributes['timerStyles']['font']['size'] ) ? esc_attr( $attributes['timerStyles']['font']['size'] ) : '44px',
+		'weight' => isset( $attributes['timerStyles']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['timerStyles']['font']['weight'] ) ) : '600',
+		'family' => isset( $attributes['timerStyles']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['timerStyles']['font']['family'] ) ) : '',
 	),
-	'line_height'    => isset( $attributes['timerStyles']['lineHeight'] ) ? $attributes['timerStyles']['lineHeight'] : '1.2em',
-	'letter_spacing' => isset( $attributes['timerStyles']['letterSpacing'] ) ? $attributes['timerStyles']['letterSpacing'] : '',
+	'line_height'    => isset( $attributes['timerStyles']['lineHeight'] ) ? esc_attr( $attributes['timerStyles']['lineHeight'] ) : '1.2em',
+	'letter_spacing' => isset( $attributes['timerStyles']['letterSpacing'] ) ? esc_attr( $attributes['timerStyles']['letterSpacing'] ) : '',
 	'color'          => array(
-		'text' => isset( $attributes['timerStyles']['color']['text'] ) ? $attributes['timerStyles']['color']['text'] : '',
-		'bg'   => isset( $attributes['timerStyles']['color']['bg'] ) ? $attributes['timerStyles']['color']['bg'] : '',
-	),
-);
-
-$separator = array(
-	'content' => isset( $attributes['separator']['content'] ) ? htmlentities( $attributes['separator']['content'] ) : '',
-	'margin'  => array(
-		'top'  => isset( $attributes['separator']['margin']['top'] ) ? $attributes['separator']['margin']['top'] : '',
-		'left' => isset( $attributes['separator']['margin']['left'] ) ? $attributes['separator']['margin']['left'] : '',
-	),
-	'size'    => isset( $attributes['separator']['size'] ) ? $attributes['separator']['size'] : '',
-	'color'   => array(
-		'text' => isset( $attributes['separator']['color']['text'] ) ? $attributes['separator']['color']['text'] : '',
+		'text' => isset( $attributes['timerStyles']['color']['text'] ) ? esc_attr( $attributes['timerStyles']['color']['text'] ) : '',
+		'bg'   => isset( $attributes['timerStyles']['color']['bg'] ) ? esc_attr( $attributes['timerStyles']['color']['bg'] ) : '',
 	),
 );
 
 $label_styles = array(
+	'align'          => isset( $attributes['label']['align'] ) ? esc_attr( sanitize_text_field( $attributes['label']['align'] ) ) : '',
 	'gap'            => isset( $attributes['label']['gap'] ) ? $attributes['label']['gap'] : '',
 	'font'           => array(
-		'size'   => isset( $attributes['label']['font']['size'] ) ? $attributes['label']['font']['size'] : '',
-		'family' => isset( $attributes['label']['font']['family'] ) ? $attributes['label']['font']['family'] : '',
+		'size'   => isset( $attributes['label']['font']['size'] ) ? esc_attr( $attributes['label']['font']['size'] ) : '',
+		'weight' => isset( $attributes['label']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['label']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['label']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['label']['font']['family'] ) ) : '',
 	),
-	'line_height'    => isset( $attributes['label']['lineHeight'] ) ? $attributes['label']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['label']['letterSpacing'] ) ? $attributes['label']['letterSpacing'] : '',
+	'letter_case'    => isset( $attributes['label']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['label']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['label']['deocaration'] ) ? esc_attr( sanitize_text_field( $attributes['label']['deocaration'] ) ) : '',
+	'line_height'    => isset( $attributes['label']['lineHeight'] ) ? esc_attr( $attributes['label']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['label']['letterSpacing'] ) ? esc_attr( $attributes['label']['letterSpacing'] ) : '',
 	'color'          => array(
 		'text' => isset( $attributes['label']['color']['text'] ) ? $attributes['label']['color']['text'] : '',
 	),
 );
 
 $end_text_styles = array(
+	'align'          => isset( $attributes['endOptions']['align'] ) ? esc_attr( sanitize_text_field( $attributes['endOptions']['align'] ) ) : '',
 	'padding'        => isset( $attributes['endOptions']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['endOptions']['padding'] ) : '',
-	'margin'         => array(
-		'top'    => isset( $attributes['endOptions']['margin']['top'] ) ? $attributes['endOptions']['margin']['top'] : '',
-		'bottom' => isset( $attributes['endOptions']['margin']['bottom'] ) ? $attributes['endOptions']['margin']['bottom'] : '',
-	),
+	'margin'         => isset( $attributes['endOptions']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['endOptions']['margin'] ) : '',
 	'border'         => isset( $attributes['endOptions']['border'] ) ? cozy_render_TRBL( 'border', $attributes['endOptions']['border'] ) : '',
-	'radius'         => isset( $attributes['endOptions']['radius'] ) ? $attributes['endOptions']['radius'] : '',
+	'radius'         => isset( $attributes['endOptions']['radius'] ) ? esc_attr( $attributes['endOptions']['radius'] ) : '',
 	'font'           => array(
-		'size'   => isset( $attributes['endOptions']['font']['size'] ) ? $attributes['endOptions']['font']['size'] : '',
-		'family' => isset( $attributes['endOptions']['font']['family'] ) ? $attributes['endOptions']['font']['family'] : '',
+		'size'   => isset( $attributes['endOptions']['font']['size'] ) ? esc_attr( $attributes['endOptions']['font']['size'] ) : '',
+		'weight' => isset( $attributes['endOptions']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['endOptions']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['endOptions']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['endOptions']['font']['family'] ) ) : '',
 	),
-	'line_height'    => isset( $attributes['endOptions']['lineHeight'] ) ? $attributes['endOptions']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['endOptions']['letterSpacing'] ) ? $attributes['endOptions']['letterSpacing'] : '',
+	'letter_case'    => isset( $attributes['endOptions']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['endOptions']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['endOptions']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['endOptions']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['endOptions']['lineHeight'] ) ? esc_attr( $attributes['endOptions']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['endOptions']['letterSpacing'] ) ? esc_attr( $attributes['endOptions']['letterSpacing'] ) : '',
 	'color'          => array(
-		'text' => isset( $attributes['endOptions']['color']['text'] ) ? $attributes['endOptions']['color']['text'] : '',
-		'bg'   => isset( $attributes['endOptions']['color']['bg'] ) ? $attributes['endOptions']['color']['bg'] : '',
+		'text' => isset( $attributes['endOptions']['color']['text'] ) ? esc_attr( $attributes['endOptions']['color']['text'] ) : '',
+		'bg'   => isset( $attributes['endOptions']['color']['bg'] ) ? esc_attr( $attributes['endOptions']['color']['bg'] ) : '',
 	),
 );
 
 $ba_label = array(
-	'gap'            => isset( $attributes['beforeAfterStyles']['gap'] ) ? $attributes['beforeAfterStyles']['gap'] : '',
+	'gap'            => isset( $attributes['beforeAfterStyles']['gap'] ) ? esc_attr( $attributes['beforeAfterStyles']['gap'] ) : '',
 	'font'           => array(
-		'size'   => isset( $attributes['beforeAfterStyles']['font']['size'] ) ? $attributes['beforeAfterStyles']['font']['size'] : '',
-		'family' => isset( $attributes['beforeAfterStyles']['font']['family'] ) ? $attributes['beforeAfterStyles']['font']['family'] : '',
+		'size'   => isset( $attributes['beforeAfterStyles']['font']['size'] ) ? esc_attr( $attributes['beforeAfterStyles']['font']['size'] ) : '',
+		'weight' => isset( $attributes['beforeAfterStyles']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['beforeAfterStyles']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['beforeAfterStyles']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['beforeAfterStyles']['font']['family'] ) ) : '',
 	),
-	'line_height'    => isset( $attributes['beforeAfterStyles']['lineHeight'] ) ? $attributes['beforeAfterStyles']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['beforeAfterStyles']['letterSpacing'] ) ? $attributes['beforeAfterStyles']['letterSpacing'] : '',
+	'letter_case'    => isset( $attributes['beforeAfterStyles']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['beforeAfterStyles']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['beforeAfterStyles']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['beforeAfterStyles']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['beforeAfterStyles']['lineHeight'] ) ? esc_attr( $attributes['beforeAfterStyles']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['beforeAfterStyles']['letterSpacing'] ) ? esc_attr( $attributes['beforeAfterStyles']['letterSpacing'] ) : '',
 	'color'          => array(
-		'text' => isset( $attributes['beforeAfterStyles']['color']['text'] ) ? $attributes['beforeAfterStyles']['color']['text'] : '',
+		'text' => isset( $attributes['beforeAfterStyles']['color']['text'] ) ? esc_attr( $attributes['beforeAfterStyles']['color']['text'] ) : '',
 	),
 );
 
@@ -136,7 +140,7 @@ $block_styles = "
 	{$styles['border']}
 	{$styles['radius']}
 	font-size: {$styles['font']['size']};
-	font-weight: {$attributes['font']['weight']};
+	font-weight: {$styles['font']['weight']};
 	font-family: {$styles['font']['family']};
 	color: {$styles['color']['text']};
 	background-color: {$styles['color']['bg']};
@@ -148,9 +152,8 @@ $block_styles = "
 }
 
 #$block_id .countdown-timer__wrap {
-	margin-top: {$item_styles['margin']['top']};
-	margin-bottom: {$item_styles['margin']['bottom']};
-	justify-content: {$attributes['align']};
+	{$item_styles['margin']}
+	justify-content: {$styles['justify']};
 	gap: {$styles['gap']};
 }
 
@@ -167,8 +170,7 @@ $block_styles = "
 }
 #$block_id .countdown-timer__item.has-separator:before {
 	content: \"{$separator['content']}\";
-	margin-top: {$separator['margin']['top']};
-	margin-left: {$separator['margin']['left']};
+	{$separator['margin']}
 	font-size: {$separator['size']};
 	color: {$separator['color']['text']};
 }
@@ -190,12 +192,12 @@ $block_styles = "
 }
 
 #$block_id .countdown-timer__label {
-	text-align: {$attributes['label']['align']};
+	text-align: {$label_styles['align']};
 	font-size: {$label_styles['font']['size']};
-	font-weight: {$attributes['label']['font']['weight']};
+	font-weight: {$label_styles['font']['weight']};
 	font-family: {$label_styles['font']['family']};
-	text-transform: {$attributes['label']['letterCase']};
-	text-decoration: {$attributes['label']['decoration']};
+	text-transform: {$label_styles['letter_case']};
+	text-decoration: {$label_styles['decoration']};
 	line-height: {$label_styles['line_height']};
 	letter-spacing: {$label_styles['letter_spacing']};
 	color: {$label_styles['color']['text']};
@@ -208,19 +210,18 @@ $block_styles = "
 }
 
 #$block_id .countdown-timer__end-text-wrap {
-	text-align: {$attributes['endOptions']['align']};
-	margin-top: {$end_text_styles['margin']['top']};
-	margin-bottom: {$end_text_styles['margin']['bottom']};
+	text-align: {$end_text_styles['align']};
+	{$end_text_styles['margin']}
 }
 #$block_id .countdown-timer__end-text-wrap .end-text {
 	{$end_text_styles['padding']}
 	{$end_text_styles['border']}
 	border-radius: {$end_text_styles['radius']};
 	font-size: {$end_text_styles['font']['size']};
-	font-weight: {$attributes['endOptions']['font']['weight']};
+	font-weight: {$end_text_styles['font']['weight']};
 	font-family: {$end_text_styles['font']['family']};
-	text-transform: {$attributes['endOptions']['letterCase']};
-	text-decoration: {$attributes['endOptions']['decoration']};
+	text-transform: {$end_text_styles['letter_case']};
+	text-decoration: {$end_text_styles['decoration']};
 	line-height: {$end_text_styles['line_height']};
 	letter-spacing: {$end_text_styles['letter_spacing']};
 	background-color: {$end_text_styles['color']['bg']};
@@ -228,7 +229,7 @@ $block_styles = "
 }
 
 #$block_id #offer-wrap:not(.width-inline) .before-label, #$block_id #offer-wrap:not(.width-inline) .after-label {
-	text-align: {$attributes['align']};
+	text-align: {$styles['justify']};
 }
 #$block_id #offer-wrap:not(.width-inline) .before-label {
 	margin-bottom: {$ba_label['gap']};
@@ -242,10 +243,10 @@ $block_styles = "
 }
 #$block_id .before-label, #$block_id .after-label {
 	font-size: {$ba_label['font']['size']};
-	font-weight: {$attributes['beforeAfterStyles']['font']['weight']};
+	font-weight: {$ba_label['font']['weight']};
 	font-family: {$ba_label['font']['family']};
-	text-transform: {$attributes['beforeAfterStyles']['letterCase']};
-	text-decoration: {$attributes['beforeAfterStyles']['decoration']};
+	text-transform: {$ba_label['letter_case']};
+	text-decoration: {$ba_label['decoration']};
 	line-height: {$ba_label['line_height']};
 	letter-spacing: {$ba_label['letter_spacing']};
 	color: {$ba_label['color']['text']};
@@ -255,23 +256,23 @@ $block_styles = "
 $font_families = array();
 
 if ( isset( $attributes['timerStyles']['font']['family'] ) && ! empty( $attributes['timerStyles']['font']['family'] ) ) {
-	$font_families[] = $attributes['timerStyles']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['timerStyles']['font']['family'] );
 }
 
 if ( isset( $attributes['label']['font']['family'] ) && ! empty( $attributes['label']['font']['family'] ) ) {
-	$font_families[] = $attributes['label']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['label']['font']['family'] );
 }
 
 if ( isset( $attributes['endOptions']['font']['family'] ) && ! empty( $attributes['endOptions']['font']['family'] ) ) {
-	$font_families[] = $attributes['endOptions']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['endOptions']['font']['family'] );
 }
 
 if ( isset( $attributes['beforeAfterStyles']['font']['family'] ) && ! empty( $attributes['beforeAfterStyles']['font']['family'] ) ) {
-	$font_families[] = $attributes['beforeAfterStyles']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['beforeAfterStyles']['font']['family'] );
 }
 
 if ( isset( $attributes['font']['family'] ) && ! empty( $attributes['font']['family'] ) ) {
-	$font_families[] = $attributes['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['font']['family'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -279,9 +280,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {

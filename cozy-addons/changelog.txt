@@ -1,3 +1,6 @@
+= 2.2.12 - Jul 23, 2026 = 
+* Security: Data sanitization for block attributes.
+
 = 2.2.11 - Jul 08, 2026 = 
 * Add: Scroll Animation block.
 * Add: Blog Magazine patterns.

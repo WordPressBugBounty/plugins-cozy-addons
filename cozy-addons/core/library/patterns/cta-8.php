@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:column {"width":"40%","style":{"spacing":{"blockGap":"0"}}} -->
 <div class="wp-block-column" style="flex-basis:40%"><!-- wp:image {"id":2118,"sizeSlug":"full","linkDestination":"none","align":"center"} -->
-<figure class="wp-block-image aligncenter size-full"><img src="http://localhost:8010/wp-content/uploads/2025/11/cta-4.png" alt="" class="wp-image-2118"/></figure>
+<figure class="wp-block-image aligncenter size-full"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/cta-4.png" alt="" class="wp-image-2118"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

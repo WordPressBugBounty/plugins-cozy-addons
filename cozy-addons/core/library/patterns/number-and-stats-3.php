@@ -16,8 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}}},"cozyCustomFont":"Unbounded"} -->
-<h3 class="wp-block-heading" style="margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Expert Team', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Expert Team', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -36,10 +36,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}}},"cozyCustomFont":"Unbounded"} -->
-<h3 class="wp-block-heading" style="margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Years of Experience', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Years of Experience', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
-
 <!-- wp:paragraph -->
 <p><?php esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'cozy-addons' ); ?></p>
 <!-- /wp:paragraph --></div>
@@ -58,8 +57,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}}},"cozyCustomFont":"Unbounded"} -->
-<h3 class="wp-block-heading" style="margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Product Downloads', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Product Downloads', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -78,8 +77,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}}},"cozyCustomFont":"Unbounded"} -->
-<h3 class="wp-block-heading" style="margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Clients Satisfied', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Clients Satisfied', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->

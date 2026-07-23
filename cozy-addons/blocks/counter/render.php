@@ -11,14 +11,23 @@ wp_add_inline_script( 'cozy-block--counter--frontend-script', 'document.addEvent
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
-$color = isset( $attributes['styles']['color'] ) ? $attributes['styles']['color'] : '';
+$styles = array(
+	'align' => isset( $attributes['textAlign'] ) ? esc_attr( sanitize_text_field( $attributes['textAlign'] ) ) : '',
+	'font'  => array(
+		'size'   => isset( $attributes['styles']['fontSize'] ) ? esc_attr( $attributes['styles']['fontSize'] ) : '',
+		'weight' => isset( $attributes['styles']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['styles']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['styles']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['styles']['fontFamily'] ) ) : '',
+	),
+);
+
+$color = isset( $attributes['styles']['color'] ) ? esc_attr( $attributes['styles']['color'] ) : '';
 
 $block_styles = "
 #$block_id {
-    text-align: {$attributes['textAlign']};
-    font-size: {$attributes['styles']['fontSize']};
-    font-weight: {$attributes['styles']['fontWeight']};
-    font-family: {$attributes['styles']['fontFamily']};
+    text-align: {$styles['align']};
+    font-size: {$styles['font']['size']};
+    font-weight: {$styles['font']['weight']};
+    font-family: {$styles['font']['family']};
     color: {$color};
 }
 ";
@@ -28,7 +37,7 @@ $output = '<div class="cozy-block-wrapper">';
 $font_families = array();
 
 if ( isset( $attributes['styles']['fontFamily'] ) && ! empty( $attributes['styles']['fontFamily'] ) ) {
-	$font_families[] = $attributes['styles']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['styles']['fontFamily'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -36,9 +45,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {

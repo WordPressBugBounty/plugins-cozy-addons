@@ -13,51 +13,51 @@ $client_id = ! empty( $attributes['clientId'] ) ? sanitize_key( wp_unslash( $att
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attr_display        = array(
-	'layout'      => isset( $attributes['display']['layout'] ) ? $attributes['display']['layout'] : 'default',
-	'position'    => isset( $attributes['display']['position'] ) ? $attributes['display']['position'] : 'left',
-	'orientation' => isset( $attributes['display']['orientation'] ) ? $attributes['display']['orientation'] : 'horizontal',
-	'align'       => isset( $attributes['display']['align'] ) ? $attributes['display']['align'] : 'center',
+	'layout'      => isset( $attributes['display']['layout'] ) ? esc_attr( sanitize_text_field( $attributes['display']['layout'] ) ) : 'default',
+	'position'    => isset( $attributes['display']['position'] ) ? esc_attr( sanitize_text_field( $attributes['display']['position'] ) ) : 'left',
+	'orientation' => isset( $attributes['display']['orientation'] ) ? esc_attr( sanitize_text_field( $attributes['display']['orientation'] ) ) : 'horizontal',
+	'align'       => isset( $attributes['display']['align'] ) ? esc_attr( sanitize_text_field( $attributes['display']['align'] ) ) : 'center',
 );
 $attr_wrapper_styles = array(
 	'padding'      => isset( $attributes['wrapperStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['wrapperStyles']['padding'] ) : '',
 	'margin'       => isset( $attributes['wrapperStyles']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['wrapperStyles']['margin'] ) : '',
 	'border'       => isset( $attributes['wrapperStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['wrapperStyles']['border'] ) : '',
-	'radius'       => isset( $attributes['wrapperStyles']['radius'] ) ? $attributes['wrapperStyles']['radius'] : '',
+	'radius'       => isset( $attributes['wrapperStyles']['radius'] ) ? esc_attr( $attributes['wrapperStyles']['radius'] ) : '',
 	'stack_layout' => isset( $attributes['wrapperStyles']['stackLayout'] ) && filter_var( $attributes['wrapperStyles']['stackLayout'], FILTER_VALIDATE_BOOLEAN ) ? 'wrap' : 'nowrap',
 	'color'        => array(
-		'bg' => isset( $attributes['wrapperStyles']['color']['bg'] ) ? $attributes['wrapperStyles']['color']['bg'] : '',
+		'bg' => isset( $attributes['wrapperStyles']['color']['bg'] ) ? esc_attr( $attributes['wrapperStyles']['color']['bg'] ) : '',
 	),
 );
-$justify_content = isset( $attributes['display']['layout'] ) && $attributes['display']['layout'] === 'default'
-    ? "justify-content: {$attributes['display']['position']};"
-    : '';
+$justify_content     = isset( $attributes['display']['layout'] ) && $attributes['display']['layout'] === 'default'
+	? "justify-content: {$attributes['display']['position']};"
+	: '';
 $attr_icon           = array(
-	'label_gap'      => isset( $attributes['icon']['labelGap'] ) ? $attributes['icon']['labelGap'] : '',
-	'view'           => isset( $attributes['icon']['view'] ) ? $attributes['icon']['view'] : 'stacked',
-	'gap'            => isset( $attributes['icon']['gap'] ) ? $attributes['icon']['gap'] : '',
-	'row_gap'        => isset( $attributes['icon']['rowGap'] ) ? $attributes['icon']['rowGap'] : '',
-	'box_width'      => isset( $attributes['icon']['boxWidth'] ) ? $attributes['icon']['boxWidth'] : '',
-	'box_height'     => isset( $attributes['icon']['boxHeight'] ) ? $attributes['icon']['boxHeight'] : '',
+	'label_gap'      => isset( $attributes['icon']['labelGap'] ) ? esc_attr( $attributes['icon']['labelGap'] ) : '',
+	'view'           => isset( $attributes['icon']['view'] ) ? esc_attr( sanitize_text_field( $attributes['icon']['view'] ) ) : 'stacked',
+	'gap'            => isset( $attributes['icon']['gap'] ) ? esc_attr( $attributes['icon']['gap'] ) : '',
+	'row_gap'        => isset( $attributes['icon']['rowGap'] ) ? esc_attr( $attributes['icon']['rowGap'] ) : '',
+	'box_width'      => isset( $attributes['icon']['boxWidth'] ) ? esc_attr( $attributes['icon']['boxWidth'] ) : '',
+	'box_height'     => isset( $attributes['icon']['boxHeight'] ) ? esc_attr( $attributes['icon']['boxHeight'] ) : '',
 	'padding'        => isset( $attributes['icon']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['icon']['padding'] ) : '',
 	'border'         => isset( $attributes['icon']['border'] ) ? cozy_render_TRBL( 'border', $attributes['icon']['border'] ) : '',
-	'radius'         => isset( $attributes['icon']['radius'] ) ? $attributes['icon']['radius'] : '',
-	'size'           => isset( $attributes['icon']['size'] ) ? $attributes['icon']['size'] : '',
+	'radius'         => isset( $attributes['icon']['radius'] ) ? esc_attr( $attributes['icon']['radius'] ) : '',
+	'size'           => isset( $attributes['icon']['size'] ) ? esc_attr( $attributes['icon']['size'] ) : '',
 	'font'           => array(
-		'size'   => isset( $attributes['icon']['font']['size'] ) ? $attributes['icon']['font']['size'] : '',
-		'weight' => isset( $attributes['icon']['font']['weight'] ) ? $attributes['icon']['font']['weight'] : '',
-		'family' => isset( $attributes['icon']['font']['family'] ) ? $attributes['icon']['font']['family'] : '',
+		'size'   => isset( $attributes['icon']['font']['size'] ) ? esc_attr( $attributes['icon']['font']['size'] ) : '',
+		'weight' => isset( $attributes['icon']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['icon']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['icon']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['icon']['font']['family'] ) ) : '',
 	),
-	'letter_case'    => isset( $attributes['icon']['letterCase'] ) ? $attributes['icon']['letterCase'] : '',
-	'decoration'     => isset( $attributes['icon']['decoration'] ) ? $attributes['icon']['decoration'] : '',
-	'line_height'    => isset( $attributes['icon']['lineHeight'] ) ? $attributes['icon']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['icon']['letterSpacing'] ) ? $attributes['icon']['letterSpacing'] : '',
+	'letter_case'    => isset( $attributes['icon']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['icon']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['icon']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['icon']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['icon']['lineHeight'] ) ? esc_attr( $attributes['icon']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['icon']['letterSpacing'] ) ? esc_attr( $attributes['icon']['letterSpacing'] ) : '',
 	'color'          => array(
-		'svg'          => isset( $attributes['icon']['color']['svg'] ) ? $attributes['icon']['color']['svg'] : '',
-		'text'         => isset( $attributes['icon']['color']['text'] ) ? $attributes['icon']['color']['text'] : '',
-		'text_hover'   => isset( $attributes['icon']['color']['textHover'] ) ? $attributes['icon']['color']['textHover'] : '',
-		'bg'           => isset( $attributes['icon']['color']['bg'] ) ? $attributes['icon']['color']['bg'] : '',
-		'bg_hover'     => isset( $attributes['icon']['color']['bgHover'] ) ? $attributes['icon']['color']['bgHover'] : '',
-		'border_hover' => isset( $attributes['icon']['color']['borderHover'] ) ? $attributes['icon']['color']['borderHover'] : '',
+		'svg'          => isset( $attributes['icon']['color']['svg'] ) ? esc_attr( $attributes['icon']['color']['svg'] ) : '',
+		'text'         => isset( $attributes['icon']['color']['text'] ) ? esc_attr( $attributes['icon']['color']['text'] ) : '',
+		'text_hover'   => isset( $attributes['icon']['color']['textHover'] ) ? esc_attr( $attributes['icon']['color']['textHover'] ) : '',
+		'bg'           => isset( $attributes['icon']['color']['bg'] ) ? esc_attr( $attributes['icon']['color']['bg'] ) : '',
+		'bg_hover'     => isset( $attributes['icon']['color']['bgHover'] ) ? esc_attr( $attributes['icon']['color']['bgHover'] ) : '',
+		'border_hover' => isset( $attributes['icon']['color']['borderHover'] ) ? esc_attr( $attributes['icon']['color']['borderHover'] ) : '',
 	),
 );
 
@@ -185,7 +185,7 @@ $social_share_params = array(
 $font_families = array();
 
 if ( isset( $attributes['icon']['font']['family'] ) && ! empty( $attributes['icon']['font']['family'] ) ) {
-	$font_families[] = $attributes['icon']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['icon']['font']['family'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -193,9 +193,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {
@@ -226,7 +226,7 @@ $classes[] = 'view-' . $attr_icon['view'];
 	);
 	?>
 
-	<div class="<?php echo esc_html( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>" id="<?php echo esc_html( $block_id ); ?>">
+	<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>" id="<?php echo esc_attr( $block_id ); ?>">
 		<ul class="social-share__wrap">
 			<?php
 			if ( isset( $attributes['socialList'] ) && is_array( $attributes['socialList'] ) ) {
@@ -266,7 +266,7 @@ $classes[] = 'view-' . $attr_icon['view'];
 					switch ( $social ) {
 						case 'Email':
 							$share_url .= '?subject=Check out this post';
-							$share_url .= '&body=I thought you might like this:%0A' . esc_html( $post_title ) . '%0A' . esc_url( $post_url );
+							$share_url .= '&body=I thought you might like this:%0A' . esc_attr( $post_title ) . '%0A' . esc_url( $post_url );
 							break;
 
 						case 'Facebook':
@@ -282,23 +282,23 @@ $classes[] = 'view-' . $attr_icon['view'];
 							break;
 
 						case 'Reddit':
-							$share_url .= '?url=' . esc_url( $post_url ) . '&title=' . esc_html( $post_title );
+							$share_url .= '?url=' . esc_url( $post_url ) . '&title=' . esc_attr( $post_title );
 							break;
 
 						case 'Telegram':
-							$share_url .= '?url=' . esc_url( $post_url ) . '&text=' . esc_html( $post_title );
+							$share_url .= '?url=' . esc_url( $post_url ) . '&text=' . esc_attr( $post_title );
 							break;
 
 						case 'Tumblr':
-							$share_url .= '?canonicalUrl=' . esc_url( $post_url ) . '&title=' . esc_html( $post_title );
+							$share_url .= '?canonicalUrl=' . esc_url( $post_url ) . '&title=' . esc_attr( $post_title );
 							break;
 
 						case 'X':
-							$share_url .= '?url=' . esc_url( $post_url ) . '&text=' . esc_html( $post_title );
+							$share_url .= '?url=' . esc_url( $post_url ) . '&text=' . esc_attr( $post_title );
 							break;
 
 						case 'Whatsapp':
-							$share_url .= '?text=' . esc_html( $post_title ) . '%20' . esc_url( $post_url );
+							$share_url .= '?text=' . esc_attr( $post_title ) . '%20' . esc_url( $post_url );
 							break;
 
 						default:
@@ -308,7 +308,7 @@ $classes[] = 'view-' . $attr_icon['view'];
 					$open_new_tab = isset( $attributes['openNewTab'] ) && filter_var( $attributes['openNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
 					$nofollow     = isset( $attr_display['noFollow'] ) && filter_var( $attributes['noFollow'], FILTER_VALIDATE_BOOLEAN ) ? 'nofollow' : '';
 					?>
-					<li class="<?php echo implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ); ?>">
+					<li class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
 						<a href="<?php echo esc_url( $share_url ); ?>" target="<?php echo esc_attr( $open_new_tab ); ?>" rel="<?php echo esc_attr( $nofollow ); ?>">
 							<?php
 							if ( isset( $attributes['icon']['enableIcon'] ) && filter_var( $attributes['icon']['enableIcon'], FILTER_VALIDATE_BOOLEAN ) ) {

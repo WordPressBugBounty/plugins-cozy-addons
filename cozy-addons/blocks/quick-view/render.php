@@ -13,10 +13,12 @@ $attributes['quickViewNonce'] = wp_create_nonce( 'cozy_block_quick_view_render_d
 
 $icon = array(
 	'box'   => array(
-		'width'  => isset( $attributes['icon']['box']['width'] ) ? $attributes['icon']['box']['width'] : '40px',
-		'height' => isset( $attributes['icon']['box']['height'] ) ? $attributes['icon']['box']['height'] : '40px',
+		'width'  => isset( $attributes['icon']['box']['width'] ) ? esc_attr( $attributes['icon']['box']['width'] ) : '40px',
+		'height' => isset( $attributes['icon']['box']['height'] ) ? esc_attr( $attributes['icon']['box']['height'] ) : '40px',
 		'border' => isset( $attributes['icon']['box']['border'] ) ? cozy_render_TRBL( 'border', $attributes['icon']['box']['border'] ) : '',
+		'radius' => isset( $attributes['icon']['box']['radius'] ) ? esc_attr( $attributes['icon']['box']['radius'] ) : '',
 	),
+	'size'  => isset( $attributes['icon']['size'] ) ? esc_attr( $attributes['icon']['size'] ) : '',
 	'color' => array(
 		'text'         => isset( $attributes['icon']['color']['text'] ) ? $attributes['icon']['color']['text'] : '',
 		'text_hover'   => isset( $attributes['icon']['color']['textHover'] ) ? $attributes['icon']['color']['textHover'] : '',
@@ -29,107 +31,155 @@ $icon = array(
 $lightbox = array(
 	'padding' => isset( $attributes['lightbox']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['lightbox']['padding'] ) : '',
 	'color'   => array(
-		'icon'          => isset( $attributes['lightbox']['color']['icon'] ) ? $attributes['lightbox']['color']['icon'] : '',
-		'icon_hover'    => isset( $attributes['lightbox']['color']['iconHover'] ) ? $attributes['lightbox']['color']['iconHover'] : '',
-		'icon_bg'       => isset( $attributes['lightbox']['color']['iconBg'] ) ? $attributes['lightbox']['color']['iconBg'] : '',
-		'icon_bg_hover' => isset( $attributes['lightbox']['color']['iconBgHover'] ) ? $attributes['lightbox']['color']['iconBgHover'] : '',
-		'bg'            => isset( $attributes['lightbox']['color']['bg'] ) ? $attributes['lightbox']['color']['bg'] : '',
-		'overlay'       => isset( $attributes['lightbox']['color']['overlay'] ) ? $attributes['lightbox']['color']['overlay'] : '',
+		'icon'          => isset( $attributes['lightbox']['color']['icon'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['color']['icon'] ) ) : '',
+		'icon_hover'    => isset( $attributes['lightbox']['color']['iconHover'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['color']['iconHover'] ) ) : '',
+		'icon_bg'       => isset( $attributes['lightbox']['color']['iconBg'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['color']['iconBg'] ) ) : '',
+		'icon_bg_hover' => isset( $attributes['lightbox']['color']['iconBgHover'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['color']['iconBgHover'] ) ) : '',
+		'bg'            => isset( $attributes['lightbox']['color']['bg'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['color']['bg'] ) ) : '',
+		'overlay'       => isset( $attributes['lightbox']['color']['overlay'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['color']['overlay'] ) ) : '',
 	),
 );
 
-$product_title_styles      = array(
-	'color' => array(
+$product_title_styles = array(
+	'font'        => array(
+		'size'   => isset( $attributes['productTitle']['font']['size'] ) ? esc_attr( $attributes['productTitle']['font']['size'] ) : '',
+		'weight' => isset( $attributes['productTitle']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['productTitle']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['productTitle']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['productTitle']['font']['family'] ) ) : '',
+	),
+	'letter_case' => isset( $attributes['productTitle']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['productTitle']['letterCase'] ) ) : '',
+	'color'       => array(
 		'text'       => isset( $attributes['productTitle']['color']['text'] ) ? $attributes['productTitle']['color']['text'] : '',
 		'text_hover' => isset( $attributes['productTitle']['color']['textHover'] ) ? $attributes['productTitle']['color']['textHover'] : '',
 	),
 );
-$product_categories_styles = array(
-	'padding' => isset( $attributes['productCategories']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['productCategories']['padding'] ) : '',
-	'font'    => array(
-		'size'       => isset( $attributes['productCategories']['font']['size'] ) ? $attributes['productCategories']['font']['size'] : '',
-		'family'     => isset( $attributes['productCategories']['font']['family'] ) ? $attributes['productCategories']['font']['family'] : '',
-		'weight'     => isset( $attributes['productCategories']['font']['weight'] ) ? $attributes['productCategories']['font']['weight'] : '',
-		'lettercase' => isset( $attributes['productCategories']['letterCase'] ) ? $attributes['productCategories']['letterCase'] : '',
+
+$product_summary_styles = array(
+	'font'  => array(
+		'size'   => isset( $attributes['productSummary']['font']['size'] ) ? esc_attr( $attributes['productSummary']['font']['size'] ) : '',
+		'weight' => isset( $attributes['productSummary']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['productSummary']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['productSummary']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['productSummary']['font']['family'] ) ) : '',
 	),
-	'color'   => array(
-		'text'       => isset( $attributes['productCategories']['color']['text'] ) ? $attributes['productCategories']['color']['text'] : '',
-		'text_hover' => isset( $attributes['productCategories']['color']['textHover'] ) ? $attributes['productCategories']['color']['textHover'] : '',
-		'bg'         => isset( $attributes['productCategories']['color']['background'] ) ? $attributes['productCategories']['color']['background'] : '',
-		'bg_hover'   => isset( $attributes['productCategories']['color']['backgroundHover'] ) ? $attributes['productCategories']['color']['backgroundHover'] : '',
-	),
-);
-$product_summary_styles    = array(
 	'color' => array(
 		'text' => isset( $attributes['productSummary']['color']['text'] ) ? $attributes['productSummary']['color']['text'] : '',
 	),
 );
 
 $product_price_styles = array(
+	'font'  => array(
+		'size'   => isset( $attributes['productPrice']['font']['size'] ) ? esc_attr( $attributes['productPrice']['font']['size'] ) : '',
+		'weight' => isset( $attributes['productPrice']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['productPrice']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['productPrice']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['productPrice']['font']['family'] ) ) : '',
+	),
 	'color' => array(
 		'text' => isset( $attributes['productPrice']['color']['text'] ) ? $attributes['productPrice']['color']['text'] : '',
 	),
 );
 
 $cart_button = array(
-	'padding' => isset( $attributes['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cartButton']['padding'] ) : '',
-	'border'  => isset( $attributes['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cartButton']['border'] ) : '',
-	'color'   => array(
-		'text'         => isset( $attributes['cartButton']['color']['text'] ) ? $attributes['cartButton']['color']['text'] : '',
-		'text_hover'   => isset( $attributes['cartButton']['color']['textHover'] ) ? $attributes['cartButton']['color']['textHover'] : '',
-		'bg'           => isset( $attributes['cartButton']['color']['bg'] ) ? $attributes['cartButton']['color']['bg'] : '',
-		'bg_hover'     => isset( $attributes['cartButton']['color']['bgHover'] ) ? $attributes['cartButton']['color']['bgHover'] : '',
-		'border_hover' => isset( $attributes['cartButton']['color']['borderHover'] ) ? $attributes['cartButton']['color']['borderHover'] : '',
+	'padding'     => isset( $attributes['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cartButton']['padding'] ) : '',
+	'margin'      => isset( $attributes['cartButton']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['cartButton']['margin'] ) : '',
+	'border'      => isset( $attributes['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cartButton']['border'] ) : '',
+	'radius'      => isset( $attributes['cartButton']['radius'] ) ? esc_attr( $attributes['cartButton']['radius'] ) : '',
+	'font'        => array(
+		'size'   => isset( $attributes['cartButton']['font']['size'] ) ? esc_attr( $attributes['cartButton']['font']['size'] ) : '',
+		'weight' => isset( $attributes['cartButton']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['cartButton']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['cartButton']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['cartButton']['font']['family'] ) ) : '',
+	),
+	'letter_case' => isset( $attributes['cartButton']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['cartButton']['letterCase'] ) ) : '',
+	'color'       => array(
+		'text'         => isset( $attributes['cartButton']['color']['text'] ) ? esc_attr( $attributes['cartButton']['color']['text'] ) : '',
+		'text_hover'   => isset( $attributes['cartButton']['color']['textHover'] ) ? esc_attr( $attributes['cartButton']['color']['textHover'] ) : '',
+		'bg'           => isset( $attributes['cartButton']['color']['bg'] ) ? esc_attr( $attributes['cartButton']['color']['bg'] ) : '',
+		'bg_hover'     => isset( $attributes['cartButton']['color']['bgHover'] ) ? esc_attr( $attributes['cartButton']['color']['bgHover'] ) : '',
+		'border_hover' => isset( $attributes['cartButton']['color']['borderHover'] ) ? esc_attr( $attributes['cartButton']['color']['borderHover'] ) : '',
 	),
 );
-$toast_card  = array(
+
+$view_button = array(
+	'border'      => isset( $attributes['viewButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['viewButton']['border'] ) : '',
+	'radius'      => isset( $attributes['viewButton']['radius'] ) ? esc_attr( $attributes['viewButton']['radius'] ) : '',
+	'font'        => array(
+		'size'   => isset( $attributes['viewButton']['font']['size'] ) ? esc_attr( $attributes['viewButton']['font']['size'] ) : '',
+		'weight' => isset( $attributes['viewButton']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['viewButton']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['viewButton']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['viewButton']['font']['family'] ) ) : '',
+	),
+	'letter_case' => isset( $attributes['viewButton']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['viewButton']['letterCase'] ) ) : '',
+	'color'       => array(
+		'text'         => isset( $attributes['viewButton']['color']['text'] ) ? esc_attr( $attributes['viewButton']['color']['text'] ) : '',
+		'text_hover'   => isset( $attributes['viewButton']['color']['textHover'] ) ? esc_attr( $attributes['viewButton']['color']['textHover'] ) : '',
+		'bg'           => isset( $attributes['viewButton']['color']['bg'] ) ? esc_attr( $attributes['viewButton']['color']['bg'] ) : '',
+		'bg_hover'     => isset( $attributes['viewButton']['color']['bgHover'] ) ? esc_attr( $attributes['viewButton']['color']['bgHover'] ) : '',
+		'border_hover' => isset( $attributes['viewButton']['color']['borderHover'] ) ? esc_attr( $attributes['viewButton']['color']['borderHover'] ) : '',
+	),
+);
+
+$toast_card = array(
 	'font'          => array(
-		'size'   => isset( $attributes['toastCard']['font']['size'] ) ? $attributes['toastCard']['font']['size'] : '',
-		'family' => isset( $attributes['toastCard']['font']['family'] ) ? $attributes['toastCard']['font']['family'] : '',
-		'weight' => isset( $attributes['toastCard']['font']['weight'] ) ? $attributes['toastCard']['font']['weight'] : '',
+		'size'   => isset( $attributes['toastCard']['font']['size'] ) ? esc_attr( $attributes['toastCard']['font']['size'] ) : '',
+		'weight' => isset( $attributes['toastCard']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['toastCard']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['toastCard']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['toastCard']['font']['family'] ) ) : '',
 	),
 	'color'         => array(
-		'text' => isset( $attributes['toastCard']['color']['text'] ) ? $attributes['toastCard']['color']['text'] : '',
-		'bg'   => isset( $attributes['toastCard']['color']['bg'] ) ? $attributes['toastCard']['color']['bg'] : '',
+		'text' => isset( $attributes['toastCard']['color']['text'] ) ? esc_attr( $attributes['toastCard']['color']['text'] ) : '',
+		'bg'   => isset( $attributes['toastCard']['color']['bg'] ) ? esc_attr( $attributes['toastCard']['color']['bg'] ) : '',
 	),
 	'padding'       => isset( $attributes['toastCard']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['toastCard']['padding'] ) : '',
 	'border'        => isset( $attributes['toastCard']['border'] ) ? cozy_render_TRBL( 'border', $attributes['toastCard']['border'] ) : '',
 	'border_radius' => isset( $attributes['toastCard']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['toastCard']['radius'] ) : '',
 );
-$view_button = array(
-	'border' => isset( $attributes['viewButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['viewButton']['border'] ) : '',
-	'color'  => array(
-		'text'         => isset( $attributes['viewButton']['color']['text'] ) ? $attributes['viewButton']['color']['text'] : '',
-		'text_hover'   => isset( $attributes['viewButton']['color']['textHover'] ) ? $attributes['viewButton']['color']['textHover'] : '',
-		'bg'           => isset( $attributes['viewButton']['color']['bg'] ) ? $attributes['viewButton']['color']['bg'] : '',
-		'bg_hover'     => isset( $attributes['viewButton']['color']['bgHover'] ) ? $attributes['viewButton']['color']['bgHover'] : '',
-		'border_hover' => isset( $attributes['viewButton']['color']['borderHover'] ) ? $attributes['viewButton']['color']['borderHover'] : '',
+
+$product_categories_styles = array(
+	'padding' => isset( $attributes['productCategories']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['productCategories']['padding'] ) : '',
+	'font'    => array(
+		'size'        => isset( $attributes['productCategories']['font']['size'] ) ? esc_attr( $attributes['productCategories']['font']['size'] ) : '',
+		'family'      => isset( $attributes['productCategories']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['productCategories']['font']['family'] ) ) : '',
+		'weight'      => isset( $attributes['productCategories']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['productCategories']['font']['weight'] ) ) : '',
+		'letter_case' => isset( $attributes['productCategories']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['productCategories']['letterCase'] ) ) : '',
+	),
+	'color'   => array(
+		'text'       => isset( $attributes['productCategories']['color']['text'] ) ? esc_attr( $attributes['productCategories']['color']['text'] ) : '',
+		'text_hover' => isset( $attributes['productCategories']['color']['textHover'] ) ? esc_attr( $attributes['productCategories']['color']['textHover'] ) : '',
+		'bg'         => isset( $attributes['productCategories']['color']['background'] ) ? esc_attr( $attributes['productCategories']['color']['background'] ) : '',
+		'bg_hover'   => isset( $attributes['productCategories']['color']['backgroundHover'] ) ? esc_attr( $attributes['productCategories']['color']['backgroundHover'] ) : '',
 	),
 );
 
 $review_styles = array(
 	'padding' => isset( $attributes['review']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['review']['padding'] ) : '',
 	'color'   => array(
-		'author'  => isset( $attributes['review']['color']['author'] ) ? $attributes['review']['color']['author'] : '',
-		'date'    => isset( $attributes['review']['color']['date'] ) ? $attributes['review']['color']['date'] : '',
-		'content' => isset( $attributes['review']['color']['content'] ) ? $attributes['review']['color']['content'] : '',
+		'author'  => isset( $attributes['review']['color']['author'] ) ? esc_attr( sanitize_text_field( $attributes['review']['color']['author'] ) ) : '',
+		'date'    => isset( $attributes['review']['color']['date'] ) ? esc_attr( sanitize_text_field( $attributes['review']['color']['date'] ) ) : '',
+		'content' => isset( $attributes['review']['color']['content'] ) ? esc_attr( sanitize_text_field( $attributes['review']['color']['content'] ) ) : '',
 	),
 );
 
 $nav = array(
-	'border' => isset( $attributes['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['navigation']['border'] ) : '',
-	'color'  => array(
-		'icon'         => isset( $attributes['navigation']['color']['icon'] ) ? $attributes['navigation']['color']['icon'] : '',
-		'icon_hover'   => isset( $attributes['navigation']['color']['iconHover'] ) ? $attributes['navigation']['color']['iconHover'] : '',
-		'bg'           => isset( $attributes['navigation']['color']['bg'] ) ? $attributes['navigation']['color']['bg'] : '',
-		'bg_hover'     => isset( $attributes['navigation']['color']['bgHover'] ) ? $attributes['navigation']['color']['bgHover'] : '',
-		'border_hover' => isset( $attributes['navigation']['color']['borderHover'] ) ? $attributes['navigation']['color']['borderHover'] : '',
+	'size'       => isset( $attributes['navigation']['size'] ) ? esc_attr( $attributes['navigation']['size'] ) : '',
+	'box_width'  => isset( $attributes['navigation']['boxWidth'] ) ? esc_attr( $attributes['navigation']['boxWidth'] ) : '',
+	'box_height' => isset( $attributes['navigation']['boxHeight'] ) ? esc_attr( $attributes['navigation']['boxHeight'] ) : '',
+	'radius'     => isset( $attributes['navigation']['radius'] ) ? esc_attr( $attributes['navigation']['radius'] ) : '',
+	'border'     => isset( $attributes['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['navigation']['border'] ) : '',
+	'color'      => array(
+		'icon'         => isset( $attributes['navigation']['color']['icon'] ) ? esc_attr( $attributes['navigation']['color']['icon'] ) : '',
+		'icon_hover'   => isset( $attributes['navigation']['color']['iconHover'] ) ? esc_attr( $attributes['navigation']['color']['iconHover'] ) : '',
+		'bg'           => isset( $attributes['navigation']['color']['bg'] ) ? esc_attr( $attributes['navigation']['color']['bg'] ) : '',
+		'bg_hover'     => isset( $attributes['navigation']['color']['bgHover'] ) ? esc_attr( $attributes['navigation']['color']['bgHover'] ) : '',
+		'border_hover' => isset( $attributes['navigation']['color']['borderHover'] ) ? esc_attr( $attributes['navigation']['color']['borderHover'] ) : '',
 	),
 );
 
 $bullets = array(
+	'bottom' => isset( $attributes['pagination']['bottom'] ) ? esc_attr( $attributes['pagination']['bottom'] ) : '',
+	'align'  => isset( $attributes['pagination']['align'] ) ? esc_attr( sanitize_text_field( $attributes['pagination']['align'] ) ) : '',
+	'width'  => isset( $attributes['pagination']['width'] ) ? esc_attr( $attributes['pagination']['width'] ) : '',
+	'height' => isset( $attributes['pagination']['height'] ) ? esc_attr( $attributes['pagination']['height'] ) : '',
+	'radius' => isset( $attributes['pagination']['radius'] ) ? esc_attr( $attributes['pagination']['radius'] ) : '',
 	'active' => array(
+		'width'   => isset( $attributes['pagination']['active']['width'] ) ? esc_attr( $attributes['pagination']['active']['width'] ) : '',
+		'height'  => isset( $attributes['pagination']['active']['height'] ) ? esc_attr( $attributes['pagination']['active']['height'] ) : '',
+		'radius'  => isset( $attributes['pagination']['active']['radius'] ) ? esc_attr( $attributes['pagination']['active']['radius'] ) : '',
 		'outline' => isset( $attributes['pagination']['active']['border'] ) ? cozy_render_TRBL( 'outline', $attributes['pagination']['active']['border'] ) : '',
+		'offset'  => isset( $attributes['pagination']['active']['offset'] ) ? esc_attr( $attributes['pagination']['active']['offset'] ) : '',
 	),
 	'color'  => array(
 		'default'       => isset( $attributes['pagination']['color']['default'] ) ? $attributes['pagination']['color']['default'] : '',
@@ -137,8 +187,8 @@ $bullets = array(
 		'active'        => isset( $attributes['pagination']['color']['active'] ) ? $attributes['pagination']['color']['active'] : '',
 		'active_hover'  => isset( $attributes['pagination']['color']['activeHover'] ) ? $attributes['pagination']['color']['activeHover'] : '',
 	),
-	'left'   => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? $attributes['pagination']['left'] : '',
-	'right'  => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? $attributes['pagination']['right'] : '',
+	'left'   => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? esc_attr( $attributes['pagination']['left'] ) : '',
+	'right'  => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? esc_attr( $attributes['pagination']['right'] ) : '',
 );
 
 $block_styles = "
@@ -146,12 +196,12 @@ $block_styles = "
 	width: {$icon['box']['width']};
 	height: {$icon['box']['height']};
     {$icon['box']['border']}
-    border-radius: {$attributes['icon']['box']['radius']};
+    border-radius: {$icon['box']['radius']};
     background-color: {$icon['color']['bg']};
 }
 #$block_id .cozy-block-quick-view__icon-wrapper svg {
-    width: {$attributes['icon']['size']};
-    height: {$attributes['icon']['size']};
+    width: {$icon['size']};
+    height: {$icon['size']};
     fill: {$icon['color']['text']};
     stroke: none;
 }
@@ -182,10 +232,10 @@ body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-vie
     background-color: {$lightbox['color']['bg']};
 }
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .post__title a {
-	font-size: {$attributes['productTitle']['font']['size']};
-	font-weight: {$attributes['productTitle']['font']['weight']};
-	font-family: {$attributes['productTitle']['font']['family']};
-	text-transform: {$attributes['productTitle']['letterCase']};
+	font-size: {$product_title_styles['font']['size']};
+	font-weight: {$product_title_styles['font']['weight']};
+	font-family: {$product_title_styles['font']['family']};
+	text-transform: {$product_title_styles['letter_case']};
 	color: {$product_title_styles['color']['text']};
 }
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .post__title a:hover {
@@ -193,31 +243,30 @@ body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .post__tit
 }
 
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .post__content {
-	font-size: {$attributes['productSummary']['font']['size']};
-	font-weight: {$attributes['productSummary']['font']['weight']};
-	font-family: {$attributes['productSummary']['font']['family']};
+	font-size: {$product_summary_styles['font']['size']};
+	font-weight: {$product_summary_styles['font']['weight']};
+	font-family: {$product_summary_styles['font']['family']};
 	color: {$product_summary_styles['color']['text']};
 }
 
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .post__price * {
-	font-size: {$attributes['productPrice']['font']['size']};
-	font-weight: {$attributes['productPrice']['font']['weight']};
-	font-family: {$attributes['productPrice']['font']['family']};
+	font-size: {$product_price_styles['font']['size']};
+	font-weight: {$product_price_styles['font']['weight']};
+	font-family: {$product_price_styles['font']['family']};
 	color: {$product_price_styles['color']['text']};
 }
 
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-view__cart-wrapper {
-	margin-top: {$attributes['cartButton']['margin']['top']};
-	margin-bottom: {$attributes['cartButton']['margin']['bottom']};
+	{$cart_button['margin']}
 }
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-view__cart-button {
 	{$cart_button['padding']}
 	{$cart_button['border']}
-	border-radius: {$attributes['cartButton']['radius']};
-	font-size: {$attributes['cartButton']['font']['size']};
-	font-weight: {$attributes['cartButton']['font']['weight']};
-	font-family: {$attributes['cartButton']['font']['family']};
-	text-transform: {$attributes['cartButton']['letterCase']};
+	border-radius: {};
+	font-size: {$cart_button['font']['size']};
+	font-weight: {$cart_button['font']['weight']};
+	font-family: {$cart_button['font']['family']};
+	text-transform: {$cart_button['letter_case']};
 	color: {$cart_button['color']['text']};
 	background-color: {$cart_button['color']['bg']};
 }
@@ -229,12 +278,12 @@ body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-vie
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-view__cart-view {
 	{$cart_button['padding']}
 	{$view_button['border']}
-	border-radius: {$attributes['viewButton']['radius']};
+	border-radius: {$view_button['radius']};
 	background-color: {$view_button['color']['bg']};
-	font-size: {$attributes['viewButton']['font']['size']};
-	font-weight: {$attributes['viewButton']['font']['weight']};
-	font-family: {$attributes['viewButton']['font']['family']};
-	text-transform: {$attributes['viewButton']['letterCase']};
+	font-size: {$view_button['font']['size']};
+	font-weight: {$view_button['font']['weight']};
+	font-family: {$view_button['font']['family']};
+	text-transform: {$view_button['letter_case']};
 	color: {$view_button['color']['text']};
 }
 #$block_id.cozy-block-quick-view__cart-tooltip {
@@ -242,8 +291,8 @@ body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-vie
 	{$toast_card['border']}
 	{$toast_card['border_radius']}
 	font-size:{$toast_card['font']['size']};
-	font-family:{$toast_card['font']['family']};
 	font-weight:{$toast_card['font']['weight']};
+	font-family:{$toast_card['font']['family']};
 	color:{$toast_card['color']['text']};
 	background-color:{$toast_card['color']['bg']};
 }
@@ -269,7 +318,7 @@ body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-vie
     font-size: {$product_categories_styles['font']['size']};
     font-family: {$product_categories_styles['font']['family']};
     font-weight: {$product_categories_styles['font']['weight']};
-    text-transform: {$product_categories_styles['font']['lettercase']};
+    text-transform: {$product_categories_styles['font']['letter_case']};
     color: {$product_categories_styles['color']['text']};
     background-color: {$product_categories_styles['color']['bg']};
 }
@@ -279,14 +328,14 @@ body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-vie
 }
 #$block_id .swiper-button-prev::after,
 #$block_id .swiper-button-next::after {
-    font-size: {$attributes['navigation']['size']};
+    font-size: {$nav['size']};
 }
 #$block_id .swiper-button-prev,
 #$block_id .swiper-button-next {
-    width: {$attributes['navigation']['boxWidth']};
-    height: {$attributes['navigation']['boxHeight']};
+    width: {$nav['box_width']};
+    height: {$nav['box_height']};
     {$nav['border']}
-    border-radius: {$attributes['navigation']['radius']};
+    border-radius: {$nav['radius']};
     color: {$nav['color']['icon']};
     background-color: {$nav['color']['bg']};
 }
@@ -298,15 +347,15 @@ body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-vie
 }
 
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .swiper-pagination {
-    bottom: {$attributes['pagination']['bottom']}px;
-    text-align: {$attributes['pagination']['align']};
+    bottom: {$bullets['bottom']}px;
+    text-align: {$bullets['align']};
     padding-left: {$bullets['left']};
     padding-right: {$bullets['right']};
 }
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .swiper-pagination-bullet {
-    width: {$attributes['pagination']['width']};
-    height: {$attributes['pagination']['height']};
-    border-radius: {$attributes['pagination']['radius']};
+    width: {$bullets['width']};
+    height: {$bullets['height']};
+    border-radius: {$bullets['radius']};
     background-color: {$bullets['color']['default']};
 }
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .swiper-pagination-horizontal .swiper-pagination-bullet {
@@ -316,11 +365,11 @@ body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .swiper-pa
     background-color: {$bullets['color']['default_hover']};
 }
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .swiper-pagination-bullet-active {
-    width: {$attributes['pagination']['active']['width']};
-    height: {$attributes['pagination']['active']['height']};
-    border-radius: {$attributes['pagination']['active']['radius']};
+    width: {$bullets['active']['width']};
+    height: {$bullets['active']['height']};
+    border-radius: {$bullets['active']['radius']};
     {$bullets['active']['outline']}
-    outline-offset: {$attributes['pagination']['active']['offset']};
+    outline-offset: {$bullets['active']['offset']};
     background-color: {$bullets['color']['active']};
 }
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .swiper-pagination-bullet-active:hover {
@@ -333,7 +382,7 @@ $product_id = $block->context['postId'];
 $classes   = array();
 $classes[] = 'cozy-block-quick-view';
 $classes[] = 'post-' . $product_id;
-$output    = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
+$output    = '<div class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '" id="' . esc_attr( $block_id ) . '">';
 
 if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType'] ) {
 	/* Icon Wrapper */
@@ -343,8 +392,8 @@ if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType']
 	$view_box[] = $attributes['icon']['viewBox']['vy'];
 	$view_box[] = $attributes['icon']['viewBox']['vw'];
 	$view_box[] = $attributes['icon']['viewBox']['vh'];
-	$output    .= '<svg class="cozy-block-quick-view__icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="' . implode( ' ', $view_box ) . '">';
-	$output    .= '<path d="' . $attributes['icon']['path'] . '" />';
+	$output    .= '<svg class="cozy-block-quick-view__icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="' . esc_attr( implode( ' ', array_map( 'intval', array_values( $view_box ) ) ) ) . '">';
+	$output    .= '<path d="' . esc_attr( $attributes['icon']['path'] ) . '" />';
 	$output    .= '</svg>';
 	$output    .= '</div>';
 	/* End Icon Wrapper */
@@ -357,22 +406,22 @@ $wrapper_attributes = get_block_wrapper_attributes();
 $font_families = array();
 
 if ( isset( $attributes['productTitle']['font']['family'] ) && ! empty( $attributes['productTitle']['font']['family'] ) ) {
-	$font_families[] = $attributes['productTitle']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['productTitle']['font']['family'] );
 }
 if ( isset( $attributes['productCategories']['font']['family'] ) && ! empty( $attributes['productCategories']['font']['family'] ) ) {
-	$font_families[] = $attributes['productCategories']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['productCategories']['font']['family'] );
 }
 if ( isset( $attributes['productSummary']['font']['family'] ) && ! empty( $attributes['productSummary']['font']['family'] ) ) {
-	$font_families[] = $attributes['productSummary']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['productSummary']['font']['family'] );
 }
 if ( isset( $attributes['productPrice']['font']['family'] ) && ! empty( $attributes['productPrice']['font']['family'] ) ) {
-	$font_families[] = $attributes['productPrice']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['productPrice']['font']['family'] );
 }
 if ( isset( $attributes['cartButton']['font']['family'] ) && ! empty( $attributes['cartButton']['font']['family'] ) ) {
-	$font_families[] = $attributes['cartButton']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['cartButton']['font']['family'] );
 }
 if ( isset( $attributes['toastCard']['font']['family'] ) && ! empty( $attributes['toastCard']['font']['family'] ) ) {
-	$font_families[] = $attributes['toastCard']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['toastCard']['font']['family'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -380,9 +429,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {

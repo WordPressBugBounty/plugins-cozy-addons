@@ -241,13 +241,20 @@
           "size": "18px"
         },
         "description": {
-          "enabled": true
+          "enabled": true,
+          "padding": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
         },
         "progressBar": {
           "margin": {
             "top": "16px",
             "bottom": ""
-          }
+          },
+          "height": "3px"
         },
         "color": {
           "title": "#010101",

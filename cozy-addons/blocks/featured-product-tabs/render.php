@@ -17,45 +17,109 @@ $attributes['quickViewNonce'] = wp_create_nonce( 'cozy_block_quick_view_render_d
 wp_localize_script( 'cozy-block--featured-product-tabs--frontend-script', $block_id, $attributes );
 wp_add_inline_script( 'cozy-block--featured-product-tabs--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProductTabs( "' . esc_html( $client_id ) . '" ) }) ' );
 
-$wrapper_attributes = get_block_wrapper_attributes();
+$toast_card = array(
+	'font'     => array(
+		'size'   => isset( $attributes['toast']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['toast']['font']['size'] ) : '',
+		'family' => isset( $attributes['toast']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['toast']['font']['family'] ) ) : '',
+		'weight' => isset( $attributes['toast']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['toast']['font']['size'] ) ) : '',
+	),
+	'color'    => array(
+		'text' => isset( $attributes['toast']['color']['text'] ) ? esc_attr( $attributes['toast']['color']['text'] ) : '',
+		'bg'   => isset( $attributes['toast']['color']['bg'] ) ? esc_attr( $attributes['toast']['color']['bg'] ) : '',
+	),
+	'padding'  => isset( $attributes['toast']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['toast']['padding'] ) : '',
+	'border'   => isset( $attributes['toast']['border'] ) ? cozy_render_TRBL( 'border', $attributes['toast']['border'] ) : '',
+	'radius'   => isset( $attributes['toast']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['toast']['radius'] ) : '',
+	'position' => array(
+		'vertical'   => isset( $attributes['toast']['position']['vertical'] ) ? esc_attr( $attributes['toast']['position']['vertical'] ) : '',
+		'horizontal' => isset( $attributes['toast']['position']['horizontal'] ) ? esc_attr( $attributes['toast']['position']['horizontal'] ) : '',
+	),
+);
 
 $heading_color = array(
-	'text' => isset( $attributes['tabHeading']['color'] ) ? $attributes['tabHeading']['color'] : '',
+	'text' => isset( $attributes['tabHeading']['color'] ) ? esc_attr( $attributes['tabHeading']['color'] ) : '',
 );
 $tab_heading   = array(
-	'letter_case'    => isset( $attributes['tabHeading']['letterCase'] ) ? $attributes['tabHeading']['letterCase'] : '',
-	'decoration'     => isset( $attributes['tabHeading']['decoration'] ) ? $attributes['tabHeading']['decoration'] : '',
-	'line_height'    => isset( $attributes['tabHeading']['lineHeight'] ) ? $attributes['tabHeading']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['tabHeading']['letterSpacing'] ) ? $attributes['tabHeading']['letterSpacing'] : '',
+	'font'           => array(
+		'size'   => isset( $attributes['tabHeading']['fontSize'] ) ? cozy_addons_sanitize_dimension( $attributes['tabHeading']['fontSize'] ) : '',
+		'weight' => isset( $attributes['tabHeading']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['tabHeading']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['tabHeading']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['tabHeading']['fontFamily'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['tabHeading']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['tabHeading']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['tabHeading']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['tabHeading']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['tabHeading']['lineHeight'] ) ? esc_attr( $attributes['tabHeading']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['tabHeading']['letterSpacing'] ) ? esc_attr( $attributes['tabHeading']['letterSpacing'] ) : '',
 );
 
-$separator_padding = cozy_render_TRBL( 'padding', $attributes['separatorStyles']['padding'] );
+$separator_padding = isset( $attributes['separatorStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['separatorStyles']['padding'] ) : '';
 $separator_border  = isset( $attributes['separatorStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['separatorStyles']['border'] ) : '';
 $separator_radius  = isset( $attributes['separatorStyles']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['separatorStyles']['radius'] ) : '';
 $separator_styles  = array(
+	'margin'   => array(
+		'top'    => isset( $attributes['tabStyles']['marginTop'] ) ? esc_attr( $attributes['tabStyles']['marginTop'] ) : '',
+		'bottom' => isset( $attributes['tabStyles']['marginBottom'] ) ? esc_attr( $attributes['tabStyles']['marginBottom'] ) : '',
+	),
 	'bg_color' => isset( $attributes['separatorStyles']['bgColor'] ) ? $attributes['separatorStyles']['bgColor'] : '',
 );
 
-$tab_padding        = cozy_render_TRBL( 'padding', $attributes['tabStyles']['padding'] );
-$tab_border_radius  = cozy_render_TRBL( 'border-radius', $attributes['tabStyles']['radius'] );
+$tab_padding        = isset( $attributes['tabStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['tabStyles']['padding'] ) : '';
+$tab_border_radius  = isset( $attributes['tabStyles']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['tabStyles']['radius'] ) : '';
 $default_tab_border = isset( $attributes['tabStyles']['default']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['default']['border'] ) : '';
 $active_tab_border  = isset( $attributes['tabStyles']['active']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['active']['border'] ) : '';
 $tab_styles         = array(
-	'default_color'    => isset( $attributes['tabStyles']['default']['color'] ) ? $attributes['tabStyles']['default']['color'] : '',
-	'default_bg_color' => isset( $attributes['tabStyles']['default']['bgColor'] ) ? $attributes['tabStyles']['default']['bgColor'] : '',
-	'active_color'     => isset( $attributes['tabStyles']['active']['color'] ) ? $attributes['tabStyles']['active']['color'] : '',
-	'active_bg_color'  => isset( $attributes['tabStyles']['active']['bgColor'] ) ? $attributes['tabStyles']['active']['bgColor'] : '',
-	'letter_case'      => isset( $attributes['tabStyles']['letterCase'] ) ? $attributes['tabStyles']['letterCase'] : '',
-	'decoration'       => isset( $attributes['tabStyles']['decoration'] ) ? $attributes['tabStyles']['decoration'] : '',
-	'line_height'      => isset( $attributes['tabStyles']['lineHeight'] ) ? $attributes['tabStyles']['lineHeight'] : '',
-	'letter_spacing'   => isset( $attributes['tabStyles']['letterSpacing'] ) ? $attributes['tabStyles']['letterSpacing'] : '',
+	'gap'              => isset( $attributes['tabGap'] ) ? esc_attr( $attributes['tabGap'] ) : '',
+	'font'             => array(
+		'size'   => isset( $attributes['tabStyles']['fontSize'] ) ? cozy_addons_sanitize_dimension( $attributes['tabStyles']['fontSize'] ) : '',
+		'weight' => isset( $attributes['tabStyles']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['tabStyles']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['fontFamily'] ) ) : '',
+	),
+	'letter_case'      => isset( $attributes['tabStyles']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['letterCase'] ) ) : '',
+	'decoration'       => isset( $attributes['tabStyles']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['decoration'] ) ) : '',
+	'line_height'      => isset( $attributes['tabStyles']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['tabStyles']['lineHeight'] ) : '',
+	'letter_spacing'   => isset( $attributes['tabStyles']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['tabStyles']['letterSpacing'] ) : '',
+	'default_color'    => isset( $attributes['tabStyles']['default']['color'] ) ? esc_attr( $attributes['tabStyles']['default']['color'] ) : '',
+	'default_bg_color' => isset( $attributes['tabStyles']['default']['bgColor'] ) ? esc_attr( $attributes['tabStyles']['default']['bgColor'] ) : '',
+	'active_color'     => isset( $attributes['tabStyles']['active']['color'] ) ? esc_attr( $attributes['tabStyles']['active']['color'] ) : '',
+	'active_bg_color'  => isset( $attributes['tabStyles']['active']['bgColor'] ) ? esc_attr( $attributes['tabStyles']['active']['bgColor'] ) : '',
 );
 
-$active_tab_overlay = isset( $attributes['separatorStyles']['border']['bottom']['width'] ) ? $attributes['separatorStyles']['border']['bottom']['width'] : '';
+$active_tab_overlay = isset( $attributes['separatorStyles']['border']['bottom']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['separatorStyles']['border']['bottom']['width'] ) : '';
+
+$icon_box_padding = isset( $attributes['iconBox']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['iconBox']['padding'] ) : '';
+$icon_box_border  = isset( $attributes['iconBox']['border'] ) ? cozy_render_TRBL( 'border', $attributes['iconBox']['border'] ) : '';
+$icon_box_styles  = array(
+	'radius'              => isset( $attributes['iconBox']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['iconBox']['radius'] ) : '',
+	'bg_color'            => isset( $attributes['iconBox']['bgColor'] ) ? $attributes['iconBox']['bgColor'] : '',
+	'bg_color_active'     => isset( $attributes['iconBox']['bgColorActive'] ) ? $attributes['iconBox']['bgColorActive'] : '',
+	'border_color_active' => isset( $attributes['iconBox']['borderColorActive'] ) ? $attributes['iconBox']['borderColorActive'] : '',
+);
+$icon_opacity     = number_format( ( floatval( $attributes['icon']['opacity'] ) / 100 ), 2 );
+$icon_styles      = array(
+	'size'           => isset( $attributes['icon']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['icon']['size'] ) : '',
+	'stroke_width'   => 'outline' === $attributes['icon']['layout'] ? cozy_addons_sanitize_dimension( $attributes['icon']['strokeWidth'] ) : '',
+	'stroke_opacity' => 'outline' === $attributes['icon']['layout'] ? number_format( floatval( $attributes['icon']['opacity'] / 100 ), 2 ) : '',
+);
+
+$styles = array(
+	'column'   => isset( $attributes['gridOptions']['columnCount'] ) ? cozy_addons_sanitize_dimension( $attributes['gridOptions']['columnCount'] ) : '',
+	'gap'      => isset( $attributes['gridOptions']['gap'] ) ? cozy_addons_sanitize_dimension( $attributes['gridOptions']['gap'] ) : '',
+	'list_gap' => isset( $attributes['listOptions']['gap'] ) ? cozy_addons_sanitize_dimension( $attributes['listOptions']['gap'] ) : '',
+	'height'   => isset( $attributes['sliderOptions']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['sliderOptions']['height'] ) : '',
+);
 
 $item_padding    = cozy_render_TRBL( 'padding', $attributes['itemStyles']['padding'] );
 $item_border     = isset( $attributes['itemStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['itemStyles']['border'] ) : '';
 $item_text_align = isset( $attributes['itemStyles']['textAlignment'] ) ? $attributes['itemStyles']['textAlignment'] : 'left';
+$item_styles     = array(
+	'radius' => isset( $attributes['itemStyles']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['itemStyles']['radius'] ) : '',
+	'shadow' => array(
+		'horizontal' => isset( $attributes['itemStyles']['shadow']['horizontal'] ) ? esc_attr( $attributes['itemStyles']['shadow']['horizontal'] ) : '',
+		'vertical'   => isset( $attributes['itemStyles']['shadow']['vertical'] ) ? esc_attr( $attributes['itemStyles']['shadow']['vertical'] ) : '',
+		'blur'       => isset( $attributes['itemStyles']['shadow']['blur'] ) ? esc_attr( $attributes['itemStyles']['shadow']['blur'] ) : '',
+		'spread'     => isset( $attributes['itemStyles']['shadow']['spread'] ) ? esc_attr( $attributes['itemStyles']['shadow']['spread'] ) : '',
+		'position'   => isset( $attributes['itemStyles']['shadow']['position'] ) ? esc_attr( sanitize_text_field( $attributes['itemStyles']['shadow']['position'] ) ) : '',
+	),
+);
 $item_color      = array(
 	'shadow'       => isset( $attributes['itemStyles']['shadow']['color'] ) ? $attributes['itemStyles']['shadow']['color'] : '',
 	'bg'           => isset( $attributes['itemStyles']['bgColor'] ) ? $attributes['itemStyles']['bgColor'] : '',
@@ -63,29 +127,15 @@ $item_color      = array(
 	'border_hover' => isset( $attributes['itemStyles']['borderColorHover'] ) ? $attributes['itemStyles']['borderColorHover'] : '',
 );
 
-$icon_box_padding = cozy_render_TRBL( 'padding', $attributes['iconBox']['padding'] );
-$icon_box_border  = isset( $attributes['iconBox']['border'] ) ? cozy_render_TRBL( 'border', $attributes['iconBox']['border'] ) : '';
-$icon_box_styles  = array(
-	'bg_color'            => isset( $attributes['iconBox']['bgColor'] ) ? $attributes['iconBox']['bgColor'] : '',
-	'bg_color_active'     => isset( $attributes['iconBox']['bgColorActive'] ) ? $attributes['iconBox']['bgColorActive'] : '',
-	'border_color_active' => isset( $attributes['iconBox']['borderColorActive'] ) ? $attributes['iconBox']['borderColorActive'] : '',
-);
-$icon_opacity     = number_format( ( floatval( $attributes['icon']['opacity'] ) / 100 ), 2 );
-$icon_styles      = array(
-	'stroke_width'   => 'outline' === $attributes['icon']['layout'] ? $attributes['icon']['strokeWidth'] : '',
-	'stroke_opacity' => 'outline' === $attributes['icon']['layout'] ? number_format( floatval( $attributes['icon']['opacity'] / 100 ), 2 ) : '',
-);
-
 $img_radius    = cozy_render_TRBL( 'border-radius', $attributes['imageStyles']['radius'] );
 $product_image = array(
-	'margin'   => array(
-		'top'    => isset( $attributes['imageStyles']['margin']['top'] ) ? $attributes['imageStyles']['margin']['top'] : '0px',
-		'bottom' => isset( $attributes['imageStyles']['margin']['bottom'] ) ? $attributes['imageStyles']['margin']['bottom'] : '0px',
-	),
-	'fit'      => isset( $attributes['imageStyles']['objectFit'] ) ? $attributes['imageStyles']['objectFit'] : '',
-	'position' => isset( $attributes['imageStyles']['objectPosition'] ) ? $attributes['imageStyles']['objectPosition'] : '',
+	'margin'   => isset( $attributes['imageStyles']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['imageStyles']['margin'] ) : '',
+	'width'    => isset( $attributes['imageStyles']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['imageStyles']['width'] ) : '',
+	'height'   => isset( $attributes['imageStyles']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['imageStyles']['height'] ) : '',
+	'fit'      => isset( $attributes['imageStyles']['objectFit'] ) ? esc_attr( sanitize_text_field( $attributes['imageStyles']['objectFit'] ) ) : '',
+	'position' => isset( $attributes['imageStyles']['objectPosition'] ) ? esc_attr( sanitize_text_field( $attributes['imageStyles']['objectPosition'] ) ) : '',
 	'color'    => array(
-		'overlay' => isset( $attributes['imageStyles']['overlay'] ) ? $attributes['imageStyles']['overlay'] : '',
+		'overlay' => isset( $attributes['imageStyles']['overlay'] ) ? esc_attr( $attributes['imageStyles']['overlay'] ) : '',
 	),
 );
 
@@ -96,97 +146,196 @@ $sale_badge_color   = array(
 	'bg'   => isset( $attributes['saleBadge']['bgColor'] ) ? $attributes['saleBadge']['bgColor'] : '',
 );
 $sale_badge_styles  = array(
-	'letter_case'    => isset( $attributes['saleBadge']['letterCase'] ) ? $attributes['saleBadge']['letterCase'] : '',
-	'decoration'     => isset( $attributes['saleBadge']['decoration'] ) ? $attributes['saleBadge']['decoration'] : '',
-	'line_height'    => isset( $attributes['saleBadge']['lineHeight'] ) ? $attributes['saleBadge']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['saleBadge']['letterSpacing'] ) ? $attributes['saleBadge']['letterSpacing'] : '',
+	'top'            => isset( $attributes['saleBadge']['top'] ) ? esc_attr( $attributes['saleBadge']['top'] ) : '',
+	'left'           => isset( $attributes['saleBadge']['left'] ) ? esc_attr( $attributes['saleBadge']['left'] ) : '',
+	'right'          => isset( $attributes['saleBadge']['right'] ) ? esc_attr( $attributes['saleBadge']['right'] ) : '',
+	'rotate'         => isset( $attributes['saleBadge']['rotate'] ) ? esc_attr( $attributes['saleBadge']['rotate'] ) : '',
+	'radius'         => isset( $attributes['saleBadge']['radius'] ) ? esc_attr( $attributes['saleBadge']['radius'] ) : '',
+	'font'           => array(
+		'size'   => isset( $attributes['saleBadge']['fontSize'] ) ? esc_attr( $attributes['saleBadge']['fontSize'] ) : '',
+		'weight' => isset( $attributes['saleBadge']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['saleBadge']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['saleBadge']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['saleBadge']['fontFamily'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['saleBadge']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['saleBadge']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['saleBadge']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['saleBadge']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['saleBadge']['lineHeight'] ) ? esc_attr( $attributes['saleBadge']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['saleBadge']['letterSpacing'] ) ? esc_attr( $attributes['saleBadge']['letterSpacing'] ) : '',
 );
 
-$util_icon        = array(
-	'size'       => isset( $attributes['utilIcon']['size'] ) ? $attributes['utilIcon']['size'] : '',
-	'gap'        => isset( $attributes['utilIcon']['gap'] ) ? $attributes['utilIcon']['gap'] : '',
+$util_icon = array(
+	'size'       => isset( $attributes['utilIcon']['size'] ) ? esc_attr( $attributes['utilIcon']['size'] ) : '',
+	'gap'        => isset( $attributes['utilIcon']['gap'] ) ? esc_attr( $attributes['utilIcon']['gap'] ) : '',
 	'margin'     => array(
-		'top'    => 'top' === $attributes['utilIcon']['align']['vertical'] ? $attributes['utilIcon']['margin']['top'] . 'px' : '',
-		'right'  => 'right' === $attributes['utilIcon']['align']['horizontal'] ? $attributes['utilIcon']['margin']['right'] : '',
-		'bottom' => 'bottom' === $attributes['utilIcon']['align']['vertical'] ? $attributes['utilIcon']['margin']['top'] . 'px' : '',
-		'left'   => 'left' === $attributes['utilIcon']['align']['horizontal'] ? $attributes['utilIcon']['margin']['left'] : '',
+		'top'    => 'top' === $attributes['utilIcon']['align']['vertical'] ? esc_attr( $attributes['utilIcon']['margin']['top'] ) . 'px' : '',
+		'right'  => 'right' === $attributes['utilIcon']['align']['horizontal'] ? esc_attr( $attributes['utilIcon']['margin']['right'] ) : '',
+		'bottom' => 'bottom' === $attributes['utilIcon']['align']['vertical'] ? esc_attr( $attributes['utilIcon']['margin']['top'] ) . 'px' : '',
+		'left'   => 'left' === $attributes['utilIcon']['align']['horizontal'] ? esc_attr( $attributes['utilIcon']['margin']['left'] ) : '',
 	),
-	'box_width'  => isset( $attributes['utilIcon']['box']['width'] ) ? $attributes['utilIcon']['box']['width'] : '',
-	'box_height' => isset( $attributes['utilIcon']['box']['height'] ) ? $attributes['utilIcon']['box']['height'] : '',
+	'box_width'  => isset( $attributes['utilIcon']['box']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['utilIcon']['box']['width'] ) : '',
+	'box_height' => isset( $attributes['utilIcon']['box']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['utilIcon']['box']['height'] ) : '',
 	'border'     => isset( $attributes['utilIcon']['box']['border'] ) ? cozy_render_TRBL( 'border', $attributes['utilIcon']['box']['border'] ) : '',
-	'radius'     => isset( $attributes['utilIcon']['box']['radius'] ) ? $attributes['utilIcon']['box']['radius'] : '',
+	'radius'     => isset( $attributes['utilIcon']['box']['radius'] ) ? esc_attr( $attributes['utilIcon']['box']['radius'] ) : '',
 	'color'      => array(
-		'text'          => isset( $attributes['utilIcon']['color']['text'] ) ? $attributes['utilIcon']['color']['text'] : '',
-		'text_hover'    => isset( $attributes['utilIcon']['color']['textHover'] ) ? $attributes['utilIcon']['color']['textHover'] : '',
-		'text_active'   => isset( $attributes['utilIcon']['color']['textActive'] ) ? $attributes['utilIcon']['color']['textActive'] : '',
-		'bg'            => isset( $attributes['utilIcon']['color']['bg'] ) ? $attributes['utilIcon']['color']['bg'] : '',
-		'bg_hover'      => isset( $attributes['utilIcon']['color']['bgHover'] ) ? $attributes['utilIcon']['color']['bgHover'] : '',
-		'bg_active'     => isset( $attributes['utilIcon']['color']['bgActive'] ) ? $attributes['utilIcon']['color']['bgActive'] : '',
-		'border_hover'  => isset( $attributes['utilIcon']['color']['borderHover'] ) ? $attributes['utilIcon']['color']['borderHover'] : '',
-		'border_active' => isset( $attributes['utilIcon']['color']['borderActive'] ) ? $attributes['utilIcon']['color']['borderActive'] : '',
+		'text'          => isset( $attributes['utilIcon']['color']['text'] ) ? esc_attr( $attributes['utilIcon']['color']['text'] ) : '',
+		'text_hover'    => isset( $attributes['utilIcon']['color']['textHover'] ) ? esc_attr( $attributes['utilIcon']['color']['textHover'] ) : '',
+		'text_active'   => isset( $attributes['utilIcon']['color']['textActive'] ) ? esc_attr( $attributes['utilIcon']['color']['textActive'] ) : '',
+		'bg'            => isset( $attributes['utilIcon']['color']['bg'] ) ? esc_attr( $attributes['utilIcon']['color']['bg'] ) : '',
+		'bg_hover'      => isset( $attributes['utilIcon']['color']['bgHover'] ) ? esc_attr( $attributes['utilIcon']['color']['bgHover'] ) : '',
+		'bg_active'     => isset( $attributes['utilIcon']['color']['bgActive'] ) ? esc_attr( $attributes['utilIcon']['color']['bgActive'] ) : '',
+		'border_hover'  => isset( $attributes['utilIcon']['color']['borderHover'] ) ? esc_attr( $attributes['utilIcon']['color']['borderHover'] ) : '',
+		'border_active' => isset( $attributes['utilIcon']['color']['borderActive'] ) ? esc_attr( $attributes['utilIcon']['color']['borderActive'] ) : '',
 	),
 );
-$toast_card       = array(
-	'font'     => array(
-		'size'   => isset( $attributes['toast']['font']['size'] ) ? $attributes['toast']['font']['size'] : '',
-		'family' => isset( $attributes['toast']['font']['family'] ) ? $attributes['toast']['font']['family'] : '',
-		'weight' => isset( $attributes['toast']['font']['weight'] ) ? $attributes['toast']['font']['size'] : '',
-	),
-	'color'    => array(
-		'text' => isset( $attributes['toast']['color']['text'] ) ? $attributes['toast']['color']['text'] : '',
-		'bg'   => isset( $attributes['toast']['color']['bg'] ) ? $attributes['toast']['color']['bg'] : '',
-	),
-	'padding'  => isset( $attributes['toast']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['toast']['padding'] ) : '',
-	'border'   => isset( $attributes['toast']['border'] ) ? cozy_render_TRBL( 'border', $attributes['toast']['border'] ) : '',
-	'radius'   => isset( $attributes['toast']['radius'] ) ? $attributes['toast']['radius'] : '',
-	'position' => array(
-		'vertical'   => isset( $attributes['toast']['position']['vertical'] ) ? $attributes['toast']['position']['vertical'] : '',
-		'horizontal' => isset( $attributes['toast']['position']['horizontal'] ) ? $attributes['toast']['position']['horizontal'] : '',
-	),
-);
-$quick_view_modal = array(
 
+$cat_padding = isset( $attributes['categoryStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['categoryStyles']['padding'] ) : '';
+$cat_border  = isset( $attributes['categoryStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['categoryStyles']['border'] ) : '';
+$cat_styles  = array(
+	'gap'                => isset( $attributes['categoryStyles']['gap'] ) ? esc_attr( $attributes['categoryStyles']['gap'] ) : '',
+	'margin'             => array(
+		'top'    => isset( $attributes['categoryStyles']['marginTop'] ) ? esc_attr( $attributes['categoryStyles']['marginTop'] ) : '',
+		'bottom' => isset( $attributes['categoryStyles']['marginBottom'] ) ? esc_attr( $attributes['categoryStyles']['marginBottom'] ) : '',
+	),
+	'radius'             => isset( $attributes['categoryStyles']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['radius'] ) : '',
+	'font'               => array(
+		'size'   => isset( $attributes['categoryStyles']['fontSize'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['fontSize'] ) : '',
+		'weight' => isset( $attributes['categoryStyles']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['categoryStyles']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['categoryStyles']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['categoryStyles']['fontFamily'] ) ) : '',
+	),
+	'letter_case'        => isset( $attributes['categoryStyles']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['categoryStyles']['letterCase'] ) ) : '',
+	'decoration'         => isset( $attributes['categoryStyles']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['categoryStyles']['decoration'] ) ) : '',
+	'line_height'        => isset( $attributes['categoryStyles']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['lineHeight'] ) : '',
+	'letter_spacing'     => isset( $attributes['categoryStyles']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['letterSpacing'] ) : '',
+	'color'              => isset( $attributes['categoryStyles']['color'] ) ? esc_attr( $attributes['categoryStyles']['color'] ) : '',
+	'color_hover'        => isset( $attributes['categoryStyles']['colorHover'] ) ? esc_attr( $attributes['categoryStyles']['colorHover'] ) : '',
+	'bg_color'           => isset( $attributes['categoryStyles']['bgColor'] ) ? esc_attr( $attributes['categoryStyles']['bgColor'] ) : '',
+	'bg_color_hover'     => isset( $attributes['categoryStyles']['bgColorHover'] ) ? esc_attr( $attributes['categoryStyles']['bgColorHover'] ) : '',
+	'border_color_hover' => isset( $attributes['categoryStyles']['borderColorHover'] ) ? esc_attr( $attributes['categoryStyles']['borderColorHover'] ) : '',
+);
+
+$title_color  = array(
+	'text'       => isset( $attributes['title']['color'] ) ? esc_attr( $attributes['title']['color'] ) : '',
+	'text_hover' => isset( $attributes['title']['colorHover'] ) ? esc_attr( $attributes['title']['colorHover'] ) : '',
+);
+$title_styles = array(
+	'margin'         => array(
+		'top'    => isset( $attributes['title']['marginTop'] ) ? esc_attr( $attributes['title']['marginTop'] ) : '',
+		'bottom' => isset( $attributes['title']['marginBottom'] ) ? esc_attr( $attributes['title']['marginBottom'] ) : '',
+	),
+	'font'           => array(
+		'size'   => isset( $attributes['title']['fontSize'] ) ? cozy_addons_sanitize_dimension( $attributes['title']['fontSize'] ) : '',
+		'weight' => isset( $attributes['title']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['title']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['title']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['title']['fontFamily'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['title']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['title']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['title']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['title']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['title']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['title']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['title']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['title']['letterSpacing'] ) : '',
+);
+
+$price_color  = array(
+	'text' => isset( $attributes['price']['color'] ) ? esc_attr( $attributes['price']['color'] ) : '',
+);
+$price_styles = array(
+	'margin'         => array(
+		'top'    => isset( $attributes['price']['marginTop'] ) ? cozy_addons_sanitize_dimension( $attributes['price']['marginTop'] ) : '',
+		'bottom' => isset( $attributes['price']['marginBottom'] ) ? cozy_addons_sanitize_dimension( $attributes['price']['marginBottom'] ) : '',
+	),
+	'font'           => array(
+		'size'   => isset( $attributes['price']['fontSize'] ) ? cozy_addons_sanitize_dimension( $attributes['price']['fontSize'] ) : '',
+		'weight' => isset( $attributes['price']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['price']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['price']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['price']['fontFamily'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['price']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['price']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['price']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['price']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['price']['lineHeight'] ) ? esc_attr( $attributes['price']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['price']['letterSpacing'] ) ? esc_attr( $attributes['price']['letterSpacing'] ) : '',
+);
+
+$rating_color  = array(
+	'text' => isset( $attributes['rating']['color'] ) ? esc_attr( $attributes['rating']['color'] ) : '',
+);
+$rating_styles = array(
+	'margin'         => array(
+		'top'    => isset( $attributes['rating']['marginTop'] ) ? esc_attr( $attributes['rating']['marginTop'] ) : '',
+		'bottom' => isset( $attributes['rating']['marginBottom'] ) ? esc_attr( $attributes['rating']['marginBottom'] ) : '',
+	),
+	'font'           => array(
+		'size'   => isset( $attributes['rating']['fontSize'] ) ? cozy_addons_sanitize_dimension( $attributes['rating']['fontSize'] ) : '',
+		'weight' => isset( $attributes['rating']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['rating']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['rating']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['rating']['fontFamily'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['rating']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['rating']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['rating']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['rating']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['rating']['lineHeight'] ) ? esc_attr( $attributes['rating']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['rating']['letterSpacing'] ) ? esc_attr( $attributes['rating']['letterSpacing'] ) : '',
+);
+
+$cart_button = array(
+	'width'          => isset( $attributes['cartButton']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['cartButton']['width'] ) : '',
+	'margin'         => isset( $attributes['cartButton']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['cartButton']['margin'] ) : '',
+	'padding'        => isset( $attributes['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cartButton']['padding'] ) : '',
+	'border'         => isset( $attributes['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cartButton']['border'] ) : '',
+	'radius'         => isset( $attributes['cartButton']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['cartButton']['radius'] ) : '',
+	'font'           => array(
+		'size'   => isset( $attributes['cartButton']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['cartButton']['font']['size'] ) : '',
+		'weight' => isset( $attributes['cartButton']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['cartButton']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['cartButton']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['cartButton']['font']['family'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['cartButton']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['cartButton']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['cartButton']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['cartButton']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['cartButton']['lineHeight'] ) ? esc_attr( $attributes['cartButton']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['cartButton']['letterSpacing'] ) ? esc_attr( $attributes['cartButton']['letterSpacing'] ) : '',
+	'color'          => array(
+		'text'         => isset( $attributes['cartButton']['color']['text'] ) ? esc_attr( $attributes['cartButton']['color']['text'] ) : '',
+		'text_hover'   => isset( $attributes['cartButton']['color']['textHover'] ) ? esc_attr( $attributes['cartButton']['color']['textHover'] ) : '',
+		'bg'           => isset( $attributes['cartButton']['color']['bg'] ) ? esc_attr( $attributes['cartButton']['color']['bg'] ) : '',
+		'bg_hover'     => isset( $attributes['cartButton']['color']['bgHover'] ) ? esc_attr( $attributes['cartButton']['color']['bgHover'] ) : '',
+		'border_hover' => isset( $attributes['cartButton']['color']['borderHover'] ) ? esc_attr( $attributes['cartButton']['color']['borderHover'] ) : '',
+	),
+);
+
+$quick_view_modal = array(
 	'title'       => array(
 		'font'         => array(
-			'size'   => isset( $attributes['quickViewModal']['productTitle']['font']['size'] ) ? $attributes['quickViewModal']['productTitle']['font']['size'] : '',
-			'family' => isset( $attributes['quickViewModal']['productTitle']['font']['family'] ) ? $attributes['quickViewModal']['productTitle']['font']['family'] : '',
-			'weight' => isset( $attributes['quickViewModal']['productTitle']['font']['weight'] ) ? $attributes['quickViewModal']['productTitle']['font']['weight'] : '',
+			'size'   => isset( $attributes['quickViewModal']['productTitle']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['quickViewModal']['productTitle']['font']['size'] ) : '',
+			'family' => isset( $attributes['quickViewModal']['productTitle']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['productTitle']['font']['family'] ) ) : '',
+			'weight' => isset( $attributes['quickViewModal']['productTitle']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['productTitle']['font']['weight'] ) ) : '',
 		),
-		'lettercase'   => isset( $attributes['quickViewModal']['productTitle']['letterCase'] ) ? $attributes['quickViewModal']['productTitle']['letterCase'] : '',
+		'lettercase'   => isset( $attributes['quickViewModal']['productTitle']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['productTitle']['letterCase'] ) ) : '',
 		'color'        => array(
-			'text'       => isset( $attributes['quickViewModal']['productTitle']['color']['text'] ) ? $attributes['quickViewModal']['productTitle']['color']['text'] : '',
-			'text_hover' => isset( $attributes['quickViewModal']['productTitle']['color']['textHover'] ) ? $attributes['quickViewModal']['productTitle']['color']['textHover'] : '',
+			'text'       => isset( $attributes['quickViewModal']['productTitle']['color']['text'] ) ? esc_attr( $attributes['quickViewModal']['productTitle']['color']['text'] ) : '',
+			'text_hover' => isset( $attributes['quickViewModal']['productTitle']['color']['textHover'] ) ? esc_attr( $attributes['quickViewModal']['productTitle']['color']['textHover'] ) : '',
 		),
-		'marginTop'    => isset( $attributes['quickViewModal']['productTitle']['marginTop'] ) ? $attributes['quickViewModal']['productTitle']['marginTop'] : '',
-		'marginBottom' => isset( $attributes['quickViewModal']['productTitle']['marginBottom'] ) ? $attributes['quickViewModal']['productTitle']['marginBottom'] : '',
+		'marginTop'    => isset( $attributes['quickViewModal']['productTitle']['marginTop'] ) ? esc_attr( $attributes['quickViewModal']['productTitle']['marginTop'] ) : '',
+		'marginBottom' => isset( $attributes['quickViewModal']['productTitle']['marginBottom'] ) ? esc_attr( $attributes['quickViewModal']['productTitle']['marginBottom'] ) : '',
 	),
 	'categories'  => array(
 		'padding'    => array( $attributes['quickViewModal']['productCategories']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['quickViewModal']['productCategories']['padding'] ) : '',
 		'font'       => array(
-			'size'   => isset( $attributes['quickViewModal']['productCategories']['font']['size'] ) ? $attributes['quickViewModal']['productCategories']['font']['size'] : '',
-			'family' => isset( $attributes['quickViewModal']['productCategories']['font']['family'] ) ? $attributes['quickViewModal']['productCategories']['font']['family'] : '',
-			'weight' => isset( $attributes['quickViewModal']['productCategories']['font']['weight'] ) ? $attributes['quickViewModal']['productCategories']['font']['weight'] : '',
+			'size'   => isset( $attributes['quickViewModal']['productCategories']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['quickViewModal']['productCategories']['font']['size'] ) : '',
+			'family' => isset( $attributes['quickViewModal']['productCategories']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['productCategories']['font']['family'] ) ) : '',
+			'weight' => isset( $attributes['quickViewModal']['productCategories']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['productCategories']['font']['weight'] ) ) : '',
 		),
-		'lettercase' => isset( $attributes['quickViewModal']['productCategories']['letterCase'] ) ? $attributes['quickViewModal']['productCategories']['letterCase'] : '',
+		'lettercase' => isset( $attributes['quickViewModal']['productCategories']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['productCategories']['letterCase'] ) ) : '',
 		'color'      => array(
-			'text'             => isset( $attributes['quickViewModal']['productCategories']['color']['text'] ) ? $attributes['quickViewModal']['productCategories']['color']['text'] : '',
-			'text_hover'       => isset( $attributes['quickViewModal']['productCategories']['color']['textHover'] ) ? $attributes['quickViewModal']['productCategories']['color']['textHover'] : '',
-			'background'       => isset( $attributes['quickViewModal']['productCategories']['color']['textHover'] ) ? $attributes['quickViewModal']['productCategories']['color']['bg'] : '',
-			'background_hover' => isset( $attributes['quickViewModal']['productCategories']['color']['textHover'] ) ? $attributes['quickViewModal']['productCategories']['color']['bgHover'] : '',
+			'text'             => isset( $attributes['quickViewModal']['productCategories']['color']['text'] ) ? esc_attr( $attributes['quickViewModal']['productCategories']['color']['text'] ) : '',
+			'text_hover'       => isset( $attributes['quickViewModal']['productCategories']['color']['textHover'] ) ? esc_attr( $attributes['quickViewModal']['productCategories']['color']['textHover'] ) : '',
+			'background'       => isset( $attributes['quickViewModal']['productCategories']['color']['textHover'] ) ? esc_attr( $attributes['quickViewModal']['productCategories']['color']['bg'] ) : '',
+			'background_hover' => isset( $attributes['quickViewModal']['productCategories']['color']['textHover'] ) ? esc_attr( $attributes['quickViewModal']['productCategories']['color']['bgHover'] ) : '',
 		),
 	),
 	'content'     => array(
 		'font'         => array(
-			'size'   => isset( $attributes['quickViewModal']['productContent']['font']['size'] ) ? $attributes['quickViewModal']['productContent']['font']['size'] : '',
-			'family' => isset( $attributes['quickViewModal']['productContent']['font']['family'] ) ? $attributes['quickViewModal']['productContent']['font']['family'] : '',
-			'weight' => isset( $attributes['quickViewModal']['productContent']['font']['weight'] ) ? $attributes['quickViewModal']['productContent']['font']['weight'] : '',
+			'size'   => isset( $attributes['quickViewModal']['productContent']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['quickViewModal']['productContent']['font']['size'] ) : '',
+			'family' => isset( $attributes['quickViewModal']['productContent']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['productContent']['font']['family'] ) ) : '',
+			'weight' => isset( $attributes['quickViewModal']['productContent']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['productContent']['font']['weight'] ) ) : '',
 		),
-		'lettercase'   => isset( $attributes['quickViewModal']['productContent']['letterCase'] ) ? $attributes['quickViewModal']['productContent']['letterCase'] : '',
+		'lettercase'   => isset( $attributes['quickViewModal']['productContent']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['productContent']['letterCase'] ) ) : '',
 		'color'        => array(
-			'text' => isset( $attributes['quickViewModal']['productContent']['color']['text'] ) ? $attributes['quickViewModal']['productContent']['color']['text'] : '',
+			'text' => isset( $attributes['quickViewModal']['productContent']['color']['text'] ) ? esc_attr( $attributes['quickViewModal']['productContent']['color']['text'] ) : '',
 		),
-		'marginTop'    => isset( $attributes['quickViewModal']['productContent']['marginTop'] ) ? $attributes['quickViewModal']['productContent']['marginTop'] : '',
-		'marginBottom' => isset( $attributes['quickViewModal']['productContent']['marginBottom'] ) ? $attributes['quickViewModal']['productContent']['marginBottom'] : '',
+		'marginTop'    => isset( $attributes['quickViewModal']['productContent']['marginTop'] ) ? cozy_addons_sanitize_dimension( $attributes['quickViewModal']['productContent']['marginTop'] ) : '',
+		'marginBottom' => isset( $attributes['quickViewModal']['productContent']['marginBottom'] ) ? cozy_addons_sanitize_dimension( $attributes['quickViewModal']['productContent']['marginBottom'] ) : '',
 	),
 	'price'       => array(
 		'font'       => array(
@@ -202,128 +351,72 @@ $quick_view_modal = array(
 	'cart_button' => array(
 		'padding'    => isset( $attributes['quickViewModal']['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['quickViewModal']['cartButton']['padding'] ) : '',
 		'font'       => array(
-			'size'   => isset( $attributes['quickViewModal']['cartButton']['font']['size'] ) ? $attributes['quickViewModal']['cartButton']['font']['size'] : '',
-			'family' => isset( $attributes['quickViewModal']['cartButton']['font']['family'] ) ? $attributes['quickViewModal']['cartButton']['font']['family'] : '',
-			'weight' => isset( $attributes['quickViewModal']['cartButton']['font']['weight'] ) ? $attributes['quickViewModal']['cartButton']['font']['weight'] : '',
+			'size'   => isset( $attributes['quickViewModal']['cartButton']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['quickViewModal']['cartButton']['font']['size'] ) : '',
+			'family' => isset( $attributes['quickViewModal']['cartButton']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['cartButton']['font']['family'] ) ) : '',
+			'weight' => isset( $attributes['quickViewModal']['cartButton']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['cartButton']['font']['weight'] ) ) : '',
 		),
-		'lettercase' => isset( $attributes['quickViewModal']['cartButton']['letterCase'] ) ? $attributes['quickViewModal']['cartButton']['letterCase'] : '',
+		'lettercase' => isset( $attributes['quickViewModal']['cartButton']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['cartButton']['letterCase'] ) ) : '',
 		'border'     => isset( $attributes['quickViewModal']['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['quickViewModal']['cartButton']['border'] ) : '',
-		'radius'     => isset( $attributes['quickViewModal']['cartButton']['radius'] ) ? $attributes['quickViewModal']['cartButton']['radius'] : '',
+		'radius'     => isset( $attributes['quickViewModal']['cartButton']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['quickViewModal']['cartButton']['radius'] ) : '',
 		'color'      => array(
-			'text'       => isset( $attributes['quickViewModal']['cartButton']['color']['text'] ) ? $attributes['quickViewModal']['cartButton']['color']['text'] : '',
-			'text_hover' => isset( $attributes['quickViewModal']['cartButton']['color']['textHover'] ) ? $attributes['quickViewModal']['cartButton']['color']['textHover'] : '',
-			'bg'         => isset( $attributes['quickViewModal']['cartButton']['color']['bg'] ) ? $attributes['quickViewModal']['cartButton']['color']['bg'] : '',
-			'bg_hover'   => isset( $attributes['quickViewModal']['cartButton']['color']['bgHover'] ) ? $attributes['quickViewModal']['cartButton']['color']['bgHover'] : '',
+			'text'       => isset( $attributes['quickViewModal']['cartButton']['color']['text'] ) ? esc_attr( $attributes['quickViewModal']['cartButton']['color']['text'] ) : '',
+			'text_hover' => isset( $attributes['quickViewModal']['cartButton']['color']['textHover'] ) ? esc_attr( $attributes['quickViewModal']['cartButton']['color']['textHover'] ) : '',
+			'bg'         => isset( $attributes['quickViewModal']['cartButton']['color']['bg'] ) ? esc_attr( $attributes['quickViewModal']['cartButton']['color']['bg'] ) : '',
+			'bg_hover'   => isset( $attributes['quickViewModal']['cartButton']['color']['bgHover'] ) ? esc_attr( $attributes['quickViewModal']['cartButton']['color']['bgHover'] ) : '',
 		),
 	),
 	'view_button' => array(
 		'padding'    => isset( $attributes['quickViewModal']['viewCartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['quickViewModal']['viewCartButton']['padding'] ) : '',
 		'font'       => array(
-			'size'   => isset( $attributes['quickViewModal']['viewCartButton']['font']['size'] ) ? $attributes['quickViewModal']['viewCartButton']['font']['size'] : '',
-			'family' => isset( $attributes['quickViewModal']['viewCartButton']['font']['family'] ) ? $attributes['quickViewModal']['viewCartButton']['font']['family'] : '',
-			'weight' => isset( $attributes['quickViewModal']['viewCartButton']['font']['weight'] ) ? $attributes['quickViewModal']['viewCartButton']['font']['weight'] : '',
+			'size'   => isset( $attributes['quickViewModal']['viewCartButton']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['quickViewModal']['viewCartButton']['font']['size'] ) : '',
+			'family' => isset( $attributes['quickViewModal']['viewCartButton']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['viewCartButton']['font']['family'] ) ) : '',
+			'weight' => isset( $attributes['quickViewModal']['viewCartButton']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['viewCartButton']['font']['weight'] ) ) : '',
 		),
-		'lettercase' => isset( $attributes['quickViewModal']['viewCartButton']['letterCase'] ) ? $attributes['quickViewModal']['viewCartButton']['letterCase'] : '',
+		'lettercase' => isset( $attributes['quickViewModal']['viewCartButton']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['quickViewModal']['viewCartButton']['letterCase'] ) ) : '',
 		'border'     => isset( $attributes['quickViewModal']['viewCartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['quickViewModal']['viewCartButton']['border'] ) : '',
-		'radius'     => isset( $attributes['quickViewModal']['viewCartButton']['radius'] ) ? $attributes['quickViewModal']['viewCartButton']['radius'] : '',
+		'radius'     => isset( $attributes['quickViewModal']['viewCartButton']['radius'] ) ? esc_attr( $attributes['quickViewModal']['viewCartButton']['radius'] ) : '',
 		'color'      => array(
-			'text'       => isset( $attributes['quickViewModal']['viewCartButton']['color']['text'] ) ? $attributes['quickViewModal']['viewCartButton']['color']['text'] : '',
-			'text_hover' => isset( $attributes['quickViewModal']['viewCartButton']['color']['textHover'] ) ? $attributes['quickViewModal']['viewCartButton']['color']['textHover'] : '',
-			'bg'         => isset( $attributes['quickViewModal']['viewCartButton']['color']['bg'] ) ? $attributes['quickViewModal']['viewCartButton']['color']['bg'] : '',
-			'bg_hover'   => isset( $attributes['quickViewModal']['viewCartButton']['color']['bgHover'] ) ? $attributes['quickViewModal']['viewCartButton']['color']['bgHover'] : '',
+			'text'       => isset( $attributes['quickViewModal']['viewCartButton']['color']['text'] ) ? esc_attr( $attributes['quickViewModal']['viewCartButton']['color']['text'] ) : '',
+			'text_hover' => isset( $attributes['quickViewModal']['viewCartButton']['color']['textHover'] ) ? esc_attr( $attributes['quickViewModal']['viewCartButton']['color']['textHover'] ) : '',
+			'bg'         => isset( $attributes['quickViewModal']['viewCartButton']['color']['bg'] ) ? esc_attr( $attributes['quickViewModal']['viewCartButton']['color']['bg'] ) : '',
+			'bg_hover'   => isset( $attributes['quickViewModal']['viewCartButton']['color']['bgHover'] ) ? esc_attr( $attributes['quickViewModal']['viewCartButton']['color']['bgHover'] ) : '',
 		),
-	),
-);
-$cat_padding      = cozy_render_TRBL( 'padding', $attributes['categoryStyles']['padding'] );
-$cat_border       = isset( $attributes['categoryStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['categoryStyles']['border'] ) : '';
-$cat_styles       = array(
-	'color'              => isset( $attributes['categoryStyles']['color'] ) ? $attributes['categoryStyles']['color'] : '',
-	'color_hover'        => isset( $attributes['categoryStyles']['colorHover'] ) ? $attributes['categoryStyles']['colorHover'] : '',
-	'bg_color'           => isset( $attributes['categoryStyles']['bgColor'] ) ? $attributes['categoryStyles']['bgColor'] : '',
-	'bg_color_hover'     => isset( $attributes['categoryStyles']['bgColorHover'] ) ? $attributes['categoryStyles']['bgColorHover'] : '',
-	'border_color_hover' => isset( $attributes['categoryStyles']['borderColorHover'] ) ? $attributes['categoryStyles']['borderColorHover'] : '',
-	'letter_case'        => isset( $attributes['categoryStyles']['letterCase'] ) ? $attributes['categoryStyles']['letterCase'] : '',
-	'decoration'         => isset( $attributes['categoryStyles']['decoration'] ) ? $attributes['categoryStyles']['decoration'] : '',
-	'line_height'        => isset( $attributes['categoryStyles']['lineHeight'] ) ? $attributes['categoryStyles']['lineHeight'] : '',
-	'letter_spacing'     => isset( $attributes['categoryStyles']['letterSpacing'] ) ? $attributes['categoryStyles']['letterSpacing'] : '',
-);
-
-$title_color  = array(
-	'text'       => isset( $attributes['title']['color'] ) ? $attributes['title']['color'] : '',
-	'text_hover' => isset( $attributes['title']['colorHover'] ) ? $attributes['title']['colorHover'] : '',
-);
-$title_styles = array(
-	'letter_case'    => isset( $attributes['title']['letterCase'] ) ? $attributes['title']['letterCase'] : '',
-	'decoration'     => isset( $attributes['title']['decoration'] ) ? $attributes['title']['decoration'] : '',
-	'line_height'    => isset( $attributes['title']['lineHeight'] ) ? $attributes['title']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['title']['letterSpacing'] ) ? $attributes['title']['letterSpacing'] : '',
-);
-
-$price_color  = array(
-	'text' => isset( $attributes['price']['color'] ) ? $attributes['price']['color'] : '',
-);
-$price_styles = array(
-	'letter_case'    => isset( $attributes['price']['letterCase'] ) ? $attributes['price']['letterCase'] : '',
-	'decoration'     => isset( $attributes['price']['decoration'] ) ? $attributes['price']['decoration'] : '',
-	'line_height'    => isset( $attributes['price']['lineHeight'] ) ? $attributes['price']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['price']['letterSpacing'] ) ? $attributes['price']['letterSpacing'] : '',
-);
-
-$rating_color  = array(
-	'text' => isset( $attributes['rating']['color'] ) ? $attributes['rating']['color'] : '',
-);
-$rating_styles = array(
-	'letter_case'    => isset( $attributes['rating']['letterCase'] ) ? $attributes['rating']['letterCase'] : '',
-	'decoration'     => isset( $attributes['rating']['decoration'] ) ? $attributes['rating']['decoration'] : '',
-	'line_height'    => isset( $attributes['rating']['lineHeight'] ) ? $attributes['rating']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['rating']['letterSpacing'] ) ? $attributes['rating']['letterSpacing'] : '',
-);
-
-$cart_button = array(
-	'width'          => isset( $attributes['cartButton']['width'] ) ? $attributes['cartButton']['width'] : '',
-	'margin'         => array(
-		'top'    => isset( $attributes['cartButton']['margin']['top'] ) ? $attributes['cartButton']['margin']['top'] : '',
-		'bottom' => isset( $attributes['cartButton']['margin']['bottom'] ) ? $attributes['cartButton']['margin']['bottom'] : '',
-	),
-	'padding'        => isset( $attributes['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cartButton']['padding'] ) : '',
-	'border'         => isset( $attributes['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cartButton']['border'] ) : '',
-	'radius'         => isset( $attributes['cartButton']['radius'] ) ? $attributes['cartButton']['radius'] : '',
-	'font'           => array(
-		'size'   => isset( $attributes['cartButton']['font']['size'] ) ? $attributes['cartButton']['font']['size'] : '',
-		'weight' => isset( $attributes['cartButton']['font']['weight'] ) ? $attributes['cartButton']['font']['weight'] : '',
-		'family' => isset( $attributes['cartButton']['font']['family'] ) ? $attributes['cartButton']['font']['family'] : '',
-	),
-	'letter_case'    => isset( $attributes['cartButton']['letterCase'] ) ? $attributes['cartButton']['letterCase'] : '',
-	'decoration'     => isset( $attributes['cartButton']['decoration'] ) ? $attributes['cartButton']['decoration'] : '',
-	'line_height'    => isset( $attributes['cartButton']['lineHeight'] ) ? $attributes['cartButton']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['cartButton']['letterSpacing'] ) ? $attributes['cartButton']['letterSpacing'] : '',
-	'color'          => array(
-		'text'         => isset( $attributes['cartButton']['color']['text'] ) ? $attributes['cartButton']['color']['text'] : '',
-		'text_hover'   => isset( $attributes['cartButton']['color']['textHover'] ) ? $attributes['cartButton']['color']['textHover'] : '',
-		'bg'           => isset( $attributes['cartButton']['color']['bg'] ) ? $attributes['cartButton']['color']['bg'] : '',
-		'bg_hover'     => isset( $attributes['cartButton']['color']['bgHover'] ) ? $attributes['cartButton']['color']['bgHover'] : '',
-		'border_hover' => isset( $attributes['cartButton']['color']['borderHover'] ) ? $attributes['cartButton']['color']['borderHover'] : '',
 	),
 );
 
 $nav_border = isset( $attributes['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['navigation']['border'] ) : '';
 $nav_styles = array(
-	'color'              => isset( $attributes['navigation']['color'] ) ? $attributes['navigation']['color'] : '',
-	'color_hover'        => isset( $attributes['navigation']['colorHover'] ) ? $attributes['navigation']['colorHover'] : '',
-	'bg_color'           => isset( $attributes['navigation']['bgColor'] ) ? $attributes['navigation']['bgColor'] : '',
-	'bg_color_hover'     => isset( $attributes['navigation']['bgColorHover'] ) ? $attributes['navigation']['bgColorHover'] : '',
-	'border_color_hover' => isset( $attributes['navigation']['borderColorHover'] ) ? $attributes['navigation']['borderColorHover'] : '',
+	'box_width'          => isset( $attributes['navigation']['boxWidth'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['boxWidth'] ) : '',
+	'box_height'         => isset( $attributes['navigation']['boxHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['boxHeight'] ) : '',
+	'size'               => isset( $attributes['navigation']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['size'] ) : '',
+	'radius'             => isset( $attributes['navigation']['radius'] ) ? esc_attr( $attributes['navigation']['radius'] ) : '',
+	'color'              => isset( $attributes['navigation']['color'] ) ? esc_attr( $attributes['navigation']['color'] ) : '',
+	'color_hover'        => isset( $attributes['navigation']['colorHover'] ) ? esc_attr( $attributes['navigation']['colorHover'] ) : '',
+	'bg_color'           => isset( $attributes['navigation']['bgColor'] ) ? esc_attr( $attributes['navigation']['bgColor'] ) : '',
+	'bg_color_hover'     => isset( $attributes['navigation']['bgColorHover'] ) ? esc_attr( $attributes['navigation']['bgColorHover'] ) : '',
+	'border_color_hover' => isset( $attributes['navigation']['borderColorHover'] ) ? esc_attr( $attributes['navigation']['borderColorHover'] ) : '',
 );
 
 $bullet_outline = isset( $attributes['pagination']['active']['border'] ) ? cozy_render_TRBL( 'outline', $attributes['pagination']['active']['border'] ) : '';
-$bullet_styles  = array(
-	'default_color'       => isset( $attributes['pagination']['default']['color'] ) ? $attributes['pagination']['default']['color'] : '',
-	'default_color_hover' => isset( $attributes['pagination']['default']['colorHover'] ) ? $attributes['pagination']['default']['colorHover'] : '',
-	'active_color'        => isset( $attributes['pagination']['active']['color'] ) ? $attributes['pagination']['active']['color'] : '',
-	'active_color_hover'  => isset( $attributes['pagination']['active']['colorHover'] ) ? $attributes['pagination']['active']['colorHover'] : '',
-	'align'               => isset( $attributes['pagination']['align'] ) ? $attributes['pagination']['align'] : 'center',
-	'left'                => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? $attributes['pagination']['left'] : '',
-	'right'               => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? $attributes['pagination']['right'] : '',
+$bullet         = array(
+	'gap'                 => isset( $attributes['pagination']['gap'] ) ? esc_attr( $attributes['pagination']['gap'] ) : '',
+	'bottom'              => isset( $attributes['pagination']['verticalPosition'] ) ? esc_attr( $attributes['pagination']['verticalPosition'] ) : '',
+	'align'               => isset( $attributes['pagination']['align'] ) ? esc_attr( sanitize_text_field( $attributes['pagination']['align'] ) ) : 'center',
+	'left'                => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? esc_attr( $attributes['pagination']['left'] ) : '',
+	'right'               => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? esc_attr( $attributes['pagination']['right'] ) : '',
+	'width'               => isset( $attributes['pagination']['default']['width'] ) ? esc_attr( $attributes['pagination']['default']['width'] ) : '',
+	'height'              => isset( $attributes['pagination']['default']['height'] ) ? esc_attr( $attributes['pagination']['default']['height'] ) : '',
+	'radius'              => isset( $attributes['pagination']['default']['radius'] ) ? esc_attr( $attributes['pagination']['default']['radius'] ) : '',
+	'active'              => array(
+		'width'  => isset( $attributes['pagination']['active']['width'] ) ? esc_attr( $attributes['pagination']['active']['width'] ) : '',
+		'height' => isset( $attributes['pagination']['active']['height'] ) ? esc_attr( $attributes['pagination']['active']['height'] ) : '',
+		'radius' => isset( $attributes['pagination']['active']['radius'] ) ? esc_attr( $attributes['pagination']['active']['radius'] ) : '',
+		'offset' => isset( $attributes['pagination']['active']['offset'] ) ? esc_attr( $attributes['pagination']['active']['offset'] ) : '',
+	),
+	'default_color'       => isset( $attributes['pagination']['default']['color'] ) ? esc_attr( $attributes['pagination']['default']['color'] ) : '',
+	'default_color_hover' => isset( $attributes['pagination']['default']['colorHover'] ) ? esc_attr( $attributes['pagination']['default']['colorHover'] ) : '',
+	'active_color'        => isset( $attributes['pagination']['active']['color'] ) ? esc_attr( $attributes['pagination']['active']['color'] ) : '',
+	'active_color_hover'  => isset( $attributes['pagination']['active']['colorHover'] ) ? esc_attr( $attributes['pagination']['active']['colorHover'] ) : '',
 );
 
 $column1 = $attributes['gridOptions']['columnCount'] <= 3 ? $attributes['gridOptions']['columnCount'] : 3;
@@ -342,9 +435,9 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 	margin-bottom:{$toast_card['position']['vertical']};
 }
 #$block_id .cozy-block-featured-product-tabs__tab-heading {
-	font-size: clamp(18px, calc(3vw + 4px), {$attributes['tabHeading']['fontSize']});
-	font-weight: {$attributes['tabHeading']['fontWeight']};
-	font-family: {$attributes['tabHeading']['fontFamily']};
+	font-size: clamp(18px, calc(3vw + 4px), {$tab_heading['font']['size']});
+	font-weight: {$tab_heading['font']['weight']};
+	font-family: {$tab_heading['font']['family']};
 	text-transform: {$tab_heading['letter_case']};
 	text-decoration: {$tab_heading['decoration']};
 	line-height: {$tab_heading['line_height']};
@@ -356,12 +449,12 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 	{$separator_padding}
 	{$separator_border}
 	{$separator_radius}
-	margin-top: {$attributes['tabStyles']['marginTop']};
-	margin-bottom: {$attributes['tabStyles']['marginBottom']};
+	margin-top: {$separator_styles['margin']['top']};
+	margin-bottom: {$separator_styles['margin']['bottom']};
 }
 	
 #$block_id .cozy-block-featured-product-tabs__tabs {
-	gap: {$attributes['tabGap']};
+	gap: {$tab_styles['gap']};
 	background-color: {$separator_styles['bg_color']};
 }
 
@@ -371,9 +464,9 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
     {$default_tab_border}
     background-color: {$tab_styles['default_bg_color']};
     color: {$tab_styles['default_color']};
-	font-size: clamp(16px, calc(3vw + 4px), {$attributes['tabStyles']['fontSize']});
-    font-family: {$attributes['tabStyles']['fontFamily']};
-    font-weight: {$attributes['tabStyles']['fontWeight']};
+	font-size: clamp(16px, calc(3vw + 4px), {$tab_styles['font']['size']});
+    font-weight: {$tab_styles['font']['weight']};
+    font-family: {$tab_styles['font']['family']};
 	text-transform: {$tab_styles['letter_case']};
 	text-decoration: {$tab_styles['decoration']};
 	line-height: {$tab_styles['line_height']};
@@ -391,7 +484,7 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 #$block_id .cozy-block-featured-product-tabs__icon-wrapper.view-stacked {
 	{$icon_box_padding}
 	{$icon_box_border}
-    border-radius: {$attributes['iconBox']['radius']};
+    border-radius: {$icon_box_styles['radius']};
     background-color: {$icon_box_styles['bg_color']};
 }
 #$block_id .active-tab .cozy-block-featured-product-tabs__icon-wrapper.view-stacked {
@@ -399,8 +492,8 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
     border-color: {$icon_box_styles['border_color_active']};
 }
 #$block_id .cozy-block-featured-product-tabs__icon {
-    width: {$attributes['icon']['size']};
-    height: {$attributes['icon']['size']};
+    width: {$icon_styles['size']};
+    height: {$icon_styles['size']};
 }
 #$block_id .layout-fill .cozy-block-featured-product-tabs__icon {
     opacity: {$icon_opacity};
@@ -421,9 +514,8 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 }
 
 #$block_id .cozy-block-featured-product-tabs__grid-wrapper {
-    grid-template-columns: repeat({$attributes['gridOptions']['columnCount']}, 1fr);
-    column-gap: {$attributes['gridOptions']['gap']};
-    row-gap: {$attributes['gridOptions']['gap']};
+    grid-template-columns: repeat({$styles['column']}, 1fr);
+    gap: {$styles['gap']};
 }
 @media screen and (max-width: 1024px) { 
     #$block_id .cozy-block-featured-product-tabs__grid-wrapper {
@@ -442,22 +534,22 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 }
 
 #$block_id .cozy-block-featured-product-tabs__list-wrapper .cozy-block-featured-product-tabs__item {
-    margin-bottom: {$attributes['listOptions']['gap']};
+    margin-bottom: {$styles['list_gap']};
 }
 
 #$block_id.swiper-vertical .swiper-wrapper {
-    height: {$attributes['sliderOptions']['height']};
+    height: {$styles['height']};
 }
 
 #$block_id .cozy-block-featured-product-tabs__item {
 	{$item_padding}
 	{$item_border}
-	border-radius: {$attributes['itemStyles']['radius']};
+	border-radius: {$item_styles['radius']};
 	background-color: {$item_color['bg']};
 	text-align: {$item_text_align};
 }
 #$block_id.item-has-shadow .cozy-block-featured-product-tabs__item {
-	box-shadow: {$attributes['itemStyles']['shadow']['horizontal']}px {$attributes['itemStyles']['shadow']['vertical']}px {$attributes['itemStyles']['shadow']['blur']}px {$attributes['itemStyles']['shadow']['spread']}px {$item_color['shadow']} {$attributes['itemStyles']['shadow']['position']};
+	box-shadow: {$item_styles['shadow']['horizontal']}px {$item_styles['shadow']['vertical']}px {$item_styles['shadow']['blur']}px {$item_styles['shadow']['spread']}px {$item_color['shadow']} {$item_styles['shadow']['position']};
 }
 #$block_id.item-has-shadow .cozy-block-featured-product-tabs__item:hover {
 	border-color: {$item_color['border_hover']};
@@ -465,18 +557,18 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 }
 
 #$block_id .cozy-block-featured-product-tabs__featured-image {
-    max-height: {$attributes['imageStyles']['height']};
-	margin-top: {$product_image['margin']['top']};
-	margin-bottom: {$product_image['margin']['bottom']};
+    max-height: {$product_image['height']};
+	{$product_image['margin']}
+    {$img_radius}
 }
 #$block_id:not(.display-list) .cozy-block-featured-product-tabs__featured-image {
-    max-width: {$attributes['imageStyles']['width']};
+    max-width: {$product_image['width']};
 }
 #$block_id.display-list .cozy-block-featured-product-tabs__featured-image {
-    min-width: {$attributes['imageStyles']['width']};
+    min-width: {$product_image['width']};
 }
 #$block_id .cozy-block-featured-product-tabs__featured-image img {
-    height: {$attributes['imageStyles']['height']};
+    height: {$product_image['height']};
     {$img_radius}
 	object-fit: {$product_image['fit']};
 	object-position: {$product_image['position']};
@@ -487,7 +579,7 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 	}
 
 	#$block_id .cozy-block-featured-product-tabs__featured-image img {
-    	max-height: {$attributes['imageStyles']['height']};
+    	max-height: {$product_image['height']};
 	}
 }
 
@@ -499,24 +591,24 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 #$block_id .cozy-block-featured-product-tabs__sale-badge {
     {$sale_badge_padding}
     {$sale_badge_border}
-    border-radius: {$attributes['saleBadge']['radius']};
+    border-radius: {$sale_badge_styles['radius']};
     color: {$sale_badge_color['text']};
     background-color: {$sale_badge_color['bg']};
-    font-size: {$attributes['saleBadge']['fontSize']};
-    font-weight: {$attributes['saleBadge']['fontWeight']};
-    font-family: {$attributes['saleBadge']['fontFamily']};
+    font-size: {$sale_badge_styles['font']['size']};
+    font-weight: {$sale_badge_styles['font']['weight']};
+    font-family: {$sale_badge_styles['font']['family']};
 	text-transform: {$sale_badge_styles['letter_case']};
 	text-decoration: {$sale_badge_styles['decoration']};
 	line-height: {$sale_badge_styles['line_height']};
 	letter-spacing: {$sale_badge_styles['letter_spacing']};
-    top: {$attributes['saleBadge']['top']}px;
-    transform: rotate({$attributes['saleBadge']['rotate']}deg);
+    top: {$sale_badge_styles['top']}px;
+    transform: rotate({$sale_badge_styles['rotate']}deg);
 }
 #$block_id .cozy-block-featured-product-tabs__sale-badge.position-left {
-    left: {$attributes['saleBadge']['left']}px;
+    left: {$sale_badge_styles['left']}px;
 }
 #$block_id .cozy-block-featured-product-tabs__sale-badge.position-right {
-    right: {$attributes['saleBadge']['right']}px;
+    right: {$sale_badge_styles['right']}px;
 }
 
 #$block_id .cozy-block-featured-product-tabs__icon-container {
@@ -558,12 +650,12 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 }
 
 #$block_id .cozy-block-featured-product-tabs__product-categories {
-	gap: {$attributes['categoryStyles']['gap']};
-	font-size: {$attributes['categoryStyles']['fontSize']};
-	font-family: {$attributes['categoryStyles']['fontFamily']};
-	font-weight: {$attributes['categoryStyles']['fontWeight']};
-	margin-top: {$attributes['categoryStyles']['marginTop']};
-	margin-bottom: {$attributes['categoryStyles']['marginBottom']};
+	gap: {$cat_styles['gap']};
+	margin-top: {$cat_styles['margin']['top']};
+	margin-bottom: {$cat_styles['margin']['bottom']};
+	font-size: {$cat_styles['font']['size']};
+	font-weight: {$cat_styles['font']['weight']};
+	font-family: {$cat_styles['font']['family']};
 	text-transform: {$cat_styles['letter_case']};
 	line-height: {$cat_styles['line_height']};
 	letter-spacing: {$cat_styles['letter_spacing']};
@@ -571,7 +663,7 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 #$block_id .cozy-block-featured-product-tabs__product-categories a {
 	{$cat_padding}
 	{$cat_border}
-	border-radius: {$attributes['categoryStyles']['radius']};
+	border-radius: {$cat_styles['radius']};
 	text-decoration: {$cat_styles['decoration']};
 	color: {$cat_styles['color']};
 	background-color: {$cat_styles['bg_color']};
@@ -583,11 +675,11 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 }
 
 #$block_id .cozy-block-featured-product-tabs__product-title, #$block_id .post__title {
-	margin-top: {$attributes['title']['marginTop']};
-	margin-bottom: {$attributes['title']['marginBottom']};
-    font-size: clamp(16px, calc(3vw + 4px), {$attributes['title']['fontSize']});
-    font-family: {$attributes['title']['fontFamily']};
-    font-weight: {$attributes['title']['fontWeight']};
+	margin-top: {$title_styles['margin']['top']};
+	margin-bottom: {$title_styles['margin']['bottom']};
+    font-size: clamp(16px, calc(3vw + 4px), {$title_styles['font']['size']});
+    font-weight: {$title_styles['font']['weight']};
+    font-family: {$title_styles['font']['family']};
 	text-transform: {$title_styles['letter_case']};
 	line-height: {$title_styles['line_height']};
 	letter-spacing: {$title_styles['letter_spacing']};
@@ -601,11 +693,11 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 }
 
 #$block_id .cozy-block-featured-product-tabs__product-price, #$block_id .post__price {
-    margin-top: {$attributes['price']['marginTop']};
-    margin-bottom: {$attributes['price']['marginBottom']};
-    font-size: {$attributes['price']['fontSize']};
-    font-weight: {$attributes['price']['fontWeight']};
-    font-family: {$attributes['price']['fontFamily']};
+    margin-top: {$price_styles['margin']['top']};
+    margin-bottom: {$price_styles['margin']['bottom']};
+    font-size: {$price_styles['font']['size']};
+    font-weight: {$price_styles['font']['weight']};
+    font-family: {$price_styles['font']['family']};
 	text-transform: {$price_styles['letter_case']};
 	text-decoration: {$price_styles['decoration']};
 	line-height: {$price_styles['line_height']};
@@ -614,11 +706,11 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 }
 
 #$block_id .cozy-block-featured-product-tabs__product-rating, #$block_id .post__rating {
-    margin-top: {$attributes['rating']['marginTop']};
-    margin-bottom: {$attributes['rating']['marginBottom']};
-    font-size: {$attributes['rating']['fontSize']};
-    font-weight: {$attributes['rating']['fontWeight']};
-    font-family: {$attributes['rating']['fontFamily']};
+    margin-top: {$rating_styles['margin']['top']};
+    margin-bottom: {$rating_styles['margin']['bottom']};
+    font-size: {$rating_styles['font']['size']};
+    font-weight: {$rating_styles['font']['weight']};
+    font-family: {$rating_styles['font']['family']};
 	text-transform: {$rating_styles['letter_case']};
 	text-decoration: {$rating_styles['decoration']};
 	line-height: {$rating_styles['line_height']};
@@ -629,9 +721,8 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 #$block_id .cozy-block-featured-product-tabs__product-detail .post__cart-button-has-link,
 #$block_id .cozy-block-featured-product-tabs__product-detail .post__cart-button {
 	width: {$cart_button['width']};
-    margin-top: {$cart_button['margin']['top']};
-    margin-bottom: {$cart_button['margin']['bottom']};
     {$cart_button['padding']}
+    {$cart_button['margin']}
     {$cart_button['border']}
     border-radius: {$cart_button['radius']};
     font-size: {$cart_button['font']['size']};
@@ -723,14 +814,14 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 
 #$block_id .swiper-button-prev::after,
 #$block_id .swiper-button-next::after {
-	font-size: {$attributes['navigation']['size']};
+	font-size: {$nav_styles['size']};
 }
 #$block_id .swiper-button-prev,
 #$block_id .swiper-button-next {
-	width: {$attributes['navigation']['boxWidth']};
-	height: {$attributes['navigation']['boxHeight']};
+	width: {$nav_styles['box_width']};
+	height: {$nav_styles['box_height']};
 	{$nav_border}
-	border-radius: {$attributes['navigation']['radius']};
+	border-radius: {$nav_styles['radius']};
 	color: {$nav_styles['color']};
 	background-color: {$nav_styles['bg_color']};
 }
@@ -742,36 +833,36 @@ body #$block_id.cozy-featured-product-tabs.toast-message {
 }
 
 #$block_id .swiper-pagination {
-	bottom: {$attributes['pagination']['verticalPosition']}px;
-    text-align: {$bullet_styles['align']};
-    padding-left: {$bullet_styles['left']};
-    padding-right: {$bullet_styles['right']};
+	bottom: {$bullet['bottom']}px;
+    text-align: {$bullet['align']};
+    padding-left: {$bullet['left']};
+    padding-right: {$bullet['right']};
 }
 #$block_id .swiper-pagination .swiper-pagination-bullet {
-	width: {$attributes['pagination']['default']['width']};
-	height: {$attributes['pagination']['default']['height']};
-	border-radius: {$attributes['pagination']['default']['radius']};
-	background-color: {$bullet_styles['default_color']};
+	width: {$bullet['width']};
+	height: {$bullet['height']};
+	border-radius: {$bullet['radius']};
+	background-color: {$bullet['default_color']};
 }
 #$block_id .swiper-pagination .swiper-pagination-bullet-active {
-	width: {$attributes['pagination']['active']['width']};
-	height: {$attributes['pagination']['active']['height']};
-	border-radius: {$attributes['pagination']['active']['radius']};
-	background-color: {$bullet_styles['active_color']};
+	width: {$bullet['active']['width']};
+	height: {$bullet['active']['height']};
+	border-radius: {$bullet['active']['radius']};
+	background-color: {$bullet['active_color']};
 	{$bullet_outline}
-	outline-offset: {$attributes['pagination']['active']['offset']};
+	outline-offset: {$bullet['active']['offset']};
 }
 #$block_id .swiper-pagination .swiper-pagination-bullet:hover {
-	background-color: {$bullet_styles['default_color_hover']};
+	background-color: {$bullet['default_color_hover']};
 }
 #$block_id .swiper-pagination .swiper-pagination-bullet-active:hover {
-	background-color: {$bullet_styles['active_color_hover']};
+	background-color: {$bullet['active_color_hover']};
 }
 #$block_id:has(.swiper-horizontal) .swiper-pagination-bullets .swiper-pagination-bullet {
-	margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$attributes['pagination']['gap']});
+	margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet['gap']});
 }
 #$block_id:has(.swiper-vertical) .swiper-pagination-bullets .swiper-pagination-bullet {
-	margin: var(--swiper-pagination-bullet-vertical-gap, {$attributes['pagination']['gap']}) 0;
+	margin: var(--swiper-pagination-bullet-vertical-gap, {$bullet['gap']}) 0;
 }
 ";
 
@@ -781,20 +872,33 @@ $classes[] = 'display-' . $attributes['display'];
 $classes[] = $attributes['navigation']['hoverShow'] ? 'nav-hover-show' : '';
 $classes[] = $attributes['tabStyles']['active']['tabOverlay'] ? 'has-tab-overlay' : '';
 $classes[] = $attributes['itemStyles']['shadow']['enabled'] ? 'item-has-shadow' : '';
-$output    = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
+$output    = '<div class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '" id="' . esc_attr( $block_id ) . '">';
 
 // Tabs.
 $inline_styles   = array();
 $inline_styles[] = 'display:flex';
 $inline_styles[] = 'flex-wrap:wrap';
 $inline_styles[] = 'align-items:center';
-$inline_styles[] = 'justify-content:' . $attributes['tabJustification'];
-$inline_styles[] = 'gap:' . $attributes['tabHeading']['gap'];
+$inline_styles[] = 'justify-content:' . sanitize_text_field( $attributes['tabJustification'] );
+$inline_styles[] = 'gap:' . cozy_addons_sanitize_dimension( $attributes['tabHeading']['gap'] );
 
-$output .= '<div class="cozy-block-featured-product-tabs__header-wrap" style="' . implode( ';', $inline_styles ) . '">';
+$output .= '<div class="cozy-block-featured-product-tabs__header-wrap" style="' . esc_attr( implode( ';', $inline_styles ) ) . '">';
+
+$allowed_tags = array(
+	'h1',
+	'h2',
+	'h3',
+	'h4',
+	'h5',
+	'h6',
+	'p',
+	'div',
+	'span',
+);
 if ( $attributes['tabHeading']['enabled'] ) {
 	$heading_content = esc_html( $attributes['tabHeading']['content'] );
-	$output         .= sprintf( '<%1$s class="cozy-block-featured-product-tabs__tab-heading">%2$s</%1$s>', $attributes['tabHeading']['tag'], $heading_content );
+	$title_tag       = isset( $attributes['tabHeading']['tag'] ) && in_array( $attributes['tabHeading']['tag'], $allowed_tags, true ) ? $attributes['tabHeading']['tag'] : '';
+	$output         .= sprintf( '<%1$s class="cozy-block-featured-product-tabs__tab-heading">%2$s</%1$s>', esc_attr( $attributes['tabHeading']['tag'] ), esc_html( $heading_content ) );
 }
 
 $output .= '<article class="cozy-block-featured-product-tabs__tabs">';
@@ -817,28 +921,28 @@ foreach ( $cozy_featured_product_tabs as $key => $label ) {
 			$first_tab = $key;
 		}
 		$set_first_tab = true;
-		$output       .= '<div class="cozy-block-featured-product-tabs__tab' . $active_class . '" id="' . esc_attr( $key ) . '" data-index="' . $index . '">';
+		$output       .= '<div class="cozy-block-featured-product-tabs__tab' . esc_attr( $active_class ) . '" id="' . esc_attr( $key ) . '" data-index="' . esc_attr( $index ) . '">';
 		++$index;
 		if ( $attributes['icon']['enabled'] ) {
 			$output .= '<div style="display:flex;flex-wrap:wrap;gap:' . $attributes['icon']['gap'] . ';align-items:center;">';
 			if ( 'icon-only' === $attributes['icon']['position'] ) {
 				$output .= '<div class="cozy-block-featured-product-tabs__icon-wrapper view-' . $attributes['icon']['view'] . ' layout-' . $attributes['icon']['layout'] . '">';
-				$output .= '<svg class="cozy-block-featured-product-tabs__icon" xmlns="http://www.w3.org/2000/svg"	aria-hidden="true" viewBox="' . $attributes['icon'][ $key ]['viewBox']['vx'] . ' ' . $attributes['icon'][ $key ]['viewBox']['vy'] . ' ' . $attributes['icon'][ $key ]['viewBox']['vw'] . ' ' . $attributes['icon'][ $key ]['viewBox']['vh'] . '" stroke-width="' . $icon_styles['stroke_width'] . '" stroke-opacity="' . $icon_styles['stroke_opacity'] . '">';
-				$output .= '<path d="' . $attributes['icon'][ $key ]['path'] . '"></path>';
+				$output .= '<svg class="cozy-block-featured-product-tabs__icon" xmlns="http://www.w3.org/2000/svg"	aria-hidden="true" viewBox="' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vx'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vy'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vw'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vh'] ) ) . '" stroke-width="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_width'] ) . '" stroke-opacity="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_opacity'] ) . '">';
+				$output .= '<path d="' . esc_attr( $attributes['icon'][ $key ]['path'] ) . '"></path>';
 				$output .= '</svg>';
 				$output .= '</div>';
 			} elseif ( 'before' === $attributes['icon']['position'] ) {
 				$output .= '<div class="cozy-block-featured-product-tabs__icon-wrapper view-' . $attributes['icon']['view'] . ' layout-' . $attributes['icon']['layout'] . '">';
-				$output .= '<svg class="cozy-block-featured-product-tabs__icon" xmlns="http://www.w3.org/2000/svg"	aria-hidden="true" viewBox="' . $attributes['icon'][ $key ]['viewBox']['vx'] . ' ' . $attributes['icon'][ $key ]['viewBox']['vy'] . ' ' . $attributes['icon'][ $key ]['viewBox']['vw'] . ' ' . $attributes['icon'][ $key ]['viewBox']['vh'] . '" stroke-width="' . $icon_styles['stroke_width'] . '" stroke-opacity="' . $icon_styles['stroke_opacity'] . '">';
-				$output .= '<path d="' . $attributes['icon'][ $key ]['path'] . '"></path>';
+				$output .= '<svg class="cozy-block-featured-product-tabs__icon" xmlns="http://www.w3.org/2000/svg"	aria-hidden="true" viewBox="' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vx'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vy'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vw'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vh'] ) ) . '" stroke-width="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_width'] ) . '" stroke-opacity="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_opacity'] ) . '">';
+				$output .= '<path d="' . esc_attr( $attributes['icon'][ $key ]['path'] ) . '"></path>';
 				$output .= '</svg>';
 				$output .= '</div>';
 				$output .= '<p>' . $label . '</p>';
 			} else {
 				$output .= '<p>' . $label . '</p>';
 				$output .= '<div class="cozy-block-featured-product-tabs__icon-wrapper view-' . $attributes['icon']['view'] . ' layout-' . $attributes['icon']['layout'] . '">';
-				$output .= '<svg class="cozy-block-featured-product-tabs__icon" xmlns="http://www.w3.org/2000/svg"	aria-hidden="true" viewBox="' . $attributes['icon'][ $key ]['viewBox']['vx'] . ' ' . $attributes['icon'][ $key ]['viewBox']['vy'] . ' ' . $attributes['icon'][ $key ]['viewBox']['vw'] . ' ' . $attributes['icon'][ $key ]['viewBox']['vh'] . '" stroke-width="' . $icon_styles['stroke_width'] . '" stroke-opacity="' . $icon_styles['stroke_opacity'] . '">';
-				$output .= '<path d="' . $attributes['icon'][ $key ]['path'] . '"></path>';
+				$output .= '<svg class="cozy-block-featured-product-tabs__icon" xmlns="http://www.w3.org/2000/svg"	aria-hidden="true" viewBox="' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vx'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vy'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vw'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vh'] ) ) . '" stroke-width="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_width'] ) . '" stroke-opacity="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_opacity'] ) . '">';
+				$output .= '<path d="' . esc_attr( $attributes['icon'][ $key ]['path'] ) . '"></path>';
 				$output .= '</svg>';
 				$output .= '</div>';
 			}
@@ -1016,7 +1120,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 			$classes   = array();
 			$classes[] = 'cozy-block-featured-product-tabs__item';
 			$classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
-			$output   .= '<li class="' . implode( ' ', $classes ) . '" data-product-id="' . $product_data['id'] . '">';
+			$output   .= '<li class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '" data-product-id="' . $product_data['id'] . '">';
 
 			// Toast
 			$output .= '<div class="post__toast visibility-hidden">';
@@ -1037,7 +1141,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 				$classes   = array();
 				$classes[] = 'cozy-block-featured-product-tabs__featured-image';
 				$classes[] = $attributes['imageStyles']['hoverEffect'] ? 'has-hover-effect' : '';
-				$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
+				$output   .= '<figure class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '">';
 				$output   .= '<img src="' . esc_url( $product_data['image_url'] ) . '" />';
 
 				$has_post_link = isset( $attributes['productOptions']['imgLinkPost'] ) && $attributes['productOptions']['imgLinkPost'] ? 'href="' . esc_url( $product_data['link'] ) . '"' : '';
@@ -1054,7 +1158,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 					switch ( $attributes['saleBadge']['contentType'] ) {
 						case 'amount':
 							if ( isset( $product_data['discount_amt'] ) && ! empty( $product_data['discount_amt'] ) ) {
-								$output .= '<span class="' . implode( ' ', $classes ) . '">';
+								$output .= '<span class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '">';
 								$output .= esc_html( $attributes['saleBadge']['labelBefore'] );
 								$output .= '<span>' . $product_data['discount_amt'] . '</span>';
 								$output .= esc_html( $attributes['saleBadge']['labelAfter'] );
@@ -1064,7 +1168,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 
 						case 'percentage':
 							if ( isset( $product_data['discount_percentage'] ) && ! empty( $product_data['discount_percentage'] ) ) {
-								$output .= '<span class="' . implode( ' ', $classes ) . '">';
+								$output .= '<span class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '">';
 								$output .= esc_html( $attributes['saleBadge']['labelBefore'] );
 								$output .= $product_data['discount_percentage'];
 								$output .= esc_html( $attributes['saleBadge']['labelAfter'] );
@@ -1073,7 +1177,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 							break;
 
 						default:
-							$output .= '<span class="' . implode( ' ', $classes ) . '">';
+							$output .= '<span class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '">';
 							$output .= esc_html( $attributes['saleBadge']['labelBefore'] );
 							$output .= esc_html__( 'Sale', 'cozy-addons' );
 							$output .= esc_html( $attributes['saleBadge']['labelAfter'] );
@@ -1088,10 +1192,10 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 					$classes[] = 'align-vertical-' . ( isset( $attributes['utilIcon']['align']['vertical'] ) && ! empty( $attributes['utilIcon']['align']['vertical'] ) ? $attributes['utilIcon']['align']['vertical'] : 'top' );
 					$classes[] = 'align-horizontal-' . ( isset( $attributes['utilIcon']['align']['horizontal'] ) && ! empty( $attributes['utilIcon']['align']['horizontal'] ) ? $attributes['utilIcon']['align']['horizontal'] : 'right' );
 					$classes[] = $attributes['utilIcon']['hoverShow'] ? 'has-hover-show' : '';
-					$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+					$output   .= '<div class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '">';
 					if ( isset( $attributes['productOptions']['cart'] ) && $attributes['productOptions']['cart'] ) {
 						// Toggle wrapper class based on product type
-						$output .= '<div class="cozy-block-featured-product-tabs__util-icon-wrapper ' . ( in_array( $product_data['product_type'], array( 'variable', 'grouped', 'external' ) ) ? 'view-product__icon-wrapper' : 'cart__icon-wrapper' ) . '" data-product-id="' . $product_data['id'] . '">';
+						$output .= '<div class="cozy-block-featured-product-tabs__util-icon-wrapper ' . ( in_array( $product_data['product_type'], array( 'variable', 'grouped', 'external' ) ) ? 'view-product__icon-wrapper' : 'cart__icon-wrapper' ) . '" data-product-id="' . esc_attr( $product_data['id'] ) . '">';
 
 						if ( in_array( $product_data['product_type'], array( 'variable', 'grouped', 'external' ) ) ) {
 							// Redirect link for Variable, Grouped, or External products
@@ -1113,7 +1217,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 						$classes[]          = 'cozy-block-featured-product-tabs__util-icon-wrapper';
 						$classes[]          = 'wishlist__icon-wrapper';
 						$classes[]          = is_array( $wishlist_user_meta ) && is_user_logged_in() && in_array( intval( $product_data['id'] ), $wishlist_user_meta ) ? 'is-active' : '';
-						$output            .= '<div class="' . implode( ' ', $classes ) . '" data-product-id="' . esc_attr( $product_data['id'] ) . '" data-product-name="' . esc_attr( $product_data['title'] ) . '">';
+						$output            .= '<div class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '" data-product-id="' . esc_attr( $product_data['id'] ) . '" data-product-name="' . esc_attr( $product_data['title'] ) . '">';
 						$output            .= '<svg viewBox="0 0 14 12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">';
 						$output            .= '<path d="M12.6411 0.820517C11.1427 -0.430353 8.91423 -0.205357 7.53886 1.1848L7.0002 1.72854L6.46154 1.1848C5.08891 -0.205357 2.8577 -0.430353 1.35929 0.820517C-0.357861 2.25621 -0.448093 4.83294 1.0886 6.38917L6.37951 11.7409C6.7213 12.0864 7.27637 12.0864 7.61816 11.7409L12.9091 6.38917C14.4485 4.83294 14.3583 2.25621 12.6411 0.820517Z" />';
 						$output            .= '</svg>';
@@ -1121,7 +1225,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 					}
 
 					if ( isset( $attributes['productOptions']['quickView'] ) && $attributes['productOptions']['quickView'] ) {
-						$output .= '<div class="cozy-block-featured-product-tabs__util-icon-wrapper quick-view__icon-wrapper" data-product-id="' . $product_data['id'] . '">';
+						$output .= '<div class="cozy-block-featured-product-tabs__util-icon-wrapper quick-view__icon-wrapper" data-product-id="' . esc_attr( $product_data['id'] ) . '">';
 						$output .= '<svg viewBox="0 0 18 12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
 									<path d="M17.8913 5.54375C16.1966 2.23719 12.8416 0 9 0C5.15843 0 1.80249 2.23875 0.108733 5.54406C0.0372461 5.68547 0 5.8417 0 6.00016C0 6.15861 0.0372461 6.31484 0.108733 6.45625C1.80342 9.76281 5.15843 12 9 12C12.8416 12 16.1975 9.76125 17.8913 6.45594C17.9628 6.31453 18 6.1583 18 5.99984C18 5.84139 17.9628 5.68516 17.8913 5.54375ZM9 10.5C8.10998 10.5 7.23995 10.2361 6.49993 9.74161C5.75991 9.24715 5.18313 8.54434 4.84253 7.72208C4.50194 6.89981 4.41282 5.99501 4.58646 5.12209C4.76009 4.24918 5.18868 3.44736 5.81801 2.81802C6.44735 2.18868 7.24918 1.7601 8.12209 1.58647C8.99501 1.41283 9.89981 1.50195 10.7221 1.84254C11.5443 2.18314 12.2472 2.75991 12.7416 3.49993C13.2361 4.23995 13.5 5.10998 13.5 6C13.5003 6.59103 13.3841 7.17632 13.1581 7.72242C12.932 8.26851 12.6005 8.7647 12.1826 9.18262C11.7647 9.60054 11.2685 9.932 10.7224 10.158C10.1763 10.3841 9.59103 10.5003 9 10.5ZM9 3C8.73223 3.00374 8.46618 3.04358 8.20906 3.11844C8.42101 3.40646 8.52271 3.7609 8.49574 4.11748C8.46876 4.47406 8.31489 4.80917 8.06203 5.06203C7.80917 5.31489 7.47406 5.46876 7.11748 5.49574C6.7609 5.52271 6.40646 5.42101 6.11843 5.20906C5.95442 5.81331 5.98403 6.45377 6.20308 7.04031C6.42214 7.62685 6.81961 8.12993 7.33956 8.47874C7.85951 8.82754 8.47575 9.00452 9.10155 8.98475C9.72735 8.96498 10.3312 8.74946 10.8281 8.36853C11.325 7.9876 11.6899 7.46044 11.8715 6.86125C12.0531 6.26205 12.0422 5.62099 11.8404 5.0283C11.6386 4.43561 11.256 3.92114 10.7465 3.55728C10.2369 3.19343 9.62611 2.99853 9 3Z" />';
 						$output .= '</svg>';
@@ -1139,7 +1243,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 				$classes      = array();
 				$classes[]    = 'cozy-block-featured-product-tabs__product-categories';
 				$classes[]    = $attributes['categoryStyles']['hoverEffect'] ? 'has-hover-effect' : '';
-				$output      .= '<div class="' . implode( ' ', $classes ) . '">';
+				$output      .= '<div class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '">';
 				$open_new_tab = isset( $attributes['productOptions']['linkCat'], $attributes['productOptions']['catNewTab'] ) && $attributes['productOptions']['linkCat'] && $attributes['productOptions']['catNewTab'] ? '_blank' : '';
 				foreach ( $product_data['categories'] as $cat_data ) {
 					$has_cat_link = isset( $attributes['productOptions']['linkCat'] ) && $attributes['productOptions']['linkCat'] ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
@@ -1166,9 +1270,9 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 			$inline_styles[] = 'display:' . $price_rating_display . ';';
 			$inline_styles[] = 'align-items:center';
 			$inline_styles[] = 'flex-wrap:wrap';
-			$inline_styles[] = 'justify-content:' . $attributes['priceRatingWrapper']['justifyContent'];
-			$inline_styles[] = 'gap:' . $attributes['priceRatingWrapper']['gap'];
-			$output         .= '<div style="' . implode( ';', $inline_styles ) . '">';
+			$inline_styles[] = 'justify-content:' . sanitize_text_field( $attributes['priceRatingWrapper']['justifyContent'] );
+			$inline_styles[] = 'gap:' . cozy_addons_sanitize_dimension( $attributes['priceRatingWrapper']['gap'] );
+			$output         .= '<div style="' . esc_attr( implode( ';', $inline_styles ) ) . '">';
 			if ( $attributes['productOptions']['price'] ) {
 				$output .= '<p class="cozy-block-featured-product-tabs__product-price">' . $product_data['price'] . '</p>';
 			}
@@ -1178,7 +1282,7 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 				$output        .= '<div class="post__rating" style="display:inline;background: linear-gradient(90deg, #fcb900 ' . $rating_percent . ', rgba(0, 0, 0, 0.2) ' . $rating_percent . ')">';
 				$output        .= '★★★★★';
 				$output        .= '</div>';
-				$output        .= '<span style="display:block;">(' . number_format( floatval( $product_data['rating'] ), 1 ) . ' out of ' . $product_data['review_count'] . ' ' . _n( 'review', 'reviews', $product_data['review_count'], 'cozy-addons' ) . '.)</span>';
+				$output        .= '<span style="display:block;">(' . number_format( floatval( $product_data['rating'] ), 1 ) . ' out of ' . esc_html( $product_data['review_count'] ) . ' ' . _n( 'review', 'reviews', $product_data['review_count'], 'cozy-addons' ) . '.)</span>';
 				$output        .= '</div>';
 			}
 			$output .= '</div>';
@@ -1222,11 +1326,11 @@ foreach ( $cozy_featured_product_tabs as $key => $label ) {
 		$classes[] = 'cozy-block-featured-product-tabs__body';
 		$classes[] = 0 === $index ? 'active-content' : '';
 
-		$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+		$output   .= '<div class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '">';
 		$classes   = array();
 		$classes[] = 'cozy-block-featured-product-tabs__' . $attributes['display'] . '-wrapper';
 		$classes[] = 'carousel' === $attributes['display'] ? 'swiper-wrapper' : '';
-		$output   .= '<ul class="' . implode( ' ', $classes ) . '">';
+		$output   .= '<ul class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '">';
 		// $output   .= $cozy_featured_product_tabs[ $key ];
 		$output .= render_cozy_block_featured_product_tab_data( $key, $attributes, $output );
 		$output .= '</ul>';
@@ -1275,28 +1379,28 @@ $output .= '</div>';
 $font_families = array();
 
 if ( isset( $attributes['tabHeading']['fontFamily'] ) && ! empty( $attributes['tabHeading']['fontFamily'] ) ) {
-	$font_families[] = $attributes['tabHeading']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['tabHeading']['fontFamily'] );
 }
 if ( isset( $attributes['tabStyles']['fontFamily'] ) && ! empty( $attributes['tabStyles']['fontFamily'] ) ) {
-	$font_families[] = $attributes['tabStyles']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['tabStyles']['fontFamily'] );
 }
 if ( isset( $attributes['saleBadge']['fontFamily'] ) && ! empty( $attributes['saleBadge']['fontFamily'] ) ) {
-	$font_families[] = $attributes['saleBadge']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['saleBadge']['fontFamily'] );
 }
 if ( isset( $attributes['categoryStyles']['fontFamily'] ) && ! empty( $attributes['categoryStyles']['fontFamily'] ) ) {
-	$font_families[] = $attributes['categoryStyles']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['categoryStyles']['fontFamily'] );
 }
 if ( isset( $attributes['title']['fontFamily'] ) && ! empty( $attributes['title']['fontFamily'] ) ) {
-	$font_families[] = $attributes['title']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['title']['fontFamily'] );
 }
 if ( isset( $attributes['price']['fontFamily'] ) && ! empty( $attributes['price']['fontFamily'] ) ) {
-	$font_families[] = $attributes['price']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['price']['fontFamily'] );
 }
 if ( isset( $attributes['rating']['fontFamily'] ) && ! empty( $attributes['rating']['fontFamily'] ) ) {
-	$font_families[] = $attributes['rating']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['rating']['fontFamily'] );
 }
 if ( isset( $attributes['cartButton']['fontFamily'] ) && ! empty( $attributes['cartButton']['fontFamily'] ) ) {
-	$font_families[] = $attributes['cartButton']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['cartButton']['fontFamily'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -1304,9 +1408,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {
@@ -1322,6 +1426,8 @@ add_action(
 		wp_add_inline_style( 'cozy-block--global-block-styles', cozy_addons_clean_empty_css( $block_styles ) );
 	}
 );
+
+$wrapper_attributes = get_block_wrapper_attributes();
 
 $render = sprintf( '<div class="cozy-block-wrapper cozy-block-featured-product-tabs-wrapper"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;

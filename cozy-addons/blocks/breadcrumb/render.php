@@ -22,38 +22,50 @@ $separator_icons = array(
 	'bullet'          => '<svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M12.096 16q0 1.632 1.152 2.784t2.752 1.12 2.752-1.12 1.152-2.784-1.152-2.752-2.752-1.152-2.752 1.152-1.152 2.752z"/></svg>',
 );
 
-$separator_slug = isset( $attributes['separator']['slug'] ) ? $attributes['separator']['slug'] : 'greater-than';
-$separator_size = isset( $attributes['separator']['size'] ) ? $attributes['separator']['size'] : '';
+$typography = array(
+	'font'           => array(
+		'size'   => isset( $attributes['typography']['fontSize'] ) ? esc_attr( $attributes['typography']['fontSize'] ) : '',
+		'weight' => isset( $attributes['typography']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['typography']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['fontFamily'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['typography']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? esc_attr( $attributes['typography']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? esc_attr( $attributes['typography']['letterSpacing'] ) : '',
+	'link_color'     => isset( $attributes['typography']['linkColor'] ) ? esc_attr( $attributes['typography']['linkColor'] ) : '',
+	'hover_color'    => isset( $attributes['typography']['hoverColor'] ) ? esc_attr( $attributes['typography']['hoverColor'] ) : '',
+	'color'          => isset( $attributes['typography']['color'] ) ? esc_attr( $attributes['typography']['color'] ) : '',
+);
+
+$separator_slug = isset( $attributes['separator']['slug'] ) ? esc_attr( $attributes['separator']['slug'] ) : 'greater-than';
+$separator_size = isset( $attributes['separator']['size'] ) ? esc_attr( $attributes['separator']['size'] ) : '';
 
 $separator_svg   = isset( $separator_icons[ $separator_slug ] ) ? $separator_icons[ $separator_slug ] : $separator_icons['greater-than'];
-$separator_color = isset( $attributes['separator']['color'] ) ? $attributes['separator']['color'] : $typography['color'];
+$separator_color = isset( $attributes['separator']['color'] ) ? esc_attr( $attributes['separator']['color'] ) : $typography['color'];
 $output          = '<div class="cozy-block-wrapper">';
-$typography      = $attributes['typography'];
 
-$typography_styles = array(
-	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
-	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
-	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
+$styles = array(
+	'gap' => isset( $attributes['gap'] ) ? esc_attr( $attributes['gap'] ) : '',
 );
+
 
 $block_styles = "
 #$block_id {
-	font-size: {$typography['fontSize']}px;
-	font-weight: {$typography['fontWeight']};
-	font-family: {$typography['fontFamily']};
+	font-size: {$typography['font']['size']}px;
+	font-weight: {$typography['font']['weight']};
+	font-family: {$typography['font']['family']};
 	color: {$typography['color']};
-	gap:{$attributes['gap']};
-	text-transform: {$typography_styles['letter_case']};
-	line-height: {$typography_styles['line_height']};
-	letter-spacing: {$typography_styles['letter_spacing']};
+	gap: {$styles['gap']};
+	text-transform: {$typography['letter_case']};
+	line-height: {$typography['line_height']};
+	letter-spacing: {$typography['letter_spacing']};
 }
 #$block_id a {
-	color:{$typography['linkColor']};
-	text-decoration: {$typography_styles['decoration']} !important;
+	color:{$typography['link_color']};
+	text-decoration: {$typography['decoration']} !important;
 }
 #$block_id a:hover{
-	color:{$typography['hoverColor']};
+	color:{$typography['hover_color']};
 }
 #$block_id svg {
 	width: $separator_size;
@@ -64,15 +76,15 @@ $block_styles = "
 $font_families = array();
 
 if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
-	$font_families[] = $attributes['typography']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['typography']['fontFamily'] );
 }
 $font_families = array_unique( $font_families );
 $font_query    = '';
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {
@@ -88,8 +100,8 @@ if ( ! is_home() ) {
 		}
 	);
 
-	$output .= '<p class="cozy-block-breadcrumb" id="' . $block_id . '">';
-	$output .= '<a href="' . home_url( '/' ) . '">' . $attributes['homeLabel'] . '</a>';
+	$output .= '<p class="cozy-block-breadcrumb" id="' . esc_attr( $block_id ) . '">';
+	$output .= '<a href="' . home_url( '/' ) . '">' . esc_html( $attributes['homeLabel'] ) . '</a>';
 
 	if ( is_category() ) {
 		$category_id  = get_queried_object_id();

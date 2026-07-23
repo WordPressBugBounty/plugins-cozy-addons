@@ -6,9 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"22px","left":"22px","top":"22px","bottom":"22px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"100%"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":true,"color":"#0000001a","horizontal":0,"vertical":4,"blur":24,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:22px;padding-right:22px;padding-bottom:22px;padding-left:22px"><!-- wp:group {"style":{"border":{"top":{"width":"0px","style":"none"},"right":{"width":"0px","style":"none"},"bottom":{"color":"#0052ff","style":"solid","width":"2px"},"left":{"width":"0px","style":"none"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group" style="border-top-style:none;border-top-width:0px;border-right-style:none;border-right-width:0px;border-bottom-color:#0052ff;border-bottom-style:solid;border-bottom-width:2px;border-left-style:none;border-left-width:0px"><!-- wp:heading {"level":3,"style":{"color":{"background":"#0052ff"},"elements":{"link":{"color":{"text":"var:preset|color|background"}}},"spacing":{"padding":{"top":"6px","bottom":"6px","left":"12px","right":"12px"}},"border":{"radius":{"topLeft":"4px","topRight":"4px","bottomLeft":"0px","bottomRight":"4px"}}},"textColor":"background","fontSize":"normal"} -->
-<h3 class="wp-block-heading has-background-color has-text-color has-background has-link-color has-normal-font-size" style="border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-left-radius:0px;border-bottom-right-radius:4px;background-color:#0052ff;padding-top:6px;padding-right:12px;padding-bottom:6px;padding-left:12px"><?php
-    esc_html_e('Categories', 'cozy-addons');
-?></h3>
+<h3 class="wp-block-heading has-background-color has-text-color has-background has-link-color has-normal-font-size" style="border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-left-radius:0px;border-bottom-right-radius:4px;background-color:#0052ff;padding-top:6px;padding-right:12px;padding-bottom:6px;padding-left:12px">
+<?php
+	esc_html_e( 'Categories', 'cozy-addons' );
+?>
+</h3>
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 

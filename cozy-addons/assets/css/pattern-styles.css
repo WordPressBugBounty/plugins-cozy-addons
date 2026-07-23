@@ -37,6 +37,22 @@
 	.wp-block-cover__background {
 	visibility: visible;
 }
+@media only screen and (max-width: 1024px) {
+	.wp-block-cover
+		.wp-block-group:not(.block-editor-block-list__block).ca-pattern__fade-up {
+		visibility: visible;
+		opacity: 1;
+		transform: translateY(0);
+	}
+	.wp-block-cover
+		.wp-block-group:not(
+			.block-editor-block-list__block
+		).ca-pattern__fade-right {
+		visibility: visible;
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
 
 /* Core Icons */
 .ca-pattern__core-icon.wp-block-search__button-only
@@ -242,7 +258,9 @@
 		}
 	}
 }
-
+ul.cozy-addons__no-list-style{
+	list-style: none;
+}
 /* Read More btn */
 .ca-pattern__has-arrow-right.wp-block-read-more {
 	position: relative;
@@ -646,6 +664,7 @@
 	}
 	.wpcf7-email,
 	.wpcf7-submit {
+		margin: 0;
 		font-size: 16px;
 	}
 
@@ -839,5 +858,79 @@
 
 	& li {
 		margin: 0;
+	}
+}
+
+/* Border none for tablet/mobile */
+@media only screen and (max-width: 1024px) {
+	.ca-pattern__responsive-border-none {
+		border: none !important;
+	}
+}
+
+/* Horizontal linear gradient */
+.ca-pattern__linear-gradient-hsides {
+	-webkit-mask-image: linear-gradient(
+		to right,
+		transparent 0%,
+		black 8%,
+		black 92%,
+		transparent 100%
+	);
+	mask-image: linear-gradient(
+		to right,
+		transparent 0%,
+		black 8%,
+		black 92%,
+		transparent 100%
+	);
+}
+
+/* Product image overlay hover effects */
+.product-image__wrapper {
+	position: relative;
+	overflow: hidden;
+
+	& .product-image__el {
+		position: absolute;
+		visibility: hidden;
+		opacity: 0;
+		transition:
+			transform 0.4s ease,
+			opacity 0.3s ease-in-out;
+		z-index: 99;
+		width: 100%;
+	}
+	& .product-image__el-fade-up {
+		transform: translateY(20px);
+		bottom: 0;
+	}
+	& .product-image__el-fade-in-right {
+		transform: translateX(20px);
+		right: 0;
+	}
+	&:hover .product-image__el-fade-up {
+		transform: translateY(0);
+		visibility: visible;
+		opacity: 1;
+	}
+	&:hover .product-image__el-fade-in-right {
+		transform: translateX(0);
+		visibility: visible;
+		opacity: 1;
+	}
+}
+@media only screen and (max-width: 1024px) {
+	.product-image__wrapper {
+		& .product-image__el-fade-up {
+			transform: translateY(0);
+			visibility: visible;
+			opacity: 1;
+		}
+		& .product-image__el-fade-in-right {
+			transform: translateX(0);
+			visibility: visible;
+			opacity: 1;
+		}
 	}
 }

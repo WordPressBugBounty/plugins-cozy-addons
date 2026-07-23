@@ -10,164 +10,220 @@ $attributes['ajaxUrl'] = admin_url( 'admin-ajax.php' );
 $attributes['nonce']   = wp_create_nonce( 'cozy_block_advanced_gallery_load_more' );
 
 $header_box = array(
-	'padding' => cozy_render_TRBL( 'padding', $attributes['headerBox']['padding'] ),
+	'padding' => isset( $attributes['headerBox']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['headerBox']['padding'] ) : '',
+	'margin'  => isset( $attributes['headerBox']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['headerBox']['margin'] ) : '',
 	'border'  => isset( $attributes['headerBox']['border'] ) ? cozy_render_TRBL( 'border', $attributes['headerBox']['border'] ) : '',
-	'bg'      => isset( $attributes['headerBox']['color']['bg'] ) ? $attributes['headerBox']['color']['bg'] : '',
+	'radius'  => isset( $attributes['headerBox']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['headerBox']['radius'] ) : '',
+	'bg'      => isset( $attributes['headerBox']['color']['bg'] ) ? esc_attr( $attributes['headerBox']['color']['bg'] ) : '',
 );
 
 $tab_item = array(
-	'padding'        => cozy_render_TRBL( 'padding', $attributes['tabStyles']['padding'] ),
-	'border'         => isset( $attributes['tabStyles']['default']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['default']['border'] ) : '',
-	'border_active'  => isset( $attributes['tabStyles']['active']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['active']['border'] ) : '',
-	'letter_case'    => isset( $attributes['tabStyles']['letterCase'] ) ? $attributes['tabStyles']['letterCase'] : '',
-	'decoration'     => isset( $attributes['tabStyles']['decoration'] ) ? $attributes['tabStyles']['decoration'] : '',
-	'line_height'    => isset( $attributes['tabStyles']['lineHeight'] ) ? $attributes['tabStyles']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['tabStyles']['letterSpacing'] ) ? $attributes['tabStyles']['letterSpacing'] : '',
-	'bg'             => isset( $attributes['tabStyles']['color']['bg'] ) ? $attributes['tabStyles']['color']['bg'] : '',
-	'bg_hover'       => isset( $attributes['tabStyles']['color']['bgHover'] ) ? $attributes['tabStyles']['color']['bgHover'] : '',
-	'bg_active'      => isset( $attributes['tabStyles']['color']['bgActive'] ) ? $attributes['tabStyles']['color']['bgActive'] : '',
-	'text'           => isset( $attributes['tabStyles']['color']['text'] ) ? $attributes['tabStyles']['color']['text'] : '',
-	'text_hover'     => isset( $attributes['tabStyles']['color']['textHover'] ) ? $attributes['tabStyles']['color']['textHover'] : '',
-	'text_active'    => isset( $attributes['tabStyles']['color']['textActive'] ) ? $attributes['tabStyles']['color']['textActive'] : '',
-	'shadow'         => array(
-		'horizontal' => isset( $attributes['tabStyles']['default']['shadow']['horizontal'] ) ? $attributes['tabStyles']['default']['shadow']['horizontal'] : '',
-		'vertical'   => isset( $attributes['tabStyles']['default']['shadow']['vertical'] ) ? $attributes['tabStyles']['default']['shadow']['vertical'] : '',
-		'blur'       => isset( $attributes['tabStyles']['default']['shadow']['blur'] ) ? $attributes['tabStyles']['default']['shadow']['blur'] : '',
-		'spread'     => isset( $attributes['tabStyles']['default']['shadow']['spread'] ) ? $attributes['tabStyles']['default']['shadow']['spread'] : '',
-		'color'      => isset( $attributes['tabStyles']['default']['shadow']['color'] ) ? $attributes['tabStyles']['default']['shadow']['color'] : '',
-		'position'   => isset( $attributes['tabStyles']['default']['shadow']['position'] ) ? $attributes['tabStyles']['default']['shadow']['position'] : '',
+	'gap'                  => isset( $attributes['tabOptions']['gap'] ) ? cozy_addons_sanitize_dimension( $attributes['tabOptions']['gap'] ) : '',
+	'justify'              => isset( $attributes['tabOptions']['justifyTab'] ) ? esc_attr( sanitize_text_field( $attributes['tabOptions']['justifyTab'] ) ) : '',
+	'padding'              => isset( $attributes['tabStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['tabStyles']['padding'] ) : '',
+	'border'               => isset( $attributes['tabStyles']['default']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['default']['border'] ) : '',
+	'radius'               => isset( $attributes['tabStyles']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['tabStyles']['radius'] ) : '',
+	'border_active'        => isset( $attributes['tabStyles']['active']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['active']['border'] ) : '',
+	'font'                 => array(
+		'size'   => isset( $attributes['tabStyles']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['tabStyles']['font']['size'] ) : '',
+		'weight' => isset( $attributes['tabStyles']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['tabStyles']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['font']['family'] ) ) : '',
 	),
-	'shadow_active'  => array(
-		'horizontal' => isset( $attributes['tabStyles']['active']['shadow']['horizontal'] ) ? $attributes['tabStyles']['active']['shadow']['horizontal'] : '',
-		'vertical'   => isset( $attributes['tabStyles']['active']['shadow']['vertical'] ) ? $attributes['tabStyles']['active']['shadow']['vertical'] : '',
-		'blur'       => isset( $attributes['tabStyles']['active']['shadow']['blur'] ) ? $attributes['tabStyles']['active']['shadow']['blur'] : '',
-		'spread'     => isset( $attributes['tabStyles']['active']['shadow']['spread'] ) ? $attributes['tabStyles']['active']['shadow']['spread'] : '',
-		'color'      => isset( $attributes['tabStyles']['active']['shadow']['color'] ) ? $attributes['tabStyles']['active']['shadow']['color'] : '',
-		'position'   => isset( $attributes['tabStyles']['active']['shadow']['position'] ) ? $attributes['tabStyles']['active']['shadow']['position'] : '',
+	'letter_case'          => isset( $attributes['tabStyles']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['letterCase'] ) ) : '',
+	'decoration'           => isset( $attributes['tabStyles']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['decoration'] ) ) : '',
+	'line_height'          => isset( $attributes['tabStyles']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['tabStyles']['lineHeight'] ) : '',
+	'letter_spacing'       => isset( $attributes['tabStyles']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['tabStyles']['letterSpacing'] ) : '',
+	'bg'                   => isset( $attributes['tabStyles']['color']['bg'] ) ? esc_attr( $attributes['tabStyles']['color']['bg'] ) : '',
+	'bg_hover'             => isset( $attributes['tabStyles']['color']['bgHover'] ) ? esc_attr( $attributes['tabStyles']['color']['bgHover'] ) : '',
+	'bg_active'            => isset( $attributes['tabStyles']['color']['bgActive'] ) ? esc_attr( $attributes['tabStyles']['color']['bgActive'] ) : '',
+	'text'                 => isset( $attributes['tabStyles']['color']['text'] ) ? esc_attr( $attributes['tabStyles']['color']['text'] ) : '',
+	'text_hover'           => isset( $attributes['tabStyles']['color']['textHover'] ) ? esc_attr( $attributes['tabStyles']['color']['textHover'] ) : '',
+	'text_active'          => isset( $attributes['tabStyles']['color']['textActive'] ) ? esc_attr( $attributes['tabStyles']['color']['textActive'] ) : '',
+	'shadow'               => array(
+		'horizontal' => isset( $attributes['tabStyles']['default']['shadow']['horizontal'] ) ? esc_attr( $attributes['tabStyles']['default']['shadow']['horizontal'] ) : '',
+		'vertical'   => isset( $attributes['tabStyles']['default']['shadow']['vertical'] ) ? esc_attr( $attributes['tabStyles']['default']['shadow']['vertical'] ) : '',
+		'blur'       => isset( $attributes['tabStyles']['default']['shadow']['blur'] ) ? esc_attr( $attributes['tabStyles']['default']['shadow']['blur'] ) : '',
+		'spread'     => isset( $attributes['tabStyles']['default']['shadow']['spread'] ) ? esc_attr( $attributes['tabStyles']['default']['shadow']['spread'] ) : '',
+		'color'      => isset( $attributes['tabStyles']['default']['shadow']['color'] ) ? esc_attr( $attributes['tabStyles']['default']['shadow']['color'] ) : '',
+		'position'   => isset( $attributes['tabStyles']['default']['shadow']['position'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['default']['shadow']['position'] ) ) : '',
 	),
+	'shadow_active'        => array(
+		'horizontal' => isset( $attributes['tabStyles']['active']['shadow']['horizontal'] ) ? esc_attr( $attributes['tabStyles']['active']['shadow']['horizontal'] ) : '',
+		'vertical'   => isset( $attributes['tabStyles']['active']['shadow']['vertical'] ) ? esc_attr( $attributes['tabStyles']['active']['shadow']['vertical'] ) : '',
+		'blur'       => isset( $attributes['tabStyles']['active']['shadow']['blur'] ) ? esc_attr( $attributes['tabStyles']['active']['shadow']['blur'] ) : '',
+		'spread'     => isset( $attributes['tabStyles']['active']['shadow']['spread'] ) ? esc_attr( $attributes['tabStyles']['active']['shadow']['spread'] ) : '',
+		'color'      => isset( $attributes['tabStyles']['active']['shadow']['color'] ) ? esc_attr( $attributes['tabStyles']['active']['shadow']['color'] ) : '',
+		'position'   => isset( $attributes['tabStyles']['active']['shadow']['position'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['active']['shadow']['position'] ) ) : '',
+	),
+	'active_margin_bottom' => isset( $attributes['tabStyles']['active']['marginBottom'] ) ? esc_attr( $attributes['tabStyles']['active']['marginBottom'] ) : '',
 
 );
 
+$grid = array(
+	'column' => isset( $attributes['gridOptions']['column'] ) ? cozy_addons_sanitize_dimension( $attributes['gridOptions']['column'] ) : '',
+	'gap'    => isset( $attributes['gridOptions']['columnGap'] ) ? cozy_addons_sanitize_dimension( $attributes['gridOptions']['columnGap'] ) : '',
+);
+
 $image = array(
-	'width'  => isset( $attributes['image']['width'] ) ? $attributes['image']['width'] : '',
-	'height' => isset( $attributes['image']['height'] ) ? $attributes['image']['height'] : '',
-	'radius' => isset( $attributes['image']['radius'] ) ? $attributes['image']['radius'] : '',
+	'width'  => isset( $attributes['image']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['image']['width'] ) : '',
+	'height' => isset( $attributes['image']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['image']['height'] ) : '',
+	'radius' => isset( $attributes['image']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['image']['radius'] ) : '',
 	'title'  => array(
-		'left'           => 'left' === $attributes['image']['title']['align'] ? $attributes['image']['title']['left'] : '',
-		'right'          => 'right' === $attributes['image']['title']['align'] ? $attributes['image']['title']['right'] : '',
-		'letter_case'    => isset( $attributes['image']['title']['letterCase'] ) ? $attributes['image']['title']['letterCase'] : '',
-		'decoration'     => isset( $attributes['image']['title']['decoration'] ) ? $attributes['image']['title']['decoration'] : '',
-		'line_height'    => isset( $attributes['image']['title']['lineHeight'] ) ? $attributes['image']['title']['lineHeight'] : '',
-		'letter_spacing' => isset( $attributes['image']['title']['letterSpacing'] ) ? $attributes['image']['title']['letterSpacing'] : '',
+		'align'          => isset( $attributes['image']['title']['align'] ) ? esc_attr( sanitize_text_field( $attributes['image']['title']['align'] ) ) : '',
+		'left'           => 'left' === $attributes['image']['title']['align'] ? cozy_addons_sanitize_dimension( $attributes['image']['title']['left'] ) : '',
+		'right'          => 'right' === $attributes['image']['title']['align'] ? cozy_addons_sanitize_dimension( $attributes['image']['title']['right'] ) : '',
+		'bottom'         => isset( $attributes['image']['title']['bottom'] ) ? cozy_addons_sanitize_dimension( $attributes['image']['title']['bottom'] ) : '',
+		'font'           => array(
+			'size'   => isset( $attributes['image']['title']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['image']['title']['font']['size'] ) : '',
+			'weight' => isset( $attributes['image']['title']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['image']['title']['font']['weight'] ) ) : '',
+			'family' => isset( $attributes['image']['title']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['image']['title']['font']['family'] ) ) : '',
+		),
+		'letter_case'    => isset( $attributes['image']['title']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['image']['title']['letterCase'] ) ) : '',
+		'decoration'     => isset( $attributes['image']['title']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['image']['title']['decoration'] ) ) : '',
+		'line_height'    => isset( $attributes['image']['title']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['image']['title']['lineHeight'] ) : '',
+		'letter_spacing' => isset( $attributes['image']['title']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['image']['title']['letterSpacing'] ) : '',
 	),
 	'color'  => array(
-		'text'    => isset( $attributes['image']['color']['text'] ) ? $attributes['image']['color']['text'] : '',
-		'overlay' => isset( $attributes['image']['color']['overlay'] ) ? $attributes['image']['color']['overlay'] : '',
+		'text'    => isset( $attributes['image']['color']['text'] ) ? esc_attr( $attributes['image']['color']['text'] ) : '',
+		'overlay' => isset( $attributes['image']['color']['overlay'] ) ? esc_attr( $attributes['image']['color']['overlay'] ) : '',
 	),
 );
 
 $icon = array(
+	'size'    => isset( $attributes['icon']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['icon']['size'] ) : '',
 	'padding' => isset( $attributes['icon']['box']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['icon']['box']['padding'] ) : '',
 	'border'  => isset( $attributes['icon']['box']['border'] ) ? cozy_render_TRBL( 'border', $attributes['icon']['box']['border'] ) : '',
+	'radius'  => isset( $attributes['icon']['box']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['icon']['box']['radius'] ) : '',
 	'color'   => array(
-		'text'       => isset( $attributes['icon']['color']['text'] ) ? $attributes['icon']['color']['text'] : '',
-		'text_hover' => isset( $attributes['icon']['color']['textHover'] ) ? $attributes['icon']['color']['textHover'] : '',
-		'bg'         => isset( $attributes['icon']['color']['bg'] ) ? $attributes['icon']['color']['bg'] : '',
-		'bg_hover'   => isset( $attributes['icon']['color']['bgHover'] ) ? $attributes['icon']['color']['bgHover'] : '',
+		'text'       => isset( $attributes['icon']['color']['text'] ) ? esc_attr( $attributes['icon']['color']['text'] ) : '',
+		'text_hover' => isset( $attributes['icon']['color']['textHover'] ) ? esc_attr( $attributes['icon']['color']['textHover'] ) : '',
+		'bg'         => isset( $attributes['icon']['color']['bg'] ) ? esc_attr( $attributes['icon']['color']['bg'] ) : '',
+		'bg_hover'   => isset( $attributes['icon']['color']['bgHover'] ) ? esc_attr( $attributes['icon']['color']['bgHover'] ) : '',
 	),
 );
 
 $lightbox     = array(
 	'title' => array(
-		'left'           => 'left' === $attributes['lightbox']['title']['align'] ? $attributes['lightbox']['title']['left'] : '',
-		'right'          => 'right' === $attributes['lightbox']['title']['align'] ? $attributes['lightbox']['title']['right'] : '',
-		'letter_case'    => isset( $attributes['lightbox']['title']['letterCase'] ) ? $attributes['lightbox']['title']['letterCase'] : '',
-		'decoration'     => isset( $attributes['lightbox']['title']['decoration'] ) ? $attributes['lightbox']['title']['decoration'] : '',
-		'line_height'    => isset( $attributes['lightbox']['title']['lineHeight'] ) ? $attributes['lightbox']['title']['lineHeight'] : '',
-		'letter_spacing' => isset( $attributes['lightbox']['title']['letterSpacing'] ) ? $attributes['lightbox']['title']['letterSpacing'] : '',
+		'align'          => isset( $attributes['lightbox']['title']['align'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['title']['align'] ) ) : '',
+		'margin_bottom'  => isset( $attributes['lightbox']['title']['bottom'] ) ? cozy_addons_sanitize_dimension( $attributes['lightbox']['title']['bottom'] ) : '',
+		'left'           => 'left' === $attributes['lightbox']['title']['align'] ? cozy_addons_sanitize_dimension( $attributes['lightbox']['title']['left'] ) : '',
+		'right'          => 'right' === $attributes['lightbox']['title']['align'] ? cozy_addons_sanitize_dimension( $attributes['lightbox']['title']['right'] ) : '',
+		'font'           => array(
+			'size'   => isset( $attributes['lightbox']['title']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['lightbox']['title']['font']['size'] ) : '',
+			'weight' => isset( $attributes['lightbox']['title']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['title']['font']['weight'] ) ) : '',
+			'family' => isset( $attributes['lightbox']['title']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['title']['font']['family'] ) ) : '',
+		),
+		'letter_case'    => isset( $attributes['lightbox']['title']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['title']['letterCase'] ) ) : '',
+		'decoration'     => isset( $attributes['lightbox']['title']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['lightbox']['title']['decoration'] ) ) : '',
+		'line_height'    => isset( $attributes['lightbox']['title']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['lightbox']['title']['lineHeight'] ) : '',
+		'letter_spacing' => isset( $attributes['lightbox']['title']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['lightbox']['title']['letterSpacing'] ) : '',
 	),
 	'color' => array(
-		'text' => isset( $attributes['lightbox']['title']['color']['text'] ) ? $attributes['lightbox']['title']['color']['text'] : '',
+		'text' => isset( $attributes['lightbox']['title']['color']['text'] ) ? esc_attr( $attributes['lightbox']['title']['color']['text'] ) : '',
 	),
 );
 $lightbox_nav = array(
-	'border' => isset( $attributes['lightbox']['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['lightbox']['navigation']['border'] ) : '',
-	'color'  => array(
-		'icon'         => isset( $attributes['lightbox']['navigation']['color']['icon'] ) ? $attributes['lightbox']['navigation']['color']['icon'] : '',
-		'icon_hover'   => isset( $attributes['lightbox']['navigation']['color']['iconHover'] ) ? $attributes['lightbox']['navigation']['color']['iconHover'] : '',
-		'bg'           => isset( $attributes['lightbox']['navigation']['color']['bg'] ) ? $attributes['lightbox']['navigation']['color']['bg'] : '',
-		'bg_hover'     => isset( $attributes['lightbox']['navigation']['color']['bgHover'] ) ? $attributes['lightbox']['navigation']['color']['bgHover'] : '',
-		'border_hover' => isset( $attributes['lightbox']['navigation']['color']['borderHover'] ) ? $attributes['lightbox']['navigation']['color']['borderHover'] : '',
+	'box_width'  => isset( $attributes['lightbox']['navigation']['boxWidth'] ) ? cozy_addons_sanitize_dimension( $attributes['lightbox']['navigation']['boxWidth'] ) : '',
+	'box_height' => isset( $attributes['lightbox']['navigation']['boxHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['lightbox']['navigation']['boxHeight'] ) : '',
+	'size'       => isset( $attributes['lightbox']['navigation']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['lightbox']['navigation']['size'] ) : '',
+	'border'     => isset( $attributes['lightbox']['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['lightbox']['navigation']['border'] ) : '',
+	'radius'     => isset( $attributes['lightbox']['navigation']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['lightbox']['navigation']['radius'] ) : '',
+	'color'      => array(
+		'icon'         => isset( $attributes['lightbox']['navigation']['color']['icon'] ) ? esc_attr( $attributes['lightbox']['navigation']['color']['icon'] ) : '',
+		'icon_hover'   => isset( $attributes['lightbox']['navigation']['color']['iconHover'] ) ? esc_attr( $attributes['lightbox']['navigation']['color']['iconHover'] ) : '',
+		'bg'           => isset( $attributes['lightbox']['navigation']['color']['bg'] ) ? esc_attr( $attributes['lightbox']['navigation']['color']['bg'] ) : '',
+		'bg_hover'     => isset( $attributes['lightbox']['navigation']['color']['bgHover'] ) ? esc_attr( $attributes['lightbox']['navigation']['color']['bgHover'] ) : '',
+		'border_hover' => isset( $attributes['lightbox']['navigation']['color']['borderHover'] ) ? esc_attr( $attributes['lightbox']['navigation']['color']['borderHover'] ) : '',
 	),
 );
 
 $nav = array(
-	'border' => isset( $attributes['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['navigation']['border'] ) : '',
-	'color'  => array(
-		'icon'         => isset( $attributes['navigation']['color']['icon'] ) ? $attributes['navigation']['color']['icon'] : '',
-		'icon_hover'   => isset( $attributes['navigation']['color']['iconHover'] ) ? $attributes['navigation']['color']['iconHover'] : '',
-		'bg'           => isset( $attributes['navigation']['color']['bg'] ) ? $attributes['navigation']['color']['bg'] : '',
-		'bg_hover'     => isset( $attributes['navigation']['color']['bgHover'] ) ? $attributes['navigation']['color']['bgHover'] : '',
-		'border_hover' => isset( $attributes['navigation']['color']['borderHover'] ) ? $attributes['navigation']['color']['borderHover'] : '',
+	'box_width'  => isset( $attributes['navigation']['boxWidth'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['boxWidth'] ) : '',
+	'box_height' => isset( $attributes['navigation']['boxHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['boxHeight'] ) : '',
+	'size'       => isset( $attributes['navigation']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['size'] ) : '',
+	'border'     => isset( $attributes['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['navigation']['border'] ) : '',
+	'radius'     => isset( $attributes['navigation']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['radius'] ) : '',
+	'color'      => array(
+		'icon'         => isset( $attributes['navigation']['color']['icon'] ) ? esc_attr( $attributes['navigation']['color']['icon'] ) : '',
+		'icon_hover'   => isset( $attributes['navigation']['color']['iconHover'] ) ? esc_attr( $attributes['navigation']['color']['iconHover'] ) : '',
+		'bg'           => isset( $attributes['navigation']['color']['bg'] ) ? esc_attr( $attributes['navigation']['color']['bg'] ) : '',
+		'bg_hover'     => isset( $attributes['navigation']['color']['bgHover'] ) ? esc_attr( $attributes['navigation']['color']['bgHover'] ) : '',
+		'border_hover' => isset( $attributes['navigation']['color']['borderHover'] ) ? esc_attr( $attributes['navigation']['color']['borderHover'] ) : '',
 	),
 );
 
 $bullets = array(
-	'active' => array(
-		'outline' => isset( $attributes['pagination']['active']['border'] ) ? cozy_render_TRBL( 'outline', $attributes['pagination']['active']['border'] ) : '',
+	'gap'      => isset( $attributes['pagination']['gap'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['gap'] ) : '',
+	'position' => isset( $attributes['pagination']['bottom'] ) && ! empty( $attributes['pagination']['bottom'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['bottom'] ) : '0',
+	'align'    => isset( $attributes['pagination']['align'] ) ? esc_attr( sanitize_text_field( $attributes['pagination']['align'] ) ) : '',
+	'width'    => isset( $attributes['pagination']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['width'] ) : '',
+	'height'   => isset( $attributes['pagination']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['height'] ) : '',
+	'radius'   => isset( $attributes['pagination']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['radius'] ) : '',
+	'active'   => array(
+		'width'          => isset( $attributes['pagination']['active']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['active']['width'] ) : '',
+		'height'         => isset( $attributes['pagination']['active']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['active']['height'] ) : '',
+		'radius'         => isset( $attributes['pagination']['active']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['active']['radius'] ) : '',
+		'outline'        => isset( $attributes['pagination']['active']['border'] ) ? cozy_render_TRBL( 'outline', $attributes['pagination']['active']['border'] ) : '',
+		'outline_offset' => isset( $attributes['pagination']['active']['offset'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['active']['offset'] ) : '',
 	),
-	'color'  => array(
-		'default'       => isset( $attributes['pagination']['color']['default'] ) ? $attributes['pagination']['color']['default'] : '',
-		'default_hover' => isset( $attributes['pagination']['color']['defaultHover'] ) ? $attributes['pagination']['color']['defaultHover'] : '',
-		'active'        => isset( $attributes['pagination']['color']['active'] ) ? $attributes['pagination']['color']['active'] : '',
-		'active_hover'  => isset( $attributes['pagination']['color']['activeHover'] ) ? $attributes['pagination']['color']['activeHover'] : '',
+	'color'    => array(
+		'default'       => isset( $attributes['pagination']['color']['default'] ) ? esc_attr( $attributes['pagination']['color']['default'] ) : '',
+		'default_hover' => isset( $attributes['pagination']['color']['defaultHover'] ) ? esc_attr( $attributes['pagination']['color']['defaultHover'] ) : '',
+		'active'        => isset( $attributes['pagination']['color']['active'] ) ? esc_attr( $attributes['pagination']['color']['active'] ) : '',
+		'active_hover'  => isset( $attributes['pagination']['color']['activeHover'] ) ? esc_attr( $attributes['pagination']['color']['activeHover'] ) : '',
 	),
-	'left'   => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? $attributes['pagination']['left'] : '',
-	'right'  => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? $attributes['pagination']['right'] : '',
+	'left'     => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? cozy_addons_sanitize_dimension( $attributes['pagination']['left'] ) : '',
+	'right'    => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? cozy_addons_sanitize_dimension( $attributes['pagination']['right'] ) : '',
 );
 
 $ajax_loader = array(
-	'padding'           => cozy_render_TRBL( 'padding', $attributes['ajaxLoader']['padding'] ),
+	'padding'           => isset( $attributes['ajaxLoader']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['ajaxLoader']['padding'] ) : '',
+	'margin'            => isset( $attributes['ajaxLoader']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['ajaxLoader']['margin'] ) : '',
+	'align'             => isset( $attributes['ajaxLoader']['textAlign'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxLoader']['textAlign'] ) ) : '',
 	'border'            => isset( $attributes['ajaxLoader']['border'] ) ? cozy_render_TRBL( 'border', $attributes['ajaxLoader']['border'] ) : '',
-	'font_family'       => isset( $attributes['ajaxLoader']['font']['family'] ) ? $attributes['ajaxLoader']['font']['family'] : '',
-	'letter_case'       => isset( $attributes['ajaxLoader']['letterCase'] ) ? $attributes['ajaxLoader']['letterCase'] : '',
-	'decoration'        => isset( $attributes['ajaxLoader']['decoration'] ) ? $attributes['ajaxLoader']['decoration'] : '',
-	'line_height'       => isset( $attributes['ajaxLoader']['lineHeight'] ) ? $attributes['ajaxLoader']['lineHeight'] : '',
-	'letter_spacing'    => isset( $attributes['ajaxLoader']['letterSpacing'] ) ? $attributes['ajaxLoader']['letterSpacing'] : '',
-	'text'              => isset( $attributes['ajaxLoader']['color']['text'] ) ? $attributes['ajaxLoader']['color']['text'] : '',
-	'text_hover'        => isset( $attributes['ajaxLoader']['color']['textHover'] ) ? $attributes['ajaxLoader']['color']['textHover'] : '',
-	'bg'                => isset( $attributes['ajaxLoader']['color']['bg'] ) ? $attributes['ajaxLoader']['color']['bg'] : '',
-	'bg_hover'          => isset( $attributes['ajaxLoader']['color']['bgHover'] ) ? $attributes['ajaxLoader']['color']['bgHover'] : '',
-	'border_hover'      => isset( $attributes['ajaxLoader']['color']['borderHover'] ) ? $attributes['ajaxLoader']['color']['borderHover'] : '',
-	'spinner_primary'   => isset( $attributes['ajaxLoader']['color']['spinnerPrimary'] ) ? $attributes['ajaxLoader']['color']['spinnerPrimary'] : '',
-	'spinner_secondary' => isset( $attributes['ajaxLoader']['color']['spinnerSecondary'] ) ? $attributes['ajaxLoader']['color']['spinnerSecondary'] : '',
+	'radius'            => isset( $attributes['ajaxLoader']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['ajaxLoader']['radius'] ) : '',
+	'font'              => array(
+		'size'   => isset( $attributes['ajaxLoader']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['ajaxLoader']['font']['size'] ) : '',
+		'weight' => isset( $attributes['ajaxLoader']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxLoader']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['ajaxLoader']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxLoader']['font']['family'] ) ) : '',
+	),
+	'letter_case'       => isset( $attributes['ajaxLoader']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxLoader']['letterCase'] ) ) : '',
+	'decoration'        => isset( $attributes['ajaxLoader']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxLoader']['decoration'] ) ) : '',
+	'line_height'       => isset( $attributes['ajaxLoader']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['ajaxLoader']['lineHeight'] ) : '',
+	'letter_spacing'    => isset( $attributes['ajaxLoader']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['ajaxLoader']['letterSpacing'] ) : '',
+	'text'              => isset( $attributes['ajaxLoader']['color']['text'] ) ? esc_attr( $attributes['ajaxLoader']['color']['text'] ) : '',
+	'text_hover'        => isset( $attributes['ajaxLoader']['color']['textHover'] ) ? esc_attr( $attributes['ajaxLoader']['color']['textHover'] ) : '',
+	'bg'                => isset( $attributes['ajaxLoader']['color']['bg'] ) ? esc_attr( $attributes['ajaxLoader']['color']['bg'] ) : '',
+	'bg_hover'          => isset( $attributes['ajaxLoader']['color']['bgHover'] ) ? esc_attr( $attributes['ajaxLoader']['color']['bgHover'] ) : '',
+	'border_hover'      => isset( $attributes['ajaxLoader']['color']['borderHover'] ) ? esc_attr( $attributes['ajaxLoader']['color']['borderHover'] ) : '',
+	'spinner_primary'   => isset( $attributes['ajaxLoader']['color']['spinnerPrimary'] ) ? esc_attr( $attributes['ajaxLoader']['color']['spinnerPrimary'] ) : '',
+	'spinner_secondary' => isset( $attributes['ajaxLoader']['color']['spinnerSecondary'] ) ? esc_attr( $attributes['ajaxLoader']['color']['spinnerSecondary'] ) : '',
 );
 
-$col1 = isset( $attributes['gridOptions']['column'] ) && $attributes['gridOptions']['column'] <= 3 ? $attributes['gridOptions']['column'] : 3;
-$col2 = isset( $attributes['gridOptions']['column'] ) && $attributes['gridOptions']['column'] <= 2 ? $attributes['gridOptions']['column'] : 2;
+$col1 = isset( $attributes['gridOptions']['column'] ) && $attributes['gridOptions']['column'] <= 3 ? cozy_addons_sanitize_dimension( $attributes['gridOptions']['column'] ) : 3;
+$col2 = isset( $attributes['gridOptions']['column'] ) && $attributes['gridOptions']['column'] <= 2 ? cozy_addons_sanitize_dimension( $attributes['gridOptions']['column'] ) : 2;
 
 $block_styles = "
 #$block_id .cozy-block-advanced-gallery__header {
     {$header_box['padding']}
-    margin-top: {$attributes['headerBox']['margin']['top']};
-    margin-bottom: {$attributes['headerBox']['margin']['bottom']};
+    {$header_box['margin']}
     {$header_box['border']}
-    border-radius: {$attributes['headerBox']['radius']};
+    border-radius: {$header_box['radius']};
     background-color: {$header_box['bg']};
 }
 	
 #$block_id .cozy-block-advanced-gallery__tabs {
-	gap: {$attributes['tabOptions']['gap']};
-	justify-content: {$attributes['tabOptions']['justifyTab']};
+	gap: {$tab_item['gap']};
+	justify-content: {$tab_item['justify']};
 }
 
 #$block_id .cozy-block-advanced-gallery__tab {
     {$tab_item['padding']}
     {$tab_item['border']}
-    border-radius: {$attributes['tabStyles']['radius']};
-    font-size: {$attributes['tabStyles']['font']['size']};
-    font-weight: {$attributes['tabStyles']['font']['weight']};
-    font-family: '{$attributes['tabStyles']['font']['family']}';
+    border-radius: {$tab_item['radius']};
+    font-size: {$tab_item['font']['size']};
+    font-weight: {$tab_item['font']['weight']};
+    font-family: {$tab_item['font']['family']};
     text-transform: {$tab_item['letter_case']};
     text-decoration: {$tab_item['decoration']};
     line-height: {$tab_item['line_height']};
@@ -183,7 +239,7 @@ $block_styles = "
     color: {$tab_item['text_hover']};
 }
 #$block_id .cozy-block-advanced-gallery__tab.active-tab {
-    margin-bottom: {$attributes['tabStyles']['active']['marginBottom']}px;
+    margin-bottom: {$tab_item['active_margin_bottom']}px;
     {$tab_item['border_active']}
     background-color: {$tab_item['bg_active']};
     color: {$tab_item['text_active']};
@@ -193,15 +249,15 @@ $block_styles = "
 }
 
 #$block_id .cozy-block-advanced-gallery__grid-wrapper:not(.has-masonry) {
-	grid-template-columns: repeat({$attributes['gridOptions']['column']}, 1fr);
-	gap: {$attributes['gridOptions']['columnGap']};
+	grid-template-columns: repeat({$grid['column']}, 1fr);
+	gap: {$grid['gap']};
 }
 #$block_id .cozy-block-advanced-gallery__grid-wrapper.has-masonry {
-	column-count: {$attributes['gridOptions']['column']};
-	column-gap: {$attributes['gridOptions']['columnGap']};
+	column-count: {$grid['column']};
+	column-gap: {$grid['gap']};
 }
 #$block_id .has-masonry .cozy-block-advanced-gallery__item {
-	margin-bottom: {$attributes['gridOptions']['columnGap']};
+	margin-bottom: {$grid['gap']};
 }
 @media screen and (max-width: 1024px) {
 	#$block_id .cozy-block-advanced-gallery__grid-wrapper:not(.has-masonry) {
@@ -247,34 +303,34 @@ $block_styles = "
 }
 
 #$block_id .cozy-block-advanced-gallery__image-caption {
-	text-align: {$attributes['image']['title']['align']};
+	text-align: {$image['title']['align']};
 	left: {$image['title']['left']};
 	right: {$image['title']['right']};
-	font-size: {$attributes['image']['title']['font']['size']};
-	font-weight: {$attributes['image']['title']['font']['weight']};
-	font-family: '{$attributes['image']['title']['font']['family']}';
-	text-transform: {$attributes['image']['title']['letterCase']};
+	font-size: {$image['title']['font']['size']};
+	font-weight: {$image['title']['font']['weight']};
+	font-family: {$image['title']['font']['family']};
+	text-transform: {$image['title']['letter_case']};
 	text-decoration: {$image['title']['decoration']};
     line-height: {$image['title']['line_height']};
     letter-spacing: {$image['title']['letter_spacing']};
 	color: {$image['color']['text']};
 }
 #$block_id .cozy-block-advanced-gallery__item.has-hover-caption:hover .cozy-block-advanced-gallery__image-caption {
-	bottom: {$attributes['image']['title']['bottom']};
+	bottom: {$image['title']['bottom']};
 }
 
 #$block_id .cozy-block-advanced-gallery__icon-wrapper {
 	{$icon['padding']}
 	{$icon['border']}
-	border-radius: {$attributes['icon']['box']['radius']};
+	border-radius: {$icon['radius']};
 	background-color: {$icon['color']['bg']};
 }
 #$block_id .cozy-block-advanced-gallery__icon-wrapper:hover {
 	background-color: {$icon['color']['bg_hover']};
 }
 #$block_id .cozy-block-advanced-gallery__icon {
-	width: {$attributes['icon']['size']};
-	height: {$attributes['icon']['size']};
+	width: {$icon['size']};
+	height: {$icon['size']};
 	fill: {$icon['color']['text']};
 	stroke: none;
 }
@@ -283,14 +339,15 @@ $block_styles = "
 }
 
 #$block_id .cozy-block-advanced-gallery__lightbox-caption {
-	text-align: {$attributes['lightbox']['title']['align']};
-	margin-top: {$attributes['lightbox']['title']['bottom']}px;
+	text-align: {$lightbox['title']['align']};
+	margin-top: {$lightbox['title']['margin_bottom']}px;
 	padding-left: {$lightbox['title']['left']};
 	padding-right: {$lightbox['title']['right']};
-	font-size: {$attributes['lightbox']['title']['font']['size']};
-	font-weight: {$attributes['lightbox']['title']['font']['weight']};
+	font-size: {$lightbox['title']['font']['size']};
+	font-weight: {$lightbox['title']['font']['weight']};
+	font-family: {$lightbox['title']['font']['family']};
 	font-family: '{$attributes['lightbox']['title']['font']['family']}';
-	text-transform: {$attributes['lightbox']['title']['letterCase']};
+	text-transform: {$lightbox['title']['letter_case']};
 	text-decoration: {$lightbox['title']['decoration']};
 	line-height: {$lightbox['title']['line_height']};
 	letter-spacing: {$lightbox['title']['letter_spacing']};
@@ -299,14 +356,14 @@ $block_styles = "
 
 #$block_id .swiper-button-prev.lightbox-button-prev::after,
 #$block_id .swiper-button-next.lightbox-button-next::after {
-    font-size: {$attributes['lightbox']['navigation']['size']};
+    font-size: {$lightbox_nav['size']};
 }
 #$block_id .swiper-button-prev.lightbox-button-prev,
 #$block_id .swiper-button-next.lightbox-button-next {
-    width: {$attributes['lightbox']['navigation']['boxWidth']};
-    height: {$attributes['lightbox']['navigation']['boxHeight']};
+    width: {$lightbox_nav['box_width']};
+    height: {$lightbox_nav['box_height']};
     {$lightbox_nav['border']}
-    border-radius: {$attributes['lightbox']['navigation']['radius']};
+    border-radius: {$lightbox_nav['radius']};
     color: {$lightbox_nav['color']['icon']};
     background-color: {$lightbox_nav['color']['bg']};
 }
@@ -319,14 +376,14 @@ $block_styles = "
 
 #$block_id .swiper-button-prev::after,
 #$block_id .swiper-button-next::after {
-    font-size: {$attributes['navigation']['size']};
+    font-size: {$nav['size']};
 }
 #$block_id .swiper-button-prev,
 #$block_id .swiper-button-next {
-    width: {$attributes['navigation']['boxWidth']};
-    height: {$attributes['navigation']['boxHeight']};
+    width: {$nav['box_width']};
+    height: {$nav['box_height']};
     {$nav['border']}
-    border-radius: {$attributes['navigation']['radius']};
+    border-radius: {$nav['radius']};
     color: {$nav['color']['icon']};
     background-color: {$nav['color']['bg']};
 }
@@ -338,29 +395,29 @@ $block_styles = "
 }
 
 #$block_id .swiper-pagination {
-    bottom: {$attributes['pagination']['bottom']}px;
-    text-align: {$attributes['pagination']['align']};
+    bottom: {$bullets['position']}px;
+    text-align: {$bullets['align']};
     padding-left: {$bullets['left']};
     padding-right: {$bullets['right']};
 }
 #$block_id .swiper-pagination-bullet {
-    width: {$attributes['pagination']['width']};
-    height: {$attributes['pagination']['height']};
-    border-radius: {$attributes['pagination']['radius']};
+    width: {$bullets['width']};
+    height: {$bullets['height']};
+    border-radius: {$bullets['radius']};
     background-color: {$bullets['color']['default']};
 }
 #$block_id .swiper-pagination-horizontal .swiper-pagination-bullet {
-    margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$attributes['pagination']['gap']});
+    margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullets['gap']});
 }
 #$block_id .swiper-pagination-bullet:hover {
     background-color: {$bullets['color']['default_hover']};
 }
 #$block_id .swiper-pagination-bullet-active {
-    width: {$attributes['pagination']['active']['width']};
-    height: {$attributes['pagination']['active']['height']};
-    border-radius: {$attributes['pagination']['active']['radius']};
+    width: {$bullets['active']['width']};
+    height: {$bullets['active']['height']};
+    border-radius: {$bullets['active']['radius']};
     {$bullets['active']['outline']}
-    outline-offset: {$attributes['pagination']['active']['offset']};
+    outline-offset: {$bullets['active']['outline_offset']};
     background-color: {$bullets['color']['active']};
 }
 #$block_id .swiper-pagination-bullet-active:hover {
@@ -368,18 +425,17 @@ $block_styles = "
 }
 
 #$block_id .cozy-block-advanced-gallery__ajax-loader-wrapper {
-	margin-top: {$attributes['ajaxLoader']['margin']['top']};
-	margin-bottom: {$attributes['ajaxLoader']['margin']['bottom']};
-	text-align: {$attributes['ajaxLoader']['textAlign']};
+	{$ajax_loader['margin']}
+	text-align: {$ajax_loader['align']};
 }
 #$block_id .cozy-block-advanced-gallery__ajax-loader, #$block_id .scroll-spinner.has-loading-text {
 	{$ajax_loader['padding']}
 	{$ajax_loader['border']}
-	border-radius: {$attributes['ajaxLoader']['radius']};
-	font-size: {$attributes['ajaxLoader']['font']['size']};
-	font-weight: {$attributes['ajaxLoader']['font']['weight']};
-	font-family: '{$ajax_loader['font_family']}';
-	text-transform: {$attributes['ajaxLoader']['letterCase']};
+	border-radius: {$ajax_loader['radius']};
+	font-size: {$ajax_loader['font']['size']};
+	font-weight: {$ajax_loader['font']['weight']};
+	font-family: {$ajax_loader['font']['family']};
+	text-transform: {$ajax_loader['letter_case']};
 	text-decoration: {$ajax_loader['decoration']};
 	line-height: {$ajax_loader['line_height']};
 	letter-spacing: {$ajax_loader['letter_spacing']};
@@ -405,20 +461,20 @@ $classes[] = 'display-' . $attributes['display'];
 $classes[] = 'carousel' === $attributes['display'] && $attributes['navigation']['enabled'] && $attributes['navigation']['hoverShow'] ? 'has-nav-hover-show' : '';
 $classes[] = 'grid' === $attributes['display'] && $attributes['enableOptions']['lightbox'] ? 'has-light-box' : '';
 $classes[] = 'grid' === $attributes['display'] && $attributes['ajaxLoader']['enabled'] && 'scroll' === $attributes['ajaxLoader']['type'] ? 'has-infinite-scroll' : '';
-$output    = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
+$output    = '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '" id="' . esc_attr( $block_id ) . '">';
 
 /* Header */
 if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeFilter'] ) {
 	$classes   = array();
 	$classes[] = 'cozy-block-advanced-gallery__header';
-	$output   .= '<article class="' . implode( ' ', $classes ) . '">';
+	$output   .= '<article class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 
 	/* Tabs */
 	$classes   = array();
 	$classes[] = 'cozy-block-advanced-gallery__tabs';
 	$classes[] = isset( $attributes['tabStyles']['default']['shadow']['enabled'] ) ? 'item-has-default-shadow' : '';
 	$classes[] = isset( $attributes['tabStyles']['active']['shadow']['enabled'] ) ? 'item-has-active-shadow' : '';
-	$output   .= '<ul class="' . implode( ' ', $classes ) . '">';
+	$output   .= '<ul class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 	if ( $attributes['tabOptions']['showDefaultTab'] ) {
 		$output .= '<li class="cozy-block-advanced-gallery__tab active-tab" data-index="0" data-slug="">' . esc_html__( 'All', 'cozy-addons' ) . '</li>';
 	}
@@ -428,7 +484,7 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 			$classes[]  = 'cozy-block-advanced-gallery__tab';
 			$classes[]  = ! $attributes['tabOptions']['showDefaultTab'] && 0 === $index ? 'active-tab' : '';
 			$data_index = $attributes['tabOptions']['showDefaultTab'] ? $index + 1 : $index;
-			$output    .= '<li class="' . implode( ' ', $classes ) . '" data-index="' . $data_index . '" data-slug="' . $identifier['id'] . '">';
+			$output    .= '<li class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '" data-index="' . $data_index . '" data-slug="' . $identifier['id'] . '">';
 			$output    .= esc_html( $identifier['title'] );
 			$output    .= '</li>';
 		}
@@ -463,13 +519,13 @@ if ( ( ( $attributes['tabOptions']['showDefaultTab'] && $attributes['enableOptio
 	$classes[] = 'carousel' === $attributes['display'] ? 'swiper-container' : '';
 	$classes[] = 'active-content';
 	$classes[] = 'animation__fade-in';
-	$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+	$output   .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 
 	$classes   = array();
 	$classes[] = 'cozy-block-advanced-gallery__' . $attributes['display'] . '-wrapper';
 	$classes[] = 'grid' === $attributes['display'] && $attributes['gridOptions']['masonry'] ? 'has-masonry' : '';
 	$classes[] = 'carousel' === $attributes['display'] ? 'swiper-wrapper' : '';
-	$output   .= '<ul class="' . implode( ' ', $classes ) . '">';
+	$output   .= '<ul class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 	/* Item */
 	foreach ( $all_media as $media ) {
 		\CozyAddons\Helpers\BlockRender::advanced_gallery_render( $attributes, $media, $output );
@@ -477,28 +533,18 @@ if ( ( ( $attributes['tabOptions']['showDefaultTab'] && $attributes['enableOptio
 	/* End Item */
 	$output .= '</ul>';
 
-	if ( 'carousel' === $attributes['display'] ) {
-		if ( $attributes['navigation']['enabled'] ) {
-			$output .= '<div class="swiper-button-prev"></div>';
-			$output .= '<div class="swiper-button-next"></div>';
-		}
-		if ( $attributes['pagination']['enabled'] ) {
-			$output .= '<div class="swiper-pagination"></div>';
-		}
-	}
-
 	if ( ! empty( $remaining_posts ) && $attributes['ajaxLoader']['enabled'] ) {
 		if ( 'default' === $attributes['ajaxLoader']['type'] ) {
 			$classes   = array();
 			$classes[] = 'cozy-block-advanced-gallery__ajax-loader';
 			$output   .= '<div class="cozy-block-advanced-gallery__ajax-loader-wrapper">';
-			$output   .= '<button class="' . implode( ' ', $classes ) . '" data-slug="all">';
+			$output   .= '<button class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '" data-slug="all">';
 			$output   .= '<span>' . esc_html( $attributes['ajaxLoader']['label'] ) . '</span>';
 
 			$classes   = array();
 			$classes[] = 'spinner';
 			$classes[] = isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ? 'has-loading-text' : '';
-			$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+			$output   .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 			$output   .= esc_html( $attributes['ajaxLoader']['loadingText'] );
 			$output   .= '<span class="cozy-block-advanced-gallery__dots"></span>';
 			$output   .= '</div>';
@@ -513,7 +559,7 @@ if ( ( ( $attributes['tabOptions']['showDefaultTab'] && $attributes['enableOptio
 			$classes[]   = 'scroll-spinner';
 			$classes[]   = 'display-none';
 			$classes[]   = isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ? 'has-loading-text' : '';
-			$output     .= '<div class="' . implode( ' ', $classes ) . '">';
+			$output     .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 			if ( isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ) {
 				$output .= esc_html( $attributes['ajaxLoader']['loadingText'] );
 				$output .= '<span class="cozy-block-advanced-gallery__dots"></span>';
@@ -523,6 +569,16 @@ if ( ( ( $attributes['tabOptions']['showDefaultTab'] && $attributes['enableOptio
 		}
 	}
 	$output .= '</div>';
+
+	if ( 'carousel' === $attributes['display'] ) {
+		if ( $attributes['navigation']['enabled'] ) {
+			$output .= '<div class="swiper-button-prev carousel-btn-prev"></div>';
+			$output .= '<div class="swiper-button-next carousel-btn-next"></div>';
+		}
+		if ( $attributes['pagination']['enabled'] ) {
+			$output .= '<div class="swiper-pagination carousel-pagination"></div>';
+		}
+	}
 	/* End All Tab Content Body */
 
 }
@@ -541,12 +597,12 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 		$classes[] = 'cozy-block-advanced-gallery__body';
 		$classes[] = ! $attributes['tabOptions']['showDefaultTab'] && 0 === $key ? 'active-content' : '';
 		$classes[] = ! $attributes['tabOptions']['showDefaultTab'] && 0 === $key ? 'animation__fade-in' : '';
-		$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+		$output   .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 
 		$classes   = array();
 		$classes[] = 'cozy-block-advanced-gallery__' . $attributes['display'] . '-wrapper';
 		$classes[] = 'grid' === $attributes['display'] && $attributes['gridOptions']['masonry'] ? 'has-masonry' : '';
-		$output   .= '<ul class="' . implode( ' ', $classes ) . '">';
+		$output   .= '<ul class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 
 		$filtered_items = array_filter(
 			(array) $attributes['mediaCollection'],
@@ -582,13 +638,13 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 				$classes   = array();
 				$classes[] = 'cozy-block-advanced-gallery__ajax-loader';
 				$output   .= '<div class="cozy-block-advanced-gallery__ajax-loader-wrapper">';
-				$output   .= '<button class="' . implode( ' ', $classes ) . '" data-slug="' . $tab_id . '">';
+				$output   .= '<button class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '" data-slug="' . esc_attr( $tab_id ) . '">';
 				$output   .= '<span>' . esc_html( $attributes['ajaxLoader']['label'] ) . '</span>';
 
 				$classes   = array();
 				$classes[] = 'spinner';
 				$classes[] = isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ? 'has-loading-text' : '';
-				$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+				$output   .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 				$output   .= esc_html( $attributes['ajaxLoader']['loadingText'] );
 				$output   .= '<span class="cozy-block-advanced-gallery__dots"></span>';
 				$output   .= '</div>';
@@ -598,12 +654,12 @@ if ( 'grid' === $attributes['display'] && $attributes['enableOptions']['isotopeF
 			}
 
 			if ( 'scroll' === $attributes['ajaxLoader']['type'] ) {
-				$output   .= '<div class="scroll-spinner-wrapper" style="text-align: center;"  data-slug="' . $tab_id . '">';
+				$output   .= '<div class="scroll-spinner-wrapper" style="text-align: center;"  data-slug="' . esc_attr( $tab_id ) . '">';
 				$classes   = array();
 				$classes[] = 'scroll-spinner';
 				$classes[] = 'display-none';
 				$classes[] = isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ? 'has-loading-text' : '';
-				$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+				$output   .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 				if ( isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ) {
 					$output .= esc_html( $attributes['ajaxLoader']['loadingText'] );
 					$output .= '<span class="cozy-block-advanced-gallery__dots"></span>';
@@ -658,8 +714,8 @@ if ( $attributes['enableOptions']['lightbox'] && ! empty( $attributes['mediaColl
 
 			$classes   = array();
 			$classes[] = 'cozy-block-advanced-gallery__lightbox-image-wrapper';
-			$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
-			$output   .= '<img class="cozy-block-advanced-gallery__lightbox-image" src="' . esc_url( $media['url'] ) . '" alt="' . esc_html( $media['alt'] ) . '" />';
+			$output   .= '<figure class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
+			$output   .= '<img class="cozy-block-advanced-gallery__lightbox-image" src="' . esc_url( $media['url'] ) . '" alt="' . esc_attr( $media['alt'] ) . '" />';
 			$output   .= '</figure>';
 
 			if ( $attributes['enableOptions']['lightboxTitle'] ) {
@@ -686,21 +742,21 @@ if ( $attributes['enableOptions']['lightbox'] && ! empty( $attributes['mediaColl
 			$classes   = array();
 			$classes[] = 'cozy-block-advanced-gallery__lightbox';
 			$classes[] = ! $attributes['tabOptions']['showDefaultTab'] && 0 === $key ? 'active-gallery' : '';
-			$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+			$output   .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 
 			$classes   = array();
 			$classes[] = 'cozy-block-advanced-gallery__lightbox-swiper-wrapper';
 			$classes[] = 'swiper-wrapper';
 			$classes[] = ! $attributes['tabOptions']['showDefaultTab'] && 0 === $key ? 'active-content' : '';
-			$output   .= '<ul class="' . implode( ' ', $classes ) . '">';
+			$output   .= '<ul class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
 			if ( ! empty( $gallery_filtered_items ) ) {
 				foreach ( $gallery_filtered_items as $media ) {
 					$output .= '<li class="cozy-block-advanced-gallery__lightbox-item swiper-slide">';
 
 					$classes   = array();
 					$classes[] = 'cozy-block-advanced-gallery__lightbox-image-wrapper';
-					$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
-					$output   .= '<img class="cozy-block-advanced-gallery__lightbox-image" src="' . esc_url( $media['url'] ) . '" alt="' . esc_html( $media['alt'] ) . '" />';
+					$output   .= '<figure class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '">';
+					$output   .= '<img class="cozy-block-advanced-gallery__lightbox-image" src="' . esc_url( $media['url'] ) . '" alt="' . esc_attr( $media['alt'] ) . '" />';
 					$output   .= '</figure>';
 
 					if ( $attributes['enableOptions']['lightboxTitle'] ) {
@@ -736,16 +792,16 @@ $wrapper_attributes = get_block_wrapper_attributes();
 $font_families = array();
 
 if ( isset( $attributes['tabStyles']['font']['family'] ) && ! empty( $attributes['tabStyles']['font']['family'] ) ) {
-	$font_families[] = $attributes['tabStyles']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['tabStyles']['font']['family'] );
 }
 if ( isset( $attributes['image']['title']['font']['family'] ) && ! empty( $attributes['image']['title']['font']['family'] ) ) {
-	$font_families[] = $attributes['image']['title']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['image']['title']['font']['family'] );
 }
 if ( isset( $attributes['lightbox']['title']['font']['family'] ) && ! empty( $attributes['lightbox']['title']['font']['family'] ) ) {
-	$font_families[] = $attributes['lightbox']['title']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['lightbox']['title']['font']['family'] );
 }
 if ( isset( $attributes['ajaxLoader']['font']['family'] ) && ! empty( $attributes['ajaxLoader']['font']['family'] ) ) {
-	$font_families[] = $attributes['ajaxLoader']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['ajaxLoader']['font']['family'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -753,9 +809,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {

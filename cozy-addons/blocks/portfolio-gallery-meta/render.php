@@ -13,56 +13,56 @@ $portfolio_id = get_the_ID();
 $cpt_type = get_post_type( $portfolio_id );
 
 $cat_styles = array(
-	'gap'            => isset( $attributes['cat']['gap'] ) ? $attributes['cat']['gap'] : '',
-	'row_gap'        => isset( $attributes['cat']['rowGap'] ) ? $attributes['cat']['rowGap'] : '',
+	'gap'            => isset( $attributes['cat']['gap'] ) ? cozy_addons_sanitize_dimension( $attributes['cat']['gap'] ) : '',
+	'row_gap'        => isset( $attributes['cat']['rowGap'] ) ? cozy_addons_sanitize_dimension( $attributes['cat']['rowGap'] ) : '',
 	'padding'        => isset( $attributes['cat']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cat']['padding'] ) : '',
 	'margin'         => isset( $attributes['cat']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['cat']['margin'] ) : '',
 	'border'         => isset( $attributes['cat']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cat']['border'] ) : '',
-	'radius'         => isset( $attributes['cat']['radius'] ) ? $attributes['cat']['radius'] : '',
+	'radius'         => isset( $attributes['cat']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['cat']['radius'] ) : '',
 	'font'           => array(
-		'size'   => isset( $attributes['cat']['font']['size'] ) ? $attributes['cat']['font']['size'] : '',
-		'weight' => isset( $attributes['cat']['font']['weight'] ) ? $attributes['cat']['font']['weight'] : '',
-		'family' => isset( $attributes['cat']['font']['family'] ) ? $attributes['cat']['font']['family'] : '',
+		'size'   => isset( $attributes['cat']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['cat']['font']['size'] ) : '',
+		'weight' => isset( $attributes['cat']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['cat']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['cat']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['cat']['font']['family'] ) ) : '',
 	),
-	'letter_case'    => isset( $attributes['cat']['letterCase'] ) ? $attributes['cat']['letterCase'] : '',
-	'decoration'     => isset( $attributes['cat']['decoration'] ) ? $attributes['cat']['decoration'] : '',
-	'line_height'    => isset( $attributes['cat']['lineHeight'] ) ? $attributes['cat']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['cat']['letterSpacing'] ) ? $attributes['cat']['letterSpacing'] : '',
+	'letter_case'    => isset( $attributes['cat']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['cat']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['cat']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['cat']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['cat']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['cat']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['cat']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['cat']['letterSpacing'] ) : '',
 	'color'          => array(
-		'text' => isset( $attributes['cat']['color']['text'] ) ? $attributes['cat']['color']['text'] : '',
-		'bg'   => isset( $attributes['cat']['color']['bg'] ) ? $attributes['cat']['color']['bg'] : '',
+		'text' => isset( $attributes['cat']['color']['text'] ) ? esc_attr( $attributes['cat']['color']['text'] ) : '',
+		'bg'   => isset( $attributes['cat']['color']['bg'] ) ? esc_attr( $attributes['cat']['color']['bg'] ) : '',
 	),
 );
 
 $title_styles = array(
 	'margin'         => isset( $attributes['title']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['title']['margin'] ) : '',
 	'font'           => array(
-		'size'   => isset( $attributes['title']['font']['size'] ) ? $attributes['title']['font']['size'] : '',
-		'weight' => isset( $attributes['title']['font']['weight'] ) ? $attributes['title']['font']['weight'] : '',
-		'family' => isset( $attributes['title']['font']['family'] ) ? $attributes['title']['font']['family'] : '',
+		'size'   => isset( $attributes['title']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['title']['font']['size'] ) : '',
+		'weight' => isset( $attributes['title']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['title']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['title']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['title']['font']['family'] ) ) : '',
 	),
-	'letter_case'    => isset( $attributes['title']['letterCase'] ) ? $attributes['title']['letterCase'] : '',
-	'decoration'     => isset( $attributes['title']['decoration'] ) ? $attributes['title']['decoration'] : '',
-	'line_height'    => isset( $attributes['title']['lineHeight'] ) ? $attributes['title']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['title']['letterSpacing'] ) ? $attributes['title']['letterSpacing'] : '',
+	'letter_case'    => isset( $attributes['title']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['title']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['title']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['title']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['title']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['title']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['title']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['title']['letterSpacing'] ) : '',
 	'color'          => array(
-		'text' => isset( $attributes['title']['color']['text'] ) ? $attributes['title']['color']['text'] : '',
+		'text' => isset( $attributes['title']['color']['text'] ) ? esc_attr( $attributes['title']['color']['text'] ) : '',
 	),
 );
 
 $typography = array(
 	'font'           => array(
-		'size'   => isset( $attributes['typography']['font']['size'] ) ? $attributes['typography']['font']['size'] : '',
-		'weight' => isset( $attributes['typography']['font']['weight'] ) ? $attributes['typography']['font']['weight'] : '',
-		'family' => isset( $attributes['typography']['font']['family'] ) ? $attributes['typography']['font']['family'] : '',
+		'size'   => isset( $attributes['typography']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['typography']['font']['size'] ) : '',
+		'weight' => isset( $attributes['typography']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['typography']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['font']['family'] ) ) : '',
 	),
-	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
-	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
-	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
+	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['typography']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['typography']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['typography']['letterSpacing'] ) : '',
 	'color'          => array(
-		'text'       => isset( $attributes['typography']['color']['text'] ) ? $attributes['typography']['color']['text'] : '',
-		'text_hover' => isset( $attributes['typography']['color']['textHover'] ) ? $attributes['typography']['color']['textHover'] : '',
+		'text'       => isset( $attributes['typography']['color']['text'] ) ? esc_attr( $attributes['typography']['color']['text'] ) : '',
+		'text_hover' => isset( $attributes['typography']['color']['textHover'] ) ? esc_attr( $attributes['typography']['color']['textHover'] ) : '',
 	),
 );
 
@@ -117,13 +117,13 @@ $block_styles = "
 $font_families = array();
 
 if ( isset( $attributes['cat']['font']['family'] ) && ! empty( $attributes['cat']['font']['family'] ) ) {
-	$font_families[] = $attributes['cat']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['cat']['font']['family'] );
 }
 if ( isset( $attributes['title']['font']['family'] ) && ! empty( $attributes['title']['font']['family'] ) ) {
-	$font_families[] = $attributes['title']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['title']['font']['family'] );
 }
 if ( isset( $attributes['typography']['font']['family'] ) && ! empty( $attributes['typography']['font']['family'] ) ) {
-	$font_families[] = $attributes['typography']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['typography']['font']['family'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -131,9 +131,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {

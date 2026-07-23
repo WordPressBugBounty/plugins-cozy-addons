@@ -794,6 +794,7 @@ function cozy_addons_google_fonts() {
 		'Mina'                             => 'Mina',
 		'Mingzat'                          => 'Mingzat',
 		'Miniver'                          => 'Miniver',
+		'Miranda Sans'                     => 'Miranda Sans ',
 		'Miriam Libre'                     => 'Miriam Libre',
 		'Mirza'                            => 'Mirza',
 		'Miss Fajardose'                   => 'Miss Fajardose',

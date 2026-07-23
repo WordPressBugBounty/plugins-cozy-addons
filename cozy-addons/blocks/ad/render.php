@@ -7,13 +7,19 @@ $client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', 
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $image = array(
-	'width'    => isset( $attributes['media']['width'] ) ? esc_attr( $attributes['media']['width'] ) : '',
-	'height'   => isset( $attributes['media']['height'] ) ? esc_attr( $attributes['media']['height'] ) : '',
-	'position' => array(
-		'x' => isset( $attributes['media']['position']['x'] ) ? floatval( $attributes['media']['position']['x'] ) * 100 : '',
-		'y' => isset( $attributes['media']['position']['y'] ) ? floatval( $attributes['media']['position']['y'] ) * 100 : '',
+	'width'      => isset( $attributes['media']['width'] ) ? esc_attr( $attributes['media']['width'] ) : '',
+	'height'     => isset( $attributes['media']['height'] ) ? esc_attr( $attributes['media']['height'] ) : '',
+	'position'   => array(
+		'x' => isset( $attributes['media']['position']['x'] ) ? esc_attr( floatval( $attributes['media']['position']['x'] ) ) * 100 : '',
+		'y' => isset( $attributes['media']['position']['y'] ) ? esc_attr( floatval( $attributes['media']['position']['y'] ) ) * 100 : '',
 	),
-	'radius'   => cozy_render_TRBL( 'border-radius', $attributes['media']['radius'] ),
+	'radius'     => isset( $attributes['media']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['media']['radius'] ) : '',
+	'align'      => isset( $attributes['media']['align'] ) ? esc_attr( $attributes['media']['align'] ) : '',
+	'object_fit' => isset( $attributes['media']['objectFit'] ) ? esc_attr( $attributes['media']['objectFit'] ) : '',
+	'caption'    => array(
+		'align'      => isset( $attributes['figCaption']['align'] ) ? esc_attr( $attributes['figCaption']['align'] ) : '',
+		'margin_top' => isset( $attributes['figCaption']['marginTop'] ) ? esc_attr( $attributes['figCaption']['marginTop'] ) : '',
+	),
 );
 
 $block_styles = "
@@ -28,19 +34,19 @@ $block_styles = "
     margin: 0 0 0 auto;
 }
 #$block_id .cozy-block-ad__image-wrapper.object-fit-contain {
-    text-align: {$attributes['media']['align']};
+    text-align: {$image['align']};
 }
 #$block_id .cozy-block-ad__image {
     height: {$image['height']};
-    object-fit: {$attributes['media']['objectFit']};
+    object-fit: {image['object_fit']};
     {$image['radius']}
 }
 #$block_id .object-fit-cover .cozy-block-ad__image {
     object-position: {$image['position']['x']}% {$image['position']['y']}%;
 }
 #$block_id .cozy-block-ad__caption{
-	justify-content: {$attributes['figCaption']['align']};
-	margin-top: {$attributes['figCaption']['marginTop']};
+	justify-content: {$image['caption']['align']};
+	margin-top: {$image['caption']['margin_top']};
 }
 ";
 

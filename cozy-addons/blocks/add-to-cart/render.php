@@ -33,51 +33,58 @@ $link_target              = $should_open_new_tab ? ' target="_blank"' : '';
 
 // 4. Style & Attribute Arrays
 $button = array(
+	'gap'            => isset( $attributes['button']['gap'] ) ? cozy_addons_sanitize_dimension( $attributes['button']['gap'] ) : '',
 	'padding'        => isset( $attributes['button']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['button']['padding'] ) : '',
-	'width'          => isset( $attributes['button']['width'] ) ? $attributes['button']['width'] : '',
+	'width'          => isset( $attributes['button']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['button']['width'] ) : '',
 	'border'         => isset( $attributes['button']['border'] ) ? cozy_render_TRBL( 'border', $attributes['button']['border'] ) : '',
+	'radius'         => isset( $attributes['button']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['button']['radius'] ) : '',
 	'shadow_default' => array(
-		'horizontal' => isset( $attributes['button']['shadow']['default']['horizontal'] ) ? $attributes['button']['shadow']['default']['horizontal'] : '',
-		'vertical'   => isset( $attributes['button']['shadow']['default']['vertical'] ) ? $attributes['button']['shadow']['default']['vertical'] : '',
-		'blur'       => isset( $attributes['button']['shadow']['default']['blur'] ) ? $attributes['button']['shadow']['default']['blur'] : '',
-		'spread'     => isset( $attributes['button']['shadow']['default']['spread'] ) ? $attributes['button']['shadow']['default']['spread'] : '',
-		'color'      => isset( $attributes['button']['shadow']['default']['color'] ) ? $attributes['button']['shadow']['default']['color'] : '',
-		'position'   => isset( $attributes['button']['shadow']['default']['position'] ) ? $attributes['button']['shadow']['default']['position'] : '',
+		'horizontal' => isset( $attributes['button']['shadow']['default']['horizontal'] ) ? esc_attr( $attributes['button']['shadow']['default']['horizontal'] ) : '',
+		'vertical'   => isset( $attributes['button']['shadow']['default']['vertical'] ) ? esc_attr( $attributes['button']['shadow']['default']['vertical'] ) : '',
+		'blur'       => isset( $attributes['button']['shadow']['default']['blur'] ) ? esc_attr( $attributes['button']['shadow']['default']['blur'] ) : '',
+		'spread'     => isset( $attributes['button']['shadow']['default']['spread'] ) ? esc_attr( $attributes['button']['shadow']['default']['spread'] ) : '',
+		'color'      => isset( $attributes['button']['shadow']['default']['color'] ) ? esc_attr( $attributes['button']['shadow']['default']['color'] ) : '',
+		'position'   => isset( $attributes['button']['shadow']['default']['position'] ) ? esc_attr( sanitize_text_field( $attributes['button']['shadow']['default']['position'] ) ) : '',
 	),
 	'shadow_hover'   => array(
-		'horizontal' => isset( $attributes['button']['shadow']['hover']['horizontal'] ) ? $attributes['button']['shadow']['hover']['horizontal'] : '',
-		'vertical'   => isset( $attributes['button']['shadow']['hover']['vertical'] ) ? $attributes['button']['shadow']['hover']['vertical'] : '',
-		'blur'       => isset( $attributes['button']['shadow']['hover']['blur'] ) ? $attributes['button']['shadow']['hover']['blur'] : '',
-		'spread'     => isset( $attributes['button']['shadow']['hover']['spread'] ) ? $attributes['button']['shadow']['hover']['spread'] : '',
-		'color'      => isset( $attributes['button']['shadow']['hover']['color'] ) ? $attributes['button']['shadow']['hover']['color'] : '',
-		'position'   => isset( $attributes['button']['shadow']['hover']['position'] ) ? $attributes['button']['shadow']['hover']['position'] : '',
+		'horizontal' => isset( $attributes['button']['shadow']['hover']['horizontal'] ) ? esc_attr( $attributes['button']['shadow']['hover']['horizontal'] ) : '',
+		'vertical'   => isset( $attributes['button']['shadow']['hover']['vertical'] ) ? esc_attr( $attributes['button']['shadow']['hover']['vertical'] ) : '',
+		'blur'       => isset( $attributes['button']['shadow']['hover']['blur'] ) ? esc_attr( $attributes['button']['shadow']['hover']['blur'] ) : '',
+		'spread'     => isset( $attributes['button']['shadow']['hover']['spread'] ) ? esc_attr( $attributes['button']['shadow']['hover']['spread'] ) : '',
+		'color'      => isset( $attributes['button']['shadow']['hover']['color'] ) ? esc_attr( $attributes['button']['shadow']['hover']['color'] ) : '',
+		'position'   => isset( $attributes['button']['shadow']['hover']['position'] ) ? esc_attr( sanitize_text_field( $attributes['button']['shadow']['hover']['position'] ) ) : '',
 	),
 	'font'           => array(
-		'size'   => isset( $attributes['button']['font']['size'] ) ? esc_attr( $attributes['button']['font']['size'] ) : '',
-		'weight' => isset( $attributes['button']['font']['weight'] ) ? esc_attr( $attributes['button']['font']['weight'] ) : '',
-		'family' => isset( $attributes['button']['font']['family'] ) ? esc_attr( $attributes['button']['font']['family'] ) : '',
+		'size'   => isset( $attributes['button']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['button']['font']['size'] ) : '',
+		'weight' => isset( $attributes['button']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['button']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['button']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['button']['font']['family'] ) ) : '',
 	),
-	'letter_case'    => isset( $attributes['button']['letterCase'] ) ? esc_attr( $attributes['button']['letterCase'] ) : '',
-	'decoration'     => isset( $attributes['button']['decoration'] ) ? esc_attr( $attributes['button']['decoration'] ) : '',
-	'line_height'    => isset( $attributes['button']['lineHeight'] ) ? esc_attr( $attributes['button']['lineHeight'] ) : '',
-	'letter_spacing' => isset( $attributes['button']['letterSpacing'] ) ? esc_attr( $attributes['button']['letterSpacing'] ) : '',
+	'letter_case'    => isset( $attributes['button']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['button']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['button']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['button']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['button']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['button']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['button']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['button']['letterSpacing'] ) : '',
 	'color'          => array(
-		'text'         => isset( $attributes['button']['color']['text'] ) ? $attributes['button']['color']['text'] : '',
-		'text_hover'   => isset( $attributes['button']['color']['textHover'] ) ? $attributes['button']['color']['textHover'] : '',
-		'bg'           => isset( $attributes['button']['color']['bg'] ) ? $attributes['button']['color']['bg'] : '',
-		'bg_hover'     => isset( $attributes['button']['color']['bgHover'] ) ? $attributes['button']['color']['bgHover'] : '',
-		'border_hover' => isset( $attributes['button']['color']['borderHover'] ) ? $attributes['button']['color']['borderHover'] : '',
+		'text'         => isset( $attributes['button']['color']['text'] ) ? esc_attr( $attributes['button']['color']['text'] ) : '',
+		'text_hover'   => isset( $attributes['button']['color']['textHover'] ) ? esc_attr( $attributes['button']['color']['textHover'] ) : '',
+		'bg'           => isset( $attributes['button']['color']['bg'] ) ? esc_attr( $attributes['button']['color']['bg'] ) : '',
+		'bg_hover'     => isset( $attributes['button']['color']['bgHover'] ) ? esc_attr( $attributes['button']['color']['bgHover'] ) : '',
+		'border_hover' => isset( $attributes['button']['color']['borderHover'] ) ? esc_attr( $attributes['button']['color']['borderHover'] ) : '',
 	),
 );
 
 $icon = array(
-	'border' => isset( $attributes['icon']['box']['border'] ) ? cozy_render_TRBL( 'border', $attributes['icon']['box']['border'] ) : '',
-	'color'  => array(
-		'text'         => isset( $attributes['icon']['color']['text'] ) && ! empty( $attributes['icon']['color']['text'] ) ? $attributes['icon']['color']['text'] : $button['color']['text'],
-		'text_hover'   => isset( $attributes['icon']['color']['textHover'] ) && ! empty( $attributes['icon']['color']['textHover'] ) ? $attributes['icon']['color']['textHover'] : $button['color']['text_hover'],
-		'bg'           => isset( $attributes['icon']['color']['bg'] ) && ! empty( $attributes['icon']['color']['bg'] ) ? $attributes['icon']['color']['bg'] : $button['color']['bg'],
-		'bg_hover'     => isset( $attributes['icon']['color']['bgHover'] ) && ! empty( $attributes['icon']['color']['bgHover'] ) ? $attributes['icon']['color']['bgHover'] : $button['color']['bg_hover'],
-		'border_hover' => isset( $attributes['icon']['color']['borderHover'] ) && ! empty( $attributes['icon']['color']['borderHover'] ) ? $attributes['icon']['color']['borderHover'] : $button['color']['border_hover'],
+	'margin'     => isset( $attributes['icon']['box']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['icon']['box']['margin'] ) : '',
+	'box_width'  => isset( $attributes['icon']['box']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['icon']['box']['width'] ) : '',
+	'box_height' => isset( $attributes['icon']['box']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['icon']['box']['height'] ) : '',
+	'size'       => isset( $attributes['icon']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['icon']['size'] ) : '',
+	'border'     => isset( $attributes['icon']['box']['border'] ) ? cozy_render_TRBL( 'border', $attributes['icon']['box']['border'] ) : '',
+	'radius'     => isset( $attributes['icon']['box']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['icon']['box']['radius'] ) : '',
+	'color'      => array(
+		'text'         => isset( $attributes['icon']['color']['text'] ) && ! empty( $attributes['icon']['color']['text'] ) ? esc_attr( $attributes['icon']['color']['text'] ) : ( $button['color']['text'] ),
+		'text_hover'   => isset( $attributes['icon']['color']['textHover'] ) && ! empty( $attributes['icon']['color']['textHover'] ) ? esc_attr( $attributes['icon']['color']['textHover'] ) : $button['color']['text_hover'],
+		'bg'           => isset( $attributes['icon']['color']['bg'] ) && ! empty( $attributes['icon']['color']['bg'] ) ? esc_attr( $attributes['icon']['color']['bg'] ) : $button['color']['bg'],
+		'bg_hover'     => isset( $attributes['icon']['color']['bgHover'] ) && ! empty( $attributes['icon']['color']['bgHover'] ) ? esc_attr( $attributes['icon']['color']['bgHover'] ) : $button['color']['bg_hover'],
+		'border_hover' => isset( $attributes['icon']['color']['borderHover'] ) && ! empty( $attributes['icon']['color']['borderHover'] ) ? esc_attr( $attributes['icon']['color']['borderHover'] ) : $button['color']['border_hover'],
 	),
 );
 
@@ -86,7 +93,7 @@ $block_styles = "
     {$button['padding']}
     width: {$button['width']};
     {$button['border']}
-    border-radius: {$attributes['button']['radius']};
+    border-radius: {$button['radius']};
     font-size: {$button['font']['size']};
     font-weight: {$button['font']['weight']};
     font-family: {$button['font']['family']};
@@ -96,7 +103,7 @@ $block_styles = "
     letter-spacing: {$button['letter_spacing']};
     color: {$button['color']['text']};
     background-color: {$button['color']['bg']};
-    gap: {$attributes['button']['gap']};
+    gap: {$button['gap']};
     cursor: pointer;
 
 	& a {
@@ -115,12 +122,11 @@ $block_styles = "
     border-color: {$button['color']['border_hover']};
 }
 #$block_id .cozy-block-add-to-cart__icon-wrapper {
-    margin-top: {$attributes['icon']['box']['margin']['top']};
-    margin-bottom: {$attributes['icon']['box']['margin']['bottom']};
-    width: {$attributes['icon']['box']['width']};
-    height: {$attributes['icon']['box']['height']};
+	{$icon['margin']}
+    width: {$icon['box_width']};
+    height: {$icon['box_height']};
     {$icon['border']}
-    border-radius: {$attributes['icon']['box']['radius']};
+    border-radius: {$icon['radius']};
     background-color: {$icon['color']['bg']};
 }
 #$block_id .cozy-block-add-to-cart__icon-wrapper:hover, #$block_id.has-label:hover .cozy-block-add-to-cart__icon-wrapper {
@@ -128,8 +134,8 @@ $block_styles = "
     border-color: {$icon['color']['border_hover']};
 }
 #$block_id .cozy-block-add-to-cart__icon-wrapper svg {
-    width: {$attributes['icon']['size']};
-    height: {$attributes['icon']['size']};
+    width: {$icon['size']};
+    height: {$icon['size']};
     fill: {$icon['color']['text']};
     color: {$icon['color']['text']};
     stroke: none;
@@ -147,8 +153,10 @@ $classes[] = $attributes['button']['enabled'] ? 'has-label' : '';
 $classes[] = ( $attributes['button']['enabled'] && $attributes['button']['shadow']['default']['enabled'] ) ? 'has-box-shadow' : '';
 $classes[] = ( $attributes['button']['enabled'] && $attributes['button']['shadow']['hover']['enabled'] ) ? 'has-hover-box-shadow' : '';
 
-$escaped_classes = esc_attr( implode( ' ', array_filter( $classes ) ) );
+$escaped_classes = esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) );
 $is_out_of_stock = is_object( $product ) && ! $product->is_in_stock();
+
+$output = '';
 
 if ( 'simple' !== $product_type || $is_out_of_stock ) {
 	$output = sprintf(
@@ -169,7 +177,6 @@ if ( 'simple' !== $product_type || $is_out_of_stock ) {
 		esc_js( is_object( $product ) ? $product->get_name() : '' )
 	);
 }
-
 if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType'] ) {
 
 	if ( $attributes['button']['enabled'] && ! empty( $attributes['button']['font']['family'] ) ) {
@@ -181,10 +188,10 @@ if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType']
 	}
 
 	if ( $attributes['icon']['enabled'] && 'left' === $attributes['icon']['position'] ) {
-		$output  .= '<div class="cozy-block-add-to-cart__icon-wrapper" title="' . esc_attr( 'Add To Cart' ) . '">';
-		$view_box = implode( ' ', array( $attributes['icon']['viewBox']['vx'], $attributes['icon']['viewBox']['vy'], $attributes['icon']['viewBox']['vw'], $attributes['icon']['viewBox']['vh'] ) );
+		$output  .= '<div class="cozy-block-add-to-cart__icon-wrapper" title="' . esc_html( 'Add To Cart' ) . '">';
+		$view_box = implode( ' ', array( intval( $attributes['icon']['viewBox']['vx'] ), intval( $attributes['icon']['viewBox']['vy'] ), intval( $attributes['icon']['viewBox']['vw'] ), intval( $attributes['icon']['viewBox']['vh'] ) ) );
 		$output  .= '<svg class="cozy-block-add-to-cart__cart-icon" viewBox="' . esc_attr( $view_box ) . '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
-		$output  .= '<path d="' . cozy_remove_special_chars( $attributes['icon']['path'], array( ' ' ) ) . '" />';
+		$output  .= '<path d="' . esc_attr( $attributes['icon']['path'] ) . '" />';
 		$output  .= '</svg></div>';
 	}
 
@@ -193,16 +200,16 @@ if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType']
 		if ( $product ) {
 			$output .= esc_html( $product->add_to_cart_text() );
 		} else {
-			$output .= esc_html( cozy_remove_special_chars( $attributes['button']['label'], array( ' ' ) ) );
+			$output .= esc_html( $attributes['button']['label'] );
 		}
 		$output .= '</span>';
 	}
 
 	if ( $attributes['icon']['enabled'] && 'right' === $attributes['icon']['position'] ) {
 		$output  .= '<div class="cozy-block-add-to-cart__icon-wrapper"title="' . esc_attr( 'Add To Cart' ) . '">';
-		$view_box = implode( ' ', array( $attributes['icon']['viewBox']['vx'], $attributes['icon']['viewBox']['vy'], $attributes['icon']['viewBox']['vw'], $attributes['icon']['viewBox']['vh'] ) );
+		$view_box = implode( ' ', array( intval( $attributes['icon']['viewBox']['vx'] ), intval( $attributes['icon']['viewBox']['vy'] ), intval( $attributes['icon']['viewBox']['vw'] ), intval( $attributes['icon']['viewBox']['vh'] ) ) );
 		$output  .= '<svg class="cozy-block-add-to-cart__cart-icon" viewBox="' . esc_attr( $view_box ) . '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
-		$output  .= '<path d="' . cozy_remove_special_chars( $attributes['icon']['path'], array( ' ' ) ) . '" />';
+		$output  .= '<path d="' . esc_attr( $attributes['icon']['path'] ) . '" />';
 		$output  .= '</svg></div>';
 	}
 }

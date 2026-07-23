@@ -12,69 +12,141 @@ wp_localize_script( 'cozy-block--popular-post--frontend-script', $block_id, $att
 wp_add_inline_script( 'cozy-block--popular-post--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockPopularPostsInit( "' . $client_id . '" ) }) ' );
 
 $list = array(
-	'column' => isset( $attributes['column'] ) ? $attributes['column'] : '',
-	'gap'    => isset( $attributes['columnGap'] ) ? $attributes['columnGap'] : '',
+	'column' => isset( $attributes['column'] ) ? cozy_addons_sanitize_dimension( $attributes['column'] ) : '',
+	'gap'    => isset( $attributes['columnGap'] ) ? cozy_addons_sanitize_dimension( $attributes['columnGap'] ) : '',
 );
 
-$col1 = isset( $attributes['column'] ) && $attributes['column'] <= 3 ? $attributes['column'] : 3;
-$col2 = isset( $attributes['column'] ) && $attributes['column'] <= 2 ? $attributes['column'] : 2;
+$col1 = isset( $attributes['column'] ) && $attributes['column'] <= 3 ? cozy_addons_sanitize_dimension( $attributes['column'] ) : 3;
+$col2 = isset( $attributes['column'] ) && $attributes['column'] <= 2 ? cozy_addons_sanitize_dimension( $attributes['column'] ) : 2;
 
-$item_padding = cozy_render_TRBL( 'padding', $attributes['itemStyles']['padding'] );
+$styles = array(
+	'height' => isset( $attributes['height'] ) ? cozy_addons_sanitize_dimension( $attributes['height'] ) : '',
+	'gap'    => isset( $attributes['gap'] ) ? cozy_addons_sanitize_dimension( $attributes['gap'] ) : '',
+);
+
+$item_padding = isset( $attributes['itemStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['itemStyles']['padding'] ) : '';
 $item_border  = isset( $attributes['itemStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['itemStyles']['border'] ) : '';
-$item_radius  = cozy_render_TRBL( 'border-radius', $attributes['itemStyles']['radius'] );
+$item_radius  = isset( $attributes['itemStyles']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['itemStyles']['radius'] ) : '';
 $item_styles  = array(
-	'bg_color'           => isset( $attributes['itemStyles']['bgColor'] ) ? $attributes['itemStyles']['bgColor'] : '',
-	'bg_color_hover'     => isset( $attributes['itemStyles']['bgColorHover'] ) ? $attributes['itemStyles']['bgColorHover'] : '',
-	'border_color_hover' => isset( $attributes['itemStyles']['borderColorHover'] ) ? $attributes['itemStyles']['borderColorHover'] : '',
-	'shadow_color'       => isset( $attributes['itemStyles']['boxShadow']['color'] ) ? $attributes['itemStyles']['boxShadow']['color'] : '',
-);
-
-$cat_padding = cozy_render_TRBL( 'padding', $attributes['categoryStyles']['padding'] );
-$cat_border  = isset( $attributes['categoryStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['categoryStyles']['border'] ) : '';
-$cat_styles  = array(
-	'letter_case'        => isset( $attributes['categoryStyles']['letterCase'] ) ? $attributes['categoryStyles']['letterCase'] : '',
-	'decoration'         => isset( $attributes['categoryStyles']['decoration'] ) ? $attributes['categoryStyles']['decoration'] : '',
-	'line_height'        => isset( $attributes['categoryStyles']['lineHeight'] ) ? $attributes['categoryStyles']['lineHeight'] : '',
-	'letter_spacing'     => isset( $attributes['categoryStyles']['letterSpacing'] ) ? $attributes['categoryStyles']['letterSpacing'] : '',
-	'color'              => isset( $attributes['categoryStyles']['color'] ) ? $attributes['categoryStyles']['color'] : '',
-	'color_hover'        => isset( $attributes['categoryStyles']['colorHover'] ) ? $attributes['categoryStyles']['colorHover'] : '',
-	'bg_color'           => isset( $attributes['categoryStyles']['bgColor'] ) ? $attributes['categoryStyles']['bgColor'] : '',
-	'bg_color_hover'     => isset( $attributes['categoryStyles']['bgColorHover'] ) ? $attributes['categoryStyles']['bgColorHover'] : '',
-	'border_color_hover' => isset( $attributes['categoryStyles']['borderColorHover'] ) ? $attributes['categoryStyles']['borderColorHover'] : '',
+	'shadow'             => array(
+		'horizontal' => isset( $attributes['itemStyles']['boxShadow']['horizontal'] ) ? esc_attr( $attributes['itemStyles']['boxShadow']['horizontal'] ) : '',
+		'vertical'   => isset( $attributes['itemStyles']['boxShadow']['vertical'] ) ? esc_attr( $attributes['itemStyles']['boxShadow']['vertical'] ) : '',
+		'blur'       => isset( $attributes['itemStyles']['boxShadow']['blur'] ) ? esc_attr( $attributes['itemStyles']['boxShadow']['blur'] ) : '',
+		'spread'     => isset( $attributes['itemStyles']['boxShadow']['spread'] ) ? esc_attr( $attributes['itemStyles']['boxShadow']['spread'] ) : '',
+		'position'   => isset( $attributes['itemStyles']['boxShadow']['position'] ) ? esc_attr( sanitize_text_field( $attributes['itemStyles']['boxShadow']['position'] ) ) : '',
+	),
+	'bg_color'           => isset( $attributes['itemStyles']['bgColor'] ) ? esc_attr( $attributes['itemStyles']['bgColor'] ) : '',
+	'bg_color_hover'     => isset( $attributes['itemStyles']['bgColorHover'] ) ? esc_attr( $attributes['itemStyles']['bgColorHover'] ) : '',
+	'border_color_hover' => isset( $attributes['itemStyles']['borderColorHover'] ) ? esc_attr( $attributes['itemStyles']['borderColorHover'] ) : '',
+	'shadow_color'       => isset( $attributes['itemStyles']['boxShadow']['color'] ) ? esc_attr( $attributes['itemStyles']['boxShadow']['color'] ) : '',
 );
 
 $post_image = array(
-	'margin' => array(
-		'top'    => isset( $attributes['images']['margin']['top'] ) ? $attributes['images']['margin']['top'] : '',
-		'bottom' => isset( $attributes['images']['margin']['bottom'] ) ? $attributes['images']['margin']['bottom'] : '',
+	'margin' => isset( $attributes['images']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['images']['margin'] ) : '',
+	'width'  => isset( $attributes['imageStyles']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['imageStyles']['width'] ) : '',
+	'height' => isset( $attributes['imageStyles']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['imageStyles']['height'] ) : '',
+	'radius' => isset( $attributes['imageStyles']['radius'] ) ? esc_attr( $attributes['imageStyles']['radius'] ) : '',
+);
+
+$cat_padding = isset( $attributes['categoryStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['categoryStyles']['padding'] ) : '';
+$cat_border  = isset( $attributes['categoryStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['categoryStyles']['border'] ) : '';
+$cat_styles  = array(
+	'gap'                => isset( $attributes['categoryStyles']['gap'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['gap'] ) : '',
+	'margin'             => array(
+		'top'    => isset( $attributes['categoryStyles']['marginTop'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['marginTop'] ) : '',
+		'bottom' => isset( $attributes['categoryStyles']['marginBottom'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['marginBottom'] ) : '',
 	),
+	'radius'             => isset( $attributes['categoryStyles']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['radius'] ) : '',
+	'font'               => array(
+		'size'   => isset( $attributes['categoryStyles']['fontSize'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['fontSize'] ) : '',
+		'weight' => isset( $attributes['categoryStyles']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['categoryStyles']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['categoryStyles']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['categoryStyles']['fontFamily'] ) ) : '',
+	),
+	'letter_case'        => isset( $attributes['categoryStyles']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['categoryStyles']['letterCase'] ) ) : '',
+	'decoration'         => isset( $attributes['categoryStyles']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['categoryStyles']['decoration'] ) ) : '',
+	'line_height'        => isset( $attributes['categoryStyles']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['lineHeight'] ) : '',
+	'letter_spacing'     => isset( $attributes['categoryStyles']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['categoryStyles']['letterSpacing'] ) : '',
+	'color'              => isset( $attributes['categoryStyles']['color'] ) ? esc_attr( $attributes['categoryStyles']['color'] ) : '',
+	'color_hover'        => isset( $attributes['categoryStyles']['colorHover'] ) ? esc_attr( $attributes['categoryStyles']['colorHover'] ) : '',
+	'bg_color'           => isset( $attributes['categoryStyles']['bgColor'] ) ? esc_attr( $attributes['categoryStyles']['bgColor'] ) : '',
+	'bg_color_hover'     => isset( $attributes['categoryStyles']['bgColorHover'] ) ? esc_attr( $attributes['categoryStyles']['bgColorHover'] ) : '',
+	'border_color_hover' => isset( $attributes['categoryStyles']['borderColorHover'] ) ? esc_attr( $attributes['categoryStyles']['borderColorHover'] ) : '',
 );
 
 $title_styles = array(
-	'letter_case'    => isset( $attributes['titleStyles']['letterCase'] ) ? $attributes['titleStyles']['letterCase'] : '',
-	'decoration'     => isset( $attributes['titleStyles']['decoration'] ) ? $attributes['titleStyles']['decoration'] : '',
-	'line_height'    => isset( $attributes['titleStyles']['lineHeight'] ) ? $attributes['titleStyles']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['titleStyles']['letterSpacing'] ) ? $attributes['titleStyles']['letterSpacing'] : '',
-	'color'          => isset( $attributes['titleStyles']['color'] ) ? $attributes['titleStyles']['color'] : '',
-	'color_hover'    => isset( $attributes['titleStyles']['colorHover'] ) ? $attributes['titleStyles']['colorHover'] : '',
+	'margin'         => array(
+		'top'    => isset( $attributes['titleStyles']['marginTop'] ) ? cozy_addons_sanitize_dimension( $attributes['titleStyles']['marginTop'] ) : '',
+		'bottom' => isset( $attributes['titleStyles']['marginBottom'] ) ? cozy_addons_sanitize_dimension( $attributes['titleStyles']['marginBottom'] ) : '',
+	),
+	'font'           => array(
+		'size'   => isset( $attributes['titleStyles']['fontSize'] ) ? cozy_addons_sanitize_dimension( $attributes['titleStyles']['fontSize'] ) : '',
+		'weight' => isset( $attributes['titleStyles']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['titleStyles']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['titleStyles']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['titleStyles']['fontFamily'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['titleStyles']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['titleStyles']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['titleStyles']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['titleStyles']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['titleStyles']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['titleStyles']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['titleStyles']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['titleStyles']['letterSpacing'] ) : '',
+	'color'          => isset( $attributes['titleStyles']['color'] ) ? esc_attr( $attributes['titleStyles']['color'] ) : '',
+	'color_hover'    => isset( $attributes['titleStyles']['colorHover'] ) ? esc_attr( $attributes['titleStyles']['colorHover'] ) : '',
 );
 
-$date_padding = cozy_render_TRBL( 'padding', $attributes['dateStyles']['padding'] );
-$date_border  = isset( $attributes['dateStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['dateStyles']['border'] ) : '';
-$date_styles  = array(
-	'letter_case'        => isset( $attributes['dateStyles']['letterCase'] ) ? $attributes['dateStyles']['letterCase'] : '',
-	'decoration'         => isset( $attributes['dateStyles']['decoration'] ) ? $attributes['dateStyles']['decoration'] : '',
-	'line_height'        => isset( $attributes['dateStyles']['lineHeight'] ) ? $attributes['dateStyles']['lineHeight'] : '',
-	'letter_spacing'     => isset( $attributes['dateStyles']['letterSpacing'] ) ? $attributes['dateStyles']['letterSpacing'] : '',
-	'color'              => isset( $attributes['dateStyles']['color'] ) ? $attributes['dateStyles']['color'] : '',
-	'color_hover'        => isset( $attributes['dateStyles']['colorHover'] ) ? $attributes['dateStyles']['colorHover'] : '',
-	'bg_color'           => isset( $attributes['dateStyles']['bgColor'] ) ? $attributes['dateStyles']['bgColor'] : '',
-	'bg_color_hover'     => isset( $attributes['dateStyles']['bgColorHover'] ) ? $attributes['dateStyles']['bgColorHover'] : '',
-	'border_color_hover' => isset( $attributes['dateStyles']['borderColorHover'] ) ? $attributes['dateStyles']['borderColorHover'] : '',
+$meta_padding = cozy_render_TRBL( 'padding', $attributes['dateStyles']['padding'] );
+$meta_border  = isset( $attributes['dateStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['dateStyles']['border'] ) : '';
+$meta_styles  = array(
+	'font'               => array(
+		'size'   => isset( $attributes['dateStyles']['fontSize'] ) ? cozy_addons_sanitize_dimension( $attributes['dateStyles']['fontSize'] ) : '',
+		'weight' => isset( $attributes['dateStyles']['fontWeight'] ) ? esc_attr( sanitize_text_field( $attributes['dateStyles']['fontWeight'] ) ) : '',
+		'family' => isset( $attributes['dateStyles']['fontFamily'] ) ? esc_attr( sanitize_text_field( $attributes['dateStyles']['fontFamily'] ) ) : '',
+	),
+	'letter_case'        => isset( $attributes['dateStyles']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['dateStyles']['letterCase'] ) ) : '',
+	'decoration'         => isset( $attributes['dateStyles']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['dateStyles']['decoration'] ) ) : '',
+	'line_height'        => isset( $attributes['dateStyles']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['dateStyles']['lineHeight'] ) : '',
+	'letter_spacing'     => isset( $attributes['dateStyles']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['dateStyles']['letterSpacing'] ) : '',
+	'color'              => isset( $attributes['dateStyles']['color'] ) ? esc_attr( $attributes['dateStyles']['color'] ) : '',
+	'color_hover'        => isset( $attributes['dateStyles']['colorHover'] ) ? esc_attr( $attributes['dateStyles']['colorHover'] ) : '',
+	'bg_color'           => isset( $attributes['dateStyles']['bgColor'] ) ? esc_attr( $attributes['dateStyles']['bgColor'] ) : '',
+	'bg_color_hover'     => isset( $attributes['dateStyles']['bgColorHover'] ) ? esc_attr( $attributes['dateStyles']['bgColorHover'] ) : '',
+	'border_color_hover' => isset( $attributes['dateStyles']['borderColorHover'] ) ? esc_attr( $attributes['dateStyles']['borderColorHover'] ) : '',
+);
+
+$loader = array(
+	'label'          => isset( $attributes['ajaxLoader']['label'] ) ? sanitize_text_field( $attributes['ajaxLoader']['label'] ) : '',
+	'loading_text'   => isset( $attributes['ajaxLoader']['loadingText'] ) ? sanitize_text_field( $attributes['ajaxLoader']['loadingText'] ) : '',
+	'min_width'      => isset( $attributes['ajaxLoader']['minWidth'] ) ? cozy_addons_sanitize_dimension( $attributes['ajaxLoader']['minWidth'] ) : '',
+	'padding'        => isset( $attributes['ajaxLoader']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['ajaxLoader']['padding'] ) : '',
+	'margin'         => isset( $attributes['ajaxLoader']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['ajaxLoader']['margin'] ) : '',
+	'border'         => isset( $attributes['ajaxLoader']['border'] ) ? cozy_render_TRBL( 'border', $attributes['ajaxLoader']['border'] ) : '',
+	'radius'         => isset( $attributes['ajaxLoader']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['ajaxLoader']['radius'] ) : '',
+	'font'           => array(
+		'size'   => isset( $attributes['ajaxLoader']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['ajaxLoader']['font']['size'] ) : '',
+		'weight' => isset( $attributes['ajaxLoader']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxLoader']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['ajaxLoader']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxLoader']['font']['family'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['ajaxLoader']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxLoader']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['ajaxLoader']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxLoader']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['ajaxLoader']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['ajaxLoader']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['ajaxLoader']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['ajaxLoader']['letterSpacing'] ) : '',
+	'text_align'     => isset( $attributes['ajaxLoader']['textAlign'] ) ? esc_attr( sanitize_text_field( $attributes['ajaxLoader']['textAlign'] ) ) : '',
+	'color'          => array(
+		'text'              => isset( $attributes['ajaxLoader']['color']['text'] ) ? esc_attr( $attributes['ajaxLoader']['color']['text'] ) : '',
+		'text_hover'        => isset( $attributes['ajaxLoader']['color']['textHover'] ) ? esc_attr( $attributes['ajaxLoader']['color']['textHover'] ) : '',
+		'spinner_primary'   => isset( $attributes['ajaxLoader']['color']['spinnerPrimary'] ) ? esc_attr( $attributes['ajaxLoader']['color']['spinnerPrimary'] ) : '',
+		'spinner_secondary' => isset( $attributes['ajaxLoader']['color']['spinnerSecondary'] ) ? esc_attr( $attributes['ajaxLoader']['color']['spinnerSecondary'] ) : '',
+		'bg'                => isset( $attributes['ajaxLoader']['color']['bg'] ) ? esc_attr( $attributes['ajaxLoader']['color']['bg'] ) : '',
+		'bg_hover'          => isset( $attributes['ajaxLoader']['color']['bgHover'] ) ? esc_attr( $attributes['ajaxLoader']['color']['bgHover'] ) : '',
+		'border_hover'      => isset( $attributes['ajaxLoader']['color']['borderHover'] ) ? esc_attr( $attributes['ajaxLoader']['color']['borderHover'] ) : '',
+	),
 );
 
 $nav_border = isset( $attributes['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['navigation']['border'] ) : '';
-$nav_styles = array(
+$nav        = array(
+	'box_width'          => isset( $attributes['navigation']['boxWidth'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['boxWidth'] ) : '',
+	'box_height'         => isset( $attributes['navigation']['boxHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['boxHeight'] ) : '',
+	'size'               => isset( $attributes['navigation']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['size'] ) : '',
+	'radius'             => isset( $attributes['navigation']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['radius'] ) : '',
+	'top'                => isset( $attributes['navigation']['verticalPosition'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['verticalPosition'] ) : '',
+	'right'              => isset( $attributes['navigation']['horizontalGap'] ) ? cozy_addons_sanitize_dimension( $attributes['navigation']['horizontalGap'] ) : '',
 	'color'              => isset( $attributes['navigation']['color'] ) ? $attributes['navigation']['color'] : '',
 	'color_hover'        => isset( $attributes['navigation']['colorHover'] ) ? $attributes['navigation']['colorHover'] : '',
 	'bg_color'           => isset( $attributes['navigation']['bgColor'] ) ? $attributes['navigation']['bgColor'] : '',
@@ -83,66 +155,34 @@ $nav_styles = array(
 );
 
 $bullets = array(
-	'width'  => isset( $attributes['pagination']['width'] ) ? $attributes['pagination']['width'] : '10px',
-	'height' => isset( $attributes['pagination']['height'] ) ? $attributes['pagination']['height'] : '10px',
-	'radius' => isset( $attributes['pagination']['radius'] ) ? $attributes['pagination']['radius'] : '10px',
-	'gap'    => isset( $attributes['pagination']['gap'] ) ? $attributes['pagination']['gap'] : '4px',
+	'width'  => isset( $attributes['pagination']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['width'] ) : '10px',
+	'height' => isset( $attributes['pagination']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['height'] ) : '10px',
+	'radius' => isset( $attributes['pagination']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['radius'] ) : '10px',
+	'gap'    => isset( $attributes['pagination']['gap'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['gap'] ) : '4px',
 	'active' => array(
-		'width'   => isset( $attributes['pagination']['active']['width'] ) ? $attributes['pagination']['active']['width'] : '10px',
-		'height'  => isset( $attributes['pagination']['active']['height'] ) ? $attributes['pagination']['active']['height'] : '10px',
-		'radius'  => isset( $attributes['pagination']['active']['radius'] ) ? $attributes['pagination']['active']['radius'] : '10px',
+		'width'   => isset( $attributes['pagination']['active']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['active']['width'] ) : '10px',
+		'height'  => isset( $attributes['pagination']['active']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['active']['height'] ) : '10px',
+		'radius'  => isset( $attributes['pagination']['active']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['active']['radius'] ) : '10px',
 		'outline' => isset( $attributes['pagination']['active']['border'] ) ? cozy_render_TRBL( 'outline', $attributes['pagination']['active']['border'] ) : '',
-		'offset'  => isset( $attributes['pagination']['active']['offset'] ) ? $attributes['pagination']['active']['offset'] : '',
+		'offset'  => isset( $attributes['pagination']['active']['offset'] ) ? cozy_addons_sanitize_dimension( $attributes['pagination']['active']['offset'] ) : '',
 	),
 	'color'  => array(
-		'default'       => isset( $attributes['pagination']['color']['default'] ) ? $attributes['pagination']['color']['default'] : '',
-		'default_hover' => isset( $attributes['pagination']['color']['defaultHover'] ) ? $attributes['pagination']['color']['defaultHover'] : '',
-		'active'        => isset( $attributes['pagination']['color']['active'] ) ? $attributes['pagination']['color']['active'] : '',
-		'active_hover'  => isset( $attributes['pagination']['color']['activeHover'] ) ? $attributes['pagination']['color']['activeHover'] : '',
+		'default'       => isset( $attributes['pagination']['color']['default'] ) ? esc_attr( $attributes['pagination']['color']['default'] ) : '',
+		'default_hover' => isset( $attributes['pagination']['color']['defaultHover'] ) ? esc_attr( $attributes['pagination']['color']['defaultHover'] ) : '',
+		'active'        => isset( $attributes['pagination']['color']['active'] ) ? esc_attr( $attributes['pagination']['color']['active'] ) : '',
+		'active_hover'  => isset( $attributes['pagination']['color']['activeHover'] ) ? esc_attr( $attributes['pagination']['color']['activeHover'] ) : '',
 	),
 	'align'  => isset( $attributes['pagination']['align'] ) ? $attributes['pagination']['align'] : 'center',
 	'top'    => isset( $attributes['pagination']['top'] ) ? $attributes['pagination']['top'] : '',
-	'left'   => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? $attributes['pagination']['left'] : '',
-	'right'  => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? $attributes['pagination']['right'] : '',
-);
-
-$loader = array(
-	'label'          => isset( $attributes['ajaxLoader']['label'] ) ? $attributes['ajaxLoader']['label'] : '',
-	'loading_text'   => isset( $attributes['ajaxLoader']['loadingText'] ) ? $attributes['ajaxLoader']['loadingText'] : '',
-	'min_width'      => isset( $attributes['ajaxLoader']['minWidth'] ) ? $attributes['ajaxLoader']['minWidth'] : '',
-	'padding'        => isset( $attributes['ajaxLoader']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['ajaxLoader']['padding'] ) : '',
-	'margin'         => array(
-		'top'    => isset( $attributes['ajaxLoader']['margin']['top'] ) ? $attributes['ajaxLoader']['margin']['top'] : '',
-		'bottom' => isset( $attributes['ajaxLoader']['margin']['bottom'] ) ? $attributes['ajaxLoader']['margin']['bottom'] : '',
-	),
-	'border'         => isset( $attributes['ajaxLoader']['border'] ) ? cozy_render_TRBL( 'border', $attributes['ajaxLoader']['border'] ) : '',
-	'radius'         => isset( $attributes['ajaxLoader']['radius'] ) ? $attributes['ajaxLoader']['radius'] : '',
-	'font'           => array(
-		'size'   => isset( $attributes['ajaxLoader']['font']['size'] ) ? $attributes['ajaxLoader']['font']['size'] : '',
-		'weight' => isset( $attributes['ajaxLoader']['font']['weight'] ) ? $attributes['ajaxLoader']['font']['weight'] : '',
-		'family' => isset( $attributes['ajaxLoader']['font']['family'] ) ? $attributes['ajaxLoader']['font']['family'] : '',
-	),
-	'letter_case'    => isset( $attributes['ajaxLoader']['letterCase'] ) ? $attributes['ajaxLoader']['letterCase'] : '',
-	'decoration'     => isset( $attributes['ajaxLoader']['decoration'] ) ? $attributes['ajaxLoader']['decoration'] : '',
-	'line_height'    => isset( $attributes['ajaxLoader']['lineHeight'] ) ? $attributes['ajaxLoader']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['ajaxLoader']['letterSpacing'] ) ? $attributes['ajaxLoader']['letterSpacing'] : '',
-	'text_align'     => isset( $attributes['ajaxLoader']['textAlign'] ) ? $attributes['ajaxLoader']['textAlign'] : '',
-	'color'          => array(
-		'text'              => isset( $attributes['ajaxLoader']['color']['text'] ) ? $attributes['ajaxLoader']['color']['text'] : '',
-		'text_hover'        => isset( $attributes['ajaxLoader']['color']['textHover'] ) ? $attributes['ajaxLoader']['color']['textHover'] : '',
-		'spinner_primary'   => isset( $attributes['ajaxLoader']['color']['spinnerPrimary'] ) ? $attributes['ajaxLoader']['color']['spinnerPrimary'] : '',
-		'spinner_secondary' => isset( $attributes['ajaxLoader']['color']['spinnerSecondary'] ) ? $attributes['ajaxLoader']['color']['spinnerSecondary'] : '',
-		'bg'                => isset( $attributes['ajaxLoader']['color']['bg'] ) ? $attributes['ajaxLoader']['color']['bg'] : '',
-		'bg_hover'          => isset( $attributes['ajaxLoader']['color']['bgHover'] ) ? $attributes['ajaxLoader']['color']['bgHover'] : '',
-		'border_hover'      => isset( $attributes['ajaxLoader']['color']['borderHover'] ) ? $attributes['ajaxLoader']['color']['borderHover'] : '',
-	),
+	'left'   => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? cozy_addons_sanitize_dimension( $attributes['pagination']['left'] ) : '',
+	'right'  => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? cozy_addons_sanitize_dimension( $attributes['pagination']['right'] ) : '',
 );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $block_styles = "
 #$block_id.display-ticker {
-    height: {$attributes['height']};
+    height: {$styles['height']};
 }
 
 #$block_id.display-grid .cozy-block-popular-posts__grid-wrapper, #$block_id.display-list .cozy-block-popular-posts__list-wrapper {
@@ -166,7 +206,7 @@ $block_styles = "
 }
 
 #$block_id.display-list .cozy-block-popular-posts__list-wrapper {
-    row-gap: {$attributes['gap']};
+    row-gap: {$styles['gap']};
 }
 #$block_id .cozy-block-popular-posts__item {
     {$item_padding}
@@ -175,7 +215,7 @@ $block_styles = "
     background-color: {$item_styles['bg_color']};
 }
 #$block_id.item-has-box-shadow .cozy-block-popular-posts__item {
-    box-shadow: {$attributes['itemStyles']['boxShadow']['horizontal']}px {$attributes['itemStyles']['boxShadow']['vertical']}px {$attributes['itemStyles']['boxShadow']['blur']}px {$attributes['itemStyles']['boxShadow']['spread']}px {$item_styles['shadow_color']} {$attributes['itemStyles']['boxShadow']['position']};
+    box-shadow: {$item_styles['shadow']['horizontal']}px {$item_styles['shadow']['vertical']}px {$item_styles['shadow']['blur']}px {$item_styles['shadow']['spread']}px {$item_styles['shadow_color']} {$item_styles['shadow']['position']};
 }
 #$block_id .cozy-block-popular-posts__item:hover {
     border-color: {$item_styles['border_color_hover']};
@@ -183,42 +223,41 @@ $block_styles = "
 }
 
 #$block_id .cozy-block-popular-posts__image  {
-	max-height: {$attributes['imageStyles']['height']};
-	max-width: {$attributes['imageStyles']['width']};
-	border-radius: {$attributes['imageStyles']['radius']};
-	margin-top: {$post_image['margin']['top']};
-	margin-bottom: {$post_image['margin']['bottom']};
+	{$post_image['margin']}
+	max-height: {$post_image['height']};
+	max-width: {$post_image['width']};
+	border-radius: {$post_image['radius']};
 }
 #$block_id.display-list .cozy-block-popular-posts__image  {
-	min-width: {$attributes['imageStyles']['width']};
-	max-width: {$attributes['imageStyles']['width']};
+	min-width: {$post_image['width']};
+	max-width: {$post_image['width']};
 }
 #$block_id .cozy-block-popular-posts__image img {
-	height: {$attributes['imageStyles']['height']};
-	border-radius: {$attributes['imageStyles']['radius']};
+	height: {$post_image['height']};
+	border-radius: {$post_image['radius']};
 }
 @media only screen and (max-width: 1024px) {
 	#$block_id .cozy-block-popular-posts__image img {
-		max-height: {$attributes['imageStyles']['height']};
+		max-height: {$post_image['height']};
 	}
 }
 
 #$block_id .cozy-block-popular-posts__post-categories {
-	gap: {$attributes['categoryStyles']['gap']};
-	font-size: {$attributes['categoryStyles']['fontSize']};
-	font-family: {$attributes['categoryStyles']['fontFamily']};
-	font-weight: {$attributes['categoryStyles']['fontWeight']};
+	gap: {$cat_styles['gap']};
+	font-size: {$cat_styles['font']['size']};
+	font-weight: {$cat_styles['font']['weight']};
+	font-family: {$cat_styles['font']['family']};
 	text-transform: {$cat_styles['letter_case']};
 	text-decoration: {$cat_styles['decoration']};
 	line-height: {$cat_styles['line_height']};
 	letter-spacing: {$cat_styles['letter_spacing']};
-	margin-top: {$attributes['categoryStyles']['marginTop']};
-	margin-bottom: {$attributes['categoryStyles']['marginBottom']};
+	margin-top: {$cat_styles['margin']['top']};
+	margin-bottom: {$cat_styles['margin']['bottom']};
 }
 #$block_id .cozy-block-popular-posts__post-categories a {
 	{$cat_padding}
 	{$cat_border}
-	border-radius: {$attributes['categoryStyles']['radius']};
+	border-radius: {$cat_styles['radius']};
 	color: {$cat_styles['color']};
 	background-color: {$cat_styles['bg_color']};
 }
@@ -229,11 +268,11 @@ $block_styles = "
 }
 
 #$block_id .cozy-block-popular-posts__post-title {
-	margin-top: {$attributes['titleStyles']['marginTop']};
-	margin-bottom: {$attributes['titleStyles']['marginBottom']};
-    font-size: clamp(16px, calc(3vw + 4px), {$attributes['titleStyles']['fontSize']});
-    font-family: {$attributes['titleStyles']['fontFamily']};
-    font-weight: {$attributes['titleStyles']['fontWeight']};
+	margin-top: {$title_styles['margin']['bottom']};
+	margin-bottom: {$title_styles['margin']['bottom']};
+    font-size: clamp(16px, calc(3vw + 4px), {$title_styles['font']['size']});
+    font-weight: {$title_styles['font']['weight']};
+    font-family: {$title_styles['font']['family']};
 	text-transform: {$title_styles['letter_case']};
 	line-height: {$title_styles['line_height']};
 	letter-spacing: {$title_styles['letter_spacing']};
@@ -251,34 +290,33 @@ $block_styles = "
 	margin-bottom: {$attributes['dateStyles']['marginBottom']};
 }
 #$block_id .post__meta a {
-	{$date_padding}
-	{$date_border}
+	{$meta_padding}
+	{$meta_border}
 	border-radius: {$attributes['dateStyles']['radius']};
-	color: {$date_styles['color']};
-	background-color: {$date_styles['bg_color']};
-	font-size: {$attributes['dateStyles']['fontSize']};
-	font-family: {$attributes['dateStyles']['fontFamily']};
-	font-weight: {$attributes['dateStyles']['fontWeight']};
-	text-transform: {$date_styles['letter_case']};
-	text-decoration: {$date_styles['decoration']};
-	line-height: {$date_styles['line_height']};
-	letter-spacing: {$date_styles['letter_spacing']};
+	color: {$meta_styles['color']};
+	background-color: {$meta_styles['bg_color']};
+	font-size: {$meta_styles['font']['size']};
+	font-weight: {$meta_styles['font']['weight']};
+	font-family: {$meta_styles['font']['family']};
+	text-transform: {$meta_styles['letter_case']};
+	text-decoration: {$meta_styles['decoration']};
+	line-height: {$meta_styles['line_height']};
+	letter-spacing: {$meta_styles['letter_spacing']};
 }
 #$block_id .post__meta svg {
-	fill: {$date_styles['color']};
+	fill: {$meta_styles['color']};
 }
 #$block_id .post__meta a:hover {
-	color: {$date_styles['color_hover']};
-	background-color: {$date_styles['bg_color_hover']};
-	border-color: {$date_styles['border_color_hover']};
+	color: {$meta_styles['color_hover']};
+	background-color: {$meta_styles['bg_color_hover']};
+	border-color: {$meta_styles['border_color_hover']};
 }
 #$block_id .post__meta a:hover svg {
-	fill: {$date_styles['color_hover']};
+	fill: {$meta_styles['color_hover']};
 }
 
 #$block_id .cozy-block-popular-posts__ajax-loader-wrapper {
-	margin-top: {$loader['margin']['top']};
-	margin-bottom: {$loader['margin']['bottom']};
+	{$loader['margin']}
 	text-align: {$loader['text_align']};
 }
 #$block_id .cozy-block-popular-posts__ajax-loader, #$block_id .scroll-spinner.has-loading-text {
@@ -309,29 +347,29 @@ $block_styles = "
 
 #$block_id .swiper-button-prev::after,
 #$block_id .swiper-button-next::after {
-	font-size: {$attributes['navigation']['size']};
+	font-size: {$nav['size']};
 }
 #$block_id .swiper-button-prev,
 #$block_id .swiper-button-next {
-	width: {$attributes['navigation']['boxWidth']};
-	height: {$attributes['navigation']['boxHeight']};
+	width: {$nav['box_width']};
+	height: {$nav['box_height']};
 	{$nav_border}
-	border-radius: {$attributes['navigation']['radius']};
-	color: {$nav_styles['color']};
-	background-color: {$nav_styles['bg_color']};
+	border-radius: {$nav['radius']};
+	color: {$nav['color']};
+	background-color: {$nav['bg_color']};
 }
 #$block_id.display-ticker .swiper-button-prev,
 #$block_id.display-ticker .swiper-button-next {
-	top: {$attributes['navigation']['verticalPosition']}px;
+	top: {$nav['top']}px;
 }
 #$block_id .swiper-button-prev:hover,
 #$block_id .swiper-button-next:hover {
-	color: {$nav_styles['color_hover']};
-	background-color: {$nav_styles['bg_color_hover']};
-	border-color: {$nav_styles['border_color_hover']};
+	color: {$nav['color_hover']};
+	background-color: {$nav['bg_color_hover']};
+	border-color: {$nav['border_color_hover']};
 }
 #$block_id.display-ticker .swiper-button-prev {
-    right: var(--swiper-navigation-sides-offset, {$attributes['navigation']['horizontalGap']});
+    right: var(--swiper-navigation-sides-offset, {$nav['right']});
 }
 
 #$block_id.display-carousel .swiper-pagination {
@@ -374,11 +412,11 @@ $classes[] = isset( $attributes['ajaxLoader']['enabled'], $attributes['ajaxLoade
 $classes[] = 'carousel' === $attributes['display'] && isset( $attributes['navigation']['hoverEffect'] ) && $attributes['navigation']['hoverEffect'] ? 'has-nav-hover-show' : '';
 $classes[] = $attributes['itemStyles']['boxShadow']['enabled'] ? 'item-has-box-shadow' : '';
 
-$output       = '<div class="' . implode( ' ', $classes ) . '" id="' . $block_id . '">';
+$output       = '<div class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) ) . '" id="' . esc_attr( $block_id ) . '">';
 $ul_classes   = array();
 $ul_classes[] = ( 'grid' === $attributes['display'] || 'list' === $attributes['display'] ) ? 'cozy-block-popular-posts__' . $attributes['display'] . '-wrapper' : 'swiper-wrapper';
 
-$output .= '<ul class="' . implode( ' ', $ul_classes ) . '">';
+$output .= '<ul class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $ul_classes ) ) ) ) ) . '">';
 $args    = array(
 	'post_type'           => 'post',
 	'meta_key'            => 'cozy_post_views_count', // Replace with your popularity field.
@@ -441,9 +479,9 @@ foreach ( $additional_post_data as $post_data ) {
 	$item_classes   = array();
 	$item_classes[] = 'cozy-block-popular-posts__item';
 	$item_classes[] = 'ticker' === $attributes['display'] || 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
-	$output        .= '<li class="' . implode( ' ', $item_classes ) . '" data-post-id="' . esc_attr( $post_data['ID'] ) . '">';
+	$output        .= '<li class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $item_classes ) ) ) ) ) . '" data-post-id="' . esc_attr( $post_data['ID'] ) . '">';
 	if ( 'list' === $attributes['display'] ) {
-		$output .= '<div class="item__flex" style="display:flex;gap:' . $attributes['imageStyles']['gap'] . '">';
+		$output .= '<div class="item__flex" style="display:flex;gap:' . esc_attr( $attributes['imageStyles']['gap'] ) . '">';
 	}
 
 	// Post Image.
@@ -451,11 +489,11 @@ foreach ( $additional_post_data as $post_data ) {
 		$figure_classes   = array();
 		$figure_classes[] = 'cozy-block-popular-posts__image';
 		$figure_classes[] = $attributes['imageStyles']['hoverEffect'] ? 'has-hover-effect' : '';
-		$output          .= '<figure class="' . implode( ' ', $figure_classes ) . '">';
+		$output          .= '<figure class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $figure_classes ) ) ) ) ) . '">';
 		$has_post_link    = isset( $attributes['enableOptions']['imgLinkPost'] ) && $attributes['enableOptions']['imgLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
 		$open_new_tab     = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && $attributes['enableOptions']['imgLinkPost'] && $attributes['enableOptions']['imgLinkNewTab'] ? '_blank' : '';
 		$output          .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
-		$output          .= '<img alt="' . esc_html( $post_data['post_title'] ) . '" src="' . $post_data['post_image_url'] . '" />';
+		$output          .= '<img alt="' . esc_attr( $post_data['post_title'] ) . '" src="' . esc_url( $post_data['post_image_url'] ) . '" />';
 		$output          .= '</a>';
 		$output          .= '</figure>';
 	}
@@ -466,7 +504,7 @@ foreach ( $additional_post_data as $post_data ) {
 		$category_classes   = array();
 		$category_classes[] = 'cozy-block-popular-posts__post-categories';
 		$category_classes[] = $attributes['categoryStyles']['hoverEffect'] ? 'has-hover-effect' : '';
-		$output            .= '<div class="' . implode( ' ', $category_classes ) . '">';
+		$output            .= '<div class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $category_classes ) ) ) ) ) . '">';
 		$open_new_tab       = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && $attributes['enableOptions']['linkCat'] && $attributes['enableOptions']['catNewTab'] ? '_blank' : '';
 		foreach ( $post_data['post_categories'] as $cat_data ) {
 			$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && $attributes['enableOptions']['linkCat'] ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
@@ -486,7 +524,7 @@ foreach ( $additional_post_data as $post_data ) {
 	if ( ! empty( $addition_classes ) ) {
 		$classes = array_merge( $classes, explode( ' ', $addition_classes ) );
 	}
-	$output .= '<h4 class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h4>';
+	$output .= '<h3 class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h3>';
 
 	if ( ( isset( $attributes['enableOptions']['author'] ) && $attributes['enableOptions']['author'] ) || ( isset( $attributes['enableOptions']['comments'] ) && $attributes['enableOptions']['comments'] ) || $attributes['enableOptions']['date'] ) {
 		$output .= '<div class="post__meta">';
@@ -500,8 +538,8 @@ foreach ( $additional_post_data as $post_data ) {
 			$output   .= '<a class="post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
 			if ( $show_icon ) {
 				$output .= '<svg
-											width="' . $attributes['dateStyles']['fontSize'] . '"
-											height="' . $attributes['dateStyles']['fontSize'] . '"
+											width="' . cozy_addons_sanitize_dimension( $attributes['dateStyles']['fontSize'] ) . '"
+											height="' . cozy_addons_sanitize_dimension( $attributes['dateStyles']['fontSize'] ) . '"
 											xmlns="http://www.w3.org/2000/svg"
 											aria-hidden="true"
 											viewBox="0 0 12 15"
@@ -519,8 +557,8 @@ foreach ( $additional_post_data as $post_data ) {
 			$output   .= '<a class="post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
 			if ( $show_icon ) {
 				$output .= '<svg
-										width="' . $attributes['dateStyles']['fontSize'] . '"
-										height="' . $attributes['dateStyles']['fontSize'] . '"
+										width="' . cozy_addons_sanitize_dimension( $attributes['dateStyles']['fontSize'] ) . '"
+										height="' . cozy_addons_sanitize_dimension( $attributes['dateStyles']['fontSize'] ) . '"
 										xmlns="http://www.w3.org/2000/svg"
 										aria-hidden="true"
 										viewBox="0 0 25 20"
@@ -539,8 +577,8 @@ foreach ( $additional_post_data as $post_data ) {
 				$output .= '<a class="post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
 			if ( $show_icon ) {
 				$output .= '<svg
-											width="' . $attributes['dateStyles']['fontSize'] . '"
-											height="' . $attributes['dateStyles']['fontSize'] . '"
+											width="' . cozy_addons_sanitize_dimension( $attributes['dateStyles']['fontSize'] ) . '"
+											height="' . cozy_addons_sanitize_dimension( $attributes['dateStyles']['fontSize'] ) . '"
 											xmlns="http://www.w3.org/2000/svg"
 											viewBox="0 0 16 18"
 											aria-hidden="true"
@@ -640,16 +678,16 @@ $wrapper_attributes = get_block_wrapper_attributes();
 $font_families = array();
 
 if ( isset( $attributes['categoryStyles']['fontFamily'] ) && ! empty( $attributes['categoryStyles']['fontFamily'] ) ) {
-	$font_families[] = $attributes['categoryStyles']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['categoryStyles']['fontFamily'] );
 }
 if ( isset( $attributes['titleStyles']['fontFamily'] ) && ! empty( $attributes['titleStyles']['fontFamily'] ) ) {
-	$font_families[] = $attributes['titleStyles']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['titleStyles']['fontFamily'] );
 }
 if ( isset( $attributes['dateStyles']['fontFamily'] ) && ! empty( $attributes['dateStyles']['fontFamily'] ) ) {
-	$font_families[] = $attributes['dateStyles']['fontFamily'];
+	$font_families[] = sanitize_text_field( $attributes['dateStyles']['fontFamily'] );
 }
 if ( isset( $attributes['ajaxLoader']['font']['family'] ) && ! empty( $attributes['ajaxLoader']['font']['family'] ) ) {
-	$font_families[] = $attributes['ajaxLoader']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['ajaxLoader']['font']['family'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -657,9 +695,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {

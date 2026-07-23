@@ -6,8 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"color":{"background":"#0c50ff","text":"#f1f6ff"},"elements":{"link":{"color":{"text":"#f1f6ff"}}},"typography":{"fontSize":"17px","lineHeight":"1.6","fontStyle":"normal","fontWeight":"400"}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Inter"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="color:#f1f6ff;background-color:#0c50ff;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:17px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:columns {"style":{"spacing":{"margin":{"top":"0px"},"blockGap":{"top":"44px","left":"36px"}}}} -->
 <div class="wp-block-columns" style="margin-top:0px"><!-- wp:column {"verticalAlignment":"top","style":{"spacing":{"blockGap":"0","padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"constrained","contentSize":"542px","justifyContent":"center"},"cozyAnimation":{"type":"none","easingFunction":"ease","anchorPlacement":"top-center","duration":1000}} -->
-<div class="wp-block-column is-vertically-aligned-top" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:heading {"style":{"typography":{"fontSize":"40px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.3"}},"cozyCustomFont":"Unbounded"} -->
-<h2 class="wp-block-heading" style="font-size:40px;font-style:normal;font-weight:500;line-height:1.3"><?php esc_html_e( 'Proudly serving 25,000+ customers!', 'cozy-addons' ); ?></h2>
+<div class="wp-block-column is-vertically-aligned-top" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:heading {"style":{"typography":{"fontSize":"40px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.3"},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
+<h2 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:40px;font-style:normal;font-weight:500;line-height:1.3"><?php esc_html_e( 'Proudly serving 25,000+ customers!', 'cozy-addons' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"16px"}}}} -->
@@ -27,8 +27,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}}},"cozyCustomFont":"Unbounded"} -->
-<h3 class="wp-block-heading" style="margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Expert Team', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Expert Team', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -47,8 +47,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}}},"cozyCustomFont":"Unbounded"} -->
-<h3 class="wp-block-heading" style="margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Years of Experience', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Years of Experience', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -67,8 +67,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}}},"cozyCustomFont":"Unbounded"} -->
-<h3 class="wp-block-heading" style="margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Product Downloads', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Product Downloads', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -87,8 +87,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}}},"cozyCustomFont":"Unbounded"} -->
-<h3 class="wp-block-heading" style="margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Clients Satisfied', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"16px","bottom":"10px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:16px;margin-bottom:10px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Clients Satisfied', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->

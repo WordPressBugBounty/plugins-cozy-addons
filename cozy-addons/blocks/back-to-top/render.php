@@ -10,24 +10,34 @@ wp_add_inline_script( 'cozy-block--back-to-top--frontend-script', 'document.addE
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
+$styles = array(
+	'zindex'     => isset( $attributes['position']['zIndex'] ) ? esc_attr( $attributes['position']['zIndex'] ) : '',
+	'box_width'  => isset( $attributes['styles']['boxWidth'] ) ? esc_attr( $attributes['styles']['boxWidth'] ) : '',
+	'box_height' => isset( $attributes['styles']['boxHeight'] ) ? esc_attr( $attributes['styles']['boxHeight'] ) : '',
+	'radius'     => isset( $attributes['styles']['borderRadius'] ) ? esc_attr( $attributes['styles']['borderRadius'] ) : '',
+	'right'      => isset( $attributes['position']['right'] ) ? esc_attr( $attributes['position']['right'] ) : '',
+	'bottom'     => isset( $attributes['position']['bottom'] ) ? esc_attr( $attributes['position']['bottom'] ) : '',
+	'size'       => isset( $attributes['styles']['iconSize'] ) ? esc_attr( $attributes['styles']['iconSize'] ) : '',
+);
+
 $color = array(
-	'bg'         => isset( $attributes['styles']['bgColor'] ) ? $attributes['styles']['bgColor'] : '',
-	'bg_hover'   => isset( $attributes['styles']['bgColorHover'] ) ? $attributes['styles']['bgColorHover'] : '',
-	'icon'       => isset( $attributes['styles']['iconColor'] ) ? $attributes['styles']['iconColor'] : '',
-	'icon_hover' => isset( $attributes['styles']['iconColorHover'] ) ? $attributes['styles']['iconColorHover'] : '',
+	'bg'         => isset( $attributes['styles']['bgColor'] ) ? esc_attr( $attributes['styles']['bgColor'] ) : '',
+	'bg_hover'   => isset( $attributes['styles']['bgColorHover'] ) ? esc_attr( $attributes['styles']['bgColorHover'] ) : '',
+	'icon'       => isset( $attributes['styles']['iconColor'] ) ? esc_attr( $attributes['styles']['iconColor'] ) : '',
+	'icon_hover' => isset( $attributes['styles']['iconColorHover'] ) ? esc_attr( $attributes['styles']['iconColorHover'] ) : '',
 );
 
 $block_styles = "
 .cozy-block-back-to-top-zindex.position-fixed{
-    z-index:{$attributes['position']['zIndex']};
+    z-index: {$styles['zindex']};
 }
 #$block_id {
-    width: {$attributes['styles']['boxWidth']}px;
-    height: {$attributes['styles']['boxHeight']}px;
-    border-radius: {$attributes['styles']['borderRadius']}px;
+    width: {$styles['box_width']}px;
+    height: {$styles['box_height']}px;
+    border-radius: {$styles['radius']}px;
     background-color: {$color['bg']};
-    right: {$attributes['position']['right']}px;
-    bottom: {$attributes['position']['bottom']}px;
+    right: {$styles['right']}px;
+    bottom: {$styles['bottom']}px;
 }
 
 #$block_id:hover {
@@ -35,8 +45,8 @@ $block_styles = "
 }
 
 #$block_id svg {
-    width: {$attributes['styles']['iconSize']}px;
-    height: {$attributes['styles']['iconSize']}px;
+    width: {$styles['size']}px;
+    height: {$styles['size']}px;
     fill: {$color['icon']};
 }
 

@@ -11,10 +11,10 @@ $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 $bullet_styles = array(
 	'active' => array(
 		'border' => isset( $attributes['pagination']['activeBorder'] ) ? cozy_render_TRBL( 'outline', $attributes['pagination']['activeBorder'] ) : '',
-		'offset' => isset( $attributes['pagination']['activeOffset'] ) ? $attributes['pagination']['activeOffset'] : '4px',
+		'offset' => isset( $attributes['pagination']['activeOffset'] ) ? esc_attr( $attributes['pagination']['activeOffset'] ) : '4px',
 	),
 	'color'  => array(
-		'active_border_hover' => isset( $attributes['pagination']['activeBorderHover'] ) ? $attributes['pagination']['activeBorderHover'] : '',
+		'active_border_hover' => isset( $attributes['pagination']['activeBorderHover'] ) ? esc_attr( $attributes['pagination']['activeBorderHover'] ) : '',
 	),
 );
 
@@ -34,12 +34,6 @@ wp_add_inline_script( 'cozy-block--slider--frontend-script', 'document.addEventL
 
 $wrapper_attributes = get_block_wrapper_attributes();
 
-$classes   = array();
-$classes[] = 'cozy-block-wrapper';
-$classes[] = 'cozy-block-slider-wrapper';
-
-$output = '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><div ' . $wrapper_attributes . '>';
-
 add_action(
 	'wp_enqueue_scripts',
 	function () use ( $block_styles ) {
@@ -47,8 +41,10 @@ add_action(
 	}
 );
 
-$output .= $content;
-
-$output .= '</div></div>';
-
-echo $output;
+$classes   = array();
+$classes[] = 'cozy-block-wrapper';
+$classes[] = 'cozy-block-slider-wrapper';
+?>
+<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
+	<?php echo $content; ?>
+</div>

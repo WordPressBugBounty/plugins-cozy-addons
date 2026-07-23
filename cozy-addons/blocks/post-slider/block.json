@@ -86,7 +86,8 @@
           "centeredSlides": false,
           "slidesPerView": 1,
           "spaceBetween": 30,
-          "speed": 2000
+          "speed": 2000,
+          "scrollAnimation": "slide"
         }
       }
     },

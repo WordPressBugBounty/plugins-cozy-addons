@@ -41,15 +41,15 @@ function cozy_addons_activation_admin_notice() {
 		<div class="notice notice-info is-dismissible cozy-addons-admin-notice">
 			<div class="notice-content">
 				<figure id="brand__icon">
-					<img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . '/admin/assets/img/cozy_addons_icon_white.png' ); ?>" />
+					<img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . '/admin/assets/img/cozy-addons-icon.png' ); ?>" />
 				</figure>
 				<div class="notice-holder">
 					<h4>
-						<?php esc_html_e( 'Build Stunning Websites Faster & Effortlessly with Cozy Blocks!', 'cozy-addons' ); ?>🚀
+						<?php esc_html_e( 'Build Beautiful Websites, Without Limits.', 'cozy-addons' ); ?>
 					</h4>
 					<p>
-						<?php esc_html_e( 'Cozy Blocks give you 50+ advanced blocks, 40+ homepage templates and 600+ patterns to build beautiful, fully customizable websites faster than ever — all visually inside the WordPress Site Editor, no coding required.', 'cozy-addons' ); ?></p>
-					<a href="<?php echo esc_url( admin_url() ); ?>admin.php?page=_cozy_companions" class="ca__admin-notice-btn"><?php esc_html_e( "Let's Get Started", 'cozy-addons' ); ?></a>
+						<?php esc_html_e( 'Build any WordPress website, faster. Cozy Blocks extends the WordPress Site Editor with 50+ powerful blocks, 700+ ready-made sections, and 50+ professionally designed templates—everything you need to design, build, and launch beautiful websites with ease.', 'cozy-addons' ); ?></p>
+					<a href="<?php echo esc_url( admin_url() ); ?>admin.php?page=_cozy_companions" class="ca__admin-notice-btn"><?php esc_html_e( 'Get Started', 'cozy-addons' ); ?></a>
 				</div>
 			</div>
 			<div class="plugin-screen">

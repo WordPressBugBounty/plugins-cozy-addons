@@ -12,41 +12,38 @@ wp_add_inline_script( 'cozy-block--toggle-content--frontend-script', 'document.a
 
 $styles = array(
 	'padding' => isset( $attributes['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['padding'] ) : '',
-	'margin'  => array(
-		'top'    => isset( $attributes['margin']['top'] ) ? $attributes['margin']['top'] : '',
-		'bottom' => isset( $attributes['margin']['bottom'] ) ? $attributes['margin']['bottom'] : '',
-	),
+	'margin'  => isset( $attributes['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['margin'] ) : '',
 	'border'  => isset( $attributes['border'] ) ? cozy_render_TRBL( 'border', $attributes['border'] ) : '',
 	'radius'  => isset( $attributes['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['radius'] ) : '',
 	'shadow'  => array(
-		'horizontal' => isset( $attributes['shadow']['horizontal'] ) ? $attributes['shadow']['horizontal'] : '',
-		'vertical'   => isset( $attributes['shadow']['vertical'] ) ? $attributes['shadow']['vertical'] : '',
-		'blur'       => isset( $attributes['shadow']['blur'] ) ? $attributes['shadow']['blur'] : '',
-		'spread'     => isset( $attributes['shadow']['spread'] ) ? $attributes['shadow']['spread'] : '',
-		'color'      => isset( $attributes['shadow']['color'] ) ? $attributes['shadow']['color'] : '',
-		'position'   => isset( $attributes['shadow']['position'] ) ? $attributes['shadow']['position'] : '',
+		'horizontal' => isset( $attributes['shadow']['horizontal'] ) ? esc_attr( $attributes['shadow']['horizontal'] ) : '',
+		'vertical'   => isset( $attributes['shadow']['vertical'] ) ? esc_attr( $attributes['shadow']['vertical'] ) : '',
+		'blur'       => isset( $attributes['shadow']['blur'] ) ? esc_attr( $attributes['shadow']['blur'] ) : '',
+		'spread'     => isset( $attributes['shadow']['spread'] ) ? esc_attr( $attributes['shadow']['spread'] ) : '',
+		'color'      => isset( $attributes['shadow']['color'] ) ? esc_attr( sanitize_text_field( $attributes['shadow']['color'] ) ) : '',
+		'position'   => isset( $attributes['shadow']['position'] ) ? esc_attr( sanitize_text_field( $attributes['shadow']['position'] ) ) : '',
 	),
 	'color'   => array(
-		'text' => isset( $attributes['color']['text'] ) ? $attributes['color']['text'] : '',
-		'bg'   => isset( $attributes['color']['bg'] ) ? $attributes['color']['bg'] : '',
+		'text' => isset( $attributes['color']['text'] ) ? esc_attr( $attributes['color']['text'] ) : '',
+		'bg'   => isset( $attributes['color']['bg'] ) ? esc_attr( $attributes['color']['bg'] ) : '',
 	),
 	'font'    => array(
-		'size'   => isset( $attributes['font']['size'] ) ? $attributes['font']['size'] : '',
-		'family' => isset( $attributes['font']['family'] ) ? $attributes['font']['family'] : '',
+		'size'   => isset( $attributes['font']['size'] ) ? esc_attr( $attributes['font']['size'] ) : '',
+		'weight' => isset( $attributes['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['font']['family'] ) ) : '',
 	),
 );
 
 $wrapper_styles = array(
-	'content_gap' => isset( $attributes['wrapperStyles']['contentGap'] ) ? $attributes['wrapperStyles']['contentGap'] : '',
+	'width'       => isset( $attributes['wrapperStyles']['width'] ) ? esc_attr( $attributes['wrapperStyles']['width'] ) : '',
+	'content_gap' => isset( $attributes['wrapperStyles']['contentGap'] ) ? esc_attr( $attributes['wrapperStyles']['contentGap'] ) : '',
+	'justify'     => isset( $attributes['wrapperStyles']['contentAlign'] ) ? esc_attr( sanitize_text_field( $attributes['wrapperStyles']['contentAlign'] ) ) : '',
 	'padding'     => isset( $attributes['wrapperStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['wrapperStyles']['padding'] ) : '',
-	'margin'      => array(
-		'top'    => isset( $attributes['wrapperStyles']['margin']['top'] ) ? $attributes['wrapperStyles']['margin']['top'] : '',
-		'bottom' => isset( $attributes['wrapperStyles']['margin']['bottom'] ) ? $attributes['wrapperStyles']['margin']['bottom'] : '',
-	),
+	'margin'      => isset( $attributes['wrapperStyles']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['wrapperStyles']['margin'] ) : '',
 	'border'      => isset( $attributes['wrapperStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['wrapperStyles']['border'] ) : '',
 	'radius'      => isset( $attributes['wrapperStyles']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['wrapperStyles']['radius'] ) : '',
 	'color'       => array(
-		'bg' => isset( $attributes['wrapperStyles']['color']['bg'] ) ? $attributes['wrapperStyles']['color']['bg'] : '',
+		'bg' => isset( $attributes['wrapperStyles']['color']['bg'] ) ? esc_attr( $attributes['wrapperStyles']['color']['bg'] ) : '',
 	),
 );
 
@@ -54,60 +51,62 @@ $tab_styles = array(
 	'default'        => array(
 		'padding' => isset( $attributes['tabStyles']['default']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['tabStyles']['default']['padding'] ) : '',
 		'border'  => isset( $attributes['tabStyles']['default']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['default']['border'] ) : '',
-		'radius'  => isset( $attributes['tabStyles']['default']['radius'] ) ? $attributes['tabStyles']['default']['radius'] : '',
+		'radius'  => isset( $attributes['tabStyles']['default']['radius'] ) ? esc_attr( $attributes['tabStyles']['default']['radius'] ) : '',
 	),
 	'active'         => array(
-		'margin' => array(
-			'top'    => isset( $attributes['tabStyles']['active']['margin']['top'] ) ? $attributes['tabStyles']['active']['margin']['top'] : '',
-			'bottom' => isset( $attributes['tabStyles']['active']['margin']['bottom'] ) ? $attributes['tabStyles']['active']['margin']['bottom'] : '',
-		),
+		'margin' => isset( $attributes['tabStyles']['active']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['tabStyles']['active']['margin'] ) : '',
 		'border' => isset( $attributes['tabStyles']['active']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['active']['border'] ) : '',
-		'radius' => isset( $attributes['tabStyles']['active']['radius'] ) ? $attributes['tabStyles']['active']['radius'] : '',
+		'radius' => isset( $attributes['tabStyles']['active']['radius'] ) ? esc_attr( $attributes['tabStyles']['active']['radius'] ) : '',
 	),
 	'font'           => array(
-		'size'   => isset( $attributes['tabStyles']['font']['size'] ) ? $attributes['tabStyles']['font']['size'] : '',
-		'family' => isset( $attributes['tabStyles']['font']['family'] ) ? $attributes['tabStyles']['font']['family'] : '',
+		'size'   => isset( $attributes['tabStyles']['font']['size'] ) ? esc_attr( $attributes['tabStyles']['font']['size'] ) : '',
+		'weight' => isset( $attributes['tabStyles']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['tabStyles']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['font']['family'] ) ) : '',
 	),
-	'line_height'    => isset( $attributes['tabStyles']['lineHeight'] ) ? $attributes['tabStyles']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['tabStyles']['letterSpacing'] ) ? $attributes['tabStyles']['letterSpacing'] : '',
+	'letter_case'    => isset( $attributes['tabStyles']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['tabStyles']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['tabStyles']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['tabStyles']['lineHeight'] ) ? esc_attr( $attributes['tabStyles']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['tabStyles']['letterSpacing'] ) ? esc_attr( $attributes['tabStyles']['letterSpacing'] ) : '',
 	'color'          => array(
-		'text'         => isset( $attributes['tabStyles']['color']['text'] ) ? $attributes['tabStyles']['color']['text'] : '',
-		'text_active'  => isset( $attributes['tabStyles']['color']['textActive'] ) ? $attributes['tabStyles']['color']['textActive'] : '',
-		'text_hover'   => isset( $attributes['tabStyles']['color']['textHover'] ) ? $attributes['tabStyles']['color']['textHover'] : '',
-		'bg'           => isset( $attributes['tabStyles']['color']['bg'] ) ? $attributes['tabStyles']['color']['bg'] : '',
-		'bg_active'    => isset( $attributes['tabStyles']['color']['bgActive'] ) ? $attributes['tabStyles']['color']['bgActive'] : '',
-		'bg_hover'     => isset( $attributes['tabStyles']['color']['bgHover'] ) ? $attributes['tabStyles']['color']['bgHover'] : '',
-		'border_hover' => isset( $attributes['tabStyles']['color']['borderHover'] ) ? $attributes['tabStyles']['color']['borderHover'] : '',
+		'text'         => isset( $attributes['tabStyles']['color']['text'] ) ? esc_attr( $attributes['tabStyles']['color']['text'] ) : '',
+		'text_active'  => isset( $attributes['tabStyles']['color']['textActive'] ) ? esc_attr( $attributes['tabStyles']['color']['textActive'] ) : '',
+		'text_hover'   => isset( $attributes['tabStyles']['color']['textHover'] ) ? esc_attr( $attributes['tabStyles']['color']['textHover'] ) : '',
+		'bg'           => isset( $attributes['tabStyles']['color']['bg'] ) ? esc_attr( $attributes['tabStyles']['color']['bg'] ) : '',
+		'bg_active'    => isset( $attributes['tabStyles']['color']['bgActive'] ) ? esc_attr( $attributes['tabStyles']['color']['bgActive'] ) : '',
+		'bg_hover'     => isset( $attributes['tabStyles']['color']['bgHover'] ) ? esc_attr( $attributes['tabStyles']['color']['bgHover'] ) : '',
+		'border_hover' => isset( $attributes['tabStyles']['color']['borderHover'] ) ? esc_attr( $attributes['tabStyles']['color']['borderHover'] ) : '',
 	),
 );
 
 $toggle_styles = array(
 	'font'           => array(
-		'size'   => isset( $attributes['toggleStyles']['font']['size'] ) ? $attributes['toggleStyles']['font']['size'] : '',
-		'family' => isset( $attributes['toggleStyles']['font']['family'] ) ? $attributes['toggleStyles']['font']['family'] : '',
+		'size'   => isset( $attributes['toggleStyles']['font']['size'] ) ? esc_attr( $attributes['toggleStyles']['font']['size'] ) : '',
+		'weight' => isset( $attributes['toggleStyles']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['toggleStyles']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['toggleStyles']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['toggleStyles']['font']['family'] ) ) : '',
 	),
-	'line_height'    => isset( $attributes['toggleStyles']['lineHeight'] ) ? $attributes['toggleStyles']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['toggleStyles']['letterSpacing'] ) ? $attributes['toggleStyles']['letterSpacing'] : '',
+	'letter_case'    => isset( $attributes['toggleStyles']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['toggleStyles']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['toggleStyles']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['toggleStyles']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['toggleStyles']['lineHeight'] ) ? esc_attr( $attributes['toggleStyles']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['toggleStyles']['letterSpacing'] ) ? esc_attr( $attributes['toggleStyles']['letterSpacing'] ) : '',
 	'color'          => array(
-		'text'          => isset( $attributes['toggleStyles']['color']['text'] ) ? $attributes['toggleStyles']['color']['text'] : '',
-		'button'        => isset( $attributes['toggleStyles']['color']['button'] ) ? $attributes['toggleStyles']['color']['button'] : '',
-		'button_active' => isset( $attributes['toggleStyles']['color']['buttonActive'] ) ? $attributes['toggleStyles']['color']['buttonActive'] : '',
-		'bg'            => isset( $attributes['toggleStyles']['color']['bg'] ) ? $attributes['toggleStyles']['color']['bg'] : '',
-		'bg_active'     => isset( $attributes['toggleStyles']['color']['bgActive'] ) ? $attributes['toggleStyles']['color']['bgActive'] : '',
+		'text'          => isset( $attributes['toggleStyles']['color']['text'] ) ? esc_attr( $attributes['toggleStyles']['color']['text'] ) : '',
+		'button'        => isset( $attributes['toggleStyles']['color']['button'] ) ? esc_attr( $attributes['toggleStyles']['color']['button'] ) : '',
+		'button_active' => isset( $attributes['toggleStyles']['color']['buttonActive'] ) ? esc_attr( $attributes['toggleStyles']['color']['buttonActive'] ) : '',
+		'bg'            => isset( $attributes['toggleStyles']['color']['bg'] ) ? esc_attr( $attributes['toggleStyles']['color']['bg'] ) : '',
+		'bg_active'     => isset( $attributes['toggleStyles']['color']['bgActive'] ) ? esc_attr( $attributes['toggleStyles']['color']['bgActive'] ) : '',
 	),
 );
 
 $block_styles = "
 #$block_id {
     {$styles['padding']}
-    margin-top: {$styles['margin']['top']};
-    margin-bottom: {$styles['margin']['bottom']};
+    {$styles['margin']}
     {$styles['border']}
     {$styles['radius']}
     background-color: {$styles['color']['bg']};
     color: {$styles['color']['text']};
     font-size: {$styles['font']['size']};
-    font-weight: {$attributes['font']['weight']};
+    font-weight: {$styles['font']['weight']};
     font-family: {$styles['font']['family']};
 }
 #$block_id.has-box-shadow {
@@ -115,16 +114,15 @@ $block_styles = "
 }
 
 #$block_id .toggle-content__header {
-    margin-top: {$wrapper_styles['margin']['top']};
-    margin-bottom: {$wrapper_styles['margin']['bottom']};
+    {$wrapper_styles['margin']}
 }
 
 #$block_id .toggle-content__tabs, #$block_id .toggle-content__slider {
-    width: {$attributes['wrapperStyles']['width']};
+    width: {$wrapper_styles['width']};
     {$wrapper_styles['padding']}
     {$wrapper_styles['border']}
     {$wrapper_styles['radius']}
-    justify-content: {$attributes['wrapperStyles']['contentAlign']};
+    justify-content: {$wrapper_styles['justify']};
     gap: {$wrapper_styles['content_gap']};
     background-color: {$wrapper_styles['color']['bg']};
 }
@@ -136,16 +134,15 @@ $block_styles = "
     color: {$tab_styles['color']['text']};
     background-color: {$tab_styles['color']['bg']};
     font-size: {$tab_styles['font']['size']};
-    font-weight: {$attributes['tabStyles']['font']['weight']};
+    font-weight: {$tab_styles['font']['weight']};
     font-family: {$tab_styles['font']['family']};
-    text-transform: {$attributes['tabStyles']['letterCase']};
-    text-decoration: {$attributes['tabStyles']['decoration']};
+    text-transform: {$tab_styles['letter_case']};
+    text-decoration: {$tab_styles['decoration']};
     line-height: {$tab_styles['line_height']};
     letter-spacing: {$tab_styles['letter_spacing']};
 }
 #$block_id .toggle-content__tabs .tab-item.active-tab {
-    margin-top: {$tab_styles['active']['margin']['top']};
-    margin-bottom: {$tab_styles['active']['margin']['bottom']};
+    {$tab_styles['active']['margin']}
     {$tab_styles['active']['border']}
     border-radius: {$tab_styles['active']['radius']};
     color: {$tab_styles['color']['text_active']};
@@ -159,10 +156,10 @@ $block_styles = "
 
 #$block_id .toggle-content__slider {
 	font-size: {$toggle_styles['font']['size']};
-    font-weight: {$attributes['toggleStyles']['font']['weight']};
+    font-weight: {$toggle_styles['font']['weight']};
     font-family: {$toggle_styles['font']['family']};
-    text-transform: {$attributes['toggleStyles']['letterCase']};
-    text-decoration: {$attributes['toggleStyles']['decoration']};
+    text-transform: {$toggle_styles['letter_case']};
+    text-decoration: {$toggle_styles['decoration']};
     line-height: {$toggle_styles['line_height']};
     letter-spacing: {$toggle_styles['letter_spacing']};
 	color: {$toggle_styles['color']['text']};
@@ -199,15 +196,15 @@ $content       = preg_replace(
 $font_families = array();
 
 if ( isset( $attributes['tabStyles']['font']['family'] ) && ! empty( $attributes['tabStyles']['font']['family'] ) ) {
-	$font_families[] = $attributes['tabStyles']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['tabStyles']['font']['family'] );
 }
 
 if ( isset( $attributes['toggleStyles']['font']['family'] ) && ! empty( $attributes['toggleStyles']['font']['family'] ) ) {
-	$font_families[] = $attributes['toggleStyles']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['toggleStyles']['font']['family'] );
 }
 
 if ( isset( $attributes['font']['family'] ) && ! empty( $attributes['font']['family'] ) ) {
-	$font_families[] = $attributes['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['font']['family'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -215,9 +212,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {
@@ -259,26 +256,26 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 							$highlight = array(
 								'show_on_active' => isset( $tab_item['highlight']['showOnActive'] ) && filter_var( $tab_item['highlight']['showOnActive'], FILTER_VALIDATE_BOOLEAN ) ? true : false,
 								'content'        => isset( $tab_item['highlight']['content'] ) ? sanitize_text_field( $tab_item['highlight']['content'] ) : '',
-								'align'          => isset( $tab_item['highlight']['align'] ) ? $tab_item['highlight']['align'] : 'right',
+								'align'          => isset( $tab_item['highlight']['align'] ) ? sanitize_text_field( $tab_item['highlight']['align'] ) : 'right',
 								'padding'        => isset( $tab_item['highlight']['padding'] ) ? cozy_render_TRBL( 'padding', $tab_item['highlight']['padding'] ) : '',
 								'border'         => isset( $tab_item['highlight']['border'] ) ? cozy_render_TRBL( 'border', $tab_item['highlight']['border'] ) : '',
 								'radius'         => isset( $tab_item['highlight']['radius'] ) ? cozy_render_TRBL( 'border-radius', $tab_item['highlight']['radius'] ) : '',
 								'font'           => array(
-									'size'   => isset( $tab_item['highlight']['font']['size'] ) ? $tab_item['highlight']['font']['size'] : '',
-									'weight' => isset( $tab_item['highlight']['font']['weight'] ) ? $tab_item['highlight']['font']['weight'] : '',
-									'family' => isset( $tab_item['highlight']['font']['family'] ) ? $tab_item['highlight']['font']['family'] : '',
+									'size'   => isset( $tab_item['highlight']['font']['size'] ) ? esc_attr( $tab_item['highlight']['font']['size'] ) : '',
+									'weight' => isset( $tab_item['highlight']['font']['weight'] ) ? esc_attr( sanitize_text_field( $tab_item['highlight']['font']['weight'] ) ) : '',
+									'family' => isset( $tab_item['highlight']['font']['family'] ) ? esc_attr( sanitize_text_field( $tab_item['highlight']['font']['family'] ) ) : '',
 								),
-								'letter_case'    => isset( $tab_item['highlight']['letterCase'] ) ? $tab_item['highlight']['letterCase'] : '',
-								'decoration'     => isset( $tab_item['highlight']['decoration'] ) ? $tab_item['highlight']['decoration'] : '',
-								'line_height'    => isset( $tab_item['highlight']['lineHeight'] ) ? $tab_item['highlight']['lineHeight'] : '',
-								'letter_spacing' => isset( $tab_item['highlight']['letterSpacing'] ) ? $tab_item['highlight']['letterSpacing'] : '',
+								'letter_case'    => isset( $tab_item['highlight']['letterCase'] ) ? esc_attr( sanitize_text_field( $tab_item['highlight']['letterCase'] ) ) : '',
+								'decoration'     => isset( $tab_item['highlight']['decoration'] ) ? esc_attr( sanitize_text_field( $tab_item['highlight']['decoration'] ) ) : '',
+								'line_height'    => isset( $tab_item['highlight']['lineHeight'] ) ? esc_attr( $tab_item['highlight']['lineHeight'] ) : '',
+								'letter_spacing' => isset( $tab_item['highlight']['letterSpacing'] ) ? esc_attr( $tab_item['highlight']['letterSpacing'] ) : '',
 								'color'          => array(
-									'text' => isset( $tab_item['highlight']['color']['text'] ) ? $tab_item['highlight']['color']['text'] : '',
-									'bg'   => isset( $tab_item['highlight']['color']['bg'] ) ? $tab_item['highlight']['color']['bg'] : '',
+									'text' => isset( $tab_item['highlight']['color']['text'] ) ? esc_attr( $tab_item['highlight']['color']['text'] ) : '',
+									'bg'   => isset( $tab_item['highlight']['color']['bg'] ) ? esc_attr( $tab_item['highlight']['color']['bg'] ) : '',
 								),
-								'v_offset'       => isset( $tab_item['highlight']['vOffset'] ) ? $tab_item['highlight']['vOffset'] : '',
-								'h_offset'       => isset( $tab_item['highlight']['hOffset'] ) ? $tab_item['highlight']['hOffset'] : '',
-								'rotate'         => isset( $tab_item['highlight']['rotate'] ) ? $tab_item['highlight']['rotate'] : '',
+								'v_offset'       => isset( $tab_item['highlight']['vOffset'] ) ? esc_attr( $tab_item['highlight']['vOffset'] ) : '',
+								'h_offset'       => isset( $tab_item['highlight']['hOffset'] ) ? esc_attr( $tab_item['highlight']['hOffset'] ) : '',
+								'rotate'         => isset( $tab_item['highlight']['rotate'] ) ? esc_attr( $tab_item['highlight']['rotate'] ) : '',
 							);
 
 							$classes   = array();
@@ -312,7 +309,7 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 								<style>
 									<?php
 									if ( ! empty( $highlight['font']['family'] ) ) {
-										$font_query = 'https://fonts.googleapis.com/css2?family=' . $highlight['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900';
+										$font_query = 'https://fonts.googleapis.com/css2?family=' . esc_attr( sanitize_text_field( $highlight['font']['family'] ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 										echo '@import url("' . $font_query . '");';
 									}
 									echo $tab_styles;
@@ -339,26 +336,26 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 
 					$highlight = array(
 						'content'        => isset( $attributes['tabs'][0]['highlight']['content'] ) ? sanitize_text_field( $attributes['tabs'][0]['highlight']['content'] ) : '',
-						'align'          => isset( $attributes['tabs'][0]['highlight']['align'] ) ? $attributes['tabs'][0]['highlight']['align'] : '',
+						'align'          => isset( $attributes['tabs'][0]['highlight']['align'] ) ? sanitize_text_field( $attributes['tabs'][0]['highlight']['align'] ) : '',
 						'padding'        => isset( $attributes['tabs'][0]['highlight']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['tabs'][0]['highlight']['padding'] ) : '',
 						'border'         => isset( $attributes['tabs'][0]['highlight']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabs'][0]['highlight']['border'] ) : '',
 						'radius'         => isset( $attributes['tabs'][0]['highlight']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['tabs'][0]['highlight']['radius'] ) : '',
 						'font'           => array(
-							'size'   => isset( $attributes['tabs'][0]['highlight']['font']['size'] ) ? $attributes['tabs'][0]['highlight']['font']['size'] : '',
-							'family' => isset( $attributes['tabs'][0]['highlight']['font']['family'] ) ? $attributes['tabs'][0]['highlight']['font']['family'] : '',
-							'weight' => isset( $attributes['tabs'][0]['highlight']['font']['weight'] ) ? $attributes['tabs'][0]['highlight']['font']['weight'] : '',
+							'size'   => isset( $attributes['tabs'][0]['highlight']['font']['size'] ) ? esc_attr( $attributes['tabs'][0]['highlight']['font']['size'] ) : '',
+							'family' => isset( $attributes['tabs'][0]['highlight']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['tabs'][0]['highlight']['font']['family'] ) ) : '',
+							'weight' => isset( $attributes['tabs'][0]['highlight']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['tabs'][0]['highlight']['font']['weight'] ) ) : '',
 						),
-						'letter_case'    => isset( $attributes['tabs'][0]['highlight']['letterCase'] ) ? $attributes['tabs'][0]['highlight']['letterCase'] : '',
-						'decoration'     => isset( $attributes['tabs'][0]['highlight']['decoration'] ) ? $attributes['tabs'][0]['highlight']['decoration'] : '',
-						'line_height'    => isset( $attributes['tabs'][0]['highlight']['lineHeight'] ) ? $attributes['tabs'][0]['highlight']['lineHeight'] : '',
-						'letter_spacing' => isset( $attributes['tabs'][0]['highlight']['letterSpacing'] ) ? $attributes['tabs'][0]['highlight']['letterSpacing'] : '',
+						'letter_case'    => isset( $attributes['tabs'][0]['highlight']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['tabs'][0]['highlight']['letterCase'] ) ) : '',
+						'decoration'     => isset( $attributes['tabs'][0]['highlight']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['tabs'][0]['highlight']['decoration'] ) ) : '',
+						'line_height'    => isset( $attributes['tabs'][0]['highlight']['lineHeight'] ) ? esc_attr( $attributes['tabs'][0]['highlight']['lineHeight'] ) : '',
+						'letter_spacing' => isset( $attributes['tabs'][0]['highlight']['letterSpacing'] ) ? esc_attr( $attributes['tabs'][0]['highlight']['letterSpacing'] ) : '',
 						'color'          => array(
-							'text' => isset( $attributes['tabs'][0]['highlight']['color']['text'] ) ? $attributes['tabs'][0]['highlight']['color']['text'] : '',
-							'bg'   => isset( $attributes['tabs'][0]['highlight']['color']['bg'] ) ? $attributes['tabs'][0]['highlight']['color']['bg'] : '',
+							'text' => isset( $attributes['tabs'][0]['highlight']['color']['text'] ) ? esc_attr( $attributes['tabs'][0]['highlight']['color']['text'] ) : '',
+							'bg'   => isset( $attributes['tabs'][0]['highlight']['color']['bg'] ) ? esc_attr( $attributes['tabs'][0]['highlight']['color']['bg'] ) : '',
 						),
-						'v_offset'       => isset( $attributes['tabs'][0]['highlight']['vOffset'] ) ? $attributes['tabs'][0]['highlight']['vOffset'] : '',
-						'h_offset'       => isset( $attributes['tabs'][0]['highlight']['hOffset'] ) ? $attributes['tabs'][0]['highlight']['hOffset'] : '',
-						'rotate'         => isset( $attributes['tabs'][0]['highlight']['rotate'] ) ? $attributes['tabs'][0]['highlight']['rotate'] : '',
+						'v_offset'       => isset( $attributes['tabs'][0]['highlight']['vOffset'] ) ? esc_attr( $attributes['tabs'][0]['highlight']['vOffset'] ) : '',
+						'h_offset'       => isset( $attributes['tabs'][0]['highlight']['hOffset'] ) ? esc_attr( $attributes['tabs'][0]['highlight']['hOffset'] ) : '',
+						'rotate'         => isset( $attributes['tabs'][0]['highlight']['rotate'] ) ? esc_attr( $attributes['tabs'][0]['highlight']['rotate'] ) : '',
 					);
 
 					$element_style = "
@@ -386,7 +383,7 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 						<style>
 							<?php
 							if ( ! empty( $highlight['font']['family'] ) ) {
-								$font_query = 'https://fonts.googleapis.com/css2?family=' . $highlight['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900';
+								$font_query = 'https://fonts.googleapis.com/css2?family=' . esc_attr( sanitize_text_field( $highlight['font']['family'] ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 								echo '@import url("' . $font_query . '");';
 							}
 							echo $element_style;
@@ -406,26 +403,26 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 
 						$highlight = array(
 							'content'        => isset( $attributes['tabs'][1]['highlight']['content'] ) ? sanitize_text_field( $attributes['tabs'][1]['highlight']['content'] ) : '',
-							'align'          => isset( $attributes['tabs'][1]['highlight']['align'] ) ? $attributes['tabs'][1]['highlight']['align'] : '',
+							'align'          => isset( $attributes['tabs'][1]['highlight']['align'] ) ? sanitize_text_field( $attributes['tabs'][1]['highlight']['align'] ) : '',
 							'padding'        => isset( $attributes['tabs'][1]['highlight']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['tabs'][1]['highlight']['padding'] ) : '',
 							'border'         => isset( $attributes['tabs'][1]['highlight']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabs'][1]['highlight']['border'] ) : '',
 							'radius'         => isset( $attributes['tabs'][1]['highlight']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['tabs'][1]['highlight']['radius'] ) : '',
 							'font'           => array(
-								'size'   => isset( $attributes['tabs'][1]['highlight']['font']['size'] ) ? $attributes['tabs'][1]['highlight']['font']['size'] : '',
-								'family' => isset( $attributes['tabs'][1]['highlight']['font']['family'] ) ? $attributes['tabs'][1]['highlight']['font']['family'] : '',
-								'weight' => isset( $attributes['tabs'][1]['highlight']['font']['weight'] ) ? $attributes['tabs'][1]['highlight']['font']['weight'] : '',
+								'size'   => isset( $attributes['tabs'][1]['highlight']['font']['size'] ) ? esc_attr( $attributes['tabs'][1]['highlight']['font']['size'] ) : '',
+								'family' => isset( $attributes['tabs'][1]['highlight']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['tabs'][1]['highlight']['font']['family'] ) ) : '',
+								'weight' => isset( $attributes['tabs'][1]['highlight']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['tabs'][1]['highlight']['font']['weight'] ) ) : '',
 							),
-							'letter_case'    => isset( $attributes['tabs'][1]['highlight']['letterCase'] ) ? $attributes['tabs'][1]['highlight']['letterCase'] : '',
-							'decoration'     => isset( $attributes['tabs'][1]['highlight']['decoration'] ) ? $attributes['tabs'][1]['highlight']['decoration'] : '',
-							'line_height'    => isset( $attributes['tabs'][1]['highlight']['lineHeight'] ) ? $attributes['tabs'][1]['highlight']['lineHeight'] : '',
-							'letter_spacing' => isset( $attributes['tabs'][1]['highlight']['letterSpacing'] ) ? $attributes['tabs'][1]['highlight']['letterSpacing'] : '',
+							'letter_case'    => isset( $attributes['tabs'][1]['highlight']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['tabs'][1]['highlight']['letterCase'] ) ) : '',
+							'decoration'     => isset( $attributes['tabs'][1]['highlight']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['tabs'][1]['highlight']['decoration'] ) ) : '',
+							'line_height'    => isset( $attributes['tabs'][1]['highlight']['lineHeight'] ) ? esc_attr( $attributes['tabs'][1]['highlight']['lineHeight'] ) : '',
+							'letter_spacing' => isset( $attributes['tabs'][1]['highlight']['letterSpacing'] ) ? esc_attr( $attributes['tabs'][1]['highlight']['letterSpacing'] ) : '',
 							'color'          => array(
-								'text' => isset( $attributes['tabs'][1]['highlight']['color']['text'] ) ? $attributes['tabs'][1]['highlight']['color']['text'] : '',
-								'bg'   => isset( $attributes['tabs'][1]['highlight']['color']['bg'] ) ? $attributes['tabs'][1]['highlight']['color']['bg'] : '',
+								'text' => isset( $attributes['tabs'][1]['highlight']['color']['text'] ) ? esc_attr( $attributes['tabs'][1]['highlight']['color']['text'] ) : '',
+								'bg'   => isset( $attributes['tabs'][1]['highlight']['color']['bg'] ) ? esc_attr( $attributes['tabs'][1]['highlight']['color']['bg'] ) : '',
 							),
-							'v_offset'       => isset( $attributes['tabs'][1]['highlight']['vOffset'] ) ? $attributes['tabs'][1]['highlight']['vOffset'] : '',
-							'h_offset'       => isset( $attributes['tabs'][1]['highlight']['hOffset'] ) ? $attributes['tabs'][1]['highlight']['hOffset'] : '',
-							'rotate'         => isset( $attributes['tabs'][1]['highlight']['rotate'] ) ? $attributes['tabs'][1]['highlight']['rotate'] : '',
+							'v_offset'       => isset( $attributes['tabs'][1]['highlight']['vOffset'] ) ? esc_attr( $attributes['tabs'][1]['highlight']['vOffset'] ) : '',
+							'h_offset'       => isset( $attributes['tabs'][1]['highlight']['hOffset'] ) ? esc_attr( $attributes['tabs'][1]['highlight']['hOffset'] ) : '',
+							'rotate'         => isset( $attributes['tabs'][1]['highlight']['rotate'] ) ? esc_attr( $attributes['tabs'][1]['highlight']['rotate'] ) : '',
 						);
 
 						$element_style = "
@@ -452,7 +449,7 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 						<style>
 							<?php
 							if ( ! empty( $highlight['font']['family'] ) ) {
-								$font_query = 'https://fonts.googleapis.com/css2?family=' . $highlight['font']['family'] . ':wght@100;200;300;400;500;600;700;800;900';
+								$font_query = 'https://fonts.googleapis.com/css2?family=' . esc_attr( sanitize_text_field( $highlight['font']['family'] ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 								echo '@import url("' . $font_query . '");';
 							}
 							echo $element_style;

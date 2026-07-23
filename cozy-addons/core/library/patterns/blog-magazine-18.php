@@ -7,10 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:12px;padding-right:26px;padding-bottom:12px;padding-left:26px"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"top":"24px","left":"24px"}}}} -->
 <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"15%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:15%"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|background"}}},"typography":{"textAlign":"left"},"spacing":{"padding":{"top":"6px","bottom":"6px","left":"12px","right":"12px"}},"border":{"radius":{"topLeft":"100px","topRight":"100px","bottomLeft":"100px","bottomRight":"100px"}}},"backgroundColor":"dark-color","textColor":"background","fontSize":"normal"} -->
-<h3 class="wp-block-heading has-text-align-left has-background-color has-dark-color-background-color has-text-color has-background has-link-color has-normal-font-size" style="border-top-left-radius:100px;border-top-right-radius:100px;border-bottom-left-radius:100px;border-bottom-right-radius:100px;padding-top:6px;padding-right:12px;padding-bottom:6px;padding-left:12px"><?php
-	esc_html_e( 'Highlight News', 'cozy-addons' );
-?></h3>
+<div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|background"}}},"typography":{"textAlign":"center"},"spacing":{"padding":{"top":"6px","bottom":"6px","left":"12px","right":"12px"}},"border":{"radius":{"topLeft":"100px","topRight":"100px","bottomLeft":"100px","bottomRight":"100px"}},"color":{"background":"#101112"}},"textColor":"background","fontSize":"normal"} -->
+<h3 class="wp-block-heading has-text-align-center has-background-color has-text-color has-background has-link-color has-normal-font-size" style="border-top-left-radius:100px;border-top-right-radius:100px;border-bottom-left-radius:100px;border-bottom-right-radius:100px;background-color:#101112;padding-top:6px;padding-right:12px;padding-bottom:6px;padding-left:12px"><?php esc_html_e( 'Highlight News', 'cozy-addons' ); ?></h3>
 <!-- /wp:heading --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->

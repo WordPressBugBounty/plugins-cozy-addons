@@ -2708,7 +2708,7 @@ return array(
 			),
 			'position' => array(
 				'type' => 'string',
-				'default' => 'inherit'
+				'default' => ''
 			),
 			'fixedPlacement' => array(
 				'type' => 'string',
@@ -2725,7 +2725,8 @@ return array(
 			'stickyStyles' => array(
 				'type' => 'object',
 				'default' => array(
-					'bgColor' => ''
+					'bgColor' => '',
+					'backDropBlur' => '5px'
 				)
 			),
 			'margin' => array(
@@ -9436,7 +9437,8 @@ return array(
 						'centeredSlides' => false,
 						'slidesPerView' => 1,
 						'spaceBetween' => 30,
-						'speed' => 2000
+						'speed' => 2000,
+						'scrollAnimation' => 'slide'
 					)
 				)
 			),
@@ -12630,13 +12632,20 @@ return array(
 						'size' => '18px'
 					),
 					'description' => array(
-						'enabled' => true
+						'enabled' => true,
+						'padding' => array(
+							'top' => '0px',
+							'right' => '0px',
+							'bottom' => '0px',
+							'left' => '0px'
+						)
 					),
 					'progressBar' => array(
 						'margin' => array(
 							'top' => '16px',
 							'bottom' => ''
-						)
+						),
+						'height' => '3px'
 					),
 					'color' => array(
 						'title' => '#010101',

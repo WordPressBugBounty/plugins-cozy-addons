@@ -377,56 +377,114 @@
 					break;
 
 				case "scroll":
-					const $nav = $container.find(".list-item__tabs");
-					const $links = $container.find(".list-item__tab");
-					const $sections = $container.find(".cozy-block-scroll-item");
-					let lastActiveId = null;
-					let scrollTicking = false;
+					const $outer = $(`.block-wrapper-${clientId}`);
+					const $panels = $container.find(".cozy-block-scroll-item");
+					const $tabs = $container.find(".list-item__tab");
+					const N = $panels.length;
 
-					function getNavHeight() {
-						return $nav.outerHeight();
-					}
+					let ticking = false;
 
-					function setActiveTab(id) {
-						$links
-							.removeClass("is-active")
-							.filter(`[id="${id}"]`)
-							.addClass("is-active");
+					function update() {
+						if (window.innerWidth <= 1024) {
+							if (
+								$container.find(".cozy-block-scroll-item.is-active").length <= 0
+							) {
+								$($panels.get(0)).addClass("is-active");
+							}
+
+							// Add click event in panel
+							$tabs.each(function () {
+								const $this = $(this);
+
+								$this.click(function () {
+									$tabs.removeClass("is-active");
+									$this.addClass("is-active");
+
+									const id = $this.attr("id");
+
+									$panels
+										.removeClass("is-active")
+										.css("opacity", "1")
+										.css("pointer-events", "auto");
+									$container
+										.find(`#${id}.cozy-block-scroll-item`)
+										.addClass("is-active")
+										.css("opacity", "1")
+										.css("pointer-events", "auto");
+									$;
+								});
+							});
+
+							return;
+						}
+
+						$tabs.off("click");
+
+						ticking = false;
+
+						const rect = $outer[0].getBoundingClientRect();
+						const vh = window.innerHeight;
+						const scrollableDistance = rect.height - vh; // total px of "pinned" scroll
+						let progress = -rect.top / scrollableDistance;
+						progress = Math.min(Math.max(progress, 0), 1); // clamp 0..1
+
+						const scaled = progress * N; // 0..N, one unit per panel
+
+						const FADE_ZONE = 0.15; // fraction of a segment used for the crossfade (0–0.5)
+
+						$panels.each(function (i) {
+							// clamp so panel 0 / the last panel don't fade against a
+							// nonexistent neighbor before scrolling starts or after it ends
+							const effectiveScaled = Math.min(Math.max(scaled, 0.5), N - 0.5);
+
+							const center = i + 0.5;
+							const distance = Math.abs(effectiveScaled - center);
+							const plateau = 0.5 - FADE_ZONE;
+
+							let opacity;
+							if (distance <= plateau) {
+								opacity = 1;
+							} else {
+								opacity = 1 - (distance - plateau) / FADE_ZONE;
+								opacity = Math.min(Math.max(opacity, 0), 1);
+							}
+
+							$(this).css({
+								opacity: opacity,
+								pointerEvents: opacity > 0.5 ? "auto" : "none",
+							});
+						});
+
+						const activeIndex = Math.min(N - 1, Math.floor(scaled));
+						$tabs.each(function (i) {
+							// 0 before this tab's segment starts, 1 once it's fully scrolled past,
+							// ramps 0→1 linearly while `scaled` moves through [i, i+1)
+							const tabProgress = Math.min(Math.max(scaled - i, 0), 1);
+
+							$(this).toggleClass("is-active", i === activeIndex);
+
+							$(this)
+								.find(".progress")
+								.css("width", Math.floor(tabProgress * 100) + "%");
+						});
 					}
 
 					function onScroll() {
-						const scrollTop = $(window).scrollTop();
-						const navHeight = getNavHeight();
-						const threshold = scrollTop + navHeight;
-						let activeId = null;
+						if (window.innerWidth <= 1024) {
+							return;
+						}
 
-						$sections.each(function () {
-							if ($(this).offset().top <= threshold) {
-								activeId = $(this).attr("id");
-							}
-						});
-
-						if (!activeId || activeId === lastActiveId) return;
-
-						lastActiveId = activeId;
-						setActiveTab(activeId);
-						const $activeTabItem = $links.filter(`[id="${activeId}"]`);
-						const $panel = $activeTabItem.find(".tab__description");
-						openPanel($panel);
+						if (!ticking) {
+							requestAnimationFrame(update);
+							ticking = true;
+						}
 					}
 
-					function onScrollThrottled() {
-						if (scrollTicking) return;
-						scrollTicking = true;
-						requestAnimationFrame(() => {
-							onScroll();
-							scrollTicking = false;
-						});
-					}
+					$(window).on("scroll", onScroll);
+					$(window).on("resize", onScroll);
 
-					// Bind scroll + trigger once on load
-					$(window).on("scroll", onScrollThrottled);
-					onScroll();
+					update();
+
 					break;
 
 				default:

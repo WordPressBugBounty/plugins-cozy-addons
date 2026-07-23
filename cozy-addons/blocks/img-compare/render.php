@@ -9,49 +9,52 @@ $block_id = 'cozyBlock_' . $client_id;
 
 $styles = array(
 	'image' => array(
-		'height' => isset( $attributes['image']['height'] ) ? $attributes['image']['height'] : '',
+		'height' => isset( $attributes['image']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['image']['height'] ) : '',
 	),
 );
 
 $image = array(
-	'alt1' => isset( $attributes['image']['alt1'] ) ? $attributes['image']['alt1'] : '',
-	'alt2' => isset( $attributes['image']['alt2'] ) ? $attributes['image']['alt2'] : '',
+	'alt1' => isset( $attributes['image']['alt1'] ) ? esc_attr( sanitize_text_field( $attributes['image']['alt1'] ) ) : '',
+	'alt2' => isset( $attributes['image']['alt2'] ) ? esc_attr( sanitize_text_field( $attributes['image']['alt2'] ) ) : '',
 );
 
 $divider_styles = array(
-	'width' => isset( $attributes['divider']['width'] ) ? $attributes['divider']['width'] : '',
+	'width' => isset( $attributes['divider']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['divider']['width'] ) : '',
 	'icon'  => array(
-		'size'    => isset( $attributes['divider']['icon']['size'] ) ? $attributes['divider']['icon']['size'] : '',
+		'size'    => isset( $attributes['divider']['icon']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['divider']['icon']['size'] ) : '',
 		'padding' => isset( $attributes['divider']['icon']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['divider']['icon']['padding'] ) : '',
-		'radius'  => isset( $attributes['divider']['icon']['radius'] ) ? $attributes['divider']['icon']['radius'] : '',
+		'radius'  => isset( $attributes['divider']['icon']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['divider']['icon']['radius'] ) : '',
 	),
 	'color' => array(
-		'icon'          => isset( $attributes['divider']['color']['icon'] ) ? $attributes['divider']['color']['icon'] : '',
-		'icon_hover'    => isset( $attributes['divider']['color']['iconHover'] ) ? $attributes['divider']['color']['iconHover'] : '',
-		'icon_bg'       => isset( $attributes['divider']['color']['iconBg'] ) ? $attributes['divider']['color']['iconBg'] : '',
-		'icon_bg_hover' => isset( $attributes['divider']['color']['iconBgHover'] ) ? $attributes['divider']['color']['iconBgHover'] : '',
-		'bg'            => isset( $attributes['divider']['color']['bg'] ) ? $attributes['divider']['color']['bg'] : '',
-		'bg_hover'      => isset( $attributes['divider']['color']['bgHover'] ) ? $attributes['divider']['color']['bgHover'] : '',
+		'icon'          => isset( $attributes['divider']['color']['icon'] ) ? esc_attr( $attributes['divider']['color']['icon'] ) : '',
+		'icon_hover'    => isset( $attributes['divider']['color']['iconHover'] ) ? esc_attr( $attributes['divider']['color']['iconHover'] ) : '',
+		'icon_bg'       => isset( $attributes['divider']['color']['iconBg'] ) ? esc_attr( $attributes['divider']['color']['iconBg'] ) : '',
+		'icon_bg_hover' => isset( $attributes['divider']['color']['iconBgHover'] ) ? esc_attr( $attributes['divider']['color']['iconBgHover'] ) : '',
+		'bg'            => isset( $attributes['divider']['color']['bg'] ) ? esc_attr( $attributes['divider']['color']['bg'] ) : '',
+		'bg_hover'      => isset( $attributes['divider']['color']['bgHover'] ) ? esc_attr( $attributes['divider']['color']['bgHover'] ) : '',
 	),
 );
 
 $label_styles = array(
 	'padding'        => isset( $attributes['label']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['label']['padding'] ) : '',
 	'margin'         => array(
-		'top'  => isset( $attributes['label']['margin']['top'] ) ? $attributes['label']['margin']['top'] : '',
-		'left' => isset( $attributes['label']['margin']['left'] ) ? $attributes['label']['margin']['left'] : '',
+		'top'  => isset( $attributes['label']['margin']['top'] ) ? cozy_addons_sanitize_dimension( $attributes['label']['margin']['top'] ) : '',
+		'left' => isset( $attributes['label']['margin']['left'] ) ? cozy_addons_sanitize_dimension( $attributes['label']['margin']['left'] ) : '',
 	),
 	'border'         => isset( $attributes['label']['border'] ) ? cozy_render_TRBL( 'border', $attributes['label']['border'] ) : '',
 	'radius'         => isset( $attributes['label']['radius'] ) ? cozy_render_TRBL( 'border-radius', $attributes['label']['radius'] ) : '',
 	'font'           => array(
-		'size'   => isset( $attributes['label']['font']['size'] ) ? $attributes['label']['font']['size'] : '',
-		'family' => isset( $attributes['label']['font']['family'] ) ? $attributes['label']['font']['family'] : '',
+		'size'   => isset( $attributes['label']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['label']['font']['size'] ) : '',
+		'weight' => isset( $attributes['label']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['label']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['label']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['label']['font']['family'] ) ) : '',
 	),
-	'line_height'    => isset( $attributes['label']['lineHeight'] ) ? $attributes['label']['lineHeight'] : '',
-	'letter_spacing' => isset( $attributes['label']['letterSpacing'] ) ? $attributes['label']['letterSpacing'] : '',
+	'letter_case'    => isset( $attributes['label']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['label']['letterCase'] ) ) : '',
+	'decoration'     => isset( $attributes['label']['decoration'] ) ? esc_attr( sanitize_text_field( $attributes['label']['decoration'] ) ) : '',
+	'line_height'    => isset( $attributes['label']['lineHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['label']['lineHeight'] ) : '',
+	'letter_spacing' => isset( $attributes['label']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['label']['letterSpacing'] ) : '',
 	'color'          => array(
-		'text' => isset( $attributes['label']['color']['text'] ) ? $attributes['label']['color']['text'] : '',
-		'bg'   => isset( $attributes['label']['color']['bg'] ) ? $attributes['label']['color']['bg'] : '',
+		'text' => isset( $attributes['label']['color']['text'] ) ? esc_attr( $attributes['label']['color']['text'] ) : '',
+		'bg'   => isset( $attributes['label']['color']['bg'] ) ? esc_attr( $attributes['label']['color']['bg'] ) : '',
 	),
 );
 
@@ -96,10 +99,10 @@ $block_styles = "
 	{$label_styles['border']}
 	{$label_styles['radius']}
 	font-size: {$label_styles['font']['size']};
-	font-weight: {$attributes['label']['font']['weight']};
+	font-weight: {$label_styles['font']['weight']};
 	font-family: {$label_styles['font']['family']};
-	text-transform: {$attributes['label']['letterCase']};
-	text-decoration: {$attributes['label']['decoration']};
+	text-transform: {$label_styles['letter_case']};
+	text-decoration: {$label_styles['decoration']};
 	line-height: {$label_styles['line_height']};
 	letter-spacing: {$label_styles['letter_spacing']};
 	color: {$label_styles['color']['text']};
@@ -125,7 +128,7 @@ $block_styles = "
 $font_families = array();
 
 if ( isset( $attributes['label']['font']['family'] ) && ! empty( $attributes['label']['font']['family'] ) ) {
-	$font_families[] = $attributes['label']['font']['family'];
+	$font_families[] = sanitize_text_field( $attributes['label']['font']['family'] );
 }
 // Remove duplicate font families.
 $font_families = array_unique( $font_families );
@@ -133,9 +136,9 @@ $font_query    = '';
 // Add other fonts.
 foreach ( $font_families as $key => $family ) {
 	if ( 0 === $key ) {
-		$font_query .= 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= 'family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	} else {
-		$font_query .= '&family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
+		$font_query .= '&family=' . str_replace( ' ', '+', esc_attr( $family ) ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
 }
 if ( ! empty( $font_query ) ) {

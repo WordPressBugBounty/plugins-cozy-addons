@@ -1,0 +1,26 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
+<!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"0","left":"0","top":"60px","bottom":"60px"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->
+<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:60px;padding-right:0;padding-bottom:60px;padding-left:0"><!-- wp:cover {"url":"https://plugins.cozythemes.com/cozy-addons/assets/media/cta-36.png","dimRatio":0,"isDark":false,"style":{"border":{"radius":{"topLeft":"24px","topRight":"24px","bottomLeft":"24px","bottomRight":"24px"}},"color":{"text":"#bbd8d4"},"elements":{"link":{"color":{"text":"#bbd8d4"}}},"typography":{"fontSize":"16px","lineHeight":1.6,"fontStyle":"normal","fontWeight":"400"},"spacing":{"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"},"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"586px"}} -->
+<div class="wp-block-cover is-light has-text-color has-link-color" style="border-top-left-radius:24px;border-top-right-radius:24px;border-bottom-left-radius:24px;border-bottom-right-radius:24px;color:#bbd8d4;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><img class="wp-block-cover__image-background" alt="" src="https://plugins.cozythemes.com/cozy-addons/assets/media/cta-36.png" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:heading {"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"64px","fontStyle":"normal","fontWeight":"500","letterSpacing":"-2px","lineHeight":"1.2","textAlign":"center"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Miranda Sans"} -->
+<h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#fffffe;font-size:64px;font-style:normal;font-weight:500;letter-spacing:-2px;line-height:1.2">Build a stronger brand and grow faster today</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"12px","bottom":"26px"}}}} -->
+<p class="has-text-align-center" style="margin-top:12px;margin-bottom:26px">Build faster, showcase smarter, and convert better with this bold modern template</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons {"style":{"typography":{"fontSize":"16px","textDecoration":"none"},"spacing":{"blockGap":{"top":"26px","left":"16px"},"margin":{"top":"36px"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
+<div class="wp-block-buttons has-custom-font-size" style="margin-top:36px;font-size:16px;text-decoration:none"><!-- wp:button {"type":"cozy-block-btn","style":{"border":{"radius":{"topLeft":"100px","topRight":"100px","bottomLeft":"100px","bottomRight":"100px"}},"spacing":{"padding":{"left":"36px","right":"36px","top":"14px","bottom":"14px"}},"color":{"background":"#0cb99d","text":"#fffffe"},"elements":{"link":{"color":{"text":"#fffffe"}}}},"icon":{"enabled":true,"path":"M12 4L11.6464 3.64645L12 3.29289L12.3536 3.64645L12 4ZM12.5 19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19L12.5 19ZM5.64645 9.64645L11.6464 3.64645L12.3536 4.35355L6.35355 10.3536L5.64645 9.64645ZM12.3536 3.64645L18.3536 9.64645L17.6464 10.3536L11.6464 4.35355L12.3536 3.64645ZM12.5 4L12.5 19L11.5 19L11.5 4L12.5 4Z","viewBox":{"vx":"0","vy":"0","vw":"24","vh":"24"},"padding":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"margin":{"top":"-4px","bottom":"0px"},"boxWidth":"24px","boxHeight":"24px","size":"24px","rotate":45,"gap":"0px","position":"after","border":{"width":"","style":"","color":""},"radius":"","color":{"text":"#fff","textHover":"#fffffe","bg":"","bgHover":"","borderHover":""}},"cozyHoverStyles":{"bgColor":"#0cb99d","color":"#fffffe","borderColor":""}} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-text-color has-background has-link-color wp-element-button" href="#" style="border-top-left-radius:100px;border-top-right-radius:100px;border-bottom-left-radius:100px;border-bottom-right-radius:100px;color:#fffffe;background-color:#0cb99d;padding-top:14px;padding-right:36px;padding-bottom:14px;padding-left:36px">Signup Free Today</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"style":{"spacing":{"padding":{"left":"28px","right":"28px","top":"12px","bottom":"12px"}},"color":{"text":"#0c574b","background":"#f0f3f3"},"elements":{"link":{"color":{"text":"#0c574b"}}},"border":{"radius":{"topLeft":"100px","topRight":"100px","bottomLeft":"100px","bottomRight":"100px"}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-text-color has-background has-link-color wp-element-button" href="#" style="border-top-left-radius:100px;border-top-right-radius:100px;border-bottom-left-radius:100px;border-bottom-right-radius:100px;color:#0c574b;background-color:#f0f3f3;padding-top:12px;padding-right:28px;padding-bottom:12px;padding-left:28px">Contact Us</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div></div>
+<!-- /wp:cover --></div>
+<!-- /wp:group -->

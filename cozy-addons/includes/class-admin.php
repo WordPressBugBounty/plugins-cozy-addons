@@ -113,7 +113,7 @@ class Admin {
 	 */
 	public function register_plugin_menu() {
 		if ( ! menu_page_url( '_cozy_companions' ) ) {
-			add_menu_page( 'Cozy Blocks', 'Cozy Blocks', 'manage_options', '_cozy_companions', array( $this, 'cozy_companion_info' ), self::$url . 'assets/img/ct_logo.svg', '2' );
+			add_menu_page( 'Cozy Blocks', 'Cozy Blocks', 'manage_options', '_cozy_companions', array( $this, 'cozy_companion_info' ), self::$url . 'assets/img/ct_logo.png', '2' );
 			add_submenu_page(
 				'_cozy_companions',
 				'Dashboard',
