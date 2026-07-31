@@ -2780,10 +2780,10 @@ return array(
 			'borderRadius' => array(
 				'type' => 'object',
 				'default' => array(
-					'topL' => 6,
-					'topR' => 6,
-					'bottomL' => 6,
-					'bottomR' => 6
+					'topL' => 0,
+					'topR' => 0,
+					'bottomL' => 0,
+					'bottomR' => 0
 				)
 			),
 			'borderRadiusHover' => array(
@@ -12545,8 +12545,7 @@ return array(
 				'default' => array(
 					'slidesPerView' => 1.5,
 					'spaceBetween' => 30,
-					'reverseDirection' => false,
-					'alignMiddle' => true
+					'reverseDirection' => false
 				)
 			),
 			'verticalScroll' => array(

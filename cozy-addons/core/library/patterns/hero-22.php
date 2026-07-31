@@ -4,13 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"0","left":"0","top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"typography":{"fontSize":"16px","lineHeight":"1.6","fontStyle":"normal","fontWeight":"400"},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe","background":"#666666"}},"layout":{"type":"constrained","contentSize":"100%"},"cozyCustomFont":"Inter"} -->
-<div class="wp-block-group has-text-color has-background has-link-color" style="color:#fffffe;background-color:#666666;margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:cozy-block/container {"blockClientId":"d73718f9-405c-4a2c-99f9-dbd640321994","position":"fixed","stickyStyles":{"bgColor":"#12111199"},"zIndex":"9999"} -->
+<div class="wp-block-group has-text-color has-background has-link-color" style="color:#fffffe;background-color:#666666;margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:cozy-block/container {"blockClientId":"fadebef5-76fd-4c1d-a5b8-57ff1e93e2a8","position":"fixed","stickyStyles":{"bgColor":"#12111199","backDropBlur":"5px"},"zIndex":"9999","borderRadius":{"topL":0,"topR":0,"bottomL":0,"bottomR":0}} -->
 <div class="wp-block-cozy-block-container"><div class="cozy-block-container visibility-none border-none hover-border-none
-		fixed-placement-top
-	" id="cozyBlock_d73718f9_405c_4a2c_99f9_dbd640321994"><div class="wp-block-cozy-block-container" style="position:relative;z-index:10"><!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"26px","bottom":"26px"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"1180px"}} -->
+        fixed-placement-top
+    " id="cozyBlock_fadebef5_76fd_4c1d_a5b8_57ff1e93e2a8"><div class="wp-block-cozy-block-container" style="position:relative;z-index:10"><!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"26px","bottom":"26px"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"1180px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:26px;padding-right:26px;padding-bottom:26px;padding-left:26px"><!-- wp:group {"style":{"spacing":{"blockGap":"26px","padding":{"right":"0","left":"0","top":"0px","bottom":"0px"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0px;padding-right:0;padding-bottom:0px;padding-left:0"><!-- wp:group {"style":{"spacing":{"blockGap":"16px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:site-logo {"style":{"layout":{"selfStretch":"fixed","flexSize":"65px"}}} /-->
+<div class="wp-block-group"><!-- wp:site-logo {"width":45,"style":{"layout":{"selfStretch":"fixed","flexSize":"65px"}}} /-->
 
 <!-- wp:site-title {"style":{"typography":{"fontSize":"24px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}}} /--></div>
 <!-- /wp:group -->
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:buttons {"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"0px","bottom":"0"}}},"layout":{"type":"flex","justifyContent":"left"}} -->
 <div class="wp-block-buttons has-custom-font-size" style="margin-top:0px;margin-bottom:0;font-size:16px;font-style:normal;font-weight:500"><!-- wp:button {"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"background":"#06bf9a00","text":"#fffffe"},"spacing":{"padding":{"left":"32px","right":"32px","top":"16px","bottom":"16px"}},"border":{"radius":"0px","color":"#fffffe","width":"1px","style":"solid"}},"cozyHoverStyles":{"bgColor":"#ff9900","color":"#fffffe","borderColor":"#bebebe00"}} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-text-color has-background has-link-color has-border-color wp-element-button" href="#" style="border-color:#fffffe;border-style:solid;border-width:1px;border-radius:0px;color:#fffffe;background-color:#06bf9a00;padding-top:16px;padding-right:32px;padding-bottom:16px;padding-left:32px"><?php esc_html_e( 'Reservation', 'cozy-addons' ); ?></a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-text-color has-background has-link-color has-border-color wp-element-button" href="#" style="border-color:#fffffe;border-style:solid;border-width:1px;border-radius:0px;color:#fffffe;background-color:#06bf9a00;padding-top:16px;padding-right:32px;padding-bottom:16px;padding-left:32px">Reservation</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

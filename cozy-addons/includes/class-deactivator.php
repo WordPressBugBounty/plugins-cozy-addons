@@ -28,5 +28,6 @@ class Deactivator {
 	 */
 	public static function deactivate() {
 		// Deactivation logic goes here.
+		delete_transient( 'ca_pattern_themes' );
 	}
 }

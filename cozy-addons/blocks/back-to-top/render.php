@@ -55,7 +55,7 @@ $block_styles = "
 }
 ";
 
-$output = '<div class="cozy-block-wrapper cozy-block-back-to-top-zindex position-fixed">';
+$output = '<div class="cozy-block-wrapper cozy-block-back-to-top-wrapper cozy-block-back-to-top-zindex position-fixed">';
 
 add_action(
 	'wp_enqueue_scripts',

@@ -107,7 +107,7 @@
 	{
 		"label": "Worksy",
 		"slug": "cozy-addons/template-16",
-		"category": ["agency"],
+		"category": ["home-services"],
 		"image": "template-16.png",
 		"isPremium": false
 	},
@@ -345,8 +345,50 @@
 	{
 		"label": "Monocle Blog Magazine",
 		"slug": "cozy-addons/template-50",
-		"category": ["agency"],
+		"category": ["news-&-magazine"],
 		"image": "template-50.png",
+		"isPremium": true
+	},
+	{
+		"label": "Electronic Gadgets",
+		"slug": "cozy-addons/template-51",
+		"category": ["woocommerce"],
+		"image": "template-51.png",
+		"isPremium": true
+	},
+	{
+		"label": "Riding Gear",
+		"slug": "cozy-addons/template-52",
+		"category": ["woocommerce"],
+		"image": "template-52.png",
+		"isPremium": true
+	},
+	{
+		"label": "Right News",
+		"slug": "cozy-addons/template-53",
+		"category": ["news-&-magazine"],
+		"image": "template-53.png",
+		"isPremium": true
+	},
+	{
+		"label": "Walker News",
+		"slug": "cozy-addons/template-54",
+		"category": ["news-&-magazine"],
+		"image": "template-54.png",
+		"isPremium": true
+	},
+	{
+		"label": "Magzone News",
+		"slug": "cozy-addons/template-55",
+		"category": ["news-&-magazine"],
+		"image": "template-55.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Starter",
+		"slug": "cozy-addons/template-56",
+		"category": ["news-&-magazine"],
+		"image": "template-56.png",
 		"isPremium": true
 	}
 ]

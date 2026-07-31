@@ -69,12 +69,8 @@ $open_icon  = array(
 	),
 );
 $close_icon = array(
-	'padding' => array(
-		'v_val' => isset( $attributes['closeIcon']['verticalSpacing'] ) ? esc_attr( $attributes['closeIcon']['verticalSpacing'] ) : '',
-	),
-	'margin'  => array(
-		'h_val' => isset( $attributes['closeIcon']['horizontalSpacing'] ) ? esc_attr( $attributes['closeIcon']['horizontalSpacing'] ) : '',
-	),
+	'v_val' => isset( $attributes['closeIcon']['verticalSpacing'] ) ? esc_attr( $attributes['closeIcon']['verticalSpacing'] ) : '',
+	'h_val' => isset( $attributes['closeIcon']['horizontalSpacing'] ) ? esc_attr( $attributes['closeIcon']['horizontalSpacing'] ) : '',
 );
 
 $overlay_styles = array(
@@ -123,6 +119,18 @@ $block_styles = "
     stroke: {$icon_color['hover']};
     fill: none;
 }
+#$block_id .sidebar-icon-wrapper {
+	top: {$close_icon['v_val']}px;
+
+	&.align-left {
+		left: {$close_icon['h_val']}px;
+		right: auto;
+	}
+	&.align-right {
+		right: {$close_icon['h_val']}px;
+		left: auto;
+	}
+}
 #$block_id.icon-view-stacked .sidebar-icon-wrapper {
     padding-top: {$icon_styles['padding']['top']}px;
     padding-right: {$icon_styles['padding']['right']}px;
@@ -138,10 +146,7 @@ $block_styles = "
     border-color: {$icon_color['border_hover']};
     background-color: {$icon_color['bg_hover']};
 }
-#$block_id .relative {
-    padding: {$close_icon['padding']['v_val']}px 0;
-    margin: 0 {$close_icon['margin']['h_val']}px;
-}
+
 #$block_id .open-icon-wrapper {
     gap: {$open_icon['gap']}px;
     font-size: {$open_icon['font']['size']}px;

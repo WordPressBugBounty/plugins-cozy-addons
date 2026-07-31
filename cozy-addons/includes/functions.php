@@ -2470,7 +2470,7 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 		$block_content = preg_replace(
 			// '/<ul class=".*?\b' . preg_quote( $existing_class_attribute, '/' ) . '\b.*?"/',
 			'/<ul[^>]*?\s+class="([^"]+)"/',
-			'<ul class="' . esc_attr( $updated_class ) . '" style="' . $existing_style_attribute . esc_attr( trim( cozy_addons_clean_empty_css( $inline_styles ), '; ' ) ) . '"',
+			'<ul class="' . esc_attr( $updated_class ) . '" style="' . $existing_style_attribute . ';' . esc_attr( trim( cozy_addons_clean_empty_css( $inline_styles ), '; ' ) ) . '"',
 			$block_content,
 			1
 		);

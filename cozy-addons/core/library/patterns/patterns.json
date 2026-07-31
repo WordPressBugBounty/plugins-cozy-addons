@@ -721,6 +721,62 @@
 		"isPremium": true
 	},
 	{
+		"label": "Blog",
+		"slug": "cozy-addons/blog-47",
+		"category": ["blog"],
+		"image": "blog-47.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog",
+		"slug": "cozy-addons/blog-48",
+		"category": ["blog"],
+		"image": "blog-48.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog carousel",
+		"slug": "cozy-addons/blog-49",
+		"category": ["blog"],
+		"image": "blog-49.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog",
+		"slug": "cozy-addons/blog-50",
+		"category": ["blog"],
+		"image": "blog-50.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog",
+		"slug": "cozy-addons/blog-51",
+		"category": ["blog"],
+		"image": "blog-51.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog",
+		"slug": "cozy-addons/blog-52",
+		"category": ["blog"],
+		"image": "blog-52.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog",
+		"slug": "cozy-addons/blog-53",
+		"category": ["blog"],
+		"image": "blog-53.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog",
+		"slug": "cozy-addons/blog-54",
+		"category": ["blog"],
+		"image": "blog-54.png",
+		"isPremium": true
+	},
+	{
 		"label": "Blog Magazine",
 		"slug": "cozy-addons/blog-magazine-1",
 		"category": ["blog-magazine"],
@@ -1068,6 +1124,69 @@
 		"slug": "cozy-addons/blog-magazine-55",
 		"category": ["blog-magazine"],
 		"image": "blog-magazine-55.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-56",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-56.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-57",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-57.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-58",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-58.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-59",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-59.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-60",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-60.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-61",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-61.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-62",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-62.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-63",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-63.png",
+		"isPremium": true
+	},
+	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-64",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-64.png",
 		"isPremium": true
 	},
 	{
@@ -1659,6 +1778,27 @@
 		"isPremium": true
 	},
 	{
+		"label": "CTA",
+		"slug": "cozy-addons/cta-46",
+		"category": ["cta"],
+		"image": "cta-46.png",
+		"isPremium": true
+	},
+	{
+		"label": "CTA",
+		"slug": "cozy-addons/cta-47",
+		"category": ["cta"],
+		"image": "cta-47.png",
+		"isPremium": true
+	},
+	{
+		"label": "CTA",
+		"slug": "cozy-addons/cta-48",
+		"category": ["cta"],
+		"image": "cta-48.png",
+		"isPremium": true
+	},
+	{
 		"label": "FAQ accordion",
 		"slug": "cozy-addons/faq-1",
 		"category": ["faq"],
@@ -1887,6 +2027,48 @@
 		"slug": "cozy-addons/featured-products-16",
 		"category": ["featured-products"],
 		"image": "featured-products-16.png",
+		"isPremium": true
+	},
+	{
+		"label": "Product category",
+		"slug": "cozy-addons/featured-products-17",
+		"category": ["featured-products"],
+		"image": "featured-products-17.png",
+		"isPremium": true
+	},
+	{
+		"label": "Featured Products",
+		"slug": "cozy-addons/featured-products-18",
+		"category": ["featured-products"],
+		"image": "featured-products-18.png",
+		"isPremium": true
+	},
+	{
+		"label": "Featured Product banner",
+		"slug": "cozy-addons/featured-products-19",
+		"category": ["featured-products"],
+		"image": "featured-products-19.png",
+		"isPremium": true
+	},
+	{
+		"label": "Featured Product",
+		"slug": "cozy-addons/featured-products-20",
+		"category": ["featured-products"],
+		"image": "featured-products-20.png",
+		"isPremium": true
+	},
+	{
+		"label": "Featured Product",
+		"slug": "cozy-addons/featured-products-21",
+		"category": ["featured-products"],
+		"image": "featured-products-21.png",
+		"isPremium": true
+	},
+	{
+		"label": "Featured Product",
+		"slug": "cozy-addons/featured-products-22",
+		"category": ["featured-products"],
+		"image": "featured-products-22.png",
 		"isPremium": true
 	},
 	{
@@ -2387,6 +2569,48 @@
 		"isPremium": true
 	},
 	{
+		"label": "Footer",
+		"slug": "cozy-addons/footer-51",
+		"category": ["footer"],
+		"image": "footer-51.png",
+		"isPremium": true
+	},
+	{
+		"label": "Footer",
+		"slug": "cozy-addons/footer-52",
+		"category": ["footer"],
+		"image": "footer-52.png",
+		"isPremium": true
+	},
+	{
+		"label": "Footer",
+		"slug": "cozy-addons/footer-53",
+		"category": ["footer"],
+		"image": "footer-53.png",
+		"isPremium": true
+	},
+	{
+		"label": "Footer",
+		"slug": "cozy-addons/footer-54",
+		"category": ["footer"],
+		"image": "footer-54.png",
+		"isPremium": true
+	},
+	{
+		"label": "Footer",
+		"slug": "cozy-addons/footer-55",
+		"category": ["footer"],
+		"image": "footer-55.png",
+		"isPremium": true
+	},
+	{
+		"label": "Footer",
+		"slug": "cozy-addons/footer-56",
+		"category": ["footer"],
+		"image": "footer-56.png",
+		"isPremium": true
+	},
+	{
 		"label": "Header",
 		"slug": "cozy-addons/header-1",
 		"category": ["header"],
@@ -2545,6 +2769,48 @@
 		"slug": "cozy-addons/header-23",
 		"category": ["header"],
 		"image": "header-23.png",
+		"isPremium": true
+	},
+	{
+		"label": "Header",
+		"slug": "cozy-addons/header-24",
+		"category": ["header"],
+		"image": "header-24.png",
+		"isPremium": true
+	},
+	{
+		"label": "Header",
+		"slug": "cozy-addons/header-25",
+		"category": ["header"],
+		"image": "header-25.png",
+		"isPremium": true
+	},
+	{
+		"label": "Header",
+		"slug": "cozy-addons/header-26",
+		"category": ["header"],
+		"image": "header-26.png",
+		"isPremium": true
+	},
+	{
+		"label": "Header",
+		"slug": "cozy-addons/header-27",
+		"category": ["header"],
+		"image": "header-27.png",
+		"isPremium": true
+	},
+	{
+		"label": "Header",
+		"slug": "cozy-addons/header-28",
+		"category": ["header"],
+		"image": "header-28.png",
+		"isPremium": true
+	},
+	{
+		"label": "Header",
+		"slug": "cozy-addons/header-29",
+		"category": ["header"],
+		"image": "header-29.png",
 		"isPremium": true
 	},
 	{
@@ -2968,6 +3234,20 @@
 		"isPremium": true
 	},
 	{
+		"label": "Hero",
+		"slug": "cozy-addons/hero-61",
+		"category": ["hero"],
+		"image": "hero-61.png",
+		"isPremium": true
+	},
+	{
+		"label": "Hero slider",
+		"slug": "cozy-addons/hero-62",
+		"category": ["hero"],
+		"image": "hero-62.png",
+		"isPremium": true
+	},
+	{
 		"label": "How we work",
 		"slug": "cozy-addons/how-we-work-1",
 		"category": ["how-we-work"],
@@ -3182,6 +3462,13 @@
 		"slug": "cozy-addons/newsletter-14",
 		"category": ["newsletter"],
 		"image": "newsletter-14.png",
+		"isPremium": true
+	},
+	{
+		"label": "Newsletter",
+		"slug": "cozy-addons/newsletter-15",
+		"category": ["newsletter"],
+		"image": "newsletter-15.png",
 		"isPremium": true
 	},
 	{
@@ -4536,6 +4823,20 @@
 		"isPremium": true
 	},
 	{
+		"label": "Testimonials carousel",
+		"slug": "cozy-addons/testimonials-61",
+		"category": ["testimonials"],
+		"image": "testimonials-61.png",
+		"isPremium": true
+	},
+	{
+		"label": "Testimonials carousel",
+		"slug": "cozy-addons/testimonials-62",
+		"category": ["testimonials"],
+		"image": "testimonials-62.png",
+		"isPremium": true
+	},
+	{
 		"label": "Why choose us",
 		"slug": "cozy-addons/why-choose-us-1",
 		"category": ["why-choose-us"],
@@ -4701,6 +5002,13 @@
 		"slug": "cozy-addons/why-choose-us-24",
 		"category": ["why-choose-us"],
 		"image": "why-choose-us-24.png",
+		"isPremium": true
+	},
+	{
+		"label": "Why choose us",
+		"slug": "cozy-addons/why-choose-us-25",
+		"category": ["why-choose-us"],
+		"image": "why-choose-us-25.png",
 		"isPremium": true
 	}
 ]

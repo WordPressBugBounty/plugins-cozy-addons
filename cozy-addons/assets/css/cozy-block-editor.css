@@ -214,14 +214,6 @@
 		background-color: #3c3cbf !important;
 	}
 }
-/* Patterns Modal */
-.skeleton {
-	min-width: 200px;
-	min-height: 200px;
-	background: linear-gradient(90deg, #eee, #ddd, #eee);
-	background-size: 200% 100%;
-	animation: shimmer 2s infinite;
-}
 
 @keyframes shimmer {
 	0% {
@@ -243,6 +235,15 @@
 		overflow: hidden;
 	}
 
+	/* Patterns Modal */
+	.skeleton {
+		min-width: 200px;
+		min-height: 200px;
+		background: linear-gradient(90deg, #eee, #ddd, #eee);
+		background-size: 200% 100%;
+		animation: shimmer 2s infinite;
+	}
+
 	& figure {
 		margin: 0;
 		max-width: 100%;
@@ -260,6 +261,11 @@
 	& li {
 		margin: 0;
 		padding: 0;
+	}
+
+	& button {
+		border: none;
+		outline: none;
 	}
 
 	& .display__none {
@@ -453,7 +459,7 @@
 			position: relative;
 			overflow: hidden;
 			height: fit-content;
-			min-height: 74px;
+			min-height: 112px;
 			margin-bottom: 28px;
 			break-inside: avoid-column;
 		}
@@ -469,33 +475,37 @@
 			font-weight: 500;
 		}
 		& .list__item figure {
-			min-height: 74px;
+			min-height: 112px;
 
 			& img:not(#pro__crown) {
-				min-height: 74px;
+				min-height: 112px;
 				object-fit: contain;
 			}
 		}
 		& .btn__wrap {
 			display: flex;
+			flex-wrap: wrap;
 			align-items: center;
 			justify-content: center;
 			gap: 10px;
 			width: 100%;
 			position: absolute;
-			left: 0;
-			bottom: -26px;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -20%);
 			visibility: hidden;
 			opacity: 0;
 			z-index: 2;
 		}
 		& .btn {
-			padding: 8px 20px;
+			padding: 12px 20px;
 			background-color: transparent;
 			cursor: pointer;
 			box-shadow: none;
 			outline: none;
 			text-decoration: none;
+			border-radius: 100px;
+			width: 80%;
 
 			&:has(.components-spinner) {
 				pointer-events: none;
@@ -505,7 +515,7 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				gap: 4px;
+				gap: 5px;
 			}
 
 			&.btn__primary {
@@ -523,16 +533,27 @@
 			&.upsell__btn:hover {
 				background-color: #bb7103;
 			}
+			&.btn__secondary {
+				border: 1px solid #fff;
+				background-color: transparent;
+				color: #fff;
+
+				&:hover {
+					background-color: #010101;
+					color: #fff;
+					border-color: transparent;
+				}
+			}
 
 			& .components-spinner {
 				margin-top: 0;
 			}
 		}
 		& .list__item:hover .btn__wrap {
-			bottom: 16px;
 			opacity: 1;
 			visibility: visible;
-			transition: all 0.3s ease;
+			transform: translate(-50%, -50%);
+			transition: transform 0.3s ease;
 		}
 		& .list__item:hover .item__background {
 			opacity: 1;

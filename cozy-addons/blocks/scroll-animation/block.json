@@ -154,8 +154,7 @@
       "default": {
         "slidesPerView": 1.5,
         "spaceBetween": 30,
-        "reverseDirection": false,
-        "alignMiddle": true
+        "reverseDirection": false
       }
     },
     "verticalScroll": {

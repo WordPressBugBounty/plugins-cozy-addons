@@ -197,11 +197,14 @@
 					leave: "bottom bottom",
 					sync: true,
 					onEnter: () => {
-						if (attributes.slider.alignMiddle)
-							$container.css("transform", "translateY(50%)");
+						// if (attributes.slider.alignMiddle)
+						$container.css("top", "50%");
+						$container.css("transform", "translateY(-50%)");
 					},
 					onLeave: () => {
-						if (attributes.slider.alignMiddle) $container.css("transform", "");
+						// if (attributes.slider.alignMiddle)
+						$container.css("top", "0");
+						$container.css("transform", "");
 					},
 				});
 

@@ -262,7 +262,7 @@ body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-vie
 body .cozy-block-quick-view__lightbox-wrapper.cozy-source-{$block_id} .quick-view__cart-button {
 	{$cart_button['padding']}
 	{$cart_button['border']}
-	border-radius: {};
+	border-radius: {$cart_button['radius']};
 	font-size: {$cart_button['font']['size']};
 	font-weight: {$cart_button['font']['weight']};
 	font-family: {$cart_button['font']['family']};

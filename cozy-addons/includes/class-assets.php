@@ -196,5 +196,7 @@ class Assets {
 			wp_enqueue_script( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.js', array( 'jquery' ), COZY_ADDONS_VERSION, true );
 			wp_enqueue_style( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.css', array(), COZY_ADDONS_VERSION, 'all' );
 		}
+
+		wp_enqueue_script( 'cozy-addons--block-script', COZY_ADDONS_PLUGIN_URL . 'assets/js/cozy-block-scripts.js', array( 'jquery' ), COZY_ADDONS_VERSION, true );
 	}
 }

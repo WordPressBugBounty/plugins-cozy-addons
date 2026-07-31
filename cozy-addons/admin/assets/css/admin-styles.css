@@ -375,7 +375,7 @@ p a {
 	height: 2px;
 	position: absolute;
 	left: 0;
-	bottom: -32px;
+	bottom: -28px;
 	background: var(--cozy-addons--primary-color);
 }
 .ct-companion-dashboard .dasboard-content {

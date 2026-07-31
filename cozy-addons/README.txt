@@ -1,16 +1,16 @@
-=== Cozy Blocks – Page Builder for Gutenberg Editor & FSE with 600+ Patterns, 58 Blocks & Templates ===
+=== Cozy Blocks – Page Builder for Gutenberg Editor & FSE with 700+ Patterns, 58 Blocks & Templates ===
 Contributors: CozyThemes
 Tags: gutenberg blocks, page builder, block patterns, woocommerce blocks, full site editing
 Requires PHP: 7.4
 Requires at least: 6.7
 Tested up to: 7.0
-Stable tag: 2.2.12
+Stable tag: 2.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Build any WordPress site without Elementor or Divi. 57 Gutenberg blocks, 600+ ready-made patterns & 40+ FSE templates. No page builder needed.
+Build any WordPress site without Elementor or Divi. 57 Gutenberg blocks, 700+ ready-made patterns & 50+ FSE templates. No page builder needed.
 
 == Description ==
-[Cozy Blocks](https://cozythemes.com/cozy-addons/) is a powerful Gutenberg page builder plugin that extends the WordPress Block Editor with 57 advanced blocks, 600+ professionally designed block patterns across 20+ categories, and 40+ complete FSE homepage templates for 12 niches — all native to the WordPress Site Editor.
+[Cozy Blocks](https://cozythemes.com/cozy-addons/) is a powerful Gutenberg page builder plugin that extends the WordPress Block Editor with 57 advanced blocks, 700+ professionally designed block patterns across 20+ categories, and 50+ complete FSE homepage templates for 12 niches — all native to the WordPress Site Editor.
 
 No Elementor. No Divi. No shortcodes. Just fast, clean, native blocks that work exactly the way WordPress is built to work.
 
@@ -18,17 +18,17 @@ Whether you're a freelancer building client sites, a blogger setting up a magazi
 
 ⚠️ IMPORTANT: Cozy Blocks works exclusively with block-based (FSE) WordPress themes. It does not support the Classic Editor or classic PHP themes.
 
-Compatible with any modern block theme — including [SaasLauncher](https://cozythemes.com/saaslauncher-wordpress-theme/), [Jetnews Magazine](https://cozythemes.com/jetnews-magazine-wordpress-theme/), [WoxStore](https://cozythemes.com/woxstore-woocommerce-theme/), and all FSE themes on WordPress.org. Not sure if your theme is FSE-compatible? Check under Appearance → Editor in your dashboard. If the Site Editor loads, you're good to go.
+Compatible with any modern block theme — including [SaasLauncher](https://cozythemes.com/saaslauncher-wordpress-theme/), [Homelancer](https://cozythemes.com/homelancer/), [Jetnews Magazine](https://cozythemes.com/jetnews-magazine-wordpress-theme/), [WoxStore](https://cozythemes.com/woxstore-woocommerce-theme/), and all FSE themes on WordPress.org. Not sure if your theme is FSE-compatible? Check under Appearance → Editor in your dashboard. If the Site Editor loads, you're good to go.
 
 <a href="https://app.zipwp.com/wp?plugins=cozy-addons" target="_blank" rel="">Try Cozy Blocks on a dummy site!</a>
 
 Quick Links
 
-[Live Demo](https://cozythemes.com/cozy-addons/#cozy-blocks-list) | [World Class Support](https://cozythemes.com/support) | [Free vs Pro](https://cozythemes.com/pricing-and-plans/#free-vs-pro) | [Why Choose Us](https://cozythemes.com/reviews-ratings) | [Get Pro](https://cozythemes.com/pricing-and-plans)
+[Live Demo](https://cozythemes.com/cozy-addons/) | [Design Library](https://cozythemes.com/website-templates/) | [World Class Support](https://cozythemes.com/support) | [Free vs Pro](https://cozythemes.com/pricing-and-plans/#free-vs-pro) | [Why Choose Us](https://cozythemes.com/reviews-ratings) | [Get Pro](https://cozythemes.com/pricing-and-plans)
 
 = Key Features That Enhance and Extend WordPress Blocks =
 <ul>
-<li>Design Library kit</li>
+<li>Design Library Kit</li>
 <li>50+ Advanced Blocks to Extend the Site Editor</li>
 <li>WooCommerce Blocks</li>
 <li>Post and Magazine Blocks</li>
@@ -58,16 +58,16 @@ Watch our step-by-step tutorial on installing Cozy Blocks!
 
 https://www.youtube.com/watch?v=GP4NxSbikS4
 
-= 🎨 Design Library — 600+ Patterns & 40+ Full Site Templates =
+= 🎨 Design Library — 700+ Patterns & 50+ Full Site Templates =
 The largest ready-made design library for the WordPress Block Editor. Every pattern and template is 100% native to Gutenberg — no imports, no proprietary formats, no lock-in.
 
-<strong>600+ Block Patterns in 20+ categories — one-click import:</strong>
+<strong>700+ Block Patterns in 20+ categories — one-click import:</strong>
 Hero Sections | Page Headers | Footers | About Us | Services & Features | Pricing Tables |
 Testimonials | Team | Portfolio | Blog & Posts | Call to Action | FAQ | Contact Us |
 Newsletter | Job Board | Stats & Numbers | Brand Showcase | Why Choose Us |
 Featured Products | WooCommerce
 
-<strong>40+ Full Homepage Templates for 12 niches:</strong>
+<strong>50+ Full Homepage Templates for 12 niches:</strong>
 🏢 Agency | ✍️ Author & Writer | 📰 Blog & Magazine | 💼 Business | ❤️ Charity & Nonprofit |
 🎓 Education | 🏠 Home Services | 🍽️ Restaurant & Hotel | 📷 Photography | 🖥️ Portfolio |
 🚀 SaaS & Startup | 🛒 WooCommerce Store
@@ -111,6 +111,10 @@ Every block is built natively for the WordPress Site Editor. No legacy shortcode
 <strong>Google Fonts Integration —</strong> Access the complete Google Fonts library inside the block editor with live preview. No API key required.
 <strong>AJAX-Powered Post Blocks —</strong> Post grids, magazine layouts, and post carousels load content dynamically. Pages stay fast even with content-heavy layouts.
 
+= Getting Started with Cozy Blocks — Watch the Walkthrough =
+
+https://www.youtube.com/watch?v=fNwIqedPyEU
+
 == Installation ==
 
 = DIRECT FROM THE DASHBOARD =
@@ -148,7 +152,7 @@ Product grids, category blocks, quick view, wishlist, product sliders, and add-t
 Post grids, news tickers, trending posts, magazine-style layouts, and categorized post tabs are all included — no theme dependency.
 
 = New to WordPress? =
-The 600+ ready-made patterns and 40+ homepage templates mean you can start with a professionally designed page, not a blank screen.
+The 700+ ready-made patterns and 50+ homepage templates mean you can start with a professionally designed page, not a blank screen.
 
 = Will Cozy Blocks slow down my website? =
 No. The built-in Block Manager lets you enable only the blocks your site actually uses. Any disabled block loads zero scripts or styles on the front end. Sites built with Cozy Blocks regularly achieve 90+ PageSpeed scores.
@@ -178,6 +182,10 @@ You can report any security bugs found in the source code of this plugin through
 8. FSE Homepage templates
 
 == Changelog ==
+= 2.2.13 - Jul 31, 2026 = 
+* Add: Homepage templates.
+* Fix: Minor block improvements.
+
 = 2.2.12 - Jul 23, 2026 = 
 * Security: Data sanitization for block attributes.
 

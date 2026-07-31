@@ -215,12 +215,12 @@ $block_styles = "
     left: auto;
 }
 
-#$block_id .swiper-button-prev::after,
-#$block_id .swiper-button-next::after {
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-button-prev::after,
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-button-next::after {
 	font-size: {$nav['size']};
 }
-#$block_id .swiper-button-prev,
-#$block_id .swiper-button-next {
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-button-prev,
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-button-next {
 	width: {$nav['box_width']};
 	height: {$nav['box_height']};
 	{$nav_border}
@@ -228,26 +228,26 @@ $block_styles = "
 	color: {$nav['color']};
 	background-color: {$nav['bg_color']};
 }
-#$block_id .swiper-button-prev:hover,
-#$block_id .swiper-button-next:hover {
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-button-prev:hover,
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-button-next:hover {
 	color: {$nav['color_hover']};
 	background-color: {$nav['bg_color_hover']};
 	border-color: {$nav['border_color_hover']};
 }
 
-#$block_id .swiper-pagination {
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-pagination {
 	bottom: {$bullet['bottom']}px;
 	text-align: {$bullet['align']};
     {$bullet['left']}
     {$bullet['right']}
 }
-#$block_id .swiper-pagination .swiper-pagination-bullet {
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-pagination .swiper-pagination-bullet {
 	width: {$bullet['width']};
 	height: {$bullet['height']};
 	border-radius: {$bullet['radius']};
 	background-color: {$bullet_styles['default_color']};
 }
-#$block_id .swiper-pagination .swiper-pagination-bullet-active {
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-pagination .swiper-pagination-bullet-active {
 	width: {$bullet['active']['width']};
 	height: {$bullet['active']['height']};
 	border-radius: {$bullet['active']['radius']};
@@ -255,16 +255,16 @@ $block_styles = "
 	{$bullet_outline}
 	outline-offset: {$bullet['active']['offset']};
 }
-#$block_id .swiper-pagination .swiper-pagination-bullet:hover {
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-pagination .swiper-pagination-bullet:hover {
 	background-color: {$bullet_styles['default_color_hover']};
 }
-#$block_id .swiper-pagination .swiper-pagination-bullet-active:hover {
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-pagination .swiper-pagination-bullet-active:hover {
 	background-color: {$bullet_styles['active_color_hover']};
 }
-#$block_id.swiper-horizontal .swiper-pagination-bullets .swiper-pagination-bullet {
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-horizontal .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet['gap']});
 }
-#$block_id.swiper-vertical .swiper-pagination-bullets .swiper-pagination-bullet {
+.cozy-block-product-category-wrapper.block-wrapper-$client_id .swiper-vertical .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: var(--swiper-pagination-bullet-vertical-gap, {$bullet['gap']}) 0;
 }
 ";
@@ -343,6 +343,8 @@ $output .= '</ul>';
 
 wp_reset_postdata();
 
+$output .= '</div>';
+
 // Swiper Pagination and Navigation.
 if ( 'carousel' === $attributes['display'] ) {
 	if ( $attributes['navigation']['enabled'] ) {
@@ -353,7 +355,6 @@ if ( 'carousel' === $attributes['display'] ) {
 		$output .= '<div class="swiper-pagination cozy-pagination"></div>';
 	}
 }
-$output .= '</div>';
 
 $font_families = array();
 
@@ -388,5 +389,5 @@ add_action(
 	}
 );
 
-$render = sprintf( '<div class="cozy-block-wrapper cozy-block-product-category-wrapper display-' . esc_attr( sanitize_html_class( $attributes['display'] ) ) . '"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
+$render = sprintf( '<div class="cozy-block-wrapper cozy-block-product-category-wrapper block-wrapper-' . esc_attr( $client_id ) . '"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;
