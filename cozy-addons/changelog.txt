@@ -1,3 +1,6 @@
+= 2.2.14 - Aug 01, 2026 = 
+* Fix: Theme pattern registration logic.
+
 = 2.2.13 - Jul 31, 2026 = 
 * Add: Homepage templates.
 * Fix: Minor block improvements.

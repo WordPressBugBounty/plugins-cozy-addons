@@ -155,13 +155,11 @@ class Patterns {
 	 * @return void
 	 */
 	private function register_theme_patterns() {
-		if ( ! cozy_addons_premium_access() ) {
-			return;
-		}
-
 		$themes = $this->get_supported_pattern_themes();
 
 		$active_theme = get_stylesheet();
+
+		$cat_slug = 'ct-' . $active_theme . '-pro';
 
 		if ( ! in_array( $active_theme, $themes, true ) ) {
 			return;
@@ -169,8 +167,17 @@ class Patterns {
 
 		add_action(
 			'init',
-			function () use ( $active_theme ) {
-				$cat_slug = 'ct-' . $active_theme . '-pro';
+			function () use ( $cat_slug ) {
+				if ( ! cozy_addons_premium_access() ) {
+					$patterns = \WP_Block_Patterns_Registry::get_instance()->get_all_registered();
+
+					foreach ( $patterns as $pattern ) {
+						if ( ! empty( $pattern['categories'] ) && in_array( $cat_slug, $pattern['categories'], true ) ) {
+							unregister_block_pattern( $pattern['name'] );
+						}
+					}
+					return;
+				}
 
 				$theme      = wp_get_theme();
 				$theme_name = $theme->get( 'Name' );
