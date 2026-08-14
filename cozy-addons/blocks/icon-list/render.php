@@ -48,20 +48,24 @@ $item_bg_color_hover     = isset( $attributes['containerStyles']['bgColorHover']
 $icon_box_bg_color_hover = isset( $attributes['iconBoxStyles']['bgColorHover'] ) ? $attributes['iconBoxStyles']['bgColorHover'] : '';
 
 $icon_styles = array(
-	'size'    => isset( $attributes['iconSize'] ) ? esc_attr( $attributes['iconSize'] ) : '',
-	'padding' => array(
+	'margin'     => isset( $attributes['iconBoxStyles']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['iconBoxStyles']['margin'] ) : '',
+	'box_width'  => isset( $attributes['iconBoxStyles']['width'] ) ? esc_attr( sanitize_text_field( $attributes['iconBoxStyles']['width'] ) ) : '',
+	'box_height' => isset( $attributes['iconBoxStyles']['height'] ) ? esc_attr( sanitize_text_field( $attributes['iconBoxStyles']['height'] ) ) : '',
+	'align'      => isset( $attributes['iconBoxStyles']['align'] ) ? esc_attr( sanitize_text_field( $attributes['iconBoxStyles']['align'] ) ) : 'center',
+	'size'       => isset( $attributes['iconSize'] ) ? esc_attr( $attributes['iconSize'] ) : '',
+	'padding'    => array(
 		'top'    => isset( $attributes['iconBoxStyles']['padding']['top'] ) ? esc_attr( $attributes['iconBoxStyles']['padding']['top'] ) : '',
 		'right'  => isset( $attributes['iconBoxStyles']['padding']['right'] ) ? esc_attr( $attributes['iconBoxStyles']['padding']['right'] ) : '',
 		'bottom' => isset( $attributes['iconBoxStyles']['padding']['bottom'] ) ? esc_attr( $attributes['iconBoxStyles']['padding']['bottom'] ) : '',
 		'left'   => isset( $attributes['iconBoxStyles']['padding']['left'] ) ? esc_attr( $attributes['iconBoxStyles']['padding']['left'] ) : '',
 	),
-	'border'  => array(
+	'border'     => array(
 		'width' => isset( $attributes['iconBoxStyles']['borderWidth'] ) ? esc_attr( $attributes['iconBoxStyles']['borderWidth'] ) : '',
 		'style' => isset( $attributes['iconBoxStyles']['borderType'] ) ? esc_attr( sanitize_text_field( $attributes['iconBoxStyles']['borderType'] ) ) : '',
 	),
-	'radius'  => isset( $attributes['iconBoxStyles']['borderRadius'] ) ? esc_attr( $attributes['iconBoxStyles']['borderRadius'] ) : '',
-	'rotate'  => isset( $attributes['iconRotate'] ) ? esc_attr( $attributes['iconRotate'] ) : '',
-	'opacity' => isset( $attributes['iconOpacity'] ) ? esc_attr( $attributes['iconOpacity'] ) : '',
+	'radius'     => isset( $attributes['iconBoxStyles']['borderRadius'] ) ? esc_attr( $attributes['iconBoxStyles']['borderRadius'] ) : '',
+	'rotate'     => isset( $attributes['iconRotate'] ) ? esc_attr( $attributes['iconRotate'] ) : '',
+	'opacity'    => isset( $attributes['iconOpacity'] ) ? esc_attr( $attributes['iconOpacity'] ) : '',
 );
 $icon_color  = array(
 	'default'        => isset( $attributes['iconColor'] ) ? $attributes['iconColor'] : '',
@@ -94,6 +98,7 @@ $block_styles = "
     border-style: {$item_border_type};
     border-color: {$item_border_color};
     gap: {$styles['gap']}px;
+	align-items: {$icon_styles['align']};
 }
 
 #$block_id .cozy-block-list-item:hover {
@@ -135,7 +140,12 @@ $block_styles = "
     fill: none;
 }
 
+#$block_id .list-icon-wrapper {
+	{$icon_styles['margin']}
+}
 #$block_id.stacked .list-icon-wrapper {
+	min-width: {$icon_styles['box_width']};
+	height: {$icon_styles['box_height']};
     padding-top: {$icon_styles['padding']['top']}px;
     padding-right: {$icon_styles['padding']['right']}px;
     padding-bottom: {$icon_styles['padding']['bottom']}px;

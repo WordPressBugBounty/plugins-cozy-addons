@@ -586,7 +586,7 @@ if ( 'sidebar' === $attributes['variation'] ) {
 		$classes   = array();
 		$classes[] = 'cozy-block-wishlist__sidebar-header';
 		$output   .= '<div class="' . esc_attr( cozy_addons_sanitize_html_class( $classes ) ) . '">';
-	if ( $attributes['sidebar']['sidebarTitle']['toggle'] ) {
+	if ( isset( $attributes['sidebar']['sidebarTitle']['toggle'] ) ) {
 		// 1. Normalize $wishlist_user_meta to an array
 		$wishlist_data = is_array( $wishlist_user_meta )
 		? $wishlist_user_meta

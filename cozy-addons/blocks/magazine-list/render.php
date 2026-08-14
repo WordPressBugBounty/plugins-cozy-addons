@@ -471,8 +471,23 @@ if ( $attributes['enableOptions']['heading'] || $attributes['enableOptions']['su
 		$output     .= sprintf( '<%1$s class="cozy-block-magazine-list__heading">%2$s</%1$s>', esc_attr( $heading_tag ), $attributes['headingLabel'] );
 	}
 	if ( $attributes['enableOptions']['subHeading'] ) {
-		$subheading_tag = isset( $attributes['subHeading']['tag'] ) && in_array( $attributes['subHeading']['tag'], $valid_tags, true ) ? $attributes['subHeading']['tag'] : 'p';
-		$output        .= sprintf( '<%1$s class="cozy-block-magazine-list__sub-heading">%2$s</%1$s>', esc_attr( $subheading_tag ), $attributes['subHeading']['label'] );
+		$subheading_tag   = isset( $attributes['subHeading']['tag'] ) && in_array( $attributes['subHeading']['tag'], $valid_tags, true ) ? $attributes['subHeading']['tag'] : 'p';
+		$subheading_label = isset( $attributes['subHeading']['label'] ) ? $attributes['subHeading']['label'] : '';
+		$output          .= sprintf(
+			'<%1$s class="cozy-block-magazine-list__sub-heading">%2$s</%1$s>',
+			esc_attr( $subheading_tag ),
+			wp_kses(
+				$subheading_label,
+				array(
+					'a' => array(
+						'href'   => array(),
+						'class'  => array(),
+						'rel'    => array(),
+						'target' => array(),
+					),
+				)
+			)
+		);
 	}
 	$output .= '</article>';
 }

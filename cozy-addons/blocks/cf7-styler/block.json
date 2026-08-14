@@ -19,6 +19,10 @@
       "type": "string",
       "default": ""
     },
+    "formTitle": {
+      "type": "string",
+      "default": ""
+    },
     "gap": {
       "type": "string",
       "default": "20px"
@@ -161,10 +165,10 @@
         "display": "inline",
         "align": "left",
         "padding": {
-          "top": "",
-          "right": "",
-          "bottom": "",
-          "left": ""
+          "top": "14px",
+          "right": "36px",
+          "bottom": "14px",
+          "left": "36px"
         },
         "margin": {
           "top": "",

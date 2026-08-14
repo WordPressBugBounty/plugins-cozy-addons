@@ -524,7 +524,18 @@ foreach ( $additional_post_data as $post_data ) {
 	if ( ! empty( $addition_classes ) ) {
 		$classes = array_merge( $classes, explode( ' ', $addition_classes ) );
 	}
-	$output .= '<h3 class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html( $post_data['post_title'] ) . '</a></h3>';
+	$allowed_tags = array(
+		'h1',
+		'h2',
+		'h3',
+		'h4',
+		'h5',
+		'h6',
+		'div',
+		'p',
+	);
+	$title_tag    = isset( $attributes['titleStyles']['tag'] ) && in_array( $attributes['titleStyles']['tag'], $allowed_tags, true ) ? sanitize_text_field( $attributes['titleStyles']['tag'] ) : 'h3';
+	$output      .= sprintf( '<%1$s class="%2$s"><a %3$s target="%4$s" rel="noopener">%5$s</a></%1$s>', esc_attr( $title_tag ), esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ), $has_post_link, $open_new_tab, esc_html( $post_data['post_title'] ) );
 
 	if ( ( isset( $attributes['enableOptions']['author'] ) && $attributes['enableOptions']['author'] ) || ( isset( $attributes['enableOptions']['comments'] ) && $attributes['enableOptions']['comments'] ) || $attributes['enableOptions']['date'] ) {
 		$output .= '<div class="post__meta">';

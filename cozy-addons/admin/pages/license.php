@@ -23,18 +23,22 @@ $account_url = menu_page_url( '_cozy_companions-account', false );
 	<?php
 	if ( ! cozy_addons_premium_access() ) {
 		?>
-	<section class="plan__details">
+	<section class="plan__details boxed-layout">
 		<div class="plan__type">
 			<h3><?php esc_html_e( 'Current Plan', 'cozy-addons' ); ?></h3>
 			<p class="plan__pill"><?php esc_html_e( 'Free', 'cozy-addons' ); ?></p>
 		</div>
 
+		<div class="ca-spacer sm"></div>
+
 		<div class="plan__description">
 			<p><?php esc_html_e( "You're currently using the free version of Cozy Blocks. Upgrade to Pro to unlock all features.", 'cozy-addons' ); ?></p>
 		</div>
 	</section>
+
+	<div class="ca-spacer"></div>
 		
-	<section class="license__management">
+	<section class="license__management boxed-layout">
 			<h3><?php esc_html_e( 'Activate License', 'cozy-addons' ); ?></h3>
 			<?php
 			// Render Freemius opt-in screen inline
@@ -53,7 +57,9 @@ $account_url = menu_page_url( '_cozy_companions-account', false );
 			?>
 	</section>
 
-	<section class="upsell__notice">
+	<div class="ca-spacer"></div>
+
+	<section class="upsell__notice boxed-layout flex-layout">
 		<div class="pro__crown">
 			<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 				<path d="M1.33331 12.6667H14.6666V14H1.33331V12.6667ZM1.33331 3.33334L4.66665 5.66668L7.99998 1.33334L11.3333 5.66668L14.6666 3.33334V11.3333H1.33331V3.33334ZM2.66665 5.89401V10H13.3333V5.89401L11.0533 7.49001L7.99998 3.52001L4.94665 7.49001L2.66665 5.89401Z" />
@@ -61,22 +67,34 @@ $account_url = menu_page_url( '_cozy_companions-account', false );
 		</div>
 		<div>
 			<h3><?php esc_html_e( 'Upgrade to Cozy Blocks Pro', 'cozy-addons' ); ?></h3>
+
+			<div class="ca-spacer sm"></div>
+
 			<p><?php esc_html_e( 'Access 50+ premium blocks, advanced design controls, dynamic content, and WooCommerce-ready elements — everything you need to build stunning websites faster.', 'cozy-addons' ); ?></p>
-			<a class="ca__primary-btn btn-md" href="https://cozythemes.com/pricing-and-plans" target="_blank"><?php esc_html_e( 'View Pricing Plans', 'cozy-addons' ); ?></a>
+			
+			<div class="ca-spacer sm"></div>
+
+			<button class="ca-btn btn-primary">
+				<a href="https://cozythemes.com/pricing-and-plans" target="_blank"><?php esc_html_e( 'View Pricing Plans', 'cozy-addons' ); ?></a>
+			</button>
 		</div>
 	</section>
 		<?php
 	} else {
 		?>
-	<section class="plan__details">
+	<section class="plan__details boxed-layout">
 		<div class="plan__type">
 			<h3><?php esc_html_e( 'Current Plan', 'cozy-addons' ); ?></h3>
 			<p class="plan__pill pro"><?php esc_html_e( 'Pro', 'cozy-addons' ); ?></p>
 		</div>
 
+		<div class="ca-spacer sm"></div>
+
 		<div class="plan__description">
 			<p><?php esc_html_e( 'Woohoo! You’re all set. Enjoy full access to all features.', 'cozy-addons' ); ?></p>
 		</div>
+
+		<div class="ca-spacer sm"></div>
 
 		<a class="account__management" href="<?php echo esc_url( $account_url ); ?>"><?php esc_html_e( 'Manage Account', 'cozy-addons' ); ?></a>
 	</section>

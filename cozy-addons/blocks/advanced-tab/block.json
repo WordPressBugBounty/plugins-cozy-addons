@@ -22,13 +22,17 @@
       "type": "string",
       "default": ""
     },
+    "activeContent": {
+      "type": "string",
+      "default": ""
+    },
     "layout": {
       "type": "string",
       "default": "horizontal"
     },
     "tabAlign": {
       "type": "string",
-      "default": "left"
+      "default": "space-between"
     },
     "columnGap": {
       "type": "number",
@@ -65,7 +69,8 @@
     "titleStyles": {
       "type": "object",
       "default": {
-        "gap": "0px",
+        "tag": "h2",
+        "gap": "16px",
         "flexWrap": true
       }
     },
@@ -145,7 +150,7 @@
           },
           "type": "none",
           "color": "",
-          "colorActive": "#E6E8F4"
+          "colorActive": ""
         },
         "borderRadius": {
           "top": 0,
@@ -153,18 +158,18 @@
           "bottom": 0,
           "left": 0
         },
-        "bgColor": "#5566ca",
-        "bgColorActive": "#EFEAF7"
+        "bgColor": "",
+        "bgColorActive": "#0c50ff"
       }
     },
     "contentStyles": {
       "type": "object",
       "default": {
         "padding": {
-          "top": 10,
-          "right": 10,
-          "bottom": 10,
-          "left": 10
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
         },
         "margin": {
           "top": "",
@@ -186,16 +191,20 @@
           "bottom": 0,
           "left": 0
         },
-        "bgColor": "#EFEAF7"
+        "bgColor": ""
       }
     },
     "titleTypography": {
       "type": "object",
       "default": {
+        "margin": {
+          "top": "0px",
+          "bottom": "0px"
+        },
         "fontFamily": "Public Sans",
-        "fontSize": 16,
+        "fontSize": 22,
         "color": "#000",
-        "fontWeight": 400,
+        "fontWeight": 500,
         "letterCase": "none",
         "decoration": "none",
         "lineHeight": "",
@@ -207,8 +216,8 @@
       "default": {
         "fontFamily": "Public Sans",
         "fontSize": 16,
-        "color": "#fff",
-        "colorActive": "#5566ca",
+        "color": "#000",
+        "colorActive": "#fff",
         "fontWeight": 400,
         "letterCase": "none",
         "decoration": "none",
@@ -216,6 +225,9 @@
         "letterSpacing": ""
       }
     }
+  },
+  "providesContext": {
+    "activeContent": "activeContent"
   },
   "editorScript": [
     "file:./index.js",

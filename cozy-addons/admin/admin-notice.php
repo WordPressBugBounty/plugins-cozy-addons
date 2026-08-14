@@ -33,29 +33,73 @@ function cozy_addons_activation_admin_notice() {
 
 		$current_screen = get_current_screen();
 
-		if ( 'plugins' !== $current_screen->id && 'dashboard' !== $current_screen->id && 'toplevel_page__cozy_companions' !== $current_screen->id ) {
+		if ( 'plugins' !== $current_screen->id && 'dashboard' !== $current_screen->id ) {
 			return;
 		}
 
 		?>
-		<div class="notice notice-info is-dismissible cozy-addons-admin-notice">
-			<div class="notice-content">
-				<figure id="brand__icon">
-					<img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . '/admin/assets/img/cozy-addons-icon.png' ); ?>" />
-				</figure>
-				<div class="notice-holder">
-					<h4>
-						<?php esc_html_e( 'Build Beautiful Websites, Without Limits.', 'cozy-addons' ); ?>
-					</h4>
-					<p>
-						<?php esc_html_e( 'Build any WordPress website, faster. Cozy Blocks extends the WordPress Site Editor with 50+ powerful blocks, 700+ ready-made sections, and 50+ professionally designed templates—everything you need to design, build, and launch beautiful websites with ease.', 'cozy-addons' ); ?></p>
-					<a href="<?php echo esc_url( admin_url() ); ?>admin.php?page=_cozy_companions" class="ca__admin-notice-btn"><?php esc_html_e( 'Get Started', 'cozy-addons' ); ?></a>
-				</div>
-			</div>
-			<div class="plugin-screen">
-				<img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . '/admin/assets/img/cozy-blocks-notice-image.png' ); ?>" />
-			</div>
+<div class="notice notice-info is-dismissible cozy-addons-admin-notice">
+	<div class="notice-content">
+		<figure id="brand__icon">
+			<img src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . '/admin/assets/img/cozy-addons-icon.png' ); ?>" />
+		</figure>
+		<div class="notice-holder">
+			<p class="highlighted-text"><?php esc_html_e( 'Welcome to Cozy Blocks! 🎉', 'cozy-addons' ); ?></p>
+			<h2 class="banner-title">
+				<?php esc_html_e( 'The Complete Toolkit for Building Stunning Websites', 'cozy-addons' ); ?>
+			</h2>
+			<p>
+				<?php esc_html_e( 'Set up Cozy Blocks and start building stunning websites faster with everything you need—from powerful blocks and ready-made patterns to starter templates and essential tools.', 'cozy-addons' ); ?>
+			</p>
+
+			<ul class="features-list">
+				<li class="feature-list-item">
+					<i class="check-icon">
+						<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M2.91406 8.16669L4.95573 10.2084L11.0807 3.79169" stroke="#4C3EFA"
+								stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</i>
+					<?php esc_html_e( '50+ Blocks', 'cozy-addons' ); ?>
+				</li>
+				<li class="feature-list-item">
+					<i class="check-icon">
+						<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M2.91406 8.16669L4.95573 10.2084L11.0807 3.79169" stroke="#4C3EFA"
+								stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</i>
+					<?php esc_html_e( '700+ Patterns', 'cozy-addons' ); ?>
+				</li>
+				<li class="feature-list-item">
+					<i class="check-icon">
+						<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M2.91406 8.16669L4.95573 10.2084L11.0807 3.79169" stroke="#4C3EFA"
+								stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</i>
+					<?php esc_html_e( '50+ Starter Templates', 'cozy-addons' ); ?>
+				</li>
+				<li class="feature-list-item">
+					<i class="check-icon">
+						<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M2.91406 8.16669L4.95573 10.2084L11.0807 3.79169" stroke="#4C3EFA"
+								stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</i>
+					<?php esc_html_e( 'Powerful Tools', 'cozy-addons' ); ?>
+				</li>
+			</ul>
+
+			<a href="<?php echo esc_url( admin_url() ); ?>admin.php?page=_cozy_companions"
+				class="ca__admin-notice-btn"><?php esc_html_e( 'Get Started with Cozy Blocks', 'cozy-addons' ); ?></a>
 		</div>
+	</div>
+	<div class="plugin-screen">
+		<img
+			src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . '/admin/assets/img/cozy-blocks-notice-image.png' ); ?>" />
+	</div>
+</div>
 		<?php
 	}
 }
@@ -75,7 +119,7 @@ add_action( 'admin_notices', 'cozy_addons_activation_admin_notice' );
  */
 function cozy_addons_invalid_theme_type_notice() {
 	if ( is_admin() ) {
-		if ( cozy_addons_is_block_theme() ) {
+		if ( \CozyAddons\Helpers\Utils::is_block_theme() ) {
 			return;
 		}
 
@@ -89,16 +133,17 @@ function cozy_addons_invalid_theme_type_notice() {
 			return;
 		}
 		?>
-		<div class="fs-notice notice fs-has-title notice-warning is-dismissible cozy-blocks-admin-notice">
-			<label class="fs-plugin-title"><?php esc_html_e( 'Cozy Blocks', 'cozy-addons' ); ?></label>
-			<div class="notice-content">
-				<div class="notice-holder">
-					<p>
-						<img style="max-width: 22px;vertical-align: bottom;margin-bottom: -2px;margin-right: 5px;" src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/cozy-addons-icon.png' ); ?>" /><strong><?php esc_html_e( 'Uh-oh!', 'cozy-addons' ); ?></strong><?php esc_html_e( ' Cozy Blocks is tailored for Full Site Editing (FSE).', 'cozy-addons' ); ?>
-					</p>
-				</div>
-			</div>
+<div class="fs-notice notice fs-has-title notice-warning is-dismissible cozy-blocks-admin-notice">
+	<label class="fs-plugin-title"><?php esc_html_e( 'Cozy Blocks', 'cozy-addons' ); ?></label>
+	<div class="notice-content">
+		<div class="notice-holder">
+			<p>
+				<img style="max-width: 22px;vertical-align: bottom;margin-bottom: -2px;margin-right: 5px;"
+					src="<?php echo esc_url( COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/cozy-addons-icon.png' ); ?>" /><strong><?php esc_html_e( 'Uh-oh!', 'cozy-addons' ); ?></strong><?php esc_html_e( ' Cozy Blocks is tailored for Full Site Editing (FSE).', 'cozy-addons' ); ?>
+			</p>
 		</div>
+	</div>
+</div>
 		<?php
 	}
 }

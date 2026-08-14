@@ -1,121 +1,114 @@
 (function ($) {
 	"use strict";
 	$(document).ready(function () {
+		const {
+			ajax_url,
+			activeStatusNonce,
+			isPremium,
+			utilityFunctionNonce,
+			themePluginNonce,
+		} = ajax_object;
+
+		const $dashboard = $(".cozy-blocks__dashboard");
+		const $toast = $dashboard.find(".toast-message");
+
 		// Check if there's a saved active tab in localStorage
-		var activeTab = localStorage.getItem("activeTab");
-		if (activeTab !== null) {
-			changeTab(activeTab);
-		} else {
-			changeTab(0);
-		}
-
-		// Bind click event to tabs
-		$(".ct-tab").click(function () {
-			var tabIndex = $(this).data("index");
-			changeTab(tabIndex);
-		});
-
-		//Enable/Disable blocks.
-		const ajax_url = ajax_object.ajax_url;
-
-		const isPremium = ajax_object.isPremium;
-		const premiumBlocks = [
-			"modal",
-			"news-ticker",
-			"post-slider",
-			"related-post",
-			"popular-post",
-			"trending-post",
-			"product-slider",
-			"product-tab",
-			"post-views",
-			"post-comments",
-			"featured-post-tabs",
-			"advanced-categories",
-			"featured-product-tabs",
-			"categorized-post-tabs",
-			"magazine-grid",
-			"magazine-list",
-			"featured-post",
-			"wishlist",
-			"quick-view",
-			"featured-product",
-			"toggle-content",
-			"countdown-timer",
-			"cf7-styler",
-			"img-compare",
-			"portfolio-gallery-meta",
+		const adminURL = window.location.href;
+		const params = new URLSearchParams(adminURL);
+		const allowedParams = [
+			"dashboard",
+			"blocks",
+			"settings",
+			"free-pro-comparison",
+			"license",
 		];
 
-		$("#cozy-blocks-enable-super").click(function () {
-			$(".cozy-block-active").each(function () {
-				var blockName = $(this).attr("name");
-				var checkboxId = $(this).attr("id");
+		function changeTab(slug) {
+			const topLevelMenu = $("#toplevel_page__cozy_companions");
+			if (slug !== "dashboard") {
+				topLevelMenu.find(".wp-submenu li").removeClass("current");
+				topLevelMenu.find(".wp-submenu li a").removeClass("current");
+				const activeSubmenu = topLevelMenu.find(
+					`.wp-submenu li:has(a[href="admin.php?page=_cozy_companions&tab=${slug}"])`,
+				);
+				activeSubmenu.addClass("current");
+				activeSubmenu.find("a").addClass("current");
+			} else {
+				topLevelMenu.find(".wp-submenu li").removeClass("current");
+				topLevelMenu.find(".wp-submenu li a").removeClass("current");
+				const activeSubmenu = topLevelMenu.find(`.wp-submenu li.wp-first-item`);
+				activeSubmenu.addClass("current");
+				activeSubmenu.find("a").addClass("current");
+			}
 
-				$.ajax({
-					url: ajax_url,
-					method: "POST",
-					data: {
-						action: "update_cozy_block_option",
-						block_name: blockName,
-						checked: !premiumBlocks.includes(blockName)
-							? "1"
-							: isPremium && premiumBlocks.includes(blockName)
-							? "1"
-							: "",
-					},
-					success: function (response) {
-						if (!premiumBlocks.includes(blockName)) {
-							$("#" + checkboxId).prop("checked", true);
-						}
+			// Get all tabs and tab contents
+			var tabs = $(".ct-tab");
+			var contents = $(".tab-content");
 
-						if (isPremium && premiumBlocks.includes(blockName)) {
-							$("#" + checkboxId).prop("checked", true);
-						}
-					},
-					error: function (xhr, status, error) {
-						console.log("Error:", error);
-					},
-				});
-			});
+			// Remove active class from all tabs and contents
+			tabs.removeClass("is-active");
+			contents.removeClass("is-active");
+
+			$(`.ct-tab[data-slug="${slug}"]`).addClass("is-active");
+			$(`#${slug}.tab-content`).addClass("is-active");
+		}
+
+		const activeTab = params.get("tab");
+		if (activeTab !== null && allowedParams.includes(activeTab)) {
+			changeTab(activeTab);
+		} else {
+			changeTab("dashboard");
+		}
+		if (localStorage.getItem("activeTab")) {
+			localStorage.removeItem("activeTab");
+		}
+		// Bind click event to tabs
+		$dashboard.find(".ct-tab").click(function () {
+			const tabSlug = $(this).data("slug");
+			changeTab(tabSlug);
 		});
 
-		$("#cozy-blocks-disable-super").click(function () {
-			$(".cozy-block-active").each(function () {
-				var blockName = $(this).attr("name");
-				var checkboxId = $(this).attr("id");
+		/* Setting sidebar tab click */
+		$dashboard.find(".setting-tab-item").click(function () {
+			const $this = $(this);
+			const tabId = $this.attr("id");
 
-				$.ajax({
-					url: ajax_url,
-					method: "POST",
-					data: {
-						action: "update_cozy_block_option",
-						block_name: blockName,
-						checked: "0",
-					},
-					success: function (response) {
-						$("#" + checkboxId).prop("checked", false);
-					},
-					error: function (xhr, status, error) {
-						console.log("Error:", error);
-					},
-				});
-			});
+			$dashboard.find(".setting-tab-item").removeClass("is-active");
+			$dashboard.find(".setting-tab-content").removeClass("is-active");
+
+			$this.addClass("is-active");
+			$dashboard.find(`#${tabId}.setting-tab-content`).addClass("is-active");
 		});
+
+		//Cozy block upsell tooltip.
+		$dashboard
+			.find(".toggle-switcher.has-tooltip")
+			.on("click", function (event) {
+				event.preventDefault();
+				const $this = $(this);
+
+				if ($this.next(".cozy-block-upsell-tooltip").is(":visible")) {
+					$this.next(".cozy-block-upsell-tooltip").hide();
+					return;
+				}
+				$(".cozy-block-upsell-tooltip").hide();
+				$this.next(".cozy-block-upsell-tooltip").show();
+			});
 
 		// Event listener for changes in any checkbox
-		$(".cozy-block-active").change(function () {
-			var blockName = $(this).attr("name");
-			var isChecked = $(this).is(":checked");
+		$dashboard.find(".cozy-block-active").change(function () {
+			const blockName = $(this).attr("name");
+			const isChecked = $(this).is(":checked");
 
 			// Perform AJAX call to update the option value on checkbox change
 			$.ajax({
 				url: ajax_url,
 				method: "POST",
 				data: {
-					action: "update_cozy_block_option",
+					action: "cozy_addons_update_block_active_status",
 					block_name: blockName,
 					checked: isChecked ? "1" : "0",
+					nonce: activeStatusNonce,
 				},
 				success: function (response) {
 					// console.log(`${blockName}: Active status(${isChecked})`);
@@ -127,7 +120,11 @@
 		});
 
 		// Block CPT enable/disable
-		$(".ca__block-cpt").change(function () {
+		$dashboard.find(".ca__block-cpt").change(function () {
+			if (!isPremium) {
+				return;
+			}
+
 			const templateName = $(this).attr("name");
 			const isChecked = $(this).is(":checked");
 
@@ -135,9 +132,10 @@
 				url: ajax_url,
 				method: "POST",
 				data: {
-					action: "toggle_ca_cpt_enable",
+					action: "cozy_addons_update_cpt_enabled_option",
 					templateName: templateName,
 					checked: isChecked ? "1" : "0",
+					nonce: activeStatusNonce,
 				},
 				success: function (response) {
 					// console.log(`${templateName}: Active status(${isChecked})`);
@@ -149,7 +147,7 @@
 		});
 
 		// Utility functions enable/disable
-		$(".ca__utility-function").change(function () {
+		$dashboard.find(".ca__utility-function").change(function () {
 			const functionName = $(this).attr("name");
 			const isChecked = $(this).is(":checked");
 
@@ -158,7 +156,7 @@
 				method: "POST",
 				data: {
 					action: "cozy_addons_toggle_ca_utility_function_status",
-					nonce: ajax_object.utilityFunctionNonce,
+					nonce: utilityFunctionNonce,
 					functionName: functionName,
 					checked: isChecked ? "1" : "0",
 				},
@@ -171,22 +169,11 @@
 			});
 		});
 
-		//Cozy block upsell tooltop.
-		$(".cozy-block-upsell").on("click", function (event) {
-			event.preventDefault();
-			if ($(this).next(".cozy-block-upsell-tooltip").is(":visible")) {
-				$(this).next(".cozy-block-upsell-tooltip").hide();
-				return;
-			}
-			$(".cozy-block-upsell-tooltip").hide();
-			$(this).next(".cozy-block-upsell-tooltip").show();
-		});
-
 		$(".cozy-addons-admin-notice").on("click", ".notice-dismiss", function () {
 			$.ajax({
 				url: ajax_url,
 				data: {
-					action: "cozy_upsell_dismissble_notice",
+					action: "cozy_addons_dismiss_welcome_notice",
 				},
 			});
 		});
@@ -216,31 +203,72 @@
 		});
 
 		// Features list redirection
-		$("#ca-features-list").on("click", function () {
+		$dashboard.find("#ca-features-list").on("click", function () {
 			const lastTab = $(".ct-tab").last().data("index");
 
 			changeTab(lastTab);
 		});
+
+		// FAQ Accordion
+		$dashboard.find(".accordion-header").on("click", function () {
+			var $item = $(this).closest(".accordion-item");
+			var isActive = $item.hasClass("active");
+
+			// close all others (remove this block if you want multiple open at once)
+			$(".accordion-item").not($item).removeClass("active");
+
+			$item.toggleClass("active", !isActive);
+		});
+
+		// Plugin Installation
+		$dashboard.find(".activate-plugin").click(function (e) {
+			e.preventDefault();
+			const $this = $(this);
+
+			const plugins =
+				typeof $this.attr("data-plugins") === "object"
+					? JSON.parse($this.attr("data-plugins"))
+					: [$this.attr("data-plugins")];
+
+			$.ajax({
+				url: ajax_url,
+				method: "POST",
+				data: {
+					action: "cozy_addons_install_activate_plugin",
+					nonce: themePluginNonce,
+					plugins: JSON.stringify(plugins),
+				},
+				beforeSend: function () {
+					$dashboard.find(".activate-plugin").addClass("is-disabled");
+					$toast
+						.addClass("is-active tone-info")
+						.text("Hold on. Installaing plugin!");
+				},
+				success: function (response) {
+					$toast
+						.removeClass("tone-info")
+						.addClass("tone-success")
+						.text("Plugin installed successfully.");
+				},
+				error: function () {
+					$toast
+						.removeClass("tone-info")
+						.addClass("tone-error")
+						.text("Oops! Something went wrong");
+				},
+				complete: function () {
+					setTimeout(() => {
+						$toast
+							.removeClass(
+								"is-active tone-info tone-success tone-warning tone-error",
+							)
+							.text("");
+
+						$dashboard.find(".activate-plugin").addClass("is-disabled");
+						window.location.href = window.location.href;
+					}, 3000);
+				},
+			});
+		});
 	});
-
-	function changeTab(index) {
-		// Get all tabs and tab contents
-		var tabs = $(".ct-tab");
-		var contents = $(".tab-content");
-
-		// Remove active class from all tabs and contents
-		tabs.removeClass("active-tab");
-		contents.removeClass("active-content");
-
-		// Add active class to the selected tab and content
-		tabs.eq(index).addClass("active-tab");
-		contents.eq(index).addClass("active-content");
-
-		// Save the active tab index to localStorage
-		localStorage.setItem("activeTab", index);
-
-		setTimeout(() => {
-			localStorage.setItem("activeTab", 0);
-		}, 8000);
-	}
 })(jQuery);

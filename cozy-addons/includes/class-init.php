@@ -1,5 +1,6 @@
 <?php
 namespace CozyAddons;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -20,8 +21,18 @@ class Init {
 	 */
 	private static $instance = null;
 
+	/**
+	 * Absolute filesystem path to the plugin's includes directory.
+	 *
+	 * @var string
+	 */
 	private static $dir = COZY_ADDONS_PLUGIN_DIR . 'includes/';
 
+	/**
+	 * Public URL to the plugin's includes directory.
+	 *
+	 * @var string
+	 */
 	private static $url = COZY_ADDONS_PLUGIN_URL . 'includes/';
 
 	/**
@@ -65,7 +76,9 @@ class Init {
 		\CozyAddons\Assets::get_instance();
 
 		// Admin Instance.
-		\CozyAddons\Admin::get_instance();
+		if ( is_admin() ) {
+			\CozyAddons\Admin::get_instance();
+		}
 
 		// Block Instance.
 		\CozyAddons\Blocks::get_instance();

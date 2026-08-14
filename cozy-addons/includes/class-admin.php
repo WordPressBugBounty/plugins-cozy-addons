@@ -56,6 +56,9 @@ class Admin {
 	 * @access private
 	 */
 	private function __construct() {
+		require self::$dir . 'includes/class-admin-ajax.php';
+		\CozyAddons\Admin\Ajax::get_instance();
+
 		$this->load_admin_files();
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_admin_assets' ) );
@@ -71,9 +74,7 @@ class Admin {
 	 * @return void
 	 */
 	private function load_admin_files() {
-		if ( is_admin() ) {
-			require_once self::$dir . 'admin-notice.php';
-		}
+		require_once self::$dir . 'admin-notice.php';
 	}
 
 	/**
@@ -88,7 +89,13 @@ class Admin {
 
 		wp_enqueue_style( 'cozy-addons--admin-notice--style', self::$url . 'assets/css/admin-notice-styles.css', array(), COZY_ADDONS_VERSION, 'all' );
 
-		if ( 'dashboard' !== $current_screen->id && 'plugins' !== $current_screen->id && 'toplevel_page__cozy_companions' !== $current_screen->id ) {
+		$allowed_pages = array(
+			'dashboard',
+			'plugins',
+			'toplevel_page__cozy_companions',
+		);
+
+		if ( ! in_array( $current_screen->id, $allowed_pages, true ) ) {
 			return;
 		}
 
@@ -100,7 +107,9 @@ class Admin {
 			array(
 				'ajax_url'             => esc_url( admin_url( 'admin-ajax.php' ) ),
 				'isPremium'            => cozy_addons_premium_access(),
+				'activeStatusNonce'    => wp_create_nonce( 'ca_active_status' ),
 				'utilityFunctionNonce' => wp_create_nonce( 'ca_utility_function' ),
+				'themePluginNonce'     => wp_create_nonce( 'ca_theme_plugin_install_activate' ),
 			)
 		);
 	}
@@ -121,6 +130,40 @@ class Admin {
 				'manage_options',
 				'_cozy_companions'
 			);
+			add_submenu_page(
+				'_cozy_companions',
+				'Blocks',
+				__( 'Blocks', 'cozy-addons' ),
+				'manage_options',
+				'_cozy_companions&tab=blocks',
+				array( $this, 'cozy_companion_info' )
+			);
+			add_submenu_page(
+				'_cozy_companions',
+				'Settings',
+				__( 'Settings', 'cozy-addons' ),
+				'manage_options',
+				'_cozy_companions&tab=settings',
+				array( $this, 'cozy_companion_info' )
+			);
+			add_submenu_page(
+				'_cozy_companions',
+				'Free VS Pro',
+				__( 'Free VS Pro', 'cozy-addons' ),
+				'manage_options',
+				'_cozy_companions&tab=free-pro-comparison',
+				array( $this, 'cozy_companion_info' )
+			);
+			if ( ! cozy_addons_premium_access() ) {
+				add_submenu_page(
+					'_cozy_companions',
+					'License',
+					__( 'Activate License', 'cozy-addons' ),
+					'manage_options',
+					'_cozy_companions&tab=license',
+					array( $this, 'cozy_companion_info' )
+				);
+			}
 		}
 	}
 

@@ -1,8 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700");
 
 :root {
-	--cozy-addons--primary-color: #5253f9;
-	--cozy-addons--secondary-color: #2b3337;
+	--cozy-addons--primary: #5253f9;
+	--cozy-addons--primary-accent: #ecefff;
+	--cozy-addons--heading: #141822;
+	--cozy-addons--heading-accent: #1418221f;
+	--cozy-addons--muted: #62748e;
+	--cozy-addons--light: #fff;
+	--cozy-addons--border: #eaeef4;
+	--cozy-addons--shadow: 0 4px 24px 0 #0b0d1610;
+	--cozy-addons--pro-highlight: #d68b00;
 }
 
 /* Admin Menu */
@@ -14,7 +21,7 @@
 #adminmenu
 	li.wp-has-current-submenu#toplevel_page__cozy_companions
 	a.wp-has-current-submenu {
-	background-color: var(--cozy-addons--primary-color);
+	background-color: var(--cozy-addons--primary);
 	color: #ffffff;
 }
 
@@ -26,13 +33,18 @@
 	margin-bottom: 16px;
 	justify-content: space-between;
 	align-items: end;
-	border-left-color: var(--cozy-addons--primary-color);
+	border-left-color: var(--cozy-addons--primary);
 	font-family: "Inter";
-	font-size: 16px;
+
+	& p {
+		margin: 0;
+		font-size: 14px;
+		font-weight: 300;
+		color: var(--cozy-addons--muted);
+	}
 }
 .cozy-addons-admin-notice .notice-content {
 	padding: 20px 5% 20px 20px;
-	width: 60%;
 	display: flex;
 	align-items: start;
 }
@@ -41,27 +53,50 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 20px 12px 0 0;
+	margin: 0 12px 0 0;
 
 	& img {
-		width: 34px;
-		height: 34px;
+		width: 48px;
+		height: 48px;
 		object-fit: contain;
 	}
 }
-.cozy-addons-admin-notice .notice-holder h4 {
-	color: #010e11;
+.cozy-addons-admin-notice .highlighted-text {
+	font-weight: 300;
+	font-size: 16px;
+	color: var(--cozy-addons--primary);
+}
+.cozy-addons-admin-notice .banner-title {
+	color: var(--cozy-addons--heading);
 	font-weight: 600;
 	font-size: 28px;
 	line-height: 1.3;
-	margin: 16px 0 12px;
+	margin: 0 0 12px;
 }
-.cozy-addons-admin-notice .notice-content p {
-	font-size: 16px;
-	margin: 0;
+.cozy-addons-admin-notice .features-list {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	font-weight: 400;
+	color: var(--cozy-addons--heading);
+	list-style: none;
+	margin: 12px 0 0;
+	padding: 0;
+
+	& .feature-list-item {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 5px;
+	}
+	& .check-icon {
+		display: flex;
+	}
 }
 .cozy-addons-admin-notice .ca__admin-notice-btn {
-	background-color: var(--cozy-addons--primary-color);
+	background-color: var(--cozy-addons--primary);
 	color: #fff;
 	padding: 12px 26px;
 	text-decoration: none;
@@ -71,7 +106,7 @@
 	border-radius: 100px;
 }
 .cozy-addons-admin-notice .ca__admin-notice-btn:hover {
-	background-color: var(--cozy-addons--secondary-color);
+	background-color: var(--cozy-addons--heading);
 	color: #fff;
 }
 .cozy-addons-admin-notice .ca__admin-notice-btn::after {
@@ -88,6 +123,6 @@
 	transform: scale(1);
 }
 .cozy-addons-admin-notice .plugin-screen img {
-	max-height: 214px;
+	max-height: 290px;
 	margin-bottom: -5px;
 }

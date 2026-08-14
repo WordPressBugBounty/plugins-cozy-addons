@@ -1,3 +1,15 @@
+= 2.2.16 - Aug 14, 2026 = 
+* Fix: Plugin uninstall process.
+
+= 2.2.15 - Aug 14, 2026 = 
+* Fix: Advanced Tab's editor UI for tab selection.
+* Fix: Sub-heading anchor tag escaping in Featured Post, Featured Product, Magazine Grid & Magazine List.
+* Fix: Minor block improvements.
+* Fix: Minor improvements to patterns & starter templates.
+* Update: Admin dashboard UI.
+* Add: Post title tag picker in Popular Post and Trending Post.
+* Add: HVAC starter template
+
 = 2.2.14 - Aug 01, 2026 = 
 * Fix: Theme pattern registration logic.
 

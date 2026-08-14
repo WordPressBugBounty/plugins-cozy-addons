@@ -9,7 +9,7 @@
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontSize":"16px"},"spacing":{"margin":{"top":"16px"}},"color":{"text":"#47474d"},"elements":{"link":{"color":{"text":"#47474d"}}}}} -->
 <p class="has-text-align-center has-text-color has-link-color" style="color:#47474d;margin-top:16px;font-size:16px">
 <?php
-	esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '' );
+	esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'cozy-addons' );
 ?>
 </p>
 <!-- /wp:paragraph -->

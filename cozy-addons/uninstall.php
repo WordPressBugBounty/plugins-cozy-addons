@@ -29,3 +29,12 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+delete_option( 'ca-cpt--mega-menu-templates' );
+delete_option( 'ca-cpt--portfolio-gallery-templates' );
+
+$blocks        = require_once WP_PLUGIN_DIR . '/cozy-addons/blocks/blocks-manifest.php';
+$active_blocks = array_keys( $blocks );
+foreach ( $active_blocks as $block_name ) {
+	delete_option( 'cozy-block--' . $block_name );
+}

@@ -118,6 +118,7 @@ export function renderTRBL(type, attributes) {
 			}
 			break;
 
+		case "border-radius":
 		case "radius":
 			if (typeof attributes === "string") {
 				return `border-radius: ${attributes};`;

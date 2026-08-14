@@ -74,8 +74,8 @@
       "type": "object",
       "default": {
         "alignment": "right",
-        "verticalSpacing": 10,
-        "horizontalSpacing": 0
+        "verticalSpacing": 0,
+        "horizontalSpacing": -20
       }
     },
     "sidebarLayout": {

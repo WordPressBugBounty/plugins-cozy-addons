@@ -25,11 +25,11 @@ return array(
 			),
 			'rowGap' => array(
 				'type' => 'number',
-				'default' => 10
+				'default' => 26
 			),
 			'titleTag' => array(
 				'type' => 'string',
-				'default' => 'h4'
+				'default' => 'h3'
 			),
 			'titleJustify' => array(
 				'type' => 'string',
@@ -41,27 +41,27 @@ return array(
 					'viewBox' => array(
 						'vx' => 0,
 						'vy' => 0,
-						'vw' => 14,
-						'vh' => 25
+						'vw' => 22,
+						'vh' => 22
 					),
 					'gap' => '6px',
-					'path' => 'M10.8737 12.7121C10.9908 12.595 10.9908 12.405 10.8737 12.2879L1.00502 2.41924C0.887867 2.30208 0.887867 2.11213 1.00502 1.99497L1.99497 1.00502C2.11213 0.887867 2.30208 0.887867 2.41924 1.00502L13.7021 12.2879C13.8192 12.405 13.8192 12.595 13.7021 12.7121L2.41924 23.995C2.30208 24.1121 2.11213 24.1121 1.99497 23.995L1.00502 23.005C0.887867 22.8879 0.887868 22.6979 1.00503 22.5808L10.8737 12.7121Z',
-					'activePath' => 'M10.8737 12.7121C10.9908 12.595 10.9908 12.405 10.8737 12.2879L1.00502 2.41924C0.887867 2.30208 0.887867 2.11213 1.00502 1.99497L1.99497 1.00502C2.11213 0.887867 2.30208 0.887867 2.41924 1.00502L13.7021 12.2879C13.8192 12.405 13.8192 12.595 13.7021 12.7121L2.41924 23.995C2.30208 24.1121 2.11213 24.1121 1.99497 23.995L1.00502 23.005C0.887867 22.8879 0.887868 22.6979 1.00503 22.5808L10.8737 12.7121Z',
+					'path' => 'M9.71429 21.8571V12.1429H0V9.71429H9.71429V0H12.1429V9.71429H21.8571V12.1429H12.1429V21.8571H9.71429Z',
+					'activePath' => 'M0 2.83333V0H17V2.83333H0Z',
 					'activeViewBox' => array(
 						'vx' => 0,
 						'vy' => 0,
-						'vw' => 14,
-						'vh' => 25
+						'vw' => 17,
+						'vh' => 3
 					),
 					'view' => 'default',
 					'position' => 'right',
 					'layout' => 'fill',
-					'size' => 22,
-					'color' => '#5566ca',
-					'colorHover' => '#36cfc6',
+					'size' => 16,
+					'color' => '#000',
+					'colorHover' => '',
 					'opacity' => 1,
-					'rotate' => 90,
-					'rotateActive' => 270
+					'rotate' => 0,
+					'rotateActive' => 0
 				)
 			),
 			'iconBoxStyles' => array(
@@ -114,10 +114,10 @@ return array(
 				'type' => 'object',
 				'default' => array(
 					'padding' => array(
-						'top' => 16,
-						'right' => 16,
-						'bottom' => 16,
-						'left' => 16
+						'top' => 0,
+						'right' => 0,
+						'bottom' => 0,
+						'left' => 0
 					),
 					'border' => array(
 						'width' => array(
@@ -135,7 +135,7 @@ return array(
 						'bottom' => 0,
 						'left' => 0
 					),
-					'bgColor' => '#E6E8F4'
+					'bgColor' => ''
 				)
 			),
 			'titleTypography' => array(
@@ -146,7 +146,7 @@ return array(
 						'bottom' => ''
 					),
 					'fontFamily' => '',
-					'fontSize' => '',
+					'fontSize' => '20',
 					'color' => '#000',
 					'colorActive' => '#000',
 					'fontWeight' => '',
@@ -1318,13 +1318,17 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'activeContent' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'layout' => array(
 				'type' => 'string',
 				'default' => 'horizontal'
 			),
 			'tabAlign' => array(
 				'type' => 'string',
-				'default' => 'left'
+				'default' => 'space-between'
 			),
 			'columnGap' => array(
 				'type' => 'number',
@@ -1361,7 +1365,8 @@ return array(
 			'titleStyles' => array(
 				'type' => 'object',
 				'default' => array(
-					'gap' => '0px',
+					'tag' => 'h2',
+					'gap' => '16px',
 					'flexWrap' => true
 				)
 			),
@@ -1445,7 +1450,7 @@ return array(
 						),
 						'type' => 'none',
 						'color' => '',
-						'colorActive' => '#E6E8F4'
+						'colorActive' => ''
 					),
 					'borderRadius' => array(
 						'top' => 0,
@@ -1453,18 +1458,18 @@ return array(
 						'bottom' => 0,
 						'left' => 0
 					),
-					'bgColor' => '#5566ca',
-					'bgColorActive' => '#EFEAF7'
+					'bgColor' => '',
+					'bgColorActive' => '#0c50ff'
 				)
 			),
 			'contentStyles' => array(
 				'type' => 'object',
 				'default' => array(
 					'padding' => array(
-						'top' => 10,
-						'right' => 10,
-						'bottom' => 10,
-						'left' => 10
+						'top' => 0,
+						'right' => 0,
+						'bottom' => 0,
+						'left' => 0
 					),
 					'margin' => array(
 						'top' => '',
@@ -1486,16 +1491,20 @@ return array(
 						'bottom' => 0,
 						'left' => 0
 					),
-					'bgColor' => '#EFEAF7'
+					'bgColor' => ''
 				)
 			),
 			'titleTypography' => array(
 				'type' => 'object',
 				'default' => array(
+					'margin' => array(
+						'top' => '0px',
+						'bottom' => '0px'
+					),
 					'fontFamily' => 'Public Sans',
-					'fontSize' => 16,
+					'fontSize' => 22,
 					'color' => '#000',
-					'fontWeight' => 400,
+					'fontWeight' => 500,
 					'letterCase' => 'none',
 					'decoration' => 'none',
 					'lineHeight' => '',
@@ -1507,8 +1516,8 @@ return array(
 				'default' => array(
 					'fontFamily' => 'Public Sans',
 					'fontSize' => 16,
-					'color' => '#fff',
-					'colorActive' => '#5566ca',
+					'color' => '#000',
+					'colorActive' => '#fff',
 					'fontWeight' => 400,
 					'letterCase' => 'none',
 					'decoration' => 'none',
@@ -1516,6 +1525,9 @@ return array(
 					'letterSpacing' => ''
 				)
 			)
+		),
+		'providesContext' => array(
+			'activeContent' => 'activeContent'
 		),
 		'editorScript' => array(
 			'file:./index.js',
@@ -2324,6 +2336,10 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'formTitle' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'gap' => array(
 				'type' => 'string',
 				'default' => '20px'
@@ -2466,10 +2482,10 @@ return array(
 					'display' => 'inline',
 					'align' => 'left',
 					'padding' => array(
-						'top' => '',
-						'right' => '',
-						'bottom' => '',
-						'left' => ''
+						'top' => '14px',
+						'right' => '36px',
+						'bottom' => '14px',
+						'left' => '36px'
 					),
 					'margin' => array(
 						'top' => '',
@@ -4150,7 +4166,7 @@ return array(
 				'type' => 'object',
 				'default' => array(
 					'enabled' => false,
-					'position' => 'icon-only',
+					'position' => 'after',
 					'gap' => '6px',
 					'view' => 'default',
 					'layout' => 'fill',
@@ -6122,12 +6138,19 @@ return array(
 			'iconBoxStyles' => array(
 				'type' => 'object',
 				'default' => array(
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
+					),
 					'padding' => array(
 						'top' => 5,
 						'right' => 5,
 						'bottom' => 5,
 						'left' => 5
 					),
+					'width' => '',
+					'height' => '',
+					'align' => 'center',
 					'borderType' => 'none',
 					'borderWidth' => 1,
 					'borderColor' => '#000',
@@ -6258,6 +6281,8 @@ return array(
 						'bottom' => 5,
 						'left' => 5
 					),
+					'width' => '',
+					'height' => '',
 					'borderType' => 'none',
 					'borderWidth' => 1,
 					'borderColor' => '#000',
@@ -8074,6 +8099,7 @@ return array(
 				'type' => 'object',
 				'default' => array(
 					'className' => '',
+					'tag' => 'h3',
 					'marginTop' => '6px',
 					'marginBottom' => '4px',
 					'fontSize' => '18px',
@@ -12768,8 +12794,8 @@ return array(
 				'type' => 'object',
 				'default' => array(
 					'alignment' => 'right',
-					'verticalSpacing' => 10,
-					'horizontalSpacing' => 0
+					'verticalSpacing' => 0,
+					'horizontalSpacing' => -20
 				)
 			),
 			'sidebarLayout' => array(
@@ -13216,7 +13242,7 @@ return array(
 		'name' => 'cozy-block/social-share',
 		'title' => 'Social Shares',
 		'description' => 'Encourage seamless content sharing with our \'Social Shares\' block, featuring eye-catching social media icons for enhanced engagement and wider reach.',
-		'category' => 'cozy-block',
+		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
 			'html' => false
@@ -14016,6 +14042,7 @@ return array(
 				'type' => 'object',
 				'default' => array(
 					'className' => '',
+					'tag' => '',
 					'marginTop' => '6px',
 					'marginBottom' => '4px',
 					'fontSize' => '18px',

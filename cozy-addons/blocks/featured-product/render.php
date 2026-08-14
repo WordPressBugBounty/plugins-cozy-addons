@@ -837,8 +837,23 @@ if ( $attributes['enableOptions']['heading'] || $attributes['enableOptions']['su
 		$output   .= sprintf( '<%1$s class="cozy-block-featured-product__heading">%2$s</%1$s>', $title_tag, esc_html( $attributes['headingLabel'] ) );
 	}
 	if ( $attributes['enableOptions']['subHeading'] ) {
-		$title_tag = isset( $attributes['subHeading']['tag'] ) && in_array( $attributes['subHeading']['tag'], $allowed_tags, true ) ? esc_attr( $attributes['subHeading']['tag'] ) : 'h2';
-		$output   .= sprintf( '<%1$s class="cozy-block-featured-product__sub-heading">%2$s</%1$s>', $title_tag, esc_html( $attributes['subHeading']['label'] ) );
+		$title_tag        = isset( $attributes['subHeading']['tag'] ) && in_array( $attributes['subHeading']['tag'], $allowed_tags, true ) ? esc_attr( $attributes['subHeading']['tag'] ) : 'h2';
+		$subheading_label = isset( $attributes['subHeading']['label'] ) ? $attributes['subHeading']['label'] : '';
+		$output          .= sprintf(
+			'<%1$s class="cozy-block-featured-product__sub-heading">%2$s</%1$s>',
+			$title_tag,
+			wp_kses(
+				$subheading_label,
+				array(
+					'a' => array(
+						'href'   => array(),
+						'rel'    => array(),
+						'target' => array(),
+						'class'  => array(),
+					),
+				)
+			)
+		);
 	}
 	$output .= '</article>';
 }

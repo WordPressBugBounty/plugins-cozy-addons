@@ -41,6 +41,7 @@ if ( ! function_exists( 'cozy_block_update_post_terms_markup' ) ) {
 			$wrapper_styles = "
 			$class_name {
 				display:flex;
+				flex-wrap:wrap;
 				gap:{$gap};
 				justify-content: {$text_align};
 			}

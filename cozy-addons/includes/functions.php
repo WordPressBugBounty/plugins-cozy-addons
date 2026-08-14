@@ -151,195 +151,6 @@ function cozy_create_excerpt( $content, $length = 20 ) {
 	return esc_html( $content );
 }
 
-/**
- * Retrieves the list of active Cozy Addons blocks.
- *
- * This function returns an array of block slugs or identifiers
- * that are marked as active by the plugin's Utils helper.
- *
- * @return array List of active Cozy Addons blocks.
- */
-function cozy_addons_active_blocks() {
-	$active_cozy_blocks = \CozyAddons\Helpers\Utils::get_instance()->active_blocks;
-
-	return $active_cozy_blocks;
-}
-
-/**
- * Handles AJAX request to update the activation status of a Cozy Addons block.
- *
- * This function verifies the user capability, sanitizes incoming POST data,
- * and updates the WordPress option storing the block's enabled/disabled status.
- * Only blocks present in the list of allowed active blocks are processed.
- *
- * Expected POST parameters:
- * - 'block_name' (string): The slug/identifier of the block.
- * - 'checked' (string): The new status value to be saved (usually 'true' or 'false').
- *
- * @return void Terminates execution with wp_die().
- */
-function cozy_addons_set_block_status() {
-	$allowed_blocks = cozy_addons_active_blocks();
-
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return;
-	}
-
-	$block_name = isset( $_POST['block_name'] ) ? sanitize_text_field( wp_unslash( $_POST['block_name'] ) ) : '';
-	if ( ! in_array( $block_name, $allowed_blocks ) ) {
-		return;
-	}
-
-	$option_name = 'cozy-block--' . $block_name;
-	$checked     = isset( $_POST['checked'] ) ? sanitize_text_field( wp_unslash( $_POST['checked'] ) ) : '';
-	update_option( $option_name, $checked );
-	wp_die();
-}
-add_action( 'wp_ajax_update_cozy_block_option', 'cozy_addons_set_block_status' );
-
-/**
- * Callback function to get the current enable/disable status of a custom post type setting.
- *
- * Typically used in the WordPress REST API or settings API to return the current status
- * (enabled or disabled) of a custom post type feature for the Cozy Addons plugin.
- */
-function cozy_addons_cpt_enable_status_callback() {
-	$option_name   = '';
-	$template_name = isset( $_POST['templateName'] ) ? sanitize_text_field( wp_unslash( $_POST['templateName'] ) ) : '';
-	if ( ! empty( $template_name ) ) {
-		$option_name    = 'ca-cpt--' . $template_name;
-		$enabled_status = get_option( $option_name );
-		wp_send_json_success(
-			array(
-				'enabledStatus' => $enabled_status,
-			)
-		);
-	}
-	wp_die();
-}
-add_action( 'wp_ajax_get_ca_cpt_enable_status', 'cozy_addons_cpt_enable_status_callback' );
-
-/**
- * Callback function to update the enable/disable status of a custom post type feature.
- *
- * Typically used with the WordPress Settings API or REST API to handle toggling a setting
- * related to custom post type (CPT) functionality in the Cozy Addons plugin.
- *
- * Validates and saves the new value (e.g., true/false) to the appropriate option or setting.
- *
- * @param bool $value The new value to be saved (true to enable, false to disable).
- * @return bool The value that was saved after validation.
- */
-function cozy_addons_toggle_cpt_enable_callback() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Access Denied' );
-		return;
-	}
-
-	$allowed_options = array(
-		'mega-menu-templates',
-		'portfolio-gallery-templates',
-	);
-
-	$request_option = isset( $_POST['templateName'] ) ? sanitize_text_field( wp_unslash( $_POST['templateName'] ) ) : '';
-
-	if ( ! in_array( $request_option, $allowed_options ) ) {
-		wp_die( 'Invalid Option' );
-	}
-
-	$option_name = 'ca-cpt--' . $request_option;
-	$checked     = isset( $_POST['checked'] ) ? sanitize_text_field( wp_unslash( $_POST['checked'] ) ) : '';
-	update_option( $option_name, $checked );
-	wp_die();
-}
-add_action( 'wp_ajax_toggle_ca_cpt_enable', 'cozy_addons_toggle_cpt_enable_callback' );
-
-function cozy_addons_toggle_ca_utility_function_status_callback() {
-	check_ajax_referer( 'ca_utility_function', 'nonce' );
-
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Access Denied' );
-		return;
-	}
-
-	$allowed_options = array(
-		'animation',
-		'styles',
-		'pattern-library',
-		'post-terms',
-	);
-
-	$request_option = isset( $_POST['functionName'] ) ? sanitize_text_field( wp_unslash( $_POST['functionName'] ) ) : '';
-
-	if ( ! in_array( $request_option, $allowed_options ) ) {
-		wp_die( 'Invalid Option' );
-	}
-
-	$option_name = 'ca--utility--' . $request_option;
-	$checked     = isset( $_POST['checked'] ) ? sanitize_text_field( wp_unslash( $_POST['checked'] ) ) : '';
-	update_option( $option_name, $checked );
-	wp_die();
-}
-add_action( 'wp_ajax_cozy_addons_toggle_ca_utility_function_status', 'cozy_addons_toggle_ca_utility_function_status_callback' );
-
-/**
- * Displays a dismissible upsell admin notice for promoting premium features or products.
- *
- * This function outputs an admin notice in the WordPress dashboard, encouraging users
- * to upgrade to a premium version or explore additional features. The notice includes
- * a dismiss option that respects user preferences using user meta or options.
- */
-function cozy_addons_upsell_dismissble_notice() {
-	update_option( 'cozy_dashboard_dismissed_notice', 1 );
-}
-add_action( 'wp_ajax_cozy_upsell_dismissble_notice', 'cozy_addons_upsell_dismissble_notice' );
-
-/**
- * Checks whether the WooCommerce plugin is active.
- *
- * This function determines if WooCommerce is currently active on the site,
- * typically by checking the list of active plugins or if the WooCommerce class exists.
- *
- * Useful for conditionally loading WooCommerce-specific features or settings.
- *
- * @return bool True if WooCommerce is active, false otherwise.
- */
-function is_woocommerce_active() {
-	return is_plugin_active( 'woocommerce/woocommerce.php' );
-}
-
-/**
- * Determines whether the currently active theme is a block-based (FSE) theme.
- *
- * This function checks if the active WordPress theme supports full site editing (FSE)
- * by verifying the existence of a `theme.json` file or using WordPress core functions.
- *
- * Useful for conditionally enabling features or compatibility layers specific to block themes.
- *
- * @return bool True if a block (FSE) theme is active, false otherwise.
- */
-function cozy_addons_is_block_theme() {
-	$active_theme = wp_get_theme();
-
-	return $active_theme->is_block_theme();
-}
-
-/**
- * Displays a generic dismissible admin notice in the WordPress dashboard.
- *
- * This function is used to show important information, alerts, or announcements
- * to the user with an option to dismiss the notice. The dismissal is typically
- * stored using user meta, options, or transients to prevent repeated display.
- *
- * Common use cases include plugin updates, feature announcements, or setup prompts.
- *
- * @return void
- */
-function cozy_addons_dismissble_notice() {
-	update_option( 'cozy_addons_block_theme', 1 );
-}
-add_action( 'wp_ajax_cozy_blocks_dismissble_notice', 'cozy_addons_dismissble_notice' );
-
 /* Portfolio gallery ajax loader */
 function cozy_block_portfolio_gallery_load_content() {
 	check_ajax_referer( 'cozy_block_portfolio_gallery_load_more', 'nonce', true );
@@ -1268,9 +1079,9 @@ add_action( 'wp_ajax_nopriv_cozy_block_advanced_gallery_loader', 'cozy_block_adv
  */
 function cozy_addons_wishlist_render_data_sidebar() {
 	check_ajax_referer( 'cozy_block_wishlist_render_data_sidebar', 'sidebarNonce', true );
-	$before_label = isset( $_POST['beforeLabel'] ) ? sanitize_text_field( wp_unslash( $_POST['beforeLabel'] ) ) : '';
-	$after_label  = isset( $_POST['afterLabel'] ) ? sanitize_text_field( wp_unslash( $_POST['afterLabel'] ) ) : '';
-	$alignment    = isset( $_POST['alignment'] ) ? sanitize_text_field( wp_unslash( $_POST['alignment'] ) ) : '';
+	$before_label = isset( $_POST['beforeLabel'] ) ? sanitize_text_field( wp_unslash( $_POST['beforeLabel'] ) ) : __( 'Wishlist (', 'cozy-addons' );
+	$after_label  = isset( $_POST['afterLabel'] ) ? sanitize_text_field( wp_unslash( $_POST['afterLabel'] ) ) : __( ')', 'cozy-addons' );
+	$alignment    = isset( $_POST['alignment'] ) ? sanitize_text_field( wp_unslash( $_POST['alignment'] ) ) : 'left';
 
 	if ( isset( $_POST['wishlistData'] ) && is_array( $_POST['wishlistData'] ) ) {
 		$wishlist_data = array_map( 'intval', $_POST['wishlistData'] );
@@ -1761,77 +1572,8 @@ function cozy_addons_get_plugin_versions() {
 
 	array_pop( $versions );
 
-	return $versions;
+	return array_slice( $versions, 0, 25 );
 }
-
-// Download plugin and initiate rollback
-function cozy_addons_download_plugin_rollback_version_callback() {
-	check_ajax_referer( 'cozy_addons_rollback_version_download', 'nonce', true );
-
-	$previous_version_url = isset( $_POST['downloadURL'] ) ? sanitize_url( wp_unslash( $_POST['downloadURL'] ) ) : '';
-
-	// Your previous version logic here
-	if ( empty( esc_url( $previous_version_url ) ) ) {
-		wp_send_json_error( array( 'message' => esc_html__( 'Invalid download URL.', 'cozy-addons' ) ) );
-	}
-
-	$temp_file = download_url( esc_url( $previous_version_url ) );
-
-	if ( is_wp_error( $temp_file ) ) {
-		wp_delete_file( $temp_file );
-		wp_send_json_error( array( 'message' => esc_html__( 'Oops! Download failed.', 'cozy-addons' ) ) );
-	}
-
-	wp_send_json_success(
-		array(
-			'tempFile' => $temp_file,
-		)
-	);
-}
-add_action( 'wp_ajax_cozy_addons_download_plugin_rollback_version', 'cozy_addons_download_plugin_rollback_version_callback' );
-add_action( 'wp_ajax_nopriv_cozy_addons_download_plugin_rollback_version', 'cozy_addons_download_plugin_rollback_version_callback' );
-
-// Deactivate and remove the plugin
-function cozy_addons_activate_rollback_version_callback() {
-	check_ajax_referer( 'cozy_addons_rollback_version_activate', 'nonce', true );
-
-	$temp_file = isset( $_POST['tempURL'] ) ? sanitize_text_field( wp_unslash( $_POST['tempURL'] ) ) : '';
-
-	if ( empty( $temp_file ) || ! file_exists( $temp_file ) || mime_content_type( $temp_file ) !== 'application/zip' ) {
-		wp_delete_file( $temp_file );
-		wp_send_json_error();
-	}
-
-	if ( is_plugin_active( 'cozy-addons/cozy-addons.php' ) ) {
-		deactivate_plugins( 'cozy-addons/cozy-addons.php' );
-
-		if ( file_exists( trailingslashit( WP_PLUGIN_DIR ) . 'cozy-addons' ) ) {
-			// if ( is_wp_error( uninstall_plugin( 'cozy-addons/cozy-addons.php' ) ) ) {
-			// wp_send_json_error();
-			// }
-
-			if ( is_wp_error( delete_plugins( array( 'cozy-addons/cozy-addons.php' ) ) ) ) {
-				wp_send_json_error();
-			}
-		}
-	}
-
-	$result = unzip_file( $temp_file, WP_PLUGIN_DIR );
-
-	wp_delete_file( $temp_file );
-
-	if ( is_wp_error( $result ) ) {
-		wp_send_json_error();
-	}
-
-	if ( file_exists( trailingslashit( WP_PLUGIN_DIR ) . 'cozy-addons' ) ) {
-		activate_plugin( 'cozy-addons/cozy-addons.php' );
-	}
-
-	wp_send_json_success();
-}
-add_action( 'wp_ajax_cozy_addons_activate_rollback_version', 'cozy_addons_activate_rollback_version_callback' );
-add_action( 'wp_ajax_nopriv_cozy_addons_activate_rollback_version', 'cozy_addons_activate_rollback_version_callback' );
 
 /**
  * Adds data attributes for the responsive show/hide in the block.
@@ -2057,7 +1799,7 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 				$block_content,
 				$matches
 			);
-			$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
+			$existing_styles = isset( $matches[1] ) ? ';' . $matches[1] : '';
 
 			$updated_class = trim( $existing_class . ' cozy-hover-effect__initialized' );
 
@@ -2389,10 +2131,14 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 		if ( isset( $block['attrs']['icon']['enabled'] ) && filter_var( $block['attrs']['icon']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
 			$icon_attr = $block['attrs']['icon'];
 
-			$updated_class .= ' cozy-button__has-icon icon-position__' . $icon_attr['position'];
+			$updated_class .= ' cozy-button__has-icon icon-position__' . sanitize_text_field( $icon_attr['position'] );
 
-			$size     = isset( $icon_attr['size'] ) ? $icon_attr['size'] : '16'; // e.g. from your attributes
-			$view_box = isset( $icon_attr['viewBox']['vx'], $icon_attr['viewBox']['vy'], $icon_attr['viewBox']['vw'], $icon_attr['viewBox']['vh'] ) ? $icon_attr['viewBox']['vx'] . ' ' . $icon_attr['viewBox']['vy'] . ' ' . $icon_attr['viewBox']['vw'] . ' ' . $icon_attr['viewBox']['vh'] : '';
+			if ( isset( $icon_attr['animation'] ) && ! empty( $icon_attr['animation'] ) ) {
+				$updated_class .= ' icon-animation__' . sanitize_text_field( $icon_attr['animation'] );
+			}
+
+			$size     = isset( $icon_attr['size'] ) ? sanitize_text_field( $icon_attr['size'] ) : '';
+			$view_box = isset( $icon_attr['viewBox']['vx'], $icon_attr['viewBox']['vy'], $icon_attr['viewBox']['vw'], $icon_attr['viewBox']['vh'] ) ? intval( $icon_attr['viewBox']['vx'] ) . ' ' . intval( $icon_attr['viewBox']['vy'] ) . ' ' . intval( $icon_attr['viewBox']['vw'] ) . ' ' . intval( $icon_attr['viewBox']['vh'] ) : '';
 			$path     = isset( $icon_attr['path'] ) ? $icon_attr['path'] : ''; // example path.
 
 			$svg      = '<svg xmlns="http://www.w3.org/2000/svg" width="' . esc_attr( $size ) . '" height="' . esc_attr( $size ) . '" viewBox="' . esc_attr( $view_box ) . '"><path fill="currentColor" d="' . esc_attr( $path ) . '"/></svg>';
@@ -2638,4 +2384,10 @@ function cozy_addons_sanitize_html_class( $classes ) {
 	}
 
 	return trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) );
+}
+
+function cozy_addons_is_valid_cf7_shortcode_format( $value ) {
+	// Matches: [contact-form-7 id="3f58abb" title="Contact form 1"].
+	$pattern = '/^\[[a-zA-Z0-9_-]+(\s+[a-zA-Z0-9_-]+="[^"]*")*\s*\]$/';
+	return preg_match( $pattern, trim( $value ) ) === 1;
 }

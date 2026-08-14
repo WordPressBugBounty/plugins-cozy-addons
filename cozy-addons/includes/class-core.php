@@ -116,7 +116,7 @@ class Core {
 		\Core\Api\CF7::get_instance();
 		\Core\Api\Patterns::get_instance();
 
-		if ( is_woocommerce_active() ) {
+		if ( \CozyAddons\Helpers\Utils::is_woocommerce_active() ) {
 			\Core\Api\Woo::get_instance();
 		}
 	}

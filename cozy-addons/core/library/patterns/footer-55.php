@@ -3,8 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<!-- wp:group {"style":{"color":{"background":"#120f12","text":"#808080"},"elements":{"link":{"color":{"text":"#808080"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400","lineHeight":1.6},"spacing":{"padding":{"right":"26px","left":"26px","top":"80px","bottom":"26px"}}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Roboto Serif"} -->
-<div class="wp-block-group has-text-color has-background has-link-color" style="color:#808080;background-color:#120f12;padding-top:80px;padding-right:26px;padding-bottom:26px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"44px","left":"44px"}}}} -->
+<!-- wp:group {"style":{"color":{"background":"#120f12","text":"#808080"},"elements":{"link":{"color":{"text":"#808080"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400","lineHeight":1.6},"spacing":{"padding":{"right":"26px","left":"26px","top":"80px","bottom":"26px"},"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1180px"},"cozyCustomFont":"Roboto Serif"} -->
+<div class="wp-block-group has-text-color has-background has-link-color" style="color:#808080;background-color:#120f12;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:26px;padding-left:26px;font-size:16px;font-style:normal;font-weight:400;line-height:1.6"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"44px","left":"44px"}}}} -->
 <div class="wp-block-columns"><!-- wp:column {"style":{"spacing":{"blockGap":"0"}}} -->
 <div class="wp-block-column"><!-- wp:heading {"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"22px","lineHeight":1.4,"fontStyle":"normal","fontWeight":"600"},"color":{"text":"#fffffe"}}} -->
 <h2 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:22px;font-style:normal;font-weight:600;line-height:1.4"><?php esc_html_e( 'Trending Post', 'cozy-addons' ); ?></h2>

@@ -183,6 +183,7 @@
       "type": "object",
       "default": {
         "className": "",
+        "tag": "",
         "marginTop": "6px",
         "marginBottom": "4px",
         "fontSize": "18px",

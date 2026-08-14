@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:group {"style":{"spacing":{"blockGap":"16px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group">
 <?php
-if ( is_woocommerce_active() ) {
+if ( \CozyAddons\Helpers\Utils::is_woocommerce_active() ) {
 	?>
 	<!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search products…","widthUnit":"%","buttonText":"Search","buttonPosition":"button-only","buttonUseIcon":true,"query":{"post_type":"product"},"isSearchFieldHidden":true,"className":"ca-pattern__core-icon","style":{"spacing":{"margin":{"top":"0","bottom":"0","left":"0","right":"0"}},"color":{"background":"#ececec00","text":"#1e1905"},"elements":{"link":{"color":{"text":"#1e1905"}}}},"namespace":"woocommerce/product-search"} /-->
 

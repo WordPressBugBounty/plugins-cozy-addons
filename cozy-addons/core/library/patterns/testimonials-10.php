@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"0px"}}}} -->
-<p style="margin-top:20px;margin-bottom:0px"><?php esc_html_e( 'From initial branding to launch and beyond, this agency supported us at every stage.', 'cozy - addons' ); ?>'</p>
+<p style="margin-top:20px;margin-bottom:0px"><?php esc_html_e( 'From initial branding to launch and beyond, this agency supported us at every stage.', 'cozy-addons' ); ?>'</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 

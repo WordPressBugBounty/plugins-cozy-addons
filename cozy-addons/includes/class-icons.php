@@ -1588,7 +1588,7 @@ class Icons {
 		);
 
 		$default_colors = array(
-			'email'       => '',
+			'email'       => '#0c50ff',
 			'facebook'    => '#1877f2',
 			'linkedin'    => '#0a66c2',
 			'pinterest'   => '#e60023',
@@ -1604,7 +1604,7 @@ class Icons {
 			'medium'      => '#02b875',
 			'behance'     => '#053eff',
 			'blogger'     => '#f57d00',
-			'wallet'      => '',
+			'wallet'      => '#0c50ff',
 			'vk'          => '#4c75a3',
 			'dribble'     => '#ea4c89',
 			'wordpress'   => '#21759b',

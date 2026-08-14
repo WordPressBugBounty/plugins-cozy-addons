@@ -58,6 +58,41 @@ class Utils {
 	}
 
 	/**
+	 * Determines whether the currently active theme is a block-based (FSE) theme.
+	 *
+	 * This function checks if the active WordPress theme supports full site editing (FSE)
+	 * by verifying the existence of a `theme.json` file or using WordPress core functions.
+	 *
+	 * Useful for conditionally enabling features or compatibility layers specific to block themes.
+	 *
+	 * @return bool True if a block (FSE) theme is active, false otherwise.
+	 */
+	public static function is_block_theme() {
+		$active_theme = wp_get_theme();
+
+		return $active_theme->is_block_theme();
+	}
+
+	public static function is_plugin_installed( $plugin_slug ) {
+		$plugin_path = WP_PLUGIN_DIR . '/' . $plugin_slug;
+		return file_exists( $plugin_path );
+	}
+
+	/**
+	 * Checks whether the WooCommerce plugin is active.
+	 *
+	 * This function determines if WooCommerce is currently active on the site,
+	 * typically by checking the list of active plugins or if the WooCommerce class exists.
+	 *
+	 * Useful for conditionally loading WooCommerce-specific features or settings.
+	 *
+	 * @return bool True if WooCommerce is active, false otherwise.
+	 */
+	public static function is_woocommerce_active() {
+		return is_plugin_active( 'woocommerce/woocommerce.php' );
+	}
+
+	/**
 	 * Generates a trimmed excerpt from a given string.
 	 *
 	 * Strips shortcodes and HTML tags, splits the content by words,
@@ -105,7 +140,7 @@ class Utils {
 	 *               product name, product rating, product URL, comment rating, and reviewer name.
 	 */
 	public static function get_woo_product_reviews() {
-		if ( ! is_woocommerce_active() ) {
+		if ( ! self::is_woocommerce_active() ) {
 			return array();
 		}
 

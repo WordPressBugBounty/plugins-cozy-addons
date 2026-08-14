@@ -111,12 +111,19 @@
     "iconBoxStyles": {
       "type": "object",
       "default": {
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
         "padding": {
           "top": 5,
           "right": 5,
           "bottom": 5,
           "left": 5
         },
+        "width": "",
+        "height": "",
+        "align": "center",
         "borderType": "none",
         "borderWidth": 1,
         "borderColor": "#000",

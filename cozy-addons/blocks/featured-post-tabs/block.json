@@ -137,7 +137,7 @@
       "type": "object",
       "default": {
         "enabled": false,
-        "position": "icon-only",
+        "position": "after",
         "gap": "6px",
         "view": "default",
         "layout": "fill",

@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"24px"}}}} -->
-<p style="margin-top:24px"><?php esc_html_e( 'Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae . Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat . ', 'cozy - addons' ); ?>'</p>
+<p style="margin-top:24px"><?php esc_html_e( 'Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae . Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat . ', 'cozy-addons' ); ?>'</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 

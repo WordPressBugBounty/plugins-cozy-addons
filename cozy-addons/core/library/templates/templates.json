@@ -177,7 +177,7 @@
 	{
 		"label": "Orakus",
 		"slug": "cozy-addons/template-26",
-		"category": ["hotels-&-restaurants"],
+		"category": ["home-services"],
 		"image": "template-26.png",
 		"isPremium": true
 	},
@@ -238,9 +238,9 @@
 		"isPremium": true
 	},
 	{
-		"label": "Dry Cleaning",
+		"label": "Cleaning Service",
 		"slug": "cozy-addons/template-35",
-		"category": ["business"],
+		"category": ["home-services"],
 		"image": "template-35.png",
 		"isPremium": true
 	},
@@ -389,6 +389,13 @@
 		"slug": "cozy-addons/template-56",
 		"category": ["news-&-magazine"],
 		"image": "template-56.png",
+		"isPremium": true
+	},
+	{
+		"label": "Homelancer HVAC",
+		"slug": "cozy-addons/template-57",
+		"category": ["home-services"],
+		"image": "template-57.png",
 		"isPremium": true
 	}
 ]

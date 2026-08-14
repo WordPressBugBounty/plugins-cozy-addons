@@ -466,6 +466,15 @@ add_action(
 
 $wrapper_attributes = get_block_wrapper_attributes();
 
+$form_shortcode = '';
+if ( isset( $attributes['shortcode'] ) && ! empty( $attributes['shortcode'] ) && cozy_addons_is_valid_cf7_shortcode_format( $attributes['shortcode'] ) ) {
+	$form_shortcode = sanitize_text_field( $attributes['shortcode'] );
+} else {
+	$form_hash      = isset( $attributes['shortcode'] ) ? esc_attr( sanitize_text_field( $attributes['shortcode'] ) ) : '';
+	$form_title     = isset( $attributes['formTitle'] ) ? esc_attr( sanitize_text_field( $attributes['formTitle'] ) ) : '';
+	$form_shortcode = "[contact-form-7 id='{$form_hash}' title='{$form_title}']";
+}
+
 $classes   = array();
 $classes[] = 'cozy-block-cf7-styler';
 $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
@@ -475,7 +484,7 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 	<div <?php echo $wrapper_attributes; ?>>
 		<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
 			<div>
-				<?php echo do_shortcode( sanitize_text_field( $attributes['shortcode'] ) ); ?>
+				<?php echo do_shortcode( $form_shortcode ); ?>
 			</div>
 		</div>
 	</div>

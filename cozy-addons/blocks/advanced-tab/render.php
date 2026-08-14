@@ -41,6 +41,7 @@ $title_color  = array(
 	'text' => isset( $attributes['titleTypography']['color'] ) ? esc_attr( $attributes['titleTypography']['color'] ) : '',
 );
 $title_styles = array(
+	'margin'         => isset( $attributes['titleTypography']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['titleTypography']['margin'] ) : '',
 	'gap'            => isset( $attributes['titleStyles']['gap'] ) ? esc_attr( $attributes['titleStyles']['gap'] ) : '',
 	'flex_wrap'      => isset( $attributes['titleStyles']['flexWrap'] ) && $attributes['titleStyles']['flexWrap'] ? 'wrap' : 'nowrap',
 	'font'           => array(
@@ -171,31 +172,22 @@ $block_styles = "
 }
 
 #$block_id .advanced-tab-title {
+	{$title_styles['margin']}
     font-size: {$title_styles['font']['size']}px;
     font-weight: {$title_styles['font']['weight']};
     font-family: {$title_styles['font']['family']};
     color: {$title_color['text']};
-    text-tranform: {$title_styles['letter_case']};
+    text-transform: {$title_styles['letter_case']};
     text-decoration: {$title_styles['decoration']};
     line-height: {$title_styles['line_height']};
     letter-spacing: {$title_styles['letter_spacing']};
 }
 
 #$block_id .cozy-tab-title {
-    padding-top: {$tab_styles['sep_padding']['top']}px;
-    padding-right: {$tab_styles['sep_padding']['right']}px;
-    padding-bottom: {$tab_styles['sep_padding']['bottom']}px;
-    padding-left: {$tab_styles['sep_padding']['left']}px;
-    border-style: {$tab_styles['sep_border']['style']};
-    border-top-width: {$tab_styles['sep_border']['width_top']}px;
-    border-right-width: {$tab_styles['sep_border']['width_right']}px;
-    border-bottom-width: {$tab_styles['sep_border']['width_bottom']}px;
-    border-left-width: {$tab_styles['sep_border']['width_left']}px;
-    border-color: {$tab_title_color['border']};
     font-size: {$tab_styles['font']['size']}px;
     font-weight: {$tab_styles['font']['weight']};
     font-family: {$tab_styles['font']['family']};
-    text-tranform: {$tab_styles['letter_case']};
+    text-transform: {$tab_styles['letter_case']};
     text-decoration: {$tab_styles['decoration']};
     line-height: {$tab_styles['line_height']};
     letter-spacing: {$tab_styles['letter_spacing']};
@@ -205,6 +197,16 @@ $block_styles = "
 #$block_id .layout-wrapper {
     gap: {$title_styles['gap']};
     flex-wrap: {$title_styles['flex_wrap']};
+	padding-top: {$tab_styles['sep_padding']['top']}px;
+    padding-right: {$tab_styles['sep_padding']['right']}px;
+    padding-bottom: {$tab_styles['sep_padding']['bottom']}px;
+    padding-left: {$tab_styles['sep_padding']['left']}px;
+    border-style: {$tab_styles['sep_border']['style']};
+    border-top-width: {$tab_styles['sep_border']['width_top']}px;
+    border-right-width: {$tab_styles['sep_border']['width_right']}px;
+    border-bottom-width: {$tab_styles['sep_border']['width_bottom']}px;
+    border-left-width: {$tab_styles['sep_border']['width_left']}px;
+    border-color: {$tab_title_color['border']};
 }
 #$block_id.layout-horizontal .layout-wrapper {
     justify-content: {$container['align']};

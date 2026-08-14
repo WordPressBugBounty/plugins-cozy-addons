@@ -107,9 +107,9 @@
 							action: "cozy_block_wishlist_render_data_sidebar",
 							sidebarNonce: attributes.sidebarNonce,
 							wishlistData: JSON.stringify(wishlistData),
-							beforeLabel: attributes.sidebar.sidebarTitle.beforeText,
-							afterLabel: attributes.sidebar.sidebarTitle.afterText,
-							alignment: attributes.sidebar.sidebarTitle.alignment,
+							beforeLabel: attributes?.sidebar?.sidebarTitle?.beforeText,
+							afterLabel: attributes?.sidebar?.sidebarTitle?.afterText,
+							alignment: attributes?.sidebar?.sidebarTitle?.alignment,
 						},
 						success: function (response) {
 							if (response.data) {
@@ -147,9 +147,9 @@
 							action: "cozy_block_wishlist_render_data_sidebar",
 							sidebarNonce: attributes.sidebarNonce,
 							wishlistData: JSON.stringify(wishlistData),
-							beforeLabel: attributes.sidebar.sidebarTitle.beforeText,
-							afterLabel: attributes.sidebar.sidebarTitle.afterText,
-							alignment: attributes.sidebar.sidebarTitle.alignment,
+							beforeLabel: attributes?.sidebar?.sidebarTitle?.beforeText,
+							afterLabel: attributes?.sidebar?.sidebarTitle?.afterText,
+							alignment: attributes?.sidebar?.sidebarTitle?.alignment,
 						},
 						success: function (response) {
 							if (response.data) {
