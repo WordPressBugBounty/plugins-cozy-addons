@@ -11,6 +11,7 @@
 
 		const $dashboard = $(".cozy-blocks__dashboard");
 		const $toast = $dashboard.find(".toast-message");
+		const $tabs = $dashboard.find("#ct-dashboard-tabs");
 
 		// Check if there's a saved active tab in localStorage
 		const adminURL = window.location.href;
@@ -240,9 +241,10 @@
 				},
 				beforeSend: function () {
 					$dashboard.find(".activate-plugin").addClass("is-disabled");
+					$tabs.addClass('is-disabled');
 					$toast
 						.addClass("is-active tone-info")
-						.text("Hold on. Installaing plugin!");
+						.text("Hold on. Installing plugin!");
 				},
 				success: function (response) {
 					$toast
@@ -257,6 +259,7 @@
 						.text("Oops! Something went wrong");
 				},
 				complete: function () {
+					$tabs.removeClass('is-disabled');
 					setTimeout(() => {
 						$toast
 							.removeClass(

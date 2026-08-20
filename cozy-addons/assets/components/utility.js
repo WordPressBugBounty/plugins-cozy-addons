@@ -16,6 +16,7 @@ export function getFontOptions(googleFonts) {
 }
 
 export const fontWeights = [
+	{ label: __("Default", "cozy-addons"), value: "" },
 	{ label: __("Thin", "cozy-addons"), value: 100 },
 	{
 		label: __("Extra Light", "cozy-addons"),

@@ -1116,7 +1116,7 @@ function cozy_addons_wishlist_render_data_sidebar() {
 		foreach ( $wishlist_data as $product_id ) {
 			$product = wc_get_product( $product_id );
 
-			if ( $product ) {
+			if ( $product && 'publish' === $product->get_status() && $product->is_visible() ) {
 				$product_name        = $product->get_name();
 				$product_link        = get_permalink( $product_id );
 				$product_price       = wc_price( $product->get_price() );
@@ -1160,7 +1160,7 @@ function cozy_addons_wishlist_render_data_sidebar() {
 				/* End Title + Price */
 
 				/* Summary */
-				$output .= '<p class="cozy-block-wishlist__product-summary">' . $product_description . '</p>';
+				$output .= '<p class="cozy-block-wishlist__product-summary">' . cozy_create_excerpt( $product_description ) . '</p>';
 				/* End Summary */
 
 				/* Buttons */
@@ -1751,21 +1751,35 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 		}
 
 		$shadow_color = array(
-			'default' => isset( $cozy_hover_effect['boxShadow']['color'] ) ? $cozy_hover_effect['boxShadow']['color'] : '',
-			'hover'   => isset( $cozy_hover_effect['boxShadowHover']['color'] ) ? $cozy_hover_effect['boxShadowHover']['color'] : '',
+			'default' => isset( $cozy_hover_effect['boxShadow']['color'] ) ? esc_attr( sanitize_text_field( $cozy_hover_effect['boxShadow']['color'] ) ) : '',
+			'hover'   => isset( $cozy_hover_effect['boxShadowHover']['color'] ) ? esc_attr( sanitize_text_field( $cozy_hover_effect['boxShadowHover']['color'] ) ) : '',
+		);
+		$shadow       = array(
+			'horizontal' => isset( $cozy_hover_effect['boxShadow']['horizontal'] ) ? esc_attr( intval( $cozy_hover_effect['boxShadow']['horizontal'] ) ) : '',
+			'vertical'   => isset( $cozy_hover_effect['boxShadow']['vertical'] ) ? esc_attr( intval( $cozy_hover_effect['boxShadow']['vertical'] ) ) : '',
+			'blur'       => isset( $cozy_hover_effect['boxShadow']['blur'] ) ? esc_attr( intval( $cozy_hover_effect['boxShadow']['blur'] ) ) : '',
+			'spread'     => isset( $cozy_hover_effect['boxShadow']['spread'] ) ? esc_attr( intval( $cozy_hover_effect['boxShadow']['spread'] ) ) : '',
+			'position'   => isset( $cozy_hover_effect['boxShadow']['position'] ) ? esc_attr( sanitize_text_field( $cozy_hover_effect['boxShadow']['position'] ) ) : '',
+		);
+		$shadow_hover = array(
+			'horizontal' => isset( $cozy_hover_effect['boxShadowHover']['horizontal'] ) ? esc_attr( intval( $cozy_hover_effect['boxShadowHover']['horizontal'] ) ) : '',
+			'vertical'   => isset( $cozy_hover_effect['boxShadowHover']['vertical'] ) ? esc_attr( intval( $cozy_hover_effect['boxShadowHover']['vertical'] ) ) : '',
+			'blur'       => isset( $cozy_hover_effect['boxShadowHover']['blur'] ) ? esc_attr( intval( $cozy_hover_effect['boxShadowHover']['blur'] ) ) : '',
+			'spread'     => isset( $cozy_hover_effect['boxShadowHover']['spread'] ) ? esc_attr( intval( $cozy_hover_effect['boxShadowHover']['spread'] ) ) : '',
+			'position'   => isset( $cozy_hover_effect['boxShadowHover']['position'] ) ? esc_attr( sanitize_text_field( $cozy_hover_effect['boxShadowHover']['position'] ) ) : '',
 		);
 		// Default Box Shadow.
 		if ( isset( $cozy_hover_effect['boxShadow']['enabled'] ) && filter_var( $cozy_hover_effect['boxShadow']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-			$cozy_hover_string .= ';--cozyDefaultBoxShadow:' . $cozy_hover_effect['boxShadow']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadow']['vertical'] . 'px ' . $cozy_hover_effect['boxShadow']['blur'] . 'px ' . $cozy_hover_effect['boxShadow']['spread'] . 'px ' . $shadow_color['default'] . ' ' . $cozy_hover_effect['boxShadow']['position'];
+			$cozy_hover_string .= ';--cozyDefaultBoxShadow:' . $shadow['horizontal'] . 'px ' . $shadow['vertical'] . 'px ' . $shadow['blur'] . 'px ' . $shadow['spread'] . 'px ' . $shadow_color['default'] . ' ' . $shadow['position'];
 		}
 		// Hover Box Shadow.
 		if ( isset( $cozy_hover_effect['boxShadowHover']['enabled'] ) && filter_var( $cozy_hover_effect['boxShadowHover']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-			$cozy_hover_string .= ';--cozyHoverBoxShadow:' . $cozy_hover_effect['boxShadowHover']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadowHover']['vertical'] . 'px ' . $cozy_hover_effect['boxShadowHover']['blur'] . 'px ' . $cozy_hover_effect['boxShadowHover']['spread'] . 'px ' . $shadow_color['hover'] . ' ' . $cozy_hover_effect['boxShadowHover']['position'];
+			$cozy_hover_string .= ';--cozyHoverBoxShadow:' . $shadow_hover['horizontal'] . 'px ' . $shadow_hover['vertical'] . 'px ' . $shadow_hover['blur'] . 'px ' . $shadow_hover['spread'] . 'px ' . $shadow_color['hover'] . ' ' . $shadow_hover['position'];
 		}
 
 		// Z Index attribute.
 		if ( isset( $cozy_hover_effect['hasZIndex'] ) && filter_var( $cozy_hover_effect['hasZIndex'], FILTER_VALIDATE_BOOLEAN ) ) {
-			$cozy_hover_string .= ';z-index:' . $cozy_hover_effect['zIndex'];
+			$cozy_hover_string .= ';z-index:' . esc_attr( intval( $cozy_hover_effect['zIndex'] ) );
 		}
 
 		// Transform Default.
@@ -1783,11 +1797,6 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 		// Overflow.
 		if ( isset( $cozy_hover_effect['hasOverflow'] ) && filter_var( $cozy_hover_effect['hasOverflow'], FILTER_VALIDATE_BOOLEAN ) ) {
 			$updated_class .= ' cozy-hover-effect__overflow-' . $cozy_hover_effect['overflow'] . ' ';
-		}
-
-		if ( 'core/button' !== $block['blockName'] && 'core/image' !== $block['blockName'] ) {
-			$cozy_hover_string  = esc_attr( $cozy_hover_string );
-			$cozy_hover_string .= ';' . $existing_styles;
 		}
 
 		if ( 'core/image' === $block['blockName'] ) {
@@ -1813,7 +1822,7 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 
 			$block_content = preg_replace(
 				'/<figure class=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"/',
-				'<figure class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( trim( $cozy_hover_string, '; ' ) ) . $existing_styles . '"',
+				'<figure class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( trim( $cozy_hover_string, '; ' ) ) . esc_attr( $existing_styles ) . '"',
 				$block_content,
 				1
 			);
@@ -1821,7 +1830,7 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 		} else {
 			$block_content = preg_replace(
 				'/<div class=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"/',
-				'<div class="' . esc_attr( $updated_class ) . '" style="' . trim( $cozy_hover_string, '; ' ) . '"',
+				'<div class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( trim( $cozy_hover_string, '; ' ) ) . '"',
 				$block_content,
 				1
 			);
@@ -2093,11 +2102,7 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 		$existing_class = isset( $matches[1] ) ? $matches[1] : '';
 
 		// Extract the custom styles from block attributes
-		$custom_styles = array(
-			'--cozyButtonBgColorHover' => '',
-			'--cozyButtonColorHover'   => '',
-			'--cozyButtonBorderHover'  => '',
-		);
+		$custom_styles = array();
 
 		if ( isset( $block['attrs']['cozyHoverStyles'] ) ) {
 			$cozyHoverStyles = $block['attrs']['cozyHoverStyles'];
@@ -2111,8 +2116,12 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 
 		// Build the inline style string
 		$inline_styles = '';
-		foreach ( $custom_styles as $style => $value ) {
-			$inline_styles .= ";$style:$value";
+		if ( ! empty( $custom_styles ) ) {
+			foreach ( $custom_styles as $style => $value ) {
+				if ( ! empty( $value ) ) {
+					$inline_styles .= ";$style:$value";
+				}
+			}
 		}
 
 		$updated_class = $existing_class;
@@ -2125,7 +2134,7 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 
 		preg_match( '/<div\s[^>]*\bstyle="(.*?)"/', $block_content, $matches );
 		$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
-		$appended_styles = $existing_styles . '; ' . esc_attr( $inline_styles );
+		$appended_styles = $existing_styles . '; ' . esc_attr( trim( $inline_styles, '; ' ) );
 
 		// Icon Styles
 		if ( isset( $block['attrs']['icon']['enabled'] ) && filter_var( $block['attrs']['icon']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
@@ -2170,7 +2179,7 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 				$inline_styles .= ";$style:$value";
 			}
 
-			$appended_styles = $existing_styles . esc_attr( $inline_styles );
+			$appended_styles = $existing_styles . esc_attr( trim( $inline_styles, '; ' ) );
 		}
 
 		$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( trim( $updated_class, ' ' ) ) . '" style="' . trim( cozy_addons_clean_empty_css( $appended_styles ), '; ' ) . '"', $block_content );

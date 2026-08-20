@@ -248,6 +248,7 @@ class Utils {
 		$args = array(
 			'post_type'      => 'ca_mega_menu', // Specify the custom post type.
 			'posts_per_page' => -1, // Display all posts.
+			'post_status'    => 'publish',
 		);
 
 		// Get the posts as an array.
@@ -284,6 +285,7 @@ class Utils {
 		$args = array(
 			'post_type'      => 'ca_portfolio_gallery', // Specify the custom post type.
 			'posts_per_page' => -1, // Display all posts.
+			'post_status'    => 'publish',
 		);
 
 		// Get the posts as an array.

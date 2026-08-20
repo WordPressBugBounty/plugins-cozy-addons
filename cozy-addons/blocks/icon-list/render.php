@@ -29,7 +29,8 @@ $styles = array(
 );
 
 $container = array(
-	'gap' => isset( $attributes['containerStyles']['gap'] ) ? esc_attr( $attributes['containerStyles']['gap'] ) : '',
+	'flex_wrap' => isset( $attributes['containerStyles']['flexWrap'] ) ? 'wrap' : '',
+	'gap'       => isset( $attributes['containerStyles']['gap'] ) ? esc_attr( $attributes['containerStyles']['gap'] ) : '',
 );
 
 $color                   = isset( $attributes['typography']['color'] ) ? $attributes['typography']['color'] : '';
@@ -68,10 +69,10 @@ $icon_styles = array(
 	'opacity'    => isset( $attributes['iconOpacity'] ) ? esc_attr( $attributes['iconOpacity'] ) : '',
 );
 $icon_color  = array(
-	'default'        => isset( $attributes['iconColor'] ) ? $attributes['iconColor'] : '',
+	'default'        => isset( $attributes['iconColor'] ) && ! empty( $attributes['iconColor'] ) ? $attributes['iconColor'] : $color,
 	'default_bg'     => isset( $attributes['iconBoxStyles']['bgColor'] ) ? $attributes['iconBoxStyles']['bgColor'] : '',
 	'default_border' => isset( $attributes['iconBoxStyles']['borderColor'] ) ? $attributes['iconBoxStyles']['borderColor'] : '',
-	'hover'          => isset( $attributes['iconColorHover'] ) ? $attributes['iconColorHover'] : '',
+	'hover'          => isset( $attributes['iconColorHover'] ) && ! empty( $attributes['iconColorHover'] ) ? $attributes['iconColorHover'] : $color_hover,
 	'hover_border'   => isset( $attributes['iconBoxStyles']['borderColorHover'] ) ? $attributes['iconBoxStyles']['borderColorHover'] : '',
 );
 
@@ -92,13 +93,29 @@ $block_styles = "
 	line-height: {$styles['line_height']};
 	letter-spacing: {$styles['letter_spacing']};
     color: {$color};
-    text-align: {$styles['align']};
     padding: {$item_padding_top}px {$item_padding_right}px {$item_padding_bottom}px {$item_padding_left}px;
     border-width: {$item_border_width}px;
     border-style: {$item_border_type};
     border-color: {$item_border_color};
     gap: {$styles['gap']}px;
-	align-items: {$icon_styles['align']};
+    align-items: {$icon_styles['align']};
+	
+	& a {
+		gap: {$styles['gap']}px;
+		align-items: {$icon_styles['align']};
+    	color: {$color};
+    	text-decoration: {$styles['decoration']};
+	}
+
+	&:hover a {
+	    color: {$color_hover};
+	}
+}
+#$block_id.horizontal, #$block_id.vertical .cozy-block-list-item {
+	justify-content: {$styles['align']};
+}
+#$block_id.horizontal {
+	flex-wrap: {$container['flex_wrap']};
 }
 
 #$block_id .cozy-block-list-item:hover {
@@ -107,12 +124,11 @@ $block_styles = "
     border-color: {$item_border_color_hover};
 }
 
-#$block_id.vertical .list-inline-block {
-    margin-bottom: {$container['gap']}px;
+#$block_id.vertical .cozy-block-list-item:not(:first-child) {
+    margin-top: {$container['gap']}px;
 }
-
-#$block_id.horizontal .list-inline-block {
-    margin-right: {$container['gap']}px;
+#$block_id.horizontal {
+    gap: {$container['gap']}px;
 }
 
 #$block_id svg {
@@ -163,8 +179,6 @@ $block_styles = "
 }
 ";
 
-$output = '<div class="cozy-block-wrapper">';
-
 $font_families = array();
 
 if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
@@ -195,7 +209,10 @@ add_action(
 	}
 );
 
-$output .= $content;
-$output .= '</div>';
-
-echo $output;
+$wrapper_attributes = get_block_wrapper_attributes();
+?>
+<div class="cozy-block-wrapper">
+	<div <?php echo $wrapper_attributes; ?>>
+		<?php echo $content; ?>
+	</div>
+</div>

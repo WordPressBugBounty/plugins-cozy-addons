@@ -6063,7 +6063,7 @@ return array(
 			),
 			'iconColor' => array(
 				'type' => 'string',
-				'default' => '#5566ca'
+				'default' => ''
 			),
 			'iconColorHover' => array(
 				'type' => 'string',
@@ -6114,7 +6114,8 @@ return array(
 				'default' => array(
 					'width' => '',
 					'height' => '',
-					'gap' => 10,
+					'gap' => 16,
+					'flexWrap' => false,
 					'padding' => array(
 						'top' => 0,
 						'right' => 0,
@@ -6163,11 +6164,11 @@ return array(
 			'typography' => array(
 				'type' => 'object',
 				'default' => array(
-					'fontFamily' => 'Public Sans',
-					'fontSize' => 16,
+					'fontFamily' => '',
+					'fontSize' => '',
 					'color' => '#000',
 					'colorHover' => '',
-					'fontWeight' => 400,
+					'fontWeight' => '',
 					'letterCase' => 'none',
 					'decoration' => 'none',
 					'lineHeight' => '',
@@ -14262,7 +14263,7 @@ return array(
 				)
 			),
 			'interactivity' => array(
-				'clientNavigation' => true
+				'clientNavigation' => false
 			)
 		),
 		'attributes' => array(

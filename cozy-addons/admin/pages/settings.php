@@ -24,9 +24,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</svg>
 					</i>
 				</h3>
-				<p><?php esc_html_e( 'Lightweight Patterns & Homepage Templates to make website building easier', 'cozy-addons' ); ?></p>
+				<p><?php esc_html_e( 'Create templates for the Advanced Mega Menu block that can be used to display this content when creating a mega menu.', 'cozy-addons' ); ?></p>
 			</div>
 			<div class="toggle-switcher-wrap">
+				<?php
+				$checked = get_option( 'ca-cpt--mega-menu-templates' );
+				?>
 				<input type="checkbox" class="ca__block-cpt <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="mega-menu-templates" id="ca--mega-menu-cpt" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 				<?php
 				$classes   = array();
@@ -53,9 +56,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</svg>
 					</i>
 				</h3>
-				<p><?php esc_html_e( 'Lightweight Patterns & Homepage Templates to make website building easier', 'cozy-addons' ); ?></p>
+				<p><?php esc_html_e( 'Templates created here will appear in the Portfolio Gallery block when its source is set to Portfolio Gallery.', 'cozy-addons' ); ?></p>
 			</div>
 			<div class="toggle-switcher-wrap">
+				<?php
+				$checked = get_option( 'ca-cpt--portfolio-gallery-templates' );
+				?>
 				<input type="checkbox" class="ca__block-cpt <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>" name="portfolio-gallery-templates" id="ca--portfolio-gallery-cpt" <?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 				<?php
 				$classes   = array();

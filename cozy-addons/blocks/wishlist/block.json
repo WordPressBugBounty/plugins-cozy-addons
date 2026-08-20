@@ -24,7 +24,7 @@
       }
     },
     "interactivity": {
-      "clientNavigation": true
+      "clientNavigation": false
     }
   },
   "attributes": {

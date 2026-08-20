@@ -508,6 +508,15 @@ $output        = '<div class="' . esc_attr( cozy_addons_sanitize_html_class( $cl
 
 /* Wishlist Variation */
 $wishlist_user_meta = get_user_meta( $attributes['userID'], 'cozy_block_wishlist_data', true );
+if ( ! empty( $wishlist_user_meta ) ) {
+	foreach ( $wishlist_user_meta as $index => $product_id ) {
+		$product = wc_get_product( $product_id );
+		if ( 'publish' !== $product->get_status() ) {
+			array_splice( $wishlist_user_meta, $index, 1 );
+		}
+	}
+	update_user_meta( $attributes['userID'], 'cozy_block_wishlist_data', $wishlist_user_meta );
+}
 if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType'] && 'wishlist' === $attributes['variation'] ) {
 	$cozy_product_id   = $block->context['postId'];
 	$cozy_product      = wc_get_product( $cozy_product_id );
@@ -779,7 +788,18 @@ if ( ! is_user_logged_in() ) {
 	var showWishlistCount = <?php echo ( isset( $attributes['sidebar']['count']['enabled'] ) && $attributes['sidebar']['count']['enabled'] ) ? 'true' : 'false'; ?>;
 
 	function getLocalWishlist() {
-		return JSON.parse(localStorage.getItem("cozy_block_wishlist_data")) || [];
+		let productIDs = JSON.parse(localStorage.getItem("cozy_block_wishlist_data")) || [];
+		const newProductIds =  productIDs.filter(productId => {
+			const productEl = document.querySelector(
+				'.cozy-block-wishlist.variation-wishlist .post-' + productId
+			)
+			
+			return productEl !== null;
+		});
+
+		localStorage.setItem('cozy_block_wishlist_data', JSON.stringify(newProductIds));
+		
+		return newProductIds;
 	}
 
 	function updateLocalWishlist(productId) {

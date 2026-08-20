@@ -1,3 +1,9 @@
+= 2.2.17 - Aug 20, 2026 = 
+* Fix: Mega Menu and Portfolio Gallery CPT enable/disable setting glitch.
+* Fix: Minor block improvements.
+* Security: Missing Authorization to Unauthenticated Unpublished Product Information Disclosure via 'wishlistData' Parameter.
+* Security: Authenticated (Contributor+) Stored Cross-Site Scripting via cozyHoverEffect Block Attribute.
+
 = 2.2.16 - Aug 14, 2026 = 
 * Fix: Plugin uninstall process.
 
