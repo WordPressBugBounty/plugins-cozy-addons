@@ -1799,6 +1799,11 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 			$updated_class .= ' cozy-hover-effect__overflow-' . $cozy_hover_effect['overflow'] . ' ';
 		}
 
+		if ( 'core/button' !== $block['blockName'] && 'core/image' !== $block['blockName'] ) {
+			$cozy_hover_string  = esc_attr( $cozy_hover_string );
+			$cozy_hover_string .= ';' . $existing_styles;
+		}
+
 		if ( 'core/image' === $block['blockName'] ) {
 			preg_match( '/<figure class="([^"]+)"/', $block_content, $matches );
 			$existing_class = isset( $matches[1] ) ? $matches[1] : '';
@@ -1820,9 +1825,13 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 				$updated_class .= ' cozy-hover-effect__has-hover-box-shadow';
 			}
 
+			if ( ! empty( $existing_styles ) ) {
+				$cozy_hover_string .= $existing_styles;
+			}
+
 			$block_content = preg_replace(
 				'/<figure class=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"/',
-				'<figure class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( trim( $cozy_hover_string, '; ' ) ) . esc_attr( $existing_styles ) . '"',
+				'<figure class="' . esc_attr( $updated_class ) . '" style="' . esc_attr( trim( $cozy_hover_string, '; ' ) ) . '"',
 				$block_content,
 				1
 			);

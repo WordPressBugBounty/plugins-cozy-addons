@@ -4,7 +4,7 @@ Tags: gutenberg blocks, page builder, block patterns, woocommerce blocks, full s
 Requires PHP: 7.4
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.2.17
+Stable tag: 2.2.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Build any WordPress site without Elementor or Divi. 57 Gutenberg blocks, 700+ ready-made patterns & 50+ FSE templates. No page builder needed.
@@ -182,6 +182,9 @@ You can report any security bugs found in the source code of this plugin through
 8. FSE Homepage templates
 
 == Changelog ==
+= 2.2.18 - Aug 21, 2026 = 
+* Fix: Append the Cozy Advanced Effects CSS to the block’s existing styles.
+
 = 2.2.17 - Aug 20, 2026 = 
 * Fix: Mega Menu and Portfolio Gallery CPT enable/disable setting glitch.
 * Fix: Minor block improvements.

@@ -1,3 +1,6 @@
+= 2.2.18 - Aug 21, 2026 = 
+* Fix: Append the Cozy Advanced Effects CSS to the block’s existing styles.
+
 = 2.2.17 - Aug 20, 2026 = 
 * Fix: Mega Menu and Portfolio Gallery CPT enable/disable setting glitch.
 * Fix: Minor block improvements.
