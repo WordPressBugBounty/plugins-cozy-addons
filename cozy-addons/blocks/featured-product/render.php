@@ -407,7 +407,7 @@ body #$block_id.cozy-featured-product.toast-message{
     {$toast_card['padding']}
     {$toast_card['border']}
 	font-size: {$toast_card['font']['size']};
-	font-family: {$toast_card['font']['family']};
+	font-family: '{$toast_card['font']['family']}';
 	font-weight: {$toast_card['font']['weight']};
 	color: {$toast_card['color']['text']};
 	background-color: {$toast_card['color']['bg']};
@@ -430,7 +430,7 @@ body #$block_id.cozy-featured-product.toast-message{
     {$heading['radius']}
     font-size: clamp(20px, calc(3vw + 4px), {$heading['font']['size']});
     font-weight: {$heading['font']['weight']};
-    font-family: {$heading['font']['family']};
+    font-family: '{$heading['font']['family']}';
     background-color: {$heading['bg']};
     color: {$heading['text']};
 	clip-path: {$heading['clip_path']};
@@ -446,7 +446,7 @@ body #$block_id.cozy-featured-product.toast-message{
 	border-radius: {$attributes['subHeading']['radius']};
     font-size: clamp(18px, calc(3vw + 4px), {$sub_heading['font']['size']});
     font-weight: {$sub_heading['font']['weight']};
-    font-family: {$sub_heading['font']['family']};
+    font-family: '{$sub_heading['font']['family']}';
 	text-transform: {sub_heading['letter_case']};
     text-decoration: {$sub_heading['decoration']};
     line-height: {$sub_heading['line_height']};
@@ -553,7 +553,7 @@ body #$block_id.cozy-featured-product.toast-message{
     border-radius: {$sale_badge['radius']};
     font-size: {$sale_badge['font']['size']};
     font-weight: {$sale_badge['font']['weight']};
-    font-family: {$sale_badge['font']['family']};
+    font-family: '{$sale_badge['font']['family']}';
     text-transform: {$sale_badge['letter_case']};
     text-decoration: {$sale_badge['decoration']};
     line-height: {$sale_badge['line_height']};
@@ -606,7 +606,7 @@ body #$block_id.cozy-featured-product.toast-message{
 	{$product_category['margin']}
 	font-size: {$product_category['font']['size']};
 	font-weight: {$product_category['font']['weight']};
-	font-family: {$product_category['font']['family']};
+	font-family: '{$product_category['font']['family']}';
     text-transform: {$product_category['letter_case']};
 	line-height: {$product_category['line_height']};
 	letter-spacing: {$product_category['letter_spacing']};
@@ -630,7 +630,7 @@ body #$block_id.cozy-featured-product.toast-message{
 	{$post_title['margin']}
 	font-size: clamp(16px, calc(3vw + 4px), {$post_title['font']['size']});
 	font-weight: {$post_title['font']['weight']};
-	font-family: {$post_title['font']['family']};
+	font-family: '{$post_title['font']['family']}';
 	text-transform: {$post_title['letter_case']};
 	line-height: {$post_title['line_height']};
 	letter-spacing: {$post_title['letter_spacing']};
@@ -647,7 +647,7 @@ body #$block_id.cozy-featured-product.toast-message{
 	{$product_price['margin']}
 	font-size: {$product_price['font']['size']};
 	font-weight: {$product_price['font']['weight']};
-	font-family: {$product_price['font']['family']};
+	font-family: '{$product_price['font']['family']}';
 	text-transform: {$product_price['letter_case']};
 	text-decoration: {$product_price['decoration']};
 	line-height: {$product_price['line_height']};
@@ -662,7 +662,7 @@ body #$block_id.cozy-featured-product.toast-message{
 	{$product_summary['margin']}
 	font-size: {$product_summary['font']['size']};
 	font-weight: {$product_summary['font']['weight']};
-	font-family: {$product_summary['font']['family']};
+	font-family: '{$product_summary['font']['family']}';
 	text-transform: {$product_summary['letter_case']};
 	text-decoration: {$product_summary['decoration']};
 	line-height: {$product_summary['line_height']};
@@ -678,7 +678,7 @@ body #$block_id.cozy-featured-product.toast-message{
     border-radius: {$cart_btn['radius']};
     font-size: {$cart_btn['font']['size']};
     font-weight: {$cart_btn['font']['weight']};
-    font-family: {$cart_btn['font']['family']};
+    font-family: '{$cart_btn['font']['family']}';
     text-transform: {$cart_btn['letter_case']};
 	text-decoration: {$cart_btn['decoration']};
 	line-height: {$cart_btn['line_height']};
@@ -696,7 +696,7 @@ body #$block_id.cozy-featured-product.toast-message{
 	margin-top:{$quick_view_modal['title']['marginTop']};
 	margin-bottom:{$quick_view_modal['title']['marginBottom']};
 	font-size: {$quick_view_modal['title']['font']['size']};
-	font-family: {$quick_view_modal['title']['font']['family']};
+	font-family: '{$quick_view_modal['title']['font']['family']}';
 	font-weight:{$quick_view_modal['title']['font']['weight']};
 	text-transform: {$quick_view_modal['title']['lettercase']};
 	color:{$quick_view_modal['title']['color']['text']};
@@ -707,8 +707,8 @@ body #$block_id.cozy-featured-product.toast-message{
 #$block_id .quick-view__lightbox-body .quick-view__product-detail .quick-view__product-category{
 	{$quick_view_modal['categories']['padding']}
 	font-size: {$quick_view_modal['categories']['font']['size']};
-	font-family: {$quick_view_modal['categories']['font']['family']};
-	font-weight:{$quick_view_modal['categories']['font']['weight']};
+	font-family: '{$quick_view_modal['categories']['font']['family']}';
+	font-weight: {$quick_view_modal['categories']['font']['weight']};
 	text-transform: {$quick_view_modal['categories']['lettercase']};
 	color:{$quick_view_modal['categories']['color']['text']};
 	background-color: {$quick_view_modal['categories']['color']['background']};
@@ -718,18 +718,18 @@ body #$block_id.cozy-featured-product.toast-message{
 	background-color:{$quick_view_modal['categories']['color']['background_hover']};
 }
 #$block_id .quick-view__lightbox-body .quick-view__product-detail .post__content{
-	margin-top:{$quick_view_modal['content']['marginTop']};
-	margin-bottom:{$quick_view_modal['content']['marginBottom']};
-	font-size:{$quick_view_modal['content']['font']['size']};
-	font-family:{$quick_view_modal['content']['font']['family']};
+	margin-top: {$quick_view_modal['content']['marginTop']};
+	margin-bottom: {$quick_view_modal['content']['marginBottom']};
+	font-size: {$quick_view_modal['content']['font']['size']};
+	font-family: '{$quick_view_modal['content']['font']['family']}';
 	font-weight:{$quick_view_modal['content']['font']['weight']};
 	text-transform:{$quick_view_modal['content']['lettercase']};
 	color:{$quick_view_modal['content']['color']['text']};
 }
 #$block_id .quick-view__lightbox-body .quick-view__product-detail .post__price{
 	font-size:{$quick_view_modal['price']['font']['size']};
-	font-family:{$quick_view_modal['price']['font']['family']};
-	font-weight:{$quick_view_modal['price']['font']['weight']};
+	font-family: '{$quick_view_modal['price']['font']['family']}';
+	font-weight: {$quick_view_modal['price']['font']['weight']};
 	text-transform:{$quick_view_modal['price']['lettercase']};
 	color:{$quick_view_modal['price']['color']['text']};
 }
@@ -740,7 +740,7 @@ body #$block_id.cozy-featured-product.toast-message{
 	color:{$quick_view_modal['cart_button']['color']['text']};
 	background-color:{$quick_view_modal['cart_button']['color']['bg']};
 	font-size:{$quick_view_modal['cart_button']['font']['size']};
-	font-family:{$quick_view_modal['cart_button']['font']['family']};
+	font-family: '{$quick_view_modal['cart_button']['font']['family']}';
 	font-weight:{$quick_view_modal['cart_button']['font']['weight']};
 }
 #$block_id .quick-view__lightbox-body .quick-view__product-detail .quick-view__cart-wrapper .quick-view__cart-button:hover{
@@ -754,7 +754,7 @@ body #$block_id.cozy-featured-product.toast-message{
 	color:{$quick_view_modal['view_button']['color']['text']};
 	background-color:{$quick_view_modal['view_button']['color']['bg']};
 	font-size:{$quick_view_modal['view_button']['font']['size']};
-	font-family:{$quick_view_modal['view_button']['font']['family']};
+	font-family: '{$quick_view_modal['view_button']['font']['family']}';
 	font-weight:{$quick_view_modal['view_button']['font']['weight']};
 }
 #$block_id .quick-view__lightbox-body .quick-view__product-detail .quick-view__cart-wrapper .quick-view__cart-view:hover{

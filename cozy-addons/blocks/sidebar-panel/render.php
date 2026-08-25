@@ -151,7 +151,7 @@ $block_styles = "
     gap: {$open_icon['gap']}px;
     font-size: {$open_icon['font']['size']}px;
     font-weight: {$open_icon['font']['weight']};
-    font-family: {$open_icon['font']['family']};
+    font-family: '{$open_icon['font']['family']}';
     text-transform: {$typography['letter_case']};
     text-decoration: {$typography['decoration']};
     line-height: {$typography['line_height']};

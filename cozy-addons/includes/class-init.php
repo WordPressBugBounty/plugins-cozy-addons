@@ -82,5 +82,17 @@ class Init {
 
 		// Block Instance.
 		\CozyAddons\Blocks::get_instance();
+
+		// Separately, on init (after CPTs are registered).
+		add_action(
+			'init',
+			function () {
+				if ( get_option( 'cozy_addons_flush_rewrite_flag' ) ) {
+					flush_rewrite_rules();
+					delete_option( 'cozy_addons_flush_rewrite_flag' );
+				}
+			},
+			99
+		);
 	}
 }

@@ -105,7 +105,7 @@ $block_styles = "
 	margin-left: {$attr_icon['label_gap']};
 	font-size: {$attr_icon['font']['size']};
 	font-weight: {$attr_icon['font']['weight']};
-	font-family: {$attr_icon['font']['family']};
+	font-family: '{$attr_icon['font']['family']}';
 	text-transform: {$attr_icon['letter_case']};
 	text-decoration: {$attr_icon['decoration']};
 	line-height: {$attr_icon['line_height']};

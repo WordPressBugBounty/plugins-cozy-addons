@@ -108,7 +108,7 @@ $block_styles = "
     border-color: {$button_styles['border']['color']};
     border-radius: {$button_styles['radius']}px;
     font-size: {$button_styles['font']['size']}px;
-    font-family: {$button_styles['font']['family']};
+    font-family: '{$button_styles['font']['family']}';
     font-weight: {$button_styles['font']['weight']};
     text-transform: {$button_styles['letter_case']};
     text-decoration: {$button_styles['decoration']};

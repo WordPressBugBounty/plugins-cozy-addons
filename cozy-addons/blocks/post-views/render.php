@@ -126,7 +126,7 @@ $block_styles = "
 #$block_id .cozy-block-post-views__label {
 	font-size: {$label_styles['font_size']};
 	font-weight: {$label_styles['font_weight']};
-	font-family: {$label_styles['font_family']};
+	font-family: '{$label_styles['font_family']}';
 	text-transform: {$label_styles['letter_case']};
 	text-decoration: {$label_styles['decoration']};
 	line-height: {$label_styles['line_height']};

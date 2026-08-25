@@ -1,6 +1,3 @@
-.cozy-block-hover-panel {
-	text-align: right;
-}
 .clear-cozy-hover-attributes {
 	color: #b32d2e;
 	font-size: 13px;
@@ -66,10 +63,6 @@
 	nav.is-responsive.wp-block-navigation ul {
 		/* padding: 0 20px; */
 	}
-}
-
-.cozy-block-premium-button:hover {
-	background-color: #f90 !important;
 }
 
 /*Padding link styles. */

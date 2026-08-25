@@ -94,7 +94,7 @@ $block_styles = "
 .cozy-block-wrapper.$block_id .label-wrapper .progress{
     font-size: {$typography['font']['size']}px;
     font-weight: {$typography['font']['weight']};
-    font-family: {$typography['font']['family']};
+    font-family: '{$typography['font']['family']}';
     text-transform: {$typography['letter_case']};
     text-decoration: {$typography['decoration']};
     line-height: {$typography['line_height']};
@@ -105,7 +105,7 @@ $block_styles = "
     margin-bottom: {$label_styles['margin']['bottom']}px;
     font-size: {$typography['font']['size']}px;
     font-weight: {$typography['font']['weight']};
-    font-family: {$typography['font']['family']};
+    font-family: '{$typography['font']['family']}';
     text-transform: {$typography['letter_case']};
     text-decoration: {$typography['decoration']};
     line-height: {$typography['line_height']};
@@ -115,7 +115,7 @@ $block_styles = "
 .cozy-block-wrapper.$block_id .before-progress, .cozy-block-wrapper.$block_id .after-progress {
     font-size: {$label_styles['font']['size']}px;
     font-weight: {$label_styles['font']['weight']};
-    font-family: {$label_styles['font']['family']};
+    font-family: '{$label_styles['font']['family']}';
     text-transform: {$label_styles['letter_case']};
     text-decoration: {$label_styles['decoration']};
     line-height: {$label_styles['line_height']};

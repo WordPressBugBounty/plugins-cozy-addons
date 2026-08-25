@@ -200,7 +200,7 @@ $block_styles = "
     color: {$tab_styles['default_color']};
 	font-size: {$tab_styles['font']['size']};
 	font-weight: {$tab_styles['font']['weight']};
-	font-family: {$tab_styles['font']['family']};
+	font-family: '{$tab_styles['font']['family']}';
     text-transform: {$tab_styles['letter_case']};
     text-decoration: {$tab_styles['decoration']};
     line-height: {$tab_styles['line_height']};
@@ -330,7 +330,7 @@ $block_styles = "
 	gap: {$cat_styles['gap']};
 	font-size: {$cat_styles['font']['size']};
 	font-weight: {$cat_styles['font']['weight']};
-	font-family: {$cat_styles['font']['family']};
+	font-family: '{$cat_styles['font']['family']}';
 	margin-top: {$cat_styles['margin']['top']};
 	margin-bottom: {$cat_styles['margin']['bottom']};
 	text-transform: {$cat_styles['letter_case']};
@@ -356,7 +356,7 @@ $block_styles = "
 	margin-bottom: {$title_styles['margin']['bottom']};
     font-size: clamp(16px, calc(3vw + 4px), {$title_styles['font']['size']});
     font-weight: {$title_styles['font']['weight']};
-    font-family: {$title_styles['font']['family']};
+    font-family: '{$title_styles['font']['family']}';
 	text-transform: {$title_styles['letter_case']};
 	line-height: {$title_styles['line_height']};
 	letter-spacing: {$title_styles['letter_spacing']};
@@ -381,7 +381,7 @@ $block_styles = "
 	background-color: {$date_styles['bg_color']};
 	font-size: {$date_styles['font']['size']};
 	font-weight: {$date_styles['font']['weight']};
-	font-family: {$date_styles['font']['family']};
+	font-family: '{$date_styles['font']['family']}';
 	text-transform: {$date_styles['letter_case']};
 	text-decoration: {$date_styles['decoration']};
 	line-height: {$date_styles['line_height']};
@@ -397,7 +397,7 @@ $block_styles = "
 	gap: {$tag_styles['gap']};
 	font-size: {$tag_styles['font']['size']};
 	font-weight: {$tag_styles['font']['weight']};
-	font-family: {$tag_styles['font']['family']};
+	font-family: '{$tag_styles['font']['family']}';
 	text-transform: {$tag_styles['text_transform']};
 	line-height: {$tag_styles['line_height']};
 	letter-spacing: {$tag_styles['letter_spacing']};

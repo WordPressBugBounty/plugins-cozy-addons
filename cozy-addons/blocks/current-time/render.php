@@ -34,7 +34,7 @@ $block_styles = "
 }
 
 #$block_id .cozy-time {
-	font-family: {$time_styles['font_family']};
+	font-family: '{$time_styles['font_family']}';
 	text-transform: {$time_styles['letter_case']};
 	text-decoration: {$time_styles['decoration']};
 	line-height: {$time_styles['line_height']};

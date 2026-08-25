@@ -176,6 +176,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="ca-spacer sm"></div>
 		<button class="ca-btn is-full-width btn-secondary"><a
 				href="https://wordpress.org/support/plugin/cozy-addons/reviews/#new-post"
-				target="_blank"><?php esc_html_e( 'Leave a Review →' ); ?></a></button>
+				target="_blank"><?php esc_html_e( 'Leave a Review', 'cozy-addons' ); ?> →</a></button>
 	</div>
 </div>

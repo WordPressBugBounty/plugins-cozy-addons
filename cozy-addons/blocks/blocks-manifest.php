@@ -7,7 +7,7 @@ return array(
 		'name' => 'cozy-block/accordion',
 		'version' => '1.0.0',
 		'title' => 'Accordion',
-		'description' => 'Streamline content presentation with our \'Accordion\' block, allowing you to organize information in a compact and user-friendly manner. Users can easily expand and collapse sections to access the details they desire, creating a clean and efficient user experience.',
+		'description' => 'A flexible FAQ/accordion block that supports both manually-added default content and dynamically fetched content from a Custom Post Type (e.g., FAQs).',
 		'category' => 'cozy-block',
 		'keywords' => array(
 			'accordion',
@@ -22,6 +22,38 @@ return array(
 			'blockClientId' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'source' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'layout' => array(
+				'type' => 'object',
+				'default' => array(
+					'search' => true,
+					'category' => true,
+					'count' => true,
+					'orientation' => 'stack',
+					'gap' => '16px',
+					'width' => '240px',
+					'justify' => 'center'
+				)
+			),
+			'generateSchema' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'query' => array(
+				'type' => 'object',
+				'default' => array(
+					'perPage' => 5,
+					'offset' => 0,
+					'order' => 'desc',
+					'orderBy' => 'date',
+					'category' => array(
+						
+					)
+				)
 			),
 			'rowGap' => array(
 				'type' => 'number',
@@ -99,7 +131,7 @@ return array(
 							'left' => 1
 						),
 						'type' => 'none',
-						'color' => '#000'
+						'color' => ''
 					),
 					'borderRadius' => array(
 						'top' => 0,
@@ -127,7 +159,7 @@ return array(
 							'left' => 1
 						),
 						'type' => 'none',
-						'color' => '#000'
+						'color' => ''
 					),
 					'borderRadius' => array(
 						'top' => 0,
@@ -136,6 +168,86 @@ return array(
 						'left' => 0
 					),
 					'bgColor' => ''
+				)
+			),
+			'search' => array(
+				'type' => 'object',
+				'default' => array(
+					'placeholder' => 'Look for answers...',
+					'width' => '560px',
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
+					),
+					'border' => array(
+						'width' => '1px',
+						'style' => 'solid',
+						'color' => '#878787'
+					),
+					'radius' => '100px',
+					'font' => array(
+						'size' => '16px',
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'decoration' => 'none',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'color' => array(
+						'text' => '',
+						'textActive' => '',
+						'bg' => '',
+						'bgActive' => '',
+						'borderActive' => '#0c50ff'
+					)
+				)
+			),
+			'category' => array(
+				'type' => 'object',
+				'default' => array(
+					'allTab' => true,
+					'allTabPlaceholder' => 'All',
+					'order' => 'desc',
+					'orderby' => 'count',
+					'notFoundText' => 'We couldn’t find any items matching your request. Try adjusting your search or check back later for new content.',
+					'gap' => '12px',
+					'margin' => array(
+						'top' => '16px',
+						'bottom' => '44px'
+					),
+					'padding' => array(
+						'top' => '5px',
+						'right' => '16px',
+						'bottom' => '5px',
+						'left' => '16px'
+					),
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'borderActive' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '100px',
+					'font' => array(
+						'size' => '14px',
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'decoration' => 'none',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'color' => array(
+						'text' => '#010101',
+						'bg' => '#f3f3f3',
+						'textActive' => '#fffffe',
+						'bgActive' => '#0c50ff'
+					)
 				)
 			),
 			'titleTypography' => array(
@@ -147,8 +259,8 @@ return array(
 					),
 					'fontFamily' => '',
 					'fontSize' => '20',
-					'color' => '#000',
-					'colorActive' => '#000',
+					'color' => '',
+					'colorActive' => '',
 					'fontWeight' => '',
 					'letterCase' => '',
 					'decoration' => '',
@@ -161,8 +273,8 @@ return array(
 				'default' => array(
 					'fontFamily' => '',
 					'fontSize' => 16,
-					'color' => '#000',
-					'fontWeight' => 400,
+					'color' => '',
+					'fontWeight' => '',
 					'letterCase' => '',
 					'decoration' => '',
 					'lineHeight' => '',

@@ -96,7 +96,7 @@ $block_styles = "
     border-radius: {$button['radius']};
     font-size: {$button['font']['size']};
     font-weight: {$button['font']['weight']};
-    font-family: {$button['font']['family']};
+    font-family: '{$button['font']['family']}';
     text-transform: {$button['letter_case']};
     text-decoration: {$button['decoration']};
     line-height: {$button['line_height']};

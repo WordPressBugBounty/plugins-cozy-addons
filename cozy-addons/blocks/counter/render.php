@@ -27,7 +27,7 @@ $block_styles = "
     text-align: {$styles['align']};
     font-size: {$styles['font']['size']};
     font-weight: {$styles['font']['weight']};
-    font-family: {$styles['font']['family']};
+    font-family: '{$styles['font']['family']}';
     color: {$color};
 }
 ";

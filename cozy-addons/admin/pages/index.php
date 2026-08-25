@@ -164,6 +164,14 @@ $user_details = wp_get_current_user();
 
 	<div class="ca-spacer"></div>
 
+	<div class="boxed-layout">
+		<p class="section-pill"><?php esc_html_e( 'Getting Started', 'cozy-addons' ); ?></p>
+		<h2 class="section-title"><?php esc_html_e( 'Stuck? Watch Our Walkthrough Video', 'cozy-addons' ); ?></h2>
+		<iframe width="100%" height="450" src="https://www.youtube.com/embed/fNwIqedPyEU?si=y4BK8YcPqhHiFyvv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	</div>
+
+	<div class="ca-spacer"></div>
+
 	<div class="block-list boxed-layout">
 		<p class="section-pill"><?php esc_html_e( '50+ Advanced Blocks', 'cozy-addons' ); ?></p>
 		<h2 class="section-title"><?php esc_html_e( 'Unlock More. Build Without Limits.', 'cozy-addons' ); ?></h2>

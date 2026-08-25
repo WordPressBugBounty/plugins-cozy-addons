@@ -222,6 +222,7 @@ $cat_item = array(
 	'margin'         => isset( $attributes['postCategories']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['postCategories']['margin'] ) : '',
 	'align'          => isset( $attributes['postOptions']['textAlign'] ) ? esc_attr( sanitize_text_field( $attributes['postOptions']['textAlign'] ) ) : '',
 	'border'         => isset( $attributes['postCategories']['border'] ) ? cozy_render_TRBL( 'border', $attributes['postCategories']['border'] ) : '',
+	'radius'         => isset( $attributes['postCategories']['radius'] ) ? cozy_addons_sanitize_dimension( $attributes['postCategories']['radius'] ) : '',
 	'font'           => array(
 		'size'   => isset( $attributes['postCategories']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['postCategories']['font']['size'] ) : '',
 		'weight' => isset( $attributes['postCategories']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['postCategories']['font']['weight'] ) ) : '',
@@ -303,7 +304,7 @@ $block_styles = "
     {$heading['radius']}
     font-size: clamp(12px, calc(3vw + 4px), {$heading['font']['size']});
     font-weight: {$heading['font']['weight']};
-    font-family: {$heading['font']['family']};
+    font-family: '{$heading['font']['family']}';
 	text-transform: {$heading['letter_case']};
 	text-decoration: {$heading['decoration']};
 	line-height: {$heading['line_height']};
@@ -322,7 +323,7 @@ $block_styles = "
     border-radius: {$tab_item['radius']};
     font-size: clamp(12px, calc(3vw + 4px), {$tab_item['font']['size']});
     font-weight: {$tab_item['font']['weight']};
-    font-family: {$tab_item['font']['family']};
+    font-family: '{$tab_item['font']['family']}';
 	text-transform: {$tab_item['letter_case']};
 	text-decoration: {$tab_item['decoration']};
 	line-height: {$tab_item['line_height']};
@@ -392,7 +393,7 @@ $block_styles = "
 	border-radius: {$featured_cat_item['radius']};
 	font-size: {$featured_cat_item['font']['size']};
 	font-weight: {$featured_cat_item['font']['weight']};
-	font-family: {$featured_cat_item['font']['family']};
+	font-family: '{$featured_cat_item['font']['family']}';
 	text-transform: {$featured_cat_item['letter_case']};
 	text-decoration: {$featured_cat_item['decoration']};
 	line-height: {$featured_cat_item['line_height']};
@@ -410,7 +411,7 @@ $block_styles = "
 	{$featured_title['margin']}
 	font-size: clamp(10px, calc(3vw + 4px), {$featured_title['font']['size']});
 	font-weight: {$featured_title['font']['weight']};
-	font-family: {$featured_title['font']['family']};
+	font-family: '{$featured_title['font']['family']}';
 	text-transform: {$featured_title['letter_case']};
 	line-height: {$featured_title['line_height']};
 	letter-spacing: {$featured_title['letter_spacing']};
@@ -441,7 +442,7 @@ $block_styles = "
 	border-radius: {$featured_read_more['radius']};
 	font-size: {$featured_read_more['font']['size']};
 	font-weight: {$featured_read_more['font']['weight']};
-	font-family: {$featured_read_more['font']['family']};
+	font-family: '{$featured_read_more['font']['family']}';
 	text-transform: {$featured_read_more['letter_case']};
 	text-decoration: {$featured_read_more['decoration']};
 	line-height: {$featured_read_more['line_height']};
@@ -530,10 +531,10 @@ $block_styles = "
 #$block_id .post__category-item {
 	{$cat_item['padding']}
 	{$cat_item['border']}
-	border-radius: {$attributes['postCategories']['radius']};
+	border-radius: {$cat_item['radius']};
 	font-size: {$cat_item['font']['size']};
 	font-weight: {$cat_item['font']['weight']};
-	font-family: {$cat_item['font']['family']};
+	font-family: '{$cat_item['font']['family']}';
 	text-transform: {$cat_item['letter_case']};
 	text-decoration: {$cat_item['decoration']};
 	line-height: {$cat_item['line_height']};
@@ -551,7 +552,7 @@ $block_styles = "
 	{$post_title['margin']}
 	font-size: clamp(10px, calc(3vw + 4px), {$post_title['font']['size']});
 	font-weight: {$post_title['font']['weight']};
-	font-family: {$post_title['font']['family']};
+	font-family: '{$post_title['font']['family']}';
 	text-transform: {$post_title['letter_case']};
 	line-height: {$post_title['line_height']};
 	letter-spacing: {$post_title['letter_spacing']};
@@ -569,7 +570,7 @@ $block_styles = "
 	justify-content: {$post_meta['align']};
 	font-size: {$post_meta['font']['size']};
 	font-weight: {$post_meta['font']['weight']};
-	font-family: {$post_meta['font']['family']};
+	font-family: '{$post_meta['font']['family']}';
 	text-transform: {$post_meta['letter_case']};
 	line-height: {$post_meta['line_height']};
 	letter-spacing: {$post_meta['letter_spacing']};
@@ -601,7 +602,7 @@ $block_styles = "
 	border-radius: {$read_more['radius']};
 	font-size: {$read_more['font']['size']};
 	font-weight: {$read_more['font']['weight']};
-	font-family: {$read_more['font']['family']};
+	font-family: '{$read_more['font']['family']}';
 	text-transform: {$read_more['letter_case']};
 	text-decoration: {$read_more['decoration']};
 	line-height: {$read_more['line_height']};

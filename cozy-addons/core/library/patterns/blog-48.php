@@ -26,6 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <p><?php esc_html_e( 'By:', 'cozy-addons' ); ?></p>
 <!-- /wp:paragraph -->
 
+
 <!-- wp:post-author-name /--></div>
 <!-- /wp:group -->
 

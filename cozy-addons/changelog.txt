@@ -1,3 +1,11 @@
+= 2.2.19 - Aug 25, 2026 = 
+* Add: FAQ Custom Post Type.
+* Add: Source picker for content in Accordion block.
+* Add: FAQ page schema generation in FAQ block.
+* Add: SaaS starter template.
+* Fix: Minor block improvements.
+* Fix: Dashboard access.
+
 = 2.2.18 - Aug 21, 2026 = 
 * Fix: Append the Cozy Advanced Effects CSS to the block’s existing styles.
 

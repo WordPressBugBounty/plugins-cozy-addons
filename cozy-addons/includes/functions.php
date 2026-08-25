@@ -2409,3 +2409,64 @@ function cozy_addons_is_valid_cf7_shortcode_format( $value ) {
 	$pattern = '/^\[[a-zA-Z0-9_-]+(\s+[a-zA-Z0-9_-]+="[^"]*")*\s*\]$/';
 	return preg_match( $pattern, trim( $value ) ) === 1;
 }
+
+/**
+ * Extract FAQ schema data from rendered accordion block content.
+ *
+ * @param string $content Rendered inner blocks HTML (accordion items).
+ * @return array Array of ['question' => string, 'answer' => string]
+ */
+function cozy_addons_extract_faq_items_from_content( $content ) {
+	if ( empty( $content ) ) {
+		return array();
+	}
+
+	$dom = new DOMDocument();
+
+	// Suppress warnings from malformed/partial HTML fragments.
+	libxml_use_internal_errors( true );
+
+	// Wrap in a container + force UTF-8, since DOMDocument mangles encoding otherwise.
+	$wrapped = '<?xml encoding="UTF-8"><div>' . $content . '</div>';
+	$dom->loadHTML( $wrapped, LIBXML_NOERROR | LIBXML_NOWARNING );
+
+	libxml_clear_errors();
+
+	$xpath = new DOMXPath( $dom );
+	$items = array();
+
+	// Find each accordion item.
+	$accordion_items = $xpath->query( "//*[contains(concat(' ', normalize-space(@class), ' '), ' cozy-block-accordion-item ')]" );
+
+	foreach ( $accordion_items as $item_node ) {
+		// Title: find .cozy-accordion-title within this item, get text content only
+		// (this naturally skips the icon wrapper divs since we're pulling textContent).
+		$title_node = $xpath->query( ".//*[contains(concat(' ', normalize-space(@class), ' '), ' cozy-accordion-title ')]", $item_node )->item( 0 );
+
+		// Answer: find .cozy-accordion-content within this item.
+		$content_node = $xpath->query( ".//*[contains(concat(' ', normalize-space(@class), ' '), ' cozy-accordion-content ')]", $item_node )->item( 0 );
+
+		if ( ! $title_node || ! $content_node ) {
+			continue;
+		}
+
+		$question = trim( preg_replace( '/\s+/', ' ', $title_node->textContent ) );
+
+		// For the answer, strip tags but keep the text — schema.org Answer.text
+		// accepts limited HTML, but plain text is safest for FAQ rich results.
+		$answer_html = '';
+		foreach ( $content_node->childNodes as $child ) {
+			$answer_html .= $dom->saveHTML( $child );
+		}
+		$answer = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $answer_html ) ) );
+
+		if ( $question && $answer ) {
+			$items[] = array(
+				'question' => $question,
+				'answer'   => $answer,
+			);
+		}
+	}
+
+	return $items;
+}

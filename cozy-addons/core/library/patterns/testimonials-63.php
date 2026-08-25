@@ -8,9 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
 <div class="wp-block-group"><!-- wp:list {"style":{"spacing":{"padding":{"left":"16px"}},"typography":{"textTransform":"uppercase"},"color":{"text":"#d87818"},"elements":{"link":{"color":{"text":"#d87818"}}}},"fontSize":"small"} -->
 <ul style="color:#d87818;padding-left:16px;text-transform:uppercase" class="wp-block-list has-text-color has-link-color has-small-font-size"><!-- wp:list-item {"style":{"elements":{"link":{"color":{"text":"var:preset|color|secondary"}}}},"textColor":"secondary"} -->
-<li class="has-secondary-color has-text-color has-link-color"><?php
-    esc_html_e('Testimonials', 'cozy-addons');
-?></li>
+<li class="has-secondary-color has-text-color has-link-color">
+<?php
+	esc_html_e( 'Testimonials', 'cozy-addons' );
+?>
+</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group -->
@@ -18,8 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:heading {"style":{"typography":{"textAlign":"center","fontSize":"52px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.2"},"elements":{"link":{"color":{"text":"var:preset|color|heading-color"}}}},"textColor":"heading-color","cozyCustomFont":"Geist"} -->
 <h2 class="wp-block-heading has-text-align-center has-heading-color-color has-text-color has-link-color" style="font-size:52px;font-style:normal;font-weight:600;line-height:1.2">
 <?php
-    esc_html_e('Building Trust Through Client Satisfaction', 'cozy-addons');
-?></h2>
+	esc_html_e( 'Building Trust Through Client Satisfaction', 'cozy-addons' );
+?>
+</h2>
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
@@ -35,8 +38,9 @@ http://localhost/wp-content/themes/homelancer-hvac/assets/images/star.png" alt="
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|heading-color"}}},"spacing":{"margin":{"top":"24px"}},"typography":{"fontSize":"24px","fontStyle":"normal","fontWeight":"400"}},"textColor":"heading-color"} -->
 <p class="has-heading-color-color has-text-color has-link-color" style="margin-top:24px;font-size:24px;font-style:normal;font-weight:400">
 <?php
-    esc_html_e("We needed urgent repairs, and the team responded quickly and professionally. They completed the work on time, kept everything clean, and delivered excellent results. I couldn't be happier with the service.", 'cozy-addons');
-?></p>
+	esc_html_e( "We needed urgent repairs, and the team responded quickly and professionally. They completed the work on time, kept everything clean, and delivered excellent results. I couldn't be happier with the service.", 'cozy-addons' );
+?>
+</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"16px","left":"16px"},"margin":{"top":"34px"}}}} -->
@@ -48,15 +52,19 @@ http://localhost/wp-content/themes/homelancer-hvac/assets/images/star.png" alt="
 
 <!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"0","padding":{"right":"0","left":"0","top":"0","bottom":"0"}}}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px"}}} -->
-<h3 class="wp-block-heading" style="font-size:18px"><?php
-    esc_html_e("James Wilson, Homeowner", 'cozy-addons');
-?></h3>
+<h3 class="wp-block-heading" style="font-size:18px">
+<?php
+	esc_html_e( 'James Wilson, Homeowner', 'cozy-addons' );
+?>
+</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","fontStyle":"normal","fontWeight":"400"}}} -->
-<p style="font-size:12px;font-style:normal;font-weight:400"><?php
-    esc_html_e("Founder, Northhouse Studio", 'cozy-addons');
-?></p>
+<p style="font-size:12px;font-style:normal;font-weight:400">
+<?php
+	esc_html_e( 'Founder, Northhouse Studio', 'cozy-addons' );
+?>
+</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -73,8 +81,9 @@ http://localhost/wp-content/themes/homelancer-hvac/assets/images/star.png" alt="
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|heading-color"}}},"spacing":{"margin":{"top":"24px"}},"typography":{"fontSize":"24px","fontStyle":"normal","fontWeight":"400"}},"textColor":"heading-color"} -->
 <p class="has-heading-color-color has-text-color has-link-color" style="margin-top:24px;font-size:24px;font-style:normal;font-weight:400">
 <?php
-    esc_html_e("We needed urgent repairs, and the team responded quickly and professionally. They completed the work on time, kept everything clean, and delivered excellent results. I couldn't be happier with the service.", 'cozy-addons');
-?></p>
+	esc_html_e( "We needed urgent repairs, and the team responded quickly and professionally. They completed the work on time, kept everything clean, and delivered excellent results. I couldn't be happier with the service.", 'cozy-addons' );
+?>
+</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"16px","left":"16px"},"margin":{"top":"34px"}}}} -->
@@ -86,15 +95,19 @@ http://localhost/wp-content/themes/homelancer-hvac/assets/images/star.png" alt="
 
 <!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"0","padding":{"right":"0","left":"0","top":"0","bottom":"0"}}}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px"}}} -->
-<h3 class="wp-block-heading" style="font-size:18px"><?php
-    esc_html_e("James Wilson, Homeowner", 'cozy-addons');
-?></h3>
+<h3 class="wp-block-heading" style="font-size:18px">
+<?php
+	esc_html_e( 'James Wilson, Homeowner', 'cozy-addons' );
+?>
+</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","fontStyle":"normal","fontWeight":"400"}}} -->
-<p style="font-size:12px;font-style:normal;font-weight:400"><?php
-    esc_html_e("Founder, Northhouse Studio", 'cozy-addons');
-?></p>
+<p style="font-size:12px;font-style:normal;font-weight:400">
+<?php
+	esc_html_e( 'Founder, Northhouse Studio', 'cozy-addons' );
+?>
+</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -111,8 +124,9 @@ http://localhost/wp-content/themes/homelancer-hvac/assets/images/star.png" alt="
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|heading-color"}}},"spacing":{"margin":{"top":"24px"}},"typography":{"fontSize":"24px","fontStyle":"normal","fontWeight":"400"}},"textColor":"heading-color"} -->
 <p class="has-heading-color-color has-text-color has-link-color" style="margin-top:24px;font-size:24px;font-style:normal;font-weight:400">
 <?php
-    esc_html_e("We needed urgent repairs, and the team responded quickly and professionally. They completed the work on time, kept everything clean, and delivered excellent results. I couldn't be happier with the service.", 'cozy-addons');
-?></p>
+	esc_html_e( "We needed urgent repairs, and the team responded quickly and professionally. They completed the work on time, kept everything clean, and delivered excellent results. I couldn't be happier with the service.", 'cozy-addons' );
+?>
+</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"16px","left":"16px"},"margin":{"top":"34px"}}}} -->
@@ -124,15 +138,19 @@ http://localhost/wp-content/themes/homelancer-hvac/assets/images/star.png" alt="
 
 <!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"0","padding":{"right":"0","left":"0","top":"0","bottom":"0"}}}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px"}}} -->
-<h3 class="wp-block-heading" style="font-size:18px"><?php
-    esc_html_e("James Wilson, Homeowner", 'cozy-addons');
-?></h3>
+<h3 class="wp-block-heading" style="font-size:18px">
+<?php
+	esc_html_e( 'James Wilson, Homeowner', 'cozy-addons' );
+?>
+</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","fontStyle":"normal","fontWeight":"400"}}} -->
-<p style="font-size:12px;font-style:normal;font-weight:400"><?php
-    esc_html_e("Founder, Northhouse Studio", 'cozy-addons');
-?></p>
+<p style="font-size:12px;font-style:normal;font-weight:400">
+<?php
+	esc_html_e( 'Founder, Northhouse Studio', 'cozy-addons' );
+?>
+</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -149,8 +167,9 @@ http://localhost/wp-content/themes/homelancer-hvac/assets/images/star.png" alt="
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|heading-color"}}},"spacing":{"margin":{"top":"24px"}},"typography":{"fontSize":"24px","fontStyle":"normal","fontWeight":"400"}},"textColor":"heading-color"} -->
 <p class="has-heading-color-color has-text-color has-link-color" style="margin-top:24px;font-size:24px;font-style:normal;font-weight:400">
 <?php
-    esc_html_e("We needed urgent repairs, and the team responded quickly and professionally. They completed the work on time, kept everything clean, and delivered excellent results. I couldn't be happier with the service.", 'cozy-addons');
-?></p>
+	esc_html_e( "We needed urgent repairs, and the team responded quickly and professionally. They completed the work on time, kept everything clean, and delivered excellent results. I couldn't be happier with the service.", 'cozy-addons' );
+?>
+</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"16px","left":"16px"},"margin":{"top":"34px"}}}} -->
@@ -162,15 +181,19 @@ http://localhost/wp-content/themes/homelancer-hvac/assets/images/star.png" alt="
 
 <!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"0","padding":{"right":"0","left":"0","top":"0","bottom":"0"}}}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px"}}} -->
-<h3 class="wp-block-heading" style="font-size:18px"><?php
-    esc_html_e("James Wilson, Homeowner", 'cozy-addons');
-?></h3>
+<h3 class="wp-block-heading" style="font-size:18px">
+<?php
+	esc_html_e( 'James Wilson, Homeowner', 'cozy-addons' );
+?>
+</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","fontStyle":"normal","fontWeight":"400"}}} -->
-<p style="font-size:12px;font-style:normal;font-weight:400"><?php
-    esc_html_e("Founder, Northhouse Studio", 'cozy-addons');
-?></p>
+<p style="font-size:12px;font-style:normal;font-weight:400">
+<?php
+	esc_html_e( 'Founder, Northhouse Studio', 'cozy-addons' );
+?>
+</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -187,8 +210,9 @@ http://localhost/wp-content/themes/homelancer-hvac/assets/images/star.png" alt="
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|heading-color"}}},"spacing":{"margin":{"top":"24px"}},"typography":{"fontSize":"24px","fontStyle":"normal","fontWeight":"400"}},"textColor":"heading-color"} -->
 <p class="has-heading-color-color has-text-color has-link-color" style="margin-top:24px;font-size:24px;font-style:normal;font-weight:400">
 <?php
-    esc_html_e("We needed urgent repairs, and the team responded quickly and professionally. They completed the work on time, kept everything clean, and delivered excellent results. I couldn't be happier with the service.", 'cozy-addons');
-?></p>
+	esc_html_e( "We needed urgent repairs, and the team responded quickly and professionally. They completed the work on time, kept everything clean, and delivered excellent results. I couldn't be happier with the service.", 'cozy-addons' );
+?>
+</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"16px","left":"16px"},"margin":{"top":"34px"}}}} -->
@@ -200,15 +224,19 @@ http://localhost/wp-content/themes/homelancer-hvac/assets/images/star.png" alt="
 
 <!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"0","padding":{"right":"0","left":"0","top":"0","bottom":"0"}}}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px"}}} -->
-<h3 class="wp-block-heading" style="font-size:18px"><?php
-    esc_html_e("James Wilson, Homeowner", 'cozy-addons');
-?></h3>
+<h3 class="wp-block-heading" style="font-size:18px">
+<?php
+	esc_html_e( 'James Wilson, Homeowner', 'cozy-addons' );
+?>
+</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","fontStyle":"normal","fontWeight":"400"}}} -->
-<p style="font-size:12px;font-style:normal;font-weight:400"><?php
-    esc_html_e("Founder, Northhouse Studio", 'cozy-addons');
-?></p>
+<p style="font-size:12px;font-style:normal;font-weight:400">
+<?php
+	esc_html_e( 'Founder, Northhouse Studio', 'cozy-addons' );
+?>
+</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

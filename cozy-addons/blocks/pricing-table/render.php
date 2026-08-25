@@ -258,7 +258,7 @@ $block_styles = "
 	{$styles['radius']}
 	font-size: {$styles['font']['size']};
 	font-weight: {$styles['font']['weight']};
-	font-family: {$styles['font']['family']};
+	font-family: '{$styles['font']['family']}';
 	text-transform: {$styles['letter_case']};
 	background-color: {$styles['color']['bg']};
 	color: {$styles['color']['text']};
@@ -279,7 +279,7 @@ $block_styles = "
 	{$featured['radius']}
 	font-size: {$featured['font']['size']};
 	font-weight: {$featured['font']['weight']};
-	font-family: {$featured['font']['family']};
+	font-family: '{$featured['font']['family']}';
 	text-transform: {$featured['letter_case']};
 	text-decoration: {$featured['decoration']};
 	line-height: {$featured['line_height']};
@@ -332,7 +332,7 @@ $block_styles = "
 	{$heading['margin']}
 	font-size: {$heading['font']['size']};
 	font-weight: {$heading['font']['weight']};
-	font-family: {$heading['font']['family']};
+	font-family: '{$heading['font']['family']}';
 	text-transform: {$heading['letter_case']};
 	text-decoration: {$heading['decoration']};
 	line-height: {$heading['line_height']};
@@ -344,7 +344,7 @@ $block_styles = "
 	{$sub_heading['margin']}
 	font-size: {$sub_heading['font']['size']};
 	font-weight: {$sub_heading['font']['weight']};
-	font-family: {$sub_heading['font']['family']};
+	font-family: '{$sub_heading['font']['family']}';
 	text-transform: {$sub_heading['letter_case']};
 	text-decoration: {$sub_heading['decoration']};
 	line-height: {$sub_heading['line_height']};
@@ -356,7 +356,7 @@ $block_styles = "
 	{$price['margin']}
 	font-size: {$price['font']['size']};
 	font-weight: {$price['font']['weight']};
-	font-family: {$price['font']['family']};
+	font-family: '{$price['font']['family']}';
 	text-transform: {$price['letter_case']};
 	text-decoration: {$price['decoration']};
 	line-height: {$price['line_height']};
@@ -367,7 +367,7 @@ $block_styles = "
 	{$price['separator']['margin']}
 	font-size: {$price['separator']['font']['size']};
 	font-weight: {$attributes['price']['separator']['font']['weight']};
-	font-family: {$price['separator']['font']['family']};
+	font-family: '{$price['separator']['font']['family']}';
 	text-transform: {$price['separator']['letter_case']};
 	text-decoration: {$price['separator']['decoration']};
 	line-height: {$price['separator']['line_height']};
@@ -386,7 +386,7 @@ $block_styles = "
 	border-radius: {$button['radius']};
 	font-size: {$button['font']['size']};
 	font-weight: {$button['font']['weight']};
-	font-family: {$button['font']['family']};
+	font-family: '{$button['font']['family']}';
 	text-transform: {$button['letter_case']};
 	text-decoration: {$button['decoration']};
 	line-height: {$button['line_height']};
@@ -408,7 +408,7 @@ $block_styles = "
 	{$list['radius']}
 	font-size: {$list['font']['size']};
 	font-weight: {$list['font']['weight']};
-	font-family: {$list['font']['family']};
+	font-family: '{$list['font']['family']}';
 	text-transform: {$list['letter_case']};
 	text-decoration: {$list['decoration']};
 	line-height: {$list['line_height']};
@@ -420,7 +420,7 @@ $block_styles = "
 	{$list['heading']['margin']}
 	font-size: {$list['heading']['font']['size']};
 	font-weight: {$list['heading']['font']['weight']};
-	font-family: {$list['heading']['font']['family']};
+	font-family: '{$list['heading']['font']['family']}';
 	text-transform: {$list['heading']['letter_case']};
 	text-decoration: {$list['heading']['decoration']};
 	line-height: {$list['heading']['line_height']};
@@ -459,7 +459,7 @@ $block_styles = "
 	border-radius: {$list['loader']['radius']};
 	font-size: {$list['loader']['font']['size']};
 	font-weight: {$list['loader']['font']['weight']};
-	font-family: {$list['loader']['font']['family']};
+	font-family: '{$list['loader']['font']['family']}';
 	text-transform: {$list['loader']['letter_case']};
 	text-decoration: {$list['loader']['decoration']};
 	line-height: {$list['loader']['line_height']};

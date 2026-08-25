@@ -260,7 +260,7 @@ $block_styles = "
 	border-radius:{$title_styles['radius']};
 	font-size: {$title_styles['font']['size']};
 	font-weight: {$title_styles['font']['weight']};
-	font-family: {$title_styles['font']['family']};
+	font-family: '{$title_styles['font']['family']}';
 	text-transform: {$title_styles['letter_case']};
 	text-decoration: {$title_styles['decoration']};
 	line-height: {$title_styles['line_height']};

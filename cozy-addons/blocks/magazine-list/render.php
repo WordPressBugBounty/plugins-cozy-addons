@@ -225,7 +225,7 @@ $block_styles = "
     {$heading['radius']}
     font-size: {$heading['font']['size']};
     font-weight: {$heading['font']['weight']};
-    font-family: {$heading['font']['family']};
+    font-family: '{$heading['font']['family']}';
     text-transform: {$heading['letter_case']};
     text-decoration: {$heading['decoration']};
     line-height: {$heading['line_height']};
@@ -242,7 +242,7 @@ $block_styles = "
 	border-radius: {$sub_heading['radius']};
     font-size: {$sub_heading['font']['size']};
     font-weight: {$sub_heading['font']['weight']};
-    font-family: {$sub_heading['font']['family']};
+    font-family: '{$sub_heading['font']['family']}';
 	text-transform: {$sub_heading['letter_case']};
     text-decoration: {$sub_heading['decoration']};
     line-height: {$sub_heading['line_height']};
@@ -335,7 +335,7 @@ $block_styles = "
 	border-radius: {$cat_item['radius']};
 	font-size: {$cat_item['font']['size']};
 	font-weight: {$cat_item['font']['weight']};
-	font-family: {$cat_item['font']['family']};
+	font-family: '{$cat_item['font']['family']}';
 	text-transform: {$cat_item['letter_case']};
 	text-decoration: {$cat_item['decoration']};
 	line-height: {$cat_item['line_height']};
@@ -353,7 +353,7 @@ $block_styles = "
 	{$post_title['margin']}
 	font-size: 	clamp(12px, 1.185rem + ((1vw - 3.2px) * 0.673), {$post_title['font']['size']});
 	font-weight: {$post_title['font']['weight']};
-	font-family: {$post_title['font']['family']};
+	font-family: '{$post_title['font']['family']}';
 	text-transform: {$post_title['letter_case']};
 	line-height: {$post_title['line_height']};
 }
@@ -370,7 +370,7 @@ $block_styles = "
 	justify-content: {$post_styles['align']};
 	font-size: {$post_meta['font']['size']};
 	font-weight: {$post_meta['font']['weight']};
-	font-family: {$post_meta['font']['family']};
+	font-family: '{$post_meta['font']['family']}';
 	text-transform: {$post_meta['letter_case']};
 	line-height: {$post_meta['line_height']};
 	letter-spacing: {$post_meta['letter_spacing']};
@@ -401,7 +401,7 @@ $block_styles = "
 	border-radius: {};
 	font-size: {$read_more['font']['size']};
 	font-weight: {$read_more['font']['weight']};
-	font-family: {$read_more['font']['family']};
+	font-family: '{$read_more['font']['family']}';
 	text-transform: {$read_more['letter_case']};
 	text-decoration: {$read_more['decoration']};
 	line-height: {$read_more['line_height']};
@@ -425,7 +425,7 @@ $block_styles = "
 	border-radius: {$ajax_loader['radius']};
 	font-size: {$ajax_loader['font']['size']};
 	font-weight: {$ajax_loader['font']['weight']};
-	font-family: {$ajax_loader['font']['family']};
+	font-family: '{$ajax_loader['font']['family']}';
 	text-transform: {$ajax_loader['letter_case']};
 	text-decoration: {$ajax_loader['decoration']};
 	line-height: {$ajax_loader['line_height']};

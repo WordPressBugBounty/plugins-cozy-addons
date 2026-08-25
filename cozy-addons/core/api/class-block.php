@@ -129,6 +129,26 @@ class Block {
 				)
 			);
 
+			register_rest_route(
+				'cozy-block/v1',
+				'/ca-faq',
+				array(
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'ca_cpt_faq' ),
+					'permission_callback' => '__return_true',
+				)
+			);
+
+			register_rest_route(
+				'cozy-block/v1',
+				'/ca-cpt-taxonomy',
+				array(
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'ca_cpt_taxonomy' ),
+					'permission_callback' => '__return_true',
+				)
+			);
+
 		} catch ( \Exception $e ) {
 			// error_log( 'Error registering route: ' . $e->getMessage() );
 		}
@@ -141,8 +161,6 @@ class Block {
 	 * and returns a custom collection of posts in a REST-compatible format.
 	 *
 	 * @param WP_REST_Request $request The REST API request object containing query parameters.
-	 * @return WP_REST_Response|array The response containing the collection of posts, either as a
-	 *                                 WP_REST_Response object or an array, depending on implementation.
 	 */
 	public function cozy_get_posts_collection( WP_REST_Request $request ) {
 		if ( ! current_user_can( 'edit_posts' ) ) {
@@ -498,5 +516,61 @@ class Block {
 		wp_reset_postdata();
 
 		return rest_ensure_response( $formatted_categories );
+	}
+
+	public function ca_cpt_faq( WP_REST_Request $request ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+
+		$category = $request->get_param( 'category' );
+		$category = $category
+		? array_map( 'intval', array_filter( explode( ',', $category ), fn( $val ) => $val !== '' ) )
+		: array();
+
+		$args = array(
+			'post_type'      => 'ca_faq',
+			'post_status'    => 'publish',
+			'posts_per_page' => $request->get_param( 'per_page' ) ?? 5, // To retrieve all sticky posts.
+			'order'          => $request->get_param( 'order' ) ?? 'DESC',
+			'orderby'        => $request->get_param( 'orderby' ) ?? 'date',
+		);
+
+		if ( ! empty( $category ) ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'ca_faq_category',
+					'field'    => 'term_id',
+					'terms'    => $category,
+				),
+			);
+		}
+
+		$faq = get_posts( $args );
+
+		wp_reset_postdata();
+
+		return rest_ensure_response( $faq );
+	}
+
+	public function ca_cpt_taxonomy( WP_REST_Request $request ) {
+		if ( ! current_user_can( 'edit_posts' ) || empty( $request->get_param( 'tax_type' ) ) ) {
+			return array();
+		}
+
+		$args = array(
+			'taxonomy'   => $request->get_param( 'tax_type' ),
+			'hide_empty' => true,
+			'number'     => 100,
+			// 'order'      => $request->get_param( 'order' ) ?? 'DESC',
+			// 'orderby'    => $request->get_param( 'orderby' ) ?? 'count',
+			// 'exclude'    => $request->get_param( 'exclude' ) ?? '',
+		);
+
+		$categories = get_categories( $args );
+
+		wp_reset_postdata();
+
+		return rest_ensure_response( $categories );
 	}
 }

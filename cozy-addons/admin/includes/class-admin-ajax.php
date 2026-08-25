@@ -9,6 +9,35 @@ class Ajax {
 	 */
 	private static $instance = null;
 
+	private static $premium_blocks = array(
+		'cf7-styler',
+		'countdown-timer',
+		'img-compare',
+		'modal',
+		'scroll-animation',
+		'toggle-content',
+		'toggle-content',
+		'featured-product',
+		'featured-product-tabs',
+		'product-slider',
+		'product-tab',
+		'quick-view',
+		'wishlist',
+		'advanced-categories',
+		'categorized-post-tabs',
+		'featured-post',
+		'featured-post-tabs',
+		'magazine-grid',
+		'magazine-list',
+		'news-ticker',
+		'popular-post',
+		'post-comments',
+		'post-slider',
+		'post-views',
+		'related-post',
+		'trending-post',
+	);
+
 	/**
 	 * Retrieve the singleton instance of this class.
 	 *
@@ -36,10 +65,12 @@ class Ajax {
 	 */
 	private function __construct() {
 		add_action( 'wp_ajax_cozy_addons_update_block_active_status', array( $this, 'update_block_status' ) );
+		add_action( 'wp_ajax_cozy_addons_block_status_change_bulk', array( $this, 'blocks_bulk_update_status' ) );
 		add_action( 'wp_ajax_cozy_blocks_dismissble_notice', array( $this, 'dismiss_block_theme_notice' ) );
 		add_action( 'wp_ajax_cozy_addons_dismiss_welcome_notice', array( $this, 'dismiss_welcome_notice' ) );
 		add_action( 'wp_ajax_cozy_addons_toggle_ca_utility_function_status', array( $this, 'update_utility_function_status' ) );
 		add_action( 'wp_ajax_cozy_addons_update_cpt_enabled_option', array( $this, 'update_cpt_active_status' ) );
+		add_action( 'wp_ajax_cozy_addons_update_cpt_args', array( $this, 'update_cpt_args' ) );
 		add_action( 'wp_ajax_cozy_addons_download_plugin_rollback_version', array( $this, 'download_plugin_rollback_versions' ) );
 		add_action( 'wp_ajax_cozy_addons_activate_rollback_version', array( $this, 'activate_rollback_version' ) );
 		add_action( 'wp_ajax_cozy_addons_install_activate_plugin', array( $this, 'install_activate_plugin' ) );
@@ -101,6 +132,64 @@ class Ajax {
 		wp_die();
 	}
 
+	private function filter_blocks_by_category( $category = '' ) {
+		$blocks_manifest = require COZY_ADDONS_PLUGIN_DIR . 'blocks/blocks-manifest.php';
+
+		if ( empty( $category ) ) {
+			$filtered_blocks = array_filter(
+				$blocks_manifest,
+				function ( $item ) {
+					return 'cozy-block' === $item['category'];
+				}
+			);
+
+			return array_keys( $filtered_blocks );
+		}
+
+		$filtered_blocks = array_filter(
+			$blocks_manifest,
+			function ( $item ) use ( $category ) {
+				return 'cozy-block/' . $category === $item['category'];
+			}
+		);
+
+		return array_keys( $filtered_blocks );
+	}
+
+	public function blocks_bulk_update_status() {
+		check_admin_referer( 'ca_active_status', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$category = isset( $_POST['category'] ) ? sanitize_text_field( wp_unslash( $_POST['category'] ) ) : '';
+		$checked  = isset( $_POST['checked'] ) ? sanitize_text_field( wp_unslash( $_POST['checked'] ) ) : '';
+
+		switch ( $category ) {
+			case 'woocommerce':
+				if ( ! \CozyAddons\Helpers\Utils::is_woocommerce_active() ) {
+					return;
+				}
+
+				$woocommerce_blocks = $this->filter_blocks_by_category( $category );
+
+				
+				break;
+
+			case 'post-magazine':
+				$post_blocks = $this->filter_blocks_by_category( $category );
+				break;
+
+			case '':
+				$general_blocks = $this->filter_blocks_by_category();
+				break;
+
+			default:
+				break;
+		}
+	}
+
 	/**
 	 * Displays a generic dismissible admin notice in the WordPress dashboard.
 	 *
@@ -147,6 +236,7 @@ class Ajax {
 		$allowed_options = array(
 			'mega-menu-templates',
 			'portfolio-gallery-templates',
+			'faq-templates',
 		);
 
 		$request_option = isset( $_POST['templateName'] ) ? sanitize_text_field( wp_unslash( $_POST['templateName'] ) ) : '';
@@ -158,6 +248,35 @@ class Ajax {
 		$option_name = 'ca-cpt--' . $request_option;
 		$checked     = isset( $_POST['checked'] ) ? sanitize_text_field( wp_unslash( $_POST['checked'] ) ) : '';
 		update_option( $option_name, $checked );
+
+		wp_send_json_success();
+	}
+
+	public function update_cpt_args() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error();
+		}
+
+		check_admin_referer( 'ca_utility_function', 'nonce' );
+
+		$field_data = isset( $_POST['fieldData'] ) ? json_decode( sanitize_text_field( wp_unslash( $_POST['fieldData'] ) ), true ) : array();
+
+		if ( empty( $field_data ) ) {
+			wp_send_json_error();
+		}
+
+		$field_options = cozy_addons_get_cpt_config_option();
+
+		foreach ( $field_data as $key => $value ) {
+			$cpt  = $value['cpt'];
+			$type = $value['type'];
+			$val  = $value['value'];
+
+			cozy_addons_update_cpt_value( $field_options, $cpt, $type, $val );
+		}
+
+		update_option( 'ca-cpt--config', $field_options );
+		update_option( 'cozy_addons_flush_rewrite_flag', true );
 
 		wp_send_json_success();
 	}

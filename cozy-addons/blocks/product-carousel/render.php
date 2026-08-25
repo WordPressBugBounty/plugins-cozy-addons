@@ -154,7 +154,7 @@ $block_styles = "
     top: {$sale_badge['top']}px;
     font-size: {$sale_badge_font_size}px;
     font-weight: {$sale_badge_font_weight};
-    font-family: {$sale_badge_font_family};
+    font-family: '{$sale_badge_font_family}';
 	text-transform: {$sale_badge['letter_case']};
 	line-height: {$sale_badge['line_height']};
 	letter-spacing: {$sale_badge['letter_spacing']};
@@ -176,7 +176,7 @@ $block_styles = "
 #$block_id.on-sale .cozy-sale-badge .label-after {
     font-size: {$sale_badge_label['font_size']}px;
     font-weight: {$sale_badge_label['font_weight']};
-    font-family: {$sale_badge_label['font_family']};
+    font-family: '{$sale_badge_label['font_family']}';
 	text-transform: {$sale_badge_label['letter_case']};
 	line-height: {$sale_badge_label['line_height']};
 	letter-spacing: {$sale_badge_label['letter_spacing']};

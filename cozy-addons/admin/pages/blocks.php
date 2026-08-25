@@ -12,8 +12,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<!-- General Blocks -->
 	<div class="boxed-layout">
-		<h3 class="box-label"><?php esc_html_e( 'General Blocks', 'cozy-addons' ); ?></h3>
+		<div class="flex-layout toolbar">
+			<h3 class="box-label"><?php esc_html_e( 'General Blocks', 'cozy-addons' ); ?></h3>
+			<div class="ca-block-action-buttons">
+				<button class="ca-block-action activate-btn">
+					<a><?php esc_html_e( 'Activate All', 'cozy-addons' ); ?></a>
+				</button>
+				<button class="ca-block-action deactivate-btn">
+					<a><?php esc_html_e( 'Deactivate All', 'cozy-addons' ); ?></a>
+				</button>
+			</div>
+		</div>
 
+		<br />
 		<br />
 
 		<ul id="general-blocks" class="blocks-list grid-layout cols-4">
@@ -1313,8 +1324,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<!-- WooCommerce Blocks -->
 	<div class="boxed-layout">
-		<h3 class="box-label"><?php esc_html_e( 'WooCommerce Blocks', 'cozy-addons' ); ?></h3>
+		<div class="flex-layout toolbar">
+			<h3 class="box-label"><?php esc_html_e( 'WooCommerce Blocks', 'cozy-addons' ); ?></h3>
+			<?php
+			if ( \CozyAddons\Helpers\Utils::is_woocommerce_active() ) {
+				?>
+			<div class="ca-block-action-buttons">
+				<button class="ca-block-action activate-btn" data-block-type="woocommerce">
+					<a><?php esc_html_e( 'Activate All', 'cozy-addons' ); ?></a>
+				</button>
+				<button class="ca-block-action deactivate-btn" data-block-type="woocommerce">
+					<a><?php esc_html_e( 'Deactivate All', 'cozy-addons' ); ?></a>
+				</button>
+			</div>
+				<?php
+			}
+			?>
+		</div>
 
+		<br />
 		<br />
 
 		<ul id="woocommerce-blocks" class="blocks-list grid-layout cols-3">
@@ -2086,8 +2114,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<!-- Post Blocks -->
 	<div class="boxed-layout">
-		<h3 class="box-label"><?php esc_html_e( 'Post & Magazine Blocks', 'cozy-addons' ); ?></h3>
+		<div class="flex-layout toolbar">
+			<h3 class="box-label"><?php esc_html_e( 'Post & Magazine Blocks', 'cozy-addons' ); ?></h3>
+			<div class="ca-block-action-buttons">
+				<button class="ca-block-action activate-btn" data-block-type="post-magazine">
+					<a><?php esc_html_e( 'Activate All', 'cozy-addons' ); ?></a>
+				</button>
+				<button class="ca-block-action deactivate-btn" data-block-type="post-magazine">
+					<a><?php esc_html_e( 'Deactivate All', 'cozy-addons' ); ?></a>
+				</button>
+			</div>
+		</div>
 
+		<br />
 		<br />
 
 		<ul id="post-blocks" class="blocks-list grid-layout cols-3">

@@ -1,11 +1,15 @@
 :root {
 	--cozy-addons--primary: #5253f9;
+	--cozy-addons--primary-accent: #ecefff;
+	--cozy-addons--border: #eaeef4;
+	--cozy-addons--heading: #141822;
 }
 
 /* Pro Label */
 .cozy-block-pro-label {
-	background-color: #fd1321;
-	color: #fff;
+	background-color: var(--cozy-addons--primary-accent);
+	border: 1px solid var(--cozy-addons--primary);
+	color: var(--cozy-addons--primary);
 	padding: 0 5px;
 	border-radius: 10px;
 	font-size: 10px;
@@ -16,7 +20,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: end;
-	gap: 10px;
+	gap: 16px;
 
 	& > div {
 		width: 100%;
@@ -601,4 +605,8 @@
 	position: absolute !important;
 	right: 0;
 	z-index: 99 !important;
+}
+
+.cozy-block-premium-button:hover {
+	background-color: var(--cozy-addons--heading) !important;
 }

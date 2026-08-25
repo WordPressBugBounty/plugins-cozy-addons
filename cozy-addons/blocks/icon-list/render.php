@@ -87,7 +87,7 @@ $block_styles = "
     background-color: {$item_bg_color};
     font-size: {$styles['font']['size']}px;
     font-weight: {$styles['font']['weight']};
-    font-family: {$styles['font']['family']};
+    font-family: '{$styles['font']['family']}';
     text-transform: {$styles['letter_case']};
     text-decoration: {$styles['decoration']};
 	line-height: {$styles['line_height']};

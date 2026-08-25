@@ -223,7 +223,7 @@ $block_styles = "
     border-radius: {$tab_item['radius']};
     font-size: {$tab_item['font']['size']};
     font-weight: {$tab_item['font']['weight']};
-    font-family: {$tab_item['font']['family']};
+    font-family: '{$tab_item['font']['family']}';
     text-transform: {$tab_item['letter_case']};
     text-decoration: {$tab_item['decoration']};
     line-height: {$tab_item['line_height']};
@@ -308,7 +308,7 @@ $block_styles = "
 	right: {$image['title']['right']};
 	font-size: {$image['title']['font']['size']};
 	font-weight: {$image['title']['font']['weight']};
-	font-family: {$image['title']['font']['family']};
+	font-family: '{$image['title']['font']['family']}';
 	text-transform: {$image['title']['letter_case']};
 	text-decoration: {$image['title']['decoration']};
     line-height: {$image['title']['line_height']};
@@ -345,8 +345,7 @@ $block_styles = "
 	padding-right: {$lightbox['title']['right']};
 	font-size: {$lightbox['title']['font']['size']};
 	font-weight: {$lightbox['title']['font']['weight']};
-	font-family: {$lightbox['title']['font']['family']};
-	font-family: '{$attributes['lightbox']['title']['font']['family']}';
+	font-family: '{$lightbox['title']['font']['family']}';
 	text-transform: {$lightbox['title']['letter_case']};
 	text-decoration: {$lightbox['title']['decoration']};
 	line-height: {$lightbox['title']['line_height']};
@@ -434,7 +433,7 @@ $block_styles = "
 	border-radius: {$ajax_loader['radius']};
 	font-size: {$ajax_loader['font']['size']};
 	font-weight: {$ajax_loader['font']['weight']};
-	font-family: {$ajax_loader['font']['family']};
+	font-family: '{$ajax_loader['font']['family']}';
 	text-transform: {$ajax_loader['letter_case']};
 	text-decoration: {$ajax_loader['decoration']};
 	line-height: {$ajax_loader['line_height']};

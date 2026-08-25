@@ -397,5 +397,12 @@
 		"category": ["home-services"],
 		"image": "template-57.png",
 		"isPremium": true
+	},
+	{
+		"label": "SaasLauncher Agency",
+		"slug": "cozy-addons/template-58",
+		"category": ["agency", "saas", "business"],
+		"image": "template-58.png",
+		"isPremium": true
 	}
 ]

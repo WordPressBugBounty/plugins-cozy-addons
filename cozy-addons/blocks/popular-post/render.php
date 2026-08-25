@@ -246,7 +246,7 @@ $block_styles = "
 	gap: {$cat_styles['gap']};
 	font-size: {$cat_styles['font']['size']};
 	font-weight: {$cat_styles['font']['weight']};
-	font-family: {$cat_styles['font']['family']};
+	font-family: '{$cat_styles['font']['family']}';
 	text-transform: {$cat_styles['letter_case']};
 	text-decoration: {$cat_styles['decoration']};
 	line-height: {$cat_styles['line_height']};
@@ -272,7 +272,7 @@ $block_styles = "
 	margin-bottom: {$title_styles['margin']['bottom']};
     font-size: clamp(16px, calc(3vw + 4px), {$title_styles['font']['size']});
     font-weight: {$title_styles['font']['weight']};
-    font-family: {$title_styles['font']['family']};
+    font-family: '{$title_styles['font']['family']}';
 	text-transform: {$title_styles['letter_case']};
 	line-height: {$title_styles['line_height']};
 	letter-spacing: {$title_styles['letter_spacing']};
@@ -297,7 +297,7 @@ $block_styles = "
 	background-color: {$meta_styles['bg_color']};
 	font-size: {$meta_styles['font']['size']};
 	font-weight: {$meta_styles['font']['weight']};
-	font-family: {$meta_styles['font']['family']};
+	font-family: '{$meta_styles['font']['family']}';
 	text-transform: {$meta_styles['letter_case']};
 	text-decoration: {$meta_styles['decoration']};
 	line-height: {$meta_styles['line_height']};
@@ -325,7 +325,7 @@ $block_styles = "
 	border-radius: {$loader['radius']};
 	font-size: {$loader['font']['size']};
 	font-weight: {$loader['font']['weight']};
-	font-family: {$loader['font']['family']};
+	font-family: '{$loader['font']['family']}';
 	text-transform: {$loader['letter_case']};
 	text-decoration: {$loader['decoration']};
 	line-height: {$loader['line_height']};

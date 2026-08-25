@@ -100,7 +100,7 @@ $block_styles = "
 	{$label_styles['radius']}
 	font-size: {$label_styles['font']['size']};
 	font-weight: {$label_styles['font']['weight']};
-	font-family: {$label_styles['font']['family']};
+	font-family: '{$label_styles['font']['family']}';
 	text-transform: {$label_styles['letter_case']};
 	text-decoration: {$label_styles['decoration']};
 	line-height: {$label_styles['line_height']};

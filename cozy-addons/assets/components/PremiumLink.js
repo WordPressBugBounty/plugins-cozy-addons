@@ -60,7 +60,7 @@ export const PremiumLink = () => {
 					<button
 						className="cozy-block-premium-button"
 						style={{
-							backgroundColor: "#0c50ff",
+							backgroundColor: "var(--cozy-addons--primary)",
 							borderRadius: "20px",
 							padding: "10px 22px",
 							border: "none",

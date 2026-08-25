@@ -427,7 +427,7 @@ $block_styles = "
 	border-radius: {$isotope['radius']};
 	font-size: {$isotope['font']['size']};
 	font-weight: {$isotope['font']['weight']};
-	font-family: {$isotope['font']['family']};
+	font-family: '{$isotope['font']['family']}';
 	text-transform: {$isotope['letter_case']};
 	text-decoration: {$isotope['decoration']};
 	line-height: {$isotope['line_height']};
@@ -469,7 +469,7 @@ $block_styles = "
 	{$post_title['margin']}
 	font-size: {$post_title['font']['size']};
 	font-weight: {$post_title['font']['weight']};
-	font-family: {$post_title['font']['family']};
+	font-family: '{$post_title['font']['family']}';
 	text-transform: {$post_title['letter_case']};
 	text-decoration: {$post_title['decoration']};
 	line-height: {$post_title['line_height']};
@@ -495,7 +495,7 @@ $block_styles = "
 	border-radius: {$overlay_content['btn']['radius']};
 	font-size: {$overlay_content['btn']['font']['size']};
 	font-weight: {$overlay_content['btn']['font']['weight']};
-	font-family: {$overlay_content['btn']['font']['family']};
+	font-family: '{$overlay_content['btn']['font']['family']}';
 	text-transform: {$overlay_content['btn']['letter_case']};
 	text-decoration: {$overlay_content['btn']['decoration']};
 	line-height: {$overlay_content['btn']['line_height']};
@@ -585,7 +585,7 @@ $block_styles = "
 	height: {$popup['height']};
 	font-size: {$popup['font']['size']};
 	font-weight: {$popup['font']['weight']};
-	font-family: {$popup['font']['family']};
+	font-family: '{$popup['font']['family']}';
 	text-transform: {$popup['letter_case']};
 	text-decoration: {$popup['decoration']};
 	line-height: {$popup['line_height']};
@@ -641,7 +641,7 @@ $block_styles = "
 	margin-bottom: {$popup['cat']['margin']['bottom']};
 	font-size: {$popup['cat']['font']['size']};
 	font-weight: {$popup['cat']['font']['weight']};
-	font-family: {$popup['cat']['font']['family']};
+	font-family: '{$popup['cat']['font']['family']}';
 	text-transform: {$popup['cat']['letter_case']};
 	text-decoration: {$popup['cat']['decoration']};
 	line-height: {$popup['cat']['line_height']};
@@ -659,7 +659,7 @@ $block_styles = "
 	margin-bottom: {$popup['post_title']['margin']['bottom']};
 	font-size: {$popup['post_title']['font']['size']};
 	font-weight: {$popup['post_title']['font']['weight']};
-	font-family: {$popup['post_title']['font']['family']};
+	font-family: '{$popup['post_title']['font']['family']}';
 	text-transform: {$popup['post_title']['letter_case']};
 	text-decoration: {$popup['post_title']['decoration']};
 	line-height: {$popup['post_title']['line_height']};
@@ -683,7 +683,7 @@ $block_styles = "
 #$block_id .cozy-portfolio__modal .modal__portfolio-cpt-wrap .cpt__title {
 	font-size: {$popup['cpt_title']['font']['size']};
 	font-weight: {$popup['cpt_title']['font']['weight']};
-	font-family: {$popup['cpt_title']['font']['family']};
+	font-family: '{$popup['cpt_title']['font']['family']}';
 	text-transform: {$popup['cpt_title']['letter_case']};
 	text-decoration: {$popup['cpt_title']['decoration']};
 	line-height: {$popup['cpt_title']['line_height']};
@@ -693,7 +693,7 @@ $block_styles = "
 #$block_id .cozy-portfolio__modal .modal__portfolio-cpt-wrap .cpt__title {
 	font-size: {$popup['cpt_subtitle']['font']['size']};
 	font-weight: {$popup['cpt_subtitle']['font']['weight']};
-	font-family: {$popup['cpt_subtitle']['font']['family']};
+	font-family: '{$popup['cpt_subtitle']['font']['family']}';
 	text-transform: {$popup['cpt_subtitle']['letter_case']};
 	text-decoration: {$popup['cpt_subtitle']['decoration']};
 	line-height: {$popup['cpt_subtitle']['line_height']};
@@ -712,7 +712,7 @@ $block_styles = "
     color: {$ajax_btn_styles['color']['text']};
     font-size: {$ajax_btn_styles['font']['size']};
     font-weight: {$ajax_btn_styles['font']['weight']};
-    font-family: {$ajax_btn_styles['font']['family']};
+    font-family: '{$ajax_btn_styles['font']['family']}';
     text-transform: {$ajax_btn_styles['letter_case']};
     text-decoration: {$ajax_btn_styles['decoration']};
     line-height: {$ajax_btn_styles['line_height']};

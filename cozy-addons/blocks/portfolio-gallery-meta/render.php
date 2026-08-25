@@ -78,7 +78,7 @@ $block_styles = "
     border-radius: {$cat_styles['radius']};
     font-size: {$cat_styles['font']['size']};
     font-weight: {$cat_styles['font']['weight']};
-    font-family: {$cat_styles['font']['family']};
+    font-family: '{$cat_styles['font']['family']}';
     text-transform: {$cat_styles['letter_case']};
     text-decoration: {$cat_styles['decoration']};
     line-height: {$cat_styles['line_height']};
@@ -91,7 +91,7 @@ $block_styles = "
 	{$title_styles['margin']}
 	font-size: {$title_styles['font']['size']};
     font-weight: {$title_styles['font']['weight']};
-    font-family: {$title_styles['font']['family']};
+    font-family: '{$title_styles['font']['family']}';
     text-transform: {$title_styles['letter_case']};
     text-decoration: {$title_styles['decoration']};
     line-height: {$title_styles['line_height']};
@@ -102,7 +102,7 @@ $block_styles = "
 #$block_id .meta__content, #$block_id.portfolio-gallery__meta-url a {
 	font-size: {$typography['font']['size']};
     font-weight: {$typography['font']['weight']};
-    font-family: {$typography['font']['family']};
+    font-family: '{$typography['font']['family']}';
     text-transform: {$typography['letter_case']};
     text-decoration: {$typography['decoration']};
     line-height: {$typography['line_height']};

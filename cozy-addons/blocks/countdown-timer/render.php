@@ -141,7 +141,7 @@ $block_styles = "
 	{$styles['radius']}
 	font-size: {$styles['font']['size']};
 	font-weight: {$styles['font']['weight']};
-	font-family: {$styles['font']['family']};
+	font-family: '{$styles['font']['family']}';
 	color: {$styles['color']['text']};
 	background-color: {$styles['color']['bg']};
 	line-height: {$styles['line_height']};
@@ -184,7 +184,7 @@ $block_styles = "
 	border-radius: {$timer_styles['radius']};
 	font-size: {$timer_styles['font']['size']};
 	font-weight: {$timer_styles['font']['weight']};
-	font-family: {$timer_styles['font']['family']};
+	font-family: '{$timer_styles['font']['family']}';
 	line-height: {$timer_styles['line_height']};
 	letter-spacing: {$timer_styles['letter_spacing']};
 	background-color: {$timer_styles['color']['bg']};
@@ -195,7 +195,7 @@ $block_styles = "
 	text-align: {$label_styles['align']};
 	font-size: {$label_styles['font']['size']};
 	font-weight: {$label_styles['font']['weight']};
-	font-family: {$label_styles['font']['family']};
+	font-family: '{$label_styles['font']['family']}';
 	text-transform: {$label_styles['letter_case']};
 	text-decoration: {$label_styles['decoration']};
 	line-height: {$label_styles['line_height']};
@@ -219,7 +219,7 @@ $block_styles = "
 	border-radius: {$end_text_styles['radius']};
 	font-size: {$end_text_styles['font']['size']};
 	font-weight: {$end_text_styles['font']['weight']};
-	font-family: {$end_text_styles['font']['family']};
+	font-family: '{$end_text_styles['font']['family']}';
 	text-transform: {$end_text_styles['letter_case']};
 	text-decoration: {$end_text_styles['decoration']};
 	line-height: {$end_text_styles['line_height']};
@@ -244,7 +244,7 @@ $block_styles = "
 #$block_id .before-label, #$block_id .after-label {
 	font-size: {$ba_label['font']['size']};
 	font-weight: {$ba_label['font']['weight']};
-	font-family: {$ba_label['font']['family']};
+	font-family: '{$ba_label['font']['family']}';
 	text-transform: {$ba_label['letter_case']};
 	text-decoration: {$ba_label['decoration']};
 	line-height: {$ba_label['line_height']};

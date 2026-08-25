@@ -304,7 +304,7 @@ $block_styles = "
 }
 #$block_id.variation-sidebar .sidebar-header-title{
 	font-size:{$sidebar['title']['font']['size']};
-	font-family:{$sidebar['title']['font']['family']};
+	font-family: '{$sidebar['title']['font']['family']}';
 	font-weight:{$sidebar['title']['font']['weight']};
 	text-transform:{$sidebar['title']['font']['lettercase']};
 	text-decoration:{$sidebar['title']['font']['decoration']};
@@ -370,7 +370,7 @@ $block_styles = "
 	background-color: {$sidebar['count']['color']['bg']};
 	font-size: {$sidebar['count']['font']['size']};
 	font-weight: {$sidebar['count']['font']['weight']};
-	font-family: {$sidebar['count']['font']['family']};
+	font-family: '{$sidebar['count']['font']['family']}';
 }
 #$block_id.variation-sidebar .cozy-block-wishlist__product-data {
 	{$sidebar_item['padding']}
@@ -392,7 +392,7 @@ $block_styles = "
 #$block_id.variation-sidebar .cozy-block-wishlist__product-title a {
 	font-size: {$sidebar['product_title']['font']['size']};
 	font-weight: {$sidebar['product_title']['font']['weight']};
-	font-family: {$sidebar['product_title']['font']['family']};
+	font-family: '{$sidebar['product_title']['font']['family']}';
 	text-transform: {$sidebar['product_title']['letter_case']};
 	text-decoration: {$sidebar['product_title']['decoration']};
 	line-height: {$sidebar['product_title']['line_height']};
@@ -406,7 +406,7 @@ $block_styles = "
 #$block_id.variation-sidebar .cozy-block-wishlist__product-summary {
 	font-size: {$sidebar['product_summary']['font']['size']};
 	font-weight: {$sidebar['product_summary']['font']['weight']};
-	font-family: {$sidebar['product_summary']['font']['family']};
+	font-family: '{$sidebar['product_summary']['font']['family']}';
 	text-transform: {$sidebar['product_summary']['letter_case']};
 	text-decoration: {$sidebar['product_summary']['decoration']};
 	line-height: {$sidebar['product_summary']['line_height']};
@@ -416,7 +416,7 @@ $block_styles = "
 #$block_id.variation-sidebar .cozy-block-wishlist__product-price {
 	font-size: {$sidebar['product_price']['font']['size']};
 	font-weight: {$sidebar['product_price']['font']['weight']};
-	font-family: {$sidebar['product_price']['font']['family']};
+	font-family: '{$sidebar['product_price']['font']['family']}';
 	text-transform: {$sidebar['product_price']['letter_case']};
 	text-decoration: {$sidebar['product_price']['decoration']};
 	line-height: {$sidebar['product_price']['line_height']};
@@ -426,7 +426,7 @@ $block_styles = "
 #$block_id.variation-sidebar .cozy-block-wishlist__sidebar-button {
 	font-size: {$sidebar['button']['font']['size']};
 	font-weight: {$sidebar['button']['font']['weight']};
-	font-family: {$sidebar['button']['font']['family']};
+	font-family: '{$sidebar['button']['font']['family']}';
 	text-transform: {$sidebar['button']['letter_case']};
 	text-decoration: {$sidebar['button']['decoration']};
 	line-height: {$sidebar['button']['line_height']};
@@ -482,7 +482,7 @@ $block_styles = "
     {$toast['radius']}
     font-size: {$toast['font']['size']};
     font-weight: {$toast['font']['weight']};
-    font-family: {$toast['font']['family']};
+    font-family: '{$toast['font']['family']}';
     text-transform: {$toast['letter_case']};
     text-decoration: {$toast['text_decoration']};
     line-height: {$toast['line_height']};

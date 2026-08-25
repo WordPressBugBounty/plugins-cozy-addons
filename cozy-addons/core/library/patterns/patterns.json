@@ -1197,6 +1197,13 @@
 		"isPremium": true
 	},
 	{
+		"label": "Blog Magazine",
+		"slug": "cozy-addons/blog-magazine-66",
+		"category": ["blog-magazine"],
+		"image": "blog-magazine-66.png",
+		"isPremium": true
+	},
+	{
 		"label": "Brand showcase",
 		"slug": "cozy-addons/brand-showcase-1",
 		"category": ["brand-showcase"],
@@ -1369,6 +1376,13 @@
 		"slug": "cozy-addons/brand-showcase-25",
 		"category": ["brand-showcase"],
 		"image": "brand-showcase-25.png",
+		"isPremium": true
+	},
+	{
+		"label": "Brand showcase Carousel",
+		"slug": "cozy-addons/brand-showcase-26",
+		"category": ["brand-showcase"],
+		"image": "brand-showcase-26.png",
 		"isPremium": true
 	},
 	{
@@ -1810,6 +1824,13 @@
 		"slug": "cozy-addons/cta-48",
 		"category": ["cta"],
 		"image": "cta-48.png",
+		"isPremium": true
+	},
+	{
+		"label": "CTA",
+		"slug": "cozy-addons/cta-49",
+		"category": ["cta"],
+		"image": "cta-49.png",
 		"isPremium": true
 	},
 	{
@@ -2849,6 +2870,13 @@
 		"isPremium": true
 	},
 	{
+		"label": "Header",
+		"slug": "cozy-addons/header-31",
+		"category": ["header"],
+		"image": "header-31.png",
+		"isPremium": true
+	},
+	{
 		"label": "Hero",
 		"slug": "cozy-addons/hero-1",
 		"category": ["hero", "header"],
@@ -3290,6 +3318,13 @@
 		"isPremium": true
 	},
 	{
+		"label": "Hero",
+		"slug": "cozy-addons/hero-64",
+		"category": ["hero", "header"],
+		"image": "hero-64.png",
+		"isPremium": true
+	},
+	{
 		"label": "How we work",
 		"slug": "cozy-addons/how-we-work-1",
 		"category": ["how-we-work"],
@@ -3399,6 +3434,13 @@
 		"slug": "cozy-addons/how-we-work-16",
 		"category": ["how-we-work"],
 		"image": "how-we-work-16.png",
+		"isPremium": true
+	},
+	{
+		"label": "How we work",
+		"slug": "cozy-addons/how-we-work-17",
+		"category": ["how-we-work"],
+		"image": "how-we-work-17.png",
 		"isPremium": true
 	},
 	{
@@ -3903,6 +3945,13 @@
 		"slug": "cozy-addons/portfolio-37",
 		"category": ["portfolio"],
 		"image": "portfolio-37.png",
+		"isPremium": true
+	},
+	{
+		"label": "Portfolio",
+		"slug": "cozy-addons/portfolio-38",
+		"category": ["portfolio"],
+		"image": "portfolio-38.png",
 		"isPremium": true
 	},
 	{
@@ -4921,6 +4970,13 @@
 		"isPremium": true
 	},
 	{
+		"label": "Testimonials carousel",
+		"slug": "cozy-addons/testimonials-64",
+		"category": ["testimonials"],
+		"image": "testimonials-64.png",
+		"isPremium": true
+	},
+	{
 		"label": "Why choose us",
 		"slug": "cozy-addons/why-choose-us-1",
 		"category": ["why-choose-us"],
@@ -5100,6 +5156,13 @@
 		"slug": "cozy-addons/why-choose-us-26",
 		"category": ["why-choose-us"],
 		"image": "why-choose-us-26.png",
+		"isPremium": true
+	},
+	{
+		"label": "Why choose us",
+		"slug": "cozy-addons/why-choose-us-27",
+		"category": ["why-choose-us"],
+		"image": "why-choose-us-27.png",
 		"isPremium": true
 	}
 ]

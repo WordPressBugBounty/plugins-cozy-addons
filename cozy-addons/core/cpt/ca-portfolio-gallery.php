@@ -4,90 +4,75 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Custom Post Type for Portfolio Gallery
+ * Registering custom post type 'ca_portfolio_gallery'.
+ *
+ * @return void
  */
-if ( ! function_exists( 'ca_cpt_portfolio_gallery_init' ) ) {
-	/**
-	 * Registering custom post type 'ca_portfolio_gallery'.
-	 *
-	 * @return void
-	 */
-	function ca_cpt_portfolio_gallery_init() {
-		$args = array(
-			'labels'               => array(
-				'name'              => _x( 'Portfolio Gallery', 'Portfolio Gallery', 'cozy-addons' ),
-				'singular_name'     => _x( 'Portfolio Gallery', 'Portfolio Gallery', 'cozy-addons' ),
-				'menu_name'         => _x( 'Portfolio Gallery', 'Admin Menu Text', 'cozy-addons' ),
-				'name_admin_bar'    => _x( 'Portfolio Gallery', 'Add New on Toolbar', 'cozy-addons' ),
-				'add_new'           => __( 'Add New', 'cozy-addons' ),
-				'add_new_item'      => __( 'Add New Portfolio', 'cozy-addons' ),
-				'new_item'          => __( 'New Portfolio', 'cozy-addons' ),
-				'edit_item'         => __( 'Edit Portfolio', 'cozy-addons' ),
-				'view_item'         => __( 'View Portfolio', 'cozy-addons' ),
-				'all_items'         => __( 'All Portfolios', 'cozy-addons' ),
-				'search_items'      => __( 'Search Portfolio Template', 'cozy-addons' ),
-				'parent_item_colon' => __( 'Parent Portfolio Template:', 'cozy-addons' ),
-				'not_found'         => __( 'No Portfolio Template found.', 'cozy-addons' ),
-			),
-			'public'               => true,
-			'publicly_queryable'   => true,
-			'show_ui'              => true,
-			'show_in_menu'         => true,
-			'query_var'            => true,
-			'rewrite'              => array( 'slug' => 'ca-portfolio-gallery' ),
-			'capability_type'      => 'post',
-			'has_archive'          => true,
-			'hierarchical'         => true,
-			'menu_position'        => 20,
-			'supports'             => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' ),
-			'show_in_rest'         => true,
-			'menu_icon'            => 'dashicons-portfolio',
-			'register_meta_box_cb' => 'add_ca_portfolio_gallery_meta_boxes',
-		);
-		register_post_type( 'ca_portfolio_gallery', $args );
-	}
+function ca_cpt_portfolio_gallery_init() {
+	$portfolio_gallery_config = cozy_addons_get_cpt_config_option( 'portfolio-gallery' );
 
-	add_action( 'init', 'ca_cpt_portfolio_gallery_init' );
+	$args = array(
+		'labels'               => array(
+			'name'              => _x( 'Portfolio Gallery', 'Portfolio Gallery', 'cozy-addons' ),
+			'singular_name'     => _x( 'Portfolio Gallery', 'Portfolio Gallery', 'cozy-addons' ),
+			'menu_name'         => _x( 'Portfolio Gallery', 'Admin Menu Text', 'cozy-addons' ),
+			'name_admin_bar'    => _x( 'Portfolio Gallery', 'Add New on Toolbar', 'cozy-addons' ),
+			'add_new'           => __( 'Add New', 'cozy-addons' ),
+			'add_new_item'      => __( 'Add New Portfolio', 'cozy-addons' ),
+			'new_item'          => __( 'New Portfolio', 'cozy-addons' ),
+			'edit_item'         => __( 'Edit Portfolio', 'cozy-addons' ),
+			'view_item'         => __( 'View Portfolio', 'cozy-addons' ),
+			'all_items'         => __( 'All Portfolios', 'cozy-addons' ),
+			'search_items'      => __( 'Search Portfolio Template', 'cozy-addons' ),
+			'parent_item_colon' => __( 'Parent Portfolio Template:', 'cozy-addons' ),
+			'not_found'         => __( 'No Portfolio Template found.', 'cozy-addons' ),
+		),
+		'public'               => true,
+		'publicly_queryable'   => true,
+		'show_ui'              => true,
+		'show_in_menu'         => true,
+		'query_var'            => true,
+		'rewrite'              => array( 'slug' => $portfolio_gallery_config['slug'] ),
+		'capability_type'      => 'post',
+		'has_archive'          => true,
+		'hierarchical'         => true,
+		'menu_position'        => 20,
+		'supports'             => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' ),
+		'show_in_rest'         => true,
+		'menu_icon'          => COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/portfolio-gallery.svg',
+		'register_meta_box_cb' => 'add_ca_portfolio_gallery_meta_boxes',
+	);
+	register_post_type( 'ca_portfolio_gallery', $args );
 
+	$labels = array(
+		'name'              => __( 'Categories', 'cozy-addons' ),
+		'singular_name'     => __( 'Category', 'cozy-addons' ),
+		'search_items'      => __( 'Search Categories', 'cozy-addons' ),
+		'all_items'         => __( 'All Categories', 'cozy-addons' ),
+		'parent_item'       => __( 'Parent Category', 'cozy-addons' ),
+		'parent_item_colon' => __( 'Parent Category:', 'cozy-addons' ),
+		'edit_item'         => __( 'Edit Category', 'cozy-addons' ),
+		'update_item'       => __( 'Update Category', 'cozy-addons' ),
+		'add_new_item'      => __( 'Add New Category', 'cozy-addons' ),
+		'new_item_name'     => __( 'New Category', 'cozy-addons' ),
+		'menu_name'         => __( 'Portfolio Gallery Categories', 'cozy-addons' ),
+	);
+
+	register_taxonomy(
+		'ca_portfolio_gallery_category',
+		array( 'ca_portfolio_gallery' ),
+		array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => $portfolio_gallery_config['taxonomy']['category']['slug'] ),
+			'show_in_rest'      => true,
+		)
+	);
 }
-
-if ( ! function_exists( 'ca_portfolio_gallery_taxonomy' ) ) :
-	/**
-	 * Registering Portfolio Gallery taxonomy 'ca_portfolio_gallery_category'.
-	 *
-	 * @return void
-	 */
-	function ca_portfolio_gallery_taxonomy() {
-		$labels = array(
-			'name'              => __( 'Categories', 'cozy-addons' ),
-			'singular_name'     => __( 'Category', 'cozy-addons' ),
-			'search_items'      => __( 'Search Categories', 'cozy-addons' ),
-			'all_items'         => __( 'All Categories', 'cozy-addons' ),
-			'parent_item'       => __( 'Parent Category', 'cozy-addons' ),
-			'parent_item_colon' => __( 'Parent Category:', 'cozy-addons' ),
-			'edit_item'         => __( 'Edit Category', 'cozy-addons' ),
-			'update_item'       => __( 'Update Category', 'cozy-addons' ),
-			'add_new_item'      => __( 'Add New Category', 'cozy-addons' ),
-			'new_item_name'     => __( 'New Category', 'cozy-addons' ),
-			'menu_name'         => __( 'Portfolio Gallery Categories', 'cozy-addons' ),
-		);
-
-		register_taxonomy(
-			'ca_portfolio_gallery_category',
-			array( 'ca_portfolio_gallery' ),
-			array(
-				'hierarchical'      => true,
-				'labels'            => $labels,
-				'show_ui'           => true,
-				'show_admin_column' => true,
-				'query_var'         => true,
-				'rewrite'           => array( 'slug' => 'ca-portfolio-gallery-category' ),
-				'show_in_rest'      => true,
-			)
-		);
-	}
-	add_action( 'init', 'ca_portfolio_gallery_taxonomy' );
-endif;
+add_action( 'init', 'ca_cpt_portfolio_gallery_init' );
 
 if ( ! function_exists( 'register_ca_portfolio_gallery_custom_fields' ) ) {
 	/**

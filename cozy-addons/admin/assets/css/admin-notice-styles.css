@@ -126,3 +126,30 @@
 	max-height: 290px;
 	margin-bottom: -5px;
 }
+
+.cozy-block__upsell-icon {
+	position: relative;
+
+	& .pro__label {
+		font-size: 9px;
+		text-transform: uppercase;
+		border-radius: 100px;
+		background-color: var(--cozy-addons--primary);
+		color: var(--cozy-addons--light);
+		position: absolute;
+		top: -8px;
+		right: -24px;
+		width: 34px;
+		height: 16px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+/* CPT icons */
+#menu-posts-ca_faq img,
+#menu-posts-ca_mega_menu img,
+#menu-posts-ca_portfolio_gallery img {
+	opacity: 1 !important;
+}

@@ -175,7 +175,7 @@ $block_styles = "
 	{$title_styles['margin']}
     font-size: {$title_styles['font']['size']}px;
     font-weight: {$title_styles['font']['weight']};
-    font-family: {$title_styles['font']['family']};
+    font-family: '{$title_styles['font']['family']}';
     color: {$title_color['text']};
     text-transform: {$title_styles['letter_case']};
     text-decoration: {$title_styles['decoration']};
@@ -186,7 +186,7 @@ $block_styles = "
 #$block_id .cozy-tab-title {
     font-size: {$tab_styles['font']['size']}px;
     font-weight: {$tab_styles['font']['weight']};
-    font-family: {$tab_styles['font']['family']};
+    font-family: '{$tab_styles['font']['family']}';
     text-transform: {$tab_styles['letter_case']};
     text-decoration: {$tab_styles['decoration']};
     line-height: {$tab_styles['line_height']};

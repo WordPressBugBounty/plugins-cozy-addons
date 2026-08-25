@@ -825,6 +825,7 @@ function cozy_addons_google_fonts() {
 		'Moulpali'                         => 'Moulpali',
 		'Mountains of Christmas'           => 'Mountains of Christmas',
 		'Mouse Memoirs'                    => 'Mouse Memoirs',
+		'Mozilla Text'                     => 'Mozilla Text',
 		'Mr Bedfort'                       => 'Mr Bedfort',
 		'Mr Dafoe'                         => 'Mr Dafoe',
 		'Mr De Haviland'                   => 'Mr De Haviland',

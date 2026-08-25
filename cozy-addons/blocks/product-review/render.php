@@ -225,7 +225,7 @@ $block_styles = "
 #$block_id {
     font-size: {$typography['font']['size']}px;
     font-weight: {$typography['font']['weight']};
-    font-family: {$typography['font']['family']};
+    font-family: '{$typography['font']['family']}';
     text-transform: {$typography['letter_case']};
     text-decoration: {$typography['decoration']};
     line-height: {$typography['line_height']};
@@ -267,7 +267,7 @@ $block_styles = "
 #$block_id .review-heading-wrapper .review-heading{
     font-size: {$heading_styles['font']['size']}px;
     font-weight: {$heading_styles['font']['weight']};
-    font-family: {$heading_styles['font']['family']};
+    font-family: '{$heading_styles['font']['family']}';
     text-transform: {$heading_styles['letter_case']};
     text-decoration: {$heading_styles['decoration']};
     line-height: {$heading_styles['line_height']};
@@ -328,7 +328,7 @@ $block_styles = "
 #$block_id .product-name {
     font-size: {$title_styles['font']['size']}px;
     font-weight: {$title_styles['font']['weight']};
-    font-family: {$title_styles['font']['family']};
+    font-family: '{$title_styles['font']['family']}';
     text-transform: {$title_styles['letter_case']};
     text-decoration: {$title_styles['decoration']};
     line-height: {$title_styles['line_height']};
@@ -361,7 +361,7 @@ $block_styles = "
     color: {$loader_color['text']};
     font-size: {$loader_styles['font']['size']}px;
     font-weight: {$loader_styles['font']['weight']};
-    font-family: {$loader_styles['font']['family']};
+    font-family: '{$loader_styles['font']['family']}';
     text-transform: {$loader_styles['letter_case']};
     text-decoration: {$loader_styles['decoration']};
     line-height: {$loader_styles['line_height']};

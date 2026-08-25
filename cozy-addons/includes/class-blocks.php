@@ -173,6 +173,7 @@ class Blocks {
 				'productReviews'       => \CozyAddons\Helpers\Utils::get_woo_product_reviews(),
 				'totalReviews'         => \CozyAddons\Helpers\Utils::get_woo_total_product_reviews(),
 				'avgReviews'           => \CozyAddons\Helpers\Utils::get_woo_avg_product_reviews(),
+				'adminURL'             => trailingslashit( admin_url() ),
 			)
 		);
 
@@ -182,7 +183,7 @@ class Blocks {
 			// Block enabled status from dashboard.
 			$is_block_active = get_option( 'cozy-block--' . $block_name );
 
-			if ( in_array( $block_name, self::$group_blocks, true ) || ( ! \CozyAddons\Helpers\Utils::is_woocommerce_active() && in_array( $block_name, self::$woocommerce_blocks, true ) ) || ( ! cozy_addons_premium_access() && in_array( $block_name, self::$premium_blocks, true ) ) || ( '0' === $is_block_active ) ) {
+			if ( in_array( $block_name, self::$group_blocks, true ) || ( ! \CozyAddons\Helpers\Utils::is_woocommerce_active() && in_array( $block_name, self::$woocommerce_blocks, true ) ) || ( '0' === $is_block_active ) ) {
 				continue;
 			}
 

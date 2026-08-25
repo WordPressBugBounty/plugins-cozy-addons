@@ -138,7 +138,7 @@ $block_styles = "
 	align-items: {$header_box['align']};
 	font-size: {$header_box['font']['size']};
 	font-weight: {$header_box['font']['weight']};
-	font-family: {$header_box['font']['family']};
+	font-family: '{$header_box['font']['family']}';
 	text-transform: {$header_box['letter_case']};
 	text-decoration: {$header_box['decoration']};
 	line-height: {$header_box['line_height']};
@@ -150,7 +150,7 @@ $block_styles = "
 	{$heading['margin']}
 	font-size: {$heading['font']['size']};
 	font-weight: {$heading['font']['weight']};
-	font-family: {$heading['font']['family']};
+	font-family: '{$heading['font']['family']}';
 	text-transform: {$heading['letter_case']};
 	text-decoration: {$heading['decoration']};
 	line-height: {$heading['line_height']};
@@ -164,7 +164,7 @@ $block_styles = "
 	border-radius: {$button['radius']};
 	font-size: {$button['font']['size']};
 	font-weight: {$button['font']['weight']};
-	font-family: {$button['font']['family']};
+	font-family: '{$button['font']['family']}';
 	text-transform: {$button['letter_case']};
 	text-decoration: {$button['decoration']};
 	line-height: {$button['line_height']};
@@ -255,7 +255,7 @@ $block_styles = "
 	{$list_scroll['title']['margin']}
 	font-size: {$list_scroll['title']['font']['size']};
 	font-weight: {$list_scroll['title']['font']['weight']};
-	font-family: {$list_scroll['title']['font']['family']};
+	font-family: '{$list_scroll['title']['font']['family']}';
 	text-transform: {$list_scroll['title']['letter_case']};
 	text-decoration: {$list_scroll['title']['decoration']};
 	line-height: {$list_scroll['title']['line_height']};

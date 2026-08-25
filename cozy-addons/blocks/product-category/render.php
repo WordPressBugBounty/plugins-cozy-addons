@@ -157,7 +157,7 @@ $block_styles = "
 #$block_id .woo-product-category .woo-product-category__link {
 	font-size: {$item_styles['font_size']};
 	font-weight: {$item_styles['font_weight']};
-	font-family: {$item_styles['font_family']};
+	font-family: '{$item_styles['font_family']}';
 	text-transform: {$item_styles['letter_case']};
 	text-decoration: {$item_styles['decoration']};
 	line-height: {$item_styles['line_height']};
@@ -194,7 +194,7 @@ $block_styles = "
 	{$count_border}
 	{$count_radius}
 	font-size: {$count_styles['font']['size']};
-	font-family: {$count_styles['font']['family']};
+	font-family: '{$count_styles['font']['family']}';
 	font-weight: {$count_styles['font']['weight']};
 	text-transform: {$count_styles['letter_case']};
 	text-decoration: {$count_styles['decoration']};

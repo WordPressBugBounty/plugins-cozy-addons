@@ -219,7 +219,7 @@ $block_styles = "
 	{$styles['radius']}
 	font-size: {$styles['font']['size']};
 	font-weight: {$styles['font']['weight']};
-	font-family: {$styles['font']['family']};
+	font-family: '{$styles['font']['family']}';
 	color: {$styles['color']['text']};
 	background-color: {$styles['color']['bg']};
 }
@@ -235,7 +235,7 @@ $block_styles = "
 	{$label_styles['padding']}
 	font-size: {$label_styles['font']['size']};
 	font-weight: {$label_styles['font']['weight']};
-	font-family: {$label_styles['font']['family']};
+	font-family: '{$label_styles['font']['family']}';
 	text-transform: {$label_styles['letter_case']};
 	text-decoration: {$label_styles['decoration']};
 	line-height: {$label_styles['line_height']};
@@ -250,7 +250,7 @@ $block_styles = "
 	border-radius: {$text_styles['radius']};
 	font-size: {$text_styles['font']['size']};
 	font-weight: {$text_styles['font']['weight']};
-	font-family: {$text_styles['font']['family']};
+	font-family: '{$text_styles['font']['family']}';
 	text-transform: {$text_styles['letter_case']};
 	text-decoration: {$text_styles['decoration']};
 	line-height: {$text_styles['line_height']};
@@ -275,7 +275,7 @@ $block_styles = "
 	border-radius: {$date_styles['radius']};
 	font-size: {$date_styles['font']['size']};
 	font-weight: {$date_styles['font']['weight']};
-	font-family: {$date_styles['font']['family']};
+	font-family: '{$date_styles['font']['family']}';
 	text-transform: {$date_styles['letter_case']};
 	text-decoration: {$date_styles['decoration']};
 	line-height: {$date_styles['line_height']};
@@ -291,7 +291,7 @@ $block_styles = "
 	border-radius: {$dropdown_styles['radius']};
 	font-size: {$dropdown_styles['font']['size']};
 	font-weight: {$dropdown_styles['font']['weight']};
-	font-family: {$dropdown_styles['font']['family']};
+	font-family: '{$dropdown_styles['font']['family']}';
 	text-transform: {$dropdown_styles['letter_case']};
 	text-decoration: {$dropdown_styles['decoration']};
 	line-height: {$dropdown_styles['line_height']};
@@ -304,7 +304,7 @@ $block_styles = "
 	{$chkbx_styles['padding']}
 	font-size: {$chkbx_styles['font']['size']};
 	font-weight: {$chkbx_styles['font']['weight']};
-	font-family: {$chkbx_styles['font']['family']};
+	font-family: '{$chkbx_styles['font']['family']}';
 	text-transform: {$chkbx_styles['letter_case']};
 	text-decoration: {$chkbx_styles['decoration']};
 	line-height: {$chkbx_styles['line_height']};
@@ -325,7 +325,7 @@ $block_styles = "
 	{$radio_styles['padding']}
 	font-size: {$radio_styles['font']['size']};
 	font-weight: {$radio_styles['font']['weight']};
-	font-family: {$radio_styles['font']['family']};
+	font-family: '{$radio_styles['font']['family']}';
 	text-transform: {$radio_styles['letter_case']};
 	text-decoration: {$radio_styles['decoration']};
 	line-height: {$radio_styles['line_height']};
@@ -346,7 +346,7 @@ $block_styles = "
 	{$acceptance_styles['padding']}
 	font-size: {$acceptance_styles['font']['size']};
 	font-weight: {$acceptance_styles['font']['weight']};
-	font-family: {$acceptance_styles['font']['family']};
+	font-family: '{$acceptance_styles['font']['family']}';
 	text-transform: {$acceptance_styles['letter_case']};
 	text-decoration: {$acceptance_styles['decoration']};
 	line-height: {$acceptance_styles['line_height']};
@@ -385,7 +385,7 @@ $block_styles = "
 	{$btn_styles['radius']}
 	font-size: {$btn_styles['font']['size']};
 	font-weight: {$btn_styles['font']['weight']};
-	font-family: {$btn_styles['font']['family']};
+	font-family: '{$btn_styles['font']['family']}';
 	text-transform: {$btn_styles['letter_case']};
 	text-decoration: {$btn_styles['decoration']};
 	line-height: {$btn_styles['line_height']};

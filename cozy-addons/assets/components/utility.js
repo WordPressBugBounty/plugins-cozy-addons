@@ -1,5 +1,7 @@
 import { __ } from "@wordpress/i18n";
 
+import { memo } from "@wordpress/element";
+
 export function getFontOptions(googleFonts) {
 	let fontOptions = [{ label: "Default", value: "" }];
 
@@ -162,3 +164,12 @@ export function handleWhiteSpace(font) {
 		return font.replace(/ /g, "+");
 	}
 }
+
+export const UpsellIconWrapper = memo(({ children }) => {
+	return (
+		<div className="cozy-block__upsell-icon">
+			{children}
+			<span className="pro__label">Pro</span>
+		</div>
+	);
+});

@@ -631,6 +631,10 @@
 		cursor: pointer;
 		color: var(--cozy-addons--heading);
 
+		&.not-allowed {
+			cursor: not-allowed;
+		}
+
 		& h3 {
 			margin: 0;
 			font-size: 16px;
@@ -660,7 +664,7 @@
 			padding 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 	& .accordion-item.active .accordion-body {
-		max-height: 300px; /* adjust if answers are longer */
+		max-height: 500px; /* adjust if answers are longer */
 		padding: 0 24px 22px;
 		transition:
 			max-height 0.5s ease,
@@ -757,6 +761,33 @@
 			}
 		}
 	}
+	#blocks .toolbar.flex-layout {
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+	#blocks .ca-block-action-buttons {
+		display: flex;
+		gap: 2px;
+		font-size: 13px;
+
+		& a {
+			padding: 8px 24px;
+			background-color: var(--cozy-addons--heading);
+			color: var(--cozy-addons--light);
+			cursor: pointer;
+
+			&:hover {
+				background-color: var(--cozy-addons--primary);
+			}
+		}
+		& .ca-block-action:first-child a {
+			border-radius: 100px 0 0 100px;
+		}
+		& .ca-block-action:last-child a {
+			border-radius: 0 100px 100px 0;
+		}
+	}
 
 	& .dashboard__body:has(#settings.is-active) {
 		max-width: 100%;
@@ -832,6 +863,58 @@
 				background-color: var(--cozy-addons--pro-highlight);
 				color: var(--cozy-addons--light);
 			}
+		}
+
+		& .cpt .flex-layout {
+			padding: 0;
+			border: none;
+			border-radius: 0;
+			width: 100%;
+		}
+		& .cpt .accordion-header {
+			align-items: flex-start;
+			gap: 12px;
+			justify-content: left;
+		}
+		& .cpt .chevron {
+			margin-top: 6px;
+		}
+		& .cpt .icon-wrapper svg {
+			color: var(--cozy-addons--light);
+		}
+		& .cpt.accordion-item.active {
+			background-color: var(--cozy-addons--primary-accent);
+			border-color: var(--cozy-addons--primary);
+		}
+		& .cpt.accordion-item.active .accordion-body {
+			border-top: 1px solid var(--cozy-addons--heading-accent);
+			padding-top: 16px;
+		}
+		& .cpt.accordion-item:has(.accordion-header.not-allowed) {
+			overflow: visible;
+		}
+		& #custom-post-types .ca-buttons {
+			margin-top: 16px;
+
+			& a {
+				cursor: pointer;
+			}
+
+			&:not(.is-active) {
+				display: none;
+			}
+		}
+		& label {
+			display: block;
+			margin-bottom: 4px;
+			color: var(--cozy-addons--heading);
+			font-weight: 500;
+			font-size: 13px;
+		}
+		& input {
+			min-width: 60%;
+			border-radius: 10px;
+			border: 1px solid var(--cozy-addons--heading-accent);
 		}
 	}
 

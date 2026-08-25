@@ -107,7 +107,7 @@ $block_styles = "
     color: {$styles['color']['text']};
     font-size: {$styles['font']['size']};
     font-weight: {$styles['font']['weight']};
-    font-family: {$styles['font']['family']};
+    font-family: '{$styles['font']['family']}';
 }
 #$block_id.has-box-shadow {
     box-shadow: {$styles['shadow']['horizontal']} {$styles['shadow']['vertical']} {$styles['shadow']['blur']} {$styles['shadow']['spread']} {$styles['shadow']['color']} {$styles['shadow']['position']};
@@ -135,7 +135,7 @@ $block_styles = "
     background-color: {$tab_styles['color']['bg']};
     font-size: {$tab_styles['font']['size']};
     font-weight: {$tab_styles['font']['weight']};
-    font-family: {$tab_styles['font']['family']};
+    font-family: '{$tab_styles['font']['family']}';
     text-transform: {$tab_styles['letter_case']};
     text-decoration: {$tab_styles['decoration']};
     line-height: {$tab_styles['line_height']};
@@ -157,7 +157,7 @@ $block_styles = "
 #$block_id .toggle-content__slider {
 	font-size: {$toggle_styles['font']['size']};
     font-weight: {$toggle_styles['font']['weight']};
-    font-family: {$toggle_styles['font']['family']};
+    font-family: '{$toggle_styles['font']['family']}';
     text-transform: {$toggle_styles['letter_case']};
     text-decoration: {$toggle_styles['decoration']};
     line-height: {$toggle_styles['line_height']};
@@ -293,7 +293,7 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 									{$highlight['radius']}
 									font-size: {$highlight['font']['size']};
 									font-weight: {$highlight['font']['weight']};
-									font-family: {$highlight['font']['family']};
+									font-family: '{$highlight['font']['family']}';
 									text-transform: {$highlight['letter_case']};
 									text-decoration: {$highlight['decoration']};
 									line-height: {$highlight['line_height']};
@@ -366,7 +366,7 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 							{$highlight['radius']}
 							font-size: {$highlight['font']['size']};
 							font-weight: {$highlight['font']['weight']};
-							font-family: {$highlight['font']['family']};
+							font-family: '{$highlight['font']['family']}';
 							text-transform: {$highlight['letter_case']};
 							text-decoration: {$highlight['decoration']};
 							line-height: {$highlight['line_height']};
@@ -433,7 +433,7 @@ $classes[] = $attributes['shadow']['enabled'] ? 'has-box-shadow' : '';
 							{$highlight['radius']}
 							font-size: {$highlight['font']['size']};
 							font-weight: {$highlight['font']['weight']};
-							font-family: {$highlight['font']['family']};
+							font-family: '{$highlight['font']['family']}';
 							text-transform: {$highlight['letter_case']};
 							text-decoration: {$highlight['decoration']};
 							line-height: {$highlight['line_height']};

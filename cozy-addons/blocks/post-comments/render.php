@@ -140,7 +140,7 @@ $block_styles = "
 #$block_id .cozy-block-post-comments__label {
 	font-size: {$label['font']['size']};
 	font-weight: {$label['font']['weight']};
-	font-family: {$label['font']['family']};
+	font-family: '{$label['font']['family']}';
 	text-transform: {$label['letter_case']};
 	text-decoration: {$label['decoration']};
 	line-height: {$label['line_height']};

@@ -53,7 +53,7 @@ $block_styles = "
 #$block_id {
 	font-size: {$typography['font']['size']}px;
 	font-weight: {$typography['font']['weight']};
-	font-family: {$typography['font']['family']};
+	font-family: '{$typography['font']['family']}';
 	color: {$typography['color']};
 	gap: {$styles['gap']};
 	text-transform: {$typography['letter_case']};
