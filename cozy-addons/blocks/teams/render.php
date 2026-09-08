@@ -16,6 +16,19 @@ $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 $width1 = $attributes['gridOptions']['displayColumn'] <= 3 ? esc_attr( $attributes['gridOptions']['displayColumn'] ) : 3;
 $width2 = $attributes['gridOptions']['displayColumn'] <= 2 ? esc_attr( $attributes['gridOptions']['displayColumn'] ) : 2;
 
+$styles = array(
+	'desktop' => array(
+		'padding' => isset( $attributes['styles']['desktop']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['styles']['desktop']['padding'] ) : '',
+	),
+	'tablet'  => array(
+		'padding' => isset( $attributes['styles']['tablet']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['styles']['tablet']['padding'] ) : '',
+	),
+	'mobile'  => array(
+		'padding' => isset( $attributes['styles']['mobile']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['styles']['mobile']['padding'] ) : '',
+	),
+	'margin'  => isset( $attributes['styles']['margin'] ) ? cozy_render_TRBL( 'margin', $attributes['styles']['margin'] ) : '',
+);
+
 $bullet_styles = array(
 	'gap'    => isset( $attributes['carouselOptions']['pagination']['gap'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['gap'] ) : 4,
 	'active' => array(
@@ -29,6 +42,21 @@ $bullet_styles = array(
 );
 
 $block_styles = "
+#$block_id {
+    {$styles['desktop']['padding']}
+    {$styles['margin']}
+}
+@media (width <= 1024px) {
+    #$block_id {
+        {$styles['tablet']['padding']}
+    }
+}
+@media (width <= 767px) {
+    #$block_id {
+        {$styles['mobile']['padding']}
+    }
+}
+
 @media screen and (max-width: 1024px) {
     #$block_id.display-grid:not(.has-masonry) .cozy-block-grid-wrapper {
         grid-template-columns: repeat(
@@ -85,11 +113,15 @@ add_action(
 	}
 );
 
+$wrapper_attributes = get_block_wrapper_attributes();
+
 $classes   = array();
 $classes[] = 'cozy-block-wrapper';
 $classes[] = cozy_addons_premium_access() && 'carousel' === $attributes['layout'] && isset( $attributes['carouselOptions']['sliderOptions']['smoothTransition'] ) && $attributes['carouselOptions']['sliderOptions']['smoothTransition'] ? 'swiper__smooth-transition' : '';
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
-	<?php echo $content; ?>
+	<div <?php echo $wrapper_attributes; ?>>
+		<?php echo $content; ?>
+	</div>
 </div>

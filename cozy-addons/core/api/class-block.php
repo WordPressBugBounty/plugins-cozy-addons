@@ -131,10 +131,10 @@ class Block {
 
 			register_rest_route(
 				'cozy-block/v1',
-				'/ca-faq',
+				'/ca-cpt',
 				array(
 					'methods'             => \WP_REST_Server::READABLE,
-					'callback'            => array( $this, 'ca_cpt_faq' ),
+					'callback'            => array( $this, 'ca_cpt' ),
 					'permission_callback' => '__return_true',
 				)
 			);
@@ -518,18 +518,28 @@ class Block {
 		return rest_ensure_response( $formatted_categories );
 	}
 
-	public function ca_cpt_faq( WP_REST_Request $request ) {
+	public function ca_cpt( WP_REST_Request $request ) {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return array();
 		}
 
-		$category = $request->get_param( 'category' );
-		$category = $category
-		? array_map( 'intval', array_filter( explode( ',', $category ), fn( $val ) => $val !== '' ) )
+		$post_type = $request->get_param( 'post_type' );
+		$category  = $request->get_param( 'category' );
+		$category  = $category
+		? array_map( 'intval', array_filter( explode( ',', $category ), fn( $val ) => '' !== $val ) )
 		: array();
 
+		$allowed_posts = array(
+			'ca_faq',
+			'ca_testimonial',
+		);
+
+		if ( ! isset( $post_type ) || ( isset( $post_type ) && ! in_array( $post_type, $allowed_posts, true ) ) ) {
+			return array();
+		}
+
 		$args = array(
-			'post_type'      => 'ca_faq',
+			'post_type'      => $post_type,
 			'post_status'    => 'publish',
 			'posts_per_page' => $request->get_param( 'per_page' ) ?? 5, // To retrieve all sticky posts.
 			'order'          => $request->get_param( 'order' ) ?? 'DESC',
@@ -539,18 +549,29 @@ class Block {
 		if ( ! empty( $category ) ) {
 			$args['tax_query'] = array(
 				array(
-					'taxonomy' => 'ca_faq_category',
+					'taxonomy' => $post_type . '_category',
 					'field'    => 'term_id',
 					'terms'    => $category,
 				),
 			);
 		}
 
-		$faq = get_posts( $args );
+		$ca_cpt_data = get_posts( $args );
+
+		if ( 'ca_testimonial' === $post_type && ! empty( $ca_cpt_data ) ) {
+			foreach ( $ca_cpt_data as &$cpt_data ) {
+				$cpt_data                              = (array) $cpt_data;
+				$cpt_data['ca_metadata_rating']        = get_post_meta( $cpt_data['ID'], 'ca_testimonial_rating', true );
+				$cpt_data['ca_metadata_name']          = get_post_meta( $cpt_data['ID'], 'ca_testimonial_name', true );
+				$cpt_data['ca_metadata_role']          = get_post_meta( $cpt_data['ID'], 'ca_testimonial_role', true );
+				$cpt_data['ca_metadata_review_source'] = get_post_meta( $cpt_data['ID'], 'ca_testimonial_review_source', true );
+				$cpt_data['thumbnail_url']             = get_the_post_thumbnail_url( $cpt_data['ID'] );
+			}
+		}
 
 		wp_reset_postdata();
 
-		return rest_ensure_response( $faq );
+		return rest_ensure_response( $ca_cpt_data );
 	}
 
 	public function ca_cpt_taxonomy( WP_REST_Request $request ) {

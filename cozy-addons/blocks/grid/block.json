@@ -17,6 +17,7 @@
     "cozy-block/teams",
     "cozy-block/testimonial",
     "cozy-block/featured-content-box",
-    "cozy-block/portfolio-gallery"
+    "cozy-block/portfolio-gallery",
+    "cozy-block/brand-showcase"
   ]
 }

@@ -99,75 +99,66 @@ return array(
 			'iconBoxStyles' => array(
 				'type' => 'object',
 				'default' => array(
-					'padding' => array(
-						'top' => 5,
-						'right' => 5,
-						'bottom' => 5,
-						'left' => 5
+					'desktop' => array(
+						'padding' => array(
+							'top' => '0px',
+							'right' => '0px',
+							'bottom' => '0px',
+							'left' => '0px'
+						),
+						'width' => '',
+						'height' => ''
 					),
-					'borderType' => 'none',
-					'borderWidth' => 1,
-					'borderColor' => '#000',
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '100px',
 					'borderColorHover' => '',
-					'borderRadius' => 50,
-					'bgColor' => '#b2bcf9',
+					'bgColor' => '',
 					'bgColorHover' => ''
 				)
 			),
 			'containerStyles' => array(
 				'type' => 'object',
 				'default' => array(
-					'padding' => array(
-						'top' => 0,
-						'right' => 0,
-						'bottom' => 0,
-						'left' => 0
+					'desktop' => array(
+						'padding' => array(
+							'top' => '0px',
+							'right' => '0px',
+							'bottom' => '0px',
+							'left' => '0px'
+						)
 					),
 					'border' => array(
-						'width' => array(
-							'top' => 1,
-							'right' => 1,
-							'bottom' => 1,
-							'left' => 1
-						),
-						'type' => 'none',
+						'width' => '',
+						'style' => '',
 						'color' => ''
 					),
-					'borderRadius' => array(
-						'top' => 0,
-						'right' => 0,
-						'bottom' => 0,
-						'left' => 0
-					),
+					'radius' => '',
 					'bgColor' => ''
 				)
 			),
 			'accordionStyles' => array(
 				'type' => 'object',
 				'default' => array(
-					'padding' => array(
-						'top' => 0,
-						'right' => 0,
-						'bottom' => 0,
-						'left' => 0
+					'desktop' => array(
+						'padding' => array(
+							'top' => '0px',
+							'right' => '0px',
+							'bottom' => '0px',
+							'left' => '0px'
+						)
 					),
 					'border' => array(
-						'width' => array(
-							'top' => 1,
-							'right' => 1,
-							'bottom' => 1,
-							'left' => 1
-						),
-						'type' => 'none',
+						'width' => '',
+						'style' => '',
 						'color' => ''
 					),
-					'borderRadius' => array(
-						'top' => 0,
-						'right' => 0,
-						'bottom' => 0,
-						'left' => 0
-					),
-					'bgColor' => ''
+					'radius' => '',
+					'bgColor' => '',
+					'borderColorActive' => ''
 				)
 			),
 			'search' => array(
@@ -185,8 +176,12 @@ return array(
 						'color' => '#878787'
 					),
 					'radius' => '100px',
+					'desktop' => array(
+						'font' => array(
+							'size' => '16px'
+						)
+					),
 					'font' => array(
-						'size' => '16px',
 						'weight' => '',
 						'family' => ''
 					),
@@ -233,8 +228,12 @@ return array(
 						'color' => ''
 					),
 					'radius' => '100px',
+					'desktop' => array(
+						'font' => array(
+							'size' => '14px'
+						)
+					),
 					'font' => array(
-						'size' => '14px',
 						'weight' => '',
 						'family' => ''
 					),
@@ -257,28 +256,40 @@ return array(
 						'top' => '',
 						'bottom' => ''
 					),
-					'fontFamily' => '',
-					'fontSize' => '20',
-					'color' => '',
-					'colorActive' => '',
-					'fontWeight' => '',
-					'letterCase' => '',
-					'decoration' => '',
+					'desktop' => array(
+						'font' => array(
+							'size' => '20px'
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'decoration' => 'none',
 					'lineHeight' => '',
-					'letterSpacing' => ''
+					'letterSpacing' => '',
+					'color' => '',
+					'colorActive' => ''
 				)
 			),
 			'typography' => array(
 				'type' => 'object',
 				'default' => array(
-					'fontFamily' => '',
-					'fontSize' => 16,
-					'color' => '',
-					'fontWeight' => '',
-					'letterCase' => '',
-					'decoration' => '',
+					'desktop' => array(
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'decoration' => 'none',
 					'lineHeight' => '',
-					'letterSpacing' => ''
+					'letterSpacing' => '',
+					'color' => ''
 				)
 			)
 		),
@@ -1715,6 +1726,181 @@ return array(
 		),
 		'render' => 'file:./render.php'
 	),
+	'brand-showcase' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'cozy-block/brand-showcase',
+		'title' => 'Brand Showcase',
+		'description' => 'Display logos, brands, or feature highlights in a grid or carousel layout — perfect for partner logos, client showcases, or feature cards.',
+		'category' => 'cozy-block',
+		'supports' => array(
+			'html' => false,
+			'color' => array(
+				'background' => true,
+				'text' => false,
+				'gradients' => true
+			)
+		),
+		'textdomain' => 'cozy-addons',
+		'keywords' => array(
+			'brand',
+			'logo',
+			'showcase'
+		),
+		'attributes' => array(
+			'cover' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'clientId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'display' => array(
+				'type' => 'string',
+				'default' => 'grid'
+			),
+			'gridOptions' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'columns' => 3,
+						'gap' => '26px'
+					),
+					'tablet' => array(
+						'columns' => 2
+					),
+					'mobile' => array(
+						'columns' => 1
+					),
+					'masonry' => false
+				)
+			),
+			'carousel' => array(
+				'type' => 'object',
+				'default' => array(
+					'loop' => false,
+					'autoplay' => array(
+						'status' => true,
+						'delay' => 2500,
+						'pauseOnMouseHover' => true
+					),
+					'speed' => 1500,
+					'desktop' => array(
+						'slidesPerView' => 6,
+						'spaceBetween' => 20
+					),
+					'tablet' => array(
+						'slidesPerView' => 3
+					),
+					'mobile' => array(
+						'slidesPerView' => 1
+					),
+					'reverseDirection' => false,
+					'smoothTransition' => false,
+					'centeredSlides' => false
+				)
+			),
+			'imageStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'enableFilter' => false,
+					'enableHoverFilter' => false,
+					'grayScale' => 0,
+					'hoverGrayScale' => 0,
+					'brightness' => 0,
+					'hoverBrightness' => 0
+				)
+			),
+			'pagination' => array(
+				'type' => 'object',
+				'default' => array(
+					'enabled' => true,
+					'width' => '10px',
+					'height' => '10px',
+					'radius' => '10px',
+					'active' => array(
+						'width' => '10px',
+						'height' => '10px',
+						'radius' => '10px',
+						'border' => array(
+							'width' => '',
+							'style' => '',
+							'color' => ''
+						),
+						'offset' => '1px'
+					),
+					'align' => 'center',
+					'bottom' => '-26px',
+					'left' => '0px',
+					'right' => '0px',
+					'gap' => '4px',
+					'color' => array(
+						'default' => '#6a6a6a',
+						'defaultHover' => '',
+						'active' => '#f90',
+						'activeHover' => ''
+					)
+				)
+			),
+			'navigation' => array(
+				'type' => 'object',
+				'default' => array(
+					'enabled' => true,
+					'hoverShow' => true,
+					'size' => '15px',
+					'boxWidth' => '35px',
+					'boxHeight' => '35px',
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '100px',
+					'color' => array(
+						'icon' => '#fff',
+						'iconHover' => '',
+						'bg' => '#007cba',
+						'bgHover' => '#f90',
+						'borderHover' => ''
+					)
+				)
+			),
+			'styles' => array(
+				'type' => 'object',
+				'default' => array(
+					'fadeBg' => false,
+					'desktop' => array(
+						'padding' => array(
+							'top' => '',
+							'right' => '',
+							'bottom' => '',
+							'left' => ''
+						)
+					),
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
+					)
+				)
+			)
+		),
+		'editorScript' => array(
+			'file:./index.js',
+			'file:../index.js'
+		),
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles',
+			'cozy-swiper-bundle'
+		),
+		'viewScript' => array(
+			'cozy-block--brand-showcase--frontend-script',
+			'cozy-swiper-bundle'
+		),
+		'render' => 'file:./render.php'
+	),
 	'breadcrumb' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1825,7 +2011,8 @@ return array(
 			'cozy-block/teams',
 			'cozy-block/testimonial',
 			'cozy-block/featured-content-box',
-			'cozy-block/portfolio-gallery'
+			'cozy-block/portfolio-gallery',
+			'cozy-block/brand-showcase'
 		)
 	),
 	'categorized-post-tabs' => array(
@@ -3357,7 +3544,14 @@ return array(
 			'html' => false
 		),
 		'attributes' => array(
-			
+			'clientId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'cover' => array(
+				'type' => 'string',
+				'default' => ''
+			)
 		),
 		'editorScript' => array(
 			'file:./index.js',
@@ -3494,7 +3688,12 @@ return array(
 			'carousel'
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'color' => array(
+				'background' => true,
+				'text' => false,
+				'gradients' => true
+			)
 		),
 		'attributes' => array(
 			'cover' => array(
@@ -3610,6 +3809,23 @@ return array(
 					'spaceBetween' => 30,
 					'speed' => 700,
 					'smoothTransition' => false
+				)
+			),
+			'styles' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'padding' => array(
+							'top' => '',
+							'right' => '',
+							'bottom' => '',
+							'left' => ''
+						)
+					),
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
+					)
 				)
 			)
 		),
@@ -6134,7 +6350,8 @@ return array(
 			'cozy-block/teams',
 			'cozy-block/testimonial',
 			'cozy-block/featured-content-box',
-			'cozy-block/portfolio-gallery'
+			'cozy-block/portfolio-gallery',
+			'cozy-block/brand-showcase'
 		)
 	),
 	'icon-list' => array(
@@ -13529,7 +13746,12 @@ return array(
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'color' => array(
+				'background' => true,
+				'text' => false,
+				'gradients' => true
+			)
 		),
 		'attributes' => array(
 			'cover' => array(
@@ -13620,6 +13842,23 @@ return array(
 						'spaceBetween' => 30
 					)
 				)
+			),
+			'styles' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'padding' => array(
+							'top' => '',
+							'right' => '',
+							'bottom' => '',
+							'left' => ''
+						)
+					),
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
+					)
+				)
 			)
 		),
 		'editorScript' => array(
@@ -13658,6 +13897,43 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'source' => array(
+				'type' => 'string',
+				'default' => 'default'
+			),
+			'display' => array(
+				'type' => 'string',
+				'default' => 'testimonials-block-1'
+			),
+			'content' => array(
+				'type' => 'object',
+				'default' => array(
+					'postTitle' => true,
+					'rating' => true,
+					'postContent' => true,
+					'excerpt' => 20,
+					'thumbnail' => true,
+					'authorName' => true,
+					'authorRole' => true,
+					'reviewSource' => true
+				)
+			),
+			'generateSchema' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'query' => array(
+				'type' => 'object',
+				'default' => array(
+					'perPage' => 5,
+					'offset' => 0,
+					'order' => 'desc',
+					'orderBy' => 'date',
+					'category' => array(
+						
+					)
+				)
+			),
 			'layout' => array(
 				'type' => 'string',
 				'default' => 'carousel'
@@ -13671,7 +13947,7 @@ return array(
 				'default' => array(
 					'displayColumn' => 3,
 					'masonryEnabled' => false,
-					'columnGap' => 30
+					'columnGap' => 26
 				)
 			),
 			'carouselOptions' => array(
@@ -13733,9 +14009,198 @@ return array(
 						'reverseDirection' => false,
 						'centeredSlides' => false,
 						'slidesPerView' => 1,
-						'spaceBetween' => 30,
-						'speed' => 700,
+						'spaceBetween' => 20,
+						'speed' => 800,
 						'smoothTransition' => false
+					)
+				)
+			),
+			'postImage' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'width' => '44px',
+						'height' => '44px'
+					),
+					'margin' => array(
+						'top' => '0px',
+						'bottom' => '0px'
+					),
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '100px'
+				)
+			),
+			'postTitle' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'font' => array(
+							'size' => '22px'
+						)
+					),
+					'tag' => 'h3',
+					'margin' => array(
+						'top' => '0px',
+						'bottom' => '0px'
+					),
+					'font' => array(
+						'weight' => '600',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'decoration' => 'none',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'color' => ''
+				)
+			),
+			'rating' => array(
+				'type' => 'object',
+				'default' => array(
+					'size' => '20px',
+					'margin' => array(
+						'top' => '5px',
+						'bottom' => '5px'
+					),
+					'color' => array(
+						'primary' => '#f5a623',
+						'secondary' => '#e0e0e0'
+					)
+				)
+			),
+			'authorDetailsBox' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'padding' => array(
+							'top' => '',
+							'right' => '',
+							'bottom' => '',
+							'left' => ''
+						)
+					),
+					'alignItems' => 'center',
+					'margin' => array(
+						'top' => '16px',
+						'bottom' => ''
+					),
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'gap' => '12px'
+				)
+			),
+			'authorName' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'font' => array(
+							'size' => '16px'
+						)
+					),
+					'tag' => 'h4',
+					'margin' => array(
+						'top' => '0px',
+						'bottom' => '0px'
+					),
+					'font' => array(
+						'weight' => '500',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'decoration' => 'none',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'color' => ''
+				)
+			),
+			'authorRole' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'font' => array(
+							'size' => '13px'
+						)
+					),
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'decoration' => 'none',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'color' => ''
+				)
+			),
+			'typography' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'decoration' => 'none',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'color' => ''
+				)
+			),
+			'itemStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'padding' => array(
+							'top' => '20px',
+							'right' => '16px',
+							'bottom' => '20px',
+							'left' => '16px'
+						)
+					),
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
+					),
+					'border' => array(
+						'width' => '1px',
+						'style' => 'solid',
+						'color' => '#e0e0e0'
+					),
+					'radius' => '20px',
+					'align' => 'left'
+				)
+			),
+			'styles' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'padding' => array(
+							'top' => '',
+							'right' => '',
+							'bottom' => '',
+							'left' => ''
+						)
+					),
+					'margin' => array(
+						'top' => '',
+						'bottom' => ''
 					)
 				)
 			)

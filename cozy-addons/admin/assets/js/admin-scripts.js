@@ -462,5 +462,6 @@
 
 				fromResetFlag = true;
 			});
+
 	});
 })(jQuery);

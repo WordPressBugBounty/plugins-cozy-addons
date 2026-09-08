@@ -16,7 +16,7 @@
  * Plugin Name:       Cozy Blocks
  * Plugin URI:        https://cozythemes.com/cozy-addons
  * Description:       Build stunning WordPress sites with 50+ advanced blocks, 500+ patterns, and 40+ templates—a fast, effortless website builder.
- * Version:           2.2.19
+ * Version:           2.2.20
  * Author:            CozyThemes
  * Author URI:        https://cozythemes.com/
  * License:           GPL-2.0+
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'COZY_ADDONS_VERSION', '2.2.19' );
+define( 'COZY_ADDONS_VERSION', '2.2.20' );
 define( 'COZY_ADDONS_PLUGIN_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'COZY_ADDONS_PLUGIN_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 
@@ -155,37 +155,37 @@ if ( ! class_exists( 'Cozy_Addons' ) ) :
 endif;
 
 
-	/**
-	 * Clears the cached pattern-themes list when Cozy Addons is updated,
-	 * so a new remote file takes effect immediately instead of waiting
-	 * for the transient to expire.
-	 *
-	 * @param WP_Upgrader $upgrader   Upgrader instance (unused here).
-	 * @param array       $hook_extra Data about the upgrade action, including
-	 *                                the type ('plugin', 'theme', 'core') and,
-	 *                                for plugins, the list of updated plugin files.
-	 * @return void
-	 */
-	add_action(
-		'upgrader_process_complete',
-		function ( $upgrader, $hook_extra ) {
-			// Only care about plugin updates, not theme/core/translation updates.
-			if ( ! isset( $hook_extra['type'] ) || 'plugin' !== $hook_extra['type'] ) {
-				return;
-			}
+/**
+ * Clears the cached pattern-themes list when Cozy Addons is updated,
+ * so a new remote file takes effect immediately instead of waiting
+ * for the transient to expire.
+ *
+ * @param WP_Upgrader $upgrader   Upgrader instance (unused here).
+ * @param array       $hook_extra Data about the upgrade action, including
+ *                                the type ('plugin', 'theme', 'core') and,
+ *                                for plugins, the list of updated plugin files.
+ * @return void
+ */
+add_action(
+	'upgrader_process_complete',
+	function ( $upgrader, $hook_extra ) {
+		// Only care about plugin updates, not theme/core/translation updates.
+		if ( ! isset( $hook_extra['type'] ) || 'plugin' !== $hook_extra['type'] ) {
+			return;
+		}
 
-			// 'update' action can update several plugins in one go (bulk update),
-			// so $hook_extra['plugins'] is an array of plugin basenames.
-			if ( empty( $hook_extra['plugins'] ) || ! is_array( $hook_extra['plugins'] ) ) {
-				return;
-			}
+		// 'update' action can update several plugins in one go (bulk update),
+		// so $hook_extra['plugins'] is an array of plugin basenames.
+		if ( empty( $hook_extra['plugins'] ) || ! is_array( $hook_extra['plugins'] ) ) {
+			return;
+		}
 
-			$plugin_basename = plugin_basename( 'cozy-addons/cozy-addons.php' ); // e.g. 'cozy-addons/cozy-addons.php'.
+		$plugin_basename = plugin_basename( 'cozy-addons/cozy-addons.php' ); // e.g. 'cozy-addons/cozy-addons.php'.
 
-			if ( in_array( $plugin_basename, $hook_extra['plugins'], true ) ) {
-				delete_transient( 'ca_pattern_themes' );
-			}
-		},
-		10,
-		2
-	);
+		if ( in_array( $plugin_basename, $hook_extra['plugins'], true ) ) {
+			delete_transient( 'ca_pattern_themes' );
+		}
+	},
+	10,
+	2
+);

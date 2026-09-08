@@ -144,7 +144,7 @@
 		"slug": "cozy-addons/template-21",
 		"category": ["education"],
 		"image": "template-21.png",
-		"isPremium": true
+		"isPremium": false
 	},
 	{
 		"label": "Finance Services",
@@ -172,7 +172,7 @@
 		"slug": "cozy-addons/template-25",
 		"category": ["business"],
 		"image": "template-25.png",
-		"isPremium": true
+		"isPremium": false
 	},
 	{
 		"label": "Orakus",
@@ -256,7 +256,7 @@
 		"slug": "cozy-addons/template-37",
 		"category": ["agency"],
 		"image": "template-37.png",
-		"isPremium": true
+		"isPremium": false
 	},
 	{
 		"label": "Circle Photography",
@@ -277,7 +277,7 @@
 		"slug": "cozy-addons/template-40",
 		"category": ["agency"],
 		"image": "template-40.png",
-		"isPremium": true
+		"isPremium": false
 	},
 	{
 		"label": "College",
@@ -312,7 +312,7 @@
 		"slug": "cozy-addons/template-45",
 		"category": ["agency"],
 		"image": "template-45.png",
-		"isPremium": true
+		"isPremium": false
 	},
 	{
 		"label": "Gardening & landscaping",
@@ -403,6 +403,13 @@
 		"slug": "cozy-addons/template-58",
 		"category": ["agency", "saas", "business"],
 		"image": "template-58.png",
+		"isPremium": true
+	},
+	{
+		"label": "Saas Consulting Agency",
+		"slug": "cozy-addons/template-59",
+		"category": ["agency", "saas", "business"],
+		"image": "template-59.png",
 		"isPremium": true
 	}
 ]

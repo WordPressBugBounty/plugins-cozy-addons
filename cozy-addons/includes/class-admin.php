@@ -88,6 +88,15 @@ class Admin {
 		$current_screen = get_current_screen();
 
 		wp_enqueue_style( 'cozy-addons--admin-notice--style', self::$url . 'assets/css/admin-notice-styles.css', array(), COZY_ADDONS_VERSION, 'all' );
+		wp_enqueue_script( 'cozy-addons--cpt-seeder-script', self::$url . 'assets/js/cpt-seeder.js', array( 'jquery' ), COZY_ADDONS_VERSION, false );
+		wp_localize_script(
+			'cozy-addons--cpt-seeder-script',
+			'ajax_object',
+			array(
+				'ajax_url'             => esc_url( admin_url( 'admin-ajax.php' ) ),
+				'utilityFunctionNonce' => wp_create_nonce( 'ca_utility_function' ),
+			)
+		);
 
 		$allowed_pages = array(
 			'dashboard',

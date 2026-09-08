@@ -123,8 +123,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:image {"width":"auto","height":"24px","sizeSlug":"large","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-<figure class="wp-block-image size-large is-resized" style="margin-top:0;margin-bottom:0"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/payment_options.png" alt="" style="width:auto;height:24px"/></figure>
+<div class="wp-block-group"><!-- wp:image {"width":"auto","height":"20px","sizeSlug":"large"} -->
+<figure class="wp-block-image size-large is-resized"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/payment_options.png" alt="" style="width:auto;height:20px"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

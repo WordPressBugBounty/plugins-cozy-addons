@@ -12,7 +12,6 @@ return array(
 	'cozy-addons/services-38',
 	'cozy-addons/portfolio-31',
 	'cozy-addons/testimonials-52',
-	'cozy-addons/pricing-table-13',
 	'cozy-addons/faq-15',
 	'cozy-addons/footer-40',
 );

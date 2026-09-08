@@ -582,6 +582,7 @@ function cozy_addons_google_fonts() {
 		'Inria Serif'                      => 'Inria Serif',
 		'Inspiration'                      => 'Inspiration',
 		'Instrument Sans'                  => 'Instrument Sans',
+		'Instrument Serif'                  => 'Instrument Serif',
 		'Inter'                            => 'Inter',
 		'Inter Tight'                      => 'Inter Tight',
 		'Irish Grover'                     => 'Irish Grover',

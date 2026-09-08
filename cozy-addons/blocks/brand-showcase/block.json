@@ -1,0 +1,175 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cozy-block/brand-showcase",
+  "title": "Brand Showcase",
+  "description": "Display logos, brands, or feature highlights in a grid or carousel layout — perfect for partner logos, client showcases, or feature cards.",
+  "category": "cozy-block",
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "text": false,
+      "gradients": true
+    }
+  },
+  "textdomain": "cozy-addons",
+  "keywords": [
+    "brand",
+    "logo",
+    "showcase"
+  ],
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "display": {
+      "type": "string",
+      "default": "grid"
+    },
+    "gridOptions": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "columns": 3,
+          "gap": "26px"
+        },
+        "tablet": {
+          "columns": 2
+        },
+        "mobile": {
+          "columns": 1
+        },
+        "masonry": false
+      }
+    },
+    "carousel": {
+      "type": "object",
+      "default": {
+        "loop": false,
+        "autoplay": {
+          "status": true,
+          "delay": 2500,
+          "pauseOnMouseHover": true
+        },
+        "speed": 1500,
+        "desktop": {
+          "slidesPerView": 6,
+          "spaceBetween": 20
+        },
+        "tablet": {
+          "slidesPerView": 3
+        },
+        "mobile": {
+          "slidesPerView": 1
+        },
+        "reverseDirection": false,
+        "smoothTransition": false,
+        "centeredSlides": false
+      }
+    },
+    "imageStyles": {
+      "type": "object",
+      "default": {
+        "enableFilter": false,
+        "enableHoverFilter": false,
+        "grayScale": 0,
+        "hoverGrayScale": 0,
+        "brightness": 0,
+        "hoverBrightness": 0
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "width": "10px",
+        "height": "10px",
+        "radius": "10px",
+        "active": {
+          "width": "10px",
+          "height": "10px",
+          "radius": "10px",
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "offset": "1px"
+        },
+        "align": "center",
+        "bottom": "-26px",
+        "left": "0px",
+        "right": "0px",
+        "gap": "4px",
+        "color": {
+          "default": "#6a6a6a",
+          "defaultHover": "",
+          "active": "#f90",
+          "activeHover": ""
+        }
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "hoverShow": true,
+        "size": "15px",
+        "boxWidth": "35px",
+        "boxHeight": "35px",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px",
+        "color": {
+          "icon": "#fff",
+          "iconHover": "",
+          "bg": "#007cba",
+          "bgHover": "#f90",
+          "borderHover": ""
+        }
+      }
+    },
+    "styles": {
+      "type": "object",
+      "default": {
+        "fadeBg": false,
+        "desktop": {
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          }
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles",
+    "cozy-swiper-bundle"
+  ],
+  "viewScript": [
+    "cozy-block--brand-showcase--frontend-script",
+    "cozy-swiper-bundle"
+  ],
+  "render": "file:./render.php"
+}

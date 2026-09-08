@@ -9,7 +9,16 @@
   "supports": {
     "html": false
   },
-  "attributes": {},
+  "attributes": {
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "cover": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": [
     "file:./index.js",
     "file:../index.js"

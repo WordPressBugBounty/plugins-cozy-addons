@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $ca_mega_menu_enabled         = get_option( 'ca-cpt--mega-menu-templates' );
 $ca_portfolio_gallery_enabled = get_option( 'ca-cpt--portfolio-gallery-templates' );
 $ca_faq_enabled               = get_option( 'ca-cpt--faq-templates' );
+$ca_testimonial_enabled       = get_option( 'ca-cpt--testimonial-templates' );
 
 function cozy_addons_get_cpt_config_option( $cpt = '' ) {
 	$config = get_option(
@@ -50,6 +51,25 @@ function cozy_addons_get_cpt_config_option( $cpt = '' ) {
 				),
 				'premium'        => true,
 			),
+			'testimonial'       => array(
+				'post_type'      => 'ca_testimonial',
+				'singular_label' => 'Testimonial',
+				'plural_label'   => 'Testimonials',
+				'slug'           => 'ca-testimonial',
+				'taxonomy'       => array(
+					'category' => array(
+						'singular_label' => 'Category',
+						'plural_label'   => 'Categories',
+						'slug'           => 'ca-testimonial-category',
+					),
+					'tags'     => array(
+						'singular_label' => 'Tag',
+						'plural_label'   => 'Tags',
+						'slug'           => 'ca-testimonial-tags',
+					),
+				),
+				'premium'        => true,
+			),
 		)
 	);
 
@@ -57,6 +77,7 @@ function cozy_addons_get_cpt_config_option( $cpt = '' ) {
 		'mega-menu',
 		'portfolio-gallery',
 		'faq',
+		'testimonial',
 	);
 
 	if ( ! empty( $cpt ) && in_array( $cpt, $registered_cpt, true ) ) {
@@ -109,5 +130,10 @@ if ( cozy_addons_premium_access() ) {
 	if ( '1' === $ca_faq_enabled || '' == $ca_faq_enabled ) {
 		require_once COZY_ADDONS_PLUGIN_DIR . 'core/cpt/ca-faq.php';
 		update_option( 'ca-cpt--faq-templates', '1' );
+	}
+
+	if ( '1' === $ca_testimonial_enabled || '' == $ca_testimonial_enabled ) {
+		require_once COZY_ADDONS_PLUGIN_DIR . 'core/cpt/ca-testimonial.php';
+		update_option( 'ca-cpt--testimonial-templates', '1' );
 	}
 }

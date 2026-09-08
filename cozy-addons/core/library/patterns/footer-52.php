@@ -122,8 +122,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <p class="has-text-color has-link-color" style="color:#ebedf0"><?php esc_html_e( 'Proudly powered by WordPress | Theme Woxgear by CozyThemes', 'cozy-addons' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:image {"width":"auto","height":"16px","sizeSlug":"large","style":{"spacing":{"margin":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
-<figure class="wp-block-image size-large is-resized" style="margin-top:0;margin-right:0;margin-bottom:0;margin-left:0"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/payment_options.png" alt="" style="width:auto;height:16px"/></figure>
+<!-- wp:image {"width":"auto","height":"20px","sizeSlug":"large"} -->
+<figure class="wp-block-image size-large is-resized"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/payment_options.png" alt="" style="width:auto;height:20px"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

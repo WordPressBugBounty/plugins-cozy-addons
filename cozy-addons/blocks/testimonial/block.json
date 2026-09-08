@@ -18,6 +18,41 @@
       "type": "string",
       "default": ""
     },
+    "source": {
+      "type": "string",
+      "default": "default"
+    },
+    "display": {
+      "type": "string",
+      "default": "testimonials-block-1"
+    },
+    "content": {
+      "type": "object",
+      "default": {
+        "postTitle": true,
+        "rating": true,
+        "postContent": true,
+        "excerpt": 20,
+        "thumbnail": true,
+        "authorName": true,
+        "authorRole": true,
+        "reviewSource": true
+      }
+    },
+    "generateSchema": {
+      "type": "boolean",
+      "default": false
+    },
+    "query": {
+      "type": "object",
+      "default": {
+        "perPage": 5,
+        "offset": 0,
+        "order": "desc",
+        "orderBy": "date",
+        "category": []
+      }
+    },
     "layout": {
       "type": "string",
       "default": "carousel"
@@ -31,7 +66,7 @@
       "default": {
         "displayColumn": 3,
         "masonryEnabled": false,
-        "columnGap": 30
+        "columnGap": 26
       }
     },
     "carouselOptions": {
@@ -93,9 +128,198 @@
           "reverseDirection": false,
           "centeredSlides": false,
           "slidesPerView": 1,
-          "spaceBetween": 30,
-          "speed": 700,
+          "spaceBetween": 20,
+          "speed": 800,
           "smoothTransition": false
+        }
+      }
+    },
+    "postImage": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "width": "44px",
+          "height": "44px"
+        },
+        "margin": {
+          "top": "0px",
+          "bottom": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px"
+      }
+    },
+    "postTitle": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "font": {
+            "size": "22px"
+          }
+        },
+        "tag": "h3",
+        "margin": {
+          "top": "0px",
+          "bottom": "0px"
+        },
+        "font": {
+          "weight": "600",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": ""
+      }
+    },
+    "rating": {
+      "type": "object",
+      "default": {
+        "size": "20px",
+        "margin": {
+          "top": "5px",
+          "bottom": "5px"
+        },
+        "color": {
+          "primary": "#f5a623",
+          "secondary": "#e0e0e0"
+        }
+      }
+    },
+    "authorDetailsBox": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          }
+        },
+        "alignItems": "center",
+        "margin": {
+          "top": "16px",
+          "bottom": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "gap": "12px"
+      }
+    },
+    "authorName": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "font": {
+            "size": "16px"
+          }
+        },
+        "tag": "h4",
+        "margin": {
+          "top": "0px",
+          "bottom": "0px"
+        },
+        "font": {
+          "weight": "500",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": ""
+      }
+    },
+    "authorRole": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "font": {
+            "size": "13px"
+          }
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": ""
+      }
+    },
+    "typography": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "font": {
+            "size": ""
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": ""
+      }
+    },
+    "itemStyles": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "padding": {
+            "top": "20px",
+            "right": "16px",
+            "bottom": "20px",
+            "left": "16px"
+          }
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "border": {
+          "width": "1px",
+          "style": "solid",
+          "color": "#e0e0e0"
+        },
+        "radius": "20px",
+        "align": "left"
+      }
+    },
+    "styles": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          }
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
         }
       }
     }

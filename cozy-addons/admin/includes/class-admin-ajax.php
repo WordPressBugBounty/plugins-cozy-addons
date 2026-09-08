@@ -74,6 +74,7 @@ class Ajax {
 		add_action( 'wp_ajax_cozy_addons_download_plugin_rollback_version', array( $this, 'download_plugin_rollback_versions' ) );
 		add_action( 'wp_ajax_cozy_addons_activate_rollback_version', array( $this, 'activate_rollback_version' ) );
 		add_action( 'wp_ajax_cozy_addons_install_activate_plugin', array( $this, 'install_activate_plugin' ) );
+		add_action( 'wp_ajax_cozy_addons_seed_cpt', array( $this, 'generate_cpt_dummy_data' ) );
 	}
 
 	private function is_plugin_installed( $plugin_slug ) {
@@ -174,7 +175,6 @@ class Ajax {
 
 				$woocommerce_blocks = $this->filter_blocks_by_category( $category );
 
-				
 				break;
 
 			case 'post-magazine':
@@ -453,6 +453,407 @@ class Ajax {
 				if ( is_wp_error( $activate ) ) {
 					continue;
 				}
+			}
+		}
+
+		wp_send_json_success();
+	}
+
+	private function get_cpt_dummy_data( $post_type = '' ) {
+		if ( empty( $post_type ) ) {
+			return array();
+		}
+
+		switch ( $post_type ) {
+			case 'ca_faq':
+				$faq_data = array(
+					array(
+						'post_title'   => 'How do I reset my password?',
+						'post_content' => '<!-- wp:paragraph -->
+							<p>Go to the login page and click "Forgot Password." Enter your registered email address, and we\'ll send you a link to create a new password. The link expires after 24 hours.</p>
+							<!-- /wp:paragraph -->',
+					),
+					array(
+						'post_title'   => 'What payment methods do you accept?',
+						'post_content' => '<!-- wp:paragraph -->
+							<p>We accept all major credit and debit cards (Visa, Mastercard, American Express), PayPal, and bank transfers. Payment information is processed securely and never stored on our servers.</p>
+							<!-- /wp:paragraph -->',
+					),
+					array(
+						'post_title'   => 'How long does shipping take?',
+						'post_content' => '<!-- wp:paragraph -->
+							<p>Standard shipping typically takes 3–5 business days within the country. Express shipping options are available at checkout for 1–2 day delivery, depending on your location.</p>
+							<!-- /wp:paragraph -->',
+					),
+					array(
+						'post_title'   => 'Can I cancel or change my order after placing it?',
+						'post_content' => '<!-- wp:paragraph -->
+							<p>Orders can be modified or canceled within 1 hour of placement. After that window, the order enters processing and can no longer be changed, though you can still request a return once it arrives.</p>
+							<!-- /wp:paragraph -->',
+					),
+					array(
+						'post_title'   => 'Do you offer a free trial for premium plans?',
+						'post_content' => '<!-- wp:paragraph -->
+							<p>Yes, all premium plans come with a 14-day free trial. No credit card is required to start, and you can cancel anytime before the trial ends without being charged.</p>
+							<!-- /wp:paragraph -->',
+					),
+				);
+
+				return $faq_data;
+
+			case 'ca_testimonial':
+				$testimonials_data = array(
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/media/testimonial-1.png',
+						'post_title'    => 'Absolutely love this plugin!',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>This tool completely transformed how we manage our workflow. The interface is intuitive and support has been fantastic every step of the way.</p>
+                            <!-- /wp:paragraph -->',
+						'meta_input'    => array(
+							'ca_testimonial_rating'        => '5',
+							'ca_testimonial_name'          => 'James Whitfield',
+							'ca_testimonial_role'          => 'Marketing Manager',
+							'ca_testimonial_review_source' => 'google',
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/media/testimonial-2.png',
+						'post_title'    => 'Great value for the price',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>We compared several options before settling on this one, and it was clearly the best choice. Setup was quick and the results speak for themselves.</p>
+                            <!-- /wp:paragraph -->',
+						'meta_input'    => array(
+							'ca_testimonial_rating'        => '4',
+							'ca_testimonial_name'          => 'Sarah Johnson',
+							'ca_testimonial_role'          => 'Small Business Owner',
+							'ca_testimonial_review_source' => 'google',
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/media/testimonial-3.png',
+						'post_title'    => 'Exceeded our expectations',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Our team was skeptical at first, but within a week everyone was on board. The customization options let us tailor everything to our exact needs.</p>
+                            <!-- /wp:paragraph -->',
+						'meta_input'    => array(
+							'ca_testimonial_rating'        => '5',
+							'ca_testimonial_name'          => 'Emily Rodriguez',
+							'ca_testimonial_role'          => 'Operations Director',
+							'ca_testimonial_review_source' => 'google',
+
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/media/team-1.png',
+						'post_title'    => 'Solid tool, minor learning curve',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>It took a little while to get used to all the features, but once we did, it became an essential part of our daily operations. Would recommend to any growing team.</p>
+                            <!-- /wp:paragraph -->',
+						'meta_input'    => array(
+							'ca_testimonial_rating'        => '4',
+							'ca_testimonial_name'          => 'David Kim',
+							'ca_testimonial_role'          => 'Product Manager',
+							'ca_testimonial_review_source' => 'google',
+
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/media/team-3.png',
+						'post_title'    => 'Customer support is top notch',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Whenever we ran into an issue, the support team responded quickly and actually solved the problem instead of just pointing us to a FAQ page. Rare these days.</p>
+                            <!-- /wp:paragraph -->',
+						'meta_input'    => array(
+							'ca_testimonial_rating'        => '5',
+							'ca_testimonial_name'          => 'Priya Patel',
+							'ca_testimonial_role'          => 'Customer',
+							'ca_testimonial_review_source' => 'google',
+
+						),
+					),
+				);
+
+				return $testimonials_data;
+
+			case 'ca_portfolio_gallery':
+				$portfolio_data = array(
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/portfolio-gallery/gallery-1.png',
+						'post_title'    => 'Nimbus Cloud Dashboard Redesign',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>A complete overhaul of a SaaS analytics dashboard, focused on simplifying complex data visualizations and reducing time-to-insight for enterprise users.</p>
+                            <!-- /wp:paragraph -->',
+						'categories'    => array( 'Web Design', 'SaaS' ),
+						'meta_input'    => array(
+							'ca_portfolio_gallery_project_year' => '2024',
+							'ca_portfolio_gallery_client' => 'Nimbus Technologies',
+							'ca_portfolio_gallery_skills' => 'Figma, React, D3.js, Tailwind CSS',
+							'ca_portfolio_gallery_url'    => 'https://example.com/nimbus-dashboard',
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/portfolio-gallery/gallery-2.png',
+						'post_title'    => 'Harborline E-Commerce Platform',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Built a headless e-commerce storefront handling over 10,000 SKUs, with custom filtering, a streamlined checkout flow, and full mobile responsiveness.</p>
+                            <!-- /wp:paragraph -->',
+						'categories'    => array( 'E-Commerce', 'Development' ),
+						'meta_input'    => array(
+							'ca_portfolio_gallery_project_year' => '2023',
+							'ca_portfolio_gallery_client' => 'Harborline Goods',
+							'ca_portfolio_gallery_skills' => 'WordPress, WooCommerce, PHP, JavaScript',
+							'ca_portfolio_gallery_url'    => 'https://example.com/harborline-shop',
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/portfolio-gallery/gallery-3.png',
+						'post_title'    => 'Verdant Wellness Brand Identity',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Developed a full brand identity system for a wellness startup, including logo design, color palette, typography guidelines, and a launch landing page.</p>
+                            <!-- /wp:paragraph -->',
+						'categories'    => array( 'Branding', 'Design' ),
+						'meta_input'    => array(
+							'ca_portfolio_gallery_project_year' => '2024',
+							'ca_portfolio_gallery_client' => 'Verdant Wellness Co.',
+							'ca_portfolio_gallery_skills' => 'Illustrator, Photoshop, Webflow',
+							'ca_portfolio_gallery_url'    => 'https://example.com/verdant-brand',
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/portfolio-gallery/gallery-4.png',
+						'post_title'    => 'Pulsegrid Fintech Mobile App',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Designed and developed a personal finance tracking app with real-time budget alerts, spending insights, and biometric login support.</p>
+                            <!-- /wp:paragraph -->',
+						'categories'    => array( 'Mobile App', 'Fintech' ),
+						'meta_input'    => array(
+							'ca_portfolio_gallery_project_year' => '2022',
+							'ca_portfolio_gallery_client' => 'Pulsegrid Inc.',
+							'ca_portfolio_gallery_skills' => 'React Native, Node.js, Firebase',
+							'ca_portfolio_gallery_url'    => 'https://example.com/pulsegrid-app',
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/portfolio-gallery/gallery-5.png',
+						'post_title'    => 'Oakstead Realty Marketing Site',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Created a marketing website for a boutique real estate agency, featuring interactive property maps, virtual tour embeds, and lead-capture forms.</p>
+                            <!-- /wp:paragraph -->',
+						'categories'    => array( 'Web Design', 'Real Estate' ),
+						'meta_input'    => array(
+							'ca_portfolio_gallery_project_year' => '2023',
+							'ca_portfolio_gallery_client' => 'Oakstead Realty Group',
+							'ca_portfolio_gallery_skills' => 'WordPress, ACF, GSAP, Mapbox',
+							'ca_portfolio_gallery_url'    => 'https://example.com/oakstead-realty',
+						),
+					),
+				);
+
+				return $portfolio_data;
+
+			case 'post':
+				$blog_data = array(
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/post/blog-1.png',
+						'post_title'    => 'The Role of AI in Shaping the Next Generation of SaaS',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Artificial intelligence is no longer a bolt-on feature for software platforms — it is becoming the foundation many products are built around. From predictive analytics to automated workflows, AI is reshaping how SaaS companies design their core offerings.</p>
+                            <!-- /wp:paragraph -->
+
+                            <!-- wp:paragraph -->
+                            <p>Forward-thinking teams are embedding machine learning directly into their product roadmaps rather than treating it as an afterthought, giving users smarter defaults and more personalized experiences out of the box.</p>
+                            <!-- /wp:paragraph -->',
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/post/blog-2.png',
+						'post_title'    => 'How Automation Is Cutting SaaS Onboarding Time in Half',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Long, manual onboarding flows are one of the biggest reasons new users abandon a product before they see its value. Automated setup wizards and smart defaults are changing that equation entirely.</p>
+                            <!-- /wp:paragraph -->
+
+                            <!-- wp:paragraph -->
+                            <p>By automatically importing data, pre-configuring common settings, and guiding users toward their first meaningful action, companies are seeing dramatically faster time-to-value and higher activation rates.</p>
+                            <!-- /wp:paragraph -->',
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/post/blog-3.png',
+						'post_title'    => 'The Future of SaaS: Trends to Watch in 2025',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Usage-based pricing, vertical-specific platforms, and AI-native features are three of the biggest shifts reshaping the SaaS landscape heading into 2025.</p>
+                            <!-- /wp:paragraph -->
+
+                            <!-- wp:paragraph -->
+                            <p>Companies that adapt their product and pricing strategy early are positioning themselves to capture the next wave of buyers, who increasingly expect flexibility and intelligence baked into every tool they adopt.</p>
+                            <!-- /wp:paragraph -->',
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/post/blog-4.png',
+						'post_title'    => 'Why Customer Retention Is the New Growth Metric',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Acquiring new customers has always dominated the growth conversation, but retention is quietly becoming the metric that separates sustainable SaaS businesses from the rest.</p>
+                            <!-- /wp:paragraph -->
+
+                            <!-- wp:paragraph -->
+                            <p>Reducing churn by even a few percentage points compounds significantly over time, and many teams are now investing as much in customer success as they do in sales and marketing.</p>
+                            <!-- /wp:paragraph -->',
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/post/blog-5.png',
+						'post_title'    => 'Building a Product-Led Growth Strategy from Scratch',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Product-led growth flips the traditional sales funnel by letting the product itself do the convincing, often through free trials, freemium tiers, or self-serve onboarding.</p>
+                            <!-- /wp:paragraph -->
+
+                            <!-- wp:paragraph -->
+                            <p>Getting this right requires a deep understanding of your "aha moment" — the specific point where users recognize the product\'s value — and designing every early interaction to get them there faster.</p>
+                            <!-- /wp:paragraph -->',
+					),
+				);
+
+				return $blog_data;
+
+			case 'product':
+				$product_data = array(
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/product/product-1.png',
+						'post_title'    => 'Aria Wireless Headphones',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Over-ear wireless headphones with active noise cancellation, 30-hour battery life, and plush memory-foam ear cushions for all-day comfort.</p>
+                            <!-- /wp:paragraph -->',
+						'post_excerpt'  => 'Wireless over-ear headphones with ANC and 30-hour battery life.',
+						'meta_input'    => array(
+							'_sku'           => 'ARIA-HP-001',
+							'_regular_price' => '129.99',
+							'_sale_price'    => '99.99',
+							'_stock_qty'     => 45,
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/product/product-2.png',
+						'post_title'    => 'Kindle Ridge Ceramic Mug',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>Hand-glazed ceramic mug with a matte finish, holds 12oz, and is safe for both microwave and dishwasher use. Available in a warm terracotta glaze.</p>
+                            <!-- /wp:paragraph -->',
+						'post_excerpt'  => 'Hand-glazed 12oz ceramic mug, microwave and dishwasher safe.',
+						'meta_input'    => array(
+							'_sku'           => 'KR-MUG-014',
+							'_regular_price' => '18.00',
+							'_sale_price'    => '',
+							'_stock_qty'     => 120,
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/product/product-3.png',
+						'post_title'    => 'Trailmark Canvas Backpack',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>A rugged 22L canvas backpack with a padded laptop sleeve, water-resistant coating, and reinforced stitching built to handle daily commutes or weekend trips.</p>
+                            <!-- /wp:paragraph -->',
+						'post_excerpt'  => 'Rugged 22L canvas backpack with padded laptop sleeve.',
+						'meta_input'    => array(
+							'_sku'           => 'TM-BAG-022',
+							'_regular_price' => '74.50',
+							'_sale_price'    => '59.00',
+							'_stock_qty'     => 30,
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/product/product-4.png',
+						'post_title'    => 'Solace Weighted Blanket',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>A 15lb weighted blanket filled with glass beads and wrapped in a breathable cotton cover, designed to reduce restlessness and improve sleep quality.</p>
+                            <!-- /wp:paragraph -->',
+						'post_excerpt'  => '15lb weighted blanket with breathable cotton cover.',
+						'meta_input'    => array(
+							'_sku'           => 'SOL-BLK-015',
+							'_regular_price' => '89.99',
+							'_sale_price'    => '',
+							'_stock_qty'     => 0,
+						),
+					),
+					array(
+						'thumbnail_url' => 'https://plugins.cozythemes.com/cozy-addons/assets/cpt/product/product-5.png',
+						'post_title'    => 'Fernwood Cutting Board Set',
+						'post_content'  => '<!-- wp:paragraph -->
+                            <p>A set of three acacia wood cutting boards in graduated sizes, finished with food-safe mineral oil and featuring a juice groove to catch spills.</p>
+                            <!-- /wp:paragraph -->',
+						'post_excerpt'  => 'Set of 3 acacia wood cutting boards with juice groove.',
+						'meta_input'    => array(
+							'_sku'           => 'FW-CBS-003',
+							'_regular_price' => '42.00',
+							'_sale_price'    => '34.99',
+							'_stock_qty'     => 65,
+						),
+					),
+				);
+
+				return $product_data;
+
+			default:
+				return array();
+		}
+	}
+
+	private function cpt_create_thumbnail( $post_id, $post_type, $thumbnail_url ) {
+		$image_url = $thumbnail_url;
+		$tmp       = download_url( $image_url );
+		if ( is_wp_error( $tmp ) ) {
+			return;
+		}
+
+		$file_array = array(
+			'name'     => $post_type . $post_id . '.png',
+			'tmp_name' => $tmp,
+		);
+
+		$attachment_id = media_handle_sideload( $file_array, $post_id );
+		if ( ! is_wp_error( $attachment_id ) ) {
+			set_post_thumbnail( $post_id, $attachment_id );
+		} else {
+			wp_delete_file( $tmp );
+		}
+	}
+
+
+	public function generate_cpt_dummy_data() {
+		check_admin_referer( 'ca_utility_function', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error();
+		}
+
+		$allowed_post_types = array(
+			'ca_faq',
+			'ca_testimonial',
+			'ca_portfolio_gallery',
+			'post',
+			'product',
+		);
+
+		$post_type = isset( $_POST['postType'] ) && in_array( sanitize_text_field( wp_unslash( $_POST['postType'] ) ), $allowed_post_types, true ) ? sanitize_text_field( wp_unslash( $_POST['postType'] ) ) : '';
+
+		if ( empty( $post_type ) ) {
+			wp_send_json_error();
+		}
+
+		$cpt_data = $this->get_cpt_dummy_data( $post_type );
+
+		if ( empty( $cpt_data ) ) {
+			wp_send_json_error();
+		}
+
+		foreach ( $cpt_data as $cpt ) {
+			$post_id = wp_insert_post(
+				array_merge(
+					$cpt,
+					array(
+						'post_status' => 'publish',
+						'post_type'   => $post_type,
+					)
+				)
+			);
+
+			if ( isset( $cpt['thumbnail_url'] ) && ! empty( $cpt['thumbnail_url'] ) ) {
+				$this->cpt_create_thumbnail( $post_id, $post_type, $cpt['thumbnail_url'] );
 			}
 		}
 

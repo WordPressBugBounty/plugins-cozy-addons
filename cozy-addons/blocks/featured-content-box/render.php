@@ -17,14 +17,23 @@ $width1 = $attributes['gridOptions']['columnCount'] <= 3 ? cozy_addons_sanitize_
 $width2 = $attributes['gridOptions']['columnCount'] <= 2 ? cozy_addons_sanitize_dimension( $attributes['gridOptions']['columnCount'] ) : 2;
 
 $styles = array(
-	'margin' => array(
+	'desktop' => array(
+		'padding' => isset( $attributes['styles']['desktop']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['styles']['desktop']['padding'] ) : '',
+	),
+	'tablet'  => array(
+		'padding' => isset( $attributes['styles']['tablet']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['styles']['tablet']['padding'] ) : '',
+	),
+	'mobile'  => array(
+		'padding' => isset( $attributes['styles']['mobile']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['styles']['mobile']['padding'] ) : '',
+	),
+	'margin'  => array(
 		'top'    => isset( $attributes['margin']['top'] ) ? esc_attr( $attributes['margin']['top'] ) : '',
 		'right'  => isset( $attributes['margin']['right'] ) ? esc_attr( $attributes['margin']['right'] ) : '',
 		'bottom' => isset( $attributes['margin']['bottom'] ) ? esc_attr( $attributes['margin']['bottom'] ) : '',
 		'left'   => isset( $attributes['margin']['left'] ) ? esc_attr( $attributes['margin']['left'] ) : '',
 	),
-	'column' => isset( $attributes['gridOptions']['columnCount'] ) ? esc_attr( $attributes['gridOptions']['columnCount'] ) : '',
-	'gap'    => isset( $attributes['gridOptions']['gap'] ) ? esc_attr( $attributes['gridOptions']['gap'] ) : '',
+	'column'  => isset( $attributes['gridOptions']['columnCount'] ) ? esc_attr( $attributes['gridOptions']['columnCount'] ) : '',
+	'gap'     => isset( $attributes['gridOptions']['gap'] ) ? esc_attr( $attributes['gridOptions']['gap'] ) : '',
 );
 
 $stack_img = array(
@@ -78,10 +87,21 @@ $bullet_color = array(
 
 $block_styles = "
 #$block_id {
+    {$styles['desktop']['padding']}
     margin-top: {$styles['margin']['top']}px;
     margin-right: {$styles['margin']['right']}px;
     margin-bottom: {$styles['margin']['bottom']}px;
     margin-left: {$styles['margin']['left']}px;
+}
+@media (width <= 1024px) {
+    #$block_id {
+        {$styles['tablet']['padding']}
+    }
+}
+@media (width <= 767px) {
+    #$block_id {
+        {$styles['mobile']['padding']}
+    }
 }
 
 #$block_id.display-grid .cozy-grid-wrapper {
@@ -202,11 +222,15 @@ add_action(
 	}
 );
 
+$wrapper_attributes = get_block_wrapper_attributes();
+
 $classes   = array();
 $classes[] = 'cozy-block-wrapper';
 $classes[] = cozy_addons_premium_access() && 'carousel' === $attributes['display'] && isset( $attributes['sliderOptions']['smoothTransition'] ) && $attributes['sliderOptions']['smoothTransition'] ? 'swiper__smooth-transition' : '';
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
-	<?php echo $content; ?>
+	<div <?php echo $wrapper_attributes; ?>>
+		<?php echo $content; ?>
+	</div>
 </div>

@@ -11,7 +11,12 @@
     "carousel"
   ],
   "supports": {
-    "html": false
+    "html": false,
+    "color": {
+      "background": true,
+      "text": false,
+      "gradients": true
+    }
   },
   "attributes": {
     "cover": {
@@ -127,6 +132,23 @@
         "spaceBetween": 30,
         "speed": 700,
         "smoothTransition": false
+      }
+    },
+    "styles": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          }
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        }
       }
     }
   },

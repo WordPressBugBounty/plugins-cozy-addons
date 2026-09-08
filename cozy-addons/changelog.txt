@@ -1,3 +1,11 @@
+= 2.2.20 - Sep 08, 2026 = 
+* Add: Testimonial Custom Post Type.
+* Add: Source picker for content in Testimonials block.
+* Add: Testimonial page schema generation in Testimonials block.
+* Add: SaaS starter template.
+* Add: Brand showcase block.
+* Fix: Minor block improvements.
+
 = 2.2.19 - Aug 25, 2026 = 
 * Add: FAQ Custom Post Type.
 * Add: Source picker for content in Accordion block.

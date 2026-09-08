@@ -433,3 +433,51 @@ function cozy_addons_rollback_html_schema() {
 	exit;
 }
 add_action( 'admin_post_cozy_addons_rollback', 'cozy_addons_rollback_html_schema' );
+
+/**
+ * Display an admin notice prompting the user to seed dummy Testimonial data.
+ *
+ * Shown only on the Testimonial CPT list screen ('edit-ca_testimonial') when no Testimonial posts
+ * (published or draft) currently exist. Includes a "Generate Dummy Data"
+ * button that triggers the AJAX-based dummy post populator for the
+ * 'ca_testimonial' post type.
+ *
+ * Hooked to `admin_notices`.
+ *
+ * @return void
+ */
+function cozy_addons_post_seeder_notice() {
+	$current_screen = get_current_screen();
+	$post_type      = $current_screen->post_type;
+
+	$allowed_post_types = array(
+		'ca_faq',
+		'ca_testimonial',
+		'ca_portfolio_gallery',
+		'post',
+		'product',
+	);
+
+	if ( ! is_admin() || is_network_admin() || ! current_user_can( 'manage_options' ) || ! in_array( $post_type, $allowed_post_types, true ) ) {
+		return;
+	}
+
+	$counts = (array) wp_count_posts( $post_type );
+
+	$publish_count = isset( $counts['publish'] ) ? intval( $counts['publish'] ) : 0;
+	$draft_count   = isset( $counts['draft'] ) ? intval( $counts['draft'] ) : 0;
+
+	if ( $publish_count > 0 || $draft_count > 0 ) {
+		return;
+	}
+	?>
+	<div class="notice notice-info cpt-seeder-notice is-dismissible">
+		<p><?php esc_html_e( 'Confused about where to start? Try adding some dummy data.' ); ?></p>
+		<button class="ca-btn button cpt-seeder has-spinner is-admin-notice-btn" data-post-type='<?php echo esc_attr( $post_type ); ?>'>
+			<a><?php esc_html_e( 'Generate Dummy Data', 'cozy-addons' ); ?></a>
+			<div class="spinner"></div>
+		</button>
+	</div>
+	<?php
+}
+add_action( 'admin_notices', 'cozy_addons_post_seeder_notice' );

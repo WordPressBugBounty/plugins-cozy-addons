@@ -150,6 +150,29 @@
 /* CPT icons */
 #menu-posts-ca_faq img,
 #menu-posts-ca_mega_menu img,
+#menu-posts-ca_testimonial img,
 #menu-posts-ca_portfolio_gallery img {
 	opacity: 1 !important;
+}
+
+/* CPT notice */
+.notice.cpt-seeder-notice .ca-btn.has-spinner {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+
+	& .is-disabled {
+		opacity: 0.6;
+		pointer-events: none;
+	}
+
+	& .spinner {
+		margin: 0;
+	}
+	& .spinner:not(.show-spinner) {
+		display: none;
+	}
+}
+.notice.cpt-seeder-notice .spinner.show-spinner {
+	visibility: visible;
 }

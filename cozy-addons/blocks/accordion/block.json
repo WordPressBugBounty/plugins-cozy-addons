@@ -94,75 +94,66 @@
     "iconBoxStyles": {
       "type": "object",
       "default": {
-        "padding": {
-          "top": 5,
-          "right": 5,
-          "bottom": 5,
-          "left": 5
+        "desktop": {
+          "padding": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          },
+          "width": "",
+          "height": ""
         },
-        "borderType": "none",
-        "borderWidth": 1,
-        "borderColor": "#000",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px",
         "borderColorHover": "",
-        "borderRadius": 50,
-        "bgColor": "#b2bcf9",
+        "bgColor": "",
         "bgColorHover": ""
       }
     },
     "containerStyles": {
       "type": "object",
       "default": {
-        "padding": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
+        "desktop": {
+          "padding": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
         },
         "border": {
-          "width": {
-            "top": 1,
-            "right": 1,
-            "bottom": 1,
-            "left": 1
-          },
-          "type": "none",
+          "width": "",
+          "style": "",
           "color": ""
         },
-        "borderRadius": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        },
+        "radius": "",
         "bgColor": ""
       }
     },
     "accordionStyles": {
       "type": "object",
       "default": {
-        "padding": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
+        "desktop": {
+          "padding": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
         },
         "border": {
-          "width": {
-            "top": 1,
-            "right": 1,
-            "bottom": 1,
-            "left": 1
-          },
-          "type": "none",
+          "width": "",
+          "style": "",
           "color": ""
         },
-        "borderRadius": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        },
-        "bgColor": ""
+        "radius": "",
+        "bgColor": "",
+        "borderColorActive": ""
       }
     },
     "search": {
@@ -180,8 +171,12 @@
           "color": "#878787"
         },
         "radius": "100px",
+        "desktop": {
+          "font": {
+            "size": "16px"
+          }
+        },
         "font": {
-          "size": "16px",
           "weight": "",
           "family": ""
         },
@@ -228,8 +223,12 @@
           "color": ""
         },
         "radius": "100px",
+        "desktop": {
+          "font": {
+            "size": "14px"
+          }
+        },
         "font": {
-          "size": "14px",
           "weight": "",
           "family": ""
         },
@@ -252,28 +251,40 @@
           "top": "",
           "bottom": ""
         },
-        "fontFamily": "",
-        "fontSize": "20",
-        "color": "",
-        "colorActive": "",
-        "fontWeight": "",
-        "letterCase": "",
-        "decoration": "",
+        "desktop": {
+          "font": {
+            "size": "20px"
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
         "lineHeight": "",
-        "letterSpacing": ""
+        "letterSpacing": "",
+        "color": "",
+        "colorActive": ""
       }
     },
     "typography": {
       "type": "object",
       "default": {
-        "fontFamily": "",
-        "fontSize": 16,
-        "color": "",
-        "fontWeight": "",
-        "letterCase": "",
-        "decoration": "",
+        "desktop": {
+          "font": {
+            "size": ""
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
         "lineHeight": "",
-        "letterSpacing": ""
+        "letterSpacing": "",
+        "color": ""
       }
     }
   },

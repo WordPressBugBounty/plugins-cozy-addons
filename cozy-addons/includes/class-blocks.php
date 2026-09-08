@@ -161,7 +161,7 @@ class Blocks {
 			'cozyBlockAssets',
 			array(
 				'isPremium'            => cozy_addons_premium_access(),
-				'imageDir'             => COZY_ADDONS_PLUGIN_URL . '/assets/img',
+				'imageDir'             => COZY_ADDONS_PLUGIN_URL . 'assets/img',
 				'googleFonts'          => cozy_addons_google_fonts(),
 				'icons'                => \CozyAddons\Icons::get_cozy_icon_collection(),
 				'socialIcons'          => \CozyAddons\Icons::get_cozy_social_icon_collection(),

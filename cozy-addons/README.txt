@@ -1,119 +1,140 @@
-=== Cozy Blocks – Page Builder for Gutenberg Editor & FSE with 700+ Patterns, 58 Blocks & Templates ===
+=== Cozy Blocks – Website Builder for Block Editor | 58 Gutenberg Blocks, 700+ Patterns, 50+ Templates ===
 Contributors: CozyThemes
 Tags: gutenberg blocks, page builder, block patterns, woocommerce blocks, full site editing
 Requires PHP: 7.4
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.2.19
+Stable tag: 2.2.20
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Build any WordPress site without Elementor or Divi. 57 Gutenberg blocks, 700+ ready-made patterns & 50+ FSE templates. No page builder needed.
+Build complete websites in the WordPress Block Editor with 58 Gutenberg blocks, 700+ ready-made patterns, and 50+ starter templates.
 
 == Description ==
-[Cozy Blocks](https://cozythemes.com/cozy-addons/) is a powerful Gutenberg page builder plugin that extends the WordPress Block Editor with 57 advanced blocks, 700+ professionally designed block patterns across 20+ categories, and 50+ complete FSE homepage templates for 12 niches — all native to the WordPress Site Editor.
+[Cozy Blocks](https://cozythemes.com/cozy-addons/) is a complete website builder for the WordPress Block Editor.
 
-No Elementor. No Divi. No shortcodes. Just fast, clean, native blocks that work exactly the way WordPress is built to work.
+With 58+ advanced Gutenberg blocks, 700+ professionally designed patterns, and 50+ starter templates, you can build and launch complete websites faster—all inside WordPress. 
 
-Whether you're a freelancer building client sites, a blogger setting up a magazine layout, or a store owner who needs powerful WooCommerce blocks — Cozy Blocks has everything in one install.
-
-⚠️ IMPORTANT: Cozy Blocks works exclusively with block-based (FSE) WordPress themes. It does not support the Classic Editor or classic PHP themes.
-
-Compatible with any modern block theme — including [SaasLauncher](https://cozythemes.com/saaslauncher-wordpress-theme/), [Homelancer](https://cozythemes.com/homelancer/), [Jetnews Magazine](https://cozythemes.com/jetnews-magazine-wordpress-theme/), [WoxStore](https://cozythemes.com/woxstore-woocommerce-theme/), and all FSE themes on WordPress.org. Not sure if your theme is FSE-compatible? Check under Appearance → Editor in your dashboard. If the Site Editor loads, you're good to go.
-
-<a href="https://app.zipwp.com/wp?plugins=cozy-addons" target="_blank" rel="">Try Cozy Blocks on a dummy site!</a>
+No separate page builder. No proprietary content format. No lock-in.
 
 Quick Links
 
 [Live Demo](https://cozythemes.com/cozy-addons/) | [Design Library](https://cozythemes.com/website-templates/) | [World Class Support](https://cozythemes.com/support) | [Free vs Pro](https://cozythemes.com/pricing-and-plans/#free-vs-pro) | [Why Choose Us](https://cozythemes.com/reviews-ratings) | [Get Pro](https://cozythemes.com/pricing-and-plans)
 
-= Key Features That Enhance and Extend WordPress Blocks =
+= See it in Action =
+
+Getting Started with Cozy Blocks — Watch the Walkthrough
+
+https://www.youtube.com/watch?v=fNwIqedPyEU
+
+<a href="https://app.zipwp.com/wp?plugins=cozy-addons" target="_blank" rel="">Try Cozy Blocks on a Free Demo Site</a>
+
+= Why Cozy Blocks? =
+
+Cozy Blocks brings together <strong>ready-made designs, powerful building tools, and advanced WordPress features</strong> so you can build professional websites faster—without leaving the Block Editor.
+
 <ul>
-<li>Design Library Kit</li>
-<li>50+ Advanced Blocks to Extend the Site Editor</li>
-<li>WooCommerce Blocks</li>
-<li>Post and Magazine Blocks</li>
-<li>Slider Blocks (Slider & Carousel Blocks)</li>
-<li>Team Block</li>
-<li>Testimonial Block</li>
-<li>Pricing Table</li>
-<li>Portfolio Block (Dynamic Portfolio and Gallery Builder)</li>
-<li>Popup Builder Block</li>
-<li>Social Media/Share Icons Blocks</li>
-<li>Responsive Visibility Conditions</li>
-<li>Animation on Scroll</li>
-<li>Advanced Hover Effect for Blocks</li>
-<li>Google Fonts for Blocks</li>
-<li>Advanced Content Section builder (Tabs, Accordion, Counter and Progress Bar)</li>
-<li>Ajax Loader for Post Blocks</li>
-<li>Advanced Gallery with multiple layouts</li>
+<li><strong>700+ ready-made patterns</strong> to build pages and sections faster</li>
+<li><strong>50+ complete starter templates</strong> to launch websites for different niches</li>
+<li><strong>58+ advanced Gutenberg blocks</strong> for layouts, content, marketing, blogs, magazines, and WooCommerce</li>
+<li><strong>Advanced design controls</strong> for typography, spacing, animations, hover effects, and responsive layouts</li>
+<li><strong>Dedicated WooCommerce tools</strong> to create richer, more engaging online stores</li>
+<li><strong>Dynamic post & magazine blocks</strong> for blogs, news sites, publishers, and content-heavy websites</li>
+<li><strong>Block Enable/Disable Manager</strong> to control which blocks are active on your site</li>
+<li><strong>Native WordPress editing</strong> with no proprietary page-builder interface or locked-in content</li>
 </ul>
 
-Cozy Blocks is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Seamlessly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it offers a robust library of over 50 advanced, customizable Gutenberg blocks. Designed for ease of use, Cozy Blocks caters to both experienced developers and beginners, enabling users to effortlessly design dynamic, visually stunning websites.
+Everything works together to give you a faster, more flexible way to build complete websites with WordPress.
 
-Whether you’re building an e-commerce store, a news platform, a corporate site, or any other type of web presence, Cozy Blocks provides the powerful tools you need. Supported by flexible customization options and robust support, this plugin empowers you to embrace the future of web design and unlock your creative potential.
+Whether you're building client websites, launching a business, publishing content, or running a WooCommerce store, <strong>Cozy Blocks helps you build more—without moving away from WordPress.</strong>
 
-Join the Cozy Blocks movement today and build your website with ease.
+= 🚀 50+ Starter Templates to Launch Faster =
 
-Watch our step-by-step tutorial on installing Cozy Blocks!
+Why build a website section by section when you can start with a complete design?
 
-https://www.youtube.com/watch?v=GP4NxSbikS4
+Cozy Blocks includes 50+ complete homepage and starter templates designed for real-world websites.
 
-= 🎨 Design Library — 700+ Patterns & 50+ Full Site Templates =
-The largest ready-made design library for the WordPress Block Editor. Every pattern and template is 100% native to Gutenberg — no imports, no proprietary formats, no lock-in.
+* 🏢 Agency
+* ✍️ Author & Writer
+* 📰 Blog & Magazine
+* 💼 Business
+* ❤️ Charity & Nonprofit
+* 🎓 Education
+* 🏠 Home Services
+* 🍽️ Restaurant & Hotel
+* 📷 Photography
+* 🖥️ Portfolio
+* 🚀 SaaS & Startup
+* 🛒 WooCommerce Store
 
-<strong>700+ Block Patterns in 20+ categories — one-click import:</strong>
+Start with a complete website concept, then customize it around your brand.
+
+= 🎨 700+ Ready-Made Patterns =
+
+Cozy Blocks' Design Library gives you 700+ professionally designed block patterns that you can insert directly into your WordPress website.
+
+<strong>Pattern categories include:</strong>
 Hero Sections | Page Headers | Footers | About Us | Services & Features | Pricing Tables |
 Testimonials | Team | Portfolio | Blog & Posts | Call to Action | FAQ | Contact Us |
 Newsletter | Job Board | Stats & Numbers | Brand Showcase | Why Choose Us |
 Featured Products | WooCommerce
 
-<strong>50+ Full Homepage Templates for 12 niches:</strong>
-🏢 Agency | ✍️ Author & Writer | 📰 Blog & Magazine | 💼 Business | ❤️ Charity & Nonprofit |
-🎓 Education | 🏠 Home Services | 🍽️ Restaurant & Hotel | 📷 Photography | 🖥️ Portfolio |
-🚀 SaaS & Startup | 🛒 WooCommerce Store
+= ⚡ 58 Advanced Gutenberg Blocks =
 
+Give the WordPress Block Editor the tools needed to build modern, interactive websites.
 
-= ⚡ 58 Advanced Gutenberg Blocks — Built for the Block Editor & FSE =
-Every block is built natively for the WordPress Site Editor. No legacy shortcode wrappers, no inline JavaScript hacks — clean semantic markup that loads only what your page actually uses.
-
-<strong>Layout & Structure:</strong>
+<strong>Layout & Navigation</strong>
 [Cozy Container](https://cozyblock.cozythemes.com/cozy-container-gutenberg-block/) | [Advanced Mega Menu](https://cozyblock.cozythemes.com/mega-menu-gutenberg-block/) | [Advanced Tabs](https://cozyblock.cozythemes.com/advanced-tabs-gutenberg-block/) | [Accordion](https://cozyblock.cozythemes.com/accordion-gutenberg-block/) | [Sidebar Panel](https://cozyblock.cozythemes.com/sidebar-panel-gutenberg-block/) |
 [Toggle Content](https://cozyblock.cozythemes.com/pricing-table-gutenberg-block/#toggle-content) | [Back to Top](https://cozyblock.cozythemes.com/back-to-top-gutenberg-block/) | [Breadcrumbs](https://cozyblock.cozythemes.com/related-post-gutenberg-block/)
 
-<strong>Content & Marketing:</strong>
+<strong>Content & Marketing</strong>
 [Slider](https://cozyblock.cozythemes.com/slider-gutenberg-block/) | [Advanced Gallery](https://cozyblock.cozythemes.com/advanced-gallery-gutenberg-block/) | [Featured Content Box](https://cozyblock.cozythemes.com/featured-content-box-gutenberg-block/) | [Icon List](https://cozyblock.cozythemes.com/icon-list-gutenberg-block/) | [Icon Picker](https://cozyblock.cozythemes.com/icon-picker-gutenberg-block/) | [Call to Action(CTA)](https://cozyblock.cozythemes.com/call-to-action-gutenberg-block/) |
 [Counter](https://cozyblock.cozythemes.com/counter-gutenberg-block/) | [Progress Bar](https://cozyblock.cozythemes.com/progress-bar-gutenberg-block/) | [Pricing Table](https://cozyblock.cozythemes.com/pricing-table-gutenberg-block/) | [Countdown Timer](https://cozyblock.cozythemes.com/countdown-timer-gutenberg-block/) | [Popup Builder](https://cozyblock.cozythemes.com/popup-builder-gutenberg-block/) | [Scroll Animation](https://cozyblock.cozythemes.com/scroll-animation-gutenberg-block/)
 
-<strong>Blog, Posts & Magazine:</strong>
+<strong>Blog, Posts & Magazine</strong>
 [Post Grid/Carousel](https://cozyblock.cozythemes.com/post-carousel-gutenberg-block/) | [Post Slider](https://cozyblock.cozythemes.com/post-slider-gutenberg-block/) | [Popular Post](https://cozyblock.cozythemes.com/popular-post-gutenberg-block/) | [Trending Post](https://cozyblock.cozythemes.com/trending-post-gutenberg-block/) |
 [Featured Post](https://cozyblock.cozythemes.com/featured-post-gutenberg-block/) | [Featured Post Tabs](https://cozyblock.cozythemes.com/featured-post-tabs-gutenberg-block/) | [Categorized Post Tabs](https://cozyblock.cozythemes.com/categorized-post-tabs-gutenberg-block/) |
 [Magazine Grid](https://cozyblock.cozythemes.com/magazine-grid-gutenberg-block/) | [Magazine List](https://cozyblock.cozythemes.com/magazine-list-gutenberg-block/) | [Related Post](https://cozyblock.cozythemes.com/related-post-gutenberg-block/) | [News Ticker](https://cozyblock.cozythemes.com/news-ticker-gutenberg-block/) |
 [Advanced Categories](https://cozyblock.cozythemes.com/advanced-categories-gutenberg-block/) | [Advertisement](https://cozyblock.cozythemes.com/advertisement-gutenberg-block/) | [Post Comments](https://cozyblock.cozythemes.com/post-comments-gutenberg-block/) | [Post Views](https://cozyblock.cozythemes.com/post-views-gutenberg-block/)
 
-<strong>WooCommerce:</strong>
+<strong>WooCommerce</strong>
 [Product Grid/Carousel](https://cozyblock.cozythemes.com/product-carousel-woocommerce-block/) | [Product Category](https://cozyblock.cozythemes.com/product-categories-woocommerce-block/) | [Featured Product](https://cozyblock.cozythemes.com/featured-product-woocommerce-block/) | 
 [Featured Products Tab](https://cozyblock.cozythemes.com/featured-products-tab-woocommerce-block/) | [Add to Cart](https://cozyblock.cozythemes.com/product-add-to-cart-woocommerce-block/) | [All Product Reviews](https://cozyblock.cozythemes.com/all-product-reviews-woocommerce-block/) | [Product Slider](https://cozyblock.cozythemes.com/product-slider-woocommerce-block/) |
 [Quick View](https://cozyblock.cozythemes.com/product-quick-view-woocommerce-block/) | [Wishlist](https://cozyblock.cozythemes.com/product-wishlist-woocommerce-block/) | [Products Showcase Tabs](https://cozyblock.cozythemes.com/product-showcase-tabs-woocommerce-block/)
 
-<strong>Team & Social:</strong>
+<strong>Team, Social & Portfolio</strong>
 [Team](https://cozyblock.cozythemes.com/team-gutenberg-block/) | [Testimonials](https://cozyblock.cozythemes.com/testimonial-gutenberg-block/) | Social Icons | [Social Shares](https://cozyblock.cozythemes.com/related-post-gutenberg-block/) | 
 [Portfolio Gallery](https://fotademo.cozythemes.com/fotademo-pro/portfolios/) | [Before/After Image](https://cozyblock.cozythemes.com/before-after-image-gutenberg-block/)
 
-<strong>Utility:</strong>
+<strong>Utility</strong>
 [Date & Time](https://cozyblock.cozythemes.com/date-and-time-gutenberg-block/) | [Contact Form 7 Styler](https://cozyblock.cozythemes.com/contact-form-styler-gutenberg-block/) | Cozy Button
 
-= 🚀 Built-in Power Features — Available on WordPress core blocks =
+= 🧩 More Than Blocks — Build the Content Behind Your Website =
 
-<strong>Scroll Animations —</strong> Add entrance animations (fade, slide, zoom, flip) to any block or section. No CSS knowledge required.
-<strong>Hover Effects —</strong> Apply interactive hover transitions to buttons, images, cards, and containers directly from block settings.
-<strong>Responsive Visibility Controls —</strong> Show or hide any block on desktop, tablet, or mobile from a single toggle. Build truly device-specific layouts without duplication.
-<strong>Block Enable/Disable Manager —</strong> Only the blocks you activate load on the front end. No unused JavaScript or CSS is shipped to your visitors. Core Web Vitals stay clean.
-<strong>Google Fonts Integration —</strong> Access the complete Google Fonts library inside the block editor with live preview. No API key required.
-<strong>AJAX-Powered Post Blocks —</strong> Post grids, magazine layouts, and post carousels load content dynamically. Pages stay fast even with content-heavy layouts.
+Cozy Blocks doesn't just help you design pages. It also gives you specialized tools to create, manage, and showcase the content your website needs.
 
-= Getting Started with Cozy Blocks — Watch the Walkthrough =
+<strong>Portfolio</strong> — Create and organize projects with a dedicated Portfolio post type.
 
-https://www.youtube.com/watch?v=fNwIqedPyEU
+<strong>FAQs</strong> — Build structured FAQ sections with automatic structured-data generation.
+
+<strong>Testimonials</strong> — Manage customer testimonials and display them in professional layouts.
+
+= ✨ Design Without Custom CSS for Everything =
+
+Create polished, interactive designs directly from the editor.
+
+* <strong>Scroll Animations:</strong> Add entrance animations such as fade, slide, zoom, and flip effects to create more engaging page sections.
+* <strong>Hover Effects:</strong> Add interactive hover states to buttons, cards, images, containers, and other elements.
+* <strong>Responsive Visibility:</strong> Control what appears on desktop, tablet, and mobile so your layouts work across different screen sizes.
+* <strong>Google Fonts:</strong> Choose from the Google Fonts library directly inside the editor and preview typography while designing.
+
+= Works beautifully with CozyThemes' Block Themes =
+
+Cozy Blocks is designed to work seamlessly with CozyThemes block themes, including:
+
+* [HomeLancer](https://cozythemes.com/homelancer/) — Home Services
+* [SaasLauncher](https://cozythemes.com/saaslauncher-wordpress-theme/) — SaaS & Startup
+* [Jetnews Magazine](https://cozythemes.com/jetnews-magazine-wordpress-theme/) — Blog & Magazine
+* [WoxStore](https://cozythemes.com/woxstore-woocommerce-theme/) — WooCommerce
 
 == Installation ==
 
@@ -182,37 +203,13 @@ You can report any security bugs found in the source code of this plugin through
 8. FSE Homepage templates
 
 == Changelog ==
-= 2.2.19 - Aug 25, 2026 = 
-* Add: FAQ Custom Post Type.
-* Add: Source picker for content in Accordion block.
-* Add: FAQ page schema generation in FAQ block.
+= 2.2.20 - Sep 08, 2026 = 
+* Add: Testimonial Custom Post Type.
+* Add: Source picker for content in Testimonials block.
+* Add: Testimonial page schema generation in Testimonials block.
 * Add: SaaS starter template.
+* Add: Brand showcase block.
 * Fix: Minor block improvements.
-* Fix: Dashboard access.
-
-= 2.2.18 - Aug 21, 2026 = 
-* Fix: Append the Cozy Advanced Effects CSS to the block’s existing styles.
-
-= 2.2.17 - Aug 20, 2026 = 
-* Fix: Mega Menu and Portfolio Gallery CPT enable/disable setting glitch.
-* Fix: Minor block improvements.
-* Security: Missing Authorization to Unauthenticated Unpublished Product Information Disclosure via 'wishlistData' Parameter.
-* Security: Authenticated (Contributor+) Stored Cross-Site Scripting via cozyHoverEffect Block Attribute.
-
-= 2.2.16 - Aug 14, 2026 = 
-* Fix: Plugin uninstall process.
-
-= 2.2.15 - Aug 14, 2026 = 
-* Fix: Advanced Tab's editor UI for tab selection.
-* Fix: Sub-heading anchor tag escaping in Featured Post, Featured Product, Magazine Grid & Magazine List.
-* Fix: Minor block improvements.
-* Fix: Minor improvements to patterns & starter templates.
-* Update: Admin dashboard UI.
-* Add: Post title tag picker in Popular Post and Trending Post.
-* Add: HVAC starter template
-
-= 2.2.14 - Aug 01, 2026 = 
-* Fix: Theme pattern registration logic.
 
 [See changes for all the versions here.](https://plugins.svn.wordpress.org/cozy-addons/trunk/changelog.txt)
 

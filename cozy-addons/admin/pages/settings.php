@@ -213,9 +213,14 @@ $allowed_cpts = array(
 							<?php esc_html_e( '*Permalinks are flushed automatically after saving.', 'cozy-addons' ); ?>
 						</p>
 					</div>
-					<button class="ca-btn btn-primary-accent">
-						<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=ca_portfolio_gallery' ) ); ?>"><?php esc_html_e( 'Add Portfolio Gallery', 'cozy-addons' ); ?></a>
-					</button>
+					<div>
+						<button class="ca-btn btn-primary-accent">
+							<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=ca_portfolio_gallery' ) ); ?>"><?php esc_html_e( 'Add Portfolio Gallery', 'cozy-addons' ); ?></a>
+						</button>
+						<button class="ca-btn btn-primary cpt-seeder" data-post-type="ca_portfolio_gallery">
+							<a><?php esc_html_e( 'Generate Dummy Data', 'cozy-addons' ); ?></a>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -248,7 +253,7 @@ $allowed_cpts = array(
 								</svg>
 							</i>
 						</h3>
-						<p><?php esc_html_e( 'Templates created here will appear in the Accordion block when its source is set to FAQ Template.', 'cozy-addons' ); ?>
+						<p><?php esc_html_e( 'Templates created here will appear in the Accordion block when its source is set to FAQ post type.', 'cozy-addons' ); ?>
 						</p>
 					</div>
 					<div class="toggle-switcher-wrap">
@@ -293,10 +298,10 @@ $allowed_cpts = array(
 
 				<br />
 
-				<p>
-					<label for="faq-tag-slug"><?php esc_html_e( 'Tag slug', 'cozy-addons' ); ?></label>
-					<input id="faq-tag-slug" class="cpt-field" type="text" name="ca-faq-tag-slug" data-cpt="faq" data-type="taxonomy.tags.slug" value="<?php echo esc_attr( $faq_cpt_config['taxonomy']['tags']['slug'] ); ?>" data-previous-value="<?php echo esc_attr( $faq_cpt_config['taxonomy']['tags']['slug'] ); ?>" />
-				</p>
+				<!-- <p>
+					<label for="faq-tag-slug"><?php // esc_html_e( 'Tag slug', 'cozy-addons' ); ?></label>
+					<input id="faq-tag-slug" class="cpt-field" type="text" name="ca-faq-tag-slug" data-cpt="faq" data-type="taxonomy.tags.slug" value="<?php // echo esc_attr( $faq_cpt_config['taxonomy']['tags']['slug'] ); ?>" data-previous-value="<?php // echo esc_attr( $faq_cpt_config['taxonomy']['tags']['slug'] ); ?>" />
+				</p> -->
 
 				<div class="ca-buttons">
 					<div class="ca-btn btn-primary save-button">
@@ -322,9 +327,128 @@ $allowed_cpts = array(
 							<?php esc_html_e( '*Permalinks are flushed automatically after saving.', 'cozy-addons' ); ?>
 						</p>
 					</div>
-					<button class="ca-btn btn-primary-accent">
-						<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=ca_faq' ) ); ?>"><?php esc_html_e( 'Add FAQ', 'cozy-addons' ); ?></a>
-					</button>
+					<div>
+						<button class="ca-btn btn-primary-accent">
+							<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=ca_faq' ) ); ?>"><?php esc_html_e( 'Add FAQ', 'cozy-addons' ); ?></a>
+						</button>
+						<button class="ca-btn btn-primary cpt-seeder" data-post-type="ca_faq">
+							<a><?php esc_html_e( 'Generate Dummy Data', 'cozy-addons' ); ?></a>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="cpt accordion-item">
+			<?php
+			$classes   = array();
+			$classes[] = 'accordion-header';
+			$classes[] = ! cozy_addons_premium_access() ? 'not-allowed' : '';
+			?>
+			<div class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
+				<i class="chevron">
+					<svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M16.5706 1.74303L14.8238 6.47969e-07L8.28527 6.5336L1.74674 7.63524e-08L0 1.74797L6.53854 8.27663C7.00185 8.7398 7.63015 9 8.28527 9C8.9404 9 9.5687 8.7398 10.032 8.27663L16.5706 1.74303Z"
+							fill="currentColor" />
+					</svg>
+				</i>
+				<div class="flex-layout">
+					<div>
+						<h3 class="setting-title has-icon">
+							<?php esc_html_e( 'Testimonial Templates', 'cozy-addons' ); ?>
+							<i class="icon-wrapper">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M6 19L18 19" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+										stroke-linejoin="round" />
+									<path
+										d="M16.5585 16H7.44152C6.58066 16 5.81638 15.4491 5.54415 14.6325L3.70711 9.12132C3.44617 8.3385 4.26195 7.63098 5 8L5.71067 8.35533C6.48064 8.74032 7.41059 8.58941 8.01931 7.98069L10.5858 5.41421C11.3668 4.63317 12.6332 4.63316 13.4142 5.41421L15.9807 7.98069C16.5894 8.58941 17.5194 8.74032 18.2893 8.35533L19 8C19.7381 7.63098 20.5538 8.3385 20.2929 9.12132L18.4558 14.6325C18.1836 15.4491 17.4193 16 16.5585 16Z"
+										stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+								</svg>
+							</i>
+						</h3>
+						<p><?php esc_html_e( 'Templates created here will appear in the Testimonials block when its source is set to Testimonial post type.', 'cozy-addons' ); ?>
+						</p>
+					</div>
+					<div class="toggle-switcher-wrap">
+						<?php
+						$checked = get_option( 'ca-cpt--testimonial-templates' );
+						?>
+						<input type="checkbox"
+							class="ca__block-cpt <?php echo false === cozy_addons_premium_access() ? 'cozy-block-upsell' : ''; ?>"
+							name="testimonial-templates" id="ca--testimonial-cpt"
+							<?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
+						<?php
+						$classes   = array();
+						$classes[] = 'toggle-switcher';
+						$classes[] = ! cozy_addons_premium_access() ? 'has-tooltip is-disabled' : '';
+						?>
+						<span class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>"></span>
+						<?php if ( ! cozy_addons_premium_access() ) { ?>
+						<div class="cozy-block-upsell-tooltip">
+							<a
+								href="https://cozythemes.com/pricing-and-plans/"><?php esc_html_e( 'Upgrade to Pro', 'cozy-addons' ); ?></a>
+							<?php esc_html_e( ' to use this feature!', 'cozy-addons' ); ?>
+						</div>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-body">
+				<?php
+				$testimonial_cpt_config = cozy_addons_get_cpt_config_option( 'testimonial' );
+				?>
+				<p>
+					<label for="faq-slug"><?php esc_html_e( 'Post type slug', 'cozy-addons' ); ?></label>
+					<input id="faq-slug" class="cpt-field" type="text" name="ca-testimonial-slug" data-cpt="testimonial" data-type="slug" value="<?php echo esc_attr( $testimonial_cpt_config['slug'] ); ?>" data-previous-value="<?php echo esc_attr( $testimonial_cpt_config['slug'] ); ?>" />
+				</p>
+
+				<br />
+
+				<p>
+					<label for="testimonial-cat-slug"><?php esc_html_e( 'Category slug', 'cozy-addons' ); ?></label>
+					<input id="testimonial-cat-slug" class="cpt-field" type="text" name="ca-testimonial-cat-slug" data-cpt="testimonial" data-type="taxonomy.category.slug" value="<?php echo esc_attr( $testimonial_cpt_config['taxonomy']['category']['slug'] ); ?>" data-previous-value="<?php echo esc_attr( $testimonial_cpt_config['taxonomy']['category']['slug'] ); ?>" />
+				</p>
+
+				<br />
+
+				<!-- <p>
+					<label for="testimonial-tag-slug"><?php // esc_html_e( 'Tag slug', 'cozy-addons' ); ?></label>
+					<input id="testimonial-tag-slug" class="cpt-field" type="text" name="ca-testimonial-tag-slug" data-cpt="testimonial" data-type="taxonomy.tags.slug" value="<?php // echo esc_attr( $testimonial_cpt_config['taxonomy']['tags']['slug'] ); ?>" data-previous-value="<?php // echo esc_attr( $testimonial_cpt_config['taxonomy']['tags']['slug'] ); ?>" />
+				</p> -->
+
+				<div class="ca-buttons">
+					<div class="ca-btn btn-primary save-button">
+						<a><?php esc_html_e( 'Save Changes', 'cozy-addons' ); ?></a>
+					</div>
+					<div class="ca-btn btn-secondary cancel-button">
+						<a><?php esc_html_e( 'Cancel', 'cozy-addons' ); ?></a>
+					</div>
+				</div>
+
+				<div class="ca-spacer sm"></div>
+				<hr />
+				<div class="ca-spacer sm"></div>
+
+				<div class="flex-layout">
+					<div>
+						<p>
+							<?php echo esc_html__( 'Current permalink structure: ', 'cozy-addons' ) . esc_html( get_option( 'permalink_structure' ) ); ?>
+							| <a href="<?php echo esc_url( admin_url( 'options-permalink.php' ) ); ?>"><?php esc_html_e( 'Update structure', 'cozy-addons' ); ?></a>
+						</p>
+		
+						<p>
+							<?php esc_html_e( '*Permalinks are flushed automatically after saving.', 'cozy-addons' ); ?>
+						</p>
+					</div>
+					<div>
+						<button class="ca-btn btn-primary-accent">
+							<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=ca_testimonial' ) ); ?>"><?php esc_html_e( 'Add Testimonial', 'cozy-addons' ); ?></a>
+						</button>
+						<button class="ca-btn btn-primary cpt-seeder" data-post-type="ca_testimonial">
+							<a><?php esc_html_e( 'Generate Dummy Data', 'cozy-addons' ); ?></a>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>

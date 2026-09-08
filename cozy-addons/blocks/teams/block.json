@@ -7,7 +7,12 @@
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {
-    "html": false
+    "html": false,
+    "color": {
+      "background": true,
+      "text": false,
+      "gradients": true
+    }
   },
   "attributes": {
     "cover": {
@@ -96,6 +101,23 @@
           "centeredSlides": false,
           "slidesPerView": 3,
           "spaceBetween": 30
+        }
+      }
+    },
+    "styles": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          }
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
         }
       }
     }

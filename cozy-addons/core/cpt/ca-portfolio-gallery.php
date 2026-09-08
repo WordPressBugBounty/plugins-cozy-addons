@@ -39,7 +39,7 @@ function ca_cpt_portfolio_gallery_init() {
 		'menu_position'        => 20,
 		'supports'             => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' ),
 		'show_in_rest'         => true,
-		'menu_icon'          => COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/portfolio-gallery.svg',
+		'menu_icon'            => COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/portfolio-gallery.svg',
 		'register_meta_box_cb' => 'add_ca_portfolio_gallery_meta_boxes',
 	);
 	register_post_type( 'ca_portfolio_gallery', $args );
@@ -250,15 +250,15 @@ if ( ! function_exists( 'ca_portfolio_gallery_post_type_columns' ) ) {
 	/**
 	 * Register meta columns.
 	 *
-	 * @param string $columns The custom column meta field.
+	 * @param array $columns The custom column meta field.
 	 *
 	 * @return array $columns Merged default columns array with meta fields.
 	 */
 	function ca_portfolio_gallery_post_type_columns( $columns ) {
-		$columns['ca_portfolio_gallery_project_year'] = 'Project Year';
-		$columns['ca_portfolio_gallery_client']       = 'Client';
-		$columns['ca_portfolio_gallery_skills']       = 'Skills/Tech';
-		$columns['ca_portfolio_gallery_url']          = 'URL';
+		$columns['ca_portfolio_gallery_project_year'] = __( 'Project Year', 'cozy-addons' );
+		$columns['ca_portfolio_gallery_client']       = __( 'Client', 'cozy-addons' );
+		$columns['ca_portfolio_gallery_skills']       = __( 'Skills/Tech', 'cozy-addons' );
+		$columns['ca_portfolio_gallery_url']          = __( 'URL', 'cozy-addons' );
 		return $columns;
 	}
 	add_filter( 'manage_ca_portfolio_gallery_posts_columns', 'ca_portfolio_gallery_post_type_columns' );

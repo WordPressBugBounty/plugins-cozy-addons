@@ -119,6 +119,7 @@
 		font-size: 13px;
 		font-weight: 400;
 		display: inline-block;
+		cursor: pointer;
 	}
 	& .ca-btn.has-icon a {
 		display: flex;
