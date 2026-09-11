@@ -3496,25 +3496,75 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'prefix' => array(
+				'type' => 'object',
+				'default' => array(
+					'enabled' => false,
+					'value' => 'Over'
+				)
+			),
+			'suffix' => array(
+				'type' => 'object',
+				'default' => array(
+					'enabled' => false,
+					'value' => '+ Downloads'
+				)
+			),
 			'endNumber' => array(
 				'type' => 'string',
 				'default' => '10000'
 			),
 			'animationDuration' => array(
 				'type' => 'number',
-				'default' => 1000
+				'default' => 1500
 			),
 			'textAlign' => array(
 				'type' => 'string',
 				'default' => 'center'
 			),
+			'blockStyle' => array(
+				'type' => 'object',
+				'default' => array(
+					'layout' => 'row',
+					'gap' => '8px'
+				)
+			),
 			'styles' => array(
 				'type' => 'object',
 				'default' => array(
-					'fontFamily' => 'Public Sans',
-					'fontSize' => '64px',
-					'color' => '#5566CA',
-					'fontWeight' => 700
+					'font' => array(
+						'family' => '',
+						'weight' => '500'
+					),
+					'desktop' => array(
+						'font' => array(
+							'size' => '48px'
+						)
+					),
+					'letterCase' => '',
+					'textDecoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'color' => '#5566CA'
+				)
+			),
+			'labelStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'font' => array(
+						'family' => '',
+						'weight' => ''
+					),
+					'desktop' => array(
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'letterCase' => '',
+					'textDecoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'color' => ''
 				)
 			)
 		),
@@ -3528,7 +3578,8 @@ return array(
 			'cozy-block--global-block-styles'
 		),
 		'viewScript' => array(
-			'cozy-block--counter--frontend-script'
+			'cozy-block--counter--frontend-script',
+			'cozy-animejs'
 		),
 		'render' => 'file:./render.php'
 	),
@@ -13953,6 +14004,7 @@ return array(
 			'carouselOptions' => array(
 				'type' => 'object',
 				'default' => array(
+					'fadeBg' => false,
 					'pagination' => array(
 						'enabled' => true,
 						'width' => 10,

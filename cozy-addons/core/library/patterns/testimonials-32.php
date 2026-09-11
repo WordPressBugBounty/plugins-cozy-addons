@@ -10,15 +10,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"7cecdf02-fc41-4e25-a0f7-8ddc65ae903d","layout":"grid"} -->
-<div class="cozy-block-testimonial display-grid    hover-show" id="cozyBlock_7cecdf02_fc41_4e25_a0f7_8ddc65ae903d"><div class="cozy-block-grid-wrapper "><!-- wp:cozy-block/grid -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"cb46819e-e801-4aa0-8e36-bded67450425","layout":"grid","className":"hover-show"} -->
+<div class="cozy-block-testimonial display-grid   " id="cozyBlock_cb46819e_e801_4aa0_8e36_bded67450425"><div class="cozy-block-grid-wrapper "><!-- wp:cozy-block/grid -->
 <div class="cozy-block-grid"><!-- wp:group {"style":{"spacing":{"padding":{"top":"36px","bottom":"36px","left":"26px","right":"26px"},"blockGap":"0"},"border":{"radius":"24px"},"color":{"background":"#fffffe"}},"layout":{"type":"flex","orientation":"vertical"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":true,"color":"#1e212066","horizontal":0,"vertical":0,"blur":16,"spread":-5,"position":""},"boxShadowHover":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}},"cozyAnimation":{"type":"fade-right","easingFunction":"ease","anchorPlacement":"top-center","duration":600}} -->
 <div class="wp-block-group has-background" style="border-radius:24px;background-color:#fffffe;padding-top:36px;padding-right:26px;padding-bottom:36px;padding-left:26px"><!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"left","style":{"border":{"radius":"0px"},"spacing":{"margin":{"top":"0","bottom":"18px","left":"0","right":"0"}},"color":{"duotone":["rgb(33, 255, 13)","rgb(33, 255, 13)"]}}} -->
 <figure class="wp-block-image alignleft size-large has-custom-border" style="margin-top:0;margin-right:0;margin-bottom:18px;margin-left:0"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/stars.png" alt="" style="border-radius:0px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.', 'cozy-addons' ); ?></p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"36px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -28,11 +28,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"color":{"text":"#010101"},"elements":{"link":{"color":{"text":"#010101"}}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"}},"cozyCustomFont":"Wix Madefor Display"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#010101;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Lily Bernett', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#010101;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Lily Bernett</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}}}} -->
-<p style="margin-top:2px;margin-bottom:0"><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p style="margin-top:2px;margin-bottom:0">Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.', 'cozy-addons' ); ?></p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"36px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -56,11 +56,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"color":{"text":"#010101"},"elements":{"link":{"color":{"text":"#010101"}}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"}},"cozyCustomFont":"Wix Madefor Display"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#010101;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Lily Bernett', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#010101;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Lily Bernett</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}}}} -->
-<p style="margin-top:2px;margin-bottom:0"><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p style="margin-top:2px;margin-bottom:0">Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -74,7 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.', 'cozy-addons' ); ?></p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"36px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -84,11 +84,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"color":{"text":"#010101"},"elements":{"link":{"color":{"text":"#010101"}}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"}},"cozyCustomFont":"Wix Madefor Display"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#010101;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Lily Bernett', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#010101;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Lily Bernett</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}}}} -->
-<p style="margin-top:2px;margin-bottom:0"><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p style="margin-top:2px;margin-bottom:0">Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

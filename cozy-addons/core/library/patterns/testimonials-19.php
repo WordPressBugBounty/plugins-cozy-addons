@@ -18,16 +18,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"3d71727d-a005-42bb-91b6-6879e8af64bc","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":12,"activeHeight":12,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#202020","color":"#606060","colorHover":"#ffe37e","activeBorderHover":"","align":"center","positionVertical":-30,"left":"0px","right":"0px"},"navigation":{"enabled":false,"iconSize":15,"iconBoxWidth":35,"iconBoxHeight":35,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fff","color":"#007cba","backgroundColorHover":"#007cba","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":16,"speed":1200,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_3d71727d_a005_42bb_91b6_6879e8af64bc"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
-<div class="cozy-block-carousel swiper-slide"><!-- wp:columns {"verticalAlignment":null,"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"20px","bottom":"20px","left":"20px","right":"20px"},"blockGap":{"top":"44px","left":"44px"}}}} -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"304b1d4b-547d-4a25-883e-90cbfc9de2a6","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":12,"activeHeight":12,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#202020","color":"#606060","colorHover":"#ffe37e","activeBorderHover":"","align":"center","positionVertical":-30,"left":"0px","right":"0px"},"navigation":{"enabled":false,"iconSize":15,"iconBoxWidth":35,"iconBoxHeight":35,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fff","color":"#007cba","backgroundColorHover":"#007cba","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":16,"speed":1200,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_304b1d4b_547d_4a25_883e_90cbfc9de2a6"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<div class="cozy-block-carousel swiper-slide"><!-- wp:columns {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"20px","bottom":"20px","left":"20px","right":"20px"},"blockGap":{"top":"44px","left":"44px"}}}} -->
 <div class="wp-block-columns" style="margin-top:0;margin-bottom:0;padding-top:20px;padding-right:20px;padding-bottom:20px;padding-left:20px"><!-- wp:column {"verticalAlignment":"center","width":"55%","style":{"spacing":{"blockGap":"0","padding":{"top":"48px","bottom":"48px","left":"26px","right":"26px"}},"border":{"color":"#202020","style":"solid","width":"1px","radius":"20px"}},"layout":{"type":"constrained","contentSize":"450px"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":true,"color":"#202020","horizontal":13,"vertical":13,"blur":0,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
 <div class="wp-block-column is-vertically-aligned-center has-border-color" style="border-color:#202020;border-style:solid;border-width:1px;border-radius:20px;padding-top:48px;padding-right:26px;padding-bottom:48px;padding-left:26px;flex-basis:55%"><!-- wp:image {"sizeSlug":"large"} -->
 <figure class="wp-block-image size-large"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/quote.png" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"22px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"36px","bottom":"26px"}}}} -->
-<p style="margin-top:36px;margin-bottom:26px;font-size:22px;font-style:normal;font-weight:500"><?php esc_html_e( 'We’ve found the ideal veterinarian for our furry friends.', 'cozy-addons' ); ?></p>
+<p style="margin-top:36px;margin-bottom:26px;font-size:22px;font-style:normal;font-weight:500">We’ve found the ideal veterinarian for our furry friends.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"5px","margin":{"top":"0px"}}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500"}},"cozyCustomFont":"Poppins"} -->
-<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:500;line-height:1.2"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:500;line-height:1.2">Jerome Bell</h3>
 <!-- /wp:heading --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->
@@ -50,14 +50,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:cozy-block/carousel -->
 
 <!-- wp:cozy-block/carousel -->
-<div class="cozy-block-carousel swiper-slide"><!-- wp:columns {"verticalAlignment":null,"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"20px","bottom":"20px","left":"20px","right":"20px"},"blockGap":{"top":"44px","left":"44px"}}}} -->
+<div class="cozy-block-carousel swiper-slide"><!-- wp:columns {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"20px","bottom":"20px","left":"20px","right":"20px"},"blockGap":{"top":"44px","left":"44px"}}}} -->
 <div class="wp-block-columns" style="margin-top:0;margin-bottom:0;padding-top:20px;padding-right:20px;padding-bottom:20px;padding-left:20px"><!-- wp:column {"verticalAlignment":"center","width":"55%","style":{"spacing":{"blockGap":"0","padding":{"top":"48px","bottom":"48px","left":"26px","right":"26px"}},"border":{"color":"#202020","style":"solid","width":"1px","radius":"20px"}},"layout":{"type":"constrained","contentSize":"450px"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":true,"color":"#202020","horizontal":13,"vertical":13,"blur":0,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
 <div class="wp-block-column is-vertically-aligned-center has-border-color" style="border-color:#202020;border-style:solid;border-width:1px;border-radius:20px;padding-top:48px;padding-right:26px;padding-bottom:48px;padding-left:26px;flex-basis:55%"><!-- wp:image {"sizeSlug":"large"} -->
 <figure class="wp-block-image size-large"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/quote.png" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"22px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"36px","bottom":"26px"}}}} -->
-<p style="margin-top:36px;margin-bottom:26px;font-size:22px;font-style:normal;font-weight:500"><?php esc_html_e( 'We’ve found the ideal veterinarian for our furry friends.', 'cozy-addons' ); ?></p>
+<p style="margin-top:36px;margin-bottom:26px;font-size:22px;font-style:normal;font-weight:500">We’ve found the ideal veterinarian for our furry friends.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"5px","margin":{"top":"0px"}}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
@@ -66,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500"}},"cozyCustomFont":"Poppins"} -->
-<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:500;line-height:1.2"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:500;line-height:1.2">Jerome Bell</h3>
 <!-- /wp:heading --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->
@@ -80,14 +80,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:cozy-block/carousel -->
 
 <!-- wp:cozy-block/carousel -->
-<div class="cozy-block-carousel swiper-slide"><!-- wp:columns {"verticalAlignment":null,"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"20px","bottom":"20px","left":"20px","right":"20px"},"blockGap":{"top":"44px","left":"44px"}}}} -->
+<div class="cozy-block-carousel swiper-slide"><!-- wp:columns {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"20px","bottom":"20px","left":"20px","right":"20px"},"blockGap":{"top":"44px","left":"44px"}}}} -->
 <div class="wp-block-columns" style="margin-top:0;margin-bottom:0;padding-top:20px;padding-right:20px;padding-bottom:20px;padding-left:20px"><!-- wp:column {"verticalAlignment":"center","width":"55%","style":{"spacing":{"blockGap":"0","padding":{"top":"48px","bottom":"48px","left":"26px","right":"26px"}},"border":{"color":"#202020","style":"solid","width":"1px","radius":"20px"}},"layout":{"type":"constrained","contentSize":"450px"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":true,"color":"#202020","horizontal":13,"vertical":13,"blur":0,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
 <div class="wp-block-column is-vertically-aligned-center has-border-color" style="border-color:#202020;border-style:solid;border-width:1px;border-radius:20px;padding-top:48px;padding-right:26px;padding-bottom:48px;padding-left:26px;flex-basis:55%"><!-- wp:image {"sizeSlug":"large"} -->
 <figure class="wp-block-image size-large"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/quote.png" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"22px","fontStyle":"normal","fontWeight":"500"},"spacing":{"margin":{"top":"36px","bottom":"26px"}}}} -->
-<p style="margin-top:36px;margin-bottom:26px;font-size:22px;font-style:normal;font-weight:500"><?php esc_html_e( 'We’ve found the ideal veterinarian for our furry friends.', 'cozy-addons' ); ?></p>
+<p style="margin-top:36px;margin-bottom:26px;font-size:22px;font-style:normal;font-weight:500">We’ve found the ideal veterinarian for our furry friends.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"5px","margin":{"top":"0px"}}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
@@ -96,7 +96,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500"}},"cozyCustomFont":"Poppins"} -->
-<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:500;line-height:1.2"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:500;line-height:1.2">Jerome Bell</h3>
 <!-- /wp:heading --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->
@@ -107,6 +107,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-pagination cozy-pagination"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-pagination cozy-pagination"></div>
 <!-- /wp:cozy-block/testimonial --></div>
 <!-- /wp:group -->

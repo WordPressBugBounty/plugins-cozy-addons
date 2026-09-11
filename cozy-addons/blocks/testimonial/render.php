@@ -200,16 +200,51 @@ $typography = array(
 	'color'          => isset( $attributes['typography']['color'] ) ? esc_attr( sanitize_text_field( $attributes['typography']['color'] ) ) : '',
 );
 
+$nav = array(
+	'box_width'  => isset( $attributes['carouselOptions']['navigation']['iconBoxWidth'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['navigation']['iconBoxWidth'] ) : '',
+	'box_height' => isset( $attributes['carouselOptions']['navigation']['iconBoxHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['navigation']['iconBoxHeight'] ) : '',
+	'size'       => isset( $attributes['carouselOptions']['navigation']['iconSize'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['navigation']['iconSize'] ) : '',
+	'border'     => array(
+		'style' => isset( $attributes['carouselOptions']['navigation']['borderType'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['navigation']['borderType'] ) ) : '',
+		'width' => isset( $attributes['carouselOptions']['navigation']['borderWidth'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['navigation']['borderWidth'] ) : '',
+		'color' => isset( $attributes['carouselOptions']['navigation']['borderColor'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['navigation']['borderColor'] ) ) : '',
+	),
+	'radius'     => isset( $attributes['carouselOptions']['navigation']['borderRadius'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['navigation']['borderRadius'] ) : '',
+	'color'      => array(
+		'icon'         => isset( $attributes['carouselOptions']['navigation']['color'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['navigation']['color'] ) ) : '',
+		'icon_hover'   => isset( $attributes['carouselOptions']['navigation']['colorHover'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['navigation']['colorHover'] ) ) : '',
+		'bg'           => isset( $attributes['carouselOptions']['navigation']['backgroundColor'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['navigation']['backgroundColor'] ) ) : '',
+		'bg_hover'     => isset( $attributes['carouselOptions']['navigation']['backgroundColorHover'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['navigation']['backgroundColorHover'] ) ) : '',
+		'border_hover' => isset( $attributes['carouselOptions']['navigation']['borderColorHover'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['navigation']['borderColorHover'] ) ) : '',
+	),
+);
+
 $bullet_styles = array(
-	'gap'    => isset( $attributes['carouselOptions']['pagination']['gap'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['gap'] ) : 4,
+	'gap'    => isset( $attributes['carouselOptions']['pagination']['gap'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['pagination']['gap'] ) : 4,
+	'width'  => isset( $attributes['carouselOptions']['pagination']['width'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['pagination']['width'] ) : '',
+	'height' => isset( $attributes['carouselOptions']['pagination']['height'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['pagination']['height'] ) : '',
+	'radius' => isset( $attributes['carouselOptions']['pagination']['borderRadius'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['borderRadius'] ) : '',
 	'active' => array(
-		'height' => isset( $attributes['carouselOptions']['pagination']['activeHeight'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['activeHeight'] ) : 10,
+		'width'  => isset( $attributes['carouselOptions']['pagination']['activeWidth'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['pagination']['activeWidth'] ) : 10,
+		'height' => isset( $attributes['carouselOptions']['pagination']['activeHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['pagination']['activeHeight'] ) : 10,
 		'border' => isset( $attributes['carouselOptions']['pagination']['activeBorder'] ) ? cozy_render_TRBL( 'outline', $attributes['carouselOptions']['pagination']['activeBorder'] ) : '',
 		'offset' => isset( $attributes['carouselOptions']['pagination']['activeOffset'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['activeOffset'] ) : '',
+		'radius' => isset( $attributes['carouselOptions']['pagination']['activeBorderRadius'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['activeBorderRadius'] ) : '',
 	),
+	'align'  => isset( $attributes['carouselOptions']['pagination']['align'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['pagination']['align'] ) ) : '',
+	'bottom' => isset( $attributes['carouselOptions']['pagination']['positionVertical'] ) ? cozy_addons_sanitize_dimension( $attributes['carouselOptions']['pagination']['positionVertical'] ) : '',
+	'left'   => isset( $attributes['carouselOptions']['pagination']['align'], $attributes['carouselOptions']['pagination']['left'] ) && 'left' === $attributes['carouselOptions']['pagination']['align'] ? 'padding-left:' . cozy_addons_sanitize_dimension( $attributes['carouselOptions']['pagination']['left'] ) . ';' : '',
+	'right'  => isset( $attributes['carouselOptions']['pagination']['align'], $attributes['carouselOptions']['pagination']['right'] ) && 'right' === $attributes['carouselOptions']['pagination']['align'] ? 'padding-right:' . cozy_addons_sanitize_dimension( $attributes['carouselOptions']['pagination']['right'] ) . ';' : '',
 	'color'  => array(
-		'active_border_hover' => isset( $attributes['carouselOptions']['pagination']['activeBorderHover'] ) ? esc_attr( $attributes['carouselOptions']['pagination']['activeBorderHover'] ) : '',
+		'default'       => isset( $attributes['carouselOptions']['pagination']['color'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['pagination']['color'] ) ) : '',
+		'default_hover' => isset( $attributes['carouselOptions']['pagination']['colorHover'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['pagination']['colorHover'] ) ) : '',
+		'active_color'  => isset( $attributes['carouselOptions']['pagination']['activeColor'] ) ? esc_attr( sanitize_text_field( $attributes['carouselOptions']['pagination']['activeColor'] ) ) : '',
 	),
+);
+
+$grid = array(
+	'column' => isset( $attributes['gridOptions']['displayColumn'] ) ? cozy_addons_sanitize_dimension( $attributes['gridOptions']['displayColumn'] ) : '',
+	'gap'    => isset( $attributes['gridOptions']['columnGap'] ) ? cozy_addons_sanitize_dimension( $attributes['gridOptions']['columnGap'] ) : '',
 );
 
 $block_styles = "
@@ -225,6 +260,19 @@ $block_styles = "
 @media (width <= 767px) {
 	#$block_id {
 		{$styles['mobile']['padding']}
+	}
+}
+
+#$block_id.display-grid:not(.has-masonry) .cozy-block-grid-wrapper {
+	grid-template-columns: repeat({$grid['column']}, 1fr);
+	gap: {$grid['gap']}px;
+}
+#$block_id.display-grid.has-masonry .cozy-block-grid-wrapper {
+	column-count: {$grid['column']};
+	gap: {$grid['gap']}px;
+
+	& .cozy-block-grid {
+		margin-bottom: {$grid['gap']}px;
 	}
 }
 
@@ -437,16 +485,54 @@ $block_styles = "
     }
 }
 
-#$block_id.swiper-horizontal .swiper-pagination-bullets .swiper-pagination-bullet {
+.block-$block_id .swiper-button-prev:after,
+.block-$block_id .swiper-button-next:after {
+	font-size: {$nav['size']}px;
+}
+.block-$block_id .swiper-button-prev,
+.block-$block_id .swiper-button-next {
+	width: {$nav['box_width']}px;
+	height: {$nav['box_height']}px;
+	border-style: {$nav['border']['style']};
+	border-width: {$nav['border']['width']}px;
+	border-color: {$nav['border']['color']};
+	border-radius: {$nav['radius']}px;
+	color: {$nav['color']['icon']};
+	background-color: {$nav['color']['bg']};
+}
+.block-$block_id .swiper-button-prev:hover,
+.block-$block_id .swiper-button-next:hover {
+	color: {$nav['color']['icon_hover']};
+	background-color: {$nav['color']['bg_hover']};
+	border-color: {$nav['color']['border_hover']};
+}
+
+.block-$block_id .swiper-pagination-bullets .swiper-pagination-bullet {
     margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet_styles['gap']}px);
 }
-#$block_id .swiper-pagination-bullet-active {
-    height: {$bullet_styles['active']['height']}px !important;
+.block-$block_id .swiper-pagination {
+	bottom: {$bullet_styles['bottom']}px;
+	{$bullet_styles['left']}
+	{$bullet_styles['right']}
+	text-align: {$bullet_styles['align']};
+}
+.block-$block_id .swiper-pagination-bullet {
+	width: {$bullet_styles['width']}px;
+	height: {$bullet_styles['height']}px;
+	border-radius: {$bullet_styles['radius']}px;
+	background-color: {$bullet_styles['color']['default']};
+
+	&:hover {
+		background-color: {$bullet_styles['color']['default_hover']};
+	}
+}
+.block-$block_id .swiper-pagination-bullet-active {
+    width: {$bullet_styles['active']['width']}px;
+    height: {$bullet_styles['active']['height']}px;
     {$bullet_styles['active']['border']}
     outline-offset: {$bullet_styles['active']['offset']}px;
-}
-#$block_id .swiper-pagination .swiper-pagination-bullet-active:hover {
-    outline-color: {$bullet_styles['color']['active_border_hover']};
+    border-radius: {$bullet_styles['active']['radius']}px;
+	background-color: {$bullet_styles['color']['active_color']};
 }
 ";
 
@@ -570,7 +656,11 @@ if ( ! empty( $font_query ) && cozy_addons_premium_access() && isset( $attribute
 
 $classes   = array();
 $classes[] = 'cozy-block-wrapper';
+$classes[] = 'cozy-block-testimonial-wrapper';
+$classes[] = 'block-' . $block_id;
 $classes[] = cozy_addons_premium_access() && 'carousel' === $attributes['layout'] && isset( $attributes['carouselOptions']['sliderOptions']['smoothTransition'] ) && $attributes['carouselOptions']['sliderOptions']['smoothTransition'] ? 'swiper__smooth-transition' : '';
+$classes[] = cozy_addons_premium_access() && 'carousel' === $attributes['layout'] && isset( $attributes['carouselOptions']['fadeBg'] ) && filter_var( $attributes['carouselOptions']['fadeBg'], FILTER_VALIDATE_BOOLEAN ) ? 'has-fade-bg' : '';
+$classes[] = 'carousel' === $attributes['layout'] && filter_var( $attributes['hoverShow'], FILTER_VALIDATE_BOOLEAN ) ? 'hover-show' : '';
 ?>
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
 	<?php
@@ -582,7 +672,6 @@ $classes[] = cozy_addons_premium_access() && 'carousel' === $attributes['layout'
 		$classes[] = 'display-' . $attributes['layout'];
 		$classes[] = 'grid' === $attributes['layout'] && filter_var( $attributes['gridOptions']['masonryEnabled'], FILTER_VALIDATE_BOOLEAN ) ? 'has-masonry' : '';
 		$classes[] = 'carousel' === $attributes['layout'] ? 'swiper-container' : '';
-		$classes[] = 'carousel' === $attributes['layout'] && filter_var( $attributes['hoverShow'], FILTER_VALIDATE_BOOLEAN ) ? 'hover-show' : '';
 		$classes[] = isset( $attributes['source'] ) && ! empty( $attributes['source'] ) ? 'source-' . $attributes['source'] : '';
 		$classes[] = isset( $attributes['display'], $attributes['source'] ) && 'cpt' === $attributes['source'] ? $attributes['display'] : '';
 		?>
@@ -597,23 +686,21 @@ $classes[] = cozy_addons_premium_access() && 'carousel' === $attributes['layout'
 				echo \CozyAddons\Helpers\BlockRender::generate_cpt_testimonial_layout( $testimonials, $attributes )
 				?>
 			</div>
-			<?php
-			if ( 'carousel' === $attributes['layout'] ) {
-				if ( filter_var( $attributes['carouselOptions']['navigation']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-					?>
-					<div class="swiper-button-prev cozy-block-button-prev"></div>
-					<div class="swiper-button-next cozy-block-button-next"></div>
-					<?php
-				}
-				if ( filter_var( $attributes['carouselOptions']['pagination']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
-					?>
-					<div class="swiper-pagination cozy-pagination"></div>
-					<?php
-				}
-			}
-			?>
 		</div>
 		<?php
+		if ( 'carousel' === $attributes['layout'] ) {
+			if ( filter_var( $attributes['carouselOptions']['navigation']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+				?>
+					<div class="swiper-button-prev cozy-block-button-prev"></div>
+					<div class="swiper-button-next cozy-block-button-next"></div>
+				<?php
+			}
+			if ( filter_var( $attributes['carouselOptions']['pagination']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+				?>
+					<div class="swiper-pagination cozy-pagination"></div>
+				<?php
+			}
+		}
 	}
 	?>
 </div>

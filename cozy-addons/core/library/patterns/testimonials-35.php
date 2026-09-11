@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"2144c0c1-77bc-47eb-91a4-74099177841d","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#08ce8a","color":"#252525","colorHover":"#08ce8a","activeBorderHover":"","align":"center","positionVertical":-32,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":0,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fffffe","color":"#08ce8a","backgroundColorHover":"#08ce8a","colorHover":"#fffffe","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":26,"speed":1500,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_2144c0c1_77bc_47eb_91a4_74099177841d"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"cc6aca7b-6498-4e8a-9a03-f34658d76fa5","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#08ce8a","color":"#252525","colorHover":"#08ce8a","activeBorderHover":"","align":"center","positionVertical":-32,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":0,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fffffe","color":"#08ce8a","backgroundColorHover":"#08ce8a","colorHover":"#fffffe","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":26,"speed":1500,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_cc6aca7b_6498_4e8a_9a03_f34658d76fa5"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"810px"}} -->
-<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:paragraph {"align":"center","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"26px"}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"}},"cozyCustomFont":"Wix Madefor Display"} -->
-<p class="has-text-align-center" style="margin-bottom:26px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 'cozy-addons' ); ?></p>
+<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"26px"}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500","textAlign":"center"}},"cozyCustomFont":"Wix Madefor Display"} -->
+<p class="has-text-align-center" style="margin-bottom:26px;font-size:18px;font-style:normal;font-weight:500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"sizeSlug":"large","align":"center","style":{"color":{"duotone":["#08ce8a","rgb(8, 206, 138)"]}}} -->
@@ -32,11 +32,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"placeholder":"George Mathew","style":{"typography":{"fontSize":"18px","lineHeight":"1.3","fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Wix Madefor Display"} -->
-<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Olivia Taylor', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Olivia Taylor</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#08ce8a"},"elements":{"link":{"color":{"text":"#08ce8a"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#08ce8a"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#08ce8a">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -45,8 +45,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"810px"}} -->
-<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:paragraph {"align":"center","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"26px"}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"}},"cozyCustomFont":"Wix Madefor Display"} -->
-<p class="has-text-align-center" style="margin-bottom:26px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 'cozy-addons' ); ?></p>
+<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"26px"}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500","textAlign":"center"}},"cozyCustomFont":"Wix Madefor Display"} -->
+<p class="has-text-align-center" style="margin-bottom:26px;font-size:18px;font-style:normal;font-weight:500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"sizeSlug":"large","align":"center","style":{"color":{"duotone":["#08ce8a","rgb(8, 206, 138)"]}}} -->
@@ -60,11 +60,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"placeholder":"George Mathew","style":{"typography":{"fontSize":"18px","lineHeight":"1.3","fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Wix Madefor Display"} -->
-<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Olivia Taylor', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Olivia Taylor</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#08ce8a"},"elements":{"link":{"color":{"text":"#08ce8a"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#08ce8a"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#08ce8a">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -73,8 +73,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"810px"}} -->
-<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:paragraph {"align":"center","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"26px"}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"}},"cozyCustomFont":"Wix Madefor Display"} -->
-<p class="has-text-align-center" style="margin-bottom:26px;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 'cozy-addons' ); ?></p>
+<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"26px"}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500","textAlign":"center"}},"cozyCustomFont":"Wix Madefor Display"} -->
+<p class="has-text-align-center" style="margin-bottom:26px;font-size:18px;font-style:normal;font-weight:500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"sizeSlug":"large","align":"center","style":{"color":{"duotone":["#08ce8a","rgb(8, 206, 138)"]}}} -->
@@ -88,15 +88,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"placeholder":"George Mathew","style":{"typography":{"fontSize":"18px","lineHeight":"1.3","fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Wix Madefor Display"} -->
-<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Olivia Taylor', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading" style="font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Olivia Taylor</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#08ce8a"},"elements":{"link":{"color":{"text":"#08ce8a"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#08ce8a"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#08ce8a">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div>
 <!-- /wp:cozy-block/testimonial --></div>
 <!-- /wp:group -->

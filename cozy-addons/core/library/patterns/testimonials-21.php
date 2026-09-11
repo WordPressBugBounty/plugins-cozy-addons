@@ -12,8 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#211915;margin-top:6px;margin-bottom:60px;font-size:44px;font-style:normal;font-weight:600;line-height:1.2"><?php esc_html_e( 'What Can I Say Our Customers!', 'cozy-addons' ); ?></h2>
 <!-- /wp:heading -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"071a8382-6251-448d-b4b9-64ab42c97588","carouselOptions":{"pagination":{"enabled":true,"width":8,"height":8,"borderRadius":10,"activeWidth":12,"activeHeight":12,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":2,"activeBorderRadius":10,"activeColor":"#97340d","color":"#252525","colorHover":"#97340d","activeBorderHover":"","align":"center","positionVertical":-30,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":4,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#97340d","color":"#fffffe","backgroundColorHover":"#ff9900","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":false,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":true,"centeredSlides":false,"slidesPerView":3,"spaceBetween":26,"speed":1200,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_071a8382_6251_448d_b4b9_64ab42c97588"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"472d9e11-4ebb-4025-aed4-33386d1beed5","carouselOptions":{"pagination":{"enabled":true,"width":8,"height":8,"borderRadius":10,"activeWidth":12,"activeHeight":12,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":2,"activeBorderRadius":10,"activeColor":"#97340d","color":"#252525","colorHover":"#97340d","activeBorderHover":"","align":"center","positionVertical":-30,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":4,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#97340d","color":"#fffffe","backgroundColorHover":"#ff9900","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":false,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":true,"centeredSlides":false,"slidesPerView":3,"spaceBetween":26,"speed":1200,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_472d9e11_4ebb_4025_aed4_33386d1beed5"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"26px","bottom":"26px","left":"26px","right":"26px"},"margin":{"top":"22px","bottom":"22px"}}},"layout":{"type":"constrained","contentSize":"760px"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":true,"color":"#211915","horizontal":0,"vertical":0,"blur":12,"spread":-5,"position":""},"boxShadowHover":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
 <div class="wp-block-group" style="margin-top:22px;margin-bottom:22px;padding-top:26px;padding-right:26px;padding-bottom:26px;padding-left:26px"><!-- wp:group {"style":{"spacing":{"blockGap":"12px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":1784,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#fd8f14","#fd8f14"]}}} -->
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"32px","bottom":"28px"}}}} -->
-<p style="margin-top:32px;margin-bottom:28px"><?php esc_html_e( 'From wellness tips to expert advice, we\'re here to support your journey to a healthier you. Our team of dedicated healthcare providers has years of experience and expertise.', 'cozy-addons' ); ?></p>
+<p style="margin-top:32px;margin-bottom:28px">From wellness tips to expert advice, we're here to support your journey to a healthier you. Our team of dedicated healthcare providers has years of experience and expertise.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"16px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -36,11 +36,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"color":{"text":"#211915"},"elements":{"link":{"color":{"text":"#211915"}}},"typography":{"fontSize":"16px","fontStyle":"italic","fontWeight":"500"}},"cozyCustomFont":"Inter"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:16px;font-style:italic;font-weight:500"><?php esc_html_e( 'Alex Alexender', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:16px;font-style:italic;font-weight:500">Alex Alexender</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"5px","bottom":"0"}},"typography":{"textTransform":"uppercase"}}} -->
-<p style="margin-top:5px;margin-bottom:0;text-transform:uppercase"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="margin-top:5px;margin-bottom:0;text-transform:uppercase">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"32px","bottom":"28px"}}}} -->
-<p style="margin-top:32px;margin-bottom:28px"><?php esc_html_e( 'From wellness tips to expert advice, we\'re here to support your journey to a healthier you. Our team of dedicated healthcare providers has years of experience and expertise.', 'cozy-addons' ); ?></p>
+<p style="margin-top:32px;margin-bottom:28px">From wellness tips to expert advice, we're here to support your journey to a healthier you. Our team of dedicated healthcare providers has years of experience and expertise.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"16px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -70,11 +70,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"color":{"text":"#211915"},"elements":{"link":{"color":{"text":"#211915"}}},"typography":{"fontSize":"16px","fontStyle":"italic","fontWeight":"500"}},"cozyCustomFont":"Inter"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:16px;font-style:italic;font-weight:500"><?php esc_html_e( 'Alex Alexender', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:16px;font-style:italic;font-weight:500">Alex Alexender</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"5px","bottom":"0"}},"typography":{"textTransform":"uppercase"}}} -->
-<p style="margin-top:5px;margin-bottom:0;text-transform:uppercase"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="margin-top:5px;margin-bottom:0;text-transform:uppercase">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -94,7 +94,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"32px","bottom":"28px"}}}} -->
-<p style="margin-top:32px;margin-bottom:28px"><?php esc_html_e( 'From wellness tips to expert advice, we\'re here to support your journey to a healthier you. Our team of dedicated healthcare providers has years of experience and expertise.', 'cozy-addons' ); ?></p>
+<p style="margin-top:32px;margin-bottom:28px">From wellness tips to expert advice, we're here to support your journey to a healthier you. Our team of dedicated healthcare providers has years of experience and expertise.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"16px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -104,11 +104,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"color":{"text":"#211915"},"elements":{"link":{"color":{"text":"#211915"}}},"typography":{"fontSize":"16px","fontStyle":"italic","fontWeight":"500"}},"cozyCustomFont":"Inter"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:16px;font-style:italic;font-weight:500"><?php esc_html_e( 'Alex Alexender', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:16px;font-style:italic;font-weight:500">Alex Alexender</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"5px","bottom":"0"}},"typography":{"textTransform":"uppercase"}}} -->
-<p style="margin-top:5px;margin-bottom:0;text-transform:uppercase"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="margin-top:5px;margin-bottom:0;text-transform:uppercase">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -128,7 +128,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"32px","bottom":"28px"}}}} -->
-<p style="margin-top:32px;margin-bottom:28px"><?php esc_html_e( 'From wellness tips to expert advice, we\'re here to support your journey to a healthier you. Our team of dedicated healthcare providers has years of experience and expertise.', 'cozy-addons' ); ?></p>
+<p style="margin-top:32px;margin-bottom:28px">From wellness tips to expert advice, we're here to support your journey to a healthier you. Our team of dedicated healthcare providers has years of experience and expertise.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"16px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -138,15 +138,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"color":{"text":"#211915"},"elements":{"link":{"color":{"text":"#211915"}}},"typography":{"fontSize":"16px","fontStyle":"italic","fontWeight":"500"}},"cozyCustomFont":"Inter"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:16px;font-style:italic;font-weight:500"><?php esc_html_e( 'Alex Alexender', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:16px;font-style:italic;font-weight:500">Alex Alexender</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"5px","bottom":"0"}},"typography":{"textTransform":"uppercase"}}} -->
-<p style="margin-top:5px;margin-bottom:0;text-transform:uppercase"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="margin-top:5px;margin-bottom:0;text-transform:uppercase">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div>
 <!-- /wp:cozy-block/testimonial --></div>
 <!-- /wp:group -->

@@ -68,15 +68,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:column -->
 
 <!-- wp:column {"style":{"spacing":{"padding":{"right":"0","left":"0","top":"0","bottom":"0"},"blockGap":"0"}}} -->
-<div class="wp-block-column" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cozy-block/testimonial {"blockClientId":"891594af-7252-4eb2-bf2d-c2abba491f50","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeBorderRadius":10,"activeColor":"#001216","color":"#001216","colorHover":"#e8f7ff","align":"center","positionVertical":-50,"left":"0px","right":"0px","gap":3},"navigation":{"enabled":false,"iconSize":15,"iconBoxWidth":45,"iconBoxHeight":45,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#FFFFFE","color":"#AC5BFF","backgroundColorHover":"#6967FF","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"centeredSlides":false,"slidesPerView":1,"spaceBetween":30,"speed":1500}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_891594af_7252_4eb2_bf2d_c2abba491f50"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<div class="wp-block-column" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cozy-block/testimonial {"blockClientId":"f45ba6aa-b0a3-4849-a0e5-6c2b5ffe11a5","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeBorderRadius":10,"activeColor":"#001216","color":"#001216","colorHover":"#e8f7ff","align":"center","positionVertical":-50,"left":"0px","right":"0px","gap":3},"navigation":{"enabled":false,"iconSize":15,"iconBoxWidth":45,"iconBoxHeight":45,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#FFFFFE","color":"#AC5BFF","backgroundColorHover":"#6967FF","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"centeredSlides":false,"slidesPerView":1,"spaceBetween":30,"speed":1500}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_f45ba6aa_b0a3_4849_a0e5_6c2b5ffe11a5"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"border":{"radius":"0px","width":"0px","style":"none"},"spacing":{"padding":{"top":"44px","bottom":"44px","left":"26px","right":"26px"},"margin":{"top":"0","bottom":"0"}},"color":{"background":"#fffffe"}},"layout":{"type":"constrained","contentSize":"628px"}} -->
 <div class="wp-block-group has-background" style="border-style:none;border-width:0px;border-radius:0px;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:44px;padding-right:26px;padding-bottom:44px;padding-left:26px"><!-- wp:paragraph {"style":{"typography":{"fontSize":"18px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500"},"color":{"text":"#001216"},"elements":{"link":{"color":{"text":"#001216"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#001216;font-size:18px;font-style:normal;font-weight:500;line-height:1.2"><?php esc_html_e( 'Best Supportive Team,', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#001216;font-size:18px;font-style:normal;font-weight:500;line-height:1.2">Best Supportive Team,</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"12px","margin":{"top":"26px"},"padding":{"top":"26px"}},"border":{"top":{"color":"#21212124","style":"solid","width":"1px"},"right":[],"bottom":[],"left":[]}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -86,11 +86,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontStyle":"normal","fontWeight":"500","fontSize":"18px"},"elements":{"link":{"color":{"text":"#202020"}}},"color":{"text":"#202020"}},"cozyCustomFont":"Poppins"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#202020;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Alexa Fireman', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#202020;font-size:18px;font-style:normal;font-weight:500">Alexa Fireman</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}}} -->
-<p style="font-size:14px"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="font-size:14px">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -100,11 +100,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"border":{"radius":"0px","width":"0px","style":"none"},"spacing":{"padding":{"top":"36px","bottom":"36px","left":"26px","right":"26px"},"margin":{"top":"0","bottom":"0"}},"color":{"background":"#fffffe"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-style:none;border-width:0px;border-radius:0px;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:36px;padding-right:26px;padding-bottom:36px;padding-left:26px"><!-- wp:paragraph {"style":{"typography":{"fontSize":"18px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500"},"color":{"text":"#001216"},"elements":{"link":{"color":{"text":"#001216"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#001216;font-size:18px;font-style:normal;font-weight:500;line-height:1.2"><?php esc_html_e( 'Best Supportive Team,', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#001216;font-size:18px;font-style:normal;font-weight:500;line-height:1.2">Best Supportive Team,</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"12px","margin":{"top":"26px"},"padding":{"top":"26px"}},"border":{"top":{"color":"#21212124","style":"solid","width":"1px"},"right":[],"bottom":[],"left":[]}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -114,11 +114,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontStyle":"normal","fontWeight":"500","fontSize":"18px"},"elements":{"link":{"color":{"text":"#202020"}}},"color":{"text":"#202020"}},"cozyCustomFont":"Poppins"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#202020;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Alexa Fireman', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#202020;font-size:18px;font-style:normal;font-weight:500">Alexa Fireman</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}}} -->
-<p style="font-size:14px"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="font-size:14px">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -128,11 +128,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"border":{"radius":"0px","width":"0px","style":"none"},"spacing":{"padding":{"top":"36px","bottom":"36px","left":"26px","right":"26px"},"margin":{"top":"0","bottom":"0"}},"color":{"background":"#fffffe"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-style:none;border-width:0px;border-radius:0px;background-color:#fffffe;margin-top:0;margin-bottom:0;padding-top:36px;padding-right:26px;padding-bottom:36px;padding-left:26px"><!-- wp:paragraph {"style":{"typography":{"fontSize":"18px","lineHeight":"1.2","fontStyle":"normal","fontWeight":"500"},"color":{"text":"#001216"},"elements":{"link":{"color":{"text":"#001216"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#001216;font-size:18px;font-style:normal;font-weight:500;line-height:1.2"><?php esc_html_e( 'Best Supportive Team,', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#001216;font-size:18px;font-style:normal;font-weight:500;line-height:1.2">Best Supportive Team,</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"12px","margin":{"top":"26px"},"padding":{"top":"26px"}},"border":{"top":{"color":"#21212124","style":"solid","width":"1px"},"right":[],"bottom":[],"left":[]}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -142,16 +142,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontStyle":"normal","fontWeight":"500","fontSize":"18px"},"elements":{"link":{"color":{"text":"#202020"}}},"color":{"text":"#202020"}},"cozyCustomFont":"Poppins"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#202020;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Alexa Fireman', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#202020;font-size:18px;font-style:normal;font-weight:500">Alexa Fireman</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}}} -->
-<p style="font-size:14px"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="font-size:14px">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-pagination cozy-pagination"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-pagination cozy-pagination"></div>
 <!-- /wp:cozy-block/testimonial --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

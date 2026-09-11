@@ -139,9 +139,16 @@ class Ajax {
 		if ( empty( $category ) ) {
 			$filtered_blocks = array_filter(
 				$blocks_manifest,
-				function ( $item ) {
-					return 'cozy-block' === $item['category'];
-				}
+				function ( $item, $block_name ) {
+					if ( 'cozy-block' === $item['category'] ) {
+						if ( ! cozy_addons_premium_access() && in_array( $block_name, self::$premium_blocks, true ) ) {
+							return false;
+						}
+						return true;
+					}
+					return false;
+				},
+				ARRAY_FILTER_USE_BOTH
 			);
 
 			return array_keys( $filtered_blocks );
@@ -149,9 +156,16 @@ class Ajax {
 
 		$filtered_blocks = array_filter(
 			$blocks_manifest,
-			function ( $item ) use ( $category ) {
-				return 'cozy-block/' . $category === $item['category'];
-			}
+			function ( $item, $block_name ) use ( $category ) {
+				if ( 'cozy-block/' . $category === $item['category'] ) {
+					if ( ! cozy_addons_premium_access() && in_array( $block_name, self::$premium_blocks, true ) ) {
+						return false;
+					}
+					return true;
+				}
+				return false;
+			},
+			ARRAY_FILTER_USE_BOTH
 		);
 
 		return array_keys( $filtered_blocks );
@@ -167,27 +181,41 @@ class Ajax {
 		$category = isset( $_POST['category'] ) ? sanitize_text_field( wp_unslash( $_POST['category'] ) ) : '';
 		$checked  = isset( $_POST['checked'] ) ? sanitize_text_field( wp_unslash( $_POST['checked'] ) ) : '';
 
+		$blocks = array();
+
 		switch ( $category ) {
 			case 'woocommerce':
 				if ( ! \CozyAddons\Helpers\Utils::is_woocommerce_active() ) {
 					return;
 				}
 
-				$woocommerce_blocks = $this->filter_blocks_by_category( $category );
+				$blocks = $this->filter_blocks_by_category( $category );
 
 				break;
 
 			case 'post-magazine':
-				$post_blocks = $this->filter_blocks_by_category( $category );
+				$blocks = $this->filter_blocks_by_category( $category );
 				break;
 
 			case '':
-				$general_blocks = $this->filter_blocks_by_category();
+				$blocks = $this->filter_blocks_by_category();
 				break;
 
 			default:
 				break;
 		}
+
+		if ( ! empty( $blocks ) ) {
+			foreach ( $blocks as $block_name ) {
+				update_option( 'cozy-block--' . $block_name, $checked );
+			}
+		}
+
+		wp_send_json_success(
+			array(
+				'blocks' => $blocks,
+			)
+		);
 	}
 
 	/**

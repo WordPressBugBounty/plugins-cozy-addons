@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:heading -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"54px"}}},"layout":{"type":"constrained","contentSize":"100%"}} -->
-<div class="wp-block-group" style="margin-top:54px"><!-- wp:cozy-block/testimonial {"blockClientId":"6d7009ca-b486-4a98-b7f8-bdb305e32065","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"color":"#56783526","style":"solid","width":"4px"},"activeOffset":2,"gap":5,"activeBorderRadius":10,"activeColor":"#567835","color":"#567835","activeColorHover":"#1c1c02","colorHover":"#567835","activeBorderHover":"#567835","align":"center","positionVertical":-36,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":0,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#567835","color":"#fffffe","backgroundColorHover":"#fffffe","colorHover":"#567835","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":3,"spaceBetween":26,"speed":1000,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_6d7009ca_b486_4a98_b7f8_bdb305e32065"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<div class="wp-block-group" style="margin-top:54px"><!-- wp:cozy-block/testimonial {"blockClientId":"0a672ec3-447a-4d66-b5f1-c263ad882472","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"color":"#56783526","style":"solid","width":"4px"},"activeOffset":2,"gap":5,"activeBorderRadius":10,"activeColor":"#567835","color":"#567835","activeColorHover":"#1c1c02","colorHover":"#567835","activeBorderHover":"#567835","align":"center","positionVertical":-36,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":0,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#567835","color":"#fffffe","backgroundColorHover":"#fffffe","colorHover":"#567835","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":3,"spaceBetween":26,"speed":1000,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_0a672ec3_447a_4d66_b5f1_c263ad882472"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"36px","bottom":"36px","left":"26px","right":"26px"},"blockGap":"0","margin":{"top":"0","bottom":"0"}},"color":{"background":"#f8f8f8"}},"layout":{"type":"constrained","contentSize":"307px"}} -->
 <div class="wp-block-group has-background" style="background-color:#f8f8f8;margin-top:0;margin-bottom:0;padding-top:36px;padding-right:26px;padding-bottom:36px;padding-left:26px"><!-- wp:columns {"verticalAlignment":"center","isStackedOnMobile":false,"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":{"top":"12px","left":"12px"}}}} -->
 <div class="wp-block-columns are-vertically-aligned-center is-not-stacked-on-mobile" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"60px"} -->
@@ -22,17 +22,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:column {"verticalAlignment":"center","width":"","style":{"spacing":{"blockGap":"0"}}} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"#1c1c02"},"elements":{"link":{"color":{"text":"#1c1c02"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#1c1c02;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Allen Howard', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#1c1c02;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Allen Howard</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p>Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:paragraph {"align":"left","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"12px","top":"16px"}}}} -->
-<p class="has-text-align-left" style="margin-top:16px;margin-bottom:12px"><?php esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'cozy-addons' ); ?></p>
+<!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"12px","top":"16px"}},"typography":{"textAlign":"left"}}} -->
+<p class="has-text-align-left" style="margin-top:16px;margin-bottom:12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"sizeSlug":"large","style":{"color":{"duotone":["rgb(86, 120, 53)","rgb(86, 120, 53)"]},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
@@ -52,17 +52,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:column {"verticalAlignment":"center","width":"","style":{"spacing":{"blockGap":"0"}}} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"#1c1c02"},"elements":{"link":{"color":{"text":"#1c1c02"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#1c1c02;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Allen Howard', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#1c1c02;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Allen Howard</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p>Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:paragraph {"align":"left","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"12px","top":"16px"}}}} -->
-<p class="has-text-align-left" style="margin-top:16px;margin-bottom:12px"><?php esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'cozy-addons' ); ?></p>
+<!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"12px","top":"16px"}},"typography":{"textAlign":"left"}}} -->
+<p class="has-text-align-left" style="margin-top:16px;margin-bottom:12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"sizeSlug":"large","style":{"color":{"duotone":["rgb(86, 120, 53)","rgb(86, 120, 53)"]},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
@@ -82,17 +82,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:column {"verticalAlignment":"center","width":"","style":{"spacing":{"blockGap":"0"}}} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"#1c1c02"},"elements":{"link":{"color":{"text":"#1c1c02"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#1c1c02;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Allen Howard', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#1c1c02;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Allen Howard</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p>Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:paragraph {"align":"left","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"12px","top":"16px"}}}} -->
-<p class="has-text-align-left" style="margin-top:16px;margin-bottom:12px"><?php esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'cozy-addons' ); ?></p>
+<!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"12px","top":"16px"}},"typography":{"textAlign":"left"}}} -->
+<p class="has-text-align-left" style="margin-top:16px;margin-bottom:12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"sizeSlug":"large","style":{"color":{"duotone":["rgb(86, 120, 53)","rgb(86, 120, 53)"]},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
@@ -112,17 +112,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:column {"verticalAlignment":"center","width":"","style":{"spacing":{"blockGap":"0"}}} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"#1c1c02"},"elements":{"link":{"color":{"text":"#1c1c02"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#1c1c02;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Allen Howard', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#1c1c02;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Allen Howard</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p>Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:paragraph {"align":"left","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"12px","top":"16px"}}}} -->
-<p class="has-text-align-left" style="margin-top:16px;margin-bottom:12px"><?php esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'cozy-addons' ); ?></p>
+<!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"12px","top":"16px"}},"typography":{"textAlign":"left"}}} -->
+<p class="has-text-align-left" style="margin-top:16px;margin-bottom:12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"sizeSlug":"large","style":{"color":{"duotone":["rgb(86, 120, 53)","rgb(86, 120, 53)"]},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
@@ -142,24 +142,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:column {"verticalAlignment":"center","width":"","style":{"spacing":{"blockGap":"0"}}} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"#1c1c02"},"elements":{"link":{"color":{"text":"#1c1c02"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#1c1c02;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Allen Howard', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#1c1c02;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Allen Howard</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p>Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:paragraph {"align":"left","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"12px","top":"16px"}}}} -->
-<p class="has-text-align-left" style="margin-top:16px;margin-bottom:12px"><?php esc_html_e( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'cozy-addons' ); ?></p>
+<!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"12px","top":"16px"}},"typography":{"textAlign":"left"}}} -->
+<p class="has-text-align-left" style="margin-top:16px;margin-bottom:12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"sizeSlug":"large","style":{"color":{"duotone":["rgb(86, 120, 53)","rgb(86, 120, 53)"]},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
 <figure class="wp-block-image size-large" style="margin-top:0;margin-bottom:0"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/stars.png" alt=""/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div>
 <!-- /wp:cozy-block/testimonial --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

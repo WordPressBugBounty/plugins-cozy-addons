@@ -20,15 +20,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"38616abf-24f1-4350-b73d-e01e0b05d4d3","carouselOptions":{"pagination":{"enabled":false,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":4,"activeBorderRadius":10,"activeColor":"#007cba","color":"#252525","activeColorHover":"#164861","colorHover":"#a5a5a5","activeBorderHover":"","align":"center","positionVertical":-20,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":20,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fff","color":"#89a932","backgroundColorHover":"#89a932","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":3.5,"spaceBetween":20,"speed":1000,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_38616abf_24f1_4350_b73d_e01e0b05d4d3"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"0e850d6a-35ed-4b83-bafd-4a97e1810127","carouselOptions":{"pagination":{"enabled":false,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":4,"activeBorderRadius":10,"activeColor":"#007cba","color":"#252525","activeColorHover":"#164861","colorHover":"#a5a5a5","activeBorderHover":"","align":"center","positionVertical":-20,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":20,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fff","color":"#89a932","backgroundColorHover":"#89a932","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":3.5,"spaceBetween":20,"speed":1000,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_0e850d6a_35ed_4b83_bafd_4a97e1810127"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"26px","bottom":"26px","left":"26px","right":"26px"}},"color":{"background":"#fffffe"},"border":{"radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"}}},"layout":{"type":"constrained","contentSize":"760px"}} -->
 <div class="wp-block-group has-background" style="border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px;background-color:#fffffe;padding-top:26px;padding-right:26px;padding-bottom:26px;padding-left:26px"><!-- wp:image {"width":"auto","height":"14px","sizeSlug":"large","style":{"color":{"duotone":["#89a932","#89a932"]},"spacing":{"margin":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
 <figure class="wp-block-image size-large is-resized" style="margin-top:0;margin-right:0;margin-bottom:0;margin-left:0"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/stars.png" alt="" style="width:auto;height:14px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"20px"}}}} -->
-<p style="margin-top:20px;margin-bottom:20px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:20px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px","padding":{"top":"20px"}},"border":{"top":{"color":"#e8eaf3","style":"solid","width":"1px"},"right":{"width":"0px","style":"none"},"bottom":{"width":"0px","style":"none"},"left":{"width":"0px","style":"none"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -38,11 +38,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#0f3714"},"elements":{"link":{"color":{"text":"#0f3714"}}}},"cozyCustomFont":"Inter Tight"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#0f3714;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4"><?php esc_html_e( 'Bravho Miles', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#0f3714;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4">Bravho Miles</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#5d6065"},"elements":{"link":{"color":{"text":"#5d6065"}}},"typography":{"fontSize":"13px"}}} -->
-<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px"><?php esc_html_e( '@Ecoinvestor', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px">@Ecoinvestor</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"20px"}}}} -->
-<p style="margin-top:20px;margin-bottom:20px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:20px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px","padding":{"top":"20px"}},"border":{"top":{"color":"#e8eaf3","style":"solid","width":"1px"},"right":{"width":"0px","style":"none"},"bottom":{"width":"0px","style":"none"},"left":{"width":"0px","style":"none"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -66,11 +66,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#0f3714"},"elements":{"link":{"color":{"text":"#0f3714"}}}},"cozyCustomFont":"Inter Tight"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#0f3714;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4"><?php esc_html_e( 'Bravho Miles', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#0f3714;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4">Bravho Miles</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#5d6065"},"elements":{"link":{"color":{"text":"#5d6065"}}},"typography":{"fontSize":"13px"}}} -->
-<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px"><?php esc_html_e( '@Ecoinvestor', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px">@Ecoinvestor</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -84,7 +84,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"20px"}}}} -->
-<p style="margin-top:20px;margin-bottom:20px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:20px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px","padding":{"top":"20px"}},"border":{"top":{"color":"#e8eaf3","style":"solid","width":"1px"},"right":{"width":"0px","style":"none"},"bottom":{"width":"0px","style":"none"},"left":{"width":"0px","style":"none"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -94,11 +94,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#0f3714"},"elements":{"link":{"color":{"text":"#0f3714"}}}},"cozyCustomFont":"Inter Tight"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#0f3714;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4"><?php esc_html_e( 'Bravho Miles', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#0f3714;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4">Bravho Miles</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#5d6065"},"elements":{"link":{"color":{"text":"#5d6065"}}},"typography":{"fontSize":"13px"}}} -->
-<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px"><?php esc_html_e( '@Ecoinvestor', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px">@Ecoinvestor</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -112,7 +112,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"20px"}}}} -->
-<p style="margin-top:20px;margin-bottom:20px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:20px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px","padding":{"top":"20px"}},"border":{"top":{"color":"#e8eaf3","style":"solid","width":"1px"},"right":{"width":"0px","style":"none"},"bottom":{"width":"0px","style":"none"},"left":{"width":"0px","style":"none"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -122,11 +122,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#0f3714"},"elements":{"link":{"color":{"text":"#0f3714"}}}},"cozyCustomFont":"Inter Tight"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#0f3714;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4"><?php esc_html_e( 'Bravho Miles', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#0f3714;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4">Bravho Miles</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#5d6065"},"elements":{"link":{"color":{"text":"#5d6065"}}},"typography":{"fontSize":"13px"}}} -->
-<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px"><?php esc_html_e( '@Ecoinvestor', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px">@Ecoinvestor</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -140,7 +140,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"20px"}}}} -->
-<p style="margin-top:20px;margin-bottom:20px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:20px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px","padding":{"top":"20px"}},"border":{"top":{"color":"#e8eaf3","style":"solid","width":"1px"},"right":{"width":"0px","style":"none"},"bottom":{"width":"0px","style":"none"},"left":{"width":"0px","style":"none"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -150,16 +150,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#0f3714"},"elements":{"link":{"color":{"text":"#0f3714"}}}},"cozyCustomFont":"Inter Tight"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#0f3714;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4"><?php esc_html_e( 'Bravho Miles', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#0f3714;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4">Bravho Miles</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#5d6065"},"elements":{"link":{"color":{"text":"#5d6065"}}},"typography":{"fontSize":"13px"}}} -->
-<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px"><?php esc_html_e( '@Ecoinvestor', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px">@Ecoinvestor</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div>
 <!-- /wp:cozy-block/testimonial -->
 
 <!-- wp:buttons {"style":{"typography":{"fontSize":"14px","textDecoration":"none"},"spacing":{"margin":{"top":"36px"}}},"layout":{"type":"flex","justifyContent":"center"}} -->

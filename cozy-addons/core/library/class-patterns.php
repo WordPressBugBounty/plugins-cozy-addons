@@ -159,36 +159,57 @@ class Patterns {
 
 		$active_theme = get_stylesheet();
 
-		$cat_slug = 'ct-' . $active_theme . '-pro';
+		// $cat_slug = 'ct-' . $active_theme . '-pro';
 
-		if ( ! in_array( $active_theme, $themes, true ) ) {
+		// if ( ! in_array( $active_theme, $themes, true ) ) {
+		// return;
+		// }
+
+		$filtered = array_values( array_filter( $themes, fn( $item ) => str_starts_with( $item, $active_theme ) ) );
+
+		if ( empty( $filtered ) ) {
 			return;
 		}
 
 		add_action(
 			'init',
-			function () use ( $cat_slug ) {
-				if ( ! cozy_addons_premium_access() ) {
-					$patterns = \WP_Block_Patterns_Registry::get_instance()->get_all_registered();
+			function () use ( $filtered ) {
+				foreach ( $filtered as $slug ) {
+					$cat_slug = 'ct-' . $slug . '-pro';
+					if ( ! cozy_addons_premium_access() ) {
+						$patterns = \WP_Block_Patterns_Registry::get_instance()->get_all_registered();
 
-					foreach ( $patterns as $pattern ) {
-						if ( ! empty( $pattern['categories'] ) && in_array( $cat_slug, $pattern['categories'], true ) ) {
-							unregister_block_pattern( $pattern['name'] );
+						foreach ( $patterns as $pattern ) {
+							if ( ! empty( $pattern['categories'] ) && in_array( $cat_slug, $pattern['categories'], true ) ) {
+								unregister_block_pattern( $pattern['name'] );
+							}
 						}
 					}
-					return;
-				}
 
-				$theme      = wp_get_theme();
-				$theme_name = $theme->get( 'Name' );
+					$theme      = wp_get_theme();
+					$theme_name = $theme->get( 'Name' );
 
-				if ( ! WP_Block_Pattern_Categories_Registry::get_instance()->is_registered( $cat_slug ) ) {
-					register_block_pattern_category(
-						$cat_slug,
-						array(
-							'label' => $theme_name . __( ' PRO', 'cozy-addons' ),
-						)
-					);
+					if ( ! WP_Block_Pattern_Categories_Registry::get_instance()->is_registered( $cat_slug ) ) {
+						$cat_array = explode( '-', $cat_slug );
+
+						$label = '';
+
+						if ( count( $cat_array ) === 3 ) {
+							$label = $theme_name . __( ' Templates (PRO)', 'cozy-addons' );
+						} elseif ( count( $cat_array ) === 4 ) {
+							$label = $theme_name . ' ' . ucwords( $cat_array[2] ) . __( ' (PRO)', 'cozy-addons' );
+
+						}
+
+						if ( ! empty( $label ) ) {
+							register_block_pattern_category(
+								$cat_slug,
+								array(
+									'label' => $label,
+								)
+							);
+						}
+					}
 				}
 			}
 		);

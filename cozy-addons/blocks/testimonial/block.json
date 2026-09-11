@@ -72,6 +72,7 @@
     "carouselOptions": {
       "type": "object",
       "default": {
+        "fadeBg": false,
         "pagination": {
           "enabled": true,
           "width": 10,

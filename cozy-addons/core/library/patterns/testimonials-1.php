@@ -18,23 +18,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"b8745ba3-1ce6-41f8-881d-03b3a9d75045","carouselOptions":{"pagination":{"enabled":true,"width":8,"height":8,"borderRadius":10,"activeWidth":12,"activeHeight":12,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#9c8734","color":"#606060","colorHover":"#ff9900","activeBorderHover":"","align":"center","positionVertical":-20,"left":"0px","right":"0px"},"navigation":{"enabled":false,"iconSize":15,"iconBoxWidth":35,"iconBoxHeight":35,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fff","color":"#007cba","backgroundColorHover":"#007cba","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":16,"speed":1200,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_b8745ba3_1ce6_41f8_881d_03b3a9d75045"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"37688988-fa79-4e0b-9cc0-9cec154227c9","carouselOptions":{"pagination":{"enabled":true,"width":8,"height":8,"borderRadius":10,"activeWidth":12,"activeHeight":12,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#9c8734","color":"#606060","colorHover":"#ff9900","activeBorderHover":"","align":"center","positionVertical":-20,"left":"0px","right":"0px"},"navigation":{"enabled":false,"iconSize":15,"iconBoxWidth":35,"iconBoxHeight":35,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fff","color":"#007cba","backgroundColorHover":"#007cba","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":16,"speed":1200,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_37688988_fa79_4e0b_9cc0_9cec154227c9"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"30px","bottom":"30px","left":"26px","right":"26px"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"780px"}} -->
 <div class="wp-block-group" style="padding-top:30px;padding-right:26px;padding-bottom:30px;padding-left:26px"><!-- wp:image {"id":1738,"width":"184px","height":"184px","scale":"cover","sizeSlug":"full","linkDestination":"none","align":"center","style":{"border":{"radius":"100%"}}} -->
 <figure class="wp-block-image aligncenter size-full is-resized has-custom-border"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/testimonial-1.png" alt="" class="wp-image-1738" style="border-radius:100%;object-fit:cover;width:184px;height:184px"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":3,"placeholder":"George Mathew","style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600"},"color":{"text":"#1e1905"},"elements":{"link":{"color":{"text":"#1e1905"}}},"spacing":{"margin":{"top":"16px","bottom":"6px"}}},"cozyCustomFont":"Playfair Display"} -->
-<h3 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#1e1905;margin-top:16px;margin-bottom:6px;font-size:18px;font-style:normal;font-weight:600"><?php esc_html_e( 'Benjamin', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"placeholder":"George Mathew","style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","textAlign":"center"},"color":{"text":"#1e1905"},"elements":{"link":{"color":{"text":"#1e1905"}}},"spacing":{"margin":{"top":"16px","bottom":"6px"}}},"cozyCustomFont":"Playfair Display"} -->
+<h3 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#1e1905;margin-top:16px;margin-bottom:6px;font-size:18px;font-style:normal;font-weight:600">Benjamin</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"align":"center","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"16px"}}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-align-center" style="margin-bottom:16px"><?php esc_html_e( 'Designation', 'cozy-addons' ); ?></p>
+<!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"16px"}},"typography":{"textAlign":"center"}},"cozyCustomFont":"Inter"} -->
+<p class="has-text-align-center" style="margin-bottom:16px">Designation</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"align":"center","style":{"typography":{"fontStyle":"italic","fontWeight":"500","fontSize":"18px"}}} -->
-<p class="has-text-align-center" style="font-size:18px;font-style:italic;font-weight:500"><?php esc_html_e( 'In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.', 'cozy-addons' ); ?> </p>
+<!-- wp:paragraph {"style":{"typography":{"fontStyle":"italic","fontWeight":"500","fontSize":"18px","textAlign":"center"}}} -->
+<p class="has-text-align-center" style="font-size:18px;font-style:italic;font-weight:500">In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.&nbsp;</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:cozy-block/carousel -->
@@ -45,16 +45,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 <figure class="wp-block-image aligncenter size-full is-resized has-custom-border"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/testimonial-2.png" alt="" class="wp-image-1738" style="border-radius:100%;object-fit:cover;width:184px;height:184px"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":3,"placeholder":"George Mathew","style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600"},"color":{"text":"#1e1905"},"elements":{"link":{"color":{"text":"#1e1905"}}},"spacing":{"margin":{"top":"16px","bottom":"6px"}}},"cozyCustomFont":"Playfair Display"} -->
-<h3 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#1e1905;margin-top:16px;margin-bottom:6px;font-size:18px;font-style:normal;font-weight:600"><?php esc_html_e( 'Jane', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"placeholder":"George Mathew","style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","textAlign":"center"},"color":{"text":"#1e1905"},"elements":{"link":{"color":{"text":"#1e1905"}}},"spacing":{"margin":{"top":"16px","bottom":"6px"}}},"cozyCustomFont":"Playfair Display"} -->
+<h3 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#1e1905;margin-top:16px;margin-bottom:6px;font-size:18px;font-style:normal;font-weight:600">Jane</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"align":"center","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"16px"}}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-align-center" style="margin-bottom:16px"><?php esc_html_e( 'Designation', 'cozy-addons' ); ?></p>
+<!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"16px"}},"typography":{"textAlign":"center"}},"cozyCustomFont":"Inter"} -->
+<p class="has-text-align-center" style="margin-bottom:16px">Designation</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"align":"center","style":{"typography":{"fontStyle":"italic","fontWeight":"500","fontSize":"18px"}}} -->
-<p class="has-text-align-center" style="font-size:18px;font-style:italic;font-weight:500"><?php esc_html_e( 'In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.', 'cozy-addons' ); ?> </p>
+<!-- wp:paragraph {"style":{"typography":{"fontStyle":"italic","fontWeight":"500","fontSize":"18px","textAlign":"center"}}} -->
+<p class="has-text-align-center" style="font-size:18px;font-style:italic;font-weight:500">In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.&nbsp;</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:cozy-block/carousel -->
@@ -65,18 +65,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 <figure class="wp-block-image aligncenter size-full is-resized has-custom-border"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/testimonial-3.png" alt="" class="wp-image-1738" style="border-radius:100%;object-fit:cover;width:184px;height:184px"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":3,"placeholder":"George Mathew","style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600"},"color":{"text":"#1e1905"},"elements":{"link":{"color":{"text":"#1e1905"}}},"spacing":{"margin":{"top":"16px","bottom":"6px"}}},"cozyCustomFont":"Playfair Display"} -->
-<h3 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#1e1905;margin-top:16px;margin-bottom:6px;font-size:18px;font-style:normal;font-weight:600"><?php esc_html_e( 'Janice', 'cozy-addons' ); ?></h3>
+<!-- wp:heading {"level":3,"placeholder":"George Mathew","style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","textAlign":"center"},"color":{"text":"#1e1905"},"elements":{"link":{"color":{"text":"#1e1905"}}},"spacing":{"margin":{"top":"16px","bottom":"6px"}}},"cozyCustomFont":"Playfair Display"} -->
+<h3 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#1e1905;margin-top:16px;margin-bottom:6px;font-size:18px;font-style:normal;font-weight:600">Janice</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"align":"center","placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"16px"}}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-align-center" style="margin-bottom:16px"><?php esc_html_e( 'Designation', 'cozy-addons' ); ?></p>
+<!-- wp:paragraph {"placeholder":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.","style":{"spacing":{"margin":{"bottom":"16px"}},"typography":{"textAlign":"center"}},"cozyCustomFont":"Inter"} -->
+<p class="has-text-align-center" style="margin-bottom:16px">Designation</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"align":"center","style":{"typography":{"fontStyle":"italic","fontWeight":"500","fontSize":"18px"}}} -->
-<p class="has-text-align-center" style="font-size:18px;font-style:italic;font-weight:500"><?php esc_html_e( 'In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.', 'cozy-addons' ); ?> </p>
+<!-- wp:paragraph {"style":{"typography":{"fontStyle":"italic","fontWeight":"500","fontSize":"18px","textAlign":"center"}}} -->
+<p class="has-text-align-center" style="font-size:18px;font-style:italic;font-weight:500">In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.&nbsp;</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-pagination cozy-pagination"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-pagination cozy-pagination"></div>
 <!-- /wp:cozy-block/testimonial --></div>
 <!-- /wp:group -->

@@ -383,10 +383,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</div>
 				<div class="toggle-switcher-wrap">
 					<?php
-					$checked = get_option( 'cozy-block--advanced-tab' );
+					$checked = get_option( 'cozy-block--cf7-styler' );
 					?>
-					<input type="checkbox" class="cozy-block-active" name="advanced-tab"
-						id="cozy-block--advanced-gallery"
+					<input type="checkbox" class="cozy-block-active" name="cf7-styler"
+						id="cozy-block--cf7-styler"
 						<?php echo cozy_addons_premium_access() && ( '1' === $checked || '' == $checked ) ? 'checked' : ''; ?>>
 					<?php
 					$classes   = array();

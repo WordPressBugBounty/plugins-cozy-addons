@@ -18,25 +18,75 @@
       "type": "string",
       "default": ""
     },
+    "prefix": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "value": "Over"
+      }
+    },
+    "suffix": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "value": "+ Downloads"
+      }
+    },
     "endNumber": {
       "type": "string",
       "default": "10000"
     },
     "animationDuration": {
       "type": "number",
-      "default": 1000
+      "default": 1500
     },
     "textAlign": {
       "type": "string",
       "default": "center"
     },
+    "blockStyle": {
+      "type": "object",
+      "default": {
+        "layout": "row",
+        "gap": "8px"
+      }
+    },
     "styles": {
       "type": "object",
       "default": {
-        "fontFamily": "Public Sans",
-        "fontSize": "64px",
-        "color": "#5566CA",
-        "fontWeight": 700
+        "font": {
+          "family": "",
+          "weight": "500"
+        },
+        "desktop": {
+          "font": {
+            "size": "48px"
+          }
+        },
+        "letterCase": "",
+        "textDecoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": "#5566CA"
+      }
+    },
+    "labelStyles": {
+      "type": "object",
+      "default": {
+        "font": {
+          "family": "",
+          "weight": ""
+        },
+        "desktop": {
+          "font": {
+            "size": ""
+          }
+        },
+        "letterCase": "",
+        "textDecoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": ""
       }
     }
   },
@@ -50,7 +100,8 @@
     "cozy-block--global-block-styles"
   ],
   "viewScript": [
-    "cozy-block--counter--frontend-script"
+    "cozy-block--counter--frontend-script",
+    "cozy-animejs"
   ],
   "render": "file:./render.php"
 }

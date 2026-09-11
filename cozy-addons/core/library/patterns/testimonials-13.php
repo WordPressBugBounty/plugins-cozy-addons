@@ -24,11 +24,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"9f55a37d-8f82-4493-aa49-c1273a8fe61b","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":4,"activeBorderRadius":10,"activeColor":"#0c50ff","color":"#544f4f","colorHover":"#ff9900","activeBorderHover":"","align":"center","positionVertical":-44,"left":"0px","right":"0px"},"navigation":{"enabled":false,"iconSize":15,"iconBoxWidth":35,"iconBoxHeight":35,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fff","color":"#007cba","backgroundColorHover":"#007cba","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":20,"speed":1500,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_9f55a37d_8f82_4493_aa49_c1273a8fe61b"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"d9a15141-93bc-42bf-97fc-3205f40f9694","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":4,"activeBorderRadius":10,"activeColor":"#0c50ff","color":"#544f4f","colorHover":"#ff9900","activeBorderHover":"","align":"center","positionVertical":-44,"left":"0px","right":"0px"},"navigation":{"enabled":false,"iconSize":15,"iconBoxWidth":35,"iconBoxHeight":35,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fff","color":"#007cba","backgroundColorHover":"#007cba","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":20,"speed":1500,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_d9a15141_93bc_42bf_97fc_3205f40f9694"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"}},"typography":{"fontSize":"24px","lineHeight":"1.7","fontStyle":"normal","fontWeight":"400"},"color":{"background":"#0c50ff","text":"#fffffe"},"elements":{"link":{"color":{"text":"#fffffe"}}},"border":{"radius":"24px"}},"layout":{"type":"constrained","contentSize":"960px"},"cozyCustomFont":"Unbounded"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="border-radius:24px;color:#fffffe;background-color:#0c50ff;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:24px;font-style:normal;font-weight:400;line-height:1.7"><!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px","bottom":"10px"}}}} -->
-<p style="margin-top:0px;margin-bottom:10px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>
+<p style="margin-top:0px;margin-bottom:10px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"id":1784,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#fadb2c","#FFFFFF"]},"spacing":{"margin":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
@@ -42,11 +42,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:16px;font-style:normal;font-weight:400"><?php esc_html_e( 'Stella Guru', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:16px;font-style:normal;font-weight:400">Stella Guru</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"4px","bottom":"0"}},"color":{"text":"#f1f6ff"},"elements":{"link":{"color":{"text":"#f1f6ff"}}},"typography":{"fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-color has-link-color" style="color:#f1f6ff;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600"><?php esc_html_e( 'Director of Customer Marketing', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#f1f6ff;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600">Director of Customer Marketing</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"}},"typography":{"fontSize":"24px","lineHeight":"1.7","fontStyle":"normal","fontWeight":"400"},"color":{"background":"#0c50ff","text":"#fffffe"},"elements":{"link":{"color":{"text":"#fffffe"}}},"border":{"radius":"24px"}},"layout":{"type":"constrained","contentSize":"960px"},"cozyCustomFont":"Unbounded"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="border-radius:24px;color:#fffffe;background-color:#0c50ff;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:24px;font-style:normal;font-weight:400;line-height:1.7"><!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px","bottom":"10px"}}}} -->
-<p style="margin-top:0px;margin-bottom:10px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>
+<p style="margin-top:0px;margin-bottom:10px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"id":1784,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#fadb2c","#FFFFFF"]},"spacing":{"margin":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
@@ -70,11 +70,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:16px;font-style:normal;font-weight:400"><?php esc_html_e( 'Stella Guru', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:16px;font-style:normal;font-weight:400">Stella Guru</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"4px","bottom":"0"}},"color":{"text":"#f1f6ff"},"elements":{"link":{"color":{"text":"#f1f6ff"}}},"typography":{"fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-color has-link-color" style="color:#f1f6ff;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600"><?php esc_html_e( 'Director of Customer Marketing', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#f1f6ff;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600">Director of Customer Marketing</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -84,7 +84,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"80px","bottom":"80px"}},"typography":{"fontSize":"24px","lineHeight":"1.7","fontStyle":"normal","fontWeight":"400"},"color":{"background":"#0c50ff","text":"#fffffe"},"elements":{"link":{"color":{"text":"#fffffe"}}},"border":{"radius":"24px"}},"layout":{"type":"constrained","contentSize":"960px"},"cozyCustomFont":"Unbounded"} -->
 <div class="wp-block-group has-text-color has-background has-link-color" style="border-radius:24px;color:#fffffe;background-color:#0c50ff;margin-top:0;margin-bottom:0;padding-top:80px;padding-right:26px;padding-bottom:80px;padding-left:26px;font-size:24px;font-style:normal;font-weight:400;line-height:1.7"><!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px","bottom":"10px"}}}} -->
-<p style="margin-top:0px;margin-bottom:10px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>
+<p style="margin-top:0px;margin-bottom:10px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"id":1784,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#fadb2c","#FFFFFF"]},"spacing":{"margin":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
@@ -98,15 +98,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Unbounded"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:16px;font-style:normal;font-weight:400"><?php esc_html_e( 'Stella Guru', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:16px;font-style:normal;font-weight:400">Stella Guru</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"4px","bottom":"0"}},"color":{"text":"#f1f6ff"},"elements":{"link":{"color":{"text":"#f1f6ff"}}},"typography":{"fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-color has-link-color" style="color:#f1f6ff;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600"><?php esc_html_e( 'Director of Customer Marketing', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#f1f6ff;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600">Director of Customer Marketing</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-pagination cozy-pagination"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-pagination cozy-pagination"></div>
 <!-- /wp:cozy-block/testimonial --></div>
 <!-- /wp:group -->

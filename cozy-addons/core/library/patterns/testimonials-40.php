@@ -14,15 +14,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"f7abf839-fde0-498e-93b0-23e5415532ab","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#20b8ff","color":"#fffffe","colorHover":"#20b8ff","activeBorderHover":"","align":"center","positionVertical":-30,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":0,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fffffe","color":"#020e14","backgroundColorHover":"#20b8ff","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":false,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":2,"spaceBetween":18,"speed":800,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_f7abf839_fde0_498e_93b0_23e5415532ab"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"a7a6d018-1957-40cb-b674-07de9c373348","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#20b8ff","color":"#fffffe","colorHover":"#20b8ff","activeBorderHover":"","align":"center","positionVertical":-30,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":0,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fffffe","color":"#020e14","backgroundColorHover":"#20b8ff","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":false,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":2,"spaceBetween":18,"speed":800,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_a7a6d018_1957_40cb_b674_07de9c373348"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"36px","bottom":"36px"}},"color":{"background":"#f9f9f9"}},"layout":{"type":"constrained","contentSize":"502px"}} -->
 <div class="wp-block-group has-background" style="background-color:#f9f9f9;margin-top:0;margin-bottom:0;padding-top:36px;padding-right:26px;padding-bottom:36px;padding-left:26px"><!-- wp:image {"id":1784,"scale":"cover","sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["rgb(32, 184, 255)","rgb(32, 184, 255)"]}}} -->
 <figure class="wp-block-image size-full"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/stars.png" alt="" class="wp-image-1784" style="object-fit:cover"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"22px","bottom":"26px"}}}} -->
-<p style="margin-top:22px;margin-bottom:26px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem', 'cozy-addons' ); ?></p>
+<p style="margin-top:22px;margin-bottom:26px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"color":{"text":"#020e14"},"elements":{"link":{"color":{"text":"#020e14"}}},"typography":{"fontSize":"20px","lineHeight":"1.3","fontStyle":"normal","fontWeight":"500","textTransform":"capitalize"},"spacing":{"margin":{"top":"0px","bottom":"0px"}}},"cozyCustomFont":"Baloo 2"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#020e14;margin-top:0px;margin-bottom:0px;font-size:20px;font-style:normal;font-weight:500;line-height:1.3;text-transform:capitalize"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#020e14;margin-top:0px;margin-bottom:0px;font-size:20px;font-style:normal;font-weight:500;line-height:1.3;text-transform:capitalize">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px","bottom":"0"}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"14px"}}} -->
@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"22px","bottom":"26px"}}}} -->
-<p style="margin-top:22px;margin-bottom:26px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem', 'cozy-addons' ); ?></p>
+<p style="margin-top:22px;margin-bottom:26px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"color":{"text":"#020e14"},"elements":{"link":{"color":{"text":"#020e14"}}},"typography":{"fontSize":"20px","lineHeight":"1.3","fontStyle":"normal","fontWeight":"500","textTransform":"capitalize"},"spacing":{"margin":{"top":"0px","bottom":"0px"}}},"cozyCustomFont":"Baloo 2"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#020e14;margin-top:0px;margin-bottom:0px;font-size:20px;font-style:normal;font-weight:500;line-height:1.3;text-transform:capitalize"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#020e14;margin-top:0px;margin-bottom:0px;font-size:20px;font-style:normal;font-weight:500;line-height:1.3;text-transform:capitalize">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px","bottom":"0"}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"14px"}}} -->
@@ -78,7 +78,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"22px","bottom":"26px"}}}} -->
-<p style="margin-top:22px;margin-bottom:26px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem', 'cozy-addons' ); ?></p>
+<p style="margin-top:22px;margin-bottom:26px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -88,7 +88,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"color":{"text":"#020e14"},"elements":{"link":{"color":{"text":"#020e14"}}},"typography":{"fontSize":"20px","lineHeight":"1.3","fontStyle":"normal","fontWeight":"500","textTransform":"capitalize"},"spacing":{"margin":{"top":"0px","bottom":"0px"}}},"cozyCustomFont":"Baloo 2"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#020e14;margin-top:0px;margin-bottom:0px;font-size:20px;font-style:normal;font-weight:500;line-height:1.3;text-transform:capitalize"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#020e14;margin-top:0px;margin-bottom:0px;font-size:20px;font-style:normal;font-weight:500;line-height:1.3;text-transform:capitalize">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px","bottom":"0"}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"14px"}}} -->
@@ -106,7 +106,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"22px","bottom":"26px"}}}} -->
-<p style="margin-top:22px;margin-bottom:26px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem', 'cozy-addons' ); ?></p>
+<p style="margin-top:22px;margin-bottom:26px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -116,7 +116,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"color":{"text":"#020e14"},"elements":{"link":{"color":{"text":"#020e14"}}},"typography":{"fontSize":"20px","lineHeight":"1.3","fontStyle":"normal","fontWeight":"500","textTransform":"capitalize"},"spacing":{"margin":{"top":"0px","bottom":"0px"}}},"cozyCustomFont":"Baloo 2"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#020e14;margin-top:0px;margin-bottom:0px;font-size:20px;font-style:normal;font-weight:500;line-height:1.3;text-transform:capitalize"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#020e14;margin-top:0px;margin-bottom:0px;font-size:20px;font-style:normal;font-weight:500;line-height:1.3;text-transform:capitalize">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px","bottom":"0"}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"14px"}}} -->
@@ -125,6 +125,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div>
 <!-- /wp:cozy-block/testimonial --></div>
 <!-- /wp:group -->

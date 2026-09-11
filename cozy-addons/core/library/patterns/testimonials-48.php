@@ -18,8 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"45b9841c-7242-4c46-b270-96e3482b0889","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#141f2c","color":"#252525","colorHover":"#141f2c","activeBorderHover":"","align":"center","positionVertical":-30,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":0,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#141f2c","color":"#fffffe","backgroundColorHover":"#FFFFFF","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":false,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":true,"centeredSlides":false,"slidesPerView":3,"spaceBetween":26,"speed":1200,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_45b9841c_7242_4c46_b270_96e3482b0889"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"343ad64a-9041-4020-8e06-56cf5a3f3ad4","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#141f2c","color":"#252525","colorHover":"#141f2c","activeBorderHover":"","align":"center","positionVertical":-30,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":0,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#141f2c","color":"#fffffe","backgroundColorHover":"#FFFFFF","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":false,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":true,"centeredSlides":false,"slidesPerView":3,"spaceBetween":26,"speed":1200,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_343ad64a_9041_4020_8e06_56cf5a3f3ad4"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"26px","bottom":"26px","left":"26px","right":"26px"},"margin":{"top":"0px","bottom":"0px"}},"border":{"radius":{"topLeft":"0px","topRight":"0px","bottomLeft":"0px","bottomRight":"0px"}},"color":{"background":"#fffffe"}},"layout":{"type":"default"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#211915","horizontal":0,"vertical":0,"blur":12,"spread":-5,"position":""},"boxShadowHover":{"enabled":false,"color":"#000","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
 <div class="wp-block-group has-background" style="border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-left-radius:0px;border-bottom-right-radius:0px;background-color:#fffffe;margin-top:0px;margin-bottom:0px;padding-top:26px;padding-right:26px;padding-bottom:26px;padding-left:26px"><!-- wp:group {"style":{"spacing":{"blockGap":"12px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"top"}} -->
 <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"constrained"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"style":{"color":{"text":"#211915"},"elements":{"link":{"color":{"text":"#211915"}}},"typography":{"fontSize":"20px","fontStyle":"normal","fontWeight":"500"}},"cozyCustomFont":"Poppins"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:20px;font-style:normal;font-weight:500"><?php esc_html_e( 'Alex Alexender', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:20px;font-style:normal;font-weight:500">Alex Alexender</h3>
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"26px","bottom":"0px"}}}} -->
-<p style="margin-top:26px;margin-bottom:0px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, ratione voluptatem sequi nesciunt.', 'cozy-addons' ); ?></p>
+<p style="margin-top:26px;margin-bottom:0px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, ratione voluptatem sequi nesciunt.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"id":1784,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["rgb(20, 31, 44)","rgb(20, 31, 44)"]},"spacing":{"margin":{"top":"26px"}}}} -->
@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"style":{"color":{"text":"#211915"},"elements":{"link":{"color":{"text":"#211915"}}},"typography":{"fontSize":"20px","fontStyle":"normal","fontWeight":"500"}},"cozyCustomFont":"Poppins"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:20px;font-style:normal;font-weight:500"><?php esc_html_e( 'Alex Alexender', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:20px;font-style:normal;font-weight:500">Alex Alexender</h3>
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
@@ -66,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"26px","bottom":"0px"}}}} -->
-<p style="margin-top:26px;margin-bottom:0px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, ratione voluptatem sequi nesciunt.', 'cozy-addons' ); ?></p>
+<p style="margin-top:26px;margin-bottom:0px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, ratione voluptatem sequi nesciunt.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"id":1784,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["rgb(20, 31, 44)","rgb(20, 31, 44)"]},"spacing":{"margin":{"top":"26px"}}}} -->
@@ -84,7 +84,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"style":{"color":{"text":"#211915"},"elements":{"link":{"color":{"text":"#211915"}}},"typography":{"fontSize":"20px","fontStyle":"normal","fontWeight":"500"}},"cozyCustomFont":"Poppins"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:20px;font-style:normal;font-weight:500"><?php esc_html_e( 'Alex Alexender', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:20px;font-style:normal;font-weight:500">Alex Alexender</h3>
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
@@ -94,7 +94,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"26px","bottom":"0px"}}}} -->
-<p style="margin-top:26px;margin-bottom:0px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, ratione voluptatem sequi nesciunt.', 'cozy-addons' ); ?></p>
+<p style="margin-top:26px;margin-bottom:0px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, ratione voluptatem sequi nesciunt.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"id":1784,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["rgb(20, 31, 44)","rgb(20, 31, 44)"]},"spacing":{"margin":{"top":"26px"}}}} -->
@@ -112,7 +112,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"style":{"color":{"text":"#211915"},"elements":{"link":{"color":{"text":"#211915"}}},"typography":{"fontSize":"20px","fontStyle":"normal","fontWeight":"500"}},"cozyCustomFont":"Poppins"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:20px;font-style:normal;font-weight:500"><?php esc_html_e( 'Alex Alexender', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#211915;font-size:20px;font-style:normal;font-weight:500">Alex Alexender</h3>
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
@@ -122,13 +122,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"26px","bottom":"0px"}}}} -->
-<p style="margin-top:26px;margin-bottom:0px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, ratione voluptatem sequi nesciunt.', 'cozy-addons' ); ?></p>
+<p style="margin-top:26px;margin-bottom:0px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, ratione voluptatem sequi nesciunt.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"id":1784,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["rgb(20, 31, 44)","rgb(20, 31, 44)"]},"spacing":{"margin":{"top":"26px"}}}} -->
 <figure class="wp-block-image size-full" style="margin-top:26px"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/stars.png" alt="" class="wp-image-1784"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div>
 <!-- /wp:cozy-block/testimonial --></div>
 <!-- /wp:group -->

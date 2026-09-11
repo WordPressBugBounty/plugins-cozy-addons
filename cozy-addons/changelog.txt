@@ -1,3 +1,9 @@
+= 2.2.21 - Sep 11, 2026 = 
+* Fix: Testimonials block fade background effect.
+* Fix: Counter block prefix/suffix label.
+* Fix: Blocks enable/disable in bulk.
+* Update: Themes pattern registration logic.
+
 = 2.2.20 - Sep 08, 2026 = 
 * Add: Testimonial Custom Post Type.
 * Add: Source picker for content in Testimonials block.

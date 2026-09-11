@@ -12,15 +12,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:column -->
 
 <!-- wp:column {"style":{"spacing":{"blockGap":"0","padding":{"right":"0","left":"0","top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"850px","justifyContent":"left"}} -->
-<div class="wp-block-column" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cozy-block/testimonial {"blockClientId":"d96eec10-a980-4dcf-a88d-49ee623cf826","gridOptions":{"displayColumn":1,"masonryEnabled":false,"columnGap":20},"carouselOptions":{"pagination":{"enabled":false,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#011e11","color":"#fffffe","colorHover":"#011e11","activeBorderHover":"","align":"center","positionVertical":-30,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":0,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fffffe","color":"#011e11","backgroundColorHover":"#011e11","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":16,"speed":1000,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_d96eec10_a980_4dcf_a88d_49ee623cf826"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<div class="wp-block-column" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cozy-block/testimonial {"blockClientId":"210f2e09-a091-449b-be94-81fbe25d79a8","gridOptions":{"displayColumn":1,"masonryEnabled":false,"columnGap":20},"carouselOptions":{"pagination":{"enabled":false,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":3,"activeBorderRadius":10,"activeColor":"#011e11","color":"#fffffe","colorHover":"#011e11","activeBorderHover":"","align":"center","positionVertical":-30,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":0,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fffffe","color":"#011e11","backgroundColorHover":"#011e11","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":1,"spaceBetween":16,"speed":1000,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_210f2e09_a091_449b_be94_81fbe25d79a8"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"0px","left":"0px","top":"0px","bottom":"0px"}}},"layout":{"type":"default"},"cozyAnimation":{"type":"none","easingFunction":"ease","anchorPlacement":"top-center","duration":600}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px"><!-- wp:image {"scale":"cover","sizeSlug":"large","linkDestination":"none","style":{"color":{"duotone":["rgb(104, 227, 254)","rgb(104, 227, 254)"]}}} -->
 <figure class="wp-block-image size-large"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/close_quote_2.png" alt="" style="object-fit:cover"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"36px","bottom":"36px"}},"typography":{"fontSize":"24px","fontStyle":"normal","fontWeight":"600","lineHeight":1.4}},"cozyCustomFont":"Geist"} -->
-<p style="margin-top:36px;margin-bottom:36px;font-size:24px;font-style:normal;font-weight:600;line-height:1.4"><?php esc_html_e( 'I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p style="margin-top:36px;margin-bottom:36px;font-size:24px;font-style:normal;font-weight:600;line-height:1.4">I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"26px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -30,11 +30,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"},"cozyCustomFont":"Geist"} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"20px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Geist"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:20px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:20px;font-style:normal;font-weight:600;line-height:1.3">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}},"color":{"text":"#d7ecf1"},"elements":{"link":{"color":{"text":"#d7ecf1"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#d7ecf1;margin-top:2px;margin-bottom:0"><?php esc_html_e( 'Digital Marketing', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#d7ecf1;margin-top:2px;margin-bottom:0">Digital Marketing</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"36px","bottom":"36px"}},"typography":{"fontSize":"24px","fontStyle":"normal","fontWeight":"600","lineHeight":1.4}},"cozyCustomFont":"Geist"} -->
-<p style="margin-top:36px;margin-bottom:36px;font-size:24px;font-style:normal;font-weight:600;line-height:1.4"><?php esc_html_e( 'I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p style="margin-top:36px;margin-bottom:36px;font-size:24px;font-style:normal;font-weight:600;line-height:1.4">I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"26px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -58,11 +58,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"},"cozyCustomFont":"Geist"} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"20px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Geist"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:20px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:20px;font-style:normal;font-weight:600;line-height:1.3">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}},"color":{"text":"#d7ecf1"},"elements":{"link":{"color":{"text":"#d7ecf1"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#d7ecf1;margin-top:2px;margin-bottom:0"><?php esc_html_e( 'Digital Marketing', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#d7ecf1;margin-top:2px;margin-bottom:0">Digital Marketing</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -76,7 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"36px","bottom":"36px"}},"typography":{"fontSize":"24px","fontStyle":"normal","fontWeight":"600","lineHeight":1.4}},"cozyCustomFont":"Geist"} -->
-<p style="margin-top:36px;margin-bottom:36px;font-size:24px;font-style:normal;font-weight:600;line-height:1.4"><?php esc_html_e( 'I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p style="margin-top:36px;margin-bottom:36px;font-size:24px;font-style:normal;font-weight:600;line-height:1.4">I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"26px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -86,16 +86,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"},"cozyCustomFont":"Geist"} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"20px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Geist"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:20px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:20px;font-style:normal;font-weight:600;line-height:1.3">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}},"color":{"text":"#d7ecf1"},"elements":{"link":{"color":{"text":"#d7ecf1"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#d7ecf1;margin-top:2px;margin-bottom:0"><?php esc_html_e( 'Digital Marketing', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#d7ecf1;margin-top:2px;margin-bottom:0">Digital Marketing</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div>
 <!-- /wp:cozy-block/testimonial -->
 
 <!-- wp:cozy-block/container {"blockClientId":"f99b22ec-7e13-41d4-9744-d40e71569eeb","position":"relative","zIndex":"2"} -->

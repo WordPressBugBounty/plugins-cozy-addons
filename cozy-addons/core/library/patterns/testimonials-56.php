@@ -26,15 +26,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:columns --></div>
 <!-- /wp:group -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"2fa5662b-d753-4abe-9492-b5cde04c15e3","carouselOptions":{"pagination":{"enabled":false,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":4,"activeBorderRadius":10,"activeColor":"#007cba","color":"#252525","activeColorHover":"#164861","colorHover":"#a5a5a5","activeBorderHover":"","align":"center","positionVertical":-20,"left":"0px","right":"0px"},"navigation":{"enabled":false,"iconSize":15,"iconBoxWidth":35,"iconBoxHeight":35,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fff","color":"#007cba","backgroundColorHover":"#007cba","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":3.5,"spaceBetween":20,"speed":1000,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_2fa5662b_d753_4abe_9492_b5cde04c15e3"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"a264a10b-6eb0-4069-8124-fb5db5421c65","carouselOptions":{"pagination":{"enabled":false,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"width":"","style":"","color":""},"activeOffset":0,"gap":4,"activeBorderRadius":10,"activeColor":"#007cba","color":"#252525","activeColorHover":"#164861","colorHover":"#a5a5a5","activeBorderHover":"","align":"center","positionVertical":-20,"left":"0px","right":"0px"},"navigation":{"enabled":false,"iconSize":15,"iconBoxWidth":35,"iconBoxHeight":35,"borderRadius":50,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#fff","color":"#007cba","backgroundColorHover":"#007cba","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":3.5,"spaceBetween":20,"speed":1000,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_a264a10b_6eb0_4069_8124_fb5db5421c65"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"26px","bottom":"26px","left":"26px","right":"26px"}},"color":{"background":"#fffffe"},"border":{"radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"}}},"layout":{"type":"constrained","contentSize":"760px"}} -->
 <div class="wp-block-group has-background" style="border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px;background-color:#fffffe;padding-top:26px;padding-right:26px;padding-bottom:26px;padding-left:26px"><!-- wp:image {"width":"20px","height":"20px","scale":"cover","sizeSlug":"large","style":{"color":{"duotone":["rgb(12, 87, 75)","#0c574b"]}}} -->
 <figure class="wp-block-image size-large is-resized"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/close_quote_2.png" alt="" style="object-fit:cover;width:20px;height:20px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"26px"}}}} -->
-<p style="margin-top:20px;margin-bottom:26px"><?php esc_html_e( 'We must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:26px">We must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -44,11 +44,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#040f20"},"elements":{"link":{"color":{"text":"#040f20"}}}},"cozyCustomFont":"Miranda Sans"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#040f20;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4"><?php esc_html_e( 'Bravho Miles', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#040f20;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4">Bravho Miles</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#5d6065"},"elements":{"link":{"color":{"text":"#5d6065"}}},"typography":{"fontSize":"13px"}}} -->
-<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px"><?php esc_html_e( '@Ecoinvestor', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px">@Ecoinvestor</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"26px"}}}} -->
-<p style="margin-top:20px;margin-bottom:26px"><?php esc_html_e( 'We must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:26px">We must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -72,11 +72,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#040f20"},"elements":{"link":{"color":{"text":"#040f20"}}}},"cozyCustomFont":"Miranda Sans"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#040f20;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4"><?php esc_html_e( 'Bravho Miles', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#040f20;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4">Bravho Miles</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#5d6065"},"elements":{"link":{"color":{"text":"#5d6065"}}},"typography":{"fontSize":"13px"}}} -->
-<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px"><?php esc_html_e( '@Ecoinvestor', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px">@Ecoinvestor</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -90,7 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"26px"}}}} -->
-<p style="margin-top:20px;margin-bottom:26px"><?php esc_html_e( 'We must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:26px">We must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -100,11 +100,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#040f20"},"elements":{"link":{"color":{"text":"#040f20"}}}},"cozyCustomFont":"Miranda Sans"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#040f20;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4"><?php esc_html_e( 'Bravho Miles', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#040f20;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4">Bravho Miles</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#5d6065"},"elements":{"link":{"color":{"text":"#5d6065"}}},"typography":{"fontSize":"13px"}}} -->
-<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px"><?php esc_html_e( '@Ecoinvestor', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px">@Ecoinvestor</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -118,7 +118,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"26px"}}}} -->
-<p style="margin-top:20px;margin-bottom:26px"><?php esc_html_e( 'We must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:26px">We must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -128,11 +128,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#040f20"},"elements":{"link":{"color":{"text":"#040f20"}}}},"cozyCustomFont":"Miranda Sans"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#040f20;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4"><?php esc_html_e( 'Bravho Miles', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#040f20;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4">Bravho Miles</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#5d6065"},"elements":{"link":{"color":{"text":"#5d6065"}}},"typography":{"fontSize":"13px"}}} -->
-<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px"><?php esc_html_e( '@Ecoinvestor', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px">@Ecoinvestor</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -146,7 +146,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"26px"}}}} -->
-<p style="margin-top:20px;margin-bottom:26px"><?php esc_html_e( 'We must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:26px">We must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -156,11 +156,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"color":{"text":"#040f20"},"elements":{"link":{"color":{"text":"#040f20"}}}},"cozyCustomFont":"Miranda Sans"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#040f20;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4"><?php esc_html_e( 'Bravho Miles', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#040f20;margin-top:0px;margin-bottom:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1.4">Bravho Miles</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#5d6065"},"elements":{"link":{"color":{"text":"#5d6065"}}},"typography":{"fontSize":"13px"}}} -->
-<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px"><?php esc_html_e( '@Ecoinvestor', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#5d6065;font-size:13px">@Ecoinvestor</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

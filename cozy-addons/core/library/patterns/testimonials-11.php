@@ -20,15 +20,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"307d6f4d-df05-41a2-a6e8-41077e1fff07","layout":"grid","gridOptions":{"displayColumn":2,"masonryEnabled":true,"columnGap":20}} -->
-<div class="cozy-block-testimonial display-grid  has-masonry  hover-show" id="cozyBlock_307d6f4d_df05_41a2_a6e8_41077e1fff07"><div class="cozy-block-grid-wrapper "><!-- wp:cozy-block/grid -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"8b39f78d-4a5a-4a2d-b00a-05a6debbabaa","layout":"grid","gridOptions":{"displayColumn":2,"masonryEnabled":true,"columnGap":20},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-grid  has-masonry " id="cozyBlock_8b39f78d_4a5a_4a2d_b00a_05a6debbabaa"><div class="cozy-block-grid-wrapper "><!-- wp:cozy-block/grid -->
 <div class="cozy-block-grid"><!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"36px","bottom":"36px","left":"36px","right":"36px"}},"color":{"background":"#fffffe"},"border":{"radius":"16px","color":"#0114360a","style":"solid","width":"2px"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-border-color has-background" style="border-color:#0114360a;border-style:solid;border-width:2px;border-radius:16px;background-color:#fffffe;padding-top:36px;padding-right:36px;padding-bottom:36px;padding-left:36px"><!-- wp:image {"id":1906,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#0c50ff","#FFFFFF"]}}} -->
 <figure class="wp-block-image size-full"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/quote.png" alt="" class="wp-image-1906"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"16px"}}}} -->
-<p style="margin-top:20px;margin-bottom:16px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:16px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"16px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"top"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -38,11 +38,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"color":{"text":"#011436"},"elements":{"link":{"color":{"text":"#011436"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"}},"cozyCustomFont":"Unbounded"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#011436;font-size:16px;font-style:normal;font-weight:400"><?php esc_html_e( 'Stella Guru', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#011436;font-size:16px;font-style:normal;font-weight:400">Stella Guru</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"4px","bottom":"0"}},"color":{"text":"#888889"},"elements":{"link":{"color":{"text":"#888889"}}},"typography":{"fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-color has-link-color" style="color:#888889;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600"><?php esc_html_e( '@Ecoinvester', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#888889;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600">@Ecoinvester</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"16px"}}}} -->
-<p style="margin-top:20px;margin-bottom:16px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:16px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"16px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"top"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -66,11 +66,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"color":{"text":"#011436"},"elements":{"link":{"color":{"text":"#011436"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"}},"cozyCustomFont":"Unbounded"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#011436;font-size:16px;font-style:normal;font-weight:400"><?php esc_html_e( 'Stella Guru', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#011436;font-size:16px;font-style:normal;font-weight:400">Stella Guru</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"4px","bottom":"0"}},"color":{"text":"#888889"},"elements":{"link":{"color":{"text":"#888889"}}},"typography":{"fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-color has-link-color" style="color:#888889;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600"><?php esc_html_e( '@Ecoinvester', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#888889;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600">@Ecoinvester</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -84,7 +84,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"16px"}}}} -->
-<p style="margin-top:20px;margin-bottom:16px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:16px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"16px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"top"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -94,11 +94,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"color":{"text":"#011436"},"elements":{"link":{"color":{"text":"#011436"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"}},"cozyCustomFont":"Unbounded"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#011436;font-size:16px;font-style:normal;font-weight:400"><?php esc_html_e( 'Stella Guru', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#011436;font-size:16px;font-style:normal;font-weight:400">Stella Guru</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"4px","bottom":"0"}},"color":{"text":"#888889"},"elements":{"link":{"color":{"text":"#888889"}}},"typography":{"fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-color has-link-color" style="color:#888889;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600"><?php esc_html_e( '@Ecoinvester', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#888889;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600">@Ecoinvester</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -112,7 +112,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"16px"}}}} -->
-<p style="margin-top:20px;margin-bottom:16px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:16px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"16px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"top"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -122,11 +122,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"color":{"text":"#011436"},"elements":{"link":{"color":{"text":"#011436"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"}},"cozyCustomFont":"Unbounded"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#011436;font-size:16px;font-style:normal;font-weight:400"><?php esc_html_e( 'Stella Guru', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#011436;font-size:16px;font-style:normal;font-weight:400">Stella Guru</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"4px","bottom":"0"}},"color":{"text":"#888889"},"elements":{"link":{"color":{"text":"#888889"}}},"typography":{"fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-color has-link-color" style="color:#888889;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600"><?php esc_html_e( '@Ecoinvester', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#888889;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600">@Ecoinvester</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -140,7 +140,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"20px","bottom":"16px"}}}} -->
-<p style="margin-top:20px;margin-bottom:16px"><?php esc_html_e( 'Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.', 'cozy-addons' ); ?></p>
+<p style="margin-top:20px;margin-bottom:16px">Thanks to their strategic design and marketing approach, our SaaS business saw a significant increase in conversions and customer engagement. The team was professional, dependable, and focused on delivering results that truly mattered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"16px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"top"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -150,11 +150,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="font-size:14px"><!-- wp:heading {"level":4,"style":{"color":{"text":"#011436"},"elements":{"link":{"color":{"text":"#011436"}}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"400"}},"cozyCustomFont":"Unbounded"} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#011436;font-size:16px;font-style:normal;font-weight:400"><?php esc_html_e( 'Stella Guru', 'cozy-addons' ); ?></h4>
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#011436;font-size:16px;font-style:normal;font-weight:400">Stella Guru</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"4px","bottom":"0"}},"color":{"text":"#888889"},"elements":{"link":{"color":{"text":"#888889"}}},"typography":{"fontStyle":"normal","fontWeight":"600"}},"cozyCustomFont":"Inter"} -->
-<p class="has-text-color has-link-color" style="color:#888889;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600"><?php esc_html_e( '@Ecoinvester', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#888889;margin-top:4px;margin-bottom:0;font-style:normal;font-weight:600">@Ecoinvester</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

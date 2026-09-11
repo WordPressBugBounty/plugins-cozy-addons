@@ -150,6 +150,16 @@
 					nonce: activeStatusNonce,
 				},
 				success: function (response) {
+					if (response.success && response.data.blocks.length > 0) {
+						response.data.blocks.map((blockName) => {
+							if (state === "activate") {
+								$(`#cozy-block--${blockName}`).prop("checked", true);
+							} else {
+								$(`#cozy-block--${blockName}`).prop("checked", false);
+							}
+						});
+					}
+
 					// console.log(`${blockName}: Active status(${isChecked})`);
 				},
 				error: function (xhr, status, error) {
@@ -462,6 +472,5 @@
 
 				fromResetFlag = true;
 			});
-
 	});
 })(jQuery);

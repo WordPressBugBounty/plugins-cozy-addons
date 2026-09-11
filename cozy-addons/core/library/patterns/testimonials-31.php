@@ -10,15 +10,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"96080094-0008-483a-bb94-3bfedd3350a4","layout":"grid","gridOptions":{"displayColumn":2,"masonryEnabled":true,"columnGap":26}} -->
-<div class="cozy-block-testimonial display-grid  has-masonry  hover-show" id="cozyBlock_96080094_0008_483a_bb94_3bfedd3350a4"><div class="cozy-block-grid-wrapper "><!-- wp:cozy-block/grid -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"4b884361-2c55-4816-8fed-0076f72fa3b9","layout":"grid","gridOptions":{"displayColumn":2,"masonryEnabled":true,"columnGap":26},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-grid  has-masonry " id="cozyBlock_4b884361_2c55_4816_8fed_0076f72fa3b9"><div class="cozy-block-grid-wrapper "><!-- wp:cozy-block/grid -->
 <div class="cozy-block-grid"><!-- wp:group {"style":{"spacing":{"padding":{"top":"36px","bottom":"36px","left":"26px","right":"26px"}},"border":{"radius":"10px","color":"#ffffff1c","width":"1px"}},"layout":{"type":"constrained","contentSize":"455px"},"cozyAnimation":{"type":"fade-up","easingFunction":"ease","anchorPlacement":"top-center","duration":600}} -->
 <div class="wp-block-group has-border-color" style="border-color:#ffffff1c;border-width:1px;border-radius:10px;padding-top:36px;padding-right:26px;padding-bottom:36px;padding-left:26px"><!-- wp:image {"scale":"cover","sizeSlug":"large","style":{"border":{"radius":"50px"},"color":{"duotone":["#fd8f14","#FFFFFF"]}}} -->
 <figure class="wp-block-image size-large has-custom-border"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/stars.png" alt="" style="border-radius:50px;object-fit:cover"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#d9d9d9"},"elements":{"link":{"color":{"text":"#d9d9d9"}}},"spacing":{"margin":{"top":"16px","bottom":"26px"}}}} -->
-<p class="has-text-color has-link-color" style="color:#d9d9d9;margin-top:16px;margin-bottom:26px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#d9d9d9;margin-top:16px;margin-bottom:26px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"12px","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -28,11 +28,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Inter"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:0px;margin-bottom:0px;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:0px;margin-bottom:0px;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}}} -->
-<p style="font-size:14px"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="font-size:14px">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#d9d9d9"},"elements":{"link":{"color":{"text":"#d9d9d9"}}},"spacing":{"margin":{"top":"16px","bottom":"26px"}}}} -->
-<p class="has-text-color has-link-color" style="color:#d9d9d9;margin-top:16px;margin-bottom:26px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#d9d9d9;margin-top:16px;margin-bottom:26px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"12px","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -56,11 +56,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Inter"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:0px;margin-bottom:0px;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:0px;margin-bottom:0px;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}}} -->
-<p style="font-size:14px"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="font-size:14px">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -74,7 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#d9d9d9"},"elements":{"link":{"color":{"text":"#d9d9d9"}}},"spacing":{"margin":{"top":"16px","bottom":"26px"}}}} -->
-<p class="has-text-color has-link-color" style="color:#d9d9d9;margin-top:16px;margin-bottom:26px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#d9d9d9;margin-top:16px;margin-bottom:26px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"12px","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -84,11 +84,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Inter"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:0px;margin-bottom:0px;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:0px;margin-bottom:0px;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}}} -->
-<p style="font-size:14px"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="font-size:14px">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -102,7 +102,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#d9d9d9"},"elements":{"link":{"color":{"text":"#d9d9d9"}}},"spacing":{"margin":{"top":"16px","bottom":"26px"}}}} -->
-<p class="has-text-color has-link-color" style="color:#d9d9d9;margin-top:16px;margin-bottom:26px"><?php esc_html_e( 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,', 'cozy-addons' ); ?></p>
+<p class="has-text-color has-link-color" style="color:#d9d9d9;margin-top:16px;margin-bottom:26px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"12px","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -112,11 +112,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"spacing":{"margin":{"top":"0px","bottom":"0px"}},"elements":{"link":{"color":{"text":"#fffffe"}}},"color":{"text":"#fffffe"}},"cozyCustomFont":"Inter"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:0px;margin-bottom:0px;font-size:18px;font-style:normal;font-weight:600;line-height:1.3"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;margin-top:0px;margin-bottom:0px;font-size:18px;font-style:normal;font-weight:600;line-height:1.3">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}}} -->
-<p style="font-size:14px"><?php esc_html_e( 'Marketing Coordinator', 'cozy-addons' ); ?></p>
+<p style="font-size:14px">Marketing Coordinator</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

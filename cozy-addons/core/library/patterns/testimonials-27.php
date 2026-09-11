@@ -8,15 +8,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <h2 class="wp-block-heading has-text-align-center has-text-color has-link-color" style="color:#fffffe;margin-bottom:60px;font-size:44px;font-style:normal;font-weight:600;line-height:1.2"><?php esc_html_e( 'Testimonials', 'cozy-addons' ); ?></h2>
 <!-- /wp:heading -->
 
-<!-- wp:cozy-block/testimonial {"blockClientId":"4c344bff-8faa-4ccf-aa19-c846fc729d33","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"color":"#7869ff3d","style":"solid","width":"6px"},"activeOffset":0,"gap":6,"activeBorderRadius":10,"activeColor":"#7768ff","color":"#fffffe","colorHover":"#7768ff","activeBorderHover":"","align":"center","positionVertical":-36,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":4,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#7768ff","color":"#141313","backgroundColorHover":"#ff9900","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":3,"spaceBetween":26,"speed":1500,"smoothTransition":false}}} -->
-<div class="cozy-block-testimonial display-carousel   swiper-container hover-show" id="cozyBlock_4c344bff_8faa_4ccf_aa19_c846fc729d33"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
+<!-- wp:cozy-block/testimonial {"blockClientId":"659f16b6-bb84-47a9-9eb8-e3e18aafc451","carouselOptions":{"pagination":{"enabled":true,"width":10,"height":10,"borderRadius":10,"activeWidth":10,"activeHeight":10,"activeBorder":{"color":"#7869ff3d","style":"solid","width":"6px"},"activeOffset":0,"gap":6,"activeBorderRadius":10,"activeColor":"#7768ff","color":"#fffffe","colorHover":"#7768ff","activeBorderHover":"","align":"center","positionVertical":-36,"left":"0px","right":"0px"},"navigation":{"enabled":true,"iconSize":18,"iconBoxWidth":44,"iconBoxHeight":44,"borderRadius":4,"borderType":"none","borderWidth":1,"borderColor":"#000","borderColorHover":"","backgroundColor":"#7768ff","color":"#141313","backgroundColorHover":"#ff9900","colorHover":"#fff","padding":{"top":5,"right":5,"bottom":5,"left":5}},"sliderOptions":{"loop":true,"autoplay":{"enabled":true,"pauseOnMouseEnter":true,"delay":2500},"reverseDirection":false,"centeredSlides":false,"slidesPerView":3,"spaceBetween":26,"speed":1500,"smoothTransition":false}},"className":"hover-show"} -->
+<div class="cozy-block-testimonial display-carousel   swiper-container" id="cozyBlock_659f16b6_bb84_47a9_9eb8_e3e18aafc451"><div class="cozy-block-carousel-wrapper swiper-wrapper"><!-- wp:cozy-block/carousel -->
 <div class="cozy-block-carousel swiper-slide"><!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"26px","left":"26px","top":"36px","bottom":"36px"}},"color":{"background":"#141313"},"border":{"radius":"10px"}},"layout":{"type":"constrained","contentSize":"319px"}} -->
 <div class="wp-block-group has-background" style="border-radius:10px;background-color:#141313;margin-top:0;margin-bottom:0;padding-top:36px;padding-right:26px;padding-bottom:36px;padding-left:26px"><!-- wp:image {"id":1784,"scale":"cover","sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["rgb(252, 168, 1)","rgb(252, 168, 1)"]}}} -->
 <figure class="wp-block-image size-full"><img src="https://plugins.cozythemes.com/cozy-addons/assets/media/stars.png" alt="" class="wp-image-1784" style="object-fit:cover"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"22px","bottom":"26px"}}}} -->
-<p style="margin-top:22px;margin-bottom:26px"><?php esc_html_e( 'This is not only beautiful but also highly functional. Every detail has been carefully considered, making the space not only aesthetically pleasing but also incredibly user-friendly.', 'cozy-addons' ); ?></p>
+<p style="margin-top:22px;margin-bottom:26px">This is not only beautiful but also highly functional. Every detail has been carefully considered, making the space not only aesthetically pleasing but also incredibly user-friendly.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -26,11 +26,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Plus Jakarta Sans"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:500">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"14px"}}} -->
-<p style="margin-top:2px;margin-bottom:0;font-size:14px;font-style:normal;font-weight:400"><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p style="margin-top:2px;margin-bottom:0;font-size:14px;font-style:normal;font-weight:400">Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"22px","bottom":"26px"}}}} -->
-<p style="margin-top:22px;margin-bottom:26px"><?php esc_html_e( 'This is not only beautiful but also highly functional. Every detail has been carefully considered, making the space not only aesthetically pleasing but also incredibly user-friendly.', 'cozy-addons' ); ?></p>
+<p style="margin-top:22px;margin-bottom:26px">This is not only beautiful but also highly functional. Every detail has been carefully considered, making the space not only aesthetically pleasing but also incredibly user-friendly.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -54,11 +54,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Plus Jakarta Sans"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:500">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"14px"}}} -->
-<p style="margin-top:2px;margin-bottom:0;font-size:14px;font-style:normal;font-weight:400"><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p style="margin-top:2px;margin-bottom:0;font-size:14px;font-style:normal;font-weight:400">Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -72,7 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"22px","bottom":"26px"}}}} -->
-<p style="margin-top:22px;margin-bottom:26px"><?php esc_html_e( 'This is not only beautiful but also highly functional. Every detail has been carefully considered, making the space not only aesthetically pleasing but also incredibly user-friendly.', 'cozy-addons' ); ?></p>
+<p style="margin-top:22px;margin-bottom:26px">This is not only beautiful but also highly functional. Every detail has been carefully considered, making the space not only aesthetically pleasing but also incredibly user-friendly.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -82,11 +82,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Plus Jakarta Sans"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:500">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"14px"}}} -->
-<p style="margin-top:2px;margin-bottom:0;font-size:14px;font-style:normal;font-weight:400"><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p style="margin-top:2px;margin-bottom:0;font-size:14px;font-style:normal;font-weight:400">Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -100,7 +100,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"22px","bottom":"26px"}}}} -->
-<p style="margin-top:22px;margin-bottom:26px"><?php esc_html_e( 'This is not only beautiful but also highly functional. Every detail has been carefully considered, making the space not only aesthetically pleasing but also incredibly user-friendly.', 'cozy-addons' ); ?></p>
+<p style="margin-top:22px;margin-bottom:26px">This is not only beautiful but also highly functional. Every detail has been carefully considered, making the space not only aesthetically pleasing but also incredibly user-friendly.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -110,11 +110,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Plus Jakarta Sans"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:500">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"14px"}}} -->
-<p style="margin-top:2px;margin-bottom:0;font-size:14px;font-style:normal;font-weight:400"><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p style="margin-top:2px;margin-bottom:0;font-size:14px;font-style:normal;font-weight:400">Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -128,7 +128,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"22px","bottom":"26px"}}}} -->
-<p style="margin-top:22px;margin-bottom:26px"><?php esc_html_e( 'This is not only beautiful but also highly functional. Every detail has been carefully considered, making the space not only aesthetically pleasing but also incredibly user-friendly.', 'cozy-addons' ); ?></p>
+<p style="margin-top:22px;margin-bottom:26px">This is not only beautiful but also highly functional. Every detail has been carefully considered, making the space not only aesthetically pleasing but also incredibly user-friendly.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"20px"},"blockGap":"12px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"},"cozyHoverEffect":{"hasOverflow":false,"overflow":"hidden","hasZIndex":false,"zIndex":0,"boxShadow":{"enabled":false,"color":"#413f3f","horizontal":0,"vertical":0,"blur":10,"spread":0,"position":""},"boxShadowHover":{"enabled":false,"color":"#01143629","horizontal":0,"vertical":0,"blur":10,"spread":-3,"position":""},"transformEnabled":false,"transform":{"translateX":0,"translateY":0,"rotate":0,"scale":1.02},"transformDefaultEnabled":false,"transformDefault":{"translateX":0,"translateY":0,"rotate":0,"scale":1}}} -->
@@ -138,15 +138,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"14px"}},"layout":{"type":"constrained","contentSize":"528px"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;font-size:14px"><!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"#fffffe"}}},"typography":{"fontSize":"18px","fontStyle":"normal","fontWeight":"500"},"color":{"text":"#fffffe"}},"cozyCustomFont":"Plus Jakarta Sans"} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:500"><?php esc_html_e( 'Jerome Bell', 'cozy-addons' ); ?></h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#fffffe;font-size:18px;font-style:normal;font-weight:500">Jerome Bell</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"2px","bottom":"0"}},"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"14px"}}} -->
-<p style="margin-top:2px;margin-bottom:0;font-size:14px;font-style:normal;font-weight:400"><?php esc_html_e( 'Customer', 'cozy-addons' ); ?></p>
+<p style="margin-top:2px;margin-bottom:0;font-size:14px;font-style:normal;font-weight:400">Customer</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
-<!-- /wp:cozy-block/carousel --></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div></div>
+<!-- /wp:cozy-block/carousel --></div></div><div class="swiper-button-prev cozy-block-button-prev"></div><div class="swiper-button-next cozy-block-button-next"></div><div class="swiper-pagination cozy-pagination"></div>
 <!-- /wp:cozy-block/testimonial --></div>
 <!-- /wp:group -->
