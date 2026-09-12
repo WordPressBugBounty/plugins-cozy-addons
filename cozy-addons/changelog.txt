@@ -1,3 +1,6 @@
+= 2.2.22 - Sep 12, 2026 = 
+* Fix: Testimonials block carousel pagination styles.
+
 = 2.2.21 - Sep 11, 2026 = 
 * Fix: Testimonials block fade background effect.
 * Fix: Counter block prefix/suffix label.

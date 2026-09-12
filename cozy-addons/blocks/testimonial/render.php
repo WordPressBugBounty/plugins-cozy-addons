@@ -485,12 +485,12 @@ $block_styles = "
     }
 }
 
-.block-$block_id .swiper-button-prev:after,
-.block-$block_id .swiper-button-next:after {
+.cozy-block-wrapper.block-$block_id .swiper-button-prev:after,
+.cozy-block-wrapper.block-$block_id .swiper-button-next:after {
 	font-size: {$nav['size']}px;
 }
-.block-$block_id .swiper-button-prev,
-.block-$block_id .swiper-button-next {
+.cozy-block-wrapper.block-$block_id .swiper-button-prev,
+.cozy-block-wrapper.block-$block_id .swiper-button-next {
 	width: {$nav['box_width']}px;
 	height: {$nav['box_height']}px;
 	border-style: {$nav['border']['style']};
@@ -500,23 +500,23 @@ $block_styles = "
 	color: {$nav['color']['icon']};
 	background-color: {$nav['color']['bg']};
 }
-.block-$block_id .swiper-button-prev:hover,
-.block-$block_id .swiper-button-next:hover {
+.cozy-block-wrapper.block-$block_id .swiper-button-prev:hover,
+.cozy-block-wrapper.block-$block_id .swiper-button-next:hover {
 	color: {$nav['color']['icon_hover']};
 	background-color: {$nav['color']['bg_hover']};
 	border-color: {$nav['color']['border_hover']};
 }
 
-.block-$block_id .swiper-pagination-bullets .swiper-pagination-bullet {
+.cozy-block-wrapper.block-$block_id .swiper-pagination-bullets .swiper-pagination-bullet {
     margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet_styles['gap']}px);
 }
-.block-$block_id .swiper-pagination {
+.cozy-block-wrapper.block-$block_id .swiper-pagination {
 	bottom: {$bullet_styles['bottom']}px;
 	{$bullet_styles['left']}
 	{$bullet_styles['right']}
 	text-align: {$bullet_styles['align']};
 }
-.block-$block_id .swiper-pagination-bullet {
+.cozy-block-wrapper.block-$block_id .swiper-pagination-bullet {
 	width: {$bullet_styles['width']}px;
 	height: {$bullet_styles['height']}px;
 	border-radius: {$bullet_styles['radius']}px;
@@ -526,7 +526,7 @@ $block_styles = "
 		background-color: {$bullet_styles['color']['default_hover']};
 	}
 }
-.block-$block_id .swiper-pagination-bullet-active {
+.cozy-block-wrapper.block-$block_id .swiper-pagination-bullet-active {
     width: {$bullet_styles['active']['width']}px;
     height: {$bullet_styles['active']['height']}px;
     {$bullet_styles['active']['border']}
