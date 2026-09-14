@@ -1,6 +1,6 @@
 (function ($) {
 	window["cozyBlockScrollAnimationInit"] = (clientId) => {
-		const { animate, onScroll, utils } = anime;
+		const { animate, onScroll } = anime;
 
 		const n = clientId.replace(/-/g, "_");
 		const attributes = window[`cozyScrollAnimation_${n}`];

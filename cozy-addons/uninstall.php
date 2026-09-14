@@ -36,8 +36,10 @@ delete_option( 'ca-cpt--faq-templates' );
 
 delete_option( 'ca-cpt--config' );
 
-$blocks        = require_once WP_PLUGIN_DIR . '/cozy-addons/blocks/blocks-manifest.php';
-$active_blocks = array_keys( $blocks );
-foreach ( $active_blocks as $block_name ) {
-	delete_option( 'cozy-block--' . $block_name );
+$blocks = require_once WP_PLUGIN_DIR . '/cozy-addons/blocks/blocks-manifest.php';
+if ( is_array( $blocks ) ) {
+	$active_blocks = array_keys( $blocks );
+	foreach ( $active_blocks as $block_name ) {
+		delete_option( 'cozy-block--' . $block_name );
+	}
 }

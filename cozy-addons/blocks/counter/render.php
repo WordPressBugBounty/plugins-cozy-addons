@@ -135,7 +135,7 @@ add_action(
 );
 
 $classes   = array();
-$classes[] = 'cozy-block-wrapper';
+$classes[] = 'cozy-block-wrapper cozy-block-counter-wrapper';
 if ( 'row' === $attributes['blockStyle']['layout'] ) {
 	$classes[] = 'cozy-block__counter-row';
 } else {

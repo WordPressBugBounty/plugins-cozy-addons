@@ -1,24 +1,25 @@
 (function ($) {
 	window["cozyBlockCounterInit"] = (e) => {
 		const { createTimer, utils } = anime;
+
 		const n = e.replace(/-/gi, "_");
 		const blockOptions = window[`cozyCounter_${n}`];
 		const counterClass = `#cozyBlock_${n}`;
-		const $cozyCounter = jQuery(counterClass);
+		const $cozyCounter = $(counterClass);
 
 		if (!$cozyCounter.length) return;
 
-		function isElementInViewport($el) {
-			if (!$el || !$el.length) return false;
+		function isElementInViewport() {
+			if (!$cozyCounter || !$cozyCounter.length) return false;
 
-			const rect = $el[0].getBoundingClientRect();
+			const rect = $cozyCounter[0].getBoundingClientRect();
 			return (
 				rect.top >= 0 &&
 				rect.left >= 0 &&
 				rect.bottom <=
-					(jQuery(window).height() || document.documentElement.clientHeight) &&
+					($(window).height() || document.documentElement.clientHeight) &&
 				rect.right <=
-					(jQuery(window).width() || document.documentElement.clientWidth)
+					($(window).width() || document.documentElement.clientWidth)
 			);
 		}
 
@@ -42,7 +43,7 @@
 					? endNumberStr.split(".")[1].length
 					: 0;
 
-				const $counterEl = jQuery(counterClass + " span");
+				const $counterEl = $(counterClass + " span");
 
 				// ease-out: fast jump at the start, gentle settle at the end
 				const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));

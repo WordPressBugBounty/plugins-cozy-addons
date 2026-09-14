@@ -1,3 +1,6 @@
+= 2.2.23 - Sep 14, 2026 = 
+* Fix: Counter block CSS conflict issue.
+
 = 2.2.22 - Sep 12, 2026 = 
 * Fix: Testimonials block carousel pagination styles.
 
