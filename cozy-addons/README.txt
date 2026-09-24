@@ -1,140 +1,181 @@
-=== Cozy Blocks – Website Builder for Block Editor | 59 Gutenberg Blocks, 700+ Patterns, 50+ Templates ===
+=== Cozy Blocks – Website Builder for WordPress Block Editor | Gutenberg Blocks, Patterns & Templates ===
 Contributors: CozyThemes
 Tags: gutenberg blocks, page builder, block patterns, woocommerce blocks, full site editing
 Requires PHP: 7.4
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.2.23
+Stable tag: 2.2.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Build complete websites in the WordPress Block Editor with 59 Gutenberg blocks, 700+ ready-made patterns, and 50+ starter templates.
+Build WordPress websites faster with Gutenberg blocks, ready-made patterns, starter templates, WooCommerce, and many more.
 
 == Description ==
-[Cozy Blocks](https://cozythemes.com/cozy-addons/) is a complete website builder for the WordPress Block Editor.
+<strong>Build Complete WordPress Websites—Without Leaving the Block Editor</strong>
 
-With 58+ advanced Gutenberg blocks, 700+ professionally designed patterns, and 50+ starter templates, you can build and launch complete websites faster—all inside WordPress. 
+[Cozy Blocks](https://cozythemes.com/cozy-addons) is an all-in-one website-building toolkit for the native WordPress Block Editor. Create professional business websites, WooCommerce stores, blogs, magazines, portfolios, and service sites using advanced Gutenberg blocks, ready-made patterns, starter templates, dynamic content layouts, and conversion tools.
 
-No separate page builder. No proprietary content format. No lock-in.
+Build faster without moving to a separate page builder or proprietary content system.
 
-Quick Links
+<strong>58+ advanced blocks · 700+ ready-made patterns · 50+ starter templates · WooCommerce tools · Popup Builder · Blog and magazine layouts · Full Site Editing support</strong>
 
-[Live Demo](https://cozythemes.com/cozy-addons/) | [Design Library](https://cozythemes.com/website-templates/) | [World Class Support](https://cozythemes.com/support) | [Free vs Pro](https://cozythemes.com/pricing-and-plans/#free-vs-pro) | [Why Choose Us](https://cozythemes.com/reviews-ratings) | [Get Pro](https://cozythemes.com/pricing-and-plans)
+<strong>Start your way:</strong>
 
-= See it in Action =
-
-Getting Started with Cozy Blocks — Watch the Walkthrough
+* Build custom layouts with flexible Gutenberg blocks.
+* Insert professionally designed patterns for pages and sections.
+* Import a starter template and customize it in the WordPress Site Editor.
 
 https://www.youtube.com/watch?v=fNwIqedPyEU
 
-<a href="https://app.zipwp.com/wp?plugins=cozy-addons" target="_blank" rel="">Try Cozy Blocks on a Free Demo Site</a>
+<a href="https://app.zipwp.com/wp?plugins=cozy-addons" target="_blank" rel="">Try Cozy Blocks Live</a>
 
 = Why Cozy Blocks? =
 
-Cozy Blocks brings together <strong>ready-made designs, powerful building tools, and advanced WordPress features</strong> so you can build professional websites faster—without leaving the Block Editor.
+Start with a complete starter template, insert a ready-made pattern, or create custom layouts with flexible Gutenberg blocks. Cozy Blocks brings website building, ecommerce, publishing, design, and conversion tools into the native WordPress Block Editor.
 
-<ul>
-<li><strong>700+ ready-made patterns</strong> to build pages and sections faster</li>
-<li><strong>50+ complete starter templates</strong> to launch websites for different niches</li>
-<li><strong>58+ advanced Gutenberg blocks</strong> for layouts, content, marketing, blogs, magazines, and WooCommerce</li>
-<li><strong>Advanced design controls</strong> for typography, spacing, animations, hover effects, and responsive layouts</li>
-<li><strong>Dedicated WooCommerce tools</strong> to create richer, more engaging online stores</li>
-<li><strong>Dynamic post & magazine blocks</strong> for blogs, news sites, publishers, and content-heavy websites</li>
-<li><strong>Block Enable/Disable Manager</strong> to control which blocks are active on your site</li>
-<li><strong>Native WordPress editing</strong> with no proprietary page-builder interface or locked-in content</li>
-</ul>
+* <strong>Start faster</strong> — Choose from 700+ ready-made patterns and 50+ starter templates for business websites, services, blogs, portfolios, ecommerce stores, and more.
+* <strong>Build with flexibility</strong> — Use 58+ Gutenberg blocks for layouts, content, marketing, navigation, publishing, and ecommerce.
+* <strong>Create richer WooCommerce stores</strong> — Build product grids, carousels, categories, featured products, quick views, wishlists, reviews, and promotional store sections directly in WordPress.
+* <strong>Publish better content</strong> — Create engaging blog, news, and magazine layouts with post grids, carousels, sliders, featured posts, related posts, tickers, and category-based content sections.
+* <strong>Grow your audience</strong> — Add popups, slide-ins, announcement bars, calls to action, pricing tables, countdowns, testimonials, and other conversion-focused sections.
+* <strong>Build dynamic websites</strong> — Display portfolios, FAQs, testimonials, posts, products, and other structured content with dedicated tools and flexible layouts.
+* <strong>Design with more control</strong> — Customize responsive layouts, typography, colors, spacing, animations, hover effects, and device visibility without writing custom code for common changes.
+* <strong>Keep your site lean</strong> — Enable only the Cozy Blocks features and blocks you need with the Block Enable/Disable Manager.
+* <strong>Stay native to WordPress</strong> — Work inside the familiar WordPress Block Editor and Site Editor without relying on a separate proprietary page-builder interface or locked-in content format.
 
-Everything works together to give you a faster, more flexible way to build complete websites with WordPress.
+<strong>From one section to a complete website, Cozy Blocks gives you the tools to build, customize, publish, sell, and grow with WordPress.</strong>
 
-Whether you're building client websites, launching a business, publishing content, or running a WooCommerce store, <strong>Cozy Blocks helps you build more—without moving away from WordPress.</strong>
+= 🛒 WooCommerce Store Builder =
 
-= 🚀 50+ Starter Templates to Launch Faster =
+<strong>Create richer online stores with WooCommerce blocks.</strong>
 
-Why build a website section by section when you can start with a complete design?
+Cozy Blocks gives you the blocks and layouts to build, showcase, and customize your WooCommerce store directly in the WordPress Block Editor.
 
-Cozy Blocks includes 50+ complete homepage and starter templates designed for real-world websites.
+<strong>Build Your Store</strong>
+Product Grid · Product Carousel · Product Slider · Featured Products · Product Categories
 
-* 🏢 Agency
-* ✍️ Author & Writer
-* 📰 Blog & Magazine
-* 💼 Business
-* ❤️ Charity & Nonprofit
-* 🎓 Education
-* 🏠 Home Services
-* 🍽️ Restaurant & Hotel
-* 📷 Photography
-* 🖥️ Portfolio
-* 🚀 SaaS & Startup
-* 🛒 WooCommerce Store
+<strong>Enhance Shopping</strong>
+Add to Cart · Product Reviews · Quick View · Wishlist · Product Showcase Tabs
 
-Start with a complete website concept, then customize it around your brand.
+From product showcases to promotional store sections, build a more flexible WooCommerce store without leaving the WordPress editing workflow.
+
+= 📰 Blog, News & Magazine Builder =
+
+<strong>Turn WordPress posts into engaging publishing layouts.</strong>
+
+Cozy Blocks gives you the blocks and layouts to build rich blogs, news sites, online magazines, and content-driven websites directly with Gutenberg.
+
+<strong>Build Editorial Layouts</strong>
+Post Grid · Post Carousel · Post Slider · Featured Posts · Magazine Grid · Magazine List
+
+<strong>Help Visitors Discover More</strong>
+Trending Posts · Popular Posts · Related Posts · Categorized Post Tabs · Featured Post Tabs
+
+<strong>Keep Stories Visible</strong>
+News Ticker · Advanced Categories · Post Views · Post Comments
+
+Go beyond a standard blog archive and create engaging, structured content experiences with WordPress blocks.
+
+= 📈 Business Growth Toolkit =
+
+<strong>Build the sections that help your website communicate, build trust, and drive action.</strong>
+
+Cozy Blocks includes practical tools for business websites and client projects.
+
+<strong>Build Trust</strong>
+Testimonials · Team · Brand Showcase · Portfolio · Reviews
+
+<strong>Drive Action</strong>
+CTA · Pricing Table · Countdown · Popup · Featured Content
+
+<strong>Present Your Business</strong>
+Services · Features · Statistics · Portfolio · FAQ · Contact
+
+<strong>Create Better Experiences</strong>
+Mega Menu · Tabs · Accordion · Sidebar Panel · Slider · Gallery · Before/After
+
+Use the right block for the job instead of relying on a collection of basic text and image elements.
+
+= ⚡ 58+ Advanced Gutenberg Blocks =
+
+<strong>Powerful blocks for real-world WordPress websites.</strong>
+
+Build flexible layouts, engaging content, marketing sections, publishing experiences, and WooCommerce stores with a versatile collection of advanced Gutenberg blocks.
+
+<strong>Layout & Navigation</strong>
+Container · Mega Menu · Tabs · Accordion · Toggle · Sidebar Panel · Breadcrumbs
+
+<strong>Content & Marketing</strong>
+Slider · Gallery · CTA · Pricing Table · Counter · Progress Bar · Countdown · Popup
+
+<strong>Blog & Publishing</strong>
+Post Grid/Carousel · Post Slider · Featured Post · Popular Post · Trending Post · Related Post · Magazine Grid · Magazine List · News Ticker
+
+<strong>WooCommerce</strong>
+Product Grid/Carousel · Product Category · Featured Product · Product Slider · Add to Cart · Product Reviews · Quick View · Wishlist · Product Showcase Tabs
+
+<strong>Business & Showcase</strong>
+Testimonials · Team · Portfolio Gallery · Social Icons · Social Shares · Before/After
+
+And more for building complete layouts, content sections, and interactive experiences.
 
 = 🎨 700+ Ready-Made Patterns =
 
-Cozy Blocks' Design Library gives you 700+ professionally designed block patterns that you can insert directly into your WordPress website.
+<strong>Start with a ready-made section and make it your own.</strong>
 
-<strong>Pattern categories include:</strong>
-Hero Sections | Page Headers | Footers | About Us | Services & Features | Pricing Tables |
-Testimonials | Team | Portfolio | Blog & Posts | Call to Action | FAQ | Contact Us |
-Newsletter | Job Board | Stats & Numbers | Brand Showcase | Why Choose Us |
-Featured Products | WooCommerce
+Choose from professionally designed patterns for: Hero · About · Services · Features · Pricing · Testimonials · Team · Portfolio · Blog · FAQ · Contact · CTA · Newsletter · Statistics · Brand Showcase · WooCommerce
 
-= ⚡ 58 Advanced Gutenberg Blocks =
+Insert, customize, and launch — without building every section from scratch.
 
-Give the WordPress Block Editor the tools needed to build modern, interactive websites.
+= 🚀 50+ Starter Templates =
 
-<strong>Layout & Navigation</strong>
-[Cozy Container](https://cozyblock.cozythemes.com/cozy-container-gutenberg-block/) | [Advanced Mega Menu](https://cozyblock.cozythemes.com/mega-menu-gutenberg-block/) | [Advanced Tabs](https://cozyblock.cozythemes.com/advanced-tabs-gutenberg-block/) | [Accordion](https://cozyblock.cozythemes.com/accordion-gutenberg-block/) | [Sidebar Panel](https://cozyblock.cozythemes.com/sidebar-panel-gutenberg-block/) |
-[Toggle Content](https://cozyblock.cozythemes.com/pricing-table-gutenberg-block/#toggle-content) | [Back to Top](https://cozyblock.cozythemes.com/back-to-top-gutenberg-block/) | [Breadcrumbs](https://cozyblock.cozythemes.com/related-post-gutenberg-block/)
+<strong>Start with a complete website, not a blank page.</strong>
 
-<strong>Content & Marketing</strong>
-[Slider](https://cozyblock.cozythemes.com/slider-gutenberg-block/) | [Advanced Gallery](https://cozyblock.cozythemes.com/advanced-gallery-gutenberg-block/) | [Featured Content Box](https://cozyblock.cozythemes.com/featured-content-box-gutenberg-block/) | [Icon List](https://cozyblock.cozythemes.com/icon-list-gutenberg-block/) | [Icon Picker](https://cozyblock.cozythemes.com/icon-picker-gutenberg-block/) | [Call to Action(CTA)](https://cozyblock.cozythemes.com/call-to-action-gutenberg-block/) |
-[Counter](https://cozyblock.cozythemes.com/counter-gutenberg-block/) | [Progress Bar](https://cozyblock.cozythemes.com/progress-bar-gutenberg-block/) | [Pricing Table](https://cozyblock.cozythemes.com/pricing-table-gutenberg-block/) | [Countdown Timer](https://cozyblock.cozythemes.com/countdown-timer-gutenberg-block/) | [Popup Builder](https://cozyblock.cozythemes.com/popup-builder-gutenberg-block/) | [Scroll Animation](https://cozyblock.cozythemes.com/scroll-animation-gutenberg-block/)
+Choose from ready-made templates for: Agency · Business · SaaS & Startup · Home Services · Blog & Magazine · Charity & Nonprofit · Education · Restaurant & Hotel · Photography · Portfolio · Author & Writer · WooCommerce
 
-<strong>Blog, Posts & Magazine</strong>
-[Post Grid/Carousel](https://cozyblock.cozythemes.com/post-carousel-gutenberg-block/) | [Post Slider](https://cozyblock.cozythemes.com/post-slider-gutenberg-block/) | [Popular Post](https://cozyblock.cozythemes.com/popular-post-gutenberg-block/) | [Trending Post](https://cozyblock.cozythemes.com/trending-post-gutenberg-block/) |
-[Featured Post](https://cozyblock.cozythemes.com/featured-post-gutenberg-block/) | [Featured Post Tabs](https://cozyblock.cozythemes.com/featured-post-tabs-gutenberg-block/) | [Categorized Post Tabs](https://cozyblock.cozythemes.com/categorized-post-tabs-gutenberg-block/) |
-[Magazine Grid](https://cozyblock.cozythemes.com/magazine-grid-gutenberg-block/) | [Magazine List](https://cozyblock.cozythemes.com/magazine-list-gutenberg-block/) | [Related Post](https://cozyblock.cozythemes.com/related-post-gutenberg-block/) | [News Ticker](https://cozyblock.cozythemes.com/news-ticker-gutenberg-block/) |
-[Advanced Categories](https://cozyblock.cozythemes.com/advanced-categories-gutenberg-block/) | [Advertisement](https://cozyblock.cozythemes.com/advertisement-gutenberg-block/) | [Post Comments](https://cozyblock.cozythemes.com/post-comments-gutenberg-block/) | [Post Views](https://cozyblock.cozythemes.com/post-views-gutenberg-block/)
+Import a complete starting point, customize the content and design, and launch with the WordPress Block Editor.
 
-<strong>WooCommerce</strong>
-[Product Grid/Carousel](https://cozyblock.cozythemes.com/product-carousel-woocommerce-block/) | [Product Category](https://cozyblock.cozythemes.com/product-categories-woocommerce-block/) | [Featured Product](https://cozyblock.cozythemes.com/featured-product-woocommerce-block/) | 
-[Featured Products Tab](https://cozyblock.cozythemes.com/featured-products-tab-woocommerce-block/) | [Add to Cart](https://cozyblock.cozythemes.com/product-add-to-cart-woocommerce-block/) | [All Product Reviews](https://cozyblock.cozythemes.com/all-product-reviews-woocommerce-block/) | [Product Slider](https://cozyblock.cozythemes.com/product-slider-woocommerce-block/) |
-[Quick View](https://cozyblock.cozythemes.com/product-quick-view-woocommerce-block/) | [Wishlist](https://cozyblock.cozythemes.com/product-wishlist-woocommerce-block/) | [Products Showcase Tabs](https://cozyblock.cozythemes.com/product-showcase-tabs-woocommerce-block/)
+= 🎯 Design With More Control =
 
-<strong>Team, Social & Portfolio</strong>
-[Team](https://cozyblock.cozythemes.com/team-gutenberg-block/) | [Testimonials](https://cozyblock.cozythemes.com/testimonial-gutenberg-block/) | Social Icons | [Social Shares](https://cozyblock.cozythemes.com/related-post-gutenberg-block/) | 
-[Portfolio Gallery](https://fotademo.cozythemes.com/fotademo-pro/portfolios/) | [Before/After Image](https://cozyblock.cozythemes.com/before-after-image-gutenberg-block/)
+<strong>Create polished layouts without custom code for every adjustment.</strong>
 
-<strong>Utility</strong>
-[Date & Time](https://cozyblock.cozythemes.com/date-and-time-gutenberg-block/) | [Contact Form 7 Styler](https://cozyblock.cozythemes.com/contact-form-styler-gutenberg-block/) | Cozy Button
+Cozy Blocks adds practical controls for:
 
-= 🧩 More Than Blocks — Build the Content Behind Your Website =
+* Responsive layouts and device visibility
+* Typography and Google Fonts
+* Colors, spacing, alignment, and styling
+* Hover effects
+* Scroll animations
+* Interactive content
+* Block-level customization
 
-Cozy Blocks doesn't just help you design pages. It also gives you specialized tools to create, manage, and showcase the content your website needs.
+The Block Enable/Disable Manager also lets you control which Cozy Blocks features are active on your website.
 
-<strong>Portfolio</strong> — Create and organize projects with a dedicated Portfolio post type.
+= 🧩 More Than Blocks =
 
-<strong>FAQs</strong> — Build structured FAQ sections with automatic structured-data generation.
+<strong>Go beyond static blocks with dedicated content types for dynamic websites.</strong>
 
-<strong>Testimonials</strong> — Manage customer testimonials and display them in professional layouts.
+Cozy Blocks includes Portfolio, FAQ, and Testimonial custom post types with multiple layouts for flexible content presentation, plus built-in schema generation for FAQs and Testimonials.
 
-= ✨ Design Without Custom CSS for Everything =
+<strong>Portfolio</strong> — Create and organize projects with a dedicated Portfolio post type and multiple layouts.
+<strong>FAQs</strong> — Manage reusable FAQ content with multiple layouts and built-in FAQ schema.
+<strong>Testimonials</strong> — Manage customer testimonials with multiple layouts and built-in testimonial schema.
 
-Create polished, interactive designs directly from the editor.
+Create structured content once, then display it dynamically across your website.
 
-* <strong>Scroll Animations:</strong> Add entrance animations such as fade, slide, zoom, and flip effects to create more engaging page sections.
-* <strong>Hover Effects:</strong> Add interactive hover states to buttons, cards, images, containers, and other elements.
-* <strong>Responsive Visibility:</strong> Control what appears on desktop, tablet, and mobile so your layouts work across different screen sizes.
-* <strong>Google Fonts:</strong> Choose from the Google Fonts library directly inside the editor and preview typography while designing.
+= 🧱 Built for the WordPress Block Editor =
 
-= Works beautifully with CozyThemes' Block Themes =
+<strong>Native WordPress building, designed for a streamlined and efficient website.</strong>
 
-Cozy Blocks is designed to work seamlessly with CozyThemes block themes, including:
+Cozy Blocks extends the WordPress Block Editor, Gutenberg, and Full Site Editing with the tools you need to build complete websites — without replacing WordPress's native editing system with another page builder.
 
-* [HomeLancer](https://cozythemes.com/homelancer/) — Home Services
-* [SaasLauncher](https://cozythemes.com/saaslauncher-wordpress-theme/) — SaaS & Startup
-* [Jetnews Magazine](https://cozythemes.com/jetnews-magazine-wordpress-theme/) — Blog & Magazine
-* [WoxStore](https://cozythemes.com/woxstore-woocommerce-theme/) — WooCommerce
+Why it matters:
+
+* <strong>Native WordPress Experience</strong> — Build and manage your website using the editor you already know.
+* <strong>Flexible Website Building</strong> — Combine blocks, patterns, templates, and design controls to create layouts for any business or website type.
+* <strong>Less Dependency</strong> — No separate proprietary page-builder interface or locked-in content format.
+* <strong>Built to Grow With Your Website</strong> — Create, edit, and expand your website while keeping your content within the WordPress ecosystem.
+
+Build freely, manage easily, and keep your website built on the WordPress foundation.
 
 == Installation ==
 
@@ -155,36 +196,34 @@ https://www.youtube.com/watch?v=GP4NxSbikS4
 == Frequently Asked Questions ==
 
 = What is Cozy Blocks? =
-Cozy Blocks is a powerful WordPress plugin that offers 50+ advanced Gutenberg blocks built specifically for the Full Site Editing (FSE) experience. It allows you to design complete websites visually — including post grids, WooCommerce layouts, galleries, portfolios, and more — all without using third-party page builders or custom code.
+Cozy Blocks is a complete website builder and business growth toolkit for the WordPress Block Editor (Gutenberg). It combines advanced blocks, patterns, starter templates, WooCommerce tools, Popup Builder, and conversion-focused features to help you build and grow your WordPress website.
 
-= Is Cozy Blocks compatible with all WordPress themes? =
-Cozy Blocks is only compatible with block-based (FSE) WordPress themes. It does not support classic themes or the Classic Editor. To get the full benefits of Cozy Blocks, you must use it with a modern block theme like [SaasLauncher](https://wordpress.org/themes/saaslauncher/), [Jetnews Magazine](https://wordpress.org/themes/jetnews-magazine/), [WoxStore](https://wordpress.org/themes/woxstore/), or any compatible Full Site Editing theme available on WordPress.org.
+= Does Cozy Blocks need another page builder? =
+No. Cozy Blocks is built on the native WordPress Block Editor, so you don't need Elementor, Divi, or another page builder. You can create and customize your website using WordPress blocks, patterns, templates, and the Site Editor.
 
-= Is Cozy Blocks a replacement for Elementor or Divi? =
-Yes — for block-theme users. Cozy Blocks gives you the same design capabilities (hero sections, pricing tables, sliders, mega menus, popups, WooCommerce layouts) inside the native WordPress Block Editor, without installing a separate page builder. If your site uses a modern FSE block theme, Cozy Blocks replaces everything Elementor and Divi do, while being significantly faster and lighter.
+= Who is Cozy Blocks for? =
+Beyond standard content and design blocks, Cozy Blocks provides tools for features such as popups, FAQs, testimonials, portfolios, post and content layouts, and other website-building needs. This makes it more than a collection of individual Gutenberg blocks.
 
-= Building client websites as a freelancer or agency? =
-Import a complete homepage template for your client's niche in one click, then customize it fully inside the Site Editor. No third-party dependencies.
+= Do I need a CozyThemes' theme to use Cozy Blocks? =
+No. Cozy Blocks can be used with compatible WordPress themes. CozyThemes block themes are designed to work closely with Cozy Blocks and provide an integrated experience, especially for Full Site Editing.
 
-= Running a WooCommerce store? =
-Product grids, category blocks, quick view, wishlist, product sliders, and add-to-cart blocks work natively without extra plugins.
+= What is the difference between Blocks, Patterns, and Starter Templates? =
+Blocks are individual website elements you can add to your pages. Patterns are pre-designed sections made from multiple blocks. Starter Templates provide larger pre-designed website layouts that give you a ready-made starting point for a complete website. You can use any of them independently or combine them to build your site.
 
-= Publishing a blog, news site, or magazine? =
-Post grids, news tickers, trending posts, magazine-style layouts, and categorized post tabs are all included — no theme dependency.
+= Can I build a complete website with Cozy Blocks? =
+Yes. Cozy Blocks provides blocks, patterns, starter templates, and website-building tools for creating complete websites. You can build business, agency, SaaS, service, portfolio, education, blog, magazine, and other types of websites without starting everything from scratch.
 
-= New to WordPress? =
-The 700+ ready-made patterns and 50+ homepage templates mean you can start with a professionally designed page, not a blank screen.
+= Can I use Cozy Blocks for WooCommerce stores? =
+Yes. Cozy Blocks includes WooCommerce-focused blocks and tools that help you create and customize online store layouts directly in the WordPress Block Editor. You can use them to showcase products and build richer WooCommerce pages and sections.
 
-= Will Cozy Blocks slow down my website? =
-No. The built-in Block Manager lets you enable only the blocks your site actually uses. Any disabled block loads zero scripts or styles on the front end. Sites built with Cozy Blocks regularly achieve 90+ PageSpeed scores.
+= Can I use Cozy Blocks with the WordPress Site Editor and Full Site Editing? =
+Yes. Cozy Blocks is built for the WordPress Block Editor and works with modern block themes and the Site Editor. With a compatible block theme, you can customize your site's templates, headers, footers, template parts, and other site-wide areas while using Cozy Blocks to extend your design and content-building options.
 
-= Can I customize the appearance of Cozy Blocks? =
-Yes, Cozy Blocks offers advanced styling controls for each block — including typography, color, spacing, alignment, visibility, and device-specific settings. You can fully customize how your site looks and feels directly within the Site Editor, and even use global styles from your theme for consistency.
+= Can I customize Cozy Blocks without coding? =
+Yes. Cozy Blocks provides visual controls for typography, colors, spacing, alignment, responsive settings, hover effects, animations, and other design options, allowing you to customize layouts directly in WordPress without writing code for common design changes.
 
-= Is Cozy Blocks for Free? =
-The free version offers 30+ essential Full Site Editing (FSE) blocks — perfect for creating custom layouts, content sections, and WooCommerce pages. 
-
-For users who want more power and flexibility, a Pro version is available with 50+ premium blocks that include advanced features, enhanced design controls, and extended support for WooCommerce and dynamic content.
+= Is Cozy Blocks free, and what does Pro include? =
+Yes. The free version provides core Cozy Blocks functionality, including a selection of blocks, patterns, starter templates, and website-building features. Pro adds premium blocks, additional patterns and templates, and advanced features for users who need more functionality and flexibility.
 
 = Where can I get support or ask questions? =
 You can get support for Cozy Blocks via the [support forum](https://wordpress.org/support/plugin/cozy-addons/). You can also ask pre-sale questions, or request features through the official support channels provided by [CozyThemes](https://cozythemes.com/), the plugin’s developer.
@@ -203,25 +242,10 @@ You can report any security bugs found in the source code of this plugin through
 8. FSE Homepage templates
 
 == Changelog ==
-= 2.2.23 - Sep 14, 2026 = 
-* Fix: Counter block CSS conflict issue.
-
-= 2.2.22 - Sep 12, 2026 = 
-* Fix: Testimonials block carousel pagination styles.
-
-= 2.2.21 - Sep 11, 2026 = 
-* Fix: Testimonials block fade background effect.
-* Fix: Counter block prefix/suffix label.
-* Fix: Blocks enable/disable in bulk.
-* Update: Themes pattern registration logic.
-
-= 2.2.20 - Sep 08, 2026 = 
-* Add: Testimonial Custom Post Type.
-* Add: Source picker for content in Testimonials block.
-* Add: Testimonial page schema generation in Testimonials block.
-* Add: SaaS starter template.
-* Add: Brand showcase block.
-* Fix: Minor block improvements.
+= 2.2.24 - Sep 24, 2026 = 
+* Add: Home service starter template.
+* Update: Minor block improvements.
+* Update: Security patch for 'Wishlist' block.
 
 [See changes for all the versions here.](https://plugins.svn.wordpress.org/cozy-addons/trunk/changelog.txt)
 

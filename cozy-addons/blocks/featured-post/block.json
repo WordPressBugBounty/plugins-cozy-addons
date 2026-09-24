@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/featured-post",
   "title": "Featured Post (Pro)",
-  "description": "'Featured Post' block allows you to handpick from your latest posts and showcase them in versatile display options such as grid, list, and carousel, enhancing your site's visual appeal and user engagement.",
+  "description": "Highlight selected posts in grid, list, or carousel layouts.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "magazine",

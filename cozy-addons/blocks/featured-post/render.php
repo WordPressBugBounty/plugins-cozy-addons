@@ -558,16 +558,18 @@ if ( ! function_exists( 'get_cozy_block_featured_post_data' ) ) {
 				// Get categories and their links.
 				$categories      = get_the_category( $post_id );
 				$post_categories = array();
-				foreach ( $categories as $category ) {
-					$post_categories[] = array(
-						'name'        => $category->name,
-						'link'        => get_category_link( $category->term_id ),
-						'count'       => $category->count,
-						'description' => $category->description,
-						'slug'        => $category->slug,
-						'taxonomy'    => $category->taxonomy,
-						'parent'      => $category->parent,
-					);
+				if ( $categories ) {
+					foreach ( $categories as $category ) {
+						$post_categories[] = array(
+							'name'        => $category->name,
+							'link'        => get_category_link( $category->term_id ),
+							'count'       => $category->count,
+							'description' => $category->description,
+							'slug'        => $category->slug,
+							'taxonomy'    => $category->taxonomy,
+							'parent'      => $category->parent,
+						);
+					}
 				}
 				$post_data['post_categories'] = $post_categories;
 

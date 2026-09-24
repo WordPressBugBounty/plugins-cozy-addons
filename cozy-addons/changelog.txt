@@ -1,3 +1,8 @@
+= 2.2.24 - Sep 24, 2026 = 
+* Add: Home service starter template.
+* Update: Minor block improvements.
+* Update: Security patch for 'Wishlist' block.
+
 = 2.2.23 - Sep 14, 2026 = 
 * Fix: Counter block CSS conflict issue.
 

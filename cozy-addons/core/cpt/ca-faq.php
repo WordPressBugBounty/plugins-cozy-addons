@@ -40,6 +40,7 @@ function ca_cpt_faq() {
 		'supports'           => array( 'title', 'editor' ),
 		'show_in_rest'       => true,
 		'menu_icon'          => COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/faq.svg',
+		'show_in_nav_menus'  => false,
 	);
 	register_post_type( 'ca_faq', $args );
 
@@ -69,6 +70,7 @@ function ca_cpt_faq() {
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => $faq_config['taxonomy']['category']['slug'] ),
 			'show_in_rest'      => true,
+			'show_in_nav_menus' => false,
 		)
 	);
 
@@ -99,6 +101,7 @@ function ca_cpt_faq() {
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => $faq_config['taxonomy']['tags']['slug'] ),
 			'show_in_rest'      => true,
+			'show_in_nav_menus' => false,
 		)
 	); */
 }

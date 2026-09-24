@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/trending-post",
   "title": "Trending Post (Pro)",
-  "description": "Stay ahead with our 'Trending Post' block, spotlighting the most popular and engaging content on your site for a dynamic and up-to-the-minute user experience.",
+  "description": "Showcase trending content to highlight what visitors are reading now.",
   "category": "cozy-block/post-magazine",
   "textdomain": "cozy-addons",
   "supports": {

@@ -60,7 +60,6 @@ function ca_cpt_testimonial() {
 		'public'               => true,
 		'publicly_queryable'   => true,
 		'show_ui'              => true,
-		'show_in_menu'         => true,
 		'query_var'            => true,
 		'rewrite'              => array( 'slug' => $testimonial_config['slug'] ),
 		'capability_type'      => 'post',
@@ -71,6 +70,7 @@ function ca_cpt_testimonial() {
 		'show_in_rest'         => true,
 		'menu_icon'            => COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/testimonial.svg',
 		'register_meta_box_cb' => 'ca_cpt_testimonial_meta_box_callback',
+		'show_in_nav_menus'    => false,
 	);
 	register_post_type( 'ca_testimonial', $args );
 
@@ -100,6 +100,7 @@ function ca_cpt_testimonial() {
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => $testimonial_config['taxonomy']['category']['slug'] ),
 			'show_in_rest'      => true,
+			'show_in_nav_menus' => false,
 		)
 	);
 
@@ -130,6 +131,7 @@ function ca_cpt_testimonial() {
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => $testimonial_config['taxonomy']['tags']['slug'] ),
 			'show_in_rest'      => true,
+			'show_in_nav_menus'  => false,
 		)
 	); */
 

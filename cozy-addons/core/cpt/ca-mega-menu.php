@@ -41,6 +41,7 @@ function ca_cpt_mega_menu_init() {
 		'supports'           => array( 'title', 'editor', 'author', 'thumbnail' ),
 		'show_in_rest'       => true,
 		'menu_icon'          => COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/mega-menu.svg',
+		'show_in_nav_menus'  => false,
 	);
 	register_post_type( 'ca_mega_menu', $args );
 }

@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/brand-showcase",
   "title": "Brand Showcase",
-  "description": "Display logos, brands, or feature highlights in a grid or carousel layout — perfect for partner logos, client showcases, or feature cards.",
+  "description": "Display partner, client, or brand logos in grid or carousel layouts.",
   "category": "cozy-block",
   "supports": {
     "html": false,

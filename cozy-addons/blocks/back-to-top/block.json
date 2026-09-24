@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/back-to-top",
   "title": "Back to Top",
-  "description": "Improve user experience with a convenient 'Back to Top' button, enabling effortless return to the page's top for smooth and easy navigation.",
+  "description": "Give visitors a quick way to return to the top of the page.",
   "category": "cozy-block",
   "supports": {
     "html": false

@@ -1212,7 +1212,7 @@ if ( ! function_exists( 'cozy_block_wishlist_update_user_wishlist_callback' ) ) 
 		check_ajax_referer( 'cozy_block_wishlist_update_user_wishlist', 'wishlistNonce', true );
 
 		$product_id = isset( $_POST['productId'] ) ? intval( sanitize_text_field( wp_unslash( $_POST['productId'] ) ) ) : '';
-		$user_id    = isset( $_POST['userId'] ) ? sanitize_text_field( wp_unslash( $_POST['userId'] ) ) : '';
+		$user_id    = get_current_user_id();
 
 		// Retrieve the current wishlist from user meta.
 		$user_wishlist = get_user_meta( $user_id, 'cozy_block_wishlist_data', true ); // Add `true` to return a single value
@@ -1225,7 +1225,7 @@ if ( ! function_exists( 'cozy_block_wishlist_update_user_wishlist_callback' ) ) 
 		// Check if the product_id exists in the wishlist.
 		$key = array_search( $product_id, $user_wishlist, true );
 
-		if ( $key !== false ) {
+		if ( false !== $key ) {
 			// Product exists in the wishlist, remove it.
 			unset( $user_wishlist[ $key ] );
 			// Reindex the array to prevent gaps.
@@ -1236,7 +1236,7 @@ if ( ! function_exists( 'cozy_block_wishlist_update_user_wishlist_callback' ) ) 
 
 		}
 
-		// Update the user meta with the modified wishlist
+		// Update the user meta with the modified wishlist.
 		update_user_meta( $user_id, 'cozy_block_wishlist_data', $user_wishlist );
 
 		wp_send_json_success(
@@ -2188,7 +2188,7 @@ function add_cozy_hover_color_styles( $block_content, $block ) {
 				$inline_styles .= ";$style:$value";
 			}
 
-			$appended_styles = $existing_styles . esc_attr( trim( $inline_styles, '; ' ) );
+			$appended_styles = $existing_styles . ';' . esc_attr( trim( $inline_styles, '; ' ) );
 		}
 
 		$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( trim( $updated_class, ' ' ) ) . '" style="' . trim( cozy_addons_clean_empty_css( $appended_styles ), '; ' ) . '"', $block_content );

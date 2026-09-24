@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/portfolio-gallery-meta",
   "title": "Portfolio Gallery Meta",
-  "description": "Fetches the meta field for 'Portfolio Gallery' block.",
+  "description": "Retrieve portfolio gallery metadata for dynamic content displays.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

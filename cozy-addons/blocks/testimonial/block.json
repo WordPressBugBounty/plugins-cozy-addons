@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/testimonial",
   "title": "Testimonials",
-  "description": "Build trust and credibility with our 'Testimonial' block, providing grid and carousel layouts to elegantly showcase user feedback and positive experiences.",
+  "description": "Build trust by showcasing customer testimonials in grid or carousel layouts.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

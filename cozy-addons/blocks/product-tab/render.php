@@ -1053,16 +1053,18 @@ foreach ( (array) $attributes['tabs'] as $key => $tab_data ) {
 			'product_cat'
 		);
 		$product_categories = array();
-		foreach ( $categories as $category ) {
-			$product_categories[] = array(
-				'name'        => $category->name,
-				'link'        => get_category_link( $category->term_id ),
-				'count'       => $category->count,
-				'description' => $category->description,
-				'slug'        => $category->slug,
-				'taxonomy'    => $category->taxonomy,
-				'parent'      => $category->parent,
-			);
+		if ( $categories ) {
+			foreach ( $categories as $category ) {
+				$product_categories[] = array(
+					'name'        => $category->name,
+					'link'        => get_category_link( $category->term_id ),
+					'count'       => $category->count,
+					'description' => $category->description,
+					'slug'        => $category->slug,
+					'taxonomy'    => $category->taxonomy,
+					'parent'      => $category->parent,
+				);
+			}
 		}
 
 		// Check if the product is valid

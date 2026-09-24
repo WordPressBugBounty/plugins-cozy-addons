@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/wishlist",
   "title": "Wishlist (Pro)",
-  "description": "'Wishlist' block allows you to add and view your favorite products in a convenient, accessible sidebar for easy management and quick access.",
+  "description": "Let shoppers save favorite products for quick access later.",
   "category": "cozy-block/woocommerce",
   "textdomain": "cozy-addons",
   "usesContext": [

@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/icon-list",
   "title": "Icon List",
-  "description": "Elevate your lists with style using the 'Icon List' block, offering advanced options to effortlessly integrate and customize icons for a visually appealing and informative presentation.",
+  "description": "Create visually engaging lists with customizable icons.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

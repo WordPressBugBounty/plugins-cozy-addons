@@ -389,99 +389,101 @@ if ( ! function_exists( 'cozy_find_post_advanced_cat_index' ) ) {
 	}
 }
 
-foreach ( $categories as $category ) {
-	$cat_index = cozy_find_post_advanced_cat_index( $attributes['categoryOptions'], $category->term_id );
-	$cat_data  = array();
+if ( $categories ) {
+	foreach ( $categories as $category ) {
+		$cat_index = cozy_find_post_advanced_cat_index( $attributes['categoryOptions'], $category->term_id );
+		$cat_data  = array();
 
-	if ( -1 != $cat_index ) {
-		$cat_data = $attributes['categoryOptions'][ $cat_index ];
-	}
-
-	$object_position_x     = ! empty( $cat_data ) && isset( $cat_data, $cat_data['focalPoint']['x'] ) ? floatval( $cat_data['focalPoint']['x'] ) * 100 . '%' : '';
-	$object_position_y     = ! empty( $cat_data ) && isset( $cat_data, $cat_data['focalPoint']['y'] ) ? floatval( $cat_data['focalPoint']['y'] ) * 100 . '%' : '';
-	$count_singular_styles = array(
-		'color'         => ! empty( $cat_data ) && isset( $cat_data, $cat_data['color'] ) ? $cat_data['color'] : '',
-		'bg_color'      => ! empty( $cat_data ) && isset( $cat_data, $cat_data['bgColor'] ) ? $cat_data['bgColor'] : '',
-		'overlay_color' => ! empty( $cat_data ) && isset( $cat_data, $cat_data['overlayColor'] ) ? $cat_data['overlayColor'] : '',
-	);
-
-	$cat_styles = "
-	#$block_id .cozy-block-advanced-categories__category-item[data-category-id='{$category->term_id}'] .cozy-block-advanced-categories__image img {
-		object-position: {$object_position_x} {$object_position_y};
-	}
-	#$block_id .cozy-block-advanced-categories__category-item[data-category-id='{$category->term_id}'] .cozy-block-advanced-categories__background {
-		background-color: {$count_singular_styles['overlay_color']};
-	}
-	#$block_id .cozy-block-advanced-categories__category-item[data-category-id='{$category->term_id}'] .cozy-block-advanced-categories__count {
-		color: {$count_singular_styles['color']};
-		background-color: {$count_singular_styles['bg_color']};
-	}
-";
-
-	$cat_classes   = array();
-	$cat_classes[] = 'cozy-block-advanced-categories__category-item';
-	$cat_classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
-	$cat_classes[] = isset( $attributes['categoryItem']['shadow']['enabled'] ) && $attributes['categoryItem']['shadow']['enabled'] ? 'has-box-shadow' : '';
-	$output       .= '<style>' . esc_attr( $cat_styles ) . '</style>';
-	$output       .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $cat_classes ) ) ) ) . '" data-category-id="' . esc_attr( $category->term_id ) . '">';
-
-	$has_category_link = isset( $attributes['enableOptions']['linkCategory'] ) && $attributes['enableOptions']['linkCategory'] ? 'href="' . esc_url( get_category_link( $category->term_id ) ) . '"' : '';
-	$open_new_tab      = isset( $attributes['enableOptions']['linkCategory'], $attributes['enableOptions']['openNewTab'] ) && $attributes['enableOptions']['linkCategory'] && $attributes['enableOptions']['openNewTab'] ? '_blank' : '';
-
-	$output .= '<a ' . $has_category_link . ' target="' . $open_new_tab . '" rel="noopener">';
-	if ( 'cover' === $attributes['layout'] ) {
-		$output .= '<span class="cozy-block-advanced-categories__background"></span>';
-	}
-	if ( $attributes['enableOptions']['image'] && isset( $cat_data, $cat_data['mediaURL'] ) && ! empty( $cat_data ) ) {
-		$img_classes   = array();
-		$img_classes[] = 'cozy-block-advanced-categories__image';
-		$img_classes[] = $attributes['image']['hoverEffect'] ? 'has-image-hover-effect' : '';
-		$output       .= '<figure class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $img_classes ) ) ) ) . '">';
-		$img_url       = isset( $cat_data['mediaURL'] ) && ! empty( $cat_data['mediaURL'] ) ? $cat_data['mediaURL'] : '';
-		$output       .= '<img src="' . esc_url( $img_url ) . '" />';
-		$output       .= '</figure>';
-	}
-
-	$content_wrapper_classes   = array();
-	$content_wrapper_classes[] = 'cozy-block-advanced-categories__content-wrapper';
-	$content_wrapper_classes[] = 'position-' . str_replace( ' ', '-', $attributes['contentPosition'] );
-	$output                   .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $content_wrapper_classes ) ) ) ) . '">';
-	if ( $attributes['enableOptions']['name'] ) {
-		$output .= '<div class="cozy-block-advanced-categories__title">';
-		if ( $attributes['enableOptions']['icon'] ) {
-			$icon_wrapper_classes   = array();
-			$icon_wrapper_classes[] = 'cozy-block-advanced-categories__icon-wrapper';
-			$icon_wrapper_classes[] = 'view-' . $attributes['icon']['view'];
-			$icon_wrapper_classes[] = 'layout-' . $attributes['icon']['layout'];
-
-			$icon_view_box   = array();
-			$icon_view_box[] = $attributes['icon']['viewBox']['vx'];
-			$icon_view_box[] = $attributes['icon']['viewBox']['vy'];
-			$icon_view_box[] = $attributes['icon']['viewBox']['vw'];
-			$icon_view_box[] = $attributes['icon']['viewBox']['vh'];
-
-			$stroke_width   = 'outline' === $attributes['icon']['layout'] ? $attributes['icon']['strokeWidth'] : '';
-			$stroke_opacity = 'outline' === $attributes['icon']['layout'] ? number_format( floatval( $attributes['icon']['opacity'] / 100 ), 2 ) : '';
-
-			$output     .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $icon_wrapper_classes ) ) ) ) . '">';
-			$output     .= '<svg class="cozy-block-advanced-categories__icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="' . esc_attr( implode( ' ', array_map( 'intval', $icon_view_box ) ) ) . '" stroke-width="' . esc_attr( $stroke_width ) . '" stroke-opacity="' . esc_attr( $stroke_opacity ) . '">';
-				$output .= '<path d="' . esc_attr( $attributes['icon']['path'] ) . '" />';
-			$output     .= '</svg>';
-			$output     .= '</div>';
+		if ( -1 != $cat_index ) {
+			$cat_data = $attributes['categoryOptions'][ $cat_index ];
 		}
-		$output .= '<p class="cozy-block-advanced-categories__name">' . esc_html( $category->name ) . '</p>';
+
+		$object_position_x     = ! empty( $cat_data ) && isset( $cat_data, $cat_data['focalPoint']['x'] ) ? floatval( $cat_data['focalPoint']['x'] ) * 100 . '%' : '';
+		$object_position_y     = ! empty( $cat_data ) && isset( $cat_data, $cat_data['focalPoint']['y'] ) ? floatval( $cat_data['focalPoint']['y'] ) * 100 . '%' : '';
+		$count_singular_styles = array(
+			'color'         => ! empty( $cat_data ) && isset( $cat_data, $cat_data['color'] ) ? $cat_data['color'] : '',
+			'bg_color'      => ! empty( $cat_data ) && isset( $cat_data, $cat_data['bgColor'] ) ? $cat_data['bgColor'] : '',
+			'overlay_color' => ! empty( $cat_data ) && isset( $cat_data, $cat_data['overlayColor'] ) ? $cat_data['overlayColor'] : '',
+		);
+
+		$cat_styles = "
+		#$block_id .cozy-block-advanced-categories__category-item[data-category-id='{$category->term_id}'] .cozy-block-advanced-categories__image img {
+			object-position: {$object_position_x} {$object_position_y};
+		}
+		#$block_id .cozy-block-advanced-categories__category-item[data-category-id='{$category->term_id}'] .cozy-block-advanced-categories__background {
+			background-color: {$count_singular_styles['overlay_color']};
+		}
+		#$block_id .cozy-block-advanced-categories__category-item[data-category-id='{$category->term_id}'] .cozy-block-advanced-categories__count {
+			color: {$count_singular_styles['color']};
+			background-color: {$count_singular_styles['bg_color']};
+		}
+		";
+
+		$cat_classes   = array();
+		$cat_classes[] = 'cozy-block-advanced-categories__category-item';
+		$cat_classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
+		$cat_classes[] = isset( $attributes['categoryItem']['shadow']['enabled'] ) && $attributes['categoryItem']['shadow']['enabled'] ? 'has-box-shadow' : '';
+		$output       .= '<style>' . esc_attr( $cat_styles ) . '</style>';
+		$output       .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $cat_classes ) ) ) ) . '" data-category-id="' . esc_attr( $category->term_id ) . '">';
+
+		$has_category_link = isset( $attributes['enableOptions']['linkCategory'] ) && $attributes['enableOptions']['linkCategory'] ? 'href="' . esc_url( get_category_link( $category->term_id ) ) . '"' : '';
+		$open_new_tab      = isset( $attributes['enableOptions']['linkCategory'], $attributes['enableOptions']['openNewTab'] ) && $attributes['enableOptions']['linkCategory'] && $attributes['enableOptions']['openNewTab'] ? '_blank' : '';
+
+		$output .= '<a ' . $has_category_link . ' target="' . $open_new_tab . '" rel="noopener">';
+		if ( 'cover' === $attributes['layout'] ) {
+			$output .= '<span class="cozy-block-advanced-categories__background"></span>';
+		}
+		if ( $attributes['enableOptions']['image'] && isset( $cat_data, $cat_data['mediaURL'] ) && ! empty( $cat_data ) ) {
+			$img_classes   = array();
+			$img_classes[] = 'cozy-block-advanced-categories__image';
+			$img_classes[] = $attributes['image']['hoverEffect'] ? 'has-image-hover-effect' : '';
+			$output       .= '<figure class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $img_classes ) ) ) ) . '">';
+			$img_url       = isset( $cat_data['mediaURL'] ) && ! empty( $cat_data['mediaURL'] ) ? $cat_data['mediaURL'] : '';
+			$output       .= '<img src="' . esc_url( $img_url ) . '" />';
+			$output       .= '</figure>';
+		}
+
+		$content_wrapper_classes   = array();
+		$content_wrapper_classes[] = 'cozy-block-advanced-categories__content-wrapper';
+		$content_wrapper_classes[] = 'position-' . str_replace( ' ', '-', $attributes['contentPosition'] );
+		$output                   .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $content_wrapper_classes ) ) ) ) . '">';
+		if ( $attributes['enableOptions']['name'] ) {
+			$output .= '<div class="cozy-block-advanced-categories__title">';
+			if ( $attributes['enableOptions']['icon'] ) {
+				$icon_wrapper_classes   = array();
+				$icon_wrapper_classes[] = 'cozy-block-advanced-categories__icon-wrapper';
+				$icon_wrapper_classes[] = 'view-' . $attributes['icon']['view'];
+				$icon_wrapper_classes[] = 'layout-' . $attributes['icon']['layout'];
+
+				$icon_view_box   = array();
+				$icon_view_box[] = $attributes['icon']['viewBox']['vx'];
+				$icon_view_box[] = $attributes['icon']['viewBox']['vy'];
+				$icon_view_box[] = $attributes['icon']['viewBox']['vw'];
+				$icon_view_box[] = $attributes['icon']['viewBox']['vh'];
+
+				$stroke_width   = 'outline' === $attributes['icon']['layout'] ? $attributes['icon']['strokeWidth'] : '';
+				$stroke_opacity = 'outline' === $attributes['icon']['layout'] ? number_format( floatval( $attributes['icon']['opacity'] / 100 ), 2 ) : '';
+
+				$output     .= '<div class="' . esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $icon_wrapper_classes ) ) ) ) . '">';
+				$output     .= '<svg class="cozy-block-advanced-categories__icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="' . esc_attr( implode( ' ', array_map( 'intval', $icon_view_box ) ) ) . '" stroke-width="' . esc_attr( $stroke_width ) . '" stroke-opacity="' . esc_attr( $stroke_opacity ) . '">';
+					$output .= '<path d="' . esc_attr( $attributes['icon']['path'] ) . '" />';
+				$output     .= '</svg>';
+				$output     .= '</div>';
+			}
+			$output .= '<p class="cozy-block-advanced-categories__name">' . esc_html( $category->name ) . '</p>';
+			$output .= '</div>';
+		}
+
+		if ( $attributes['enableOptions']['count'] ) {
+			$output     .= '<p class="cozy-block-advanced-categories__count-wrapper">';
+				$output .= '<span class="cozy-block-advanced-categories__count">' . esc_html( $category->count ) . '<span>';
+			$output     .= '</p>';
+		}
+		$output .= '</div>'; // Content Wrapper div closing.
+
+		$output .= '</a>';
 		$output .= '</div>';
 	}
-
-	if ( $attributes['enableOptions']['count'] ) {
-		$output     .= '<p class="cozy-block-advanced-categories__count-wrapper">';
-			$output .= '<span class="cozy-block-advanced-categories__count">' . esc_html( $category->count ) . '<span>';
-		$output     .= '</p>';
-	}
-	$output .= '</div>'; // Content Wrapper div closing.
-
-	$output .= '</a>';
-	$output .= '</div>';
 }
 
 // <--/ Category Content -->

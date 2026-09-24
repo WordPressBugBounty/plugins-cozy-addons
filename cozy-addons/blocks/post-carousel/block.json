@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/post-carousel",
   "title": "Post Grid/Carousel",
-  "description": "Immerse yourself in an engaging browsing journey using our 'Post Carousel' block, showcasing visually stunning and interactive featured content for effortless exploration.",
+  "description": "Display posts in flexible grid or carousel layouts.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "post",

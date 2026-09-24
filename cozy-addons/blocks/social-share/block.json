@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/social-share",
   "title": "Social Shares",
-  "description": "Encourage seamless content sharing with our 'Social Shares' block, featuring eye-catching social media icons for enhanced engagement and wider reach.",
+  "description": "Make it easy for visitors to share your content across social networks.",
   "category": "cozy-block/post-magazine",
   "textdomain": "cozy-addons",
   "supports": {

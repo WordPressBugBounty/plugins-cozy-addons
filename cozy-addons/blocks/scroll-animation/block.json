@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/scroll-animation",
   "title": "Scroll Animation (Pro)",
-  "description": "Turn any section into a horizontally scrolling, scroll-triggered animation — pin, slide, and reveal content as visitors scroll down the page.",
+  "description": "Create scroll-triggered animations that reveal and move content dynamically.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/product-category",
   "title": "Product Category",
-  "description": "Elevate your product presentation with the 'Product Category' block, providing advanced layout options like lists, grids, and carousels to showcase WooCommerce product categories in a visually appealing and organized manner.",
+  "description": "Showcase WooCommerce product categories in flexible layouts.",
   "category": "cozy-block/woocommerce",
   "keywords": [
     "product",

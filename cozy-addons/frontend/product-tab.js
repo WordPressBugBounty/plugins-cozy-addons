@@ -308,7 +308,6 @@
 							action: "cozy_block_wishlist_update_user_wishlist",
 							wishlistNonce: attributes.wishlistNonce,
 							productId: productId,
-							userId: attributes.userID,
 						},
 						success: function (response) {
 							const isNowActive =

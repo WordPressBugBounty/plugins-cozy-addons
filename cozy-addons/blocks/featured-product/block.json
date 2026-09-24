@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/featured-product",
   "title": "Featured Product (Pro)",
-  "description": "'Featured Product' block allows you to handpick from your latest products and showcase them in versatile display options such as grid, and carousel, enhancing your site's visual appeal and user engagement.",
+  "description": "Highlight selected WooCommerce products in grid or carousel layouts.",
   "category": "cozy-block/woocommerce",
   "keywords": [
     "product"

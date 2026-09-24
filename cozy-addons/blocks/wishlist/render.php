@@ -511,7 +511,7 @@ $wishlist_user_meta = get_user_meta( $attributes['userID'], 'cozy_block_wishlist
 if ( ! empty( $wishlist_user_meta ) ) {
 	foreach ( $wishlist_user_meta as $index => $product_id ) {
 		$product = wc_get_product( $product_id );
-		if ( 'publish' !== $product->get_status() ) {
+		if ( ! $product || ( $product && ( 'publish' !== $product->get_status() || ! $product->is_visible() ) ) ) {
 			array_splice( $wishlist_user_meta, $index, 1 );
 		}
 	}
@@ -530,15 +530,17 @@ if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType']
 	$output   .= '<div class="' . esc_attr( cozy_addons_sanitize_html_class( $classes ) ) . '" data-product-id="' . $cozy_product_id . '" data-product-name="' . esc_attr( $cozy_product_name ) . '" onClick="handleWishlistClick(' . $cozy_product_id . ', \'' . esc_js( $cozy_product_name ) . '\', \'' . esc_js( $block_id ) . '\')" title="' . esc_attr( 'Wishlist' ) . '">';
 
 	$view_box   = array();
-	$view_box[] = $attributes['wishlist']['icon']['viewBox']['vx'];
-	$view_box[] = $attributes['wishlist']['icon']['viewBox']['vy'];
-	$view_box[] = $attributes['wishlist']['icon']['viewBox']['vw'];
-	$view_box[] = $attributes['wishlist']['icon']['viewBox']['vh'];
-	$output    .= '<svg class="cozy-block-wishlist__icon wishlist__icon" viewBox="' . esc_attr( implode( ' ', array_map( 'intval', array_values( $view_box ) ) ) ) . '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
-	$output    .= '<path d="' . esc_attr( $attributes['wishlist']['icon']['path'] ) . '" />';
-	$output    .= '<svg class="cozy-block-wishlist__icon wishlist__icon" viewBox="' . esc_attr( implode( ' ', array_map( 'intval', array_values( $view_box ) ) ) ) . '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
-	$output    .= '<path d="' . esc_attr( $attributes['wishlist']['icon']['path'] ) . '" />';
-	$output    .= '</svg>';
+	$view_box[] = isset( $attributes['wishlist']['icon']['viewBox']['vx'] ) ? sanitize_text_field( $attributes['wishlist']['icon']['viewBox']['vx'] ) : '';
+	$view_box[] = isset( $attributes['wishlist']['icon']['viewBox']['vy'] ) ? sanitize_text_field( $attributes['wishlist']['icon']['viewBox']['vy'] ) : '';
+	$view_box[] = isset( $attributes['wishlist']['icon']['viewBox']['vw'] ) ? sanitize_text_field( $attributes['wishlist']['icon']['viewBox']['vw'] ) : '';
+	$view_box[] = isset( $attributes['wishlist']['icon']['viewBox']['vh'] ) ? sanitize_text_field( $attributes['wishlist']['icon']['viewBox']['vh'] ) : '';
+	$icon_path  = isset( $attributes['wishlist']['icon']['path'] ) ? $attributes['wishlist']['icon']['path'] : '';
+
+	$output .= '<svg class="cozy-block-wishlist__icon wishlist__icon" viewBox="' . esc_attr( implode( ' ', array_map( 'intval', array_values( $view_box ) ) ) ) . '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
+	$output .= '<path d="' . esc_attr( $icon_path ) . '" />';
+	$output .= '<svg class="cozy-block-wishlist__icon wishlist__icon" viewBox="' . esc_attr( implode( ' ', array_map( 'intval', array_values( $view_box ) ) ) ) . '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
+	$output .= '<path d="' . esc_attr( $icon_path ) . '" />';
+	$output .= '</svg>';
 
 	$output .= '</div>';
 }
@@ -548,18 +550,19 @@ if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType']
 if ( 'sidebar' === $attributes['variation'] ) {
 	$output    .= '<div class="cozy-block-wishlist__icon-wrapper sidebar__icon-wrapper" title="' . esc_attr__( 'Wishlist', 'cozy-addons' ) . '">';
 	$view_box   = array();
-	$view_box[] = $attributes['sidebar']['icon']['viewBox']['vx'];
-	$view_box[] = $attributes['sidebar']['icon']['viewBox']['vy'];
-	$view_box[] = $attributes['sidebar']['icon']['viewBox']['vw'];
-	$view_box[] = $attributes['sidebar']['icon']['viewBox']['vh'];
+	$view_box[] = isset( $attributes['sidebar']['icon']['viewBox']['vx'] ) ? sanitize_text_field( $attributes['sidebar']['icon']['viewBox']['vx'] ) : '';
+	$view_box[] = isset( $attributes['sidebar']['icon']['viewBox']['vy'] ) ? sanitize_text_field( $attributes['sidebar']['icon']['viewBox']['vy'] ) : '';
+	$view_box[] = isset( $attributes['sidebar']['icon']['viewBox']['vw'] ) ? sanitize_text_field( $attributes['sidebar']['icon']['viewBox']['vw'] ) : '';
+	$view_box[] = isset( $attributes['sidebar']['icon']['viewBox']['vh'] ) ? sanitize_text_field( $attributes['sidebar']['icon']['viewBox']['vh'] ) : '';
+	$icon_path  = isset( $attributes['sidebar']['icon']['path'] ) ? $attributes['sidebar']['icon']['path'] : '';
 	$output    .= '<svg class="cozy-block-wishlist__icon sidebar__icon" viewBox="' . esc_attr( implode( ' ', array_map( 'intval', array_values( $view_box ) ) ) ) . '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
-	$output    .= '<path d="' . esc_attr( $attributes['sidebar']['icon']['path'] ) . '" />';
+	$output    .= '<path d="' . esc_attr( $icon_path ) . '" />';
 	$output    .= '<svg class="cozy-block-wishlist__icon sidebar__icon" viewBox="' . esc_attr( implode( ' ', array_map( 'intval', array_values( $view_box ) ) ) ) . '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
-	$output    .= '<path d="' . esc_attr( $attributes['sidebar']['icon']['path'] ) . '" />';
+	$output    .= '<path d="' . esc_attr( $icon_path ) . '" />';
 	$output    .= '</svg>';
 
 	/* Wishlist Count */
-	if ( isset( $attributes['sidebar']['count']['enabled'] ) && $attributes['sidebar']['count']['enabled'] ) {
+	if ( isset( $attributes['sidebar']['count']['enabled'] ) && filter_var( $attributes['sidebar']['count']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
 		if ( is_user_logged_in() && is_array( $wishlist_user_meta ) && count( $wishlist_user_meta ) > 0 ) {
 			$output .= '<span class="cozy-block-wishlist__count">';
 			$output .= count( $wishlist_user_meta );
@@ -573,7 +576,7 @@ if ( 'sidebar' === $attributes['variation'] ) {
 	$classes   = array();
 	$classes[] = 'cozy-block-wishlist__sidebar-wrapper';
 	$classes[] = 'visibility-hidden';
-	$classes[] = 'position-' . $attributes['sidebar']['position'];
+	$classes[] = isset( $attributes['sidebar']['position'] ) ? 'position-' . $attributes['sidebar']['position'] : '';
 	$output   .= '<div class="' . esc_attr( cozy_addons_sanitize_html_class( $classes ) ) . '">';
 	/* Sidebar */
 	$output .= '<div class="cozy-block-wishlist__sidebar">';
@@ -582,7 +585,7 @@ if ( 'sidebar' === $attributes['variation'] ) {
 	$classes   = array();
 	$classes[] = 'cozy-block-wishlist__toolbar-button';
 	$classes[] = 'sidebar-close-button';
-	$classes[] = 'position-' . $attributes['sidebar']['closeIcon']['position'];
+	$classes[] = isset( $attributes['sidebar']['closeIcon']['position'] ) ? 'position-' . $attributes['sidebar']['closeIcon']['position'] : '';
 	$output   .= '<div class="' . esc_attr( cozy_addons_sanitize_html_class( $classes ) ) . '">';
 	$output   .= '<svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/" aria-hidden="true">';
 	$output   .= '<path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />';
@@ -919,7 +922,6 @@ function handleWishlistClick(productId, productName, blockId) {
 				action: "cozy_block_wishlist_update_user_wishlist",
 				wishlistNonce: "<?php echo sanitize_key( $attributes['wishlistNonce'] ); ?>",
 				productId: productId,
-				userId: "<?php echo sanitize_key( $attributes['userID'] ); ?>",
 			},
 			beforeSend: function() {
 				$('.cozy-block-wrapper .wishlist__icon-wrapper[data-product-id="' + productId + '"]').addClass("is-loading-spinner");

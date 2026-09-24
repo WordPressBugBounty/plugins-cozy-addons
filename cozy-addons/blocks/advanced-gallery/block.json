@@ -4,7 +4,7 @@
   "name": "cozy-block/advanced-gallery",
   "version": "1.0.0",
   "title": "Advanced Gallery",
-  "description": "'Advanced gallery' block with a grid, masonry and carousel layout that opens images in a lightbox for a sleek, full-screen viewing experience.",
+  "description": "Showcase images in grid, masonry, or carousel layouts with lightbox viewing.",
   "category": "cozy-block",
   "keywords": [
     "gallery",

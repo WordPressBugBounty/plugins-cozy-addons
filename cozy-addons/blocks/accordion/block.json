@@ -4,7 +4,7 @@
   "name": "cozy-block/accordion",
   "version": "1.0.0",
   "title": "Accordion",
-  "description": "A flexible FAQ/accordion block that supports both manually-added default content and dynamically fetched content from a Custom Post Type (e.g., FAQs).",
+  "description": "Organize FAQs and content in clean, expandable sections.",
   "category": "cozy-block",
   "keywords": [
     "accordion",

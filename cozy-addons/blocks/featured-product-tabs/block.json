@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/featured-product-tabs",
   "title": "Featured Products Tab (Pro)",
-  "description": "Effortlessly organize and present your WooCommerce products with our 'Products Showcase Tabs' block. Explore a user-friendly approach to displaying items in categorized tabs, enhancing navigation and optimizing the shopping experience for your visitors.",
+  "description": "Showcase selected products in organized, interactive tabs.",
   "category": "cozy-block/woocommerce",
   "keywords": [
     "product"

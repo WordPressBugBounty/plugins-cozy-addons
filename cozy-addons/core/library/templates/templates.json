@@ -411,5 +411,12 @@
 		"category": ["agency", "saas", "business"],
 		"image": "template-59.png",
 		"isPremium": true
+	},
+	{
+		"label": "Homelancer Plumbing",
+		"slug": "cozy-addons/template-60",
+		"category": ["agency", "home-services", "business"],
+		"image": "template-60.png",
+		"isPremium": false
 	}
 ]

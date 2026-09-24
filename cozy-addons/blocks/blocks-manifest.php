@@ -7,7 +7,7 @@ return array(
 		'name' => 'cozy-block/accordion',
 		'version' => '1.0.0',
 		'title' => 'Accordion',
-		'description' => 'A flexible FAQ/accordion block that supports both manually-added default content and dynamically fetched content from a Custom Post Type (e.g., FAQs).',
+		'description' => 'Organize FAQs and content in clean, expandable sections.',
 		'category' => 'cozy-block',
 		'keywords' => array(
 			'accordion',
@@ -320,7 +320,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/ad',
 		'title' => 'Advertisement',
-		'description' => '\'Advertisement\' block seamlessly integrates custom ad scripts and clickable image links into your WordPress site, enhancing engagement and driving traffic.',
+		'description' => 'Display ads using custom scripts or clickable image banners.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'category',
@@ -443,7 +443,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/add-to-cart',
 		'title' => 'Add to Cart',
-		'description' => 'With the \'Add to Cart\' block allows you to easily add products to your cart, featuring a customizable button that can display a label, an icon, or both.',
+		'description' => 'Add customizable Add to Cart buttons to your product layouts.',
 		'category' => 'cozy-block/woocommerce',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -637,7 +637,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/advanced-categories',
 		'title' => 'Advanced Categories (Pro)',
-		'description' => 'Showcase your post categories with images in various layouts—grid, list, or carousel—for a visually engaging and navigable experience with our \'Advanced Categories\' block.',
+		'description' => 'Showcase post categories with images in grid, list, or carousel layouts.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'category',
@@ -999,7 +999,7 @@ return array(
 		'name' => 'cozy-block/advanced-gallery',
 		'version' => '1.0.0',
 		'title' => 'Advanced Gallery',
-		'description' => '\'Advanced gallery\' block with a grid, masonry and carousel layout that opens images in a lightbox for a sleek, full-screen viewing experience.',
+		'description' => 'Showcase images in grid, masonry, or carousel layouts with lightbox viewing.',
 		'category' => 'cozy-block',
 		'keywords' => array(
 			'gallery',
@@ -1422,7 +1422,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/advanced-tab',
 		'title' => 'Advanced Tabs',
-		'description' => 'Elevate your site’s navigation with the Advanced Tabs block — a sleek, interactive tabbed layout that organizes content beautifully and enhances user engagement.',
+		'description' => 'Organize content into clean, interactive tabbed sections.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'keywords' => array(
@@ -1671,7 +1671,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/back-to-top',
 		'title' => 'Back to Top',
-		'description' => 'Improve user experience with a convenient \'Back to Top\' button, enabling effortless return to the page\'s top for smooth and easy navigation.',
+		'description' => 'Give visitors a quick way to return to the top of the page.',
 		'category' => 'cozy-block',
 		'supports' => array(
 			'html' => false
@@ -1731,7 +1731,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/brand-showcase',
 		'title' => 'Brand Showcase',
-		'description' => 'Display logos, brands, or feature highlights in a grid or carousel layout — perfect for partner logos, client showcases, or feature cards.',
+		'description' => 'Display partner, client, or brand logos in grid or carousel layouts.',
 		'category' => 'cozy-block',
 		'supports' => array(
 			'html' => false,
@@ -1906,7 +1906,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/breadcrumb',
 		'title' => 'Breadcrumbs',
-		'description' => 'Enhance navigation on your site with our \'Breadcrumb\' block, offering an intuitive trail of links that guides users through the hierarchical structure, ensuring a seamless and organized browsing experience.',
+		'description' => 'Help visitors navigate your site with clear breadcrumb trails.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -1972,7 +1972,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/button',
 		'title' => 'Cozy Button',
-		'description' => 'Enhance user interaction with our stylish and versatile \'Button\' block, designed to seamlessly integrate into your site for a polished appearance.',
+		'description' => 'Create stylish, customizable buttons for important actions.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -2020,7 +2020,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/categorized-post-tabs',
 		'title' => 'Categorized Post Tabs (Pro)',
-		'description' => 'Showcase your posts categorically with multiple layout options, including grid and list. Easily feature a specific post to highlight important content. Enhance your site\'s look and keep visitors engaged with our versatile and customizable \'Categorized Post Tabs\' block.',
+		'description' => 'Organize and showcase posts by category in interactive tabs.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'category',
@@ -2619,7 +2619,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/cf7-styler',
 		'title' => 'Contact Form 7 Styler (Pro)',
-		'description' => 'Effortlessly customize and style your Contact Form 7 forms with unique designs using the Contact Form 7 Styler block.',
+		'description' => 'Style Contact Form 7 forms to match your website design.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'attributes' => array(
@@ -2994,7 +2994,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/container',
 		'title' => 'Cozy Container',
-		'description' => 'Infuse life into your content with our \'Cozy Container\' block, offering animation and customization options for a vibrant and personalized user experience.',
+		'description' => 'Create flexible content sections with animation and customization options.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -3189,7 +3189,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/countdown-timer',
 		'title' => 'Countdown Timer (Pro)',
-		'description' => 'The Countdown Timer Block creates urgency with a customizable timer for promotions or events, featuring automatic hiding after the offer ends.',
+		'description' => 'Create urgency with customizable countdown timers for offers and events.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'attributes' => array(
@@ -3481,7 +3481,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/counter',
 		'title' => 'Counter',
-		'description' => 'Highlight achievements and statistics with our \'Counter\' block, a sleek number counter that elegantly displays numbers and stats to captivate your audience.',
+		'description' => 'Highlight important numbers, statistics, and achievements with animated counters.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -3588,7 +3588,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/cta',
 		'title' => 'Call to Action',
-		'description' => 'Boost interaction with our \'Call to Action\' block, strategically placed to inspire users to take the next step, whether it\'s making a purchase or subscribing.',
+		'description' => 'Guide visitors toward key actions with compelling CTA sections.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -3617,7 +3617,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/date-time',
 		'title' => 'Date & Time',
-		'description' => 'Stay updated with our \'Date & Time\' block, effortlessly displaying the current time and date to keep your audience informed and engaged.',
+		'description' => 'Display the current date and time anywhere on your site.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -3731,7 +3731,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/featured-content-box',
 		'title' => 'Featured Content Box',
-		'description' => 'Presenting the \'Featured Content Box\' block – your ultimate tool for showcasing standout content! Customize your display for a visually stunning presentation that captivates your audience.',
+		'description' => 'Highlight important content with customizable feature boxes.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'keywords' => array(
@@ -3903,7 +3903,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/featured-post',
 		'title' => 'Featured Post (Pro)',
-		'description' => '\'Featured Post\' block allows you to handpick from your latest posts and showcase them in versatile display options such as grid, list, and carousel, enhancing your site\'s visual appeal and user engagement.',
+		'description' => 'Highlight selected posts in grid, list, or carousel layouts.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'magazine',
@@ -4411,7 +4411,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/featured-post-tabs',
 		'title' => 'Featured Post Tabs (Pro)',
-		'description' => 'Highlight your best content with our \'Featured Post Tabs\' block, providing five tabs—Latest, Popular, Trending, Tags, and Comments—to showcase your top articles and boost engagement.',
+		'description' => 'Showcase latest, popular, trending, and other featured posts in tabs.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -4862,7 +4862,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/featured-product',
 		'title' => 'Featured Product (Pro)',
-		'description' => '\'Featured Product\' block allows you to handpick from your latest products and showcase them in versatile display options such as grid, and carousel, enhancing your site\'s visual appeal and user engagement.',
+		'description' => 'Highlight selected WooCommerce products in grid or carousel layouts.',
 		'category' => 'cozy-block/woocommerce',
 		'keywords' => array(
 			'product'
@@ -5609,7 +5609,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/featured-product-tabs',
 		'title' => 'Featured Products Tab (Pro)',
-		'description' => 'Effortlessly organize and present your WooCommerce products with our \'Products Showcase Tabs\' block. Explore a user-friendly approach to displaying items in categorized tabs, enhancing navigation and optimizing the shopping experience for your visitors.',
+		'description' => 'Showcase selected products in organized, interactive tabs.',
 		'category' => 'cozy-block/woocommerce',
 		'keywords' => array(
 			'product'
@@ -6410,7 +6410,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/icon-list',
 		'title' => 'Icon List',
-		'description' => 'Elevate your lists with style using the \'Icon List\' block, offering advanced options to effortlessly integrate and customize icons for a visually appealing and informative presentation.',
+		'description' => 'Create visually engaging lists with customizable icons.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -6580,7 +6580,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/icon-picker',
 		'title' => 'Icon Picker',
-		'description' => 'Unlock endless possibilities with our \'Icon Picker\' block, providing a user-friendly interface to choose from a diverse range of icons, enhancing the visual appeal of your content.',
+		'description' => 'Choose and add icons easily to enhance your content and layouts.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -6699,7 +6699,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/img-compare',
 		'title' => 'Before/After Image (Pro)',
-		'description' => 'Showcase stunning before-and-after images with a sleek, interactive Image Compare block for visual storytelling.',
+		'description' => 'Compare two images interactively with a smooth before-and-after slider.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'attributes' => array(
@@ -6808,7 +6808,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/magazine-grid',
 		'title' => 'Magazine Grid (Pro)',
-		'description' => 'Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site\'s look and keep visitors engaged with our versatile and customizable \'Magazine Grid\' block.',
+		'description' => 'Create engaging magazine-style layouts for categorized content.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'magazine',
@@ -7432,7 +7432,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/magazine-list',
 		'title' => 'Magazine List (Pro)',
-		'description' => 'Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site\'s look and keep visitors engaged with our versatile and customizable \'Magazine List\' block.',
+		'description' => 'Present categorized posts in clean magazine-style list layouts.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'magazine',
@@ -7920,7 +7920,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/mega-menu',
 		'title' => 'Advanced Mega Menu',
-		'description' => 'Our user-friendly \'Advanced Mega Menu Block\' is the ultimate solution for effortlessly organizing your site\'s content into stylish and efficient multi-column layouts, enhancing navigation for your visitors.',
+		'description' => 'Create powerful multi-column menus with rich content layouts, featured links, and more for easier navigation.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'attributes' => array(
@@ -8224,7 +8224,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/news-ticker',
 		'title' => 'News Ticker (Pro)',
-		'description' => 'Stay informed with our \'News Ticker\' block, delivering real-time headlines in a scrolling format for an engaging and dynamic user experience.',
+		'description' => 'Display headlines in a dynamic scrolling news ticker.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -8296,7 +8296,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/popular-post',
 		'title' => 'Popular Post (Pro)',
-		'description' => 'Explore trending topics effortlessly with our \'Popular Post\' block, showcasing a curated selection of the latest and most engaging content for a quick and dynamic browsing experience.',
+		'description' => 'Highlight popular posts to help visitors discover engaging content.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -8679,7 +8679,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/portfolio-gallery',
 		'title' => 'Portfolio Gallery',
-		'description' => 'Showcase your work with finesse using the \'Portfolio Gallery\' block, designed for creating advanced and visually stunning layouts to present your portfolio in a captivating manner.',
+		'description' => 'Showcase projects and creative work in stunning gallery layouts.',
 		'category' => 'cozy-block',
 		'keywords' => array(
 			'gallery',
@@ -9350,7 +9350,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/portfolio-gallery-meta',
 		'title' => 'Portfolio Gallery Meta',
-		'description' => 'Fetches the meta field for \'Portfolio Gallery\' block.',
+		'description' => 'Retrieve portfolio gallery metadata for dynamic content displays.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -9470,7 +9470,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/post-carousel',
 		'title' => 'Post Grid/Carousel',
-		'description' => 'Immerse yourself in an engaging browsing journey using our \'Post Carousel\' block, showcasing visually stunning and interactive featured content for effortless exploration.',
+		'description' => 'Display posts in flexible grid or carousel layouts.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'post',
@@ -9590,7 +9590,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/post-comments',
 		'title' => 'Post Comments (Pro)',
-		'description' => 'Unlock the Conversation Power! See what sparks discussions with our \'Post Comments\' block. Gain valuable insights to refine your engagement strategy and foster meaningful interactions.',
+		'description' => 'Add and display post comments to encourage visitor discussions.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -9761,7 +9761,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/post-slider',
 		'title' => 'Post Slider (Pro)',
-		'description' => 'Discover an interactive showcase of content through our \'Post Slider\' feature, presenting a visually captivating carousel of posts for an engaging and dynamic browsing experience.',
+		'description' => 'Showcase posts in an engaging, interactive carousel.',
 		'category' => 'cozy-block/post-magazine',
 		'keywords' => array(
 			'post',
@@ -9914,7 +9914,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/post-views',
 		'title' => 'Post Views (Pro)',
-		'description' => 'Unlock the Engagement Power! See what captivates your audience with our \'Post Views\' block. Gain valuable insights to refine your content strategy and maximize impact.',
+		'description' => 'Display post view counts to highlight audience engagement.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -10079,7 +10079,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/pricing-table',
 		'title' => 'Pricing Table',
-		'description' => 'Explore pricing options with this clean and organized pricing table. It includes a simple container displaying pricing elements, allowing users to view prices and features at a glance.',
+		'description' => 'Present pricing plans and features clearly at a glance.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'attributes' => array(
@@ -10592,7 +10592,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/product-carousel',
 		'title' => 'Product Grid/Carousel',
-		'description' => 'Engage your audience with our \'Product Grid/Carousel\' block, offering a visually appealing and interactive way to display WooCommerce products in a carousel format for an enhanced browsing experience.',
+		'description' => 'Showcase WooCommerce products in grid or carousel layouts.',
 		'category' => 'cozy-block/woocommerce',
 		'keywords' => array(
 			'product',
@@ -10880,7 +10880,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/product-category',
 		'title' => 'Product Category',
-		'description' => 'Elevate your product presentation with the \'Product Category\' block, providing advanced layout options like lists, grids, and carousels to showcase WooCommerce product categories in a visually appealing and organized manner.',
+		'description' => 'Showcase WooCommerce product categories in flexible layouts.',
 		'category' => 'cozy-block/woocommerce',
 		'keywords' => array(
 			'product',
@@ -11130,7 +11130,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/product-review',
 		'title' => 'All Product Reviews',
-		'description' => 'Revolutionize your product displays with our \'All Product Reviews\' block. Showcase customer feedback in style with multiple layout options, including list, grid, and carousel. Increase trust and engagement by strategically placing authentic reviews anywhere on your WordPress site for maximum impact.',
+		'description' => 'Display WooCommerce reviews in flexible list, grid, or carousel layouts.',
 		'category' => 'cozy-block/woocommerce',
 		'keywords' => array(
 			'product',
@@ -11445,7 +11445,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/product-slider',
 		'title' => 'Product Slider (Pro)',
-		'description' => 'Highlight your WooCommerce products dynamically with the \'Product Slider\' block, allowing smooth sliding to showcase your products in an attractive and interactive manner.',
+		'description' => 'Showcase WooCommerce products in an engaging sliding layout.',
 		'category' => 'cozy-block/woocommerce',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -11596,7 +11596,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/product-tab',
 		'title' => 'Products Showcase Tabs (Pro)',
-		'description' => 'Effortlessly organize and present your WooCommerce products with our \'Products Showcase Tabs\' block. Explore a user-friendly approach to displaying items in categorized tabs, enhancing navigation and optimizing the shopping experience for your visitors.',
+		'description' => 'Organize WooCommerce products into easy-to-browse category tabs.',
 		'category' => 'cozy-block/woocommerce',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -12286,7 +12286,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/progress-bar',
 		'title' => 'Progress Bar',
-		'description' => 'Keep your audience informed and intrigued with our \'Progress Bar\' block, offering dynamic circular, horizontal, and vertical progress indicators for an interactive and visually engaging user experience.',
+		'description' => 'Visualize progress, skills, statistics, or completion levels with flexible indicators.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -12431,7 +12431,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/quick-view',
 		'title' => 'Quick View (Pro)',
-		'description' => 'Preview product details in a stylish lightbox with the \'Quick View\' block, providing a seamless and efficient way to view essential information without leaving the current page.',
+		'description' => 'Let shoppers preview product details without leaving the current page.',
 		'category' => 'cozy-block/woocommerce',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -12762,7 +12762,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/related-post',
 		'title' => 'Related Post (Pro)',
-		'description' => 'Uncover additional relevant content using our \'Related Post\' block, offering curated suggestions tailored to your interests for an engaging exploration of aligned topics.',
+		'description' => 'Recommend relevant posts to keep visitors exploring your content.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -12801,7 +12801,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/scroll-animation',
 		'title' => 'Scroll Animation (Pro)',
-		'description' => 'Turn any section into a horizontally scrolling, scroll-triggered animation — pin, slide, and reveal content as visitors scroll down the page.',
+		'description' => 'Create scroll-triggered animations that reveal and move content dynamically.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -13104,7 +13104,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/sidebar-panel',
 		'title' => 'Sidebar Panel',
-		'description' => 'Maximize versatility with our \'Sidebar Panel\' block, seamlessly integrating a customizable sidebar drawer to display menus, latest posts, popular content, or any desired elements for a user-friendly and organized layout.',
+		'description' => 'Add a flexible sidebar drawer for menus, posts, and custom content.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -13322,7 +13322,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/slider',
 		'title' => 'Slider',
-		'description' => 'Immerse your audience in captivating visuals with our versatile \'Slider\' block, perfect for showcasing images or content in a dynamic and engaging carousel.',
+		'description' => 'Showcase images or content in an engaging, responsive slider.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -13535,7 +13535,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/social-icon',
 		'title' => 'Social Icons',
-		'description' => 'Foster online connections effortlessly using our \'Social Icons\' block, allowing you to effortlessly integrate and showcase your social media profiles directly on your website.',
+		'description' => 'Connect visitors to your social media profiles with ease.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -13622,7 +13622,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/social-share',
 		'title' => 'Social Shares',
-		'description' => 'Encourage seamless content sharing with our \'Social Shares\' block, featuring eye-catching social media icons for enhanced engagement and wider reach.',
+		'description' => 'Make it easy for visitors to share your content across social networks.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -13793,7 +13793,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/teams',
 		'title' => 'Teams',
-		'description' => 'Introduce your team in style with our \'Team\' block, offering both grid and carousel layouts for a visually appealing display of your talented lineup.',
+		'description' => 'Showcase team members in polished grid or carousel layouts.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -13933,7 +13933,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/testimonial',
 		'title' => 'Testimonials',
-		'description' => 'Build trust and credibility with our \'Testimonial\' block, providing grid and carousel layouts to elegantly showcase user feedback and positive experiences.',
+		'description' => 'Build trust by showcasing customer testimonials in grid or carousel layouts.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -14278,7 +14278,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/toggle-content',
 		'title' => 'Toggle Content (Pro)',
-		'description' => 'The toggle content, featuring a switcher or tab-style design, allows users to seamlessly switch between different content sections for a more organized and interactive experience.',
+		'description' => 'Let visitors switch between content sections with interactive toggles.',
 		'category' => 'cozy-block',
 		'allowedBlocks' => array(
 			'cozy-block/toggle-content-item'
@@ -14492,7 +14492,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/trending-post',
 		'title' => 'Trending Post (Pro)',
-		'description' => 'Stay ahead with our \'Trending Post\' block, spotlighting the most popular and engaging content on your site for a dynamic and up-to-the-minute user experience.',
+		'description' => 'Showcase trending content to highlight what visitors are reading now.',
 		'category' => 'cozy-block/post-magazine',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -14871,7 +14871,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/wishlist',
 		'title' => 'Wishlist (Pro)',
-		'description' => '\'Wishlist\' block allows you to add and view your favorite products in a convenient, accessible sidebar for easy management and quick access.',
+		'description' => 'Let shoppers save favorite products for quick access later.',
 		'category' => 'cozy-block/woocommerce',
 		'textdomain' => 'cozy-addons',
 		'usesContext' => array(

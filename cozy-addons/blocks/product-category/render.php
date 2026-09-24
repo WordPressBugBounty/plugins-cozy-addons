@@ -295,48 +295,50 @@ $args = array(
 );
 
 $categories = get_terms( $args );
-foreach ( $categories as $product_cat ) {
-	$cat_item_classes   = array();
-	$cat_item_classes[] = 'woo-product-category';
-	$cat_item_classes[] = isset( $attributes['gridOptions']['invertLayout'] ) && filter_var( $attributes['gridOptions']['invertLayout'], FILTER_VALIDATE_BOOLEAN ) ? 'has-invert-layout' : '';
-	$cat_item_classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
-	$output            .= '<li class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $cat_item_classes ) ) ) ) ) . '">';
-	$cat_link           = get_category_link( $product_cat->term_id );
-	$open_new_tab       = isset( $attributes['enableOptions']['linkNewTab'] ) && $attributes['enableOptions']['linkNewTab'] ? '_blank' : '';
-	$output            .= '<a class="woo-product-category__link" href="' . esc_url( $cat_link ) . '" target="' . $open_new_tab . '" rel="noopener">';
+if ( $categories ) {
+	foreach ( $categories as $product_cat ) {
+		$cat_item_classes   = array();
+		$cat_item_classes[] = 'woo-product-category';
+		$cat_item_classes[] = isset( $attributes['gridOptions']['invertLayout'] ) && filter_var( $attributes['gridOptions']['invertLayout'], FILTER_VALIDATE_BOOLEAN ) ? 'has-invert-layout' : '';
+		$cat_item_classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
+		$output            .= '<li class="' . esc_attr( trim( implode( ' ', array_map( 'sanitize_html_class', array_values( $cat_item_classes ) ) ) ) ) . '">';
+		$cat_link           = get_category_link( $product_cat->term_id );
+		$open_new_tab       = isset( $attributes['enableOptions']['linkNewTab'] ) && $attributes['enableOptions']['linkNewTab'] ? '_blank' : '';
+		$output            .= '<a class="woo-product-category__link" href="' . esc_url( $cat_link ) . '" target="' . $open_new_tab . '" rel="noopener">';
 
-	$output      .= '<div class="cozy-block-product-category__stacked" style="position:relative">';
-	$thumbnail_id = get_term_meta( $product_cat->term_id, 'thumbnail_id', true );
-	// get the image URL.
-	$image_url = wp_get_attachment_url( $thumbnail_id );
-	if ( $attributes['enableOptions']['image'] && isset( $image_url ) && ! empty( $image_url ) ) {
-		$output .= '<figure class="cozy-block-product-category__image">';
-		$output .= '<img src="' . esc_url( $image_url ) . '" />';
-		$output .= '</figure>';
-	}
-	if ( $attributes['enableOptions']['count'] && 'badge' === $attributes['productCount']['display'] ) {
-		$output .= '<div class="product-count-wrapper">';
-		$output .= '<span class="product-count">';
-		$output .= esc_html( $attributes['productCount']['labelBefore'] ) . esc_html( $product_cat->count ) . esc_html( $attributes['productCount']['labelAfter'] );
-		$output .= '</span>';
+		$output      .= '<div class="cozy-block-product-category__stacked" style="position:relative">';
+		$thumbnail_id = get_term_meta( $product_cat->term_id, 'thumbnail_id', true );
+		// get the image URL.
+		$image_url = wp_get_attachment_url( $thumbnail_id );
+		if ( $attributes['enableOptions']['image'] && isset( $image_url ) && ! empty( $image_url ) ) {
+			$output .= '<figure class="cozy-block-product-category__image">';
+			$output .= '<img src="' . esc_url( $image_url ) . '" />';
+			$output .= '</figure>';
+		}
+		if ( $attributes['enableOptions']['count'] && 'badge' === $attributes['productCount']['display'] ) {
+			$output .= '<div class="product-count-wrapper">';
+			$output .= '<span class="product-count">';
+			$output .= esc_html( $attributes['productCount']['labelBefore'] ) . esc_html( $product_cat->count ) . esc_html( $attributes['productCount']['labelAfter'] );
+			$output .= '</span>';
+			$output .= '</div>';
+		}
 		$output .= '</div>';
-	}
-	$output .= '</div>';
 
-	if ( $attributes['enableOptions']['name'] ) {
-		$output .= '<div class="category-name">' . esc_html( $product_cat->name ) . '</div>';
-	}
+		if ( $attributes['enableOptions']['name'] ) {
+			$output .= '<div class="category-name">' . esc_html( $product_cat->name ) . '</div>';
+		}
 
-	if ( $attributes['enableOptions']['count'] && 'default' === $attributes['productCount']['display'] ) {
-		$output .= '<div class="product-count-wrapper">';
-		$output .= '<span class="product-count">';
-		$output .= esc_html( $attributes['productCount']['labelBefore'] ) . esc_html( $product_cat->count ) . esc_html( $attributes['productCount']['labelAfter'] );
-		$output .= '</span>';
-		$output .= '</div>';
-	}
+		if ( $attributes['enableOptions']['count'] && 'default' === $attributes['productCount']['display'] ) {
+			$output .= '<div class="product-count-wrapper">';
+			$output .= '<span class="product-count">';
+			$output .= esc_html( $attributes['productCount']['labelBefore'] ) . esc_html( $product_cat->count ) . esc_html( $attributes['productCount']['labelAfter'] );
+			$output .= '</span>';
+			$output .= '</div>';
+		}
 
-	$output .= '</a>';
-	$output .= '</li>';
+		$output .= '</a>';
+		$output .= '</li>';
+	}
 }
 
 $output .= '</ul>';

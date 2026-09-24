@@ -877,7 +877,7 @@ $user_details = wp_get_current_user();
 		<div class="cozy-accordion">
 			<div class="accordion-item active">
 				<div class="accordion-header">
-					<h3><?php esc_html_e( 'Is Cozy Blocks necessary?', 'cozy-addons' ); ?></h3>
+					<h3><?php esc_html_e( '1. What is Cozy Blocks?', 'cozy-addons' ); ?></h3>
 					<i class="chevron">
 						<svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -887,14 +887,14 @@ $user_details = wp_get_current_user();
 					</i>
 				</div>
 				<div class="accordion-body">
-					<p><?php esc_html_e( 'Cozy Blocks is a powerful WordPress plugin that offers 50+ advanced Gutenberg blocks built specifically for the Full Site Editing (FSE) experience. It allows you to design complete websites visually — including post grids, WooCommerce layouts, galleries, portfolios, and more — all without using third-party page builders or custom code.', 'cozy-addons' ); ?>
+					<p><?php esc_html_e( 'Cozy Blocks is a complete website builder for the WordPress Block Editor and Full Site Editing (FSE). It gives you advanced blocks, patterns, templates, WooCommerce tools, Popup Builder, dynamic content tools, and more—all built on the native WordPress platform so you can build complete websites visually without relying on a separate page builder.', 'cozy-addons' ); ?>
 					</p>
 				</div>
 			</div>
 
 			<div class="accordion-item">
 				<div class="accordion-header">
-					<h3><?php esc_html_e( 'Is Cozy Blocks compatible with all WordPress themes?', 'cozy-addons' ); ?>
+					<h3><?php esc_html_e( '2. Do I need another page builder plugin to use Cozy Blocks?', 'cozy-addons' ); ?>
 					</h3>
 					<i class="chevron">
 						<svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -905,14 +905,14 @@ $user_details = wp_get_current_user();
 					</i>
 				</div>
 				<div class="accordion-body">
-					<p><?php esc_html_e( 'Cozy Blocks is only compatible with block-based (FSE) WordPress themes. It does not support classic themes or the Classic Editor. To get the full benefits of Cozy Blocks, you must use it with a modern block theme like SaasLauncher, HomeLancer, Jetnews Magazine, WoxStore, or any compatible Full Site Editing theme available on WordPress.org.', 'cozy-addons' ); ?>
+					<p><?php esc_html_e( "No. Cozy Blocks is designed to work with the native WordPress Block Editor and Full Site Editing. You don't need Elementor, Divi, or another page builder plugin. Everything you need to build and customize your website is available within the WordPress editing experience.", 'cozy-addons' ); ?>
 					</p>
 				</div>
 			</div>
 
 			<div class="accordion-item">
 				<div class="accordion-header">
-					<h3><?php esc_html_e( 'Is Cozy Blocks a replacement for Elementor or Divi?', 'cozy-addons' ); ?>
+					<h3><?php esc_html_e( "3. What's the difference between Blocks, Patterns, and Templates?", 'cozy-addons' ); ?>
 					</h3>
 					<i class="chevron">
 						<svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -923,14 +923,14 @@ $user_details = wp_get_current_user();
 					</i>
 				</div>
 				<div class="accordion-body">
-					<p><?php esc_html_e( 'Yes — for block-theme users. Cozy Blocks gives you the same design capabilities (hero sections, pricing tables, sliders, mega menus, popups, WooCommerce layouts) inside the native WordPress Block Editor, without installing a separate page builder. If your site uses a modern FSE block theme, Cozy Blocks replaces everything Elementor and Divi do, while being significantly faster and lighter.', 'cozy-addons' ); ?>
+					<p><?php esc_html_e( 'Blocks are the individual building elements you use to create content and layouts, such as headings, buttons, sliders, testimonials, and dynamic content. Patterns are pre-designed combinations of blocks that create ready-to-use sections or layouts. Templates are larger page or website layouts that combine multiple sections to help you build complete pages faster.', 'cozy-addons' ); ?>
 					</p>
 				</div>
 			</div>
 
 			<div class="accordion-item">
 				<div class="accordion-header">
-					<h3><?php esc_html_e( 'Building client websites as a freelancer or agency?', 'cozy-addons' ); ?>
+					<h3><?php esc_html_e( '4. Is Cozy Blocks free? What do I get with Pro?', 'cozy-addons' ); ?>
 					</h3>
 					<i class="chevron">
 						<svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -941,14 +941,14 @@ $user_details = wp_get_current_user();
 					</i>
 				</div>
 				<div class="accordion-body">
-					<p><?php esc_html_e( 'Import a complete homepage template for your client’s niche in one click, then customize it fully inside the Site Editor. No third-party dependencies.', 'cozy-addons' ); ?>
+					<p><?php esc_html_e( 'Yes. Cozy Blocks includes a powerful set of blocks, patterns, templates, and website-building tools in the free version, which you can use for both personal and commercial websites. Cozy Blocks Pro unlocks additional advanced blocks, premium features, templates, patterns, and website-building capabilities for users who want to build with fewer limitations.', 'cozy-addons' ); ?>
 					</p>
 				</div>
 			</div>
 
 			<div class="accordion-item">
 				<div class="accordion-header">
-					<h3><?php esc_html_e( 'Running a WooCommerce store?', 'cozy-addons' ); ?></h3>
+					<h3><?php esc_html_e( '5. Does Cozy Blocks work with any WordPress theme?', 'cozy-addons' ); ?></h3>
 					<i class="chevron">
 						<svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -958,14 +958,14 @@ $user_details = wp_get_current_user();
 					</i>
 				</div>
 				<div class="accordion-body">
-					<p><?php esc_html_e( 'Product grids, category blocks, quick view, wishlist, product sliders, and add-to-cart blocks work natively without extra plugins.', 'cozy-addons' ); ?>
+					<p><?php esc_html_e( 'Cozy Blocks is built specifically for WordPress Block Editor and Full Site Editing (FSE). It is fully compatible with modern WordPress block themes that support FSE. CozyThemes block themes are designed to provide deep integration with Cozy Blocks and its full range of website-building features.', 'cozy-addons' ); ?>
 					</p>
 				</div>
 			</div>
 
 			<div class="accordion-item">
 				<div class="accordion-header">
-					<h3><?php esc_html_e( 'Publishing a blog, news site, or magazine?', 'cozy-addons' ); ?></h3>
+					<h3><?php esc_html_e( '6. Do I need to know coding to use Cozy Blocks?', 'cozy-addons' ); ?></h3>
 					<i class="chevron">
 						<svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -975,14 +975,14 @@ $user_details = wp_get_current_user();
 					</i>
 				</div>
 				<div class="accordion-body">
-					<p><?php esc_html_e( 'Post grids, news tickers, trending posts, magazine-style layouts, and categorized post tabs are all included — no theme dependency.', 'cozy-addons' ); ?>
+					<p><?php esc_html_e( 'No. Cozy Blocks is built on the native WordPress visual editing experience, so you can build and customize your website without writing code. Use blocks, patterns, templates, and the Site Editor visually to create and manage your website.', 'cozy-addons' ); ?>
 					</p>
 				</div>
 			</div>
 
 			<div class="accordion-item">
 				<div class="accordion-header">
-					<h3><?php esc_html_e( 'New to WordPress?', 'cozy-addons' ); ?></h3>
+					<h3><?php esc_html_e( '7. What is Full Site Editing (FSE)?', 'cozy-addons' ); ?></h3>
 					<i class="chevron">
 						<svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -992,7 +992,24 @@ $user_details = wp_get_current_user();
 					</i>
 				</div>
 				<div class="accordion-body">
-					<p><?php esc_html_e( 'The 700+ ready-made patterns and 50+ homepage templates mean you can start with a professionally designed page, not a blank screen.', 'cozy-addons' ); ?>
+					<p><?php esc_html_e( "Full Site Editing is WordPress's visual system for building and customizing your entire website with blocks—not just the content of individual pages. With FSE, you can visually edit your headers, footers, navigation, templates, pages, global styles, and other parts of your website from the WordPress Site Editor. This gives you more control while keeping your website built on WordPress's native block system.", 'cozy-addons' ); ?>
+					</p>
+				</div>
+			</div>
+
+			<div class="accordion-item">
+				<div class="accordion-header">
+					<h3><?php esc_html_e( '8. Can I build a complete website with Cozy Blocks?', 'cozy-addons' ); ?></h3>
+					<i class="chevron">
+						<svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M16.5706 1.74303L14.8238 6.47969e-07L8.28527 6.5336L1.74674 7.63524e-08L0 1.74797L6.53854 8.27663C7.00185 8.7398 7.63015 9 8.28527 9C8.9404 9 9.5687 8.7398 10.032 8.27663L16.5706 1.74303Z"
+								fill="currentColor" />
+						</svg>
+					</i>
+				</div>
+				<div class="accordion-body">
+					<p><?php esc_html_e( 'Yes. Cozy Blocks is designed to go beyond individual page sections. You can use it to build complete business websites, online stores, blogs and magazines, landing pages, portfolios, service websites, and more using the Block Editor, FSE, WooCommerce, patterns, templates, and additional website-building tools.', 'cozy-addons' ); ?>
 					</p>
 				</div>
 			</div>

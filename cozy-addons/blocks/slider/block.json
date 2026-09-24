@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/slider",
   "title": "Slider",
-  "description": "Immerse your audience in captivating visuals with our versatile 'Slider' block, perfect for showcasing images or content in a dynamic and engaging carousel.",
+  "description": "Showcase images or content in an engaging, responsive slider.",
   "category": "cozy-block",
   "textdomain": "cozy-addons",
   "supports": {

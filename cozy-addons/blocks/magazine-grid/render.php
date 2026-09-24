@@ -728,16 +728,18 @@ if ( ! function_exists( 'get_cozy_block_magazine_grid_posts' ) ) {
 				// Get categories and their links.
 				$categories      = get_the_category( $post_id );
 				$post_categories = array();
-				foreach ( $categories as $category ) {
-					$post_categories[] = array(
-						'name'        => $category->name,
-						'link'        => get_category_link( $category->term_id ),
-						'count'       => $category->count,
-						'description' => $category->description,
-						'slug'        => $category->slug,
-						'taxonomy'    => $category->taxonomy,
-						'parent'      => $category->parent,
-					);
+				if ( $categories ) {
+					foreach ( $categories as $category ) {
+						$post_categories[] = array(
+							'name'        => $category->name,
+							'link'        => get_category_link( $category->term_id ),
+							'count'       => $category->count,
+							'description' => $category->description,
+							'slug'        => $category->slug,
+							'taxonomy'    => $category->taxonomy,
+							'parent'      => $category->parent,
+						);
+					}
 				}
 				$post_data['post_categories'] = $post_categories;
 
@@ -774,16 +776,18 @@ if ( ! function_exists( 'get_cozy_block_magazine_grid_featured_post' ) ) {
 		// Get categories and their links.
 		$categories      = get_the_category( $post_id );
 		$post_categories = array();
-		foreach ( $categories as $category ) {
-			$post_categories[] = array(
-				'name'        => $category->name,
-				'link'        => get_category_link( $category->term_id ),
-				'count'       => $category->count,
-				'description' => $category->description,
-				'slug'        => $category->slug,
-				'taxonomy'    => $category->taxonomy,
-				'parent'      => $category->parent,
-			);
+		if ( $categories ) {
+			foreach ( $categories as $category ) {
+				$post_categories[] = array(
+					'name'        => $category->name,
+					'link'        => get_category_link( $category->term_id ),
+					'count'       => $category->count,
+					'description' => $category->description,
+					'slug'        => $category->slug,
+					'taxonomy'    => $category->taxonomy,
+					'parent'      => $category->parent,
+				);
+			}
 		}
 		$post_data['post_categories'] = $post_categories;
 

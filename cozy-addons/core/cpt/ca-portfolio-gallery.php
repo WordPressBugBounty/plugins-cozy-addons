@@ -30,7 +30,6 @@ function ca_cpt_portfolio_gallery_init() {
 		'public'               => true,
 		'publicly_queryable'   => true,
 		'show_ui'              => true,
-		'show_in_menu'         => true,
 		'query_var'            => true,
 		'rewrite'              => array( 'slug' => $portfolio_gallery_config['slug'] ),
 		'capability_type'      => 'post',
@@ -41,6 +40,7 @@ function ca_cpt_portfolio_gallery_init() {
 		'show_in_rest'         => true,
 		'menu_icon'            => COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/portfolio-gallery.svg',
 		'register_meta_box_cb' => 'add_ca_portfolio_gallery_meta_boxes',
+		'show_in_nav_menus'    => false,
 	);
 	register_post_type( 'ca_portfolio_gallery', $args );
 
@@ -69,6 +69,7 @@ function ca_cpt_portfolio_gallery_init() {
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => $portfolio_gallery_config['taxonomy']['category']['slug'] ),
 			'show_in_rest'      => true,
+			'show_in_nav_menus' => false,
 		)
 	);
 }

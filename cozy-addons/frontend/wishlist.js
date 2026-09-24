@@ -198,7 +198,6 @@
 							action: "cozy_block_wishlist_update_user_wishlist",
 							wishlistNonce: attributes.wishlistNonce,
 							productId: productId,
-							userId: attributes.userID,
 						},
 						beforeSend: function () {
 							$(el).addClass("is-loading-spinner");

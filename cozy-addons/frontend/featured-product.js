@@ -294,7 +294,6 @@
 							action: "cozy_block_wishlist_update_user_wishlist",
 							wishlistNonce: attributes.wishlistNonce,
 							productId: removeProductId,
-							userId: attributes.userID,
 						},
 						beforeSend: function () {
 							$(el).addClass("is-loading-spinner");
@@ -428,7 +427,6 @@
 							action: "cozy_block_wishlist_update_user_wishlist",
 							wishlistNonce: attributes.wishlistNonce,
 							productId: productId,
-							userId: attributes.userID,
 						},
 						beforeSend: function () {
 							$(wishlistIcon).addClass("is-loading-spinner");
@@ -452,7 +450,7 @@
 
 							updateWishlistCount(response.data.user_wishlist.length);
 							updateSidebarRender(response.data.user_wishlist);
-							
+
 							showToast(
 								`${productName} has been ${
 									isAdded ? "added to" : "removed from"

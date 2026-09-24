@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/magazine-list",
   "title": "Magazine List (Pro)",
-  "description": "Showcase your posts categorically with multiple layout options. Easily feature a specific post to highlight important content. Enhance your site's look and keep visitors engaged with our versatile and customizable 'Magazine List' block.",
+  "description": "Present categorized posts in clean magazine-style list layouts.",
   "category": "cozy-block/post-magazine",
   "keywords": [
     "magazine",

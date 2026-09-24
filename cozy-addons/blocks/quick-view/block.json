@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/quick-view",
   "title": "Quick View (Pro)",
-  "description": "Preview product details in a stylish lightbox with the 'Quick View' block, providing a seamless and efficient way to view essential information without leaving the current page.",
+  "description": "Let shoppers preview product details without leaving the current page.",
   "category": "cozy-block/woocommerce",
   "textdomain": "cozy-addons",
   "supports": {
