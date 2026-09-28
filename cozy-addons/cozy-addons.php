@@ -16,7 +16,7 @@
  * Plugin Name:       Cozy Blocks
  * Plugin URI:        https://cozythemes.com/cozy-addons
  * Description:       Build stunning WordPress sites with 50+ advanced blocks, 500+ patterns, and 40+ templates—a fast, effortless website builder.
- * Version:           2.2.24
+ * Version:           2.2.25
  * Author:            CozyThemes
  * Author URI:        https://cozythemes.com/
  * License:           GPL-2.0+
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'COZY_ADDONS_VERSION', '2.2.24' );
+define( 'COZY_ADDONS_VERSION', '2.2.25' );
 define( 'COZY_ADDONS_PLUGIN_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'COZY_ADDONS_PLUGIN_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 
@@ -77,32 +77,28 @@ if ( ! function_exists( 'cc_fs' ) ) {
 	do_action( 'cc_fs_loaded' );
 }
 
-if ( function_exists( 'cc_fs' ) ) {
-	cc_fs()->skip_connection();
-}
-
 if ( ! defined( 'CT_COMPANION_SDK_URL' ) ) {
 	define( 'CT_COMPANION_SDK_URL', COZY_ADDONS_PLUGIN_URL . '/admin/ct-companions/' );
 }
 
-	/**
-	 * The code that runs during plugin activation.
-	 * This action is documented in includes/class-cozy-addons-activator.php
-	 */
+/**
+ * The code that runs during plugin activation.
+ * This action is documented in includes/class-cozy-addons-activator.php
+ */
 function activate_cozy_addons() {
 	\CozyAddons\Activator::activate();
 }
 
-	/**
-	 * The code that runs during plugin deactivation.
-	 * This action is documented in includes/class-cozy-addons-deactivator.php
-	 */
+/**
+ * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-cozy-addons-deactivator.php
+ */
 function deactivate_cozy_addons() {
 	\CozyAddons\Deactivator::deactivate();
 }
 
-	register_activation_hook( __FILE__, 'activate_cozy_addons' );
-	register_deactivation_hook( __FILE__, 'deactivate_cozy_addons' );
+register_activation_hook( __FILE__, 'activate_cozy_addons' );
+register_deactivation_hook( __FILE__, 'deactivate_cozy_addons' );
 
 if ( ! class_exists( 'Cozy_Addons' ) ) :
 	final class Cozy_Addons {

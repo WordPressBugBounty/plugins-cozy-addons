@@ -1,3 +1,6 @@
+= 2.2.25 - Sep 28, 2026 = 
+* Update: Dashboard access.
+
 = 2.2.24 - Sep 24, 2026 = 
 * Add: Home service starter template.
 * Update: Minor block improvements.
