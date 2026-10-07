@@ -140,7 +140,9 @@
 .cozy-color-control.border-none {
 	border: none;
 }
-
+.cozy-padding-top-none {
+	padding-top: 0 !important;
+}
 /* Tab Panel Control */
 .cozy-tab-panel .components-tab-panel__tabs {
 	justify-content: center;

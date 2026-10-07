@@ -2647,6 +2647,21 @@ return array(
 				'type' => 'string',
 				'default' => 'center'
 			),
+			'placeholder' => array(
+				'type' => 'object',
+				'default' => array(
+					'font' => array(
+						'size' => '',
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'letterSpacing' => '',
+					'color' => array(
+						'text' => ''
+					)
+				)
+			),
 			'label' => array(
 				'type' => 'object',
 				'default' => array(

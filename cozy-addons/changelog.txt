@@ -1,3 +1,10 @@
+= 2.2.26 - Oct 07, 2026 = 
+* Fix: Product category blocks' image hover effect.
+* Fix: Slider block move slide to selected slide item.
+* Fix: Cozy button variation for core button block to work with full width.
+* Add: Cozy button variation icon animations.
+* Update: Dashboard access popup.
+
 = 2.2.25 - Sep 28, 2026 = 
 * Update: Dashboard access.
 

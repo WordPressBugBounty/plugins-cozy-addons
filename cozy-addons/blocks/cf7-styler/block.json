@@ -31,6 +31,21 @@
       "type": "string",
       "default": "center"
     },
+    "placeholder": {
+      "type": "object",
+      "default": {
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "letterSpacing": "",
+        "color": {
+          "text": ""
+        }
+      }
+    },
     "label": {
       "type": "object",
       "default": {

@@ -49,6 +49,19 @@ $label_styles = array(
 	),
 );
 
+$placeholder_styles = array(
+	'font'           => array(
+		'size'   => isset( $attributes['placeholder']['font']['size'] ) ? cozy_addons_sanitize_dimension( $attributes['placeholder']['font']['size'] ) : '',
+		'weight' => isset( $attributes['placeholder']['font']['weight'] ) ? esc_attr( sanitize_text_field( $attributes['placeholder']['font']['weight'] ) ) : '',
+		'family' => isset( $attributes['placeholder']['font']['family'] ) ? esc_attr( sanitize_text_field( $attributes['placeholder']['font']['family'] ) ) : '',
+	),
+	'letter_case'    => isset( $attributes['placeholder']['letterCase'] ) ? esc_attr( sanitize_text_field( $attributes['placeholder']['letterCase'] ) ) : '',
+	'letter_spacing' => isset( $attributes['placeholder']['letterSpacing'] ) ? cozy_addons_sanitize_dimension( $attributes['placeholder']['letterSpacing'] ) : '',
+	'color'          => array(
+		'text' => isset( $attributes['placeholder']['color']['text'] ) ? esc_attr( $attributes['placeholder']['color']['text'] ) : '',
+	),
+);
+
 $text_styles = array(
 	'textarea_height' => isset( $attributes['textStyles']['textareaHeight'] ) ? cozy_addons_sanitize_dimension( $attributes['textStyles']['textareaHeight'] ) : '',
 	'padding'         => isset( $attributes['textStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['textStyles']['padding'] ) : '',
@@ -244,6 +257,15 @@ $block_styles = "
 	background-color: {$label_styles['color']['bg']};
 }
 
+#$block_id form input::placeholder {
+	font-size: {$placeholder_styles['font']['size']};
+	font-weight: {$placeholder_styles['font']['weight']};
+	font-family: {$placeholder_styles['font']['family']};
+	text-transform: {$placeholder_styles['letter_case']};
+	letter-spacing: {$placeholder_styles['letter_spacing']};
+	color: {$placeholder_styles['color']['text']};
+}
+
 #$block_id form > p .wpcf7-text, #$block_id form > p .wpcf7-email, #$block_id form > p .wpcf7-textarea {
 	{$text_styles['padding']}
 	{$text_styles['border']}
@@ -405,6 +427,10 @@ $font_families = array();
 
 if ( isset( $attributes['label']['font']['family'] ) && ! empty( $attributes['label']['font']['family'] ) ) {
 	$font_families[] = sanitize_text_field( $attributes['label']['font']['family'] );
+}
+
+if ( isset( $attributes['placeholder']['font']['family'] ) && ! empty( $attributes['placeholder']['font']['family'] ) ) {
+	$font_families[] = sanitize_text_field( $attributes['placeholder']['font']['family'] );
 }
 
 if ( isset( $attributes['textStyles']['font']['family'] ) && ! empty( $attributes['textStyles']['font']['family'] ) ) {
