@@ -1,0 +1,122 @@
+/*
+ * Popup Builder list screen: summary tiles and analytics columns.
+ * Colours follow the WordPress admin: #1d2327 text, #646970 secondary text,
+ * #c3c4c7 borders. Numbers stay in text colours; nothing is colour-coded.
+ */
+
+/* Summary tiles */
+.ca-popup-stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 12px;
+	margin: 16px 0 8px;
+}
+
+.ca-popup-stat {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 14px 16px;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.ca-popup-stat__label {
+	color: #646970;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+/* Proportional figures: tabular digits look loose at this size. */
+.ca-popup-stat__value {
+	color: #1d2327;
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.ca-popup-stat__detail {
+	color: #646970;
+	font-size: 12px;
+	line-height: 1.4;
+}
+
+.ca-popup-stats + .ca-popup-stats__note {
+	margin: 0 0 12px;
+	color: #646970;
+	font-size: 12px;
+	line-height: 1.4;
+}
+
+/*
+ * Premium gate. On free sites the analytics numbers are replaced by a dash
+ * and marked with this label, the same pill the editor uses for Pro controls.
+ */
+.ca-popup-pro-label {
+	display: inline-block;
+	margin-left: 4px;
+	padding: 0 5px;
+	border: 1px solid var(--cozy-addons--primary, #5253f9);
+	border-radius: 10px;
+	background-color: var(--cozy-addons--primary-accent, #ecefff);
+	color: var(--cozy-addons--primary, #5253f9);
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 16px;
+	vertical-align: middle;
+}
+
+.ca-popup-stat.is-locked .ca-popup-stat__value,
+.post-type-ca_popup_builder .wp-list-table .ca-popup-locked {
+	color: #a7aaad;
+}
+
+/* List table columns */
+.post-type-ca_popup_builder .wp-list-table .ca-popup-cell__main,
+.post-type-ca_popup_builder .wp-list-table .ca-popup-cell__detail {
+	display: block;
+}
+
+.post-type-ca_popup_builder .wp-list-table .ca-popup-cell__detail {
+	color: #646970;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+/* Counts line up down the column. */
+.post-type-ca_popup_builder .wp-list-table td.column-ca_popup_impressions,
+.post-type-ca_popup_builder .wp-list-table td.column-ca_popup_clicks,
+.post-type-ca_popup_builder .wp-list-table td.column-ca_popup_conversion,
+.post-type-ca_popup_builder .wp-list-table td.column-ca_popup_dismissals {
+	font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Column widths. The table uses a fixed layout and Title takes whatever is
+ * left. Cell padding is added on top of each width, so these are kept tight
+ * enough to leave Title roughly 15% on a laptop-sized screen.
+ */
+.post-type-ca_popup_builder .wp-list-table .column-ca_popup_trigger,
+.post-type-ca_popup_builder .wp-list-table .column-ca_popup_targeting {
+	width: 11%;
+}
+
+.post-type-ca_popup_builder .wp-list-table .column-ca_popup_impressions,
+.post-type-ca_popup_builder .wp-list-table .column-ca_popup_dismissals {
+	width: 9%;
+}
+
+.post-type-ca_popup_builder .wp-list-table .column-ca_popup_conversion,
+.post-type-ca_popup_builder .wp-list-table .column-ca_popup_last_shown {
+	width: 8%;
+}
+
+.post-type-ca_popup_builder .wp-list-table .column-ca_popup_clicks {
+	width: 6%;
+}
+
+/* Core gives Date 14%; trimmed here to make room for the columns above. */
+.post-type-ca_popup_builder .wp-list-table.fixed .column-date {
+	width: 9%;
+}

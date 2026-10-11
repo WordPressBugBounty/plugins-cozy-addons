@@ -7,8 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use WP_REST_Request;
 
-use function PHPSTORM_META\type;
-
 class Block {
 	/**
 	 * Holds the singleton instance of the Block class.
@@ -145,6 +143,26 @@ class Block {
 				array(
 					'methods'             => \WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'ca_cpt_taxonomy' ),
+					'permission_callback' => '__return_true',
+				)
+			);
+
+			register_rest_route(
+				'cozy-block/v1',
+				'/user-roles',
+				array(
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_user_roles' ),
+					'permission_callback' => '__return_true',
+				)
+			);
+
+			register_rest_route(
+				'cozy-block/v1',
+				'/generate-block-html',
+				array(
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'create_block_render' ),
 					'permission_callback' => '__return_true',
 				)
 			);
@@ -532,6 +550,7 @@ class Block {
 		$allowed_posts = array(
 			'ca_faq',
 			'ca_testimonial',
+			'ca_popup_builder',
 		);
 
 		if ( ! isset( $post_type ) || ( isset( $post_type ) && ! in_array( $post_type, $allowed_posts, true ) ) ) {
@@ -593,5 +612,35 @@ class Block {
 		wp_reset_postdata();
 
 		return rest_ensure_response( $categories );
+	}
+
+	public function get_user_roles() {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return array();
+		}
+
+		$user_roles = wp_roles()->get_names();
+
+		return rest_ensure_response( $user_roles );
+	}
+
+	public function create_block_render( \WP_REST_Request $request ) {
+		$the_post_id = $request->get_param( 'post_id' );
+
+		$the_post_type   = get_post_field( 'post_type', $the_post_id );
+		$the_post_status = get_post_field( 'post_status', $the_post_id );
+
+		if ( empty( $the_post_type ) || 'ca_popup_builder' !== $the_post_type || empty( $the_post_status ) || 'publish' !== $the_post_status ) {
+			return '';
+		}
+
+		$the_post_content = get_post_field( 'post_content', $the_post_id );
+
+		if ( empty( $the_post_content ) ) {
+			return '';
+		}
+
+		// Blocks, shortcodes and embeds, the same way the frontend renders a popup.
+		return rest_ensure_response( cozy_addons_render_popup_content( $the_post_id ) );
 	}
 }

@@ -33,7 +33,6 @@ class Blocks {
 	);
 
 	private static $premium_blocks = array(
-		'modal',
 		'news-ticker',
 		'post-slider',
 		'popular-post',

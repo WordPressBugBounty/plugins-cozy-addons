@@ -151,7 +151,8 @@
 #menu-posts-ca_faq img,
 #menu-posts-ca_mega_menu img,
 #menu-posts-ca_testimonial img,
-#menu-posts-ca_portfolio_gallery img {
+#menu-posts-ca_portfolio_gallery img,
+#menu-posts-ca_popup_builder img {
 	opacity: 1 !important;
 }
 

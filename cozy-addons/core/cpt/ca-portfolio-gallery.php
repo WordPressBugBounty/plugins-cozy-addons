@@ -83,7 +83,7 @@ if ( ! function_exists( 'register_ca_portfolio_gallery_custom_fields' ) ) {
 	 */
 	function register_ca_portfolio_gallery_custom_fields() {
 		register_meta(
-			'post',
+			'ca_portfolio_gallery',
 			'ca_portfolio_gallery_project_year',
 			array(
 				'type'         => 'string',
@@ -94,7 +94,7 @@ if ( ! function_exists( 'register_ca_portfolio_gallery_custom_fields' ) ) {
 		);
 
 		register_meta(
-			'post',
+			'ca_portfolio_gallery',
 			'ca_portfolio_gallery_client',
 			array(
 				'type'         => 'string',
@@ -105,7 +105,7 @@ if ( ! function_exists( 'register_ca_portfolio_gallery_custom_fields' ) ) {
 		);
 
 		register_meta(
-			'post',
+			'ca_portfolio_gallery',
 			'ca_portfolio_gallery_skills',
 			array(
 				'type'         => 'string',
@@ -116,7 +116,7 @@ if ( ! function_exists( 'register_ca_portfolio_gallery_custom_fields' ) ) {
 		);
 
 		register_meta(
-			'post',
+			'ca_portfolio_gallery',
 			'ca_portfolio_gallery_url',
 			array(
 				'type'         => 'string',
@@ -127,7 +127,7 @@ if ( ! function_exists( 'register_ca_portfolio_gallery_custom_fields' ) ) {
 		);
 
 		register_meta(
-			'post',
+			'ca_portfolio_gallery',
 			'ca_portfolio_gallery_images',
 			array(
 				'type'         => 'string',

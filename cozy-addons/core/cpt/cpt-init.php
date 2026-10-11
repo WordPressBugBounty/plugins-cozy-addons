@@ -7,6 +7,7 @@ $ca_mega_menu_enabled         = get_option( 'ca-cpt--mega-menu-templates' );
 $ca_portfolio_gallery_enabled = get_option( 'ca-cpt--portfolio-gallery-templates' );
 $ca_faq_enabled               = get_option( 'ca-cpt--faq-templates' );
 $ca_testimonial_enabled       = get_option( 'ca-cpt--testimonial-templates' );
+$ca_popup_builder_enabled     = get_option( 'ca-cpt--popup-builder-templates' );
 
 function cozy_addons_get_cpt_config_option( $cpt = '' ) {
 	$config = get_option(
@@ -70,6 +71,25 @@ function cozy_addons_get_cpt_config_option( $cpt = '' ) {
 				),
 				'premium'        => true,
 			),
+			'popup-builder'     => array(
+				'post_type'      => 'ca_popup_builder',
+				'singular_label' => 'Popup Builder',
+				'plural_label'   => 'Popup Builder',
+				'slug'           => 'ca-popup-builder',
+				'taxonomy'       => array(
+					'category' => array(
+						'singular_label' => 'Category',
+						'plural_label'   => 'Categories',
+						'slug'           => 'ca-popup-builder-category',
+					),
+					'tags'     => array(
+						'singular_label' => 'Tag',
+						'plural_label'   => 'Tags',
+						'slug'           => 'ca-popup-builder-tags',
+					),
+				),
+				'premium'        => true,
+			),
 		)
 	);
 
@@ -78,6 +98,7 @@ function cozy_addons_get_cpt_config_option( $cpt = '' ) {
 		'portfolio-gallery',
 		'faq',
 		'testimonial',
+		'popup-builder',
 	);
 
 	if ( ! empty( $cpt ) && in_array( $cpt, $registered_cpt, true ) ) {
@@ -88,20 +109,20 @@ function cozy_addons_get_cpt_config_option( $cpt = '' ) {
 }
 
 function cozy_addons_update_cpt_value( array &$data, string $cpt, string $type, string $value ) {
-	// Make sure the top-level CPT entry exists
+	// Make sure the top-level CPT entry exists.
 	if ( ! isset( $data[ $cpt ] ) ) {
 		$data[ $cpt ] = array();
 	}
 
-	// Split the dot-notation path into individual keys
+	// Split the dot-notation path into individual keys.
 	$keys = explode( '.', $type );
 
-	// Start a reference pointer at the CPT's array
+	// Start a reference pointer at the CPT's array.
 	$pointer = &$data[ $cpt ];
 
-	// Walk down every key except the last one, creating nested arrays as needed
+	// Walk down every key except the last one, creating nested arrays as needed.
 	foreach ( $keys as $i => $key ) {
-		$is_last = ( $i === count( $keys ) - 1 );
+		$is_last = ( count( $keys ) - 1 === $i );
 
 		if ( $is_last ) {
 			$pointer[ $key ] = $value;
@@ -113,7 +134,7 @@ function cozy_addons_update_cpt_value( array &$data, string $cpt, string $type, 
 		}
 	}
 
-	unset( $pointer ); // break the reference to avoid accidental reuse
+	unset( $pointer ); // break the reference to avoid accidental reuse.
 }
 
 if ( cozy_addons_premium_access() ) {
@@ -136,4 +157,9 @@ if ( cozy_addons_premium_access() ) {
 		require_once COZY_ADDONS_PLUGIN_DIR . 'core/cpt/ca-testimonial.php';
 		update_option( 'ca-cpt--testimonial-templates', '1' );
 	}
+}
+
+if ( '1' === $ca_popup_builder_enabled || '' == $ca_popup_builder_enabled ) {
+	require_once COZY_ADDONS_PLUGIN_DIR . 'core/cpt/ca-popup-builder.php';
+	update_option( 'ca-cpt--popup-builder-templates', '1' );
 }

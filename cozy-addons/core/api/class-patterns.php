@@ -103,7 +103,7 @@ class Patterns {
 	 * @return string Serialized block structure if found, otherwise an empty string.
 	 */
 	public function get_pattern_content( WP_REST_Request $request ) {
-		$pattern_slug = $request->get_param( 'slug' ) ? sanitize_text_field( wp_unslash( $request->get_param( 'slug' ) ) ) : '';
+		$pattern_slug  = $request->get_param( 'slug' ) ? sanitize_text_field( wp_unslash( $request->get_param( 'slug' ) ) ) : '';
 
 		if ( empty( $pattern_slug ) ) {
 			return '';

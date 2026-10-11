@@ -2530,3 +2530,110 @@ function cozy_addons_extract_faq_items_from_content( $content ) {
 
 	return $items;
 }
+
+if ( ! function_exists( 'cozy_addons_is_rendering_popup_builder' ) ) {
+	/**
+	 * Tracks whether blocks are currently being rendered from a Popup Builder post.
+	 *
+	 * The Popup Modal block opens on page load when it comes from the Popup Builder
+	 * and on button click everywhere else. Popup Builder content is rendered while
+	 * another page is being viewed, so the block cannot work this out from the
+	 * current post and reads this flag instead.
+	 *
+	 * @param bool|null $state Pass a boolean to set the flag, omit to read it.
+	 * @return bool Whether Popup Builder content is being rendered.
+	 */
+	function cozy_addons_is_rendering_popup_builder( $state = null ) {
+		static $rendering = false;
+
+		if ( null !== $state ) {
+			$rendering = (bool) $state;
+		}
+
+		return $rendering;
+	}
+}
+
+if ( ! function_exists( 'cozy_addons_rendering_popup_id' ) ) {
+	/**
+	 * Tracks which Popup Builder post is currently being rendered.
+	 *
+	 * The Popup Modal block uses it to tell the frontend script which popup to
+	 * report analytics events for. See core/cpt/ca-popup-analytics.php.
+	 *
+	 * @param int|null $popup_id Pass a post ID to set it (0 to clear), omit to read it.
+	 * @return int Post ID of the popup being rendered, or 0.
+	 */
+	function cozy_addons_rendering_popup_id( $popup_id = null ) {
+		static $current_id = 0;
+
+		if ( null !== $popup_id ) {
+			$current_id = absint( $popup_id );
+		}
+
+		return $current_id;
+	}
+}
+
+if ( ! function_exists( 'cozy_addons_render_popup_content' ) ) {
+	/**
+	 * Renders the content of a Popup Builder post.
+	 *
+	 * Popups are printed outside the loop, so their content never passes through
+	 * the `the_content` filters. Rendering the blocks alone leaves shortcodes as
+	 * literal text and embed URLs unconverted, because core handles both in that
+	 * filter. This runs the same core steps, in the same order:
+	 * embeds, then blocks, then shortcodes.
+	 *
+	 * `the_content` itself is not applied on purpose: other plugins hook it to
+	 * append their own output (share buttons, related posts), which would then
+	 * land inside every popup, and it would run against the page being viewed
+	 * rather than the popup.
+	 *
+	 * @param int|\WP_Post $popup Popup post or its ID.
+	 * @return string Rendered HTML, or an empty string if the post does not exist.
+	 */
+	function cozy_addons_render_popup_content( $popup ) {
+		global $wp_embed;
+
+		$popup = get_post( $popup );
+
+		if ( ! $popup || '' === trim( (string) $popup->post_content ) ) {
+			return '';
+		}
+
+		$content = $popup->post_content;
+
+		// Embeds: [embed] shortcodes and URLs on their own line, such as the
+		// one an Embed block saves. Results are cached on the popup itself, not
+		// on whichever page happens to be showing it.
+		if ( $wp_embed instanceof \WP_Embed ) {
+			$previous_embed_post = $wp_embed->post_ID;
+			$wp_embed->post_ID   = $popup->ID;
+
+			$content = $wp_embed->run_shortcode( $content );
+			$content = $wp_embed->autoembed( $content );
+
+			$wp_embed->post_ID = $previous_embed_post;
+		}
+
+		// Blocks. The flags tell the Popup Modal block that it is being rendered
+		// from the Popup Builder (load trigger) and for which popup (analytics).
+		$was_rendering = cozy_addons_is_rendering_popup_builder();
+		$previous_id   = cozy_addons_rendering_popup_id();
+
+		cozy_addons_is_rendering_popup_builder( true );
+		cozy_addons_rendering_popup_id( $popup->ID );
+
+		$content = do_blocks( $content );
+
+		cozy_addons_rendering_popup_id( $previous_id );
+		cozy_addons_is_rendering_popup_builder( $was_rendering );
+
+		// Shortcodes, after blocks, as core does.
+		$content = shortcode_unautop( $content );
+		$content = do_shortcode( $content );
+
+		return $content;
+	}
+}

@@ -8105,8 +8105,8 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'cozy-block/modal',
-		'title' => 'Popup Builder (Pro)',
-		'description' => 'Capture attention with our \'Popup Builder\' block, a pop-up window designed to showcase offers and promotions, providing a compelling way to communicate with your audience.',
+		'title' => 'Popup Modal',
+		'description' => 'Show a customizable popup or notification bar triggered by scroll, time, or exit intent.',
 		'category' => 'cozy-block',
 		'textdomain' => 'cozy-addons',
 		'supports' => array(
@@ -8121,10 +8121,6 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
-			'boxWidth' => array(
-				'type' => 'number',
-				'default' => 645
-			),
 			'modalType' => array(
 				'type' => 'string',
 				'default' => 'default'
@@ -8133,90 +8129,207 @@ return array(
 				'type' => 'string',
 				'default' => 'load'
 			),
+			'trigger' => array(
+				'type' => 'string',
+				'default' => 'load'
+			),
 			'loadOnRefresh' => array(
 				'type' => 'boolean',
 				'default' => false
 			),
+			'frequencyControl' => array(
+				'type' => 'string',
+				'default' => 'once_per_session'
+			),
+			'cooldownInterval' => array(
+				'type' => 'string',
+				'default' => '1'
+			),
+			'placement' => array(
+				'type' => 'string',
+				'default' => 'center center'
+			),
+			'allowScroll' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'addOverlay' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
 			'backgroundOverlayColor' => array(
 				'type' => 'string',
-				'default' => '#222222ad'
+				'default' => '#0D0C0CAD'
+			),
+			'overlayBlur' => array(
+				'type' => 'string',
+				'default' => '5px'
 			),
 			'backgroundColor' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'pageVisibility' => array(
+				'type' => 'object',
+				'default' => array(
+					'homepage' => true,
+					'hasAllowedList' => false,
+					'allowedList' => array(
+						
+					),
+					'hasDenyList' => false,
+					'denyList' => array(
+						
+					)
+				)
+			),
+			'postTypeVisibility' => array(
+				'type' => 'object',
+				'default' => array(
+					'hasAllowedList' => false,
+					'allowedList' => array(
+						
+					),
+					'hasDenyList' => false,
+					'denyList' => array(
+						
+					)
+				)
+			),
+			'roleVisibility' => array(
+				'type' => 'object',
+				'default' => array(
+					'hasAllowedList' => true,
+					'allowedList' => array(
+						
+					),
+					'hasDenyList' => false,
+					'denyList' => array(
+						
+					)
+				)
+			),
+			'loadCondition' => array(
+				'type' => 'object',
+				'default' => array(
+					'delay' => 0,
+					'scroll' => 0
+				)
+			),
+			'exitCondition' => array(
+				'type' => 'object',
+				'default' => array(
+					'delay' => 0
+				)
+			),
+			'responsiveVisibility' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => true,
+					'tablet' => true,
+					'mobile' => true
+				)
 			),
 			'iconStyles' => array(
 				'type' => 'object',
 				'default' => array(
 					'enabled' => true,
 					'alignment' => 'right',
-					'horizontalSpacing' => -50,
-					'verticalSpacing' => -50,
-					'boxWidth' => 36,
-					'boxHeight' => 36,
-					'radius' => 100,
-					'iconSize' => 15,
-					'bg' => '#0c50ff',
-					'bgHover' => '#f90',
-					'iconColor' => '#fff',
-					'iconColorHover' => '',
-					'border' => '1px solid #000',
-					'borderRadius' => 20
+					'hSpacing' => '0px',
+					'vSpacing' => '0px',
+					'boxWidth' => '36px',
+					'boxHeight' => '36px',
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '100px',
+					'size' => '15px',
+					'zIndex' => 1,
+					'bg' => '',
+					'bgHover' => '',
+					'borderHover' => '',
+					'iconColor' => '#141822',
+					'iconColorHover' => ''
 				)
 			),
 			'clickButtonStyles' => array(
 				'type' => 'object',
 				'default' => array(
-					'padding' => array(
-						'top' => 10,
-						'right' => 10,
-						'bottom' => 10,
-						'left' => 10
-					),
+					'variation' => 'default',
+					'placement' => 'bottom right',
 					'content' => 'default',
 					'label' => 'Open Popup',
 					'imgURL' => 'https://plugins.cozythemes.com/cozy-addons/assets/media/play-btn.png',
-					'imgWidth' => 100,
-					'imgHeight' => 100,
-					'imgRadius' => 100,
-					'imgHasPulse' => 0,
-					'fontSize' => 14,
-					'fontFamily' => 'Public Sans',
-					'fontWeight' => '500',
+					'imgAlt' => '',
+					'imgHasPulse' => true,
+					'margin' => array(
+						'top' => '',
+						'right' => '',
+						'bottom' => '',
+						'left' => ''
+					),
+					'desktop' => array(
+						'padding' => array(
+							'top' => '14px',
+							'right' => '36px',
+							'bottom' => '14px',
+							'left' => '36px'
+						),
+						'width' => '44px',
+						'height' => '44px',
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '100px',
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
 					'letterCase' => 'none',
 					'decoration' => 'none',
 					'lineHeight' => '',
 					'letterSpacing' => '',
 					'justify' => 'center',
-					'borderType' => 'none',
-					'borderWidth' => array(
-						'top' => 1,
-						'right' => 1,
-						'bottom' => 1,
-						'left' => 1
-					),
-					'borderColor' => '#000',
-					'borderRadius' => 60,
-					'color' => '#0ba986',
+					'color' => '#fff',
 					'colorHover' => '',
-					'bgColor' => '#dcf2ec',
-					'bgColorHover' => ''
+					'bgColor' => '#0c50ff',
+					'bgColorHover' => '',
+					'borderColorHover' => ''
 				)
 			),
-			'padding' => array(
+			'styles' => array(
 				'type' => 'object',
 				'default' => array(
-					'top' => 50,
-					'right' => 50,
-					'bottom' => 50,
-					'left' => 50
-				)
-			),
-			'margin' => array(
-				'type' => 'object',
-				'default' => array(
-					'top' => '',
-					'bottom' => ''
+					'desktop' => array(
+						'padding' => array(
+							'top' => '0px',
+							'right' => '0px',
+							'bottom' => '0px',
+							'left' => '0px'
+						),
+						'margin' => array(
+							'top' => '0px',
+							'right' => '0px',
+							'bottom' => '0px',
+							'left' => '0px'
+						),
+						'width' => '645px',
+						'height' => ''
+					),
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => ''
 				)
 			)
 		),

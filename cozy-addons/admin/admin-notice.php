@@ -454,6 +454,7 @@ function cozy_addons_post_seeder_notice() {
 		'ca_faq',
 		'ca_testimonial',
 		'ca_portfolio_gallery',
+		'ca_popup_builder',
 		'post',
 		'product',
 	);

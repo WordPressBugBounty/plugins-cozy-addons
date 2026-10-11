@@ -137,7 +137,7 @@ function ca_cpt_testimonial() {
 
 	/* Register meta fields */
 	register_meta(
-		'post',
+		'ca_testimonial',
 		'ca_testimonial_rating',
 		array(
 			'type'         => 'string',
@@ -148,7 +148,7 @@ function ca_cpt_testimonial() {
 	);
 
 	register_meta(
-		'post',
+		'ca_testimonial',
 		'ca_testimonial_name',
 		array(
 			'type'         => 'string',
@@ -159,7 +159,7 @@ function ca_cpt_testimonial() {
 	);
 
 	register_meta(
-		'post',
+		'ca_testimonial',
 		'ca_testimonial_role',
 		array(
 			'type'         => 'string',
@@ -170,7 +170,7 @@ function ca_cpt_testimonial() {
 	);
 
 	register_meta(
-		'post',
+		'ca_testimonial',
 		'ca_testimonial_review_source',
 		array(
 			'type'         => 'string',

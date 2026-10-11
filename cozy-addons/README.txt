@@ -4,7 +4,7 @@ Tags: gutenberg blocks, page builder, block patterns, woocommerce blocks, full s
 Requires PHP: 7.4
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.2.26
+Stable tag: 2.2.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Build WordPress websites faster with Gutenberg blocks, ready-made patterns, starter templates, WooCommerce, and many more.
@@ -242,6 +242,10 @@ You can report any security bugs found in the source code of this plugin through
 8. FSE Homepage templates
 
 == Changelog ==
+= 2.2.27 - Oct 11, 2026 = 
+* Add: Popup builder.
+* Update: Modal block only for click event.
+
 = 2.2.26 - Oct 07, 2026 = 
 * Fix: Product category blocks' image hover effect.
 * Fix: Slider block move slide to selected slide item.

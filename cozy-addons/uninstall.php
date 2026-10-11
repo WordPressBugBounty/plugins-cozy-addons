@@ -33,8 +33,16 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 delete_option( 'ca-cpt--mega-menu-templates' );
 delete_option( 'ca-cpt--portfolio-gallery-templates' );
 delete_option( 'ca-cpt--faq-templates' );
+delete_option( 'ca-cpt--testimonial-templates' );
+delete_option( 'ca-cpt--popup-builder-templates' );
 
 delete_option( 'ca-cpt--config' );
+
+// Popup Builder analytics counters.
+delete_post_meta_by_key( '_ca_popup_impressions' );
+delete_post_meta_by_key( '_ca_popup_clicks' );
+delete_post_meta_by_key( '_ca_popup_dismissals' );
+delete_post_meta_by_key( '_ca_popup_last_shown' );
 
 $blocks = require_once WP_PLUGIN_DIR . '/cozy-addons/blocks/blocks-manifest.php';
 if ( is_array( $blocks ) ) {
