@@ -24,6 +24,14 @@
 	background-color: var(--cozy-addons--primary);
 	color: #ffffff;
 }
+#adminmenu
+	li#toplevel_page__cozy_companions
+	.wp-submenu
+	li.ca-menu-group-start {
+	margin-top: 6px;
+	padding-top: 6px;
+	border-top: 1px solid rgba(128, 128, 128, 0.35);
+}
 
 /* Admin */
 .cozy-addons-admin-notice {

@@ -36,6 +36,26 @@ class Admin {
 	private static $url = COZY_ADDONS_PLUGIN_URL . 'admin/';
 
 	/**
+	 * Slug of the plugin's top-level admin menu.
+	 *
+	 * @var string
+	 */
+	private static $menu_slug = '_cozy_companions';
+
+	/**
+	 * Post types listed under the plugin menu, in display order.
+	 *
+	 * @var string[]
+	 */
+	private static $menu_post_types = array(
+		'ca_mega_menu',
+		'ca_portfolio_gallery',
+		'ca_faq',
+		'ca_testimonial',
+		'ca_popup_builder',
+	);
+
+	/**
 	 * Returns the singleton instance of the Admin class.
 	 *
 	 * @return Admin The singleton instance.
@@ -64,6 +84,13 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_admin_assets' ) );
 
 		add_action( 'admin_menu', array( $this, 'register_plugin_menu' ), 9 );
+		// After Freemius, which adds its own items at priority 999999999.
+		add_action( 'admin_menu', array( $this, 'organize_plugin_menu' ), PHP_INT_MAX );
+
+		add_filter( 'parent_file', array( $this, 'set_taxonomy_parent_file' ) );
+		add_filter( 'submenu_file', array( $this, 'set_taxonomy_submenu_file' ) );
+
+		add_action( 'current_screen', array( $this, 'add_taxonomy_links' ) );
 	}
 
 	/**
@@ -174,6 +201,208 @@ class Admin {
 				);
 			}
 		}
+	}
+
+	/**
+	 * Sorts the plugin submenu into groups and marks where each group starts.
+	 *
+	 * Order: Dashboard | Blocks and the post types | Settings, Free VS Pro, License |
+	 * everything else (the Freemius pages). Only the order, the post type labels and
+	 * the CSS classes change; the slugs are left as registered.
+	 */
+	public function organize_plugin_menu() {
+		global $submenu;
+
+		$items = isset( $submenu[ self::$menu_slug ] ) ? array_values( $submenu[ self::$menu_slug ] ) : array();
+
+		$post_type_slugs = array();
+
+		foreach ( self::$menu_post_types as $post_type ) {
+			$post_type_object = $this->get_menu_post_type_object( $post_type );
+
+			if ( ! $post_type_object ) {
+				continue;
+			}
+
+			$slug              = 'edit.php?post_type=' . $post_type;
+			$post_type_slugs[] = $slug;
+			$index             = array_search( $slug, array_column( $items, 2 ), true );
+
+			if ( false !== $index ) {
+				// Core labels the item with 'all_items'.
+				$items[ $index ][0] = $post_type_object->labels->menu_name;
+			} elseif ( current_user_can( $post_type_object->cap->edit_posts ) ) {
+				// Freemius empties the submenu while its opt-in screen is pending.
+				$items[] = array(
+					$post_type_object->labels->menu_name,
+					$post_type_object->cap->edit_posts,
+					$slug,
+					$post_type_object->labels->name,
+				);
+			}
+		}
+
+		if ( empty( $items ) ) {
+			return;
+		}
+
+		// Keeps the top-level link on the plugin page instead of the first post type.
+		if ( ! in_array( self::$menu_slug, array_column( $items, 2 ), true ) && current_user_can( 'manage_options' ) ) {
+			$items[] = array( __( 'Dashboard', 'cozy-addons' ), 'manage_options', self::$menu_slug, 'Dashboard' );
+		}
+
+		$groups = array(
+			array( self::$menu_slug ),
+			array_merge( array( self::$menu_slug . '&tab=blocks' ), $post_type_slugs ),
+			array(
+				self::$menu_slug . '&tab=settings',
+				self::$menu_slug . '&tab=free-pro-comparison',
+				self::$menu_slug . '&tab=license',
+			),
+		);
+
+		$sorted = array();
+
+		foreach ( $groups as $slugs ) {
+			$group = array();
+
+			foreach ( $slugs as $slug ) {
+				foreach ( $items as $index => $item ) {
+					if ( $slug === $item[2] ) {
+						$group[] = $item;
+						unset( $items[ $index ] );
+					}
+				}
+			}
+
+			$sorted[] = $group;
+		}
+
+		// Whatever is left keeps its order in a last group.
+		$sorted[] = array_values( $items );
+
+		$organized = array();
+
+		foreach ( $sorted as $group ) {
+			if ( empty( $group ) ) {
+				continue;
+			}
+
+			if ( ! empty( $organized ) ) {
+				$group[0][4] = trim( ( isset( $group[0][4] ) ? $group[0][4] : '' ) . ' ca-menu-group-start' );
+			}
+
+			$organized = array_merge( $organized, $group );
+		}
+
+		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		$submenu[ self::$menu_slug ] = $organized;
+	}
+
+	/**
+	 * Returns a post type's object when it is listed under the plugin menu.
+	 *
+	 * Users who cannot open the plugin menu keep the post types as top-level menus.
+	 *
+	 * @param string $post_type Post type name.
+	 * @return \WP_Post_Type|null
+	 */
+	private function get_menu_post_type_object( $post_type ) {
+		if ( ! in_array( $post_type, self::$menu_post_types, true ) ) {
+			return null;
+		}
+
+		$post_type_object = get_post_type_object( $post_type );
+
+		return $post_type_object && self::$menu_slug === $post_type_object->show_in_menu ? $post_type_object : null;
+	}
+
+	/**
+	 * Returns the post type of the current taxonomy screen when that post type is
+	 * listed under the plugin menu.
+	 *
+	 * @return string Post type name, or an empty string on any other screen.
+	 */
+	private function get_taxonomy_screen_post_type() {
+		$screen = get_current_screen();
+
+		if ( ! $screen || ! in_array( $screen->base, array( 'edit-tags', 'term' ), true ) ) {
+			return '';
+		}
+
+		return $this->get_menu_post_type_object( $screen->post_type ) ? $screen->post_type : '';
+	}
+
+	/**
+	 * Keeps the plugin menu open on the taxonomy screens of its post types.
+	 *
+	 * @param string $parent_file The parent file.
+	 * @return string
+	 */
+	public function set_taxonomy_parent_file( $parent_file ) {
+		return $this->get_taxonomy_screen_post_type() ? self::$menu_slug : $parent_file;
+	}
+
+	/**
+	 * Highlights the post type's menu item on its taxonomy screens.
+	 *
+	 * @param string $submenu_file The submenu file.
+	 * @return string
+	 */
+	public function set_taxonomy_submenu_file( $submenu_file ) {
+		$post_type = $this->get_taxonomy_screen_post_type();
+
+		return $post_type ? 'edit.php?post_type=' . $post_type : $submenu_file;
+	}
+
+	/**
+	 * Hooks the links between a post type's list and its taxonomy screens.
+	 *
+	 * @param \WP_Screen $screen Current screen.
+	 */
+	public function add_taxonomy_links( $screen ) {
+		if ( ! in_array( $screen->base, array( 'edit', 'edit-tags' ), true ) || ! $this->get_menu_post_type_object( $screen->post_type ) ) {
+			return;
+		}
+
+		add_filter( 'views_' . $screen->id, array( $this, 'filter_taxonomy_links' ) );
+	}
+
+	/**
+	 * Links a post type's list and its taxonomy screens to each other, as the
+	 * taxonomy screens have no menu item.
+	 *
+	 * @param array $views Links above the list table.
+	 * @return array
+	 */
+	public function filter_taxonomy_links( $views ) {
+		$screen           = get_current_screen();
+		$post_type_object = get_post_type_object( $screen->post_type );
+		$links            = array();
+
+		// Back to the post type's list from its taxonomy screens.
+		if ( 'edit-tags' === $screen->base ) {
+			$links['post-type'] = sprintf(
+				'<a href="%s">%s</a>',
+				esc_url( admin_url( 'edit.php?post_type=' . $post_type_object->name ) ),
+				esc_html( $post_type_object->labels->all_items )
+			);
+		}
+
+		foreach ( get_object_taxonomies( $post_type_object->name, 'objects' ) as $taxonomy ) {
+			if ( ! $taxonomy->show_ui || ! current_user_can( $taxonomy->cap->manage_terms ) ) {
+				continue;
+			}
+
+			$links[ 'taxonomy-' . $taxonomy->name ] = sprintf(
+				'<a href="%s"%s>%s</a>',
+				esc_url( admin_url( 'edit-tags.php?taxonomy=' . $taxonomy->name . '&post_type=' . $post_type_object->name ) ),
+				$screen->taxonomy === $taxonomy->name ? ' class="current" aria-current="page"' : '',
+				esc_html( $taxonomy->labels->name )
+			);
+		}
+
+		return array_merge( $views, $links );
 	}
 
 	/**

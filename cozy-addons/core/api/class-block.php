@@ -1,5 +1,5 @@
 <?php
-namespace Core\Api;
+namespace CozyAddons\Core\Api;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

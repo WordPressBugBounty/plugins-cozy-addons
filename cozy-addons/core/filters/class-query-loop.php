@@ -1,5 +1,5 @@
 <?php
-namespace Core\Filters;
+namespace CozyAddons\Core\Filters;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

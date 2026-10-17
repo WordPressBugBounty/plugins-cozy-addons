@@ -137,6 +137,19 @@ function cozy_addons_update_cpt_value( array &$data, string $cpt, string $type, 
 	unset( $pointer ); // break the reference to avoid accidental reuse.
 }
 
+/**
+ * Returns the 'show_in_menu' value of the plugin's post types.
+ *
+ * They are listed inside the Cozy Blocks menu for users who can open it. Everyone
+ * else keeps them as top-level menus, because WordPress denies access to post type
+ * screens placed under a menu the user is not allowed to open.
+ *
+ * @return string|bool
+ */
+function cozy_addons_get_cpt_menu_parent() {
+	return current_user_can( 'manage_options' ) ? '_cozy_companions' : true;
+}
+
 if ( cozy_addons_premium_access() ) {
 	if ( '1' === $ca_mega_menu_enabled || '' == $ca_mega_menu_enabled ) {
 		require_once COZY_ADDONS_PLUGIN_DIR . 'core/cpt/ca-mega-menu.php';

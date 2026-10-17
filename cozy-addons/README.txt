@@ -1,13 +1,14 @@
-=== Cozy Blocks – Website Builder for WordPress Block Editor | Gutenberg Blocks, Patterns & Templates ===
+=== Cozy Blocks – Website Builder & Business Growth Toolkit | Popups, Lead Forms & Inbox ===
 Contributors: CozyThemes
 Tags: gutenberg blocks, page builder, block patterns, woocommerce blocks, full site editing
 Requires PHP: 7.4
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.2.27
+Stable tag: 2.2.28
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Build WordPress websites faster with Gutenberg blocks, ready-made patterns, starter templates, WooCommerce, and many more.
+
+Website builder and business growth toolkit: Gutenberg blocks, patterns, templates, popups, lead forms with an inbox, and WooCommerce blocks.
 
 == Description ==
 <strong>Build Complete WordPress Websites—Without Leaving the Block Editor</strong>
@@ -16,7 +17,7 @@ Build WordPress websites faster with Gutenberg blocks, ready-made patterns, star
 
 Build faster without moving to a separate page builder or proprietary content system.
 
-<strong>58+ advanced blocks · 700+ ready-made patterns · 50+ starter templates · WooCommerce tools · Popup Builder · Blog and magazine layouts · Full Site Editing support</strong>
+<strong>58+ advanced Gutenberg blocks · 700+ ready-made patterns · 50+ starter templates · WooCommerce tools · Lead Forms & Inbox · Popup Builder · Blog & Magazine layouts · Full Site Editing (FSE) support</strong>
 
 <strong>Start your way:</strong>
 
@@ -41,6 +42,7 @@ Start with a complete starter template, insert a ready-made pattern, or create c
 * <strong>Design with more control</strong> — Customize responsive layouts, typography, colors, spacing, animations, hover effects, and device visibility without writing custom code for common changes.
 * <strong>Keep your site lean</strong> — Enable only the Cozy Blocks features and blocks you need with the Block Enable/Disable Manager.
 * <strong>Stay native to WordPress</strong> — Work inside the familiar WordPress Block Editor and Site Editor without relying on a separate proprietary page-builder interface or locked-in content format.
+* <strong>Lead Forms & Inbox</strong> — Capture more leads with customizable forms, collect customer enquiries, and manage submissions from one centralized inbox—all within WordPress.
 
 <strong>From one section to a complete website, Cozy Blocks gives you the tools to build, customize, publish, sell, and grow with WordPress.</strong>
 
@@ -94,6 +96,57 @@ Services · Features · Statistics · Portfolio · FAQ · Contact
 Mega Menu · Tabs · Accordion · Sidebar Panel · Slider · Gallery · Before/After
 
 Use the right block for the job instead of relying on a collection of basic text and image elements.
+
+= Popup Builder =
+
+Create targeted popups, slide-ins, announcement bars, and cookie notice bars directly in the WordPress Block Editor. Choose when, where, and for whom each message appears with flexible triggers, targeting rules, frequency controls, and practical layouts.
+
+<strong>Popup & Display Types</strong>
+
+* <strong>Popups</strong> — Center, top, bottom, and full-screen layouts
+* <strong>Slide-ins</strong> — Bottom-left, bottom-right, top-left, and top-right layouts
+* <strong>Announcement Bars</strong> — Top, bottom, and sticky bars
+* <strong>Cookie Notice Bars</strong> — Bottom bar, floating box, and full-width notice layouts
+
+<strong>Smart Triggers & Conditions</strong>
+
+Control exactly when your popup or message appears:
+
+* <strong>Exit Intent</strong> — Trigger when a visitor moves toward leaving the page; desktop-focused with once-per-session or visitor controls
+* <strong>Time Delay</strong> — Show after a set number of seconds, with optional device-specific delays
+* <strong>Scroll Trigger</strong> — Trigger after a specific scroll percentage or near the bottom of a page
+* <strong>Click Trigger</strong> — Open from buttons or links, CSS classes/selectors, with support for multiple triggers
+* <strong>Device Targeting</strong> — Show or hide on desktop, tablet, or mobile
+* <strong>Page Targeting</strong> — Target your entire website, homepage, specific pages or posts, categories, tags, post types, and WooCommerce pages, products, or categories
+* <strong>User Role Conditions</strong> — Display to everyone, logged-in users, logged-out users, or specific WordPress roles
+* <strong>Frequency Control</strong> — Control how often visitors see a message, including every visit, once per session, once per visitor, or after a set number of days
+
+Build targeted promotional messages, lead-generation campaigns, important announcements, offers, and site notices without adding another popup plugin.
+
+= Lead Forms & Inbox =
+
+Capture customer enquiries, manage leads, and simplify follow-ups directly in WordPress. Build custom forms with Gutenberg blocks, collect waitlist signups, and manage submissions from one central inbox.
+
+<strong>Form Builder & Lead Capture</strong>
+
+* <strong>Pre-Built Form Templates</strong> — Create contact, quote, booking, service, product enquiry, consultation, support, feedback, newsletter, lead magnet, and waitlist forms.
+* <strong>Custom Form Builder</strong> — Customize fields, labels, validation, and form settings with Gutenberg blocks.
+* <strong>Multi-Step Forms</strong> — Break longer forms into simple steps for a smoother submission experience.
+* <strong>Newsletter Signup Forms</strong> — Grow your subscriber list with supported email marketing integrations.
+* <strong>Lead Magnet Forms</strong> - Collect leads by offering guides, checklists, coupons, and downloadable resources.
+* <strong>Waitlist Forms</strong> — Collect signups for upcoming launches, services, events, and early access.
+* <strong>Spam Protection</strong> — Reduce unwanted submissions with supported spam prevention options.
+
+<strong>Lead Management & Follow-Up</strong>
+
+* <strong>Centralized Lead Inbox</strong> — View and manage submissions from all your forms in one place.
+* <strong>Lead Status Tracking</strong> — Organize enquiries by status, such as New, In Progress, and Resolved.
+* <strong>Submission Details</strong> — Review contact information, enquiry details, and submitted messages.
+* <strong>Email Notifications</strong> — Receive new lead alerts and send customer confirmation emails.
+* <strong>Lead Organization</strong> — Search, filter, and review submissions to prioritize follow-ups.
+* <strong>Newsletter Integrations</strong> — Connect supported platforms like Mailchimp and Brevo to grow your list and use their available automation tools.
+
+Capture leads, manage enquiries, and stay on top of follow-ups—all from your WordPress dashboard
 
 = ⚡ 58+ Advanced Gutenberg Blocks =
 
@@ -231,6 +284,16 @@ You can get support for Cozy Blocks via the [support forum](https://wordpress.or
 = Where do I report security bugs? =
 You can report any security bugs found in the source code of this plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/cozy-addons). The Patchstack team will assist you with verification, CVE assignment and take care of notifying the developers of this plugin.
 
+== External services ==
+
+The Form block can use the following services, available with Cozy Blocks Pro. All are off until the site owner sets them up under Lead Forms → Settings → Spam protection.
+
+**Cloudflare Turnstile** checks that a form is filled in by a person. When a Turnstile site key and secret key are saved, pages with a Form block load Turnstile's script from challenges.cloudflare.com, and the visitor's browser exchanges information about the visit (such as the IP address) with Cloudflare. When the form is sent, the site sends the Turnstile token and the visitor's IP address to Cloudflare to verify it. The secret key is only sent from the site's server to Cloudflare and never appears in pages. [Terms of service](https://www.cloudflare.com/website-terms/), [privacy policy](https://www.cloudflare.com/privacypolicy/).
+
+**Google reCAPTCHA** checks that a form is filled in by a person. When reCAPTCHA keys are saved and a form uses it, pages with that form load Google's script from www.google.com, and the visitor's browser sends Google information about the visit and the device (such as the IP address, browser details and interactions with the page). Version 2 shows an "I'm not a robot" checkbox; version 3 runs invisibly and scores each submission. When the form is sent, the site sends the reCAPTCHA token and the visitor's IP address to Google to verify it. The secret key is only sent from the site's server to Google and never appears in pages. [Terms of service](https://policies.google.com/terms), [privacy policy](https://policies.google.com/privacy).
+
+**Akismet** (by Automattic) detects spam. When the Akismet plugin is active with an API key and "Check submissions with Akismet" is enabled, each form submission is sent to Akismet through the Akismet plugin: the details entered in the form, the visitor's IP address, browser user agent, referring page and the page the form is on. [Terms of service](https://akismet.com/tos/), [privacy policy](https://automattic.com/privacy/).
+
 == Screenshots ==
 1. Gutenberg Blocks Collection
 2. Blocks Enable/Disable Option
@@ -242,6 +305,11 @@ You can report any security bugs found in the source code of this plugin through
 8. FSE Homepage templates
 
 == Changelog ==
+= 2.2.28 - Oct 17, 2026 = 
+* Add: Lead Forms.
+* Security: Authenticated (Contributor+) Stored Cross-Site Scripting.
+* Fix: Resolve Pattern Transient Issues Causing Site Breakage Using a Backup.
+
 = 2.2.27 - Oct 11, 2026 = 
 * Add: Popup builder.
 * Update: Modal block only for click event.

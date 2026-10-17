@@ -15,8 +15,8 @@
  * @wordpress-plugin
  * Plugin Name:       Cozy Blocks
  * Plugin URI:        https://cozythemes.com/cozy-addons
- * Description:       Build stunning WordPress sites with 50+ advanced blocks, 500+ patterns, and 40+ templates—a fast, effortless website builder.
- * Version:           2.2.27
+ * Description:       Website builder and business growth toolkit: Gutenberg blocks, patterns, templates, popups, lead forms with an inbox, and WooCommerce blocks.
+ * Version:           2.2.28
  * Author:            CozyThemes
  * Author URI:        https://cozythemes.com/
  * License:           GPL-2.0+
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'COZY_ADDONS_VERSION', '2.2.27' );
+define( 'COZY_ADDONS_VERSION', '2.2.28' );
 define( 'COZY_ADDONS_PLUGIN_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'COZY_ADDONS_PLUGIN_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 

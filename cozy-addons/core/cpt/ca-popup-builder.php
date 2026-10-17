@@ -60,6 +60,7 @@ function ca_cpt_popup_builder() {
 		'public'             => true,
 		'publicly_queryable' => false,
 		'show_ui'            => true,
+		'show_in_menu'       => cozy_addons_get_cpt_menu_parent(),
 		'query_var'          => true,
 		'rewrite'            => array( 'slug' => $popup_builder_config['slug'] ),
 		'capability_type'    => 'post',
@@ -70,11 +71,32 @@ function ca_cpt_popup_builder() {
 		'show_in_rest'       => true,
 		'menu_icon'          => COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/popup-builder.svg',
 		'show_in_nav_menus'  => false,
+		// Fallback for a new popup when the default content below is unavailable.
+		'template'           => array(
+			array( 'cozy-block/modal' ),
+		),
 	);
 	register_post_type( 'ca_popup_builder', $args );
 }
 
 add_action( 'init', 'ca_cpt_popup_builder' );
+
+/**
+ * Starts a new popup with the Popup Modal block and its first layout applied.
+ *
+ * @param string   $content Default post content.
+ * @param \WP_Post $post    Post being created.
+ * @return string
+ */
+function ca_popup_builder_default_content( $content, $post ) {
+	if ( 'ca_popup_builder' !== $post->post_type || '' !== trim( (string) $content ) ) {
+		return $content;
+	}
+
+	return cozy_addons_get_popup_default_content();
+}
+
+add_filter( 'default_content', 'ca_popup_builder_default_content', 10, 2 );
 
 // Impression, click and dismissal tracking, and the list screen columns.
 require_once COZY_ADDONS_PLUGIN_DIR . 'core/cpt/ca-popup-analytics.php';

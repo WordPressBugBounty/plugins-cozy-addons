@@ -48,7 +48,9 @@
 			} else {
 				topLevelMenu.find(".wp-submenu li").removeClass("current");
 				topLevelMenu.find(".wp-submenu li a").removeClass("current");
-				const activeSubmenu = topLevelMenu.find(`.wp-submenu li.wp-first-item`);
+				const activeSubmenu = topLevelMenu.find(
+					`.wp-submenu li:has(a[href="admin.php?page=_cozy_companions"])`,
+				);
 				activeSubmenu.addClass("current");
 				activeSubmenu.find("a").addClass("current");
 			}

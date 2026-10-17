@@ -6397,6 +6397,478 @@ return array(
 		),
 		'render' => 'file:./render.php'
 	),
+	'form' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'cozy-block/form',
+		'title' => 'Form',
+		'description' => 'Build contact, quote, newsletter and product enquiry forms. Entries are saved under Cozy Blocks → Form Entries.',
+		'category' => 'cozy-block',
+		'keywords' => array(
+			'form',
+			'contact',
+			'enquiry',
+			'quote',
+			'lead',
+			'newsletter',
+			'subscribe'
+		),
+		'textdomain' => 'cozy-addons',
+		'attributes' => array(
+			'cover' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'blockClientId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'formId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'formName' => array(
+				'type' => 'string',
+				'default' => 'Contact form'
+			),
+			'buttonText' => array(
+				'type' => 'string',
+				'default' => 'Send message'
+			),
+			'successMessage' => array(
+				'type' => 'string',
+				'default' => 'Thanks! We\'ve received your message and will get back to you shortly.'
+			),
+			'notifyEmail' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'redirectUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'downloadUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'downloadLabel' => array(
+				'type' => 'string',
+				'default' => 'Download'
+			),
+			'emailSubject' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'emailMessage' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'formType' => array(
+				'type' => 'string',
+				'default' => 'contact'
+			),
+			'category' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'notify' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'productDisplay' => array(
+				'type' => 'string',
+				'default' => 'inline'
+			),
+			'triggerText' => array(
+				'type' => 'string',
+				'default' => 'Ask about this product'
+			),
+			'layoutStyle' => array(
+				'type' => 'string',
+				'default' => 'stacked'
+			),
+			'hideLabels' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'nextText' => array(
+				'type' => 'string',
+				'default' => 'Next'
+			),
+			'backText' => array(
+				'type' => 'string',
+				'default' => 'Back'
+			),
+			'progressStyle' => array(
+				'type' => 'string',
+				'default' => 'bar'
+			),
+			'spamProtection' => array(
+				'type' => 'object',
+				'default' => array(
+					'captcha' => 'default',
+					'akismet' => 'default'
+				)
+			),
+			'layout' => array(
+				'type' => 'object',
+				'default' => array(
+					'columnGap' => '16px',
+					'rowGap' => '20px'
+				)
+			),
+			'containerStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'padding' => array(
+							'top' => '',
+							'right' => '',
+							'bottom' => '',
+							'left' => ''
+						)
+					),
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'bgColor' => ''
+				)
+			),
+			'labelStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'gap' => '6px',
+					'desktop' => array(
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'color' => array(
+						'text' => '',
+						'required' => ''
+					)
+				)
+			),
+			'inputStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'textareaHeight' => '',
+					'desktop' => array(
+						'padding' => array(
+							'top' => '',
+							'right' => '',
+							'bottom' => '',
+							'left' => ''
+						),
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'borderFocus' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'color' => array(
+						'text' => '',
+						'bg' => '',
+						'placeholder' => '',
+						'textFocus' => '',
+						'bgFocus' => ''
+					)
+				)
+			),
+			'choiceStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'gap' => '',
+					'size' => '',
+					'desktop' => array(
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'color' => array(
+						'text' => '',
+						'bg' => '',
+						'accent' => '',
+						'borderActive' => '',
+						'bgActive' => ''
+					)
+				)
+			),
+			'buttonStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'fullWidth' => false,
+					'align' => 'left',
+					'desktop' => array(
+						'padding' => array(
+							'top' => '14px',
+							'right' => '36px',
+							'bottom' => '14px',
+							'left' => '36px'
+						),
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'margin' => array(
+						'top' => '20px'
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'color' => array(
+						'text' => '',
+						'textHover' => '',
+						'bg' => '',
+						'bgHover' => '',
+						'borderHover' => ''
+					)
+				)
+			),
+			'messageStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'radius' => '',
+					'color' => array(
+						'successText' => '',
+						'successBg' => '',
+						'errorText' => '',
+						'errorBg' => ''
+					)
+				)
+			),
+			'progressStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'height' => '',
+					'color' => array(
+						'text' => '',
+						'bar' => '',
+						'track' => ''
+					)
+				)
+			)
+		),
+		'providesContext' => array(
+			'cozy-block/formId' => 'formId'
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true,
+			'align' => array(
+				'wide',
+				'full'
+			)
+		),
+		'editorScript' => array(
+			'file:./index.js',
+			'file:../index.js'
+		),
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
+		'viewScript' => array(
+			'cozy-block--form--frontend-script'
+		),
+		'render' => 'file:./render.php'
+	),
+	'form-field' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'cozy-block/form-field',
+		'title' => 'Form Field',
+		'description' => 'A field of the Form block: text, email, phone, website, message, dropdown, choices, number, date, time, checkbox, file or image upload, signature or hidden value.',
+		'category' => 'cozy-block',
+		'keywords' => array(
+			'field',
+			'input',
+			'form'
+		),
+		'textdomain' => 'cozy-addons',
+		'ancestor' => array(
+			'cozy-block/form'
+		),
+		'usesContext' => array(
+			'cozy-block/formId'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fieldType' => array(
+				'type' => 'string',
+				'default' => 'text'
+			),
+			'placeholder' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'options' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'width' => array(
+				'type' => 'string',
+				'default' => '100'
+			),
+			'urgentOptions' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'checkboxText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'maxSize' => array(
+				'type' => 'string',
+				'default' => '5'
+			),
+			'multiple' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'maxFiles' => array(
+				'type' => 'string',
+				'default' => '5'
+			),
+			'padHeight' => array(
+				'type' => 'string',
+				'default' => '160'
+			),
+			'defaultValue' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'dynamicValue' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'queryParam' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'validation' => array(
+				'type' => 'object',
+				'default' => array(
+					
+				)
+			),
+			'conditions' => array(
+				'type' => 'object',
+				'default' => array(
+					
+				)
+			)
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'editorScript' => array(
+			'file:./index.js',
+			'file:../index.js'
+		),
+		'render' => 'file:./render.php'
+	),
+	'form-step' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'cozy-block/form-step',
+		'title' => 'Form Step (Pro)',
+		'description' => 'Splits a Form block into steps with Back and Next buttons and a progress bar. Add fields inside each step.',
+		'category' => 'cozy-block',
+		'keywords' => array(
+			'step',
+			'multi-step',
+			'wizard',
+			'form'
+		),
+		'textdomain' => 'cozy-addons',
+		'ancestor' => array(
+			'cozy-block/form'
+		),
+		'attributes' => array(
+			'title' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'editorScript' => array(
+			'file:./index.js',
+			'file:../index.js'
+		),
+		'render' => 'file:./render.php'
+	),
 	'grid' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

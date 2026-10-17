@@ -30,6 +30,8 @@ class Blocks {
 		'carousel',
 		'grid',
 		'slide',
+		'form-field',
+		'form-step',
 	);
 
 	private static $premium_blocks = array(

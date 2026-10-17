@@ -1,0 +1,103 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cozy-block/form-field",
+  "title": "Form Field",
+  "description": "A field of the Form block: text, email, phone, website, message, dropdown, choices, number, date, time, checkbox, file or image upload, signature or hidden value.",
+  "category": "cozy-block",
+  "keywords": [
+    "field",
+    "input",
+    "form"
+  ],
+  "textdomain": "cozy-addons",
+  "ancestor": [
+    "cozy-block/form"
+  ],
+  "usesContext": [
+    "cozy-block/formId"
+  ],
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": ""
+    },
+    "fieldType": {
+      "type": "string",
+      "default": "text"
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "options": {
+      "type": "string",
+      "default": ""
+    },
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "width": {
+      "type": "string",
+      "default": "100"
+    },
+    "urgentOptions": {
+      "type": "array",
+      "default": []
+    },
+    "checkboxText": {
+      "type": "string",
+      "default": ""
+    },
+    "maxSize": {
+      "type": "string",
+      "default": "5"
+    },
+    "multiple": {
+      "type": "boolean",
+      "default": false
+    },
+    "maxFiles": {
+      "type": "string",
+      "default": "5"
+    },
+    "padHeight": {
+      "type": "string",
+      "default": "160"
+    },
+    "defaultValue": {
+      "type": "string",
+      "default": ""
+    },
+    "dynamicValue": {
+      "type": "string",
+      "default": ""
+    },
+    "queryParam": {
+      "type": "string",
+      "default": ""
+    },
+    "validation": {
+      "type": "object",
+      "default": {}
+    },
+    "conditions": {
+      "type": "object",
+      "default": {}
+    }
+  },
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "render": "file:./render.php"
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cozy-block/form-step",
+  "title": "Form Step (Pro)",
+  "description": "Splits a Form block into steps with Back and Next buttons and a progress bar. Add fields inside each step.",
+  "category": "cozy-block",
+  "keywords": [
+    "step",
+    "multi-step",
+    "wizard",
+    "form"
+  ],
+  "textdomain": "cozy-addons",
+  "ancestor": [
+    "cozy-block/form"
+  ],
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "render": "file:./render.php"
+}

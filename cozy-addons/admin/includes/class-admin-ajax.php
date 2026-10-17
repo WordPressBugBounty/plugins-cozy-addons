@@ -816,7 +816,7 @@ class Ajax {
 				return $product_data;
 
 			case 'ca_popup_builder':
-				$popup_content = $this->get_popup_builder_dummy_content();
+				$popup_content = cozy_addons_get_popup_default_content();
 
 				if ( empty( $popup_content ) ) {
 					return array();
@@ -836,82 +836,6 @@ class Ajax {
 			default:
 				return array();
 		}
-	}
-
-	/**
-	 * Builds the block markup for the sample Popup Builder post.
-	 *
-	 * Wraps the first preset layout ("Video overlay", pattern modal-block-1) in a
-	 * Popup Modal block. The attributes mirror what the editor applies for that
-	 * layout in updateBlockAttributes( 'popup-builder-1' ), found in
-	 * src/modal/popup-builder/components/LayoutControls.js. Keep the two in sync.
-	 *
-	 * @return string Serialized block markup, or an empty string if the pattern is missing.
-	 */
-	private function get_popup_builder_dummy_content() {
-		$pattern_file = COZY_ADDONS_PLUGIN_DIR . 'core/library/patterns/modal-block-1.php';
-
-		if ( ! file_exists( $pattern_file ) ) {
-			return '';
-		}
-
-		ob_start();
-		include $pattern_file;
-		$pattern_content = trim( (string) ob_get_clean() );
-
-		if ( '' === $pattern_content ) {
-			return '';
-		}
-
-		$no_spacing = array(
-			'top'    => '0px',
-			'right'  => '0px',
-			'bottom' => '0px',
-			'left'   => '0px',
-		);
-
-		$attributes = array(
-			'blockClientId'   => wp_generate_uuid4(),
-			'placement'       => 'center center',
-			'addOverlay'      => true,
-			'allowScroll'     => false,
-			// Not part of the layout preset, which leaves the popup transparent.
-			// Without a background the text is unreadable over the overlay.
-			'backgroundColor' => '#ffffff',
-			'styles'          => array(
-				'desktop' => array(
-					'padding' => $no_spacing,
-					'margin'  => array(
-						'top'    => '26px',
-						'right'  => '26px',
-						'bottom' => '26px',
-						'left'   => '26px',
-					),
-					'width'   => '645px',
-					'height'  => '',
-				),
-				'tablet'  => array(
-					'padding' => $no_spacing,
-					'margin'  => $no_spacing,
-					'width'   => '',
-					'height'  => '',
-				),
-				'mobile'  => array(
-					'padding' => $no_spacing,
-					'margin'  => $no_spacing,
-					'width'   => '100%',
-					'height'  => '',
-				),
-				'border'  => array(
-					'width' => '',
-					'style' => '',
-					'color' => '',
-				),
-				'radius'  => '',
-			),
-		);
-
-		return get_comment_delimited_block_content( 'cozy-block/modal', $attributes, $pattern_content );
 	}
 
 	private function cpt_create_thumbnail( $post_id, $post_type, $thumbnail_url ) {

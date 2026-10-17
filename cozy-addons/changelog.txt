@@ -1,3 +1,8 @@
+= 2.2.28 - Oct 17, 2026 = 
+* Add: Lead Forms.
+* Security: Authenticated (Contributor+) Stored Cross-Site Scripting.
+* Fix: Resolve Pattern Transient Issues Causing Site Breakage Using a Backup.
+
 = 2.2.27 - Oct 11, 2026 = 
 * Add: Popup builder.
 * Update: Modal block only for click event.

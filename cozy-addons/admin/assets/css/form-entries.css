@@ -1,0 +1,173 @@
+/* Form entries inbox, single entry screen and Form Settings. */
+
+.ca-form-badge {
+	display: inline-block;
+	padding: 2px 10px;
+	border-radius: 999px;
+	background: #e0e0e0;
+	color: #1e1e1e;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.6;
+}
+.ca-form-badge--new { background: #dbeafe; color: #1e40af; }
+.ca-form-badge--contacted { background: #fef3c7; color: #92400e; }
+.ca-form-badge--quoted { background: #ede9fe; color: #5b21b6; }
+.ca-form-badge--won { background: #dcfce7; color: #166534; }
+.ca-form-badge--lost { background: #fee2e2; color: #991b1b; }
+.ca-form-badge--subscriber { background: #e0f2fe; color: #075985; }
+
+.ca-form-type {
+	display: inline-block;
+	padding: 0 8px;
+	border-radius: 4px;
+	background: #f0f0f1;
+	color: #50575e;
+	font-size: 11px;
+	vertical-align: middle;
+}
+.ca-form-type--quote { background: #ede9fe; color: #5b21b6; }
+.ca-form-type--newsletter { background: #e0f2fe; color: #075985; }
+.ca-form-type--product { background: #fef3c7; color: #92400e; }
+
+.ca-form-product-tag {
+	display: inline-block;
+	margin-top: 2px;
+	padding: 0 8px;
+	border-radius: 4px;
+	background: #f0f6fc;
+	color: #0a4b78;
+	font-size: 11px;
+}
+
+.post-type-ca_form_entry .column-ca_form_status { width: 110px; }
+.post-type-ca_form_entry .column-ca_form_contact { width: 220px; }
+
+/*
+ * Premium gate: the same pill the popup analytics and the editor use for Pro features.
+ */
+.ca-form-pro-label {
+	display: inline-block;
+	margin-left: 4px;
+	padding: 0 5px;
+	border: 1px solid var(--cozy-addons--primary, #5253f9);
+	border-radius: 10px;
+	background-color: var(--cozy-addons--primary-accent, #ecefff);
+	color: var(--cozy-addons--primary, #5253f9);
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 16px;
+	vertical-align: middle;
+}
+.ca-form-locked-button { color: #787c82 !important; }
+.post-type-ca_form_entry .wp-list-table .ca-form-locked { color: #a7aaad; }
+.ca-form-locked-panel { padding: 4px 0; }
+.ca-form-is-locked td { opacity: .6; }
+
+/* Single entry */
+.ca-form-table { width: 100%; border-collapse: collapse; }
+.ca-form-table th { width: 160px; padding: 8px 10px 8px 0; color: #50575e; font-weight: 600; text-align: left; vertical-align: top; }
+.ca-form-table td { padding: 8px 0; word-break: break-word; }
+.ca-form-file-thumb { display: inline-block; max-width: 160px; max-height: 120px; margin: 4px 0; border: 1px solid #dcdcde; border-radius: 4px; background: #fff; }
+.ca-form-table tr + tr th,
+.ca-form-table tr + tr td { border-top: 1px solid #f0f0f1; }
+.ca-form-warn { color: #b32d2e; }
+
+.ca-form-timeline { margin: 14px 0 0; padding: 0; border-left: 2px solid #dcdcde; list-style: none; }
+.ca-form-timeline__item { position: relative; margin: 0 0 14px 14px; padding-left: 4px; }
+.ca-form-timeline__item::before {
+	content: "";
+	position: absolute;
+	top: 5px;
+	left: -22px;
+	width: 10px;
+	height: 10px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	background: #a7aaad;
+}
+.ca-form-timeline__item--note::before { background: #2271b1; }
+.ca-form-timeline__item--status::before { background: #f59e0b; }
+.ca-form-timeline__meta { display: block; color: #787c82; font-size: 12px; }
+.ca-form-timeline__text { display: block; }
+
+/* Urgent entries */
+.ca-form-urgent-pill {
+	display: inline-block;
+	padding: 0 7px;
+	border-radius: 999px;
+	background: #fee2e2;
+	color: #991b1b;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 18px;
+	vertical-align: middle;
+}
+.ca-form-late { display: inline-block; margin-top: 3px; color: #b32d2e; font-size: 11px; font-weight: 600; }
+#adminmenu .awaiting-mod.ca-form-bubble--urgent { background: #d63638; }
+
+/* Lead Analytics, ported from Cozy Leads */
+.ca-leads-dash .wp-heading-inline { margin-right: 12px; }
+.ca-leads-dash__tools { display: inline-flex; gap: 10px; align-items: center; vertical-align: middle; }
+.ca-leads-range { display: inline-flex; overflow: hidden; border: 1px solid #c3c4c7; border-radius: 6px; background: #fff; }
+.ca-leads-range a { padding: 5px 14px; border-right: 1px solid #c3c4c7; color: #1d2327; text-decoration: none; }
+.ca-leads-range a:last-child { border-right: 0; }
+.ca-leads-range a.is-active { background: #2271b1; color: #fff; }
+
+.ca-leads-section { margin: 24px 0 0; font-size: 14px; }
+.ca-leads-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 12px 0 18px; }
+.ca-leads-kpi { display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border: 1px solid #dcdcde; border-radius: 8px; background: #fff; }
+.ca-leads-kpi.is-urgent { border-left: 4px solid #d63638; }
+.ca-leads-kpi__label { color: #50575e; font-weight: 600; }
+.ca-leads-kpi__value { color: #1d2327; font-size: 28px; font-weight: 700; line-height: 1.15; }
+.ca-leads-kpi__hint { color: #787c82; font-size: 12px; }
+.ca-leads-kpis.is-locked .ca-leads-kpi__value,
+.ca-leads-panel.is-locked h2 { color: #a7aaad; }
+.ca-leads-upsell { margin: -6px 0 18px; }
+.ca-leads-delta { align-self: flex-start; padding: 1px 8px; border-radius: 999px; background: #f0f0f1; color: #50575e; font-size: 12px; font-weight: 600; }
+.ca-leads-delta--good { background: #dcfce7; color: #166534; }
+.ca-leads-delta--bad { background: #fee2e2; color: #991b1b; }
+
+.ca-leads-attention { margin: 18px 0 0; padding: 12px 16px; border: 1px solid #f0a5a5; border-left: 4px solid #d63638; border-radius: 6px; background: #fff5f5; }
+.ca-leads-attention h2 { margin: 0 0 6px; font-size: 14px; }
+.ca-leads-attention__counts { margin: 0 0 8px; }
+.ca-leads-attention__list { margin: 0 0 8px; }
+
+.ca-leads-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 16px; }
+.ca-leads-panel { padding: 16px 20px 8px; border: 1px solid #dcdcde; border-radius: 8px; background: #fff; }
+.ca-leads-panel h2 { margin-top: 0; font-size: 15px; }
+.ca-leads-panel--wide { margin: 0 0 16px; }
+.ca-leads-empty { max-width: 640px; margin-top: 20px; }
+
+.ca-leads-chart { display: block; width: 100%; height: 240px; }
+.ca-leads-chart__grid { stroke: #e2e4e7; stroke-width: 1; }
+.ca-leads-chart__label { fill: #787c82; font-size: 11px; }
+.ca-leads-chart__area { fill: rgba(34, 113, 177, .12); }
+.ca-leads-chart__line { fill: none; stroke: #2271b1; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.ca-leads-chart__urgent { fill: none; stroke: #d63638; stroke-width: 2; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.ca-leads-legend { margin: 4px 0 8px; color: #50575e; }
+.ca-leads-legend span { display: inline-block; width: 18px; height: 0; margin: 0 6px 0 12px; border-top: 3px solid #2271b1; vertical-align: middle; }
+.ca-leads-legend .ca-leads-legend__urgent { border-top-color: #d63638; }
+
+.ca-leads-bar { display: grid; grid-template-columns: 150px 1fr 38px 80px; gap: 10px; align-items: center; margin-bottom: 10px; }
+.ca-leads-bar__label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ca-leads-bar__track { height: 10px; overflow: hidden; border-radius: 999px; background: #f0f0f1; }
+.ca-leads-bar__fill { display: block; height: 100%; border-radius: 999px; background: #2271b1; }
+.ca-leads-bar__count { font-weight: 600; text-align: right; }
+.ca-leads-bar__note { color: #b32d2e; font-size: 12px; }
+.ca-leads-fill--urgent, .ca-leads-fill--lost { background: #ef4444; }
+.ca-leads-fill--new, .ca-leads-fill--received { background: #3b82f6; }
+.ca-leads-fill--contacted { background: #f59e0b; }
+.ca-leads-fill--quoted { background: #8b5cf6; }
+.ca-leads-fill--won { background: #22c55e; }
+
+.ca-leads-data { width: 100%; margin-bottom: 8px; border-collapse: collapse; }
+.ca-leads-data th { padding: 6px 8px 6px 0; border-bottom: 1px solid #e2e4e7; color: #50575e; font-weight: 600; text-align: left; }
+.ca-leads-data td { padding: 7px 8px 7px 0; border-bottom: 1px solid #f0f0f1; word-break: break-word; }
+.ca-leads-data th:not(:first-child), .ca-leads-data td:not(:first-child) { text-align: right; white-space: nowrap; }
+
+/* Settings → Integrations */
+.ca-leads-integrations { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 900px; }
+.ca-leads-integration { padding: 16px 20px; border: 1px solid #dcdcde; border-radius: 8px; background: #fff; }
+.ca-leads-integration h2 { margin-top: 0; font-size: 15px; }
+.ca-leads-soon { display: inline-block; margin-left: 6px; padding: 0 8px; border-radius: 999px; background: #f0f0f1; color: #50575e; font-size: 11px; font-weight: 500; vertical-align: middle; }

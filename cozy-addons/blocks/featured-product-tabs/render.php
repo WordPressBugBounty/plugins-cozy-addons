@@ -924,15 +924,15 @@ foreach ( $cozy_featured_product_tabs as $key => $label ) {
 		$output       .= '<div class="cozy-block-featured-product-tabs__tab' . esc_attr( $active_class ) . '" id="' . esc_attr( $key ) . '" data-index="' . esc_attr( $index ) . '">';
 		++$index;
 		if ( $attributes['icon']['enabled'] ) {
-			$output .= '<div style="display:flex;flex-wrap:wrap;gap:' . $attributes['icon']['gap'] . ';align-items:center;">';
+			$output .= '<div style="display:flex;flex-wrap:wrap;gap:' . esc_attr( sanitize_html_class( $attributes['icon']['gap'] ) ) . ';align-items:center;">';
 			if ( 'icon-only' === $attributes['icon']['position'] ) {
-				$output .= '<div class="cozy-block-featured-product-tabs__icon-wrapper view-' . $attributes['icon']['view'] . ' layout-' . $attributes['icon']['layout'] . '">';
+				$output .= '<div class="cozy-block-featured-product-tabs__icon-wrapper view-' . esc_attr( sanitize_html_class( $attributes['icon']['view'] ) ) . ' layout-' . esc_attr( sanitize_html_class( $attributes['icon']['layout'] ) ) . '">';
 				$output .= '<svg class="cozy-block-featured-product-tabs__icon" xmlns="http://www.w3.org/2000/svg"	aria-hidden="true" viewBox="' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vx'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vy'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vw'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vh'] ) ) . '" stroke-width="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_width'] ) . '" stroke-opacity="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_opacity'] ) . '">';
 				$output .= '<path d="' . esc_attr( $attributes['icon'][ $key ]['path'] ) . '"></path>';
 				$output .= '</svg>';
 				$output .= '</div>';
 			} elseif ( 'before' === $attributes['icon']['position'] ) {
-				$output .= '<div class="cozy-block-featured-product-tabs__icon-wrapper view-' . $attributes['icon']['view'] . ' layout-' . $attributes['icon']['layout'] . '">';
+				$output .= '<div class="cozy-block-featured-product-tabs__icon-wrapper view-' . esc_attr( sanitize_html_class( $attributes['icon']['view'] ) ) . ' layout-' . esc_attr( sanitize_html_class( $attributes['icon']['layout'] ) ) . '">';
 				$output .= '<svg class="cozy-block-featured-product-tabs__icon" xmlns="http://www.w3.org/2000/svg"	aria-hidden="true" viewBox="' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vx'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vy'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vw'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vh'] ) ) . '" stroke-width="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_width'] ) . '" stroke-opacity="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_opacity'] ) . '">';
 				$output .= '<path d="' . esc_attr( $attributes['icon'][ $key ]['path'] ) . '"></path>';
 				$output .= '</svg>';
@@ -940,7 +940,7 @@ foreach ( $cozy_featured_product_tabs as $key => $label ) {
 				$output .= '<p>' . $label . '</p>';
 			} else {
 				$output .= '<p>' . $label . '</p>';
-				$output .= '<div class="cozy-block-featured-product-tabs__icon-wrapper view-' . $attributes['icon']['view'] . ' layout-' . $attributes['icon']['layout'] . '">';
+				$output .= '<div class="cozy-block-featured-product-tabs__icon-wrapper view-' . esc_attr( sanitize_html_class( $attributes['icon']['view'] ) ) . ' layout-' . esc_attr( sanitize_html_class( $attributes['icon']['layout'] ) ) . '">';
 				$output .= '<svg class="cozy-block-featured-product-tabs__icon" xmlns="http://www.w3.org/2000/svg"	aria-hidden="true" viewBox="' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vx'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vy'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vw'] ) ) . ' ' . esc_attr( intval( $attributes['icon'][ $key ]['viewBox']['vh'] ) ) . '" stroke-width="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_width'] ) . '" stroke-opacity="' . cozy_addons_sanitize_dimension( $icon_styles['stroke_opacity'] ) . '">';
 				$output .= '<path d="' . esc_attr( $attributes['icon'][ $key ]['path'] ) . '"></path>';
 				$output .= '</svg>';

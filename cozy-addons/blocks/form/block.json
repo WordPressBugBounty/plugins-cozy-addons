@@ -1,0 +1,330 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cozy-block/form",
+  "title": "Form",
+  "description": "Build contact, quote, newsletter and product enquiry forms. Entries are saved under Cozy Blocks → Form Entries.",
+  "category": "cozy-block",
+  "keywords": [
+    "form",
+    "contact",
+    "enquiry",
+    "quote",
+    "lead",
+    "newsletter",
+    "subscribe"
+  ],
+  "textdomain": "cozy-addons",
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "formId": {
+      "type": "string",
+      "default": ""
+    },
+    "formName": {
+      "type": "string",
+      "default": "Contact form"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Send message"
+    },
+    "successMessage": {
+      "type": "string",
+      "default": "Thanks! We've received your message and will get back to you shortly."
+    },
+    "notifyEmail": {
+      "type": "string",
+      "default": ""
+    },
+    "redirectUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "downloadUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "downloadLabel": {
+      "type": "string",
+      "default": "Download"
+    },
+    "emailSubject": {
+      "type": "string",
+      "default": ""
+    },
+    "emailMessage": {
+      "type": "string",
+      "default": ""
+    },
+    "formType": {
+      "type": "string",
+      "default": "contact"
+    },
+    "category": {
+      "type": "string",
+      "default": ""
+    },
+    "notify": {
+      "type": "boolean",
+      "default": true
+    },
+    "productDisplay": {
+      "type": "string",
+      "default": "inline"
+    },
+    "triggerText": {
+      "type": "string",
+      "default": "Ask about this product"
+    },
+    "layoutStyle": {
+      "type": "string",
+      "default": "stacked"
+    },
+    "hideLabels": {
+      "type": "boolean",
+      "default": false
+    },
+    "nextText": {
+      "type": "string",
+      "default": "Next"
+    },
+    "backText": {
+      "type": "string",
+      "default": "Back"
+    },
+    "progressStyle": {
+      "type": "string",
+      "default": "bar"
+    },
+    "spamProtection": {
+      "type": "object",
+      "default": {
+        "captcha": "default",
+        "akismet": "default"
+      }
+    },
+    "layout": {
+      "type": "object",
+      "default": {
+        "columnGap": "16px",
+        "rowGap": "20px"
+      }
+    },
+    "containerStyles": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          }
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "bgColor": ""
+      }
+    },
+    "labelStyles": {
+      "type": "object",
+      "default": {
+        "gap": "6px",
+        "desktop": {
+          "font": {
+            "size": ""
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "required": ""
+        }
+      }
+    },
+    "inputStyles": {
+      "type": "object",
+      "default": {
+        "textareaHeight": "",
+        "desktop": {
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          },
+          "font": {
+            "size": ""
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "borderFocus": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "color": {
+          "text": "",
+          "bg": "",
+          "placeholder": "",
+          "textFocus": "",
+          "bgFocus": ""
+        }
+      }
+    },
+    "choiceStyles": {
+      "type": "object",
+      "default": {
+        "gap": "",
+        "size": "",
+        "desktop": {
+          "font": {
+            "size": ""
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "color": {
+          "text": "",
+          "bg": "",
+          "accent": "",
+          "borderActive": "",
+          "bgActive": ""
+        }
+      }
+    },
+    "buttonStyles": {
+      "type": "object",
+      "default": {
+        "fullWidth": false,
+        "align": "left",
+        "desktop": {
+          "padding": {
+            "top": "14px",
+            "right": "36px",
+            "bottom": "14px",
+            "left": "36px"
+          },
+          "font": {
+            "size": ""
+          }
+        },
+        "margin": {
+          "top": "20px"
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "color": {
+          "text": "",
+          "textHover": "",
+          "bg": "",
+          "bgHover": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "messageStyles": {
+      "type": "object",
+      "default": {
+        "radius": "",
+        "color": {
+          "successText": "",
+          "successBg": "",
+          "errorText": "",
+          "errorBg": ""
+        }
+      }
+    },
+    "progressStyles": {
+      "type": "object",
+      "default": {
+        "height": "",
+        "color": {
+          "text": "",
+          "bar": "",
+          "track": ""
+        }
+      }
+    }
+  },
+  "providesContext": {
+    "cozy-block/formId": "formId"
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--form--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

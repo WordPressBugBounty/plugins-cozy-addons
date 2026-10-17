@@ -30,7 +30,7 @@ function ca_cpt_faq() {
 		'public'             => true,
 		'publicly_queryable' => true,
 		'show_ui'            => true,
-		'show_in_menu'       => true,
+		'show_in_menu'       => cozy_addons_get_cpt_menu_parent(),
 		'query_var'          => true,
 		'rewrite'            => array( 'slug' => $faq_config['slug'] ),
 		'capability_type'    => 'post',

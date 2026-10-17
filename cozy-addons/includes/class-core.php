@@ -59,6 +59,9 @@ class Core {
 	private function __construct() {
 		require_once self::$dir . 'cpt/cpt-init.php';
 
+		// Form block: entries inbox, settings, export, privacy and patterns.
+		require_once self::$dir . 'forms/forms-init.php';
+
 		// Block markups.
 		require_once self::$dir . 'block-markups/extend-blocks.php';
 
@@ -102,6 +105,7 @@ class Core {
 		require_once self::$dir . 'api/class-cf7.php';
 		require_once self::$dir . 'api/class-woo.php';
 		require_once self::$dir . 'api/class-patterns.php';
+		require_once self::$dir . 'api/class-form.php';
 
 		add_action( 'rest_api_init', array( $this, 'register_api_routes' ) );
 	}
@@ -112,12 +116,13 @@ class Core {
 	 * Instantiates the Block, CF7, and Woo API classes to ensure their routes are available.
 	 */
 	public function register_api_routes() {
-		\Core\Api\Block::get_instance();
-		\Core\Api\CF7::get_instance();
-		\Core\Api\Patterns::get_instance();
+		\CozyAddons\Core\Api\Block::get_instance();
+		\CozyAddons\Core\Api\CF7::get_instance();
+		\CozyAddons\Core\Api\Patterns::get_instance();
+		\CozyAddons\Core\Api\Form::get_instance();
 
 		if ( \CozyAddons\Helpers\Utils::is_woocommerce_active() ) {
-			\Core\Api\Woo::get_instance();
+			\CozyAddons\Core\Api\Woo::get_instance();
 		}
 	}
 
@@ -132,12 +137,12 @@ class Core {
 	private function add_custom_block_filters() {
 		require_once self::$dir . 'filters/class-query-loop.php';
 
-		\Core\Filters\QueryLoop::get_instance();
+		\CozyAddons\Core\Filters\QueryLoop::get_instance();
 	}
 
 	private function register_block_patterns() {
 		require_once self::$dir . 'library/class-patterns.php';
 
-		\Core\Patterns::get_instance();
+		\CozyAddons\Core\Patterns::get_instance();
 	}
 }

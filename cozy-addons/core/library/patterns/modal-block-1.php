@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"0px","left":"0px"}}}} -->
 <div class="wp-block-columns"><!-- wp:column -->
@@ -17,9 +22,8 @@
 <p class="has-text-align-center" style="margin-top:16px;margin-bottom:16px">Get powerful tools to help your team work smarter and move faster.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:contact-form-7/contact-form-selector -->
-<div class="wp-block-contact-form-7-contact-form-selector">[contact-form-7]</div>
-<!-- /wp:contact-form-7/contact-form-selector --></div>
+<?php echo \CozyAddons\Core\Forms\Form_Patterns::newsletter_form_markup(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Serialized block markup built from JSON-encoded attributes. ?>
+</div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
 <!-- /wp:group -->

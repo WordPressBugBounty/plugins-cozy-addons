@@ -76,11 +76,6 @@ $features = array(
 			'pro'   => true,
 		),
 		array(
-			'label' => 'Popup Builder',
-			'free'  => false,
-			'pro'   => true,
-		),
-		array(
 			'label' => 'Pricing Table',
 			'free'  => true,
 			'pro'   => true,
@@ -253,6 +248,185 @@ $features = array(
 			'label' => 'Wishlist',
 			'free'  => false,
 			'pro'   => true,
+		),
+	),
+	'Forms'              => array(
+		array(
+			'label' => 'Form Builder & Lead Forms Inbox',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Form Templates',
+			'free'  => 'Contact, Quote, Booking, Service, Consultation, Support, Newsletter',
+			'pro'   => 'All, plus Product Enquiry, Feedback, Lead Magnet, Waitlist',
+		),
+		array(
+			'label' => 'Text, Email, Phone, URL, Message, Number Fields',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Dropdown, Radio, Checkbox, Date & Time Fields',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'File Upload',
+			'free'  => 'Single file',
+			'pro'   => 'Multiple files',
+		),
+		array(
+			'label' => 'Image Upload',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Signature',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Checkbox Group, Date & Time, Hidden Fields',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Required Fields',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Advanced Validation',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Conditional Logic',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Multi-step Forms',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Success Message',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Thank-you Page Redirect',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Download After Submission',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Email Notifications',
+			'free'  => 'Basic',
+			'pro'   => 'Custom subject & message',
+		),
+		array(
+			'label' => 'Auto-reply to Visitor',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Spam Protection',
+			'free'  => 'Honeypot, fill time & rate limit',
+			'pro'   => 'Plus Google reCAPTCHA, Cloudflare Turnstile & Akismet',
+		),
+		array(
+			'label' => 'Lead Status Pipeline',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Entry Notes & CSV Export',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Analytics',
+			'free'  => 'Basic',
+			'pro'   => 'Plus status pipeline',
+		),
+		array(
+			'label' => 'WooCommerce Product Enquiry',
+			'free'  => false,
+			'pro'   => true,
+		),
+	),
+	'Popup Builder'      => array(
+		array(
+			'label' => 'Site-wide Popups',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Popup Modal Block (button-triggered popups)',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Ready-made Popup Layouts',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Popup Placement',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Responsive Visibility',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Load Trigger',
+			'free'  => 'On page load',
+			'pro'   => 'Plus delay & scroll distance',
+		),
+		array(
+			'label' => 'Exit Intent Trigger',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Display Frequency',
+			'free'  => 'Every page load',
+			'pro'   => 'Once per session or visitor, with cooldown',
+		),
+		array(
+			'label' => 'Overlay & Page Scroll Controls',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Page & Post Type Targeting',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'User Role Targeting',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Floating Popup Button',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Popup Analytics',
+			'free'  => false,
+			'pro'   => 'Impressions, clicks, conversion rate & dismissals',
 		),
 	),
 	'Design Kit'         => array(

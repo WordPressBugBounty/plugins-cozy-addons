@@ -29,5 +29,6 @@ class Deactivator {
 	public static function deactivate() {
 		// Deactivation logic goes here.
 		delete_transient( 'ca_pattern_themes' );
+		wp_clear_scheduled_hook( 'cozy_addons_form_cleanup' );
 	}
 }

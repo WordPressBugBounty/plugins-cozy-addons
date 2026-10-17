@@ -1,5 +1,5 @@
 <?php
-namespace Core;
+namespace CozyAddons\Core;
 
 use WP_Block_Pattern_Categories_Registry;
 use WP_Theme;
@@ -111,8 +111,14 @@ class Patterns {
 		$cache_key = 'ca_pattern_themes';
 		$cached    = get_transient( $cache_key );
 
-		if ( false !== $cached ) {
-			return $cached;
+		// Some object cache backends hand the value back still serialized,
+		// so normalize it before trusting it as an array.
+		if ( is_string( $cached ) && is_serialized( $cached ) ) {
+			$cached = @unserialize( trim( $cached ), array( 'allowed_classes' => false ) ); // phpcs:ignore
+		}
+
+		if ( is_array( $cached ) ) {
+			return array_values( array_filter( array_map( 'sanitize_key', array_filter( $cached, 'is_string' ) ) ) );
 		}
 
 		$themes = array();
@@ -129,7 +135,7 @@ class Patterns {
 			if ( is_array( $data ) ) {
 				$themes = array_values(
 					array_filter(
-						array_map( 'sanitize_key', $data )
+						array_map( 'sanitize_key', array_filter( $data, 'is_string' ) )
 					)
 				);
 			}
@@ -156,6 +162,10 @@ class Patterns {
 	 */
 	private function register_theme_patterns() {
 		$themes = $this->get_supported_pattern_themes();
+
+		if ( ! is_array( $themes ) ) {
+			return;
+		}
 
 		$active_theme = get_stylesheet();
 
