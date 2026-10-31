@@ -23,11 +23,21 @@ require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-form-recaptcha.php';
 require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-form-akismet.php';
 // Files attached to entries, kept out of the public uploads.
 require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-form-uploads.php';
+// Integrations (Pro): mailing lists and webhooks for new entries.
+require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-integration-mailchimp.php';
+require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-integration-brevo.php';
+require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-integration-webhooks.php';
+require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-form-integrations.php';
+// SMTP plugins: form emails go through the active one, which Lead Forms can install.
+require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-form-mailer.php';
+// Failed deliveries, listed for administrators under Lead Forms → Error log.
+require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-form-log.php';
 
 \CozyAddons\Core\Forms\Entry_Post_Type::init();
 \CozyAddons\Core\Forms\Entries_Privacy::init();
 \CozyAddons\Core\Forms\Form_Patterns::init();
 \CozyAddons\Core\Forms\Form_Uploads::init();
+\CozyAddons\Core\Forms\Form_Integrations::init();
 
 // Tells the Form block's sidebar which spam protection is set up, as booleans only.
 add_action( 'enqueue_block_editor_assets', 'cozy_addons_form_editor_spam_status' );
@@ -39,9 +49,10 @@ if ( is_admin() ) {
 	require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-leads-stats.php';
 	require_once COZY_ADDONS_PLUGIN_DIR . 'core/forms/class-leads-analytics.php';
 
-	// Lead Forms menu order: Inbox (the post type), Analytics, Settings.
+	// Lead Forms menu order: Inbox (the post type), Analytics, Settings, Error log.
 	\CozyAddons\Core\Forms\Leads_Analytics::init();
 	\CozyAddons\Core\Forms\Form_Settings::init();
+	\CozyAddons\Core\Forms\Form_Log::init();
 	\CozyAddons\Core\Forms\Entries_Admin::init();
 	\CozyAddons\Core\Forms\Entries_Export::init();
 }

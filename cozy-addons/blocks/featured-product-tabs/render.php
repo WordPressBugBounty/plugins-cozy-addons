@@ -15,7 +15,7 @@ $attributes['sidebarNonce']   = wp_create_nonce( 'cozy_block_wishlist_render_dat
 $attributes['quickViewNonce'] = wp_create_nonce( 'cozy_block_quick_view_render_data_lightbox' );
 
 wp_localize_script( 'cozy-block--featured-product-tabs--frontend-script', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block--featured-product-tabs--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProductTabs( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--featured-product-tabs--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedProductTabs( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $toast_card = array(
 	'font'     => array(

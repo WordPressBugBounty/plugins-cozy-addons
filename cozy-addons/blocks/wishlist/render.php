@@ -19,7 +19,7 @@ $attributes['userWishlistData'] = is_user_logged_in() && is_array( $wishlist_use
 
 if ( 'sidebar' === $attributes['variation'] ) {
 	wp_localize_script( 'cozy-block--wishlist--frontend-script', $block_id, $attributes );
-	wp_add_inline_script( 'cozy-block--wishlist--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockWishlist( "' . esc_html( $client_id ) . '" ) }) ' );
+	wp_add_inline_script( 'cozy-block--wishlist--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockWishlist( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 }
 $wishlist_icon = array(
 	'size'    => isset( $attributes['wishlist']['icon']['size'] ) ? esc_attr( $attributes['wishlist']['icon']['size'] ) : '',

@@ -310,7 +310,7 @@ add_action(
 );
 
 wp_localize_script( 'cozy-block--mega-menu--frontend-script', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block--mega-menu--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMegaMenuInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--mega-menu--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMegaMenuInit( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $classes   = array();
 $classes[] = 'cozy-block-wrapper';

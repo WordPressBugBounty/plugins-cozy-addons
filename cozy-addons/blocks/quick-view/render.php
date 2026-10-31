@@ -448,7 +448,8 @@ add_action(
 	}
 );
 
-$render = sprintf( '<div class="cozy-block-wrapper cozy-block-quick-view-wrapper justify-content-' . $attributes['icon']['align'] . '"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
+$icon_align = isset( $attributes['icon']['align'] ) ? sanitize_html_class( $attributes['icon']['align'] ) : 'right';
+$render     = sprintf( '<div class="cozy-block-wrapper cozy-block-quick-view-wrapper justify-content-%3$s"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output, esc_attr( $icon_align ) );
 echo $render;
 
 

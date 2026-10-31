@@ -27,6 +27,7 @@ final class Entries_Admin {
 	 */
 	public static function init() {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
+		add_filter( 'admin_body_class', array( __CLASS__, 'body_class' ) );
 		add_filter( 'add_menu_classes', array( __CLASS__, 'menu_bubble' ) );
 		add_filter( 'display_post_states', array( __CLASS__, 'urgent_state' ), 10, 2 );
 
@@ -40,6 +41,9 @@ final class Entries_Admin {
 		add_filter( 'bulk_actions-edit-' . self::TYPE, array( __CLASS__, 'bulk_actions' ) );
 		add_filter( 'handle_bulk_actions-edit-' . self::TYPE, array( __CLASS__, 'handle_bulk' ), 10, 3 );
 		add_action( 'admin_notices', array( __CLASS__, 'bulk_notice' ) );
+		add_action( 'admin_notices', array( __CLASS__, 'mail_failure_notice' ) );
+		add_action( 'admin_notices', array( __CLASS__, 'sync_failure_notice' ) );
+		add_action( 'wp_ajax_ca_form_dismiss_notice', array( __CLASS__, 'dismiss_notice' ) );
 		add_action( 'admin_post_cozy_addons_form_set_status', array( __CLASS__, 'set_status' ) );
 		add_action( 'admin_post_cozy_addons_form_set_spam', array( __CLASS__, 'set_spam_action' ) );
 		add_action( 'admin_post_cozy_addons_form_set_urgent', array( __CLASS__, 'set_urgent_action' ) );
@@ -55,14 +59,50 @@ final class Entries_Admin {
 	 * @return void
 	 */
 	public static function assets() {
-		$screen = get_current_screen();
-		if ( ! $screen ) {
+		if ( ! self::is_leads_screen() ) {
 			return;
 		}
-		// Covers the inbox, entries and the Analytics and Settings pages under the Lead Forms menu.
-		if ( self::TYPE === $screen->post_type || false !== strpos( $screen->id, Form_Settings::PAGE ) || false !== strpos( $screen->id, Leads_Analytics::PAGE ) ) {
-			wp_enqueue_style( 'cozy-addons--form-entries', COZY_ADDONS_PLUGIN_URL . 'admin/assets/css/form-entries.css', array(), COZY_ADDONS_VERSION );
-		}
+		wp_enqueue_style( 'cozy-addons--form-entries', COZY_ADDONS_PLUGIN_URL . 'admin/assets/css/form-entries.css', array(), COZY_ADDONS_VERSION );
+
+		// Remembers a dismissed error notice, so it only comes back with a new error.
+		wp_register_script( 'cozy-addons--form-notices', false, array( 'jquery', 'common' ), COZY_ADDONS_VERSION, true );
+		wp_enqueue_script( 'cozy-addons--form-notices' );
+		wp_add_inline_script(
+			'cozy-addons--form-notices',
+			'jQuery( function ( $ ) {
+				$( document ).on( "click", ".ca-form-log-notice .notice-dismiss", function () {
+					var notice = $( this ).closest( ".ca-form-log-notice" );
+					$.post( window.ajaxurl, {
+						action: "ca_form_dismiss_notice",
+						notice: notice.data( "caNotice" ),
+						last: notice.data( "caLast" ),
+						_ajax_nonce: ' . wp_json_encode( wp_create_nonce( 'ca_form_dismiss_notice' ) ) . '
+					} );
+				} );
+			} );'
+		);
+	}
+
+	/**
+	 * Whether this is one of the Lead Forms screens: the inbox, an entry, Analytics or Settings.
+	 *
+	 * @return bool
+	 */
+	private static function is_leads_screen() {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+		return $screen && ( self::TYPE === $screen->post_type || false !== strpos( $screen->id, Form_Settings::PAGE ) || false !== strpos( $screen->id, Leads_Analytics::PAGE ) || false !== strpos( $screen->id, Form_Log::PAGE ) );
+	}
+
+	/**
+	 * Marks the Lead Forms screens, so their buttons and tabs take the Cozy Blocks colours
+	 * without changing other admin screens.
+	 *
+	 * @param string $classes Space-separated body classes.
+	 * @return string
+	 */
+	public static function body_class( $classes ) {
+		return self::is_leads_screen() ? $classes . ' ca-leads-screen' : $classes;
 	}
 
 	/**
@@ -889,6 +929,22 @@ final class Entries_Admin {
 			printf( '<tr><th>%s</th><td>%s</td></tr>', esc_html( (string) ( $row['l'] ?? '' ) ), $out ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above.
 		}
 
+		// Pro: where the entry was sent (mailing lists, webhooks) and how that went.
+		$jobs = get_post_meta( $post->ID, Form_Integrations::META, true );
+		if ( is_array( $jobs ) && $jobs ) {
+			$items  = array();
+			$failed = false;
+			foreach ( $jobs as $job ) {
+				$state = 'ok' === $job['status'] ? __( 'done', 'cozy-addons' ) : ( 'failed' === $job['status'] ? __( 'failed', 'cozy-addons' ) : __( 'waiting', 'cozy-addons' ) );
+				$items[] = '<span class="ca-form-sync is-' . esc_attr( $job['status'] ) . '">' . esc_html( Form_Integrations::label( $job ) ) . ': ' . esc_html( $state ) . ( '' !== (string) $job['message'] ? ' (' . esc_html( $job['message'] ) . ')' : '' ) . '</span>';
+				$failed  = $failed || 'failed' === $job['status'];
+			}
+			if ( $failed ) {
+				$items[] = '<a href="' . esc_url( Form_Integrations::retry_url( $post->ID ) ) . '">' . esc_html__( 'Retry failed', 'cozy-addons' ) . '</a>';
+			}
+			printf( '<tr><th>%s</th><td>%s</td></tr>', esc_html__( 'Sent to', 'cozy-addons' ), implode( '<br>', $items ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above.
+		}
+
 		$product_id = (int) get_post_meta( $post->ID, '_ca_form_product_id', true );
 		if ( $product_id && get_edit_post_link( $product_id ) ) {
 			printf(
@@ -904,10 +960,126 @@ final class Entries_Admin {
 			printf(
 				'<tr><th>%s</th><td>%s</td></tr>',
 				esc_html__( 'Email notification', 'cozy-addons' ),
-				'1' === $notified ? esc_html__( 'Sent', 'cozy-addons' ) : '<span class="ca-form-warn">' . esc_html__( 'Failed to send. Check your site email setup (an SMTP plugin is recommended).', 'cozy-addons' ) . '</span>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inline.
+				'1' === $notified
+					? esc_html__( 'Sent', 'cozy-addons' )
+					: '<span class="ca-form-warn">' . esc_html( self::notify_failure( $post->ID ) ) . '</span> <a href="' . esc_url( cozy_addons_form_admin_url( 'ca-form-settings', array( 'tab' => 'general' ) ) ) . '">' . esc_html__( 'Check the email setup', 'cozy-addons' ) . '</a>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inline.
 			);
 		}
 		echo '</tbody></table>';
+	}
+
+	/**
+	 * Why an entry's notification email was not sent.
+	 *
+	 * @param int $entry_id Entry ID.
+	 * @return string
+	 */
+	private static function notify_failure( $entry_id ) {
+		$reason = (string) get_post_meta( $entry_id, '_ca_form_notify_error', true );
+
+		return '' !== $reason
+			/* translators: %s: error from the mailer */
+			? sprintf( __( 'Failed: %s', 'cozy-addons' ), $reason )
+			: __( 'Failed to send.', 'cozy-addons' );
+	}
+
+	/**
+	 * Warns on the Lead Forms screens when recent notification emails could not be sent, until the
+	 * admin dismisses it or a new one fails.
+	 *
+	 * @return void
+	 */
+	public static function mail_failure_notice() {
+		self::log_notice(
+			'email',
+			__( 'Recent form notification emails could not be sent.', 'cozy-addons' ),
+			Form_Mailer::conflict_message(),
+			array(
+				cozy_addons_form_admin_url( 'ca-form-settings', array( 'tab' => 'general' ) ) => __( 'Check the email setup', 'cozy-addons' ),
+			)
+		);
+	}
+
+	/**
+	 * Tells the admin, on the Lead Forms screens only, when recent sign-ups could not be added to
+	 * Mailchimp, until it is dismissed or a new one fails. Visitors never see these errors: the
+	 * contact is sent after their answer.
+	 *
+	 * @return void
+	 */
+	public static function sync_failure_notice() {
+		self::log_notice(
+			'mailchimp',
+			__( 'Recent sign-ups could not be added to Mailchimp.', 'cozy-addons' ),
+			'',
+			array(
+				cozy_addons_form_admin_url( 'ca-form-settings', array( 'tab' => 'integrations' ) ) => __( 'Check the Mailchimp settings', 'cozy-addons' ),
+			)
+		);
+	}
+
+	/**
+	 * A dismissible error notice for the newest logged failures of one service that this admin
+	 * has not dismissed yet.
+	 *
+	 * @param string               $source Log source: "email" or "mailchimp".
+	 * @param string               $intro  First sentence.
+	 * @param string               $extra  Extra sentence, may be empty.
+	 * @param array<string,string> $links  URL => label, after the link to the error log.
+	 * @return void
+	 */
+	private static function log_notice( $source, $intro, $extra, array $links ) {
+		if ( ! self::is_leads_screen() || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		$seen = (int) get_user_meta( get_current_user_id(), 'ca_form_log_dismissed_' . $source, true );
+		$new  = array_filter(
+			Form_Log::rows( $source ),
+			static function ( $row ) use ( $seen ) {
+				return (int) $row['id'] > $seen;
+			}
+		);
+		if ( ! $new ) {
+			return;
+		}
+		$latest = end( $new );
+		$count  = count( $new );
+		$links  = array( cozy_addons_form_admin_url( Form_Log::PAGE, array( 'source' => $source ) ) => __( 'View the error log', 'cozy-addons' ) ) + $links;
+		$html   = array();
+		foreach ( $links as $url => $label ) {
+			$html[] = '<a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
+		}
+		printf(
+			'<div class="notice notice-error is-dismissible ca-form-log-notice" data-ca-notice="%s" data-ca-last="%d"><p>%s %s %s %s</p></div>',
+			esc_attr( $source ),
+			(int) $latest['id'],
+			esc_html( $intro ),
+			esc_html(
+				1 < $count
+					/* translators: 1: newest reason, 2: number of failures */
+					? sprintf( _n( 'Latest: %1$s (%2$d failure).', 'Latest: %1$s (%2$d failures).', $count, 'cozy-addons' ), $latest['message'], $count )
+					/* translators: %s: reason */
+					: sprintf( __( 'Reason: %s', 'cozy-addons' ), $latest['message'] )
+			),
+			esc_html( $extra ),
+			implode( ' · ', $html ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above.
+		);
+	}
+
+	/**
+	 * Remembers that this admin dismissed an error notice, up to the newest error it showed.
+	 *
+	 * @return void
+	 */
+	public static function dismiss_notice() {
+		check_ajax_referer( 'ca_form_dismiss_notice' );
+		$source = isset( $_POST['notice'] ) ? sanitize_key( wp_unslash( $_POST['notice'] ) ) : '';
+		$last   = isset( $_POST['last'] ) ? absint( $_POST['last'] ) : 0;
+		if ( ! current_user_can( 'manage_options' ) || ! in_array( $source, array( 'email', 'mailchimp' ), true ) || ! $last || $last > Form_Log::latest_id( $source ) ) {
+			wp_send_json_error( null, 403 );
+		}
+		update_user_meta( get_current_user_id(), 'ca_form_log_dismissed_' . $source, $last );
+		wp_send_json_success();
 	}
 
 	/**

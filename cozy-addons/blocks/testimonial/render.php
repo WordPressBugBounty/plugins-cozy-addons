@@ -9,7 +9,7 @@ $cozy_block_var = 'cozyTestimonial_' . str_replace( '-', '_', $client_id );
 $attributes['isPremium'] = cozy_addons_premium_access();
 
 wp_localize_script( 'cozy-block--testimonial--frontend-script', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block--testimonial--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockTestimonialInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--testimonial--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockTestimonialInit( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 

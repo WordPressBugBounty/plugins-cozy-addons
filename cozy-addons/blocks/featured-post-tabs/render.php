@@ -8,7 +8,7 @@ $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attributes['siteURL'] = site_url();
 
-wp_add_inline_script( 'cozy-block--featured-post-tabs--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedPostTabs( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--featured-post-tabs--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockFeaturedPostTabs( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $separator_padding = isset( $attributes['separatorStyles']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['separatorStyles']['padding'] ) : '';
 $separator_border  = isset( $attributes['separatorStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['separatorStyles']['border'] ) : '';

@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['clientId'] ) ) : '';
+$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attributes['ajaxUrl'] = admin_url( 'admin-ajax.php' );
@@ -784,7 +784,7 @@ if ( $attributes['enableOptions']['lightbox'] && ! empty( $attributes['mediaColl
 $output .= '</div>';
 
 wp_localize_script( 'cozy-block--advanced-gallery--frontend-script', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block--advanced-gallery--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockAdvancedGallery( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--advanced-gallery--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockAdvancedGallery( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $wrapper_attributes = get_block_wrapper_attributes();
 

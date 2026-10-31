@@ -9,7 +9,7 @@ $teams_var = 'cozyTeams_' . str_replace( '-', '_', $client_id );
 $attributes['isPremium'] = cozy_addons_premium_access();
 
 wp_localize_script( 'cozy-block--teams--frontend-script', $teams_var, $attributes );
-wp_add_inline_script( 'cozy-block--teams--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockTeamsInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--teams--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockTeamsInit( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 

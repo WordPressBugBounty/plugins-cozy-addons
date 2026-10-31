@@ -13,6 +13,8 @@ use CozyAddons\Core\Forms\Form_Turnstile;
 use CozyAddons\Core\Forms\Form_Recaptcha;
 use CozyAddons\Core\Forms\Form_Akismet;
 use CozyAddons\Core\Forms\Form_Uploads;
+use CozyAddons\Core\Forms\Form_Integrations;
+use CozyAddons\Core\Forms\Form_Log;
 
 /**
  * Public endpoint that receives Form block submissions, validates them, stores an entry and sends the emails.
@@ -357,6 +359,11 @@ class Form {
 		if ( is_wp_error( $entry_id ) ) {
 			Form_Uploads::delete_files( $stored );
 			return $this->fail( __( 'We could not save your message. Please try again.', 'cozy-addons' ), 500 );
+		}
+
+		// 10. Pro: mailing lists and webhooks, delivered in the background. Never for spam.
+		if ( ! $is_spam ) {
+			Form_Integrations::queue( (int) $entry_id, $config, $values );
 		}
 
 		return $this->succeed( $config );
@@ -805,7 +812,9 @@ class Form {
 					array( $title, $site, $download ? $download['url'] : '' ),
 					(string) $settings['autoreply_message']
 				);
-				wp_mail( $email, wp_strip_all_tags( (string) $settings['autoreply_subject'] ), $message, array( 'Content-Type: text/plain; charset=UTF-8' ) );
+				if ( ! cozy_addons_form_mail( $email, wp_strip_all_tags( (string) $settings['autoreply_subject'] ), $message ) ) {
+					Form_Log::add( 'autoreply', cozy_addons_form_mail_error(), $entry_id );
+				}
 			}
 		}
 	}
@@ -913,7 +922,11 @@ class Form {
 			$body    = __( 'Urgent', 'cozy-addons' ) . ': ' . get_post_meta( $entry_id, '_ca_form_urgent_reason', true ) . "\n\n" . $body;
 		}
 
-		$sent = wp_mail( $recipients, $subject, $body, $headers );
+		$sent = cozy_addons_form_mail( $recipients, $subject, $body, $headers );
 		update_post_meta( $entry_id, '_ca_form_notified', $sent ? '1' : '0' );
+		if ( ! $sent ) {
+			update_post_meta( $entry_id, '_ca_form_notify_error', cozy_addons_form_mail_error() );
+			Form_Log::add( 'email', cozy_addons_form_mail_error(), $entry_id );
+		}
 	}
 }

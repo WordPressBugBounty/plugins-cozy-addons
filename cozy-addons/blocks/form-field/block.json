@@ -54,6 +54,14 @@
       "type": "string",
       "default": ""
     },
+    "mailingList": {
+      "type": "object",
+      "default": {}
+    },
+    "mailchimpField": {
+      "type": "string",
+      "default": ""
+    },
     "maxSize": {
       "type": "string",
       "default": "5"

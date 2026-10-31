@@ -30,7 +30,7 @@ $block_styles = "
 ";
 
 wp_localize_script( 'cozy-block--slider--frontend-script', $slider_var, $attributes );
-wp_add_inline_script( 'cozy-block--slider--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockSliderInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--slider--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockSliderInit( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $wrapper_attributes = get_block_wrapper_attributes();
 

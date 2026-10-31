@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 // 1. Core Data & Security Setup
-$client_id = ! empty( $attributes['clientId'] ) ? cozy_remove_special_chars( $attributes['clientId'] ) : '';
+$client_id = ! empty( $attributes['clientId'] ) ? cozy_remove_special_chars( sanitize_key( $attributes['clientId'] ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attributes['ajaxUrl']   = admin_url( 'admin-ajax.php' );
@@ -233,7 +233,7 @@ add_action(
 $render = sprintf( '<div class="cozy-block-wrapper cozy-block-add-to-cart-wrapper justify-' . esc_attr( $attributes['button']['justify'] ) . '"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;
 wp_localize_script( 'cozy-block--add-to-cart--frontend-script', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block--add-to-cart--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockAddToCartInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--add-to-cart--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockAddToCartInit( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 ?>
 
 <script src="<?php echo esc_url( trailingslashit( COZY_ADDONS_PLUGIN_URL ) ) . 'vendor/jquery/jquery.js'; ?>"></script>

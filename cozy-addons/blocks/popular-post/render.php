@@ -3,13 +3,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['clientId'] ) ) : '';
+$client_id = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $attributes['ajaxUrl'] = admin_url( 'admin-ajax.php' );
 $attributes['nonce']   = wp_create_nonce( 'cozy_block_popular_posts_load_more' );
 wp_localize_script( 'cozy-block--popular-post--frontend-script', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block--popular-post--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockPopularPostsInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--popular-post--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockPopularPostsInit( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $list = array(
 	'column' => isset( $attributes['column'] ) ? cozy_addons_sanitize_dimension( $attributes['column'] ) : '',

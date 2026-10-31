@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$client_id = $attributes['blockClientId'];
+$client_id = ! empty( $attributes['blockClientId'] ) ? sanitize_key( $attributes['blockClientId'] ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', sanitize_key( $client_id ) );
 
 $bg_img      = isset( $attributes['style']['background']['backgroundImage']['url'] ) ? esc_url( $attributes['style']['background']['backgroundImage']['url'] ) : '';

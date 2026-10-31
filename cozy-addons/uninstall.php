@@ -63,6 +63,21 @@ if ( is_array( $ca_form_settings ) && ( ! empty( $ca_form_settings['turnstile_se
 	$ca_form_settings['recaptcha_secret_key'] = '';
 	update_option( 'ca_form_settings', $ca_form_settings );
 }
+// The same for the Mailchimp and Brevo API keys and the webhook signing secrets.
+if ( is_array( $ca_form_settings ) && ( ! empty( $ca_form_settings['mailchimp_key'] ) || ! empty( $ca_form_settings['brevo_key'] ) || ! empty( $ca_form_settings['webhooks'] ) ) ) {
+	$ca_form_settings['mailchimp_key'] = '';
+	$ca_form_settings['brevo_key']     = '';
+	$ca_form_settings['webhooks']      = array();
+	update_option( 'ca_form_settings', $ca_form_settings );
+}
+wp_clear_scheduled_hook( 'cozy_addons_form_sync' );
+
+// The error log and who dismissed its notices. Errors carry no keys or email addresses, but are
+// no use without the plugin.
+delete_option( 'ca_form_error_log' );
+delete_option( 'ca_form_error_log_seq' );
+delete_metadata( 'user', 0, 'ca_form_log_dismissed_email', '', true );
+delete_metadata( 'user', 0, 'ca_form_log_dismissed_mailchimp', '', true );
 
 if ( is_array( $ca_form_settings ) && ! empty( $ca_form_settings['delete_data'] ) ) {
 	$ca_form_entry_ids = get_posts(

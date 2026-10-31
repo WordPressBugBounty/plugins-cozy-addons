@@ -180,6 +180,19 @@ final class Entries_Privacy {
 		if ( cozy_addons_form_recaptcha_enabled() ) {
 			$content .= '<p>' . esc_html__( 'Our forms may use Google reCAPTCHA to check that submissions come from a person. reCAPTCHA runs in your browser and Google receives information about your visit and your device, such as your IP address. See the Google privacy policy: https://policies.google.com/privacy', 'cozy-addons' ) . '</p>';
 		}
+		$integrations = array_filter(
+			array(
+				\CozyAddons\Core\Forms\Form_Integrations::connected( 'mailchimp' ) ? 'Mailchimp (https://www.intuit.com/privacy/statement/)' : '',
+				\CozyAddons\Core\Forms\Form_Integrations::connected( 'brevo' ) ? 'Brevo (https://www.brevo.com/legal/privacypolicy/)' : '',
+			)
+		);
+		if ( $integrations ) {
+			/* translators: %s: services with their privacy policy links */
+			$content .= '<p>' . esc_html( sprintf( __( 'When you sign up for our mailing list through a form, your email address and name are sent to our mailing list service: %s.', 'cozy-addons' ), implode( ', ', $integrations ) ) ) . '</p>';
+		}
+		if ( \CozyAddons\Core\Forms\Integration_Webhooks::active() ) {
+			$content .= '<p>' . esc_html__( 'Form submissions may also be passed to other tools we use to handle enquiries, such as our customer relationship or automation services.', 'cozy-addons' ) . '</p>';
+		}
 		if ( ! empty( cozy_addons_form_settings()['akismet'] ) ) {
 			$content .= '<p>' . esc_html__( 'Form submissions may be checked through the Automattic Akismet spam detection service. The details you enter, your IP address and your browser user agent are sent to Akismet. See the Automattic privacy policy: https://automattic.com/privacy/', 'cozy-addons' ) . '</p>';
 		}

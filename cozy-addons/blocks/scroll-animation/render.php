@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $client_id      = ! empty( $attributes['clientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['clientId'] ) ) ) : '';
 $cozy_block_var = 'cozyScrollAnimation_' . str_replace( '-', '_', $client_id );
 wp_localize_script( 'cozy-block--scroll-animation--frontend-script', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block--scroll-animation--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockScrollAnimationInit( "' . $client_id . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--scroll-animation--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockScrollAnimationInit( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 

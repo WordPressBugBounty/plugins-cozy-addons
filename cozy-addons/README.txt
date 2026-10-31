@@ -4,7 +4,7 @@ Tags: gutenberg blocks, page builder, block patterns, woocommerce blocks, full s
 Requires PHP: 7.4
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.2.28
+Stable tag: 2.2.29
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -144,7 +144,7 @@ Capture customer enquiries, manage leads, and simplify follow-ups directly in Wo
 * <strong>Submission Details</strong> — Review contact information, enquiry details, and submitted messages.
 * <strong>Email Notifications</strong> — Receive new lead alerts and send customer confirmation emails.
 * <strong>Lead Organization</strong> — Search, filter, and review submissions to prioritize follow-ups.
-* <strong>Newsletter Integrations</strong> — Connect supported platforms like Mailchimp and Brevo to grow your list and use their available automation tools.
+* <strong>Newsletter Integrations</strong> — Connect Mailchimp (Brevo coming soon) to grow your list and use their available automation tools.
 
 Capture leads, manage enquiries, and stay on top of follow-ups—all from your WordPress dashboard
 
@@ -281,18 +281,27 @@ Yes. The free version provides core Cozy Blocks functionality, including a selec
 = Where can I get support or ask questions? =
 You can get support for Cozy Blocks via the [support forum](https://wordpress.org/support/plugin/cozy-addons/). You can also ask pre-sale questions, or request features through the official support channels provided by [CozyThemes](https://cozythemes.com/), the plugin’s developer.
 
+= Form emails land in spam. What can I do? =
+The best fix is to send through a mail service with SPF/DKIM authentication. Under Lead Forms → Settings → General you can install and activate a popular SMTP plugin (WP Mail SMTP or FluentSMTP) in one click; once it is active, form emails are sent through it with its sender. Without one, set the email sender there to an address on your own domain (for example hello@yourdomain.com) and keep "Also use it as the envelope sender" ticked. Use "Send test email" to check.
+
 = Where do I report security bugs? =
 You can report any security bugs found in the source code of this plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/cozy-addons). The Patchstack team will assist you with verification, CVE assignment and take care of notifying the developers of this plugin.
 
 == External services ==
 
-The Form block can use the following services, available with Cozy Blocks Pro. All are off until the site owner sets them up under Lead Forms → Settings → Spam protection.
+The Form block can use the following services, available with Cozy Blocks Pro. All are off until the site owner sets them up under Lead Forms → Settings (Spam protection or Integrations).
 
 **Cloudflare Turnstile** checks that a form is filled in by a person. When a Turnstile site key and secret key are saved, pages with a Form block load Turnstile's script from challenges.cloudflare.com, and the visitor's browser exchanges information about the visit (such as the IP address) with Cloudflare. When the form is sent, the site sends the Turnstile token and the visitor's IP address to Cloudflare to verify it. The secret key is only sent from the site's server to Cloudflare and never appears in pages. [Terms of service](https://www.cloudflare.com/website-terms/), [privacy policy](https://www.cloudflare.com/privacypolicy/).
 
 **Google reCAPTCHA** checks that a form is filled in by a person. When reCAPTCHA keys are saved and a form uses it, pages with that form load Google's script from www.google.com, and the visitor's browser sends Google information about the visit and the device (such as the IP address, browser details and interactions with the page). Version 2 shows an "I'm not a robot" checkbox; version 3 runs invisibly and scores each submission. When the form is sent, the site sends the reCAPTCHA token and the visitor's IP address to Google to verify it. The secret key is only sent from the site's server to Google and never appears in pages. [Terms of service](https://policies.google.com/terms), [privacy policy](https://policies.google.com/privacy).
 
 **Akismet** (by Automattic) detects spam. When the Akismet plugin is active with an API key and "Check submissions with Akismet" is enabled, each form submission is sent to Akismet through the Akismet plugin: the details entered in the form, the visitor's IP address, browser user agent, referring page and the page the form is on. [Terms of service](https://akismet.com/tos/), [privacy policy](https://automattic.com/privacy/).
+
+**Mailchimp** (by Intuit) stores mailing list contacts. When a Mailchimp API key and Audience ID are saved and an Email field of a form is set to add people to the mailing list, the visitor's email address with their marketing consent, their name and phone number when the form asks for them, and (Pro) the answers of form fields mapped to fields of the Mailchimp audience, are sent from the site's server to the Mailchimp API (<data centre>.api.mailchimp.com) after they submit the form, only when they ticked the consent box the field asks for. The API key is only sent to Mailchimp, in the request's authorization header, and is never shown in pages. [Terms of use](https://www.intuit.com/legal/terms/en-us/mailchimp/), [privacy policy](https://www.intuit.com/privacy/statement/).
+
+**WordPress.org plugin directory**: under Lead Forms → Settings → General, the site owner can install an SMTP plugin with one click. Its details and icon are read from api.wordpress.org and the plugin is downloaded from downloads.wordpress.org, exactly as under Plugins → Add New. Nothing is requested until that settings page is opened.
+
+**Webhooks** send each new form entry (the details entered, the form and the page it was sent from) as JSON to addresses the site owner enters under Lead Forms → Settings → Integrations, such as Zapier, Make or n8n. Nothing is sent until the site owner adds an address. Uploaded files are listed by name only.
 
 == Screenshots ==
 1. Gutenberg Blocks Collection
@@ -305,6 +314,20 @@ The Form block can use the following services, available with Cozy Blocks Pro. A
 8. FSE Homepage templates
 
 == Changelog ==
+= 2.2.29 - Oct 31, 2026 = 
+* Add: Mailchimp integration for Lead Forms with opt-in settings, audience field mapping and tags.
+* Add: Mailing list and webhooks integrations for Lead Forms.
+* Add: QR code generator for Lead Forms.
+* Add: SMTP setup with email sender options.
+* Add: Compatibility with popular SMTP plugins.
+* Add: Lead Forms error log with dismissible error notices.
+* Update: Lead Forms admin UI.
+* Update: Spam protection API keys centralized in the dashboard for all forms.
+* Update: Plugin short description and Lead Forms admin icon.
+* Fix: SMTP plugins mail forwarding.
+* Fix: Mailing list selection UI for free users.
+* Security: Cross Site Scripting (XSS) patch for block attributes and client ID sanitization.
+
 = 2.2.28 - Oct 17, 2026 = 
 * Add: Lead Forms.
 * Security: Authenticated (Contributor+) Stored Cross-Site Scripting.

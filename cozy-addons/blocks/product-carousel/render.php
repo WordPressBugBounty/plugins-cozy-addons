@@ -12,7 +12,7 @@ $attributes['currencySymbol']   = $currency_symbol;
 $attributes['currencyPosition'] = $currency_position;
 
 wp_localize_script( 'cozy-block--product-carousel--frontend-script', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block--product-carousel--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductCarouselInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--product-carousel--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductCarouselInit( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $width1 = $attributes['gridOptions']['displayColumn'] <= 3 ? esc_attr( $attributes['gridOptions']['displayColumn'] ) : 3;
 $width2 = $attributes['gridOptions']['displayColumn'] <= 2 ? esc_attr( $attributes['gridOptions']['displayColumn'] ) : 2;

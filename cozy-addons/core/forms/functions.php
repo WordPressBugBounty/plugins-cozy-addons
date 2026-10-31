@@ -182,6 +182,9 @@ function cozy_addons_form_entry_statuses() {
 function cozy_addons_form_settings() {
 	$defaults = array(
 		'notify_emails'        => '',
+		'from_name'            => '',
+		'from_email'           => '',
+		'return_path'          => 1,
 		'autoreply_enabled'    => 0,
 		'autoreply_subject'    => __( 'We received your message', 'cozy-addons' ),
 		'autoreply_message'    => __( "Hi {name},\n\nThanks for getting in touch. We've received your message and will reply shortly.\n\n{site}", 'cozy-addons' ),
@@ -195,6 +198,19 @@ function cozy_addons_form_settings() {
 		'recaptcha_site_key'   => '',
 		'recaptcha_secret_key' => '',
 		'recaptcha_threshold'  => 0.5,
+		'mailing_service'      => '',
+		'mailchimp_key'        => '',
+		'mailchimp_account'    => '',
+		'mailchimp_audience'   => '',
+		'mailchimp_unsub'      => '',
+		'mailchimp_double'     => 1,
+		'mailchimp_update'     => 0,
+		'mailchimp_unsub_link' => 0,
+		'brevo_key'            => '',
+		'brevo_account'        => '',
+		'brevo_doi_template'   => 0,
+		'brevo_doi_redirect'   => '',
+		'webhooks'             => array(),
 		'akismet'              => 0,
 		'urgent_categories'    => array( 'service', 'booking' ),
 		'overdue_hours'        => 24,
@@ -297,6 +313,53 @@ function cozy_addons_form_find_loaded_script( $own, array $hosts, $path ) {
 }
 
 /**
+ * The mailing list service chosen under Lead Forms → Settings → Integrations. Sites that saved a
+ * key before the choice existed use the service they connected.
+ *
+ * @return string 'mailchimp', 'brevo' or '' for none.
+ */
+function cozy_addons_form_mailing_service() {
+	$settings = cozy_addons_form_settings();
+	$choice   = (string) $settings['mailing_service'];
+	if ( 'mailchimp' === $choice || ( 'brevo' === $choice && cozy_addons_form_brevo_available() ) ) {
+		return $choice;
+	}
+	if ( in_array( $choice, array( 'none', 'brevo' ), true ) ) {
+		return '';
+	}
+	if ( '' !== (string) $settings['mailchimp_key'] ) {
+		return 'mailchimp';
+	}
+
+	return '' !== (string) $settings['brevo_key'] && cozy_addons_form_brevo_available() ? 'brevo' : '';
+}
+
+/**
+ * Whether Brevo can be chosen as the mailing list service. Not in this version yet: it shows as
+ * "Coming soon" and nothing is sent to Brevo.
+ *
+ * @return bool
+ */
+function cozy_addons_form_brevo_available() {
+	/**
+	 * Filters whether the Brevo integration is available.
+	 *
+	 * @param bool $available Whether Brevo can be chosen.
+	 */
+	return (bool) apply_filters( 'cozy_addons_form_brevo_available', false );
+}
+
+/**
+ * Logo of a mailing list service, for the settings screen and the editor.
+ *
+ * @param string $service 'mailchimp' or 'brevo'.
+ * @return string URL.
+ */
+function cozy_addons_form_service_logo( $service ) {
+	return COZY_ADDONS_PLUGIN_URL . 'admin/assets/img/integrations/' . ( 'brevo' === $service ? 'brevo' : 'mailchimp' ) . '.svg';
+}
+
+/**
  * Gives the Form block's sidebar the site's spam protection status (whether Turnstile or
  * reCAPTCHA keys are saved, the default check and whether Akismet is available and on: never
  * keys), the form categories and links to the Lead Forms screens.
@@ -327,9 +390,28 @@ function cozy_addons_form_editor_spam_status() {
 		'inboxUrl'         => cozy_addons_form_admin_url(),
 	);
 
+	// Integrations (Pro): which services are connected and how many webhooks are on. Never keys.
+	\CozyAddons\Core\Forms\Integration_Mailchimp::ensure_unsubscribe_url();
+	$service      = cozy_addons_form_mailing_service();
+	$integrations = array(
+		// The one connected mailing list service, or '' when none is.
+		'mailingService'    => '' !== $service && \CozyAddons\Core\Forms\Form_Integrations::connected( $service ) ? $service : '',
+		'logos'             => array(
+			'mailchimp' => cozy_addons_form_service_logo( 'mailchimp' ),
+			'brevo'     => cozy_addons_form_service_logo( 'brevo' ),
+		),
+		'brevoDoi'          => ! empty( cozy_addons_form_settings()['brevo_doi_template'] ),
+		// Whether an Audience ID is saved, not the ID.
+		'mailchimpAudience' => '' !== (string) cozy_addons_form_settings()['mailchimp_audience'],
+		// Whether audience fields can be loaded for mapping (Pro, Mailchimp connected, audience set).
+		'mailchimpReady'    => \CozyAddons\Core\Forms\Form_Integrations::connected( 'mailchimp' ) && '' !== (string) cozy_addons_form_settings()['mailchimp_audience'],
+		'webhooks'          => count( \CozyAddons\Core\Forms\Integration_Webhooks::active() ),
+		'integrationsUrl'   => current_user_can( 'manage_options' ) ? cozy_addons_form_admin_url( 'ca-form-settings', array( 'tab' => 'integrations' ) ) : '',
+	);
+
 	wp_add_inline_script(
 		$handle,
-		'window.cozyFormSpam = ' . wp_json_encode( $status ) . ';' . "\n" . 'window.cozyFormData = ' . wp_json_encode( $data ) . ';',
+		'window.cozyFormSpam = ' . wp_json_encode( $status ) . ';' . "\n" . 'window.cozyFormData = ' . wp_json_encode( $data ) . ';' . "\n" . 'window.cozyFormIntegrations = ' . wp_json_encode( $integrations ) . ';',
 		'before'
 	);
 }
@@ -413,25 +495,28 @@ function cozy_addons_form_css_value( $value ) {
  * @param array $attrs Block attributes.
  * @return array Short keys: n (name), l (label), t (type), r (required), o (options), p (placeholder), w (width),
  *               u (urgent answers), v (validation), c (conditions), and for uploads mx (size limit in MB),
- *               mf (files allowed, multiple-file fields only) and img (images only).
+ *               mf (files allowed, multiple-file fields only) and img (images only); ml (mailing list,
+ *               email fields only).
  */
 function cozy_addons_form_normalize_field( array $attrs ) {
 	$attrs = wp_parse_args(
 		$attrs,
 		array(
-			'label'         => '',
-			'fieldType'     => 'text',
-			'placeholder'   => '',
-			'required'      => false,
-			'options'       => '',
-			'name'          => '',
-			'width'         => '100',
-			'urgentOptions' => array(),
-			'validation'    => array(),
-			'conditions'    => array(),
-			'maxSize'       => '5',
-			'multiple'      => false,
-			'maxFiles'      => '5',
+			'label'          => '',
+			'fieldType'      => 'text',
+			'placeholder'    => '',
+			'required'       => false,
+			'options'        => '',
+			'name'           => '',
+			'width'          => '100',
+			'urgentOptions'  => array(),
+			'validation'     => array(),
+			'conditions'     => array(),
+			'maxSize'        => '5',
+			'multiple'       => false,
+			'maxFiles'       => '5',
+			'mailingList'    => array(),
+			'mailchimpField' => '',
 		)
 	);
 
@@ -480,6 +565,22 @@ function cozy_addons_form_normalize_field( array $attrs ) {
 
 	// Upload limits, signed so visitors cannot raise them: size per file in MB and, for a
 	// multiple-file field (Pro), how many files.
+	// Mailing list (Pro) for an email field: service, list, tags, double opt-in and the checkbox
+	// whose tick it needs. Signed, so visitors cannot add themselves to another list.
+	if ( 'email' === $type ) {
+		$mailing = cozy_addons_form_normalize_mailing_list( $attrs['mailingList'] );
+		if ( $mailing ) {
+			$field['ml'] = $mailing;
+		}
+	}
+
+	// Pro: the Mailchimp audience field (merge tag) this answer goes to. Signed, so visitors cannot
+	// send answers to other fields.
+	$tag = strtoupper( (string) $attrs['mailchimpField'] );
+	if ( '' !== $tag && preg_match( '/^[A-Z0-9_]{1,50}$/', $tag ) && ! in_array( $type, array( 'email', 'file', 'image', 'signature' ), true ) ) {
+		$field['mt'] = $tag;
+	}
+
 	if ( in_array( $type, array( 'file', 'image' ), true ) ) {
 		$field['mx'] = max( 1, min( \CozyAddons\Core\Forms\Form_Uploads::server_limit_mb(), absint( $attrs['maxSize'] ) ) );
 		if ( ! empty( $attrs['multiple'] ) ) {
@@ -491,6 +592,65 @@ function cozy_addons_form_normalize_field( array $attrs ) {
 	}
 
 	return $field;
+}
+
+/**
+ * Cleans an email field's mailing-list choice (Pro).
+ *
+ * @param mixed $mailing Raw "mailingList" attribute.
+ * @return array Empty when off, otherwise p (provider), l (list ID), t (tags), d (double opt-in), c (consent field).
+ */
+function cozy_addons_form_normalize_mailing_list( $mailing ) {
+	if ( ! is_array( $mailing ) || empty( $mailing['enabled'] ) ) {
+		return array();
+	}
+	$provider = isset( $mailing['provider'] ) && in_array( $mailing['provider'], array( 'mailchimp', 'brevo' ), true ) ? $mailing['provider'] : '';
+	$list     = isset( $mailing['list'] ) && is_scalar( $mailing['list'] ) ? (string) $mailing['list'] : '';
+	// Mailchimp uses the audience set in Settings; an audience saved on older fields is kept as a fallback.
+	if ( '' === $provider || ( 'mailchimp' === $provider ? '' !== $list && ! preg_match( '/^[A-Za-z0-9_\-]{1,64}$/', $list ) : ! preg_match( '/^[A-Za-z0-9_\-]{1,64}$/', $list ) ) ) {
+		return array();
+	}
+
+	// Tags saved on fields before they moved to Settings still apply.
+	$tags = 'mailchimp' === $provider && ! empty( $mailing['tags'] ) && is_string( $mailing['tags'] ) ? cozy_addons_form_parse_tags( $mailing['tags'] ) : array();
+
+	return array(
+		'p' => $provider,
+		'l' => $list,
+		't' => $tags,
+		'd' => empty( $mailing['doubleOptIn'] ) ? 0 : 1,
+		'c' => isset( $mailing['consentField'] ) ? sanitize_key( (string) $mailing['consentField'] ) : '',
+	);
+}
+
+/**
+ * Mailchimp tags from a comma-separated list: trimmed, at most 10 of up to 100 characters.
+ *
+ * @param string $list Comma-separated tags.
+ * @return string[]
+ */
+function cozy_addons_form_parse_tags( $list ) {
+	$tags = array();
+	foreach ( explode( ',', (string) $list ) as $tag ) {
+		$tag = mb_substr( trim( sanitize_text_field( $tag ) ), 0, 100 );
+		if ( '' !== $tag ) {
+			$tags[] = $tag;
+		}
+	}
+
+	return array_slice( array_values( array_unique( $tags ) ), 0, 10 );
+}
+
+/**
+ * Whether a checkbox asks for consent to marketing emails, by its name or label, e.g.
+ * "Marketing Consent" or "Send me news and offers".
+ *
+ * @param array $field Field config.
+ * @return bool
+ */
+function cozy_addons_form_is_consent_box( array $field ) {
+	return 'checkbox' === ( $field['t'] ?? '' )
+		&& (bool) preg_match( '/consent|marketing|newsletter|subscri|opt.?in|news|offers|updates|promotion/i', ( $field['n'] ?? '' ) . ' ' . ( $field['l'] ?? '' ) );
 }
 
 /**
@@ -798,6 +958,102 @@ function cozy_addons_form_parse_emails( $emails_raw ) {
 	}
 
 	return array_values( array_unique( $emails ) );
+}
+
+/**
+ * Sends a Lead Forms email the way the active mail setup needs it: through a configured SMTP
+ * plugin with a sender it can send as, through another mail plugin untouched, or through
+ * WordPress's mailer with the sender set under Lead Forms → Settings → General.
+ *
+ * The sender only applies to this one email: the filters are removed as soon as it is sent, so
+ * other plugins' emails keep their own sender. With WordPress's mailer and "Return-Path" on, the
+ * envelope sender matches the From address, which helps SPF and DMARC checks.
+ *
+ * @param string|string[] $to      Recipients.
+ * @param string          $subject Subject.
+ * @param string          $body    Plain-text body.
+ * @param string[]        $headers Extra headers, e.g. Reply-To.
+ * @return bool Whether the mail was handed over for delivery.
+ */
+function cozy_addons_form_mail( $to, $subject, $body, array $headers = array() ) {
+	$profile = \CozyAddons\Core\Forms\Form_Mailer::profile();
+	$email   = is_email( $profile['from_email'] ) ? $profile['from_email'] : '';
+	$name    = (string) $profile['from_name'];
+	// The SMTP plugin's own forcing (where it is on) runs later and still wins; ours only makes sure
+	// it gets a sender it can use. WordPress's mailer gets ours at a late priority.
+	$priority = 'plugin' === $profile['mode'] ? 10 : 999;
+
+	$from_email = static function () use ( $email ) {
+		return $email;
+	};
+	$from_name  = static function () use ( $name ) {
+		return $name;
+	};
+	// WordPress reuses one PHPMailer for every email in a request, so the previous envelope sender
+	// is put back afterwards; otherwise the next plugin's email would go out with ours.
+	$previous   = null;
+	$sender     = static function ( $phpmailer ) use ( $email, &$previous ) {
+		$previous          = $phpmailer->Sender; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer property.
+		$phpmailer->Sender = $email; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer property.
+	};
+	// Why a send failed, for the entry. Only the message is kept.
+	$error  = '';
+	$failed = static function ( $wp_error ) use ( &$error ) {
+		$error = $wp_error instanceof \WP_Error ? $wp_error->get_error_message() : '';
+	};
+
+	if ( '' !== $email ) {
+		add_filter( 'wp_mail_from', $from_email, $priority );
+		if ( $profile['return_path'] ) {
+			add_action( 'phpmailer_init', $sender, 999 );
+		}
+	}
+	if ( '' !== $name ) {
+		add_filter( 'wp_mail_from_name', $from_name, $priority );
+	}
+	add_action( 'wp_mail_failed', $failed );
+
+	$headers[] = 'Content-Type: text/plain; charset=UTF-8';
+	$sent      = wp_mail( $to, $subject, $body, array_values( array_unique( $headers ) ) );
+
+	remove_filter( 'wp_mail_from', $from_email, $priority );
+	remove_filter( 'wp_mail_from_name', $from_name, $priority );
+	remove_action( 'phpmailer_init', $sender, 999 );
+	remove_action( 'wp_mail_failed', $failed );
+	global $phpmailer;
+	if ( null !== $previous && is_object( $phpmailer ) ) {
+		$phpmailer->Sender = $previous; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer property.
+	}
+
+	cozy_addons_form_mail_error( $sent ? '' : ( '' !== $error ? $error : __( 'The mail could not be sent.', 'cozy-addons' ) ) );
+
+	return $sent;
+}
+
+/**
+ * Why the last Lead Forms email failed, short and plain.
+ *
+ * @param string|null $set Sets the message when given.
+ * @return string Empty when the last email was sent.
+ */
+function cozy_addons_form_mail_error( $set = null ) {
+	static $message = '';
+	if ( null !== $set ) {
+		$message = mb_substr( trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( (string) $set ) ) ), 0, 200 );
+	}
+
+	return $message;
+}
+
+/**
+ * Name of the SMTP or mail plugin form emails are sent through, if any.
+ *
+ * @return string Its name, or '' when none is active.
+ */
+function cozy_addons_form_smtp_plugin() {
+	$active = \CozyAddons\Core\Forms\Form_Mailer::current();
+
+	return $active && $active['configured'] ? $active['name'] : '';
 }
 
 /**

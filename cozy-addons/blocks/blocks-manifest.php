@@ -6402,7 +6402,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/form',
 		'title' => 'Form',
-		'description' => 'Build contact, quote, newsletter and product enquiry forms. Entries are saved under Cozy Blocks → Form Entries.',
+		'description' => 'Build lead forms: contact, quote, booking, support, newsletter, product enquiry and more. Entries are saved under Lead Forms → Inbox.',
 		'category' => 'cozy-block',
 		'keywords' => array(
 			'form',
@@ -6474,6 +6474,16 @@ return array(
 			'notify' => array(
 				'type' => 'boolean',
 				'default' => true
+			),
+			'webhooks' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'mailchimpTags' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
 			),
 			'productDisplay' => array(
 				'type' => 'string',
@@ -6782,6 +6792,16 @@ return array(
 				)
 			),
 			'checkboxText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'mailingList' => array(
+				'type' => 'object',
+				'default' => array(
+					
+				)
+			),
+			'mailchimpField' => array(
 				'type' => 'string',
 				'default' => ''
 			),

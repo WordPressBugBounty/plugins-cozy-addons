@@ -332,6 +332,11 @@ $features = array(
 			'pro'   => 'Custom subject & message',
 		),
 		array(
+			'label' => 'Custom Email Sender',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
 			'label' => 'Auto-reply to Visitor',
 			'free'  => false,
 			'pro'   => true,
@@ -355,6 +360,21 @@ $features = array(
 			'label' => 'Analytics',
 			'free'  => 'Basic',
 			'pro'   => 'Plus status pipeline',
+		),
+		array(
+			'label' => 'Mailchimp Mailing Lists (Brevo coming soon)',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Webhooks (Zapier, Make, n8n)',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Share Form QR Code',
+			'free'  => false,
+			'pro'   => true,
 		),
 		array(
 			'label' => 'WooCommerce Product Enquiry',

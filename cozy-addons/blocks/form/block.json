@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "cozy-block/form",
   "title": "Form",
-  "description": "Build contact, quote, newsletter and product enquiry forms. Entries are saved under Cozy Blocks → Form Entries.",
+  "description": "Build lead forms: contact, quote, booking, support, newsletter, product enquiry and more. Entries are saved under Lead Forms → Inbox.",
   "category": "cozy-block",
   "keywords": [
     "form",
@@ -75,6 +75,14 @@
     "notify": {
       "type": "boolean",
       "default": true
+    },
+    "webhooks": {
+      "type": "boolean",
+      "default": true
+    },
+    "mailchimpTags": {
+      "type": "array",
+      "default": []
     },
     "productDisplay": {
       "type": "string",

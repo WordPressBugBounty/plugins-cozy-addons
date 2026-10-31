@@ -115,7 +115,7 @@ if ( $cozy_popup_id && $attributes['isPremium'] ) {
 }
 
 wp_localize_script( 'cozy-block--modal--frontend-script', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block--modal--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockModalInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--modal--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockModalInit( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 

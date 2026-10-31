@@ -26,7 +26,7 @@ $woo_product_comments = array_values( $woo_product_comments );
 $attributes = array_merge( $attributes, array( 'woo_product_comments' => $woo_product_comments ) );
 
 wp_localize_script( 'cozy-block--product-review--frontend-script', $cozy_block_var, $attributes );
-wp_add_inline_script( 'cozy-block--product-review--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductReviewInit( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--product-review--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockProductReviewInit( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $displayColumn1 = ( $attributes['gridOptions']['displayColumn'] <= 3 ) ? $attributes['gridOptions']['displayColumn'] : 3;
 $displayColumn2 = ( $attributes['gridOptions']['displayColumn'] <= 2 ) ? $attributes['gridOptions']['displayColumn'] : 2;

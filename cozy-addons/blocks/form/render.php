@@ -32,7 +32,7 @@ if ( 'product' === $form_type && cozy_addons_premium_access() ) {
 	$product_display = isset( $attributes['productDisplay'] ) && 'modal' === $attributes['productDisplay'] ? 'modal' : 'inline';
 }
 
-$client_id = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : wp_unique_id( 'form-' );
+$client_id = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( sanitize_key( $attributes['blockClientId'] ) ) ) : wp_unique_id( 'form-' );
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', sanitize_key( $client_id ) );
 
 $form_name = cozy_addons_form_plain( isset( $attributes['formName'] ) ? $attributes['formName'] : '' );
@@ -52,18 +52,12 @@ if ( '' === $success ) {
 	$success = __( "Thanks! We've received your message and will get back to you shortly.", 'cozy-addons' );
 }
 
-// Spam protection chosen for this form: a check (reCAPTCHA or Turnstile, which need the site's
-// keys and Pro) and Akismet's "on" or "off", which override the site setting. Both travel in the
-// signed config so visitors cannot drop them. Forms saved before the choice existed only had
-// "turnstile: off".
-$spam_choice = isset( $attributes['spamProtection'] ) && is_array( $attributes['spamProtection'] ) ? $attributes['spamProtection'] : array();
-if ( isset( $spam_choice['captcha'] ) && in_array( $spam_choice['captcha'], array( 'default', 'none', 'recaptcha', 'turnstile' ), true ) ) {
-	$captcha_choice = $spam_choice['captcha'];
-} else {
-	$captcha_choice = isset( $spam_choice['turnstile'] ) && 'off' === $spam_choice['turnstile'] ? 'none' : 'default';
-}
-$cozy_form_captcha = cozy_addons_form_resolve_captcha( $captcha_choice );
-$akismet_choice = isset( $spam_choice['akismet'] ) && in_array( $spam_choice['akismet'], array( 'on', 'off' ), true ) ? $spam_choice['akismet'] : 'default';
+// Spam protection is set for all forms in Lead Forms → Settings → Spam and read on every render,
+// so a change there reaches every form without editing it. Choices saved on older forms (their
+// own check, or Akismet on or off) are ignored. Both travel in the signed config so visitors
+// cannot drop them.
+$cozy_form_captcha = cozy_addons_form_default_captcha();
+$akismet_choice    = 'default';
 
 // Pro: a thank-you page, a file to download, and the form's own notification email. The download
 // and the email are sealed like the recipients, so they cannot be read in the page source.
@@ -96,6 +90,18 @@ if ( $cozy_form_pro ) {
 	}
 }
 
+// Pro: a link to the Mailchimp audience's unsubscribe form on forms that add people to Mailchimp,
+// when Lead Forms → Settings → Integrations asks for it.
+$cozy_form_unsubscribe = '';
+if ( $cozy_form_pro && ! empty( cozy_addons_form_settings()['mailchimp_unsub_link'] ) && \CozyAddons\Core\Forms\Form_Integrations::connected( 'mailchimp' ) ) {
+	foreach ( $cozy_form_fields as $cozy_form_field ) {
+		if ( isset( $cozy_form_field['ml']['p'] ) && 'mailchimp' === $cozy_form_field['ml']['p'] ) {
+			$cozy_form_unsubscribe = (string) cozy_addons_form_settings()['mailchimp_unsub'];
+			break;
+		}
+	}
+}
+
 // Signed config: the browser cannot change which fields exist, who gets the email, etc.
 // The recipients are also sealed, so the notification emails cannot be read in the page source.
 // The HEX flags keep &, <, > and quotes out of the JSON so it survives an HTML attribute unchanged.
@@ -112,6 +118,9 @@ $form_config = array(
 	'cp'     => $cozy_form_captcha,
 	'ak'     => $akismet_choice,
 	'n'      => ! isset( $attributes['notify'] ) || ! empty( $attributes['notify'] ) ? 1 : 0,
+	'wh'     => ! isset( $attributes['webhooks'] ) || ! empty( $attributes['webhooks'] ) ? 1 : 0,
+	// Pro: Mailchimp tags for everyone this form signs up.
+	'tg'     => $cozy_form_pro && ! empty( $attributes['mailchimpTags'] ) && is_array( $attributes['mailchimpTags'] ) ? cozy_addons_form_parse_tags( implode( ',', array_filter( $attributes['mailchimpTags'], 'is_string' ) ) ) : array(),
 );
 if ( '' !== $cozy_form_download ) {
 	$form_config['dl'] = $cozy_form_download;
@@ -426,6 +435,9 @@ $dialog_id = wp_unique_id( 'cozy-form-dialog-' );
 				<button type="submit" class="wp-element-button cozy-form__button cozy-form__submit"><?php echo esc_html( $button_text ); ?></button>
 			</div>
 			<div class="cozy-form__message" role="status" aria-live="polite" tabindex="-1" hidden></div>
+			<?php if ( '' !== $cozy_form_unsubscribe ) : ?>
+				<p class="cozy-form__unsubscribe"><a href="<?php echo esc_url( $cozy_form_unsubscribe ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Unsubscribe', 'cozy-addons' ); ?></a></p>
+			<?php endif; ?>
 		</form>
 		<noscript><p><?php esc_html_e( 'Please enable JavaScript to send this form.', 'cozy-addons' ); ?></p></noscript>
 		<?php if ( 'modal' === $product_display ) : ?>

@@ -1286,7 +1286,7 @@ if ( ! empty( $font_query ) ) {
 $attributes['ajaxUrl'] = admin_url( 'admin-ajax.php' );
 $attributes['nonce']   = wp_create_nonce( 'cozy_block_magazine_grid_load_more' );
 wp_localize_script( 'cozy-block--magazine-grid--frontend-script', $block_id, $attributes );
-wp_add_inline_script( 'cozy-block--magazine-grid--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMagazineGrid( "' . esc_html( $client_id ) . '" ) }) ' );
+wp_add_inline_script( 'cozy-block--magazine-grid--frontend-script', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockMagazineGrid( ' . wp_json_encode( $client_id ) . ' ) }) ' );
 
 $render = sprintf( '<div class="cozy-block-wrapper"><div %1$s>%2$s</div></div>', $wrapper_attributes, $output );
 echo $render;

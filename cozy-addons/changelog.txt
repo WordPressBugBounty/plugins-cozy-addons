@@ -1,3 +1,17 @@
+= 2.2.29 - Oct 31, 2026 = 
+* Add: Mailchimp integration for Lead Forms with opt-in settings, audience field mapping and tags.
+* Add: Mailing list and webhooks integrations for Lead Forms.
+* Add: QR code generator for Lead Forms.
+* Add: SMTP setup with email sender options.
+* Add: Compatibility with popular SMTP plugins.
+* Add: Lead Forms error log with dismissible error notices.
+* Update: Lead Forms admin UI.
+* Update: Spam protection API keys centralized in the dashboard for all forms.
+* Update: Plugin short description and Lead Forms admin icon.
+* Fix: SMTP plugins mail forwarding.
+* Fix: Mailing list selection UI for free users.
+* Security: Cross Site Scripting (XSS) patch for block attributes and client ID sanitization.
+
 = 2.2.28 - Oct 17, 2026 = 
 * Add: Lead Forms.
 * Security: Authenticated (Contributor+) Stored Cross-Site Scripting.
