@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
 	window["cozyBlockAdvancedTabInit"] = (e) => {
 		const n = e.replace(/-/gi, "_");
 		const advancedTabClass = `#cozyBlock_${n}`;
@@ -54,4 +54,4 @@
 			});
 		});
 	};
-})(jQuery);
+})();

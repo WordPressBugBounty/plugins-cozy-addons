@@ -1,12 +1,18 @@
-(($) => {
-	$(window).ready(function () {
+(() => {
+	const init = () => {
 		// Initialize AOS library.
-		setTimeout(function () {
+		setTimeout(() => {
 			if (typeof AOS !== "undefined") {
 				AOS.init({
 					once: true,
 				});
 			}
 		}, 100);
-	});
-})(jQuery);
+	};
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", init);
+	} else {
+		init();
+	}
+})();

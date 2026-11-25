@@ -29,6 +29,16 @@ function cozy_addons_form_pro_field_types() {
 }
 
 /**
+ * Autofill hints a text field may give browsers (WCAG 1.3.5). Keep in sync with
+ * AUTOCOMPLETE_OPTIONS in src/form-field/edit.js.
+ *
+ * @return string[]
+ */
+function cozy_addons_form_autocomplete_tokens() {
+	return array( 'name', 'given-name', 'family-name', 'organization', 'organization-title', 'street-address', 'address-level2', 'postal-code', 'country-name', 'off' );
+}
+
+/**
  * Field types whose answers come from a list of options.
  *
  * @return string[]
@@ -208,8 +218,8 @@ function cozy_addons_form_settings() {
 		'mailchimp_unsub_link' => 0,
 		'brevo_key'            => '',
 		'brevo_account'        => '',
-		'brevo_doi_template'   => 0,
-		'brevo_doi_redirect'   => '',
+		// Read only as a fallback for forms saved while the Brevo list was set in Settings.
+		'brevo_list'           => 0,
 		'webhooks'             => array(),
 		'akismet'              => 0,
 		'urgent_categories'    => array( 'service', 'booking' ),
@@ -335,8 +345,8 @@ function cozy_addons_form_mailing_service() {
 }
 
 /**
- * Whether Brevo can be chosen as the mailing list service. Not in this version yet: it shows as
- * "Coming soon" and nothing is sent to Brevo.
+ * Whether Brevo can be chosen as the mailing list service. When a site turns it off with the
+ * filter, it shows as "Coming soon" and nothing is sent to Brevo.
  *
  * @return bool
  */
@@ -346,7 +356,7 @@ function cozy_addons_form_brevo_available() {
 	 *
 	 * @param bool $available Whether Brevo can be chosen.
 	 */
-	return (bool) apply_filters( 'cozy_addons_form_brevo_available', false );
+	return (bool) apply_filters( 'cozy_addons_form_brevo_available', true );
 }
 
 /**
@@ -400,11 +410,12 @@ function cozy_addons_form_editor_spam_status() {
 			'mailchimp' => cozy_addons_form_service_logo( 'mailchimp' ),
 			'brevo'     => cozy_addons_form_service_logo( 'brevo' ),
 		),
-		'brevoDoi'          => ! empty( cozy_addons_form_settings()['brevo_doi_template'] ),
 		// Whether an Audience ID is saved, not the ID.
 		'mailchimpAudience' => '' !== (string) cozy_addons_form_settings()['mailchimp_audience'],
 		// Whether audience fields can be loaded for mapping (Pro, Mailchimp connected, audience set).
 		'mailchimpReady'    => \CozyAddons\Core\Forms\Form_Integrations::connected( 'mailchimp' ) && '' !== (string) cozy_addons_form_settings()['mailchimp_audience'],
+		// Whether Brevo lists and attributes can be loaded (Pro, Brevo chosen and connected).
+		'brevoReady'        => \CozyAddons\Core\Forms\Form_Integrations::connected( 'brevo' ),
 		'webhooks'          => count( \CozyAddons\Core\Forms\Integration_Webhooks::active() ),
 		'integrationsUrl'   => current_user_can( 'manage_options' ) ? cozy_addons_form_admin_url( 'ca-form-settings', array( 'tab' => 'integrations' ) ) : '',
 	);
@@ -517,6 +528,7 @@ function cozy_addons_form_normalize_field( array $attrs ) {
 			'maxFiles'       => '5',
 			'mailingList'    => array(),
 			'mailchimpField' => '',
+			'brevoField'     => '',
 		)
 	);
 
@@ -580,6 +592,11 @@ function cozy_addons_form_normalize_field( array $attrs ) {
 	if ( '' !== $tag && preg_match( '/^[A-Z0-9_]{1,50}$/', $tag ) && ! in_array( $type, array( 'email', 'file', 'image', 'signature' ), true ) ) {
 		$field['mt'] = $tag;
 	}
+	// Pro: the Brevo contact attribute this answer goes to, signed the same way.
+	$attribute = strtoupper( (string) $attrs['brevoField'] );
+	if ( '' !== $attribute && preg_match( '/^[A-Z0-9_]{1,50}$/', $attribute ) && ! in_array( $type, array( 'email', 'file', 'image', 'signature' ), true ) ) {
+		$field['bt'] = $attribute;
+	}
 
 	if ( in_array( $type, array( 'file', 'image' ), true ) ) {
 		$field['mx'] = max( 1, min( \CozyAddons\Core\Forms\Form_Uploads::server_limit_mb(), absint( $attrs['maxSize'] ) ) );
@@ -606,8 +623,9 @@ function cozy_addons_form_normalize_mailing_list( $mailing ) {
 	}
 	$provider = isset( $mailing['provider'] ) && in_array( $mailing['provider'], array( 'mailchimp', 'brevo' ), true ) ? $mailing['provider'] : '';
 	$list     = isset( $mailing['list'] ) && is_scalar( $mailing['list'] ) ? (string) $mailing['list'] : '';
-	// Mailchimp uses the audience set in Settings; an audience saved on older fields is kept as a fallback.
-	if ( '' === $provider || ( 'mailchimp' === $provider ? '' !== $list && ! preg_match( '/^[A-Za-z0-9_\-]{1,64}$/', $list ) : ! preg_match( '/^[A-Za-z0-9_\-]{1,64}$/', $list ) ) ) {
+	// Both services use the audience or list set in Settings; one saved on older fields is kept
+	// as a fallback.
+	if ( '' === $provider || ( '' !== $list && ! preg_match( '/^[A-Za-z0-9_\-]{1,64}$/', $list ) ) ) {
 		return array();
 	}
 
@@ -621,6 +639,32 @@ function cozy_addons_form_normalize_mailing_list( $mailing ) {
 		'd' => empty( $mailing['doubleOptIn'] ) ? 0 : 1,
 		'c' => isset( $mailing['consentField'] ) ? sanitize_key( (string) $mailing['consentField'] ) : '',
 	);
+}
+
+/**
+ * Cleans a form's Brevo sign-up options. A confirmation email and double opt-in are never both
+ * on: double opt-in already sends its own email, so it wins.
+ *
+ * @param mixed $options Raw options from the Form block.
+ * @return array Only the options that apply, with short keys.
+ */
+function cozy_addons_form_normalize_brevo_options( $options ) {
+	$options = is_array( $options ) ? $options : array();
+	$url     = static function ( $value ) {
+		return is_string( $value ) ? esc_url_raw( trim( $value ), array( 'http', 'https' ) ) : '';
+	};
+	$out     = array();
+	if ( ! empty( $options['double'] ) ) {
+		$out['d']  = absint( $options['doubleTemplate'] ?? 0 );
+		$out['dr'] = $url( $options['doubleRedirect'] ?? '' );
+	} elseif ( ! empty( $options['confirm'] ) ) {
+		$out['c'] = absint( $options['confirmTemplate'] ?? 0 );
+	}
+	if ( ! empty( $options['redirect'] ) && '' !== $url( $options['redirectUrl'] ?? '' ) ) {
+		$out['r'] = $url( $options['redirectUrl'] );
+	}
+
+	return $out;
 }
 
 /**

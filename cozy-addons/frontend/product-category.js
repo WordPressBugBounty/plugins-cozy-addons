@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
 	window["cozyBlockProductCategoryInit"] = (e) => {
 		const n = e.replace(/-/gi, "_");
 		const blockOptions = window[`cozyProductCategory_${n}`];
@@ -51,4 +51,4 @@
 			sliderAttr,
 		);
 	};
-})(jQuery);
+})();

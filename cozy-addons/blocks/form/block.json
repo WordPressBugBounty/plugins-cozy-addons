@@ -84,6 +84,14 @@
       "type": "array",
       "default": []
     },
+    "brevoLists": {
+      "type": "array",
+      "default": []
+    },
+    "brevoOptions": {
+      "type": "object",
+      "default": {}
+    },
     "productDisplay": {
       "type": "string",
       "default": "inline"

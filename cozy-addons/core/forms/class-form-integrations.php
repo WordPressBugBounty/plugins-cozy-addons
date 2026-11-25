@@ -78,11 +78,18 @@ final class Form_Integrations {
 			$answers[ $row['n'] ] = (string) $row['v'];
 		}
 
-		// Pro: answers that go to fields of the Mailchimp audience, as merge tag => form field.
-		$merge = array();
+		// Pro: answers that go to fields of the Mailchimp audience (merge tag => form field) and to
+		// Brevo contact attributes (attribute => form field).
+		$merge = array(
+			'mailchimp' => array(),
+			'brevo'     => array(),
+		);
 		foreach ( $config['fields'] as $field ) {
 			if ( is_array( $field ) && ! empty( $field['mt'] ) && isset( $field['n'] ) ) {
-				$merge[ (string) $field['mt'] ] = (string) $field['n'];
+				$merge['mailchimp'][ (string) $field['mt'] ] = (string) $field['n'];
+			}
+			if ( is_array( $field ) && ! empty( $field['bt'] ) && isset( $field['n'] ) ) {
+				$merge['brevo'][ (string) $field['bt'] ] = (string) $field['n'];
 			}
 		}
 
@@ -97,11 +104,11 @@ final class Form_Integrations {
 				continue;
 			}
 			// Only with the visitor's consent, when the form asks for it. A box hidden by conditional
-			// logic is not in the entry, so it does not count as ticked. Mailchimp finds the form's
-			// consent checkbox by itself (e.g. "Marketing Consent"); a box chosen on fields saved
-			// before that still counts.
+			// logic is not in the entry, so it does not count as ticked. The form's consent checkbox
+			// is found by itself (e.g. "Marketing Consent"); a box chosen on fields saved before
+			// that still counts.
 			$consent = (string) ( $list['c'] ?? '' );
-			if ( '' === $consent && 'mailchimp' === $list['p'] ) {
+			if ( '' === $consent ) {
 				foreach ( $config['fields'] as $box ) {
 					if ( is_array( $box ) && cozy_addons_form_is_consent_box( $box ) ) {
 						$consent = (string) $box['n'];
@@ -112,11 +119,23 @@ final class Form_Integrations {
 			if ( '' !== $consent && ( ! isset( $answers[ $consent ] ) || __( 'Yes', 'cozy-addons' ) !== $answers[ $consent ] ) ) {
 				continue;
 			}
-			// Mailchimp adds everyone to the audience set in Settings. Fields saved before that
-			// setting existed carry their own audience ID, used while none is set.
-			$target = (string) ( $list['l'] ?? '' );
-			if ( 'mailchimp' === $list['p'] && '' !== (string) cozy_addons_form_settings()['mailchimp_audience'] ) {
-				$target = (string) cozy_addons_form_settings()['mailchimp_audience'];
+			// Mailchimp: the audience set in Settings. Brevo: the lists chosen on the Form block. Forms
+			// saved before those settings existed keep what they had (a list on the field, or the
+			// Brevo list once set in Settings) while nothing newer is set.
+			$settings = cozy_addons_form_settings();
+			$target   = (string) ( $list['l'] ?? '' );
+			$extra    = array();
+			if ( 'mailchimp' === $list['p'] && '' !== (string) $settings['mailchimp_audience'] ) {
+				$target = (string) $settings['mailchimp_audience'];
+			} elseif ( 'brevo' === $list['p'] ) {
+				$chosen = isset( $config['bl'] ) && is_array( $config['bl'] ) ? array_values( array_filter( array_map( 'absint', $config['bl'] ) ) ) : array();
+				if ( ! $chosen && absint( $settings['brevo_list'] ) ) {
+					$chosen = array( absint( $settings['brevo_list'] ) );
+				}
+				if ( $chosen ) {
+					$target = (string) array_shift( $chosen );
+					$extra  = $chosen;
+				}
 			}
 			$jobs[] = array(
 				'type'   => $list['p'],
@@ -129,9 +148,13 @@ final class Form_Integrations {
 				// The form's tags, plus any saved on the Email field before tags moved to the form.
 				$form_tags                          = isset( $config['tg'] ) && is_array( $config['tg'] ) ? $config['tg'] : array();
 				$jobs[ count( $jobs ) - 1 ]['tags'] = array_values( array_unique( array_merge( $form_tags, $jobs[ count( $jobs ) - 1 ]['tags'] ) ) );
-				if ( $merge ) {
-					$jobs[ count( $jobs ) - 1 ]['merge'] = $merge;
-				}
+			} else {
+				// The form's other Brevo lists, and its sign-up options.
+				$jobs[ count( $jobs ) - 1 ]['lists']   = $extra;
+				$jobs[ count( $jobs ) - 1 ]['options'] = isset( $config['bo'] ) && is_array( $config['bo'] ) ? $config['bo'] : array();
+			}
+			if ( $merge[ $list['p'] ] ) {
+				$jobs[ count( $jobs ) - 1 ]['merge'] = $merge[ $list['p'] ];
 			}
 		}
 
@@ -307,7 +330,19 @@ final class Form_Integrations {
 					'update' => ! empty( cozy_addons_form_settings()['mailchimp_update'] ),
 				)
 			)
-			: Integration_Brevo::subscribe( $job['target'], $contact, $job['double'] );
+			: Integration_Brevo::subscribe(
+				$job['target'],
+				$contact,
+				self::mapped( $entry_id, isset( $job['merge'] ) ? (array) $job['merge'] : array() ),
+				// Chosen on the Form block.
+				array(
+					'double'           => isset( $job['options']['d'] ),
+					'double_template'  => absint( $job['options']['d'] ?? 0 ),
+					'double_redirect'  => (string) ( $job['options']['dr'] ?? '' ),
+					'confirm_template' => absint( $job['options']['c'] ?? 0 ),
+					'lists'            => isset( $job['lists'] ) ? (array) $job['lists'] : array(),
+				)
+			);
 	}
 
 	/**
@@ -421,8 +456,8 @@ final class Form_Integrations {
 	}
 
 	/**
-	 * Brevo lists for the editor: GET cozy-block/v1/form-lists?provider=brevo. Mailchimp uses the
-	 * audience set in Settings.
+	 * Brevo lists for the editor (the Form block's extra lists): GET cozy-block/v1/form-lists?provider=brevo.
+	 * Mailchimp uses the audience set in Settings.
 	 *
 	 * @return void
 	 */
@@ -443,6 +478,34 @@ final class Form_Integrations {
 						'required' => true,
 					),
 					'refresh'  => array( 'type' => 'boolean' ),
+				),
+			)
+		);
+		register_rest_route(
+			'cozy-block/v1',
+			'/form-brevo-attributes',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( __CLASS__, 'brevo_attributes' ),
+				'permission_callback' => static function () {
+					return current_user_can( 'edit_posts' );
+				},
+				'args'                => array(
+					'refresh' => array( 'type' => 'boolean' ),
+				),
+			)
+		);
+		register_rest_route(
+			'cozy-block/v1',
+			'/form-brevo-templates',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( __CLASS__, 'brevo_templates' ),
+				'permission_callback' => static function () {
+					return current_user_can( 'edit_posts' );
+				},
+				'args'                => array(
+					'refresh' => array( 'type' => 'boolean' ),
 				),
 			)
 		);
@@ -474,6 +537,44 @@ final class Form_Integrations {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Pro: contact attributes of the Brevo account, for mapping form fields to them in the editor.
+	 * Never includes the key.
+	 *
+	 * @param WP_REST_Request $req Request.
+	 * @return WP_REST_Response
+	 */
+	public static function brevo_attributes( WP_REST_Request $req ) {
+		if ( ! self::connected( 'brevo' ) ) {
+			return new WP_REST_Response( array( 'message' => __( 'Connect Brevo first.', 'cozy-addons' ) ), 400 );
+		}
+		$attrs = Integration_Brevo::attributes( (bool) $req->get_param( 'refresh' ) );
+		if ( is_wp_error( $attrs ) ) {
+			return new WP_REST_Response( array( 'message' => $attrs->get_error_message() ), 502 );
+		}
+
+		return new WP_REST_Response( array( 'attributes' => $attrs ), 200 );
+	}
+
+	/**
+	 * Pro: active email templates of the Brevo account, for a form's confirmation or double
+	 * opt-in email. Never includes the key.
+	 *
+	 * @param WP_REST_Request $req Request.
+	 * @return WP_REST_Response
+	 */
+	public static function brevo_templates( WP_REST_Request $req ) {
+		if ( ! self::connected( 'brevo' ) ) {
+			return new WP_REST_Response( array( 'message' => __( 'Connect Brevo first.', 'cozy-addons' ) ), 400 );
+		}
+		$templates = Integration_Brevo::templates( (bool) $req->get_param( 'refresh' ) );
+		if ( is_wp_error( $templates ) ) {
+			return new WP_REST_Response( array( 'message' => $templates->get_error_message() ), 502 );
+		}
+
+		return new WP_REST_Response( array( 'templates' => $templates ), 200 );
 	}
 
 	/**
@@ -532,15 +633,9 @@ final class Form_Integrations {
 		if ( ! self::connected( $provider ) ) {
 			return new WP_REST_Response( array( 'message' => __( 'This service is not connected.', 'cozy-addons' ) ), 400 );
 		}
-		// The cache key changes with the API key, so a new account never shows old lists.
-		$cache = 'ca_form_lists_' . $provider . '_' . substr( md5( (string) cozy_addons_form_settings()[ $provider . '_key' ] ), 0, 12 );
-		$lists = $req->get_param( 'refresh' ) ? false : get_transient( $cache );
-		if ( false === $lists ) {
-			$lists = Integration_Brevo::lists();
-			if ( is_wp_error( $lists ) ) {
-				return new WP_REST_Response( array( 'message' => $lists->get_error_message() ), 502 );
-			}
-			set_transient( $cache, $lists, 10 * MINUTE_IN_SECONDS );
+		$lists = Integration_Brevo::cached_lists( (bool) $req->get_param( 'refresh' ) );
+		if ( is_wp_error( $lists ) ) {
+			return new WP_REST_Response( array( 'message' => $lists->get_error_message() ), 502 );
 		}
 
 		return new WP_REST_Response( array( 'lists' => $lists ), 200 );

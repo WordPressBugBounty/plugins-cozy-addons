@@ -62,6 +62,10 @@
       "type": "string",
       "default": ""
     },
+    "brevoField": {
+      "type": "string",
+      "default": ""
+    },
     "maxSize": {
       "type": "string",
       "default": "5"
@@ -77,6 +81,10 @@
     "padHeight": {
       "type": "string",
       "default": "160"
+    },
+    "autocomplete": {
+      "type": "string",
+      "default": ""
     },
     "defaultValue": {
       "type": "string",

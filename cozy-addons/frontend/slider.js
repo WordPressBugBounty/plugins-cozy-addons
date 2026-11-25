@@ -52,7 +52,9 @@
 					animateEl.addClass("aos-init aos-animate");
 				}, 100);
 
-				AOS.refresh();
+				if (typeof AOS !== "undefined") {
+					AOS.refresh();
+				}
 
 				animateEl.attr("data-aos-init", "true");
 			}

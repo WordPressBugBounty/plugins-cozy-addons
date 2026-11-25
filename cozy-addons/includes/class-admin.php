@@ -76,6 +76,7 @@ class Admin {
 	 * @access private
 	 */
 	private function __construct() {
+		require self::$dir . 'includes/class-dashboard.php';
 		require self::$dir . 'includes/class-admin-ajax.php';
 		\CozyAddons\Admin\Ajax::get_instance();
 
@@ -146,8 +147,14 @@ class Admin {
 				'activeStatusNonce'    => wp_create_nonce( 'ca_active_status' ),
 				'utilityFunctionNonce' => wp_create_nonce( 'ca_utility_function' ),
 				'themePluginNonce'     => wp_create_nonce( 'ca_theme_plugin_install_activate' ),
+				'dashboardNonce'       => wp_create_nonce( 'ca_dashboard_state' ),
 			)
 		);
+
+		if ( 'toplevel_page__cozy_companions' === $current_screen->id ) {
+			wp_enqueue_style( 'cozy-addons--dashboard-style', self::$url . 'assets/css/dashboard.css', array( 'cozy-addons--admin-style' ), COZY_ADDONS_VERSION, 'all' );
+			wp_enqueue_script( 'cozy-addons--dashboard-script', self::$url . 'assets/js/dashboard.js', array( 'cozy-addons--admin-script' ), COZY_ADDONS_VERSION, true );
+		}
 	}
 
 	/**
@@ -206,7 +213,7 @@ class Admin {
 	/**
 	 * Sorts the plugin submenu into groups and marks where each group starts.
 	 *
-	 * Order: Dashboard | Blocks and the post types | Settings, Free VS Pro, License |
+	 * Order: Dashboard | Blocks, the post types and Search | Settings, Free VS Pro, License |
 	 * everything else (the Freemius pages). Only the order, the post type labels and
 	 * the CSS classes change; the slugs are left as registered.
 	 */
@@ -253,7 +260,7 @@ class Admin {
 
 		$groups = array(
 			array( self::$menu_slug ),
-			array_merge( array( self::$menu_slug . '&tab=blocks' ), $post_type_slugs ),
+			array_merge( array( self::$menu_slug . '&tab=blocks' ), $post_type_slugs, array( 'ca-search-settings' ) ),
 			array(
 				self::$menu_slug . '&tab=settings',
 				self::$menu_slug . '&tab=free-pro-comparison',

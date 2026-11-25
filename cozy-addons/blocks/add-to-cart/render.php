@@ -180,11 +180,11 @@ if ( 'simple' !== $product_type || $is_out_of_stock ) {
 if ( ! empty( $attributes['postType'] ) && 'product' === $attributes['postType'] ) {
 
 	if ( $attributes['button']['enabled'] && ! empty( $attributes['button']['font']['family'] ) ) {
-		$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . esc_attr( $attributes['button']['font']['family'] ) . ':wght@100;200;300;400;500;600;700;800;900" />';
+		$output .= cozy_addons_google_fonts_link( 'https://fonts.googleapis.com/css2?family=' . rawurlencode( $attributes['button']['font']['family'] ) . ':wght@100;200;300;400;500;600;700;800;900' );
 	}
 
 	if ( ! empty( $attributes['toast']['font']['family'] ) ) {
-		$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . esc_attr( $attributes['toast']['font']['family'] ) . ':wght@100;200;300;400;500;600;700;800;900" />';
+		$output .= cozy_addons_google_fonts_link( 'https://fonts.googleapis.com/css2?family=' . rawurlencode( $attributes['toast']['font']['family'] ) . ':wght@100;200;300;400;500;600;700;800;900' );
 	}
 
 	if ( $attributes['icon']['enabled'] && 'left' === $attributes['icon']['position'] ) {

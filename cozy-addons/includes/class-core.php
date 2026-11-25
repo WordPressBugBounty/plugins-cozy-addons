@@ -62,6 +62,12 @@ class Core {
 		// Form block: entries inbox, settings, export, privacy and patterns.
 		require_once self::$dir . 'forms/forms-init.php';
 
+		// Advanced Search block: settings, relevance engine, analytics and admin page.
+		require_once self::$dir . 'search/search-init.php';
+
+		// Advanced Mega Menu block: renderers, shared assets, patterns and admin page.
+		require_once self::$dir . 'menu/menu-init.php';
+
 		// Block markups.
 		require_once self::$dir . 'block-markups/extend-blocks.php';
 
@@ -106,6 +112,7 @@ class Core {
 		require_once self::$dir . 'api/class-woo.php';
 		require_once self::$dir . 'api/class-patterns.php';
 		require_once self::$dir . 'api/class-form.php';
+		require_once self::$dir . 'api/class-search.php';
 
 		add_action( 'rest_api_init', array( $this, 'register_api_routes' ) );
 	}
@@ -120,6 +127,7 @@ class Core {
 		\CozyAddons\Core\Api\CF7::get_instance();
 		\CozyAddons\Core\Api\Patterns::get_instance();
 		\CozyAddons\Core\Api\Form::get_instance();
+		\CozyAddons\Core\Api\Search::get_instance();
 
 		if ( \CozyAddons\Helpers\Utils::is_woocommerce_active() ) {
 			\CozyAddons\Core\Api\Woo::get_instance();

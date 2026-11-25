@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cozy-block/menu-home",
+	"title": "Home Link",
+	"category": "cozy-block",
+	"description": "A link to your site's homepage.",
+	"icon": "admin-home",
+	"ancestor": [
+		"cozy-block/mega-menu",
+		"cozy-block/menu-panel"
+	],
+	"textdomain": "cozy-addons",
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Home"
+		}
+	},
+	"keywords": [
+		"home",
+		"homepage",
+		"front page",
+		"link"
+	]
+}

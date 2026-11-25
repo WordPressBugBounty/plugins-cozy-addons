@@ -69,7 +69,8 @@
 
 .ca-popup-stat.is-locked .ca-popup-stat__value,
 .post-type-ca_popup_builder .wp-list-table .ca-popup-locked {
-	color: #a7aaad;
+	/* WordPress gray-40: dimmed, still 4.2:1 on white. */
+	color: #787c82;
 }
 
 /* List table columns */

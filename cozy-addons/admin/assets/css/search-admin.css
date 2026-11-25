@@ -1,0 +1,85 @@
+/* Cozy Blocks → Search (core/search/class-search-admin.php). */
+
+.ca-search-admin .form-table td > .ca-search-check {
+	display: block;
+	margin: 4px 0;
+}
+
+.ca-search-admin .ca-search-check-help {
+	margin: 0 0 6px 24px;
+}
+
+.ca-search-admin .ca-search-check.is-locked,
+.ca-search-is-locked td {
+	opacity: 0.6;
+}
+
+.ca-search-admin .ca-search-inline {
+	display: inline-block;
+	margin: 0 16px 4px 0;
+}
+
+.ca-search-pro-label {
+	display: inline-block;
+	margin-left: 4px;
+	padding: 0 5px;
+	border: 1px solid var(--cozy-addons--primary, #5253f9);
+	border-radius: 10px;
+	background-color: var(--cozy-addons--primary-accent, #ecefff);
+	color: var(--cozy-addons--primary, #5253f9);
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 16px;
+	vertical-align: middle;
+	opacity: 1;
+}
+
+.ca-search-upsell {
+	max-width: 640px;
+	margin-top: 20px;
+	padding: 20px 24px;
+	border: 1px solid #dcdcde;
+	border-left: 4px solid var(--cozy-addons--primary, #5253f9);
+	background: #fff;
+}
+
+.ca-search-upsell p {
+	margin-top: 0;
+	font-size: 14px;
+}
+
+.ca-search-range {
+	margin-top: 20px;
+}
+
+.ca-search-stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+	gap: 12px;
+	max-width: 900px;
+	margin: 16px 0 8px;
+}
+
+.ca-search-stat {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 16px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.ca-search-stat__value {
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.ca-search-stat__label {
+	color: #646970;
+}
+
+.ca-search-table {
+	max-width: 900px;
+}

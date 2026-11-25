@@ -39,7 +39,7 @@ $allowed_cpts = array(
 				<div class="flex-layout">
 					<div>
 						<h3 class="setting-title has-icon">
-							<?php esc_html_e( 'Mega Menu Templates', 'cozy-addons' ); ?>
+							<?php esc_html_e( 'Mega Menus', 'cozy-addons' ); ?>
 							<i class="icon-wrapper">
 								<svg width="16" height="16" viewBox="0 0 24 24" fill="none"
 									xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +51,7 @@ $allowed_cpts = array(
 								</svg>
 							</i>
 						</h3>
-						<p><?php esc_html_e( 'Create templates for the Advanced Mega Menu block that can be used to display this content when creating a mega menu.', 'cozy-addons' ); ?>
+						<p><?php esc_html_e( 'The content of your mega menus. Design it here with any blocks or patterns, then pick it in a Mega Menu item (Panel content) of the Advanced Mega Menu block.', 'cozy-addons' ); ?>
 						</p>
 					</div>
 					<div class="toggle-switcher-wrap">
@@ -79,38 +79,10 @@ $allowed_cpts = array(
 				</div>
 			</div>
 			<div class="accordion-body">
-				<?php
-				$mega_menu_cpt_config = cozy_addons_get_cpt_config_option( 'mega-menu' );
-				?>
-				<p>
-					<label for="mega-menu-slug"><?php esc_html_e( 'Post type slug', 'cozy-addons' ); ?></label>
-					<input id="mega-menu-slug" class="cpt-field" type="text" name="ca-mega-menu-slug" data-cpt="mega-menu" data-type="slug" value="<?php echo esc_attr( $mega_menu_cpt_config['slug'] ); ?>" data-previous-value="<?php echo esc_attr( $mega_menu_cpt_config['slug'] ); ?>" />
-				</p>
-
-				<div class="ca-buttons">
-					<div class="ca-btn btn-primary save-button">
-						<a><?php esc_html_e( 'Save Changes', 'cozy-addons' ); ?></a>
-					</div>
-					<div class="ca-btn btn-secondary cancel-button">
-						<a><?php esc_html_e( 'Cancel', 'cozy-addons' ); ?></a>
-					</div>
-				</div>
-
-				<div class="ca-spacer sm"></div>
-				<hr />
-				<div class="ca-spacer sm"></div>
-
 				<div class="flex-layout">
-					<div>
-						<p>
-							<?php echo esc_html__( 'Current permalink structure: ', 'cozy-addons' ) . esc_html( get_option( 'permalink_structure' ) ); ?>
-							| <a href="<?php echo esc_url( admin_url( 'options-permalink.php' ) ); ?>"><?php esc_html_e( 'Update structure', 'cozy-addons' ); ?></a>
-						</p>
-		
-						<p>
-							<?php esc_html_e( '*Permalinks are flushed automatically after saving.', 'cozy-addons' ); ?>
-						</p>
-					</div>
+					<p>
+						<?php esc_html_e( 'Mega menus are private: they have no public URL and only show inside the mega menu items that use them.', 'cozy-addons' ); ?>
+					</p>
 					<button class="ca-btn btn-primary-accent">
 						<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=ca_mega_menu' ) ); ?>"><?php esc_html_e( 'Add Mega Menu', 'cozy-addons' ); ?></a>
 					</button>

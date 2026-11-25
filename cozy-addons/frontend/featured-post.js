@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
   window["cozyBlockFeaturedPost"] = (e) => {
     const n = e.replace(/-/gi, "_");
     const attributes = window[`cozyBlock_${n}`];
@@ -52,4 +52,4 @@
       const carousel = new Swiper(blockID + " .swiper-container", carouselAttr);
     }
   };
-})(jQuery);
+})();

@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
 	window["cozyBlockTestimonialInit"] = (e) => {
 		const n = e.replace(/-/gi, "_");
 		const attributes = window[`cozyTestimonial_${n}`];
@@ -66,4 +66,4 @@
 			new Swiper(blockId + ".swiper-container", carouselAttr);
 		}
 	};
-})(jQuery);
+})();

@@ -34,6 +34,26 @@ class Blocks {
 		'form-step',
 	);
 
+	/**
+	 * Blocks whose frontend script (frontend/{block}.js) is plain JS and needs no jQuery.
+	 *
+	 * @var string[]
+	 */
+	private static $jquery_free_scripts = array(
+		'advanced-categories',
+		'advanced-search',
+		'advanced-tab',
+		'current-time',
+		'featured-post',
+		'form',
+		'product-category',
+		'product-review',
+		'progress-bar',
+		'related-post',
+		'teams',
+		'testimonial',
+	);
+
 	private static $premium_blocks = array(
 		'news-ticker',
 		'post-slider',
@@ -117,6 +137,8 @@ class Blocks {
 		add_filter( 'block_categories_all', array( $this, 'add_block_categories' ) );
 
 		add_action( 'init', array( $this, 'register_blocks' ) );
+
+		add_action( 'enqueue_block_editor_assets', array( $this, 'localize_editor_globals' ), 5 );
 	}
 
 	public function add_block_categories( $categories ) {
@@ -154,29 +176,17 @@ class Blocks {
 			return;
 		}
 
+		// Let register_block_type() read block metadata from the build manifest (one opcache-able PHP
+		// array) instead of parsing every block.json on every request. WP 6.7+.
+		if ( function_exists( 'wp_register_block_metadata_collection' ) && file_exists( self::$dir . 'blocks-manifest.php' ) ) {
+			wp_register_block_metadata_collection( self::$dir, self::$dir . 'blocks-manifest.php' );
+		}
+
 		$this->register_utility_blocks();
 
-		wp_enqueue_script( 'cozy-addons--global-block-vars', self::$url . 'index.js', array(), COZY_ADDONS_VERSION, false );
-		wp_localize_script(
-			'cozy-addons--global-block-vars',
-			'cozyBlockAssets',
-			array(
-				'isPremium'            => cozy_addons_premium_access(),
-				'imageDir'             => COZY_ADDONS_PLUGIN_URL . 'assets/img',
-				'googleFonts'          => cozy_addons_google_fonts(),
-				'icons'                => \CozyAddons\Icons::get_cozy_icon_collection(),
-				'socialIcons'          => \CozyAddons\Icons::get_cozy_social_icon_collection(),
-				'shapeDividerIcons'    => \CozyAddons\Icons::get_cozy_shape_divider_collection(),
-				'breadcrumbSeparators' => \CozyAddons\Icons::get_cozy_breadcrumbs_separator(),
-				'megaMenuCPT'          => \CozyAddons\Helpers\Utils::get_cozy_mega_menu_templates(),
-				'portfolioCPT'         => \CozyAddons\Helpers\Utils::get_cozy_portfolio_gallery_templates(),
-				'portfolioTerms'       => get_terms( array( 'ca_portfolio_gallery_category' ) ),
-				'productReviews'       => \CozyAddons\Helpers\Utils::get_woo_product_reviews(),
-				'totalReviews'         => \CozyAddons\Helpers\Utils::get_woo_total_product_reviews(),
-				'avgReviews'           => \CozyAddons\Helpers\Utils::get_woo_avg_product_reviews(),
-				'adminURL'             => trailingslashit( admin_url() ),
-			)
-		);
+		// Editor-only globals. Registered here so block editor scripts can depend on the handle; the data
+		// itself is built and attached only when the block editor loads (see localize_editor_globals()).
+		wp_register_script( 'cozy-addons--global-block-vars', self::$url . 'index.js', array(), COZY_ADDONS_VERSION, false );
 
 		wp_register_style( 'cozy-block--global-block-styles', COZY_ADDONS_PLUGIN_URL . 'assets/css/block-styles.css', array(), COZY_ADDONS_VERSION );
 
@@ -198,7 +208,8 @@ class Blocks {
 			$script_handle        = 'cozy-block--' . $block_name . '--frontend-script';
 
 			if ( file_exists( $frontend_script_path ) ) {
-				$deps = array( 'jquery' );
+				// Only pull in jQuery (+ migrate, ~100 KB) for scripts that actually use it.
+				$deps = in_array( $block_name, self::$jquery_free_scripts, true ) ? array() : array( 'jquery' );
 				wp_register_script( $script_handle, $frontend_script_url, $deps, COZY_ADDONS_VERSION, true );
 			}
 
@@ -210,10 +221,69 @@ class Blocks {
 			}
 
 			// Block registration.
-			register_block_type(
+			$block_type = register_block_type(
 				self::$dir . $block_name,
 			);
+
+			self::add_global_vars_dependency( $block_type );
 		}
+	}
+
+	/**
+	 * Makes a block's editor scripts depend on the editor globals handle, so `cozyBlockAssets`
+	 * is defined before any block bundle evaluates.
+	 *
+	 * @param \WP_Block_Type|false $block_type Registered block type.
+	 * @return void
+	 */
+	private static function add_global_vars_dependency( $block_type ) {
+		if ( ! $block_type instanceof \WP_Block_Type || empty( $block_type->editor_script_handles ) ) {
+			return;
+		}
+
+		$scripts = wp_scripts();
+
+		foreach ( $block_type->editor_script_handles as $handle ) {
+			if ( isset( $scripts->registered[ $handle ] ) && ! in_array( 'cozy-addons--global-block-vars', $scripts->registered[ $handle ]->deps, true ) ) {
+				$scripts->registered[ $handle ]->deps[] = 'cozy-addons--global-block-vars';
+			}
+		}
+	}
+
+	/**
+	 * Builds the editor globals (`cozyBlockAssets`) and enqueues them, in the block editor only.
+	 *
+	 * Previously this was localized on `init`, which printed ~500 KB of icon/font data on every
+	 * frontend and admin page and ran the review/portfolio queries on every request.
+	 *
+	 * @return void
+	 */
+	public function localize_editor_globals() {
+		if ( ! wp_script_is( 'cozy-addons--global-block-vars', 'registered' ) ) {
+			return;
+		}
+
+		wp_localize_script(
+			'cozy-addons--global-block-vars',
+			'cozyBlockAssets',
+			array(
+				'isPremium'            => cozy_addons_premium_access(),
+				'imageDir'             => COZY_ADDONS_PLUGIN_URL . 'assets/img',
+				'googleFonts'          => cozy_addons_google_fonts(),
+				'icons'                => \CozyAddons\Icons::get_cozy_icon_collection(),
+				'socialIcons'          => \CozyAddons\Icons::get_cozy_social_icon_collection(),
+				'shapeDividerIcons'    => \CozyAddons\Icons::get_cozy_shape_divider_collection(),
+				'breadcrumbSeparators' => \CozyAddons\Icons::get_cozy_breadcrumbs_separator(),
+				'portfolioCPT'         => \CozyAddons\Helpers\Utils::get_cozy_portfolio_gallery_templates(),
+				'portfolioTerms'       => get_terms( array( 'ca_portfolio_gallery_category' ) ),
+				'productReviews'       => \CozyAddons\Helpers\Utils::get_woo_product_reviews(),
+				'totalReviews'         => \CozyAddons\Helpers\Utils::get_woo_total_product_reviews(),
+				'avgReviews'           => \CozyAddons\Helpers\Utils::get_woo_avg_product_reviews(),
+				'adminURL'             => trailingslashit( admin_url() ),
+			)
+		);
+
+		wp_enqueue_script( 'cozy-addons--global-block-vars' );
 	}
 
 	/**

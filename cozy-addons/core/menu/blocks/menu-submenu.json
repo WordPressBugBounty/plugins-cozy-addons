@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cozy-block/menu-submenu",
+	"title": "Submenu",
+	"category": "cozy-block",
+	"description": "A menu item that opens a list of links. Can be nested.",
+	"icon": "arrow-down-alt2",
+	"parent": [
+		"cozy-block/mega-menu",
+		"cozy-block/menu-submenu"
+	],
+	"textdomain": "cozy-addons",
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Submenu"
+		},
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"opensInNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"rel": {
+			"type": "string",
+			"default": ""
+		},
+		"linkId": {
+			"type": "number",
+			"default": 0
+		},
+		"linkType": {
+			"type": "string",
+			"default": ""
+		},
+		"linkKind": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"badge": {
+			"type": "string",
+			"default": ""
+		},
+		"badgeStyle": {
+			"type": "string",
+			"default": "accent"
+		},
+		"openOn": {
+			"type": "string",
+			"default": "inherit"
+		},
+		"align": {
+			"type": "string",
+			"default": "start"
+		},
+		"width": {
+			"type": "object",
+			"default": {}
+		}
+	},
+	"keywords": [
+		"submenu",
+		"sub menu",
+		"dropdown"
+	]
+}

@@ -73,11 +73,12 @@ final class Form_Patterns {
 	private static function contact_markup() {
 		$fields = array(
 			array(
-				'label'       => __( 'Full Name', 'cozy-addons' ),
-				'fieldType'   => 'text',
-				'required'    => true,
-				'name'        => 'f_name',
-				'placeholder' => __( 'Jane Doe', 'cozy-addons' ),
+				'label'        => __( 'Full Name', 'cozy-addons' ),
+				'fieldType'    => 'text',
+				'autocomplete' => 'name',
+				'required'     => true,
+				'name'         => 'f_name',
+				'placeholder'  => __( 'Jane Doe', 'cozy-addons' ),
 			),
 			array(
 				'label'       => __( 'Email Address', 'cozy-addons' ),
@@ -120,12 +121,13 @@ final class Form_Patterns {
 	private static function quote_markup() {
 		$fields = array(
 			array(
-				'label'       => __( 'Full name', 'cozy-addons' ),
-				'fieldType'   => 'text',
-				'placeholder' => __( 'Jane Doe', 'cozy-addons' ),
-				'required'    => true,
-				'name'        => 'f_name',
-				'width'       => '50',
+				'label'        => __( 'Full name', 'cozy-addons' ),
+				'fieldType'    => 'text',
+				'autocomplete' => 'name',
+				'placeholder'  => __( 'Jane Doe', 'cozy-addons' ),
+				'required'     => true,
+				'name'         => 'f_name',
+				'width'        => '50',
 			),
 			array(
 				'label'       => __( 'Phone', 'cozy-addons' ),
@@ -184,12 +186,13 @@ final class Form_Patterns {
 	private static function callback_markup() {
 		$fields = array(
 			array(
-				'label'       => __( 'Name', 'cozy-addons' ),
-				'fieldType'   => 'text',
-				'placeholder' => __( 'Jane Doe', 'cozy-addons' ),
-				'required'    => true,
-				'name'        => 'f_name',
-				'width'       => '50',
+				'label'        => __( 'Name', 'cozy-addons' ),
+				'fieldType'    => 'text',
+				'autocomplete' => 'name',
+				'placeholder'  => __( 'Jane Doe', 'cozy-addons' ),
+				'required'     => true,
+				'name'         => 'f_name',
+				'width'        => '50',
 			),
 			array(
 				'label'       => __( 'Phone', 'cozy-addons' ),
@@ -309,12 +312,13 @@ final class Form_Patterns {
 		);
 		$three = array(
 			array(
-				'label'       => __( 'Full name', 'cozy-addons' ),
-				'fieldType'   => 'text',
-				'placeholder' => __( 'Jane Doe', 'cozy-addons' ),
-				'required'    => true,
-				'name'        => 'f_name',
-				'width'       => '50',
+				'label'        => __( 'Full name', 'cozy-addons' ),
+				'fieldType'    => 'text',
+				'autocomplete' => 'name',
+				'placeholder'  => __( 'Jane Doe', 'cozy-addons' ),
+				'required'     => true,
+				'name'         => 'f_name',
+				'width'        => '50',
 			),
 			array(
 				'label'       => __( 'Phone', 'cozy-addons' ),

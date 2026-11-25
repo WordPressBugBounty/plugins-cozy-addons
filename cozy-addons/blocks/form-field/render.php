@@ -56,11 +56,14 @@ if ( 'signature' === $field['t'] ) {
 	if ( '' !== $field['l'] ) {
 		$html .= '<span class="cozy-form__label" id="' . esc_attr( $field_id . '-label' ) . '">' . $label . $star . '</span>';
 	}
-	$html .= '<div class="cozy-form__signature">';
-	$html .= '<canvas class="cozy-form__pad" role="img" data-height="' . esc_attr( (string) $pad_height ) . '" aria-label="' . esc_attr__( 'Signature pad. Draw your signature with a mouse, finger or pen.', 'cozy-addons' ) . '"></canvas>';
-	$html .= '<input type="text" class="cozy-form__sig-value" id="' . esc_attr( $field_id ) . '" name="' . esc_attr( $name ) . '" tabindex="-1" aria-hidden="true" autocomplete="off"' . $required . ' data-sign="' . esc_attr__( 'Please sign here.', 'cozy-addons' ) . '">';
-	$html .= '</div>';
-	$html .= '<button type="button" class="cozy-form__sig-clear">' . esc_html__( 'Clear', 'cozy-addons' ) . '</button>';
+	// The group and the value input take the field's label, so the browser's "required" message is
+	// read with a name; the pad says whether it has been signed (updated by frontend/form.js).
+	$sig_named = '' !== $field['l'] ? ' aria-labelledby="' . esc_attr( $field_id . '-label' ) . '"' : ' aria-label="' . esc_attr__( 'Signature', 'cozy-addons' ) . '"';
+	$html     .= '<div class="cozy-form__signature" role="group"' . $sig_named . '>';
+	$html     .= '<canvas class="cozy-form__pad" role="img" data-height="' . esc_attr( (string) $pad_height ) . '" aria-label="' . esc_attr__( 'Signature pad. Draw your signature with a mouse, finger or pen.', 'cozy-addons' ) . '" data-signed="' . esc_attr__( 'Signature added.', 'cozy-addons' ) . '"></canvas>';
+	$html     .= '<input type="text" class="cozy-form__sig-value" id="' . esc_attr( $field_id ) . '" name="' . esc_attr( $name ) . '" tabindex="-1" autocomplete="off"' . $sig_named . $required . ' data-sign="' . esc_attr__( 'Please sign here.', 'cozy-addons' ) . '">';
+	$html     .= '</div>';
+	$html     .= '<button type="button" class="cozy-form__sig-clear" aria-label="' . esc_attr__( 'Clear signature', 'cozy-addons' ) . '">' . esc_html__( 'Clear', 'cozy-addons' ) . '</button>';
 } elseif ( 'hidden' === $field['t'] ) {
 	// Filled from the page by frontend/form.js when it takes a dynamic value, e.g. ?utm_source=.
 	$default = sanitize_text_field( cozy_addons_form_plain( isset( $attributes['defaultValue'] ) ? $attributes['defaultValue'] : '' ) );
@@ -77,7 +80,7 @@ if ( 'signature' === $field['t'] ) {
 	// Browsers cannot require "at least one" of a group, so frontend/form.js checks data-required.
 	$html .= '<fieldset class="cozy-form__choices"' . ( $field['r'] ? ' data-required="true"' : '' ) . '>';
 	if ( '' !== $field['l'] ) {
-		$html .= '<legend class="cozy-form__label">' . $label . $star . '</legend>';
+		$html .= '<legend class="cozy-form__label">' . $label . $star . ( $field['r'] ? ' <span class="cozy-form__sr-only">' . esc_html__( '(required)', 'cozy-addons' ) . '</span>' : '' ) . '</legend>';
 	}
 	foreach ( $field['o'] as $index => $option ) {
 		$html .= '<label class="cozy-form__choice" for="' . esc_attr( $field_id . '-' . $index ) . '"><input type="checkbox" id="' . esc_attr( $field_id . '-' . $index ) . '" name="' . esc_attr( $name . '[]' ) . '" value="' . esc_attr( $option ) . '"> <span>' . esc_html( $option ) . '</span></label>';
@@ -89,7 +92,7 @@ if ( 'signature' === $field['t'] ) {
 		$html .= '<legend class="cozy-form__label">' . $label . $star . '</legend>';
 	}
 	foreach ( $field['o'] as $index => $option ) {
-		$html .= '<label class="cozy-form__choice" for="' . esc_attr( $field_id . '-' . $index ) . '"><input type="radio" id="' . esc_attr( $field_id . '-' . $index ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $option ) . '"' . ( 0 === $index ? $required : '' ) . '> <span>' . esc_html( $option ) . '</span></label>';
+		$html .= '<label class="cozy-form__choice" for="' . esc_attr( $field_id . '-' . $index ) . '"><input type="radio" id="' . esc_attr( $field_id . '-' . $index ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $option ) . '"' . ( 0 === $index && $field['r'] ? ' required' : '' ) . '> <span>' . esc_html( $option ) . '</span></label>';
 	}
 	$html .= '</fieldset>';
 } elseif ( 'checkbox' === $field['t'] ) {
@@ -108,6 +111,9 @@ if ( 'signature' === $field['t'] ) {
 } else {
 	if ( '' !== $field['l'] ) {
 		$html .= '<label class="cozy-form__label" for="' . esc_attr( $field_id ) . '">' . $label . $star . '</label>';
+	} elseif ( '' !== $field['p'] ) {
+		// No label: the placeholder names the field for screen readers, as it disappears on typing.
+		$attrs .= ' aria-label="' . esc_attr( $field['p'] ) . '"';
 	}
 	if ( 'textarea' === $field['t'] ) {
 		$html .= '<textarea class="cozy-form__input" rows="4" maxlength="' . esc_attr( $maxlength ) . '"' . $attrs . $ph . $checks . '></textarea>';
@@ -130,9 +136,12 @@ if ( 'signature' === $field['t'] ) {
 				$html .= '<div class="cozy-form__previews" aria-live="polite"></div>';
 			}
 		} else {
+			// What browsers may fill in: set per text field, automatic for email, phone and website.
 			$autocomplete = '';
 			if ( in_array( $field['t'], array( 'email', 'tel', 'url' ), true ) ) {
 				$autocomplete = ' autocomplete="' . esc_attr( $field['t'] ) . '"';
+			} elseif ( 'text' === $field['t'] && isset( $attributes['autocomplete'] ) && in_array( $attributes['autocomplete'], cozy_addons_form_autocomplete_tokens(), true ) ) {
+				$autocomplete = ' autocomplete="' . esc_attr( $attributes['autocomplete'] ) . '"';
 			}
 			$input_type = 'datetime' === $field['t'] ? 'datetime-local' : $field['t'];
 			$html      .= '<input class="cozy-form__input" type="' . esc_attr( $input_type ) . '" maxlength="' . esc_attr( 'url' === $field['t'] ? 500 : $maxlength ) . '"' . $attrs . $ph . $autocomplete . $checks . '>';
@@ -143,27 +152,29 @@ if ( 'signature' === $field['t'] ) {
 $html .= '</div>';
 
 $common = array(
-	'id'             => true,
-	'name'           => true,
-	'class'          => true,
-	'required'       => true,
-	'aria-required'  => true,
-	'placeholder'    => true,
-	'autocomplete'   => true,
-	'maxlength'      => true,
-	'minlength'      => true,
-	'pattern'        => true,
-	'min'            => true,
-	'max'            => true,
-	'step'           => true,
-	'data-message'   => true,
-	'accept'         => true,
-	'data-max-size'  => true,
-	'multiple'       => true,
-	'data-max-files' => true,
-	'tabindex'       => true,
-	'aria-hidden'    => true,
-	'data-sign'      => true,
+	'id'              => true,
+	'name'            => true,
+	'class'           => true,
+	'required'        => true,
+	'aria-required'   => true,
+	'placeholder'     => true,
+	'autocomplete'    => true,
+	'maxlength'       => true,
+	'minlength'       => true,
+	'pattern'         => true,
+	'min'             => true,
+	'max'             => true,
+	'step'            => true,
+	'data-message'    => true,
+	'accept'          => true,
+	'data-max-size'   => true,
+	'multiple'        => true,
+	'data-max-files'  => true,
+	'tabindex'        => true,
+	'aria-hidden'     => true,
+	'data-sign'       => true,
+	'aria-label'      => true,
+	'aria-labelledby' => true,
 );
 
 echo wp_kses(
@@ -171,6 +182,9 @@ echo wp_kses(
 	array(
 		'div'      => array(
 			'class'           => true,
+			'role'            => true,
+			'aria-label'      => true,
+			'aria-labelledby' => true,
 			'aria-live'       => true,
 			'data-name'       => true,
 			'data-conditions' => true,
@@ -191,10 +205,12 @@ echo wp_kses(
 			'role'        => true,
 			'aria-label'  => true,
 			'data-height' => true,
+			'data-signed' => true,
 		),
 		'button'   => array(
-			'type'  => true,
-			'class' => true,
+			'type'       => true,
+			'class'      => true,
+			'aria-label' => true,
 		),
 		'label'    => array(
 			'class' => true,

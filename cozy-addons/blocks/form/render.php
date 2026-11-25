@@ -105,6 +105,15 @@ if ( $cozy_form_pro && ! empty( cozy_addons_form_settings()['mailchimp_unsub_lin
 // Signed config: the browser cannot change which fields exist, who gets the email, etc.
 // The recipients are also sealed, so the notification emails cannot be read in the page source.
 // The HEX flags keep &, <, > and quotes out of the JSON so it survives an HTML attribute unchanged.
+// Pro: the form's Brevo sign-up options, while Brevo is the mailing list service.
+$cozy_form_brevo = $cozy_form_pro && 'brevo' === cozy_addons_form_mailing_service() ? cozy_addons_form_normalize_brevo_options( isset( $attributes['brevoOptions'] ) ? $attributes['brevoOptions'] : array() ) : array();
+// Pro: a thank-you page. The form's own redirect wins over Brevo's "Redirect to this URL after
+// subscription".
+$cozy_form_redirect = $cozy_form_pro ? esc_url_raw( isset( $attributes['redirectUrl'] ) ? $attributes['redirectUrl'] : '' ) : '';
+if ( '' === $cozy_form_redirect && ! empty( $cozy_form_brevo['r'] ) ) {
+	$cozy_form_redirect = $cozy_form_brevo['r'];
+}
+
 $form_config = array(
 	'v'      => 1,
 	'id'     => $form_id,
@@ -112,7 +121,7 @@ $form_config = array(
 	'fields' => $cozy_form_fields,
 	'to'     => cozy_addons_form_seal( implode( ', ', cozy_addons_form_parse_emails( isset( $attributes['notifyEmail'] ) ? $attributes['notifyEmail'] : '' ) ) ),
 	'ok'     => $success,
-	'go'     => $cozy_form_pro ? esc_url_raw( isset( $attributes['redirectUrl'] ) ? $attributes['redirectUrl'] : '' ) : '',
+	'go'     => $cozy_form_redirect,
 	'type'   => $form_type,
 	'cat'    => isset( $attributes['category'] ) && isset( cozy_addons_form_categories()[ $attributes['category'] ] ) ? $attributes['category'] : '',
 	'cp'     => $cozy_form_captcha,
@@ -121,6 +130,9 @@ $form_config = array(
 	'wh'     => ! isset( $attributes['webhooks'] ) || ! empty( $attributes['webhooks'] ) ? 1 : 0,
 	// Pro: Mailchimp tags for everyone this form signs up.
 	'tg'     => $cozy_form_pro && ! empty( $attributes['mailchimpTags'] ) && is_array( $attributes['mailchimpTags'] ) ? cozy_addons_form_parse_tags( implode( ',', array_filter( $attributes['mailchimpTags'], 'is_string' ) ) ) : array(),
+	// Pro: the Brevo lists everyone this form signs up is added to.
+	'bo'     => $cozy_form_brevo,
+	'bl'     => $cozy_form_pro && ! empty( $attributes['brevoLists'] ) && is_array( $attributes['brevoLists'] ) ? array_slice( array_values( array_unique( array_filter( array_map( 'absint', $attributes['brevoLists'] ) ) ) ), 0, 10 ) : array(),
 );
 if ( '' !== $cozy_form_download ) {
 	$form_config['dl'] = $cozy_form_download;
@@ -331,7 +343,7 @@ if ( ! empty( $font_families ) ) {
 	foreach ( $font_families as $family ) {
 		$font_query[] = 'family=' . str_replace( ' ', '+', $family ) . ':wght@100;200;300;400;500;600;700;800;900';
 	}
-	echo '<link rel="stylesheet" href="' . esc_url( 'https://fonts.googleapis.com/css2?' . implode( '&', $font_query ) . '&display=swap' ) . '"/>';
+	echo cozy_addons_google_fonts_link( 'https://fonts.googleapis.com/css2?' . implode( '&', $font_query ) . '&display=swap' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the helper.
 }
 
 if ( did_action( 'wp_enqueue_scripts' ) ) {
@@ -388,7 +400,7 @@ $dialog_id = wp_unique_id( 'cozy-form-dialog-' );
 			echo \CozyAddons\Core\Forms\Form_WooCommerce::card( $cozy_form_product ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in card().
 		}
 		?>
-		<form class="cozy-form__form" method="post" action="" data-endpoint="<?php echo esc_url( rest_url( 'cozy-block/v1/form-submit' ) ); ?>" data-error="<?php echo esc_attr__( 'Something went wrong. Please try again.', 'cozy-addons' ); ?>" data-choose="<?php echo esc_attr__( 'Please choose at least one option.', 'cozy-addons' ); ?>" data-too-large="<?php echo esc_attr__( 'This file is too large.', 'cozy-addons' ); ?>" data-too-many="<?php /* translators: %d: number of files */ echo esc_attr__( 'You can upload up to %d files.', 'cozy-addons' ); ?>"<?php echo $cozy_form_steps ? ' data-steps="1" data-step-label="' . esc_attr( $step_label ) . '"' : ''; ?>>
+		<form class="cozy-form__form" method="post" action="" <?php echo 'modal' === $product_display ? 'aria-labelledby="' . esc_attr( $dialog_id ) . '-title"' : 'aria-label="' . esc_attr( $form_name ) . '"'; ?> data-endpoint="<?php echo esc_url( rest_url( 'cozy-block/v1/form-submit' ) ); ?>" data-error="<?php echo esc_attr__( 'Something went wrong. Please try again.', 'cozy-addons' ); ?>" data-choose="<?php echo esc_attr__( 'Please choose at least one option.', 'cozy-addons' ); ?>" data-too-large="<?php echo esc_attr__( 'This file is too large.', 'cozy-addons' ); ?>" data-too-many="<?php /* translators: %d: number of files */ echo esc_attr__( 'You can upload up to %d files.', 'cozy-addons' ); ?>"<?php echo $cozy_form_steps ? ' data-steps="1" data-step-label="' . esc_attr( $step_label ) . '"' : ''; ?>>
 			<?php if ( $cozy_form_steps && 'numbers' === $progress_style ) : ?>
 				<ol class="cozy-form__step-nav" hidden>
 					<?php
@@ -397,7 +409,8 @@ $dialog_id = wp_unique_id( 'cozy-form-dialog-' );
 							/* translators: %d: step number */
 							$step_title = sprintf( __( 'Step %d', 'cozy-addons' ), $step_index + 1 );
 						}
-						echo '<li class="cozy-form__step-nav-item"><span class="cozy-form__step-num">' . esc_html( (string) ( $step_index + 1 ) ) . '</span><span class="cozy-form__step-name">' . esc_html( $step_title ) . '</span></li>';
+						// frontend/form.js enables the button once the step is done, so it can be revisited.
+						echo '<li class="cozy-form__step-nav-item"><button type="button" class="cozy-form__step-link" disabled><span class="cozy-form__step-num" aria-hidden="true">' . esc_html( (string) ( $step_index + 1 ) ) . '</span><span class="cozy-form__step-name">' . esc_html( $step_title ) . '</span><span class="cozy-form__sr-only cozy-form__step-done" hidden> ' . esc_html__( '(completed)', 'cozy-addons' ) . '</span></button></li>';
 					}
 					?>
 				</ol>

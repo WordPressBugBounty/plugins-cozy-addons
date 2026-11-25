@@ -1417,6 +1417,363 @@ return array(
 		),
 		'render' => 'file:./render.php'
 	),
+	'advanced-search' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'cozy-block/advanced-search',
+		'title' => 'Advanced Search',
+		'description' => 'Instant search with a command-palette modal, full-screen canvas or inline dropdown. Ranked results, thumbnails, highlights, filter tabs and keyboard navigation.',
+		'category' => 'cozy-block',
+		'keywords' => array(
+			'search',
+			'find',
+			'instant',
+			'live search',
+			'ajax search',
+			'woocommerce'
+		),
+		'textdomain' => 'cozy-addons',
+		'attributes' => array(
+			'clientId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'mode' => array(
+				'type' => 'string',
+				'default' => 'form',
+				'enum' => array(
+					'form',
+					'icon',
+					'fullscreen',
+					'inline'
+				)
+			),
+			'buttonStyle' => array(
+				'type' => 'string',
+				'default' => 'text',
+				'enum' => array(
+					'text',
+					'icon'
+				)
+			),
+			'label' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'placeholder' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'buttonText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'postTypes' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'taxonomies' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'perPage' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'minChars' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'modalWidth' => array(
+				'type' => 'number',
+				'default' => 720
+			),
+			'showRecent' => array(
+				'type' => 'boolean'
+			),
+			'showPopular' => array(
+				'type' => 'boolean'
+			),
+			'showSuggestions' => array(
+				'type' => 'boolean'
+			),
+			'showQueries' => array(
+				'type' => 'boolean'
+			),
+			'groupResults' => array(
+				'type' => 'boolean'
+			),
+			'fuzzy' => array(
+				'type' => 'boolean'
+			),
+			'showImages' => array(
+				'type' => 'boolean'
+			),
+			'showExcerpts' => array(
+				'type' => 'boolean'
+			),
+			'highlight' => array(
+				'type' => 'boolean'
+			),
+			'showTabs' => array(
+				'type' => 'boolean'
+			),
+			'showViewAll' => array(
+				'type' => 'boolean'
+			),
+			'loadMore' => array(
+				'type' => 'boolean'
+			),
+			'shortcut' => array(
+				'type' => 'boolean'
+			),
+			'voice' => array(
+				'type' => 'boolean'
+			),
+			'accentColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'triggerStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'width' => '',
+						'height' => '',
+						'align' => '',
+						'padding' => array(
+							'top' => '',
+							'right' => '',
+							'bottom' => '',
+							'left' => ''
+						),
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'color' => array(
+						'text' => '',
+						'bg' => '',
+						'icon' => '',
+						'borderHover' => ''
+					)
+				)
+			),
+			'buttonStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'padding' => array(
+							'top' => '',
+							'right' => '',
+							'bottom' => '',
+							'left' => ''
+						),
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'radius' => '',
+					'color' => array(
+						'text' => '',
+						'bg' => '',
+						'textHover' => '',
+						'bgHover' => ''
+					)
+				)
+			),
+			'iconStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'size' => '',
+					'iconSize' => '',
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'color' => array(
+						'icon' => '',
+						'bg' => '',
+						'iconHover' => '',
+						'bgHover' => '',
+						'borderHover' => ''
+					)
+				)
+			),
+			'panelStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'color' => array(
+						'bg' => '',
+						'text' => '',
+						'muted' => '',
+						'line' => '',
+						'hover' => '',
+						'overlay' => ''
+					)
+				)
+			),
+			'inputStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'color' => array(
+						'text' => '',
+						'placeholder' => ''
+					)
+				)
+			),
+			'placeholderStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => ''
+				)
+			),
+			'resultStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'imageWidth' => '',
+						'imageHeight' => '',
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => '',
+					'decoration' => '',
+					'lineHeight' => '',
+					'letterSpacing' => '',
+					'imageRadius' => '',
+					'radius' => '',
+					'color' => array(
+						'title' => '',
+						'meta' => '',
+						'excerpt' => '',
+						'bgHover' => '',
+						'highlightBg' => '',
+						'highlightText' => ''
+					)
+				)
+			),
+			'chipStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'radius' => '',
+					'color' => array(
+						'text' => '',
+						'bg' => '',
+						'border' => '',
+						'textHover' => '',
+						'bgHover' => ''
+					)
+				)
+			),
+			'tabStyles' => array(
+				'type' => 'object',
+				'default' => array(
+					'border' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'activeBorder' => array(
+						'width' => '',
+						'style' => '',
+						'color' => ''
+					),
+					'radius' => '',
+					'color' => array(
+						'text' => '',
+						'bg' => '',
+						'activeText' => '',
+						'activeBg' => ''
+					)
+				)
+			)
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true,
+			'align' => array(
+				'wide',
+				'full'
+			),
+			'spacing' => array(
+				'margin' => true
+			)
+		),
+		'editorScript' => array(
+			'file:./index.js',
+			'file:../index.js'
+		),
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'cozy-block--global-block-styles'
+		),
+		'viewScript' => array(
+			'cozy-block--advanced-search--frontend-script'
+		),
+		'render' => 'file:./render.php'
+	),
 	'advanced-tab' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -6485,6 +6842,18 @@ return array(
 					
 				)
 			),
+			'brevoLists' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'brevoOptions' => array(
+				'type' => 'object',
+				'default' => array(
+					
+				)
+			),
 			'productDisplay' => array(
 				'type' => 'string',
 				'default' => 'inline'
@@ -6805,6 +7174,10 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'brevoField' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'maxSize' => array(
 				'type' => 'string',
 				'default' => '5'
@@ -6820,6 +7193,10 @@ return array(
 			'padHeight' => array(
 				'type' => 'string',
 				'default' => '160'
+			),
+			'autocomplete' => array(
+				'type' => 'string',
+				'default' => ''
 			),
 			'defaultValue' => array(
 				'type' => 'string',
@@ -8427,171 +8804,418 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'cozy-block/mega-menu',
 		'title' => 'Advanced Mega Menu',
-		'description' => 'Create powerful multi-column menus with rich content layouts, featured links, and more for easier navigation.',
 		'category' => 'cozy-block',
+		'description' => 'Build navigation visually: submenus, multi-column mega menus, a mobile drawer and off-canvas panels, with per-device controls and accessible markup.',
+		'keywords' => array(
+			'navigation',
+			'menu',
+			'nav',
+			'mega menu',
+			'submenu',
+			'dropdown',
+			'off-canvas',
+			'drawer',
+			'sidebar',
+			'overlay',
+			'hamburger',
+			'button'
+		),
 		'textdomain' => 'cozy-addons',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true,
+			'align' => array(
+				'wide',
+				'full'
+			)
+		),
 		'attributes' => array(
-			'cover' => array(
+			'ariaLabel' => array(
 				'type' => 'string',
-				'default' => ''
+				'default' => 'Primary'
 			),
-			'blockClientId' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'namespace' => array(
-				'type' => 'string',
-				'default' => 'cozy-block/mega-menu'
-			),
-			'megaMenu' => array(
-				'type' => 'object',
-				'default' => array(
-					'topOffset' => array(
-						'desktop' => '10px'
-					)
-				)
-			),
-			'template' => array(
+			'direction' => array(
 				'type' => 'object',
 				'default' => array(
 					
 				)
 			),
-			'megaMenuTemplates' => array(
+			'justify' => array(
 				'type' => 'object',
 				'default' => array(
 					
 				)
 			),
-			'openOnClick' => array(
+			'gap' => array(
+				'type' => 'object',
+				'default' => array(
+					
+				)
+			),
+			'typography' => array(
+				'type' => 'object',
+				'default' => array(
+					'desktop' => array(
+						'font' => array(
+							'size' => ''
+						)
+					),
+					'font' => array(
+						'weight' => '',
+						'family' => ''
+					),
+					'letterCase' => 'none',
+					'decoration' => 'none',
+					'lineHeight' => '',
+					'letterSpacing' => ''
+				)
+			),
+			'itemPadding' => array(
+				'type' => 'object',
+				'default' => array(
+					
+				)
+			),
+			'openOn' => array(
+				'type' => 'string',
+				'default' => 'hover'
+			),
+			'linkColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hoverColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'activeColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'accentColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'panelBg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'panelText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'animate' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'panelOffset' => array(
+				'type' => 'object',
+				'default' => array(
+					
+				)
+			),
+			'overlay' => array(
+				'type' => 'string',
+				'default' => 'default'
+			),
+			'overlayColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'overlayOpacity' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'overlayBlur' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'overlayDuration' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'displayMode' => array(
+				'type' => 'string',
+				'default' => 'standard'
+			),
+			'ocLayout' => array(
+				'type' => 'string',
+				'default' => 'drawer'
+			),
+			'ocSide' => array(
+				'type' => 'string',
+				'default' => 'right'
+			),
+			'ocWidth' => array(
+				'type' => 'string',
+				'default' => 'medium'
+			),
+			'ocWidthCustom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocMaxWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocHeight' => array(
+				'type' => 'string',
+				'default' => 'full'
+			),
+			'ocOffsetTop' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocContent' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocColumns' => array(
+				'type' => 'number',
+				'default' => 2
+			),
+			'ocInset' => array(
 				'type' => 'boolean',
 				'default' => false
 			),
-			'icon' => array(
-				'type' => 'object',
+			'ocAnimation' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocDuration' => array(
+				'type' => 'number',
+				'default' => 350
+			),
+			'ocBackdrop' => array(
+				'type' => 'string',
+				'default' => 'auto'
+			),
+			'ocBackdropColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocBackdropOpacity' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocBackdropBlur' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocCloseButton' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'ocClosePos' => array(
+				'type' => 'string',
+				'default' => 'right'
+			),
+			'ocBackdropClose' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'ocModal' => array(
+				'type' => 'string',
+				'default' => 'auto'
+			),
+			'ocLock' => array(
+				'type' => 'string',
+				'default' => 'auto'
+			),
+			'ocBg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocBg2' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocBgAngle' => array(
+				'type' => 'number',
+				'default' => 135
+			),
+			'ocBgImage' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocFontSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocFontWeight' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocPadding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocShadow' => array(
+				'type' => 'string',
+				'default' => 'soft'
+			),
+			'ocBorderWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocBorderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocLogo' => array(
+				'type' => 'string',
+				'default' => 'none'
+			),
+			'ocLogoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocLogoAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocHeading' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocIntro' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocCtas' => array(
+				'type' => 'array',
 				'default' => array(
-					'enabled' => true,
-					'viewBox' => array(
-						'vx' => 0,
-						'vy' => 0,
-						'vw' => 14,
-						'vh' => 25
-					),
-					'path' => 'M10.8737 12.7121C10.9908 12.595 10.9908 12.405 10.8737 12.2879L1.00502 2.41924C0.887867 2.30208 0.887867 2.11213 1.00502 1.99497L1.99497 1.00502C2.11213 0.887867 2.30208 0.887867 2.41924 1.00502L13.7021 12.2879C13.8192 12.405 13.8192 12.595 13.7021 12.7121L2.41924 23.995C2.30208 24.1121 2.11213 24.1121 1.99497 23.995L1.00502 23.005C0.887867 22.8879 0.887868 22.6979 1.00503 22.5808L10.8737 12.7121Z',
-					'view' => 'default',
-					'size' => '10px',
-					'gap' => '0px',
-					'rotate' => 90,
-					'rotateActive' => 0,
-					'opacity' => 1,
-					'color' => '#0c50ff'
+					
 				)
 			),
-			'responsive' => array(
-				'type' => 'object',
-				'default' => array(
-					'status' => 'mobile',
-					'align' => 'center',
-					'width' => array(
-						'desktop' => '480px',
-						'mobile' => '100%'
-					),
-					'breakPoint' => 767,
-					'slide' => 'left',
-					'padding' => array(
-						'tablet' => array(
-							'top' => '44px',
-							'right' => '26px',
-							'bottom' => '44px',
-							'left' => '26px'
-						),
-						'mobile' => array(
-							'top' => '44px',
-							'right' => '26px',
-							'bottom' => '44px',
-							'left' => '26px'
-						)
-					),
-					'openIcon' => array(
-						'viewBox' => array(
-							'vx' => 0,
-							'vy' => 0,
-							'vw' => 22,
-							'vh' => 20
-						),
-						'path' => 'M0.78125 3.51562H21.0938C21.5252 3.51562 21.875 3.16587 21.875 2.73438V0.78125C21.875 0.349756 21.5252 0 21.0938 0H0.78125C0.349756 0 0 0.349756 0 0.78125V2.73438C0 3.16587 0.349756 3.51562 0.78125 3.51562ZM0.78125 11.3281H21.0938C21.5252 11.3281 21.875 10.9784 21.875 10.5469V8.59375C21.875 8.16226 21.5252 7.8125 21.0938 7.8125H0.78125C0.349756 7.8125 0 8.16226 0 8.59375V10.5469C0 10.9784 0.349756 11.3281 0.78125 11.3281ZM0.78125 19.1406H21.0938C21.5252 19.1406 21.875 18.7909 21.875 18.3594V16.4062C21.875 15.9748 21.5252 15.625 21.0938 15.625H0.78125C0.349756 15.625 0 15.9748 0 16.4062V18.3594C0 18.7909 0.349756 19.1406 0.78125 19.1406Z',
-						'boxWidth' => '30px',
-						'boxHeight' => '30px',
-						'border' => array(
-							'width' => '',
-							'style' => '',
-							'color' => ''
-						),
-						'radius' => '100px',
-						'size' => '14px',
-						'align' => 'left'
-					),
-					'closeIcon' => array(
-						'viewBox' => array(
-							'vx' => 0,
-							'vy' => 0,
-							'vw' => 12,
-							'vh' => 12
-						),
-						'path' => 'M10.9449 9.66003C11.3049 10.02 11.3049 10.58 10.9449 10.94C10.7649 11.12 10.5449 11.2 10.3049 11.2C10.0649 11.2 9.84493 11.12 9.66493 10.94L6.00492 7.28004L2.34491 10.94C2.16491 11.12 1.94492 11.2 1.70492 11.2C1.46492 11.2 1.24493 11.12 1.06493 10.94C0.704932 10.58 0.704932 10.02 1.06493 9.66003L4.72492 6.00004L1.06493 2.34004C0.704932 1.98004 0.704932 1.42004 1.06493 1.06004C1.42493 0.700037 1.98491 0.700037 2.34491 1.06004L6.00492 4.72003L9.66493 1.06004C10.0249 0.700037 10.5849 0.700037 10.9449 1.06004C11.3049 1.42004 11.3049 1.98004 10.9449 2.34004L7.2849 6.00004L10.9449 9.66003Z',
-						'boxWidth' => '30px',
-						'boxHeight' => '30px',
-						'border' => array(
-							'width' => '',
-							'style' => '',
-							'color' => ''
-						),
-						'radius' => '',
-						'size' => '14px',
-						'position' => 'right',
-						'top' => array(
-							'desktop' => '0px'
-						),
-						'left' => array(
-							'desktop' => '0px'
-						),
-						'right' => array(
-							'desktop' => '0px'
-						)
-					),
-					'color' => array(
-						'menu' => '',
-						'submenu' => '',
-						'bg' => '#fffffe',
-						'overlay' => '#01010193',
-						'icon' => '#010101',
-						'iconHover' => '',
-						'iconBg' => '',
-						'iconBgHover' => '',
-						'iconBorderHover' => '',
-						'closeIcon' => '',
-						'closeIconHover' => '',
-						'closeIconBg' => '',
-						'closeIconBgHover' => '',
-						'closeIconBorderHover' => ''
-					)
-				)
+			'ocCtaLayout' => array(
+				'type' => 'string',
+				'default' => 'stack'
+			),
+			'ocPanelLabel' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTrigger' => array(
+				'type' => 'string',
+				'default' => 'hamburger'
+			),
+			'ocTriggerLabel' => array(
+				'type' => 'string',
+				'default' => 'Menu'
+			),
+			'ocTriggerIcon' => array(
+				'type' => 'string',
+				'default' => 'bars'
+			),
+			'ocTriggerIconPos' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'ocTriggerIconOnly' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'ocTriggerAria' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTriggerAlign' => array(
+				'type' => 'string',
+				'default' => 'start'
+			),
+			'ocTriggerBg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTriggerColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTriggerHoverBg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTriggerPadding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTriggerRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTriggerBorderWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTriggerBorderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTriggerClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTriggerSelector' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocTargetPanel' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocPushTarget' => array(
+				'type' => 'string',
+				'default' => 'auto'
+			),
+			'ocPushSelector' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ocPushHeader' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'ocPushMain' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'ocPushFooter' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'ocShowDesktop' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'ocShowTablet' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'ocShowMobile' => array(
+				'type' => 'boolean',
+				'default' => false
 			)
 		),
 		'editorScript' => array(
-			'file:./index.js'
+			'file:./index.js',
+			'file:../index.js'
 		),
-		'editorStyle' => array(
-			'file:./index.css'
-		),
+		'editorStyle' => 'file:./index.css',
 		'style' => array(
-			'file:./style-index.css',
-			'cozy-block--global-block-styles'
+			'cozy-block--menu-frontend'
 		),
 		'viewScript' => array(
-			'cozy-block--mega-menu--frontend-script'
-		),
-		'render' => 'file:./render.php'
+			'cozy-block--menu-view'
+		)
 	),
 	'modal' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',

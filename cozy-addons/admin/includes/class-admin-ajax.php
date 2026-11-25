@@ -74,6 +74,39 @@ class Ajax {
 		add_action( 'wp_ajax_cozy_addons_activate_rollback_version', array( $this, 'activate_rollback_version' ) );
 		add_action( 'wp_ajax_cozy_addons_install_activate_plugin', array( $this, 'install_activate_plugin' ) );
 		add_action( 'wp_ajax_cozy_addons_seed_cpt', array( $this, 'generate_cpt_dummy_data' ) );
+		add_action( 'wp_ajax_cozy_addons_dashboard_state', array( $this, 'update_dashboard_state' ) );
+	}
+
+	/**
+	 * Saves the Dashboard tab state: the chosen persona or one checklist item.
+	 *
+	 * Expected POST parameters, either:
+	 * - 'persona' (string): persona key from Dashboard::personas().
+	 * - 'item' (string) and 'done' ('1'|'0'): a checklist item the user ticks by hand.
+	 *
+	 * @return void Sends a JSON response.
+	 */
+	public function update_dashboard_state() {
+		check_ajax_referer( 'ca_dashboard_state', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( null, 403 );
+		}
+
+		if ( isset( $_POST['persona'] ) ) {
+			$saved = Dashboard::set_persona( sanitize_key( wp_unslash( $_POST['persona'] ) ) );
+		} elseif ( isset( $_POST['item'] ) ) {
+			$done  = isset( $_POST['done'] ) && '1' === $_POST['done'];
+			$saved = Dashboard::set_item_done( sanitize_key( wp_unslash( $_POST['item'] ) ), $done );
+		} else {
+			$saved = false;
+		}
+
+		if ( ! $saved ) {
+			wp_send_json_error( null, 400 );
+		}
+
+		wp_send_json_success();
 	}
 
 	private function is_plugin_installed( $plugin_slug ) {

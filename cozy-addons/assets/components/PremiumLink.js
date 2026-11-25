@@ -1,4 +1,5 @@
 import { __ } from "@wordpress/i18n";
+import { VisuallyHidden } from "@wordpress/components";
 
 export const PremiumLink = () => {
 	return (
@@ -15,6 +16,8 @@ export const PremiumLink = () => {
 			>
 				<p>
 					<svg
+						aria-hidden="true"
+						focusable="false"
 						width="45"
 						height="45"
 						viewBox="0 0 45 45"
@@ -56,44 +59,56 @@ export const PremiumLink = () => {
 						"cozy-addons",
 					)}
 				</p>
-				<a href="https://cozythemes.com/pricing-and-plans/" target="_blank">
-					<button
-						className="cozy-block-premium-button"
+				{/* A styled link, not a button inside a link: nested controls confuse keyboards and screen readers. */}
+				<a
+					href="https://cozythemes.com/pricing-and-plans/"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="cozy-block-premium-button"
+					style={{
+						display: "inline-block",
+						textDecoration: "none",
+						lineHeight: "normal",
+						backgroundColor: "var(--cozy-addons--primary)",
+						borderRadius: "20px",
+						padding: "10px 22px",
+						border: "none",
+						color: "#fff",
+						fontSize: "11px",
+						fontWeight: "500",
+						cursor: "pointer",
+					}}
+				>
+					<div
 						style={{
-							backgroundColor: "var(--cozy-addons--primary)",
-							borderRadius: "20px",
-							padding: "10px 22px",
-							border: "none",
-							color: "#fff",
-							fontSize: "11px",
-							fontWeight: "500",
-							cursor: "pointer",
+							display: "flex",
+							gap: "5px",
+							margin: "0",
 						}}
 					>
-						<div
-							style={{
-								display: "flex",
-								gap: "5px",
-								margin: "0",
-							}}
-						>
-							<div>
-								<svg
-									width="10"
-									height="10"
-									viewBox="0 0 10 10"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M9.29768 0.0630875L0.24397 5.2847C-0.109583 5.48778 -0.0646564 5.97987 0.286944 6.12828L2.36334 6.99919L7.97527 2.05487C8.0827 1.95919 8.23506 2.10565 8.14325 2.21695L3.43767 7.94822V9.52017C3.43767 9.98102 3.99437 10.1626 4.26784 9.8287L5.50821 8.31924L7.94206 9.33857C8.21943 9.45573 8.53588 9.28194 8.58666 8.98317L9.99306 0.547365C10.0595 0.152913 9.6356 -0.132186 9.29768 0.0630875Z"
-										fill="white"
-									/>
-								</svg>
-							</div>
-							<div>{__("Upgrade to Pro", "cozy-addons")}</div>
+						<div>
+							<svg
+								aria-hidden="true"
+								focusable="false"
+								width="10"
+								height="10"
+								viewBox="0 0 10 10"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M9.29768 0.0630875L0.24397 5.2847C-0.109583 5.48778 -0.0646564 5.97987 0.286944 6.12828L2.36334 6.99919L7.97527 2.05487C8.0827 1.95919 8.23506 2.10565 8.14325 2.21695L3.43767 7.94822V9.52017C3.43767 9.98102 3.99437 10.1626 4.26784 9.8287L5.50821 8.31924L7.94206 9.33857C8.21943 9.45573 8.53588 9.28194 8.58666 8.98317L9.99306 0.547365C10.0595 0.152913 9.6356 -0.132186 9.29768 0.0630875Z"
+									fill="white"
+								/>
+							</svg>
 						</div>
-					</button>
+						<div>
+							{__("Upgrade to Pro", "cozy-addons")}
+							<VisuallyHidden>
+								{__("(opens in a new tab)", "cozy-addons")}
+							</VisuallyHidden>
+						</div>
+					</div>
 				</a>
 			</div>
 		</>

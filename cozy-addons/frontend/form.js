@@ -4,12 +4,28 @@
 
 	var FIELD_PREFIX = "cozy_addons_form_f";
 
-	function clearErrors(form) {
-		form.querySelectorAll(".cozy-form__error").forEach(function (node) {
+	/** Drops an id from an element's aria-describedby, and the attribute once it is empty. */
+	function removeDescribedBy(node, id) {
+		var ids = (node.getAttribute("aria-describedby") || "").split(/\s+/).filter(function (item) {
+			return item && item !== id;
+		});
+		if (ids.length) {
+			node.setAttribute("aria-describedby", ids.join(" "));
+		} else {
+			node.removeAttribute("aria-describedby");
+		}
+	}
+
+	/** Removes the server's error messages, from the whole form or from one field. */
+	function clearErrors(scope) {
+		scope.querySelectorAll(".cozy-form__error").forEach(function (node) {
 			node.remove();
 		});
-		form.querySelectorAll("[aria-invalid]").forEach(function (node) {
+		scope.querySelectorAll("[aria-invalid]").forEach(function (node) {
 			node.removeAttribute("aria-invalid");
+			if (node.id) {
+				removeDescribedBy(node, node.id + "-error");
+			}
 		});
 	}
 
@@ -246,6 +262,9 @@
 			var drawing = false;
 			var last = null;
 			var width = 0;
+			// Screen readers hear whether the pad has been signed.
+			var emptyLabel = canvas.getAttribute("aria-label") || "";
+			var signedLabel = canvas.getAttribute("data-signed") || emptyLabel;
 
 			function size() {
 				var ratio = window.devicePixelRatio || 1;
@@ -283,6 +302,7 @@
 			function save() {
 				input.value = canvas.toDataURL("image/png");
 				input.setCustomValidity("");
+				canvas.setAttribute("aria-label", signedLabel);
 				input.dispatchEvent(new Event("change", { bubbles: true }));
 			}
 
@@ -292,6 +312,7 @@
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 				ctx.restore();
 				input.value = "";
+				canvas.setAttribute("aria-label", emptyLabel);
 			}
 
 			canvas.addEventListener("pointerdown", function (event) {
@@ -405,6 +426,15 @@
 			var note = document.createElement("span");
 			note.className = "cozy-form__error";
 			note.textContent = errors[key];
+			// Read with the field, so screen readers hear why it is invalid.
+			if (input.id) {
+				note.id = input.id + "-error";
+				removeDescribedBy(input, note.id);
+				input.setAttribute(
+					"aria-describedby",
+					((input.getAttribute("aria-describedby") || "") + " " + note.id).trim(),
+				);
+			}
 			var host = input.closest(".cozy-form__field") || input.parentNode;
 			host.appendChild(note);
 			if (!first) {
@@ -454,12 +484,13 @@
 					item.removeAttribute("aria-current");
 				}
 				// Completed steps can be revisited; later ones only through Next.
-				if (done) {
-					item.setAttribute("role", "button");
-					item.tabIndex = 0;
-				} else {
-					item.removeAttribute("role");
-					item.removeAttribute("tabindex");
+				var link = item.querySelector(".cozy-form__step-link");
+				if (link) {
+					link.disabled = !done;
+				}
+				var state = item.querySelector(".cozy-form__step-done");
+				if (state) {
+					state.hidden = !done;
 				}
 			});
 		}
@@ -524,14 +555,15 @@
 			show(index - 1, true);
 		});
 		navItems.forEach(function (item, n) {
-			function revisit(event) {
-				if (n < index && (event.type === "click" || event.key === "Enter" || event.key === " ")) {
-					event.preventDefault();
+			var link = item.querySelector(".cozy-form__step-link");
+			if (!link) {
+				return;
+			}
+			link.addEventListener("click", function () {
+				if (n < index) {
 					show(n, true);
 				}
-			}
-			item.addEventListener("click", revisit);
-			item.addEventListener("keydown", revisit);
+			});
 		});
 		// Enter inside a text field moves on instead of submitting early.
 		form.addEventListener("keydown", function (event) {
@@ -668,13 +700,17 @@
 		setupRecaptcha(form);
 
 		fillDynamic(form);
-		// Custom messages clear as soon as the visitor corrects the field.
-		form.addEventListener("input", function () {
+		// Custom messages, and the server's message for the field, clear as soon as the visitor
+		// corrects the field.
+		function onEdit(event) {
 			prepareValidity(form, form);
-		});
-		form.addEventListener("change", function () {
-			prepareValidity(form, form);
-		});
+			var field = event.target && event.target.closest ? event.target.closest(".cozy-form__field") : null;
+			if (field) {
+				clearErrors(field);
+			}
+		}
+		form.addEventListener("input", onEdit);
+		form.addEventListener("change", onEdit);
 
 		form.addEventListener("submit", function (event) {
 			event.preventDefault();

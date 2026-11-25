@@ -85,7 +85,7 @@ final class Form_Settings {
 			),
 			'integrations' => array(
 				'label' => __( 'Integrations', 'cozy-addons' ),
-				'keys'  => array( 'mailing_service', 'mailchimp_key', 'mailchimp_audience', 'mailchimp_double', 'mailchimp_update', 'mailchimp_unsub_link', 'brevo_key', 'brevo_doi_template', 'brevo_doi_redirect', 'webhooks' ),
+				'keys'  => array( 'mailing_service', 'mailchimp_key', 'mailchimp_audience', 'mailchimp_double', 'mailchimp_update', 'mailchimp_unsub_link', 'brevo_key', 'webhooks' ),
 			),
 			'privacy'      => array(
 				'label' => __( 'Data & privacy', 'cozy-addons' ),
@@ -285,18 +285,6 @@ final class Form_Settings {
 					// Only set alongside the key, except when WordPress cleans the whole array again.
 					if ( '' === $tab && isset( $input[ $key ] ) && is_string( $input[ $key ] ) ) {
 						$clean[ $key ] = sanitize_text_field( $input[ $key ] );
-					}
-					break;
-
-				case 'brevo_doi_template':
-					if ( $is_pro ) {
-						$clean[ $key ] = isset( $input[ $key ] ) ? absint( $input[ $key ] ) : 0;
-					}
-					break;
-
-				case 'brevo_doi_redirect':
-					if ( $is_pro ) {
-						$clean[ $key ] = isset( $input[ $key ] ) && is_string( $input[ $key ] ) ? esc_url_raw( trim( $input[ $key ] ), array( 'http', 'https' ) ) : '';
 					}
 					break;
 
@@ -924,7 +912,7 @@ final class Form_Settings {
 		?>
 		<tr>
 			<th scope="row"><?php esc_html_e( 'How it works', 'cozy-addons' ); ?></th>
-			<td><p class="description"><?php esc_html_e( 'Connect a mailing list service here, then choose a list on any Email field in the Form block sidebar under "Mailing list". Webhooks receive every new entry from forms that have them on. Contacts and entries are sent right after each submission, after the visitor has their answer; the result shows on the entry, where a failed delivery can be retried.', 'cozy-addons' ); ?></p></td>
+			<td><p class="description"><?php esc_html_e( 'Connect Mailchimp or Brevo here and choose the audience or list, then turn on "Mailing list" on any Email field in the Form block sidebar. Webhooks receive every new entry from forms that have them on. Contacts and entries are sent right after each submission, after the visitor has their answer; the result shows on the entry, where a failed delivery can be retried.', 'cozy-addons' ); ?></p></td>
 		</tr>
 		<?php
 		// One mailing list service at a time. The other one's saved key is kept for switching back.
@@ -1018,8 +1006,8 @@ final class Form_Settings {
 					),
 				);
 				?>
-				<div class="ca-form-mc-list" role="group" aria-labelledby="ca_form_mc_list_title">
-					<div class="ca-form-mc-list__head">
+				<div class="ca-form-list-card" role="group" aria-labelledby="ca_form_mc_list_title">
+					<div class="ca-form-list-card__head">
 						<span class="dashicons dashicons-admin-settings" aria-hidden="true"></span>
 						<div>
 							<h3 id="ca_form_mc_list_title"><?php esc_html_e( 'List settings', 'cozy-addons' ); ?></h3>
@@ -1027,20 +1015,20 @@ final class Form_Settings {
 						</div>
 					</div>
 					<?php foreach ( $mc_options as $mc_setting => $mc_option ) : ?>
-						<label class="ca-form-mc-option">
+						<label class="ca-form-list-option">
 							<input type="checkbox" name="ca_form_settings[<?php echo esc_attr( $mc_setting ); ?>]" value="1" <?php checked( $s[ $mc_setting ], 1 ); ?><?php echo esc_attr( $locked ); ?>>
-							<span class="ca-form-mc-option__text">
-								<span class="ca-form-mc-option__title">
+							<span class="ca-form-list-option__text">
+								<span class="ca-form-list-option__title">
 									<?php echo esc_html( $mc_option[0] ); ?>
 									<?php if ( '' !== $mc_option[2] ) : ?>
-										<span class="ca-form-mc-option__badge"><?php echo esc_html( $mc_option[2] ); ?></span>
+										<span class="ca-form-list-option__badge"><?php echo esc_html( $mc_option[2] ); ?></span>
 									<?php endif; ?>
 								</span>
-								<span class="ca-form-mc-option__help"><?php echo esc_html( $mc_option[1] ); ?></span>
+								<span class="ca-form-list-option__help"><?php echo esc_html( $mc_option[1] ); ?></span>
 							</span>
 						</label>
 					<?php endforeach; ?>
-					<div class="ca-form-mc-list__foot">
+					<div class="ca-form-list-card__foot">
 						<p><span class="dashicons dashicons-shield" aria-hidden="true"></span> <span><strong><?php esc_html_e( 'Consent:', 'cozy-addons' ); ?></strong> <?php esc_html_e( 'when a form has a consent checkbox (for example "Marketing Consent" or "Send me news and offers"), people are only added when they tick it.', 'cozy-addons' ); ?></span></p>
 						<p><span class="dashicons dashicons-info-outline" aria-hidden="true"></span> <span><strong><?php esc_html_e( 'Note:', 'cozy-addons' ); ?></strong> <?php esc_html_e( 'If you haven\'t already, add your website URL in Mailchimp under Audience → Settings → Audience name and defaults, so people can return to your site after subscribing.', 'cozy-addons' ); ?></span></p>
 					</div>
@@ -1058,18 +1046,11 @@ final class Form_Settings {
 				<?php if ( $is_pro && '' !== $s['brevo_key'] ) : ?>
 					<p><label><input type="checkbox" name="ca_form_settings[brevo_clear]" value="1"> <?php esc_html_e( 'Disconnect and remove the saved key', 'cozy-addons' ); ?></label></p>
 				<?php endif; ?>
-				<p>
-					<label for="ca_form_br_doi"><?php esc_html_e( 'Double opt-in template ID', 'cozy-addons' ); ?></label><br>
-					<input type="number" min="0" id="ca_form_br_doi" class="small-text" name="ca_form_settings[brevo_doi_template]" value="<?php echo esc_attr( (string) $s['brevo_doi_template'] ); ?>"<?php echo esc_attr( $locked ); ?>>
-				</p>
-				<p>
-					<label for="ca_form_br_redirect"><?php esc_html_e( 'Page after confirming', 'cozy-addons' ); ?></label><br>
-					<input type="url" id="ca_form_br_redirect" class="regular-text" name="ca_form_settings[brevo_doi_redirect]" value="<?php echo esc_attr( $s['brevo_doi_redirect'] ); ?>" placeholder="<?php echo esc_attr( home_url( '/' ) ); ?>"<?php echo esc_attr( $locked ); ?>>
-				</p>
 				<p class="description">
-					<?php esc_html_e( 'Create a key in Brevo under SMTP & API → API keys. Double opt-in needs a Brevo email template with the confirmation link (tag "optin").', 'cozy-addons' ); ?>
+					<?php esc_html_e( 'Create a key in Brevo under SMTP & API → API keys.', 'cozy-addons' ); ?>
 					<a href="https://help.brevo.com/hc/en-us/articles/209467485" target="_blank" rel="noopener"><?php esc_html_e( 'How to get a key', 'cozy-addons' ); ?></a>
 				</p>
+				<p class="description"><?php esc_html_e( 'Sign-up options (confirmation email, double opt-in, redirect) and lists are set on each Form block, under Integrations. When a form has a consent checkbox, people are only added when they tick it.', 'cozy-addons' ); ?></p>
 			</td>
 		</tr>
 		<?php endif; ?>

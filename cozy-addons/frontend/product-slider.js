@@ -53,7 +53,9 @@
 				.show(0)
 				.addClass("aos-init aos-animate");
 
-			AOS.refresh(); // Refresh AOS to trigger animations
+			if (typeof AOS !== "undefined") {
+				AOS.refresh(); // Refresh AOS to trigger animations
+			}
 		}
 
 		const sliderAttr = {

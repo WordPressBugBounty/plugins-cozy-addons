@@ -55,6 +55,14 @@ class Utils {
 	private function __construct() {
 		$blocks              = require_once COZY_ADDONS_PLUGIN_DIR . 'blocks/blocks-manifest.php';
 		$this->active_blocks = array_keys( $blocks );
+
+		// Keep the cached review list in step with reviews and products.
+		add_action( 'comment_post', array( __CLASS__, 'flush_review_cache_for_comment' ) );
+		add_action( 'edit_comment', array( __CLASS__, 'flush_review_cache_for_comment' ) );
+		add_action( 'deleted_comment', array( __CLASS__, 'flush_review_cache' ) );
+		add_action( 'wp_set_comment_status', array( __CLASS__, 'flush_review_cache_for_comment' ) );
+		add_action( 'save_post', array( __CLASS__, 'flush_review_cache_for_post' ) );
+		add_action( 'deleted_post', array( __CLASS__, 'flush_review_cache_for_post' ) );
 	}
 
 	/**
@@ -134,7 +142,65 @@ class Utils {
 	}
 
 	/**
+	 * Transient that caches the enriched product review list.
+	 */
+	const REVIEWS_CACHE_KEY = 'ca_woo_product_reviews';
+
+	/**
+	 * Transient that caches the review count and average rating.
+	 */
+	const REVIEW_STATS_CACHE_KEY = 'ca_woo_review_stats';
+
+	/**
+	 * Per-request copies of the cached values, so repeated calls in one request are free.
+	 *
+	 * @var array
+	 */
+	private static $memo = array();
+
+	/**
+	 * Clears the cached review data. Hooked to comment and product changes in the constructor.
+	 *
+	 * @return void
+	 */
+	public static function flush_review_cache() {
+		delete_transient( self::REVIEWS_CACHE_KEY );
+		delete_transient( self::REVIEW_STATS_CACHE_KEY );
+		unset( self::$memo['reviews'], self::$memo['review_stats'] );
+	}
+
+	/**
+	 * Clears the review cache when a product changes (its title, rating or image feed the list).
+	 *
+	 * @param int $post_id Post ID.
+	 * @return void
+	 */
+	public static function flush_review_cache_for_post( $post_id ) {
+		if ( 'product' === get_post_type( $post_id ) ) {
+			self::flush_review_cache();
+		}
+	}
+
+	/**
+	 * Clears the review cache when a product review comment changes.
+	 *
+	 * @param int|\WP_Comment $comment Comment ID or object.
+	 * @return void
+	 */
+	public static function flush_review_cache_for_comment( $comment ) {
+		$comment = get_comment( $comment );
+
+		if ( $comment && 'product' === get_post_type( $comment->comment_post_ID ) ) {
+			self::flush_review_cache();
+		}
+	}
+
+	/**
 	 * Retrieves a list of approved product reviews with additional product and user data.
+	 *
+	 * The result is cached in a transient (cleared when a review or product changes) and memoized
+	 * per request. Post, user and comment meta caches are primed in bulk, so building the list no
+	 * longer runs several queries per review.
 	 *
 	 * @return array List of WP_Comment objects enriched with user avatar, product image,
 	 *               product name, product rating, product URL, comment rating, and reviewer name.
@@ -144,43 +210,95 @@ class Utils {
 			return array();
 		}
 
-		$args = array(
-			'status'      => 'approve',
-			'post_status' => 'publish',
-			'post_type'   => 'product',
+		if ( isset( self::$memo['reviews'] ) ) {
+			return self::$memo['reviews'];
+		}
+
+		$cached = get_transient( self::REVIEWS_CACHE_KEY );
+		if ( is_array( $cached ) ) {
+			self::$memo['reviews'] = $cached;
+			return $cached;
+		}
+
+		$comments = get_comments(
+			array(
+				'status'                    => 'approve',
+				'post_status'               => 'publish',
+				'post_type'                 => 'product',
+				'update_comment_meta_cache' => true,
+			)
 		);
 
-		$comments = get_comments( $args );
+		if ( ! empty( $comments ) ) {
+			$product_ids = array_unique( array_map( 'intval', wp_list_pluck( $comments, 'comment_post_ID' ) ) );
+			$user_ids    = array_filter( array_unique( array_map( 'intval', wp_list_pluck( $comments, 'user_id' ) ) ) );
+
+			_prime_post_caches( $product_ids, true, true );
+			update_postmeta_cache( $product_ids );
+
+			$thumbnail_ids = array();
+			foreach ( $product_ids as $product_id ) {
+				$thumbnail_id = (int) get_post_meta( $product_id, '_thumbnail_id', true );
+				if ( $thumbnail_id ) {
+					$thumbnail_ids[] = $thumbnail_id;
+				}
+			}
+			if ( $thumbnail_ids ) {
+				_prime_post_caches( array_unique( $thumbnail_ids ), false, true );
+			}
+
+			if ( $user_ids ) {
+				cache_users( $user_ids );
+			}
+		}
+
+		$products = array();
 
 		foreach ( $comments as $comment ) {
-			$avatar    = get_avatar_url( $comment->user_id );
-			$user_data = get_userdata( $comment->user_id );
+			$product_id = (int) $comment->comment_post_ID;
 
-			$product_image_url = get_the_post_thumbnail_url( $comment->comment_post_ID );
-			$product           = wc_get_product( $comment->comment_post_ID );
+			if ( ! array_key_exists( $product_id, $products ) ) {
+				$products[ $product_id ] = wc_get_product( $product_id );
+			}
 
-			$comment->user_avatar       = $avatar;
-			$comment->product_image_url = $product_image_url;
-			$comment->product_name      = esc_html( $product->get_title() );
-			$comment->product_rating    = esc_html( $product->get_average_rating() );
-			$comment->product_url       = $product->get_permalink();
+			$product   = $products[ $product_id ];
+			$user_data = $comment->user_id ? get_userdata( $comment->user_id ) : false;
+
+			$comment->user_avatar       = get_avatar_url( $comment->user_id );
+			$comment->product_image_url = get_the_post_thumbnail_url( $product_id );
+			$comment->product_name      = $product ? esc_html( $product->get_title() ) : '';
+			$comment->product_rating    = $product ? esc_html( $product->get_average_rating() ) : '';
+			$comment->product_url       = $product ? $product->get_permalink() : '';
 			$comment->comment_rating    = get_comment_meta( $comment->comment_ID, 'rating', true );
-			// $comment->product_rating_count = esc_html( $product->get_rating_count() );
-			$comment->reviewer_name = isset( $user_data->display_name ) ? $user_data->display_name : '';
+			$comment->reviewer_name     = isset( $user_data->display_name ) ? $user_data->display_name : '';
 		}
+
+		set_transient( self::REVIEWS_CACHE_KEY, $comments, 12 * HOUR_IN_SECONDS );
+		self::$memo['reviews'] = $comments;
 
 		return $comments;
 	}
 
 	/**
-	 * Retrieves the total number of approved product reviews.
+	 * Review count and average rating, computed once and cached with the review list.
 	 *
 	 * @global wpdb $wpdb WordPress database abstraction object.
-	 * @return int Total number of approved product reviews.
+	 * @return array{total:int|string|null,avg:float|null}
 	 */
-	public static function get_woo_total_product_reviews() {
+	private static function get_woo_review_stats() {
+		if ( isset( self::$memo['review_stats'] ) ) {
+			return self::$memo['review_stats'];
+		}
+
+		$cached = get_transient( self::REVIEW_STATS_CACHE_KEY );
+		if ( is_array( $cached ) ) {
+			self::$memo['review_stats'] = $cached;
+			return $cached;
+		}
+
 		global $wpdb;
-		$total_reviews_count = $wpdb->get_var(
+
+		$total = $wpdb->get_var(
 			"
 				SELECT COUNT(*)
 				FROM {$wpdb->comments}
@@ -188,17 +306,7 @@ class Utils {
 				AND comment_approved = 1
 			"
 		);
-		return $total_reviews_count;
-	}
 
-	/**
-	 * Retrieves the average rating value of all approved product reviews.
-	 *
-	 * @global wpdb $wpdb WordPress database abstraction object.
-	 * @return float|null Average rating rounded to 2 decimal places, or null if no ratings are found.
-	 */
-	public static function get_woo_avg_product_reviews() {
-		global $wpdb;
 		$average_rating = $wpdb->get_var(
 			"
 				SELECT AVG(meta_value) as average_rating
@@ -211,9 +319,35 @@ class Utils {
 			"
 		);
 
-		if ( $average_rating ) {
-			return round( $average_rating, 2 );
-		}
+		$stats = array(
+			'total' => $total,
+			'avg'   => $average_rating ? round( $average_rating, 2 ) : null,
+		);
+
+		set_transient( self::REVIEW_STATS_CACHE_KEY, $stats, 12 * HOUR_IN_SECONDS );
+		self::$memo['review_stats'] = $stats;
+
+		return $stats;
+	}
+
+	/**
+	 * Retrieves the total number of approved product reviews.
+	 *
+	 * @return int|string|null Total number of approved product reviews.
+	 */
+	public static function get_woo_total_product_reviews() {
+		$stats = self::get_woo_review_stats();
+		return $stats['total'];
+	}
+
+	/**
+	 * Retrieves the average rating value of all approved product reviews.
+	 *
+	 * @return float|null Average rating rounded to 2 decimal places, or null if no ratings are found.
+	 */
+	public static function get_woo_avg_product_reviews() {
+		$stats = self::get_woo_review_stats();
+		return $stats['avg'];
 	}
 
 	/**
@@ -236,42 +370,6 @@ class Utils {
 	}
 
 	/**
-	 * Retrieves a list of available Cozy Mega Menu templates.
-	 *
-	 * This static method returns an array of ca_mega_menu CPT
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return array An associative array where keys are template slugs and values are their display labels.
-	 */
-	public static function get_cozy_mega_menu_templates(): array {
-		$args = array(
-			'post_type'      => 'ca_mega_menu', // Specify the custom post type.
-			'posts_per_page' => -1, // Display all posts.
-			'post_status'    => 'publish',
-		);
-
-		// Get the posts as an array.
-		$posts_array = get_posts( $args );
-
-		// Generate render template.
-		foreach ( $posts_array as $template ) {
-			// code...
-			$parsed_blocks = parse_blocks( $template->post_content );
-
-			$template_render = '';
-
-			foreach ( $parsed_blocks as $block ) {
-				$template_render .= render_block( $block );
-			}
-
-			$template->render = $template_render;
-		}
-
-		return $posts_array;
-	}
-
-	/**
 	 * Retrieves a list of available Cozy Portfolio gallery templates.
 	 *
 	 * This static method returns an array of predefined gallery templates
@@ -282,6 +380,12 @@ class Utils {
 	 * @return array An associative array where keys are template slugs and values are their labels.
 	 */
 	public static function get_cozy_portfolio_gallery_templates(): array {
+		// Memoized per request only: render_block() enqueues block assets as a side effect,
+		// so the rendered HTML must not be cached across requests.
+		if ( isset( self::$memo['portfolio_templates'] ) ) {
+			return self::$memo['portfolio_templates'];
+		}
+
 		$args = array(
 			'post_type'      => 'ca_portfolio_gallery', // Specify the custom post type.
 			'posts_per_page' => -1, // Display all posts.
@@ -314,6 +418,8 @@ class Utils {
 			$template->post_skills       = get_post_meta( $template->ID, 'ca_portfolio_gallery_skills', true );
 			$template->post_url          = get_post_meta( $template->ID, 'ca_portfolio_gallery_url', true );
 		}
+
+		self::$memo['portfolio_templates'] = $posts_array;
 
 		return $posts_array;
 	}

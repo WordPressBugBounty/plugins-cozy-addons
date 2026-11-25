@@ -347,7 +347,7 @@ if ( ! empty( $font_query ) ) {
 	// Generate the inline style for the Google Fonts link.
 	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query . '&display=swap';
 
-	echo '<link rel="stylesheet" href="' . $google_fonts_url . '"/>';
+	echo cozy_addons_google_fonts_link( $google_fonts_url ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the helper.
 }
 
 // Render styles here for 'wp_body_open' hook.
@@ -371,9 +371,28 @@ $classes[] = isset( $attributes['responsiveVisibility']['mobile'] ) && ! filter_
 	$classes[] = isset( $attributes['modalType'], $attributes['modalEvent'] ) && 'default' === $attributes['modalType'] ? 'event-' . $attributes['modalEvent'] : '';
 	$classes[] = isset( $attributes['modalType'] ) && 'default' === $attributes['modalType'] ? 'display-none' : '';
 	$classes[] = isset( $attributes['modalType'], $attributes['placement'] ) && 'default' === $attributes['modalType'] ? 'position-' . str_replace( ' ', '-', $attributes['placement'] ) : '';
+
+	/*
+	 * Accessibility roles. The default popup is a modal dialog; the floating
+	 * variation is a non-modal panel next to its button; the notifier is a
+	 * page region. The frontend script names the popup after its first
+	 * heading, "Popup" is the fallback.
+	 */
+	$cozy_is_default = isset( $attributes['modalType'] ) && 'default' === $attributes['modalType'];
+	$cozy_is_float   = $cozy_is_default && 'click' === $attributes['modalEvent'] && isset( $attributes['clickButtonStyles']['variation'] ) && 'float' === $attributes['clickButtonStyles']['variation'];
 	?>
 	<div id="<?php echo esc_attr( $block_id ); ?>"
-		class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
+		class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>"
+		<?php if ( $cozy_is_default ) : ?>
+		role="dialog"
+			<?php if ( ! $cozy_is_float ) : ?>
+		aria-modal="true"
+			<?php endif; ?>
+		tabindex="-1"
+		<?php else : ?>
+		role="region"
+		<?php endif; ?>
+		aria-label="<?php echo $cozy_is_default ? esc_attr__( 'Popup', 'cozy-addons' ) : esc_attr__( 'Notification', 'cozy-addons' ); ?>">
 		<?php
 		if ( isset( $attributes['iconStyles']['enabled'] ) && filter_var( $attributes['iconStyles']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
 			$classes   = array();
@@ -381,13 +400,14 @@ $classes[] = isset( $attributes['responsiveVisibility']['mobile'] ) && ! filter_
 			$classes[] = isset( $attributes['iconStyles']['alignment'] ) ? 'position-' . $attributes['iconStyles']['alignment'] : '';
 
 			?>
-		<div
-			class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
-			<svg width="16" height="16" viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		<button type="button"
+			class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>"
+			aria-label="<?php esc_attr_e( 'Close popup', 'cozy-addons' ); ?>">
+			<svg width="16" height="16" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
 				<path
 					d="M10.9449 9.66003C11.3049 10.02 11.3049 10.58 10.9449 10.94C10.7649 11.12 10.5449 11.2 10.3049 11.2C10.0649 11.2 9.84493 11.12 9.66493 10.94L6.00492 7.28004L2.34491 10.94C2.16491 11.12 1.94492 11.2 1.70492 11.2C1.46492 11.2 1.24493 11.12 1.06493 10.94C0.704932 10.58 0.704932 10.02 1.06493 9.66003L4.72492 6.00004L1.06493 2.34004C0.704932 1.98004 0.704932 1.42004 1.06493 1.06004C1.42493 0.700037 1.98491 0.700037 2.34491 1.06004L6.00492 4.72003L9.66493 1.06004C10.0249 0.700037 10.5849 0.700037 10.9449 1.06004C11.3049 1.42004 11.3049 1.98004 10.9449 2.34004L7.2849 6.00004L10.9449 9.66003Z" />
 			</svg>
-		</div>
+		</button>
 			<?php
 		}
 		?>
@@ -412,7 +432,7 @@ $classes[] = isset( $attributes['responsiveVisibility']['mobile'] ) && ! filter_
 	if ( isset( $attributes['modalType'] ) && 'default' === $attributes['modalType'] ) {
 		if ( ! isset( $attributes['addOverlay'] ) || ( isset( $attributes['addOverlay'] ) && filter_var( $attributes['addOverlay'], FILTER_VALIDATE_BOOLEAN ) ) ) {
 			?>
-		<div class="cozy-block-modal__overlay display-none"></div>
+		<div class="cozy-block-modal__overlay display-none" aria-hidden="true"></div>
 			<?php
 		}
 
@@ -421,12 +441,29 @@ $classes[] = isset( $attributes['responsiveVisibility']['mobile'] ) && ! filter_
 			$classes[] = 'cozy-modal-button';
 			$classes[] = ! isset( $attributes['clickButtonStyles']['variation'] ) || ( isset( $attributes['clickButtonStyles']['variation'] ) && 'default' === $attributes['clickButtonStyles']['variation'] ) ? 'align-' . $button_styles['justify'] : '';
 			$classes[] = 'content-' . $button_styles['content'];
+
+			$label   = isset( $attributes['clickButtonStyles']['label'] ) ? sanitize_text_field( $attributes['clickButtonStyles']['label'] ) : '';
+			$img_alt = isset( $attributes['clickButtonStyles']['imgAlt'] ) ? sanitize_text_field( $attributes['clickButtonStyles']['imgAlt'] ) : '';
+
+			$is_text_button = ! isset( $attributes['clickButtonStyles']['content'] ) || 'default' === $attributes['clickButtonStyles']['content'];
+
+			// The image's alt text names an image button. Without one the button
+			// needs its own name: the button label, or a generic one.
+			$button_aria_label = '';
+			if ( ( ! $is_text_button && '' === $img_alt ) || ( $is_text_button && '' === $label ) ) {
+				$button_aria_label = '' !== $label ? $label : __( 'Open popup', 'cozy-addons' );
+			}
 			?>
-	<button
-		class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
+	<button type="button"
+		class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>"
+		aria-haspopup="dialog"
+		aria-expanded="false"
+		aria-controls="<?php echo esc_attr( $block_id ); ?>"
+			<?php if ( '' !== $button_aria_label ) : ?>
+		aria-label="<?php echo esc_attr( $button_aria_label ); ?>"
+			<?php endif; ?>>
 			<?php
-			if ( ! isset( $attributes['clickButtonStyles']['content'] ) || ( isset( $attributes['clickButtonStyles']['content'] ) && 'default' === $attributes['clickButtonStyles']['content'] ) ) {
-				$label = isset( $attributes['clickButtonStyles']['label'] ) ? sanitize_text_field( $attributes['clickButtonStyles']['label'] ) : '';
+			if ( $is_text_button ) {
 				echo esc_html( $label );
 			} elseif ( isset( $attributes['clickButtonStyles']['content'], $attributes['clickButtonStyles']['imgURL'] ) && 'image' === $attributes['clickButtonStyles']['content'] ) {
 				$classes   = array();
@@ -435,9 +472,6 @@ $classes[] = isset( $attributes['responsiveVisibility']['mobile'] ) && ! filter_
 				?>
 		<figure
 			class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', array_values( $classes ) ) ) ); ?>">
-				<?php
-					$img_alt = isset( $attributes['clickButtonStyles']['imgAlt'] ) ? sanitize_text_field( $attributes['clickButtonStyles']['imgAlt'] ) : '';
-				?>
 			<img src="<?php echo esc_url( $attributes['clickButtonStyles']['imgURL'] ); ?>"
 				alt="<?php echo esc_attr( $img_alt ); ?>" />
 		</figure>

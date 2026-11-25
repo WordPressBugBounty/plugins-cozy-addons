@@ -76,6 +76,17 @@ class Patterns {
 						'activeTheme' => wp_get_theme()->get( 'TextDomain' ),
 					)
 				);
+
+				// Dashboard deep links (?ca_library=templates|patterns) open the library on load.
+				if ( isset( $_GET['ca_library'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only UI hint.
+					wp_enqueue_script(
+						'cozy-addons--library-launcher',
+						COZY_ADDONS_PLUGIN_URL . 'assets/js/cozy-library-launcher.js',
+						array( 'cozy-addons--pattern', 'wp-dom-ready' ),
+						COZY_ADDONS_VERSION,
+						true
+					);
+				}
 			}
 		);
 

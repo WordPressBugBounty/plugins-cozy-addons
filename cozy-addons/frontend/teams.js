@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
 	window["cozyBlockTeamsInit"] = (e) => {
 		const n = e.replace(/-/gi, "_");
 		const blockOptions = window[`cozyTeams_${n}`];
@@ -190,4 +190,4 @@
 			const swiper = new Swiper(teamsClass + ".swiper-container", carouselAttr);
 		}
 	};
-})(jQuery);
+})();

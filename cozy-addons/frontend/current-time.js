@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
   window["cozyBlockDateTimeInit"] = (e) => {
     const n = e.replace(/-/gi, "_");
     const blockOptions = window[`cozyDateTime_${n}`];
@@ -163,4 +163,4 @@
 
     updateTime(blockOptions, cozyDateTime);
   };
-})(jQuery);
+})();

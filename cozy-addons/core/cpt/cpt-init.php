@@ -15,8 +15,8 @@ function cozy_addons_get_cpt_config_option( $cpt = '' ) {
 		array(
 			'mega-menu'         => array(
 				'post_type'      => 'ca_mega_menu',
-				'singular_label' => 'Mega Menu Template',
-				'plural_label'   => 'Mega Menu Templates',
+				'singular_label' => 'Mega Menu',
+				'plural_label'   => 'Mega Menus',
 				'slug'           => 'ca_mega_menu',
 				'taxonomy'       => array(),
 				'premium'        => true,

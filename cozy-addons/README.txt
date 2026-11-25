@@ -4,7 +4,7 @@ Tags: gutenberg blocks, page builder, block patterns, woocommerce blocks, full s
 Requires PHP: 7.4
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.2.29
+Stable tag: 2.2.30
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -144,7 +144,7 @@ Capture customer enquiries, manage leads, and simplify follow-ups directly in Wo
 * <strong>Submission Details</strong> — Review contact information, enquiry details, and submitted messages.
 * <strong>Email Notifications</strong> — Receive new lead alerts and send customer confirmation emails.
 * <strong>Lead Organization</strong> — Search, filter, and review submissions to prioritize follow-ups.
-* <strong>Newsletter Integrations</strong> — Connect Mailchimp (Brevo coming soon) to grow your list and use their available automation tools.
+* <strong>Newsletter Integrations</strong> — Connect Mailchimp or Brevo to grow your list and use their available automation tools.
 
 Capture leads, manage enquiries, and stay on top of follow-ups—all from your WordPress dashboard
 
@@ -299,6 +299,8 @@ The Form block can use the following services, available with Cozy Blocks Pro. A
 
 **Mailchimp** (by Intuit) stores mailing list contacts. When a Mailchimp API key and Audience ID are saved and an Email field of a form is set to add people to the mailing list, the visitor's email address with their marketing consent, their name and phone number when the form asks for them, and (Pro) the answers of form fields mapped to fields of the Mailchimp audience, are sent from the site's server to the Mailchimp API (<data centre>.api.mailchimp.com) after they submit the form, only when they ticked the consent box the field asks for. The API key is only sent to Mailchimp, in the request's authorization header, and is never shown in pages. [Terms of use](https://www.intuit.com/legal/terms/en-us/mailchimp/), [privacy policy](https://www.intuit.com/privacy/statement/).
 
+**Brevo** stores mailing list contacts. When a Brevo API key is saved, a form has Brevo lists chosen, and its Email field is set to add people to the mailing list, the visitor's email address, their name when the form asks for it, and (Pro) the answers of form fields mapped to Brevo contact attributes, are sent from the site's server to the Brevo API (api.brevo.com) after they submit the form, only when they ticked the consent box the form has. Each form can have Brevo send them a confirmation email, or a double opt-in email with a confirmation link first; Brevo sends these emails from your Brevo templates. The API key is only sent to Brevo, in the request's api-key header, and is never shown in pages. [Terms of use](https://www.brevo.com/legal/termsofuse/), [privacy policy](https://www.brevo.com/legal/privacypolicy/).
+
 **WordPress.org plugin directory**: under Lead Forms → Settings → General, the site owner can install an SMTP plugin with one click. Its details and icon are read from api.wordpress.org and the plugin is downloaded from downloads.wordpress.org, exactly as under Plugins → Add New. Nothing is requested until that settings page is opened.
 
 **Webhooks** send each new form entry (the details entered, the form and the page it was sent from) as JSON to addresses the site owner enters under Lead Forms → Settings → Integrations, such as Zapier, Make or n8n. Nothing is sent until the site owner adds an address. Uploaded files are listed by name only.
@@ -314,6 +316,14 @@ The Form block can use the following services, available with Cozy Blocks Pro. A
 8. FSE Homepage templates
 
 == Changelog ==
+= 2.2.30 - Nov 25, 2026 = 
+* Add: Advanced Search block with live results and voice search.
+* Add: Brevo integration for Lead Forms with opt-in settings, confirmation and double opt-in emails, and field mapping.
+* Add: Accessibility improvements for Lead Forms, Popups and Advanced Search (screen reader labels, keyboard and focus handling, reduced motion support).
+* Update: Mega Menu block rebuilt with dropdown and mega panel items, mobile drawer and live editor preview. Menus built with the previous Mega Menu block need to be recreated.
+* Update: Redesigned admin dashboard with onboarding, quick start cards, FAQ and theme recommendations.
+* Update: Performance improvements: editor-only assets no longer load on the frontend, animation assets load only when used and Google Fonts are no longer loaded twice.
+
 = 2.2.29 - Oct 31, 2026 = 
 * Add: Mailchimp integration for Lead Forms with opt-in settings, audience field mapping and tags.
 * Add: Mailing list and webhooks integrations for Lead Forms.
@@ -336,13 +346,6 @@ The Form block can use the following services, available with Cozy Blocks Pro. A
 = 2.2.27 - Oct 11, 2026 = 
 * Add: Popup builder.
 * Update: Modal block only for click event.
-
-= 2.2.26 - Oct 07, 2026 = 
-* Fix: Product category blocks' image hover effect.
-* Fix: Slider block move slide to selected slide item.
-* Fix: Cozy button variation for core button block to work with full width.
-* Add: Cozy button variation icon animations.
-* Update: Dashboard access popup.
 
 [See changes for all the versions here.](https://plugins.svn.wordpress.org/cozy-addons/trunk/changelog.txt)
 

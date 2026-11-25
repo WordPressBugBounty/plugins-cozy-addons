@@ -1,0 +1,111 @@
+/* Desktop off-canvas rules. Stamped by PHP once per breakpoint (__BP__ = menu breakpoint, __BPMIN__ = __BP__ + 1).
+   Everything is scoped to .cozy-addons-menu.cozy-addons-menu--oc and wrapped in a min-width query, so the mobile menu (max-width) is never touched.
+   The panel lives in a portal copy of the menu's root classes, so the same selectors style it after view.js moves it to the body element. */
+body.admin-bar .cozy-addons-menu.cozy-addons-menu--oc{--oc-adminbar:var(--wp-admin--admin-bar--height,32px)}
+@media (prefers-reduced-motion:reduce){
+.cozy-addons-menu.cozy-addons-menu--oc .cozy-addons-menu-drawer,.cozy-addons-menu.cozy-addons-menu--oc .cozy-addons-menu-backdrop{transition-delay:0s!important}
+}
+@media (min-width:__BPMIN__px){
+
+/* ---- panel shell ---- */
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-drawer{position:fixed;z-index:calc(var(--cozy-addons-menu-z,9990) + 1);display:flex;flex-direction:column;box-sizing:border-box;
+ top:var(--oc-top-abs,calc(var(--oc-adminbar,0px) + var(--oc-top-user,0px)));bottom:0;
+ width:min(var(--oc-w,420px),100vw);max-width:min(var(--oc-maxw,100vw),100vw);
+ overflow:auto;overscroll-behavior:contain;
+ background-color:var(--oc-bg,#fff);background-image:var(--oc-bgimg,none);background-size:cover;background-position:center;
+ color:var(--oc-text,#12172B);padding:var(--oc-pad,72px 32px 32px);
+ border:var(--oc-bw,0) solid var(--oc-bc,transparent);border-radius:var(--oc-r,0);box-shadow:var(--oc-shadow,none);
+ visibility:hidden;pointer-events:none;opacity:1;
+ transition:transform var(--oc-dur,350ms) cubic-bezier(.2,.7,.2,1),opacity var(--oc-dur,350ms) ease,clip-path var(--oc-dur,350ms) cubic-bezier(.2,.7,.2,1),visibility 0s linear var(--oc-dur,350ms)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-left .cozy-addons-menu-drawer{left:0;right:auto}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-right .cozy-addons-menu-drawer{right:0;left:auto}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-h-content .cozy-addons-menu-drawer{bottom:auto;max-height:calc(100vh - var(--oc-top-abs,calc(var(--oc-adminbar,0px) + var(--oc-top-user,0px))))}
+
+/* ---- closed-state motion: side drawer + push ---- */
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-anim-slide.cozy-addons-menu--oc-left .cozy-addons-menu-drawer{transform:translateX(-100%)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-anim-slide.cozy-addons-menu--oc-right .cozy-addons-menu-drawer{transform:translateX(100%)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-anim-fade .cozy-addons-menu-drawer{opacity:0}
+
+/* ---- fullscreen ---- */
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-fullscreen .cozy-addons-menu-drawer{top:var(--oc-adminbar,0px);right:0;bottom:0;left:0;width:auto;max-width:none;max-height:none;border-radius:0}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-fullscreen.cozy-addons-menu--oc-inset .cozy-addons-menu-drawer{top:calc(var(--oc-adminbar,0px) + 16px);right:16px;bottom:16px;left:16px;border-radius:var(--oc-r,24px)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-fullscreen.cozy-addons-menu--oc-anim-scale .cozy-addons-menu-drawer{opacity:0;transform:scale(.97)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-fullscreen.cozy-addons-menu--oc-anim-reveal-up .cozy-addons-menu-drawer{clip-path:inset(100% 0 0 0)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-fullscreen.cozy-addons-menu--oc-anim-reveal-down .cozy-addons-menu-drawer{clip-path:inset(0 0 100% 0)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-fullscreen.cozy-addons-menu--oc-anim-reveal-left .cozy-addons-menu-drawer{clip-path:inset(0 0 0 100%)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-fullscreen.cozy-addons-menu--oc-anim-reveal-right .cozy-addons-menu-drawer{clip-path:inset(0 100% 0 0)}
+
+/* ---- backdrop (side drawer + push) ---- */
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-backdrop{display:none}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-bd .cozy-addons-menu-backdrop{display:block;position:fixed;top:var(--oc-top-abs,calc(var(--oc-adminbar,0px) + var(--oc-top-user,0px)));right:0;bottom:0;left:0;z-index:var(--cozy-addons-menu-z,9990);
+ background:var(--oc-bd-color,rgba(10,14,40,.5));-webkit-backdrop-filter:blur(var(--oc-bd-blur,0px));backdrop-filter:blur(var(--oc-bd-blur,0px));
+ opacity:0;visibility:hidden;transition:opacity var(--oc-dur,350ms) ease,visibility 0s linear var(--oc-dur,350ms)}
+
+/* ---- OPEN state: three repeated classes so it out-ranks every closed-state rule above ---- */
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.is-oc-open.is-oc-open.is-oc-open .cozy-addons-menu-drawer{visibility:visible;pointer-events:auto;opacity:1;transform:none;clip-path:inset(0);transition-delay:0s}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.is-oc-open.is-oc-open.is-oc-open .cozy-addons-menu-backdrop{opacity:1;visibility:visible;transition-delay:0s}
+
+/* ---- inside the panel ---- */
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-body{display:flex;flex-direction:column;gap:24px;flex:1 1 auto;min-height:0}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-only{display:block}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-head{display:grid;gap:10px}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-heading{margin:0;font-size:1.5em;font-weight:700;line-height:1.2}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-intro{margin:0;opacity:.75;line-height:1.5}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-nav{display:block}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-ctas{margin-top:auto;padding-top:20px;border-top:1px solid rgba(127,127,127,.28)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-ctas.cozy-addons-menu-ctas--grid .cozy-addons-menu-ctas__list{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-ctas.cozy-addons-menu-ctas--inline .cozy-addons-menu-ctas__list{display:flex;flex-wrap:wrap;gap:8px}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-ctas .cozy-addons-menu-cta{color:inherit}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-oc-ctas .cozy-addons-menu-cta--style-primary{color:#12172B}
+
+/* the menu list becomes a vertical accordion */
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-list{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;flex-wrap:nowrap;gap:2px;font-size:var(--oc-fs,1.05rem);font-weight:var(--oc-fw,500)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-item{width:100%}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-link{width:100%;padding:14px 10px;color:var(--oc-text,inherit);border-radius:12px;box-shadow:none}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-link:hover,.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-has-sub.is-open>.cozy-addons-menu-row>.cozy-addons-menu-link{color:var(--oc-text,inherit);background:rgba(127,127,127,.14)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-row .cozy-addons-menu-link{flex:1}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-link--toggle{justify-content:space-between}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-chevron{width:44px;height:44px;margin:0;color:var(--oc-text,inherit)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-list>.cozy-addons-menu-item.is-current>.cozy-addons-menu-link,
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-list>.cozy-addons-menu-item.is-current>.cozy-addons-menu-row>.cozy-addons-menu-link{background:rgba(127,127,127,.14)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-list>.cozy-addons-menu-item.is-current>.cozy-addons-menu-link::after,
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-list>.cozy-addons-menu-item.is-current>.cozy-addons-menu-row>.cozy-addons-menu-link::after,
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-list>.cozy-addons-menu-item.has-current>.cozy-addons-menu-row>.cozy-addons-menu-link::after{display:none}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-has-mega{position:relative}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-sub,
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-mega{position:static;display:none;visibility:visible;opacity:1;transform:none;width:auto;min-width:0;margin:0;padding:0 0 8px 14px;border-radius:0;background:transparent;color:inherit;box-shadow:none;transition:none}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-sub::before,
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-mega::before{display:none}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-has-sub.is-open>.cozy-addons-menu-sub,
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-has-sub.is-open>.cozy-addons-menu-mega{display:block}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-sub .cozy-addons-menu-sub{left:auto;top:auto}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-sub .cozy-addons-menu-link,
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-mega .cozy-addons-menu-link{width:100%;color:inherit}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-mega__content{max-width:none}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-mega .wp-block-columns{display:grid;grid-template-columns:repeat(var(--oc-mega-cols,1),minmax(0,1fr));gap:16px}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__ .cozy-addons-menu-mega .wp-block-column{margin:0}
+
+/* ---- content layouts (fullscreen presets; they also work in the drawer) ---- */
+/* Centre with auto margins, not justify-content:center: if the content is taller than the screen it must scroll, never clip above the top. */
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-center .cozy-addons-menu-oc-body{align-items:center;text-align:center}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-center .cozy-addons-menu-oc-body>:first-child{margin-top:auto}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-center .cozy-addons-menu-oc-body>:last-child{margin-bottom:auto}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-center .cozy-addons-menu-oc-ctas{margin-top:8px;width:100%;max-width:640px}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-center .cozy-addons-menu-link--toggle{position:relative}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-center .cozy-addons-menu-link--toggle .cozy-addons-menu-caret{position:absolute;right:12px;top:50%;margin:-8px 0 0}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-center .cozy-addons-menu-oc-nav{width:100%;max-width:640px}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-center .cozy-addons-menu-link{justify-content:center;text-align:center}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-center .cozy-addons-menu-oc-head{justify-items:center}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-fullscreen .cozy-addons-menu-list{font-size:var(--oc-fs,clamp(1.6rem,3.2vw,2.6rem));font-weight:var(--oc-fw,600)}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-columns .cozy-addons-menu-list{display:block;column-count:var(--oc-cols,2);column-gap:48px}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-columns .cozy-addons-menu-item{break-inside:avoid}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-grid .cozy-addons-menu-list{display:grid;grid-template-columns:repeat(var(--oc-cols,3),minmax(0,1fr));gap:12px}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-grid .cozy-addons-menu-link{border:1px solid rgba(127,127,127,.3);border-radius:16px;padding:22px 20px}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-editorial .cozy-addons-menu-list{font-size:var(--oc-fs,clamp(2.6rem,6vw,5.5rem));font-weight:var(--oc-fw,700);line-height:1.02;letter-spacing:-.03em;gap:0}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-editorial .cozy-addons-menu-link{padding:6px 0;background:none}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-content-editorial .cozy-addons-menu-link:hover{background:none;opacity:.7}
+
+/* ---- close button ---- */
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-closebtn .cozy-addons-menu-close{display:inline-grid;place-items:center;position:absolute;top:18px;right:18px;z-index:2;width:44px;height:44px;border:0;border-radius:12px;background:rgba(127,127,127,.18);color:inherit;cursor:pointer}
+.cozy-addons-menu.cozy-addons-menu--oc.cozy-addons-menu--bp-__BP__.cozy-addons-menu--oc-closebtn.cozy-addons-menu--oc-close-left .cozy-addons-menu-close{left:18px;right:auto}
+}

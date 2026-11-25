@@ -783,13 +783,16 @@ function cozy_addons_popup_render_totals_bar( $views ) {
 			sprintf(
 				/* translators: %s: "Upgrade to Pro" link. */
 				__( 'Popup analytics is a Pro feature. %s to see impressions, clicks and dismissals for your popups.', 'cozy-addons' ),
-				'<a href="https://cozythemes.com/pricing-and-plans/" target="_blank" rel="noopener">' . esc_html__( 'Upgrade to Pro', 'cozy-addons' ) . '</a>'
+				'<a href="https://cozythemes.com/pricing-and-plans/" target="_blank" rel="noopener">' . esc_html__( 'Upgrade to Pro', 'cozy-addons' ) . '<span class="screen-reader-text"> ' . esc_html__( '(opens in a new tab)', 'cozy-addons' ) . '</span></a>'
 			),
 			array(
-				'a' => array(
+				'a'    => array(
 					'href'   => array(),
 					'target' => array(),
 					'rel'    => array(),
+				),
+				'span' => array(
+					'class' => array(),
 				),
 			)
 		);

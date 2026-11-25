@@ -362,7 +362,7 @@ $features = array(
 			'pro'   => 'Plus status pipeline',
 		),
 		array(
-			'label' => 'Mailchimp Mailing Lists (Brevo coming soon)',
+			'label' => 'Mailchimp & Brevo Mailing Lists',
 			'free'  => false,
 			'pro'   => true,
 		),
@@ -378,6 +378,73 @@ $features = array(
 		),
 		array(
 			'label' => 'WooCommerce Product Enquiry',
+			'free'  => false,
+			'pro'   => true,
+		),
+	),
+	'Advanced Search'    => array(
+		array(
+			'label' => 'Instant Search Block (search bar, icon, full-screen & inline styles)',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Relevance Ranking, Phrases & Excluded Words',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Thumbnails, Excerpts & Highlighted Matches',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Type Filter Tabs, Grouped Results & View All',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Recent Searches & Category / Tag Suggestions',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Keyboard Navigation & Ctrl/⌘ + K Shortcut',
+			'free'  => true,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Typo Tolerance & "Did You Mean"',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Synonyms & Custom Field / SKU Search',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'WooCommerce Price, Stock & Rating in Results',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Popular & Suggested Searches',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Search Insights, Content Gaps & CSV Export',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Voice Search',
+			'free'  => false,
+			'pro'   => true,
+		),
+		array(
+			'label' => 'Better Ranking on the Theme\'s Search Results Page',
 			'free'  => false,
 			'pro'   => true,
 		),

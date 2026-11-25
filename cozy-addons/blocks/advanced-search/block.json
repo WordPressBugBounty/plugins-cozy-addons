@@ -1,0 +1,357 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cozy-block/advanced-search",
+  "title": "Advanced Search",
+  "description": "Instant search with a command-palette modal, full-screen canvas or inline dropdown. Ranked results, thumbnails, highlights, filter tabs and keyboard navigation.",
+  "category": "cozy-block",
+  "keywords": [
+    "search",
+    "find",
+    "instant",
+    "live search",
+    "ajax search",
+    "woocommerce"
+  ],
+  "textdomain": "cozy-addons",
+  "attributes": {
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "mode": {
+      "type": "string",
+      "default": "form",
+      "enum": [
+        "form",
+        "icon",
+        "fullscreen",
+        "inline"
+      ]
+    },
+    "buttonStyle": {
+      "type": "string",
+      "default": "text",
+      "enum": [
+        "text",
+        "icon"
+      ]
+    },
+    "label": {
+      "type": "string",
+      "default": ""
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonText": {
+      "type": "string",
+      "default": ""
+    },
+    "postTypes": {
+      "type": "string",
+      "default": ""
+    },
+    "taxonomies": {
+      "type": "string",
+      "default": ""
+    },
+    "perPage": {
+      "type": "number",
+      "default": 0
+    },
+    "minChars": {
+      "type": "number",
+      "default": 0
+    },
+    "modalWidth": {
+      "type": "number",
+      "default": 720
+    },
+    "showRecent": {
+      "type": "boolean"
+    },
+    "showPopular": {
+      "type": "boolean"
+    },
+    "showSuggestions": {
+      "type": "boolean"
+    },
+    "showQueries": {
+      "type": "boolean"
+    },
+    "groupResults": {
+      "type": "boolean"
+    },
+    "fuzzy": {
+      "type": "boolean"
+    },
+    "showImages": {
+      "type": "boolean"
+    },
+    "showExcerpts": {
+      "type": "boolean"
+    },
+    "highlight": {
+      "type": "boolean"
+    },
+    "showTabs": {
+      "type": "boolean"
+    },
+    "showViewAll": {
+      "type": "boolean"
+    },
+    "loadMore": {
+      "type": "boolean"
+    },
+    "shortcut": {
+      "type": "boolean"
+    },
+    "voice": {
+      "type": "boolean"
+    },
+    "accentColor": {
+      "type": "string",
+      "default": ""
+    },
+    "triggerStyles": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "width": "",
+          "height": "",
+          "align": "",
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          },
+          "font": {
+            "size": ""
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "color": {
+          "text": "",
+          "bg": "",
+          "icon": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "buttonStyles": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          },
+          "font": {
+            "size": ""
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "radius": "",
+        "color": {
+          "text": "",
+          "bg": "",
+          "textHover": "",
+          "bgHover": ""
+        }
+      }
+    },
+    "iconStyles": {
+      "type": "object",
+      "default": {
+        "size": "",
+        "iconSize": "",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "color": {
+          "icon": "",
+          "bg": "",
+          "iconHover": "",
+          "bgHover": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "panelStyles": {
+      "type": "object",
+      "default": {
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "color": {
+          "bg": "",
+          "text": "",
+          "muted": "",
+          "line": "",
+          "hover": "",
+          "overlay": ""
+        }
+      }
+    },
+    "inputStyles": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "font": {
+            "size": ""
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "placeholder": ""
+        }
+      }
+    },
+    "placeholderStyles": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "font": {
+            "size": ""
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": ""
+      }
+    },
+    "resultStyles": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "imageWidth": "",
+          "imageHeight": "",
+          "font": {
+            "size": ""
+          }
+        },
+        "font": {
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "imageRadius": "",
+        "radius": "",
+        "color": {
+          "title": "",
+          "meta": "",
+          "excerpt": "",
+          "bgHover": "",
+          "highlightBg": "",
+          "highlightText": ""
+        }
+      }
+    },
+    "chipStyles": {
+      "type": "object",
+      "default": {
+        "radius": "",
+        "color": {
+          "text": "",
+          "bg": "",
+          "border": "",
+          "textHover": "",
+          "bgHover": ""
+        }
+      }
+    },
+    "tabStyles": {
+      "type": "object",
+      "default": {
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "activeBorder": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "color": {
+          "text": "",
+          "bg": "",
+          "activeText": "",
+          "activeBg": ""
+        }
+      }
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--advanced-search--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

@@ -1,0 +1,133 @@
+/*
+ * Advanced Mega Menu (Cozy Blocks): frontend styles (desktop + shared).
+ * Mobile layouts live in mobile.tpl.css and are stamped per breakpoint by PHP.
+ * Tunables are CSS custom properties (set per instance by the block).
+ */
+.cozy-addons-menu{position:relative;line-height:1.4}
+.cozy-addons-menu *,.cozy-addons-menu *::before,.cozy-addons-menu *::after{box-sizing:border-box}
+.cozy-addons-menu-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+html.cozy-addons-menu-lock{overflow:hidden}
+
+/* Controls that only exist on small screens */
+.cozy-addons-menu-toggle,.cozy-addons-menu-close,.cozy-addons-menu-backdrop{display:none}
+
+/* List */
+.cozy-addons-menu-list{display:flex;flex-direction:var(--cozy-addons-menu-dir,row);align-items:var(--cozy-addons-menu-ai,center);justify-content:var(--cozy-addons-menu-justify,flex-start);flex-wrap:wrap;gap:var(--cozy-addons-menu-gap,4px);margin:0;padding:0;list-style:none;font-size:var(--cozy-addons-menu-fs,inherit);font-family:var(--cozy-addons-menu-ff,inherit);font-weight:var(--cozy-addons-menu-fw,inherit);letter-spacing:var(--cozy-addons-menu-ls,inherit);text-transform:var(--cozy-addons-menu-tt,inherit)}
+.cozy-addons-menu-item{position:relative;margin:0;padding:0;list-style:none}
+.cozy-addons-menu-has-mega{position:static}
+.cozy-addons-menu-row{display:flex;align-items:center}
+
+/* Links and buttons */
+.cozy-addons-menu-link{position:relative;display:inline-flex;align-items:center;gap:.55em;margin:0;padding:var(--cozy-addons-menu-pad,.65em .95em);border:0;border-radius:var(--cozy-addons-menu-item-r,12px);background:transparent;color:var(--cozy-addons-menu-text,inherit);font:inherit;font-size:inherit;line-height:var(--cozy-addons-menu-lh,1.3);text-align:left;text-decoration:var(--cozy-addons-menu-td,none);cursor:pointer;transition:color .18s,background-color .18s}
+.cozy-addons-menu-link:hover,.cozy-addons-menu-has-sub.is-open>.cozy-addons-menu-row>.cozy-addons-menu-link{color:var(--cozy-addons-menu-hover,var(--cozy-addons-menu-text,inherit));background:var(--cozy-addons-menu-hover-bg,rgba(127,127,127,.12))}
+.cozy-addons-menu-link--static{cursor:default}
+.cozy-addons-menu-link--static:hover{background:transparent}
+.cozy-addons-menu-list>.cozy-addons-menu-item.is-current>.cozy-addons-menu-link,
+.cozy-addons-menu-list>.cozy-addons-menu-item.is-current>.cozy-addons-menu-row>.cozy-addons-menu-link,
+.cozy-addons-menu-list>.cozy-addons-menu-item.has-current>.cozy-addons-menu-row>.cozy-addons-menu-link{color:var(--cozy-addons-menu-active,var(--cozy-addons-menu-text,inherit))}
+.cozy-addons-menu-list>.cozy-addons-menu-item.is-current>.cozy-addons-menu-link::after,
+.cozy-addons-menu-list>.cozy-addons-menu-item.is-current>.cozy-addons-menu-row>.cozy-addons-menu-link::after,
+.cozy-addons-menu-list>.cozy-addons-menu-item.has-current>.cozy-addons-menu-row>.cozy-addons-menu-link::after{content:"";position:absolute;left:.95em;right:.95em;bottom:3px;height:2px;border-radius:2px;background:var(--cozy-addons-menu-accent,#FFB547)}
+.cozy-addons-menu-link:focus-visible,.cozy-addons-menu-chevron:focus-visible,.cozy-addons-menu-toggle:focus-visible,.cozy-addons-menu-close:focus-visible{outline:3px solid var(--cozy-addons-menu-accent,#FFB547);outline-offset:2px}
+
+.cozy-addons-menu-ico{display:inline-grid;place-items:center;flex:none}
+.cozy-addons-menu-ico svg{width:1.25em;height:1.25em}
+.cozy-addons-menu-text{display:grid;gap:.15em}
+.cozy-addons-menu-desc{font-size:.82em;font-weight:400;opacity:.7}
+.cozy-addons-menu-badge{flex:none;padding:.15em .6em;border-radius:99px;font-size:.72em;font-weight:700;line-height:1.5}
+.cozy-addons-menu-badge--accent{background:var(--cozy-addons-menu-accent,#FFB547);color:#12172B}
+.cozy-addons-menu-badge--dark{background:#12172B;color:#fff}
+.cozy-addons-menu-badge--soft{background:rgba(127,127,127,.2);color:inherit}
+
+/* Submenu toggle */
+.cozy-addons-menu-chevron{display:inline-grid;place-items:center;width:28px;height:28px;margin:0 0 0 -6px;padding:0;border:0;border-radius:8px;background:transparent;color:var(--cozy-addons-menu-text,inherit);cursor:pointer}
+.cozy-addons-menu-chevron:hover{background:var(--cozy-addons-menu-hover-bg,rgba(127,127,127,.12))}
+.cozy-addons-menu-caret{transition:transform .2s}
+.cozy-addons-menu-has-sub.is-open>.cozy-addons-menu-row .cozy-addons-menu-caret{transform:rotate(180deg)}
+.cozy-addons-menu-link--toggle .cozy-addons-menu-caret{margin-left:.15em}
+
+/* Panels: closed panels use visibility so links are out of the tab order and AT tree */
+.cozy-addons-menu-sub,.cozy-addons-menu-mega{position:absolute;top:calc(100% + var(--cozy-addons-menu-panel-offset,0px));left:var(--cozy-addons-menu-shift,0);z-index:var(--cozy-addons-menu-z,9990);visibility:hidden;opacity:0;transform:translateY(8px);color:var(--cozy-addons-menu-panel-text,#12172B);background:var(--cozy-addons-menu-panel-bg,#fff);border-radius:var(--cozy-addons-menu-panel-r,18px);box-shadow:0 30px 60px -20px rgba(10,14,40,.35),0 0 0 1px rgba(18,23,43,.06)}
+.cozy-addons-menu--anim .cozy-addons-menu-sub,.cozy-addons-menu--anim .cozy-addons-menu-mega{transition:opacity .18s,transform .18s,visibility 0s linear .18s}
+.cozy-addons-menu-sub::before,.cozy-addons-menu-mega::before{content:"";position:absolute;left:0;right:0;top:calc(-12px - var(--cozy-addons-menu-panel-offset,0px));height:calc(12px + var(--cozy-addons-menu-panel-offset,0px))}
+.cozy-addons-menu-has-sub.is-open>.cozy-addons-menu-sub,.cozy-addons-menu-has-sub.is-open>.cozy-addons-menu-mega{visibility:visible;opacity:1;transform:none;transition-delay:0s}
+
+.cozy-addons-menu-sub{min-width:var(--cozy-addons-menu-sub-w,240px);margin:0;padding:8px;list-style:none}
+.cozy-addons-menu-sub .cozy-addons-menu-link,.cozy-addons-menu-mega .cozy-addons-menu-link{width:100%;color:var(--cozy-addons-menu-panel-text,#12172B)}
+.cozy-addons-menu-sub .cozy-addons-menu-link:hover,.cozy-addons-menu-mega .cozy-addons-menu-link:hover{color:var(--cozy-addons-menu-panel-text,#12172B);background:rgba(127,127,127,.12)}
+.cozy-addons-menu-sub .cozy-addons-menu-row{width:100%}
+.cozy-addons-menu-sub .cozy-addons-menu-row .cozy-addons-menu-link{flex:1}
+.cozy-addons-menu-sub .cozy-addons-menu-chevron{color:inherit}
+.cozy-addons-menu-sub .cozy-addons-menu-sub{left:calc(100% + 8px);top:-8px}
+.cozy-addons-menu-sub .cozy-addons-menu-has-sub.is-flip>.cozy-addons-menu-sub{left:auto;right:calc(100% + 8px)}
+.cozy-addons-menu-sub .cozy-addons-menu-sub::before{left:-16px;right:auto;top:0;bottom:0;width:16px;height:auto}
+.cozy-addons-menu-sub .cozy-addons-menu-has-sub.is-flip>.cozy-addons-menu-sub::before{left:auto;right:-16px}
+
+/* Mega menu */
+.cozy-addons-menu-mega{width:var(--cozy-addons-menu-mw,min(1200px,calc(100vw - 24px)));padding:var(--cozy-addons-menu-mega-pad,28px 32px);background:var(--cozy-addons-menu-mega-bg,var(--cozy-addons-menu-panel-bg,#fff));border-radius:var(--cozy-addons-menu-mega-r,20px)}
+.cozy-addons-menu-mega--flat{box-shadow:none}
+.cozy-addons-menu-has-mega[data-width-mode="full"]>.cozy-addons-menu-mega{border-radius:0 0 var(--cozy-addons-menu-mega-r,20px) var(--cozy-addons-menu-mega-r,20px)}
+.cozy-addons-menu-mega__content{max-width:var(--cozy-addons-menu-inner,none);margin-inline:auto}
+.cozy-addons-menu-mega__content>*{max-width:100%}
+.cozy-addons-menu-mega__content>:first-child{margin-top:0}
+.cozy-addons-menu-mega__content>:last-child{margin-bottom:0}
+/* Links placed in a Columns block (or anywhere in the panel), and the small column heading style. */
+.cozy-addons-menu-mega div.cozy-addons-menu-item{margin-block:0}
+.cozy-addons-menu-mega div.cozy-addons-menu-item+div.cozy-addons-menu-item{margin-top:2px}
+.cozy-addons-menu-mega .cozy-addons-menu-heading{margin:0 0 8px;padding:0 10px;font-size:.82em;font-weight:700;opacity:.65}
+.cozy-addons-menu-mega .cozy-addons-menu-link{align-items:flex-start;padding:10px;border-radius:14px}
+.cozy-addons-menu-mega .cozy-addons-menu-ico{width:40px;height:40px;border-radius:12px;background:rgba(127,127,127,.12)}
+.cozy-addons-menu-mega .cozy-addons-menu-label{font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+	.cozy-addons-menu *,.cozy-addons-menu *::before,.cozy-addons-menu *::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+
+/* ===== Mobile bar (only the menu toggle; hidden on desktop) and the off-canvas panel logo ===== */
+.cozy-addons-menu-bar{display:none}
+.cozy-addons-menu-logo{display:flex;align-items:center;min-width:0}
+.cozy-addons-menu-logo a{display:inline-flex;align-items:center;min-width:0;color:inherit;text-decoration:none}
+.cozy-addons-menu-logo img{display:block;max-width:100%;max-height:40px;width:auto;height:auto}
+.cozy-addons-menu-logo__text{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cozy-addons-menu-actions{display:flex;align-items:center;gap:6px}
+
+/* Off-canvas panel buttons */
+.cozy-addons-menu-ctas__list{display:grid;gap:10px}
+.cozy-addons-menu-cta{display:flex;align-items:center;justify-content:center;gap:.6em;min-height:48px;padding:.75em 1.1em;border-radius:14px;font-weight:700;line-height:1.2;text-align:center;text-decoration:none;color:inherit;transition:filter .18s,background-color .18s}
+.cozy-addons-menu-cta svg{display:block;width:20px;height:20px;flex:none}
+.cozy-addons-menu-cta:focus-visible{outline:3px solid var(--cozy-addons-menu-accent,#FFB547);outline-offset:2px}
+.cozy-addons-menu-cta--style-primary{background:var(--cozy-addons-menu-accent,#FFB547);color:#12172B}
+.cozy-addons-menu-cta--style-secondary{background:rgba(127,127,127,.18)}
+.cozy-addons-menu-cta--style-outline{background:transparent;box-shadow:inset 0 0 0 2px currentColor}
+.cozy-addons-menu-cta--style-link{justify-content:flex-start;min-height:44px;padding-left:.2em;background:transparent;text-decoration:underline;text-underline-offset:3px}
+.cozy-addons-menu-cta:hover{filter:brightness(.96)}
+
+/* Mega menu overlay + blur. Created and placed by view.js so it works inside any header. */
+.cozy-addons-menu-overlay{position:fixed;left:0;top:0;width:100%;height:100%;background:var(--cozy-addons-menu-ov-color,rgba(10,14,40,.5));-webkit-backdrop-filter:blur(var(--cozy-addons-menu-ov-blur,3px));backdrop-filter:blur(var(--cozy-addons-menu-ov-blur,3px));opacity:0;pointer-events:none;transition:opacity var(--cozy-addons-menu-ov-dur,250ms) ease}
+.cozy-addons-menu-overlay.is-on{opacity:1}
+@media (prefers-reduced-motion:reduce){.cozy-addons-menu-overlay{transition:none}}
+
+/* ===== Desktop off-canvas: trigger, push, scroll lock (panel rules live in offcanvas.tpl.css) ===== */
+.cozy-addons-menu-oc-only{display:none}
+.cozy-addons-menu-oc-body{display:contents}
+.cozy-addons-menu-oc-nav{display:contents}
+.cozy-addons-menu-oc-trigger{display:none;align-items:center;justify-content:center;gap:.6em;min-height:44px;margin:0;padding:var(--oc-t-pad,.6em 1em);border:var(--oc-t-bw,0) solid var(--oc-t-bc,currentColor);border-radius:var(--oc-t-r,12px);background:var(--oc-t-bg,transparent);color:var(--oc-t-color,var(--cozy-addons-menu-text,inherit));font:inherit;font-weight:600;line-height:1;cursor:pointer;transition:background-color .18s,color .18s}
+.cozy-addons-menu-oc-trigger:hover{background:var(--oc-t-hover,var(--cozy-addons-menu-hover-bg,rgba(127,127,127,.14)))}
+.cozy-addons-menu-oc-trigger:focus-visible{outline:3px solid var(--cozy-addons-menu-accent,#FFB547);outline-offset:2px}
+.cozy-addons-menu-oc-trigger--icon-only{min-width:44px;padding:.6em}
+.cozy-addons-menu-oc-trigger--align-center{margin-inline:auto}
+.cozy-addons-menu-oc-trigger--align-end{margin-inline-start:auto}
+.cozy-addons-menu-oc-ico{display:inline-grid;place-items:center}
+.cozy-addons-menu-oc-ico svg{display:block;width:22px;height:22px}
+.cozy-addons-menu-oc-bars{display:inline-grid;place-items:stretch;gap:4px;width:22px}
+.cozy-addons-menu-oc-bars i{display:block;height:2px;border-radius:2px;background:currentColor}
+.cozy-addons-menu-oc-trigger-wrap{display:flex}
+.cozy-addons-menu-oc-trigger-wrap--center{justify-content:center}
+.cozy-addons-menu-oc-trigger-wrap--end{justify-content:flex-end}
+.cozy-addons-menu-oc-trigger--ext{display:inline-flex}
+[data-cozy-addons-menu-oc-off]{display:none!important}
+
+html.cozy-addons-menu-lock{padding-right:var(--cozy-addons-menu-sbw,0px)}
+html.cozy-addons-menu-push-lock{overflow-x:hidden}
+.cozy-addons-menu-push-target{translate:var(--cozy-addons-menu-push-x,0px) 0;transition:translate var(--cozy-addons-menu-push-dur,350ms) cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){.cozy-addons-menu-push-target{transition:none}}

@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
   window["cozyBlockProductReviewInit"] = (e) => {
     const n = e.replace(/-/gi, "_");
     const blockOptions = window[`cozyProductReview_${n}`];
@@ -302,4 +302,4 @@
       return reviewTemplateString;
     }
   };
-})(jQuery);
+})();

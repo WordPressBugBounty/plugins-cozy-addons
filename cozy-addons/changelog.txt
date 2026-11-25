@@ -1,3 +1,11 @@
+= 2.2.30 - Nov 25, 2026 = 
+* Add: Advanced Search block with live results and voice search.
+* Add: Brevo integration for Lead Forms with opt-in settings, confirmation and double opt-in emails, and field mapping.
+* Add: Accessibility improvements for Lead Forms, Popups and Advanced Search (screen reader labels, keyboard and focus handling, reduced motion support).
+* Update: Mega Menu block rebuilt with dropdown and mega panel items, mobile drawer and live editor preview. Menus built with the previous Mega Menu block need to be recreated.
+* Update: Redesigned admin dashboard with onboarding, quick start cards, FAQ and theme recommendations.
+* Update: Performance improvements: editor-only assets no longer load on the frontend, animation assets load only when used and Google Fonts are no longer loaded twice.
+
 = 2.2.29 - Oct 31, 2026 = 
 * Add: Mailchimp integration for Lead Forms with opt-in settings, audience field mapping and tags.
 * Add: Mailing list and webhooks integrations for Lead Forms.

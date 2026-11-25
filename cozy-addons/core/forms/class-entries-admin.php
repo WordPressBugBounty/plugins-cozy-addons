@@ -1002,7 +1002,7 @@ final class Entries_Admin {
 
 	/**
 	 * Tells the admin, on the Lead Forms screens only, when recent sign-ups could not be added to
-	 * Mailchimp, until it is dismissed or a new one fails. Visitors never see these errors: the
+	 * Mailchimp or Brevo, until it is dismissed or a new one fails. Visitors never see these errors: the
 	 * contact is sent after their answer.
 	 *
 	 * @return void
@@ -1016,13 +1016,21 @@ final class Entries_Admin {
 				cozy_addons_form_admin_url( 'ca-form-settings', array( 'tab' => 'integrations' ) ) => __( 'Check the Mailchimp settings', 'cozy-addons' ),
 			)
 		);
+		self::log_notice(
+			'brevo',
+			__( 'Recent sign-ups could not be added to Brevo.', 'cozy-addons' ),
+			'',
+			array(
+				cozy_addons_form_admin_url( 'ca-form-settings', array( 'tab' => 'integrations' ) ) => __( 'Check the Brevo settings', 'cozy-addons' ),
+			)
+		);
 	}
 
 	/**
 	 * A dismissible error notice for the newest logged failures of one service that this admin
 	 * has not dismissed yet.
 	 *
-	 * @param string               $source Log source: "email" or "mailchimp".
+	 * @param string               $source Log source: "email", "mailchimp" or "brevo".
 	 * @param string               $intro  First sentence.
 	 * @param string               $extra  Extra sentence, may be empty.
 	 * @param array<string,string> $links  URL => label, after the link to the error log.
@@ -1075,7 +1083,7 @@ final class Entries_Admin {
 		check_ajax_referer( 'ca_form_dismiss_notice' );
 		$source = isset( $_POST['notice'] ) ? sanitize_key( wp_unslash( $_POST['notice'] ) ) : '';
 		$last   = isset( $_POST['last'] ) ? absint( $_POST['last'] ) : 0;
-		if ( ! current_user_can( 'manage_options' ) || ! in_array( $source, array( 'email', 'mailchimp' ), true ) || ! $last || $last > Form_Log::latest_id( $source ) ) {
+		if ( ! current_user_can( 'manage_options' ) || ! in_array( $source, array( 'email', 'mailchimp', 'brevo' ), true ) || ! $last || $last > Form_Log::latest_id( $source ) ) {
 			wp_send_json_error( null, 403 );
 		}
 		update_user_meta( get_current_user_id(), 'ca_form_log_dismissed_' . $source, $last );

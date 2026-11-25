@@ -341,22 +341,27 @@
 .ca-form-log__table td:first-child { white-space: nowrap !important; color: var(--ca-lf-muted); }
 .ca-form-log__table td:nth-child(2) { white-space: nowrap !important; font-weight: 500; }
 
-/* Settings → Integrations → Mailchimp list settings */
-.ca-form-mc-list { max-width: 640px; margin: 20px 0 4px; overflow: hidden; border: 1px solid var(--ca-lf-border); border-radius: var(--ca-lf-radius); background: var(--ca-lf-light); box-shadow: var(--ca-lf-shadow); }
-.ca-form-mc-list__head { display: flex; gap: 12px; align-items: flex-start; padding: 16px 20px; border-bottom: 1px solid var(--ca-lf-border); background: var(--ca-lf-primary-accent); }
-.ca-form-mc-list__head .dashicons { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 8px; background: var(--ca-lf-light); color: var(--ca-lf-primary); font-size: 18px; line-height: 32px; text-align: center; }
-.ca-form-mc-list__head h3 { margin: 0; color: var(--ca-lf-heading); font-size: 14px; line-height: 1.4; }
-.ca-form-mc-list__head p { margin: 2px 0 0; color: var(--ca-lf-muted); font-size: 13px; }
-.ca-form-mc-option { display: flex; gap: 12px; align-items: flex-start; padding: 14px 20px; border-bottom: 1px solid var(--ca-lf-border); cursor: pointer; transition: background-color .15s; }
-.ca-form-mc-option:hover { background: #fafbff; }
-.ca-form-is-locked .ca-form-mc-option { cursor: default; }
-.ca-form-is-locked .ca-form-mc-option:hover { background: none; }
-.ca-form-mc-option input[type="checkbox"] { flex: 0 0 auto; margin: 2px 0 0; }
-.ca-form-mc-option__text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.ca-form-mc-option__title { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--ca-lf-heading); font-weight: 600; }
-.ca-form-mc-option__badge { padding: 1px 8px; border-radius: 999px; background: var(--ca-lf-primary-accent); color: var(--ca-lf-primary); font-size: 11px; font-weight: 500; line-height: 18px; }
-.ca-form-mc-option__help { color: var(--ca-lf-muted); font-size: 13px; line-height: 1.5; }
-.ca-form-mc-list__foot { padding: 12px 20px; background: #f8fafc; }
-.ca-form-mc-list__foot p { display: flex; gap: 8px; align-items: flex-start; margin: 0; padding: 4px 0; color: var(--ca-lf-muted); font-size: 12.5px; line-height: 1.5; }
-.ca-form-mc-list__foot .dashicons { flex: 0 0 auto; width: 16px; height: 16px; margin-top: 1px; color: var(--ca-lf-primary); font-size: 16px; }
-.ca-form-mc-list__foot strong { color: var(--ca-lf-heading); }
+/* Settings → Integrations → Mailchimp and Brevo list settings */
+.ca-form-list-card { max-width: 640px; margin: 20px 0 4px; overflow: hidden; border: 1px solid var(--ca-lf-border); border-radius: var(--ca-lf-radius); background: var(--ca-lf-light); box-shadow: var(--ca-lf-shadow); }
+.ca-form-list-card__head { display: flex; gap: 12px; align-items: flex-start; padding: 16px 20px; border-bottom: 1px solid var(--ca-lf-border); background: var(--ca-lf-primary-accent); }
+.ca-form-list-card__head .dashicons { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 8px; background: var(--ca-lf-light); color: var(--ca-lf-primary); font-size: 18px; line-height: 32px; text-align: center; }
+.ca-form-list-card__head h3 { margin: 0; color: var(--ca-lf-heading); font-size: 14px; line-height: 1.4; }
+.ca-form-list-card__head p { margin: 2px 0 0; color: var(--ca-lf-muted); font-size: 13px; }
+.ca-form-list-option { display: flex; gap: 12px; align-items: flex-start; padding: 14px 20px; border-bottom: 1px solid var(--ca-lf-border); cursor: pointer; transition: background-color .15s; }
+.ca-form-list-option:hover { background: #fafbff; }
+.ca-form-is-locked .ca-form-list-option { cursor: default; }
+.ca-form-is-locked .ca-form-list-option:hover { background: none; }
+.ca-form-list-option input[type="checkbox"] { flex: 0 0 auto; margin: 2px 0 0; }
+.ca-form-list-option__text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.ca-form-list-option__title { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--ca-lf-heading); font-weight: 600; }
+.ca-form-list-option__badge { padding: 1px 8px; border-radius: 999px; background: var(--ca-lf-primary-accent); color: var(--ca-lf-primary); font-size: 11px; font-weight: 500; line-height: 18px; }
+.ca-form-list-option__help { color: var(--ca-lf-muted); font-size: 13px; line-height: 1.5; }
+.ca-form-list-card__foot { padding: 12px 20px; background: #f8fafc; }
+.ca-form-list-card__foot p { display: flex; gap: 8px; align-items: flex-start; margin: 0; padding: 4px 0; color: var(--ca-lf-muted); font-size: 12.5px; line-height: 1.5; }
+.ca-form-list-card__foot .dashicons { flex: 0 0 auto; width: 16px; height: 16px; margin-top: 1px; color: var(--ca-lf-primary); font-size: 16px; }
+.ca-form-list-card__foot strong { color: var(--ca-lf-heading); }
+.ca-form-list-option:has(.ca-form-list-option__main) { display: block; cursor: default; }
+.ca-form-list-option__main { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+.ca-form-list-option__more { margin: 10px 0 0 28px; }
+.ca-form-list-option__more p { margin: 0 0 8px; }
+.ca-form-list-option__more label { color: var(--ca-lf-heading); font-size: 13px; font-weight: 500; }

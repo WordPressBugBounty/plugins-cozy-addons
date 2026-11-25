@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
   window["cozyBlockProgressBarInit"] = (e) => {
     const n = e.replace(/-/gi, "_");
     const blockOptions = window[`cozyProgressBar_${n}`];
@@ -138,4 +138,4 @@
 
     window.addEventListener("scroll", addCounterAnimation);
   };
-})(jQuery);
+})();

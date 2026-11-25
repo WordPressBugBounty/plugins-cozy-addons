@@ -381,7 +381,7 @@ if ( ! empty( $font_query ) ) {
 	// Generate the inline style for the Google Fonts link.
 	$google_fonts_url = 'https://fonts.googleapis.com/css2?' . $font_query . '&display=swap';
 
-	echo '<link rel="stylesheet" href="' . $google_fonts_url . '"/>';
+	echo cozy_addons_google_fonts_link( $google_fonts_url ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the helper.
 }
 
 add_action(

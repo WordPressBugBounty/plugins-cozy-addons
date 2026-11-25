@@ -1,0 +1,68 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cozy-block/menu-item",
+	"title": "Menu Item",
+	"category": "cozy-block",
+	"description": "A link to a page, post, category or custom URL.",
+	"icon": "admin-links",
+	"ancestor": [
+		"cozy-block/mega-menu",
+		"cozy-block/menu-panel"
+	],
+	"textdomain": "cozy-addons",
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Menu item"
+		},
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"opensInNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"rel": {
+			"type": "string",
+			"default": ""
+		},
+		"linkId": {
+			"type": "number",
+			"default": 0
+		},
+		"linkType": {
+			"type": "string",
+			"default": ""
+		},
+		"linkKind": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"badge": {
+			"type": "string",
+			"default": ""
+		},
+		"badgeStyle": {
+			"type": "string",
+			"default": "accent"
+		},
+		"opensPanel": {
+			"type": "string",
+			"default": ""
+		}
+	}
+}

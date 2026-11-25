@@ -101,22 +101,29 @@ add_filter( 'default_content', 'ca_popup_builder_default_content', 10, 2 );
 // Impression, click and dismissal tracking, and the list screen columns.
 require_once COZY_ADDONS_PLUGIN_DIR . 'core/cpt/ca-popup-analytics.php';
 
-$ca_popups = get_posts(
-	array(
-		'post_type'      => 'ca_popup_builder',
-		'post_status'    => 'publish',
-		'posts_per_page' => 100,
-	)
-);
-
-if ( ! empty( $ca_popups ) ) {
-	add_action(
-		'wp_body_open',
-		function () use ( $ca_popups ) {
-			foreach ( $ca_popups as $popup ) {
-				// Blocks, shortcodes and embeds, the way post content is rendered.
-				echo cozy_addons_render_popup_content( $popup );
-			}
-		}
+/**
+ * Prints the published popups after <body> opens.
+ *
+ * The popup list used to be queried when this file was included, on every request (admin, REST,
+ * AJAX and cron too). It is now queried only here, on frontend page views, and IDs only.
+ *
+ * @return void
+ */
+function cozy_addons_print_popups() {
+	$popup_ids = get_posts(
+		array(
+			'post_type'              => 'ca_popup_builder',
+			'post_status'            => 'publish',
+			'posts_per_page'         => 100,
+			'fields'                 => 'ids',
+			'no_found_rows'          => true,
+			'update_post_term_cache' => false,
+		)
 	);
+
+	foreach ( $popup_ids as $popup_id ) {
+		// Blocks, shortcodes and embeds, the way post content is rendered.
+		echo cozy_addons_render_popup_content( $popup_id ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Rendered block content.
+	}
 }
+add_action( 'wp_body_open', 'cozy_addons_print_popups' );

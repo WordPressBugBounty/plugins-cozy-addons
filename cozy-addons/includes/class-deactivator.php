@@ -30,5 +30,6 @@ class Deactivator {
 		// Deactivation logic goes here.
 		delete_transient( 'ca_pattern_themes' );
 		wp_clear_scheduled_hook( 'cozy_addons_form_cleanup' );
+		wp_clear_scheduled_hook( 'cozy_addons_search_prune' );
 	}
 }

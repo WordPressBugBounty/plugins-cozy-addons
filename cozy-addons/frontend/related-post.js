@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
   window["cozyBlockRelatedPostsInit"] = (e) => {
     const n = e.replace(/-/gi, "_");
     const blockOptions = window[`cozyRelatedPosts_${n}`];
@@ -20,4 +20,4 @@
       cozyRelatedPosts.style.setProperty(style.property, style.value);
     });
   };
-})(jQuery);
+})();

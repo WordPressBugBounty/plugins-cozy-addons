@@ -141,6 +141,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 							</span>
 							<a href="https://docs.cozythemes.com/cozy-blocks/mega-menu/" target="_blank"
 								rel="noopener"><?php esc_html_e( 'Docs', 'cozy-addons' ); ?></a>
+							<span class="link-separator">
+								<svg width="2" height="2" viewBox="0 0 2 2" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<circle cx="1" cy="1" r="1" fill="currentColor" />
+								</svg>
+							</span>
+							<a href="<?php echo esc_url( admin_url( 'admin.php?page=ca-menu-settings' ) ); ?>"><?php esc_html_e( 'Settings', 'cozy-addons' ); ?></a>
 						</p>
 					</div>
 				</div>
@@ -149,6 +156,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 					$checked = get_option( 'cozy-block--mega-menu' );
 					?>
 					<input type="checkbox" class="cozy-block-active" name="mega-menu" id="cozy-block--mega-menu"
+						<?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
+					<span class="toggle-switcher"></span>
+				</div>
+			</li>
+
+			<li class="block-item flex-layout">
+				<div class="flex-layout">
+					<i class="block-icon">
+						<svg width="26" height="26" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect x="1" y="11" width="48" height="28" rx="14" stroke="currentColor" stroke-width="2" />
+							<circle cx="18" cy="24" r="6" stroke="currentColor" stroke-width="2" />
+							<path d="M22.5 28.5L26.5 32.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+							<rect x="32" y="22" width="9" height="4" rx="2" fill="currentColor" />
+						</svg>
+					</i>
+					<div>
+						<h4 class="block-title"><?php esc_html_e( 'Advanced Search', 'cozy-addons' ); ?></h4>
+						<p class="block-helper-links">
+							<a href="<?php echo esc_url( admin_url( 'admin.php?page=ca-search-settings' ) ); ?>"><?php esc_html_e( 'Settings', 'cozy-addons' ); ?></a>
+						</p>
+					</div>
+				</div>
+				<div class="toggle-switcher-wrap">
+					<?php
+					$checked = get_option( 'cozy-block--advanced-search' );
+					?>
+					<input type="checkbox" class="cozy-block-active" name="advanced-search" id="cozy-block--advanced-search"
 						<?php echo '1' === $checked || '' == $checked ? 'checked' : ''; ?>>
 					<span class="toggle-switcher"></span>
 				</div>

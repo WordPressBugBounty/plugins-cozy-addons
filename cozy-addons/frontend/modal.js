@@ -1,4 +1,32 @@
 (($) => {
+	// ---------------------------------------------------------------
+	// Open popups, oldest first. The Popup Builder renders every published
+	// popup on the page, so several can be open at once. Only the last one
+	// opened handles the keyboard (Escape, Tab trap); closing it hands the
+	// keyboard to the one below.
+	// ---------------------------------------------------------------
+	const openStack = [];
+
+	const ModalStack = {
+		push: function (entry) {
+			this.remove(entry);
+			openStack.push(entry);
+		},
+		remove: function (entry) {
+			const index = openStack.indexOf(entry);
+			if (index !== -1) {
+				openStack.splice(index, 1);
+			}
+		},
+	};
+
+	document.addEventListener("keydown", function (e) {
+		const top = openStack[openStack.length - 1];
+		if (top && typeof top.onKeydown === "function") {
+			top.onKeydown(e);
+		}
+	});
+
 	window["cozyBlockModalInit"] = (n) => {
 		// ---------------------------------------------------------------
 		// Frequency control
@@ -336,6 +364,35 @@
 		const closeIcon = $(`.block-cozyBlock_${blockId} .close-icon-wrapper`);
 
 		// ---------------------------------------------------------------
+		// Accessibility
+		// ---------------------------------------------------------------
+		const reduceMotion =
+			window.matchMedia &&
+			window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		const fadeMs = reduceMotion ? 0 : 400;
+
+		const FOCUSABLE =
+			"a[href], area[href], button:not([disabled]), input:not([disabled]):not([type='hidden']), select:not([disabled]), textarea:not([disabled]), iframe, [contenteditable='true'], [tabindex]:not([tabindex='-1'])";
+
+		function focusableIn($container) {
+			return $container
+				.find(FOCUSABLE)
+				.filter(function () {
+					return $(this).is(":visible");
+				})
+				.toArray();
+		}
+
+		// Name the popup after its first heading; "Popup" stays as the fallback.
+		const heading = element.find("h1, h2, h3, h4, h5, h6").get(0);
+		if (heading) {
+			if (!heading.id) {
+				heading.id = `cozyBlock_${blockId}_title`;
+			}
+			element.attr("aria-labelledby", heading.id).removeAttr("aria-label");
+		}
+
+		// ---------------------------------------------------------------
 		// Analytics
 		//
 		// Popups from the Popup Builder report three events to the REST route
@@ -421,7 +478,7 @@
 
 			if (attributes?.iconStyles?.enabled) {
 				closeIcon.on("click", function () {
-					element.fadeOut(300);
+					element.fadeOut(reduceMotion ? 0 : 300);
 					trackDismiss();
 				});
 			}
@@ -429,22 +486,73 @@
 
 		if (attributes.modalType === "default") {
 			let popupOpen = false;
+			// Element that had focus before the popup opened, focused again on close.
+			let lastFocused = null;
+			// This popup's place in the open-popup stack; onKeydown is set below.
+			const stackEntry = { onKeydown: null, locksScroll: false };
 
-			function closeModal(state = true) {
+			const $modalBtn = elWrapper.find(".cozy-modal-button");
+			const isFloat =
+				attributes.modalEvent === "click" &&
+				attributes?.clickButtonStyles?.variation === "float";
+
+			// Keep Tab inside the modal only when it can be closed. A popup with
+			// the close icon turned off cannot be dismissed, so keyboard users
+			// must still be able to Tab out of it.
+			const trapFocus = !isFloat && !!attributes?.iconStyles?.enabled;
+
+			function isOpen() {
+				return isFloat ? !element.hasClass("display-none") : popupOpen;
+			}
+
+			function focusInto() {
+				const target = focusableIn(element)[0] || element.get(0);
+				if (target) {
+					target.focus({ preventScroll: true });
+				}
+			}
+
+			function restoreFocus() {
+				if (
+					lastFocused &&
+					lastFocused !== document.body &&
+					document.contains(lastFocused) &&
+					typeof lastFocused.focus === "function"
+				) {
+					lastFocused.focus({ preventScroll: true });
+				}
+				lastFocused = null;
+			}
+
+			function closeModal(state = true, opener = null) {
 				if (state) {
 					if (!attributes?.iconStyles?.enabled) {
 						return;
 					}
-					$body.removeClass("overflow-hidden");
-					element.fadeOut().addClass("display-none");
-					overlay.addClass("display-none");
 
-					// Escape also lands here while the popup is closed.
+					const wasOpen = isOpen();
+
+					ModalStack.remove(stackEntry);
+
+					// Another popup still open keeps the page scroll locked.
+					if (!openStack.some((entry) => entry.locksScroll)) {
+						$body.removeClass("overflow-hidden");
+					}
+					element.fadeOut(fadeMs).addClass("display-none");
+					overlay.addClass("display-none");
+					$modalBtn.attr("aria-expanded", "false");
+
 					if (popupOpen) {
 						popupOpen = false;
 						trackDismiss();
 					}
+
+					if (wasOpen) {
+						restoreFocus();
+					}
 				} else {
+					lastFocused = opener || document.activeElement;
+
 					const windowWidth = $(window).width();
 
 					/* if (
@@ -468,12 +576,15 @@
 					const isVisibleOnDevice = !!vis[device];
 					const scrollLocked = !attributes.isPremium || !attributes.allowScroll;
 
-					if (scrollLocked && isVisibleOnDevice) {
+					stackEntry.locksScroll = scrollLocked && isVisibleOnDevice;
+					if (stackEntry.locksScroll) {
 						$body.addClass("overflow-hidden");
 					}
 
-					element.fadeIn().removeClass("display-none");
+					ModalStack.push(stackEntry);
+					element.removeClass("display-none").hide().fadeIn(fadeMs, focusInto);
 					overlay.removeClass("display-none");
+					$modalBtn.attr("aria-expanded", "true");
 
 					popupOpen = true;
 					trackImpression();
@@ -524,18 +635,26 @@
 					});
 				}
 			} else if (attributes.modalEvent === "click") {
-				const $modalBtn = elWrapper.find(".cozy-modal-button");
-
 				if (
 					!attributes?.clickButtonStyles?.variation ||
 					attributes?.clickButtonStyles?.variation === "default"
 				) {
 					$modalBtn.click(function () {
-						closeModal(false);
+						closeModal(false, this);
 					});
-				} else if (attributes?.clickButtonStyles?.variation === "float") {
+				} else if (isFloat) {
 					$modalBtn.click(function () {
-						element.fadeToggle().toggleClass("display-none");
+						if (element.hasClass("display-none")) {
+							lastFocused = this;
+							ModalStack.push(stackEntry);
+							element.removeClass("display-none").hide().fadeIn(fadeMs, focusInto);
+							$modalBtn.attr("aria-expanded", "true");
+						} else {
+							element.fadeOut(fadeMs).addClass("display-none");
+							$modalBtn.attr("aria-expanded", "false");
+							ModalStack.remove(stackEntry);
+							lastFocused = null;
+						}
 					});
 				}
 			}
@@ -543,11 +662,46 @@
 			// Close the modal
 			closeIcon.on("click", closeModal);
 			overlay.on("click", closeModal);
-			$(document).on("keyup", function (e) {
+
+			// Keyboard handling runs through the shared stack, so only the popup
+			// opened last answers Escape and keeps Tab inside it.
+			stackEntry.onKeydown = function (e) {
 				if (e.key === "Escape" || e.keyCode === 27) {
-					closeModal();
+					if (isOpen()) {
+						closeModal();
+					}
+					return;
 				}
-			});
+
+				// Focus trap: Tab and Shift+Tab wrap around inside the modal.
+				if (e.key !== "Tab" || !trapFocus || !popupOpen) {
+					return;
+				}
+
+				const dialog = element.get(0);
+				const items = focusableIn(element);
+				const active = document.activeElement;
+
+				if (!items.length) {
+					e.preventDefault();
+					dialog.focus();
+					return;
+				}
+
+				const first = items[0];
+				const last = items[items.length - 1];
+
+				if (!dialog.contains(active)) {
+					e.preventDefault();
+					(e.shiftKey ? last : first).focus();
+				} else if (e.shiftKey && (active === first || active === dialog)) {
+					e.preventDefault();
+					last.focus();
+				} else if (!e.shiftKey && active === last) {
+					e.preventDefault();
+					first.focus();
+				}
+			};
 		}
 	};
 })(jQuery);

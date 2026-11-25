@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cozy-block/menu-panel",
+	"title": "Mega Panel",
+	"category": "cozy-block",
+	"description": "Spacing and background for a mega menu's panel. Its content fills the panel full width; each Mega Menu item sets the panel size.",
+	"icon": "screenoptions",
+	"textdomain": "cozy-addons",
+	"attributes": {
+		"padding": {
+			"type": "object",
+			"default": {}
+		},
+		"panelBg": {
+			"type": "string",
+			"default": ""
+		},
+		"radius": {
+			"type": "string",
+			"default": ""
+		},
+		"shadow": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"inserter": false,
+		"html": false,
+		"reusable": false
+	}
+}

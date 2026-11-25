@@ -113,6 +113,108 @@ function cozy_addons_premium_access() {
 	return $premium_status;
 }
 
+/**
+ * Collects Google Fonts requested by blocks and loads each family once per page.
+ *
+ * Blocks used to echo their own `<link>` for every instance (dozens of duplicate stylesheet
+ * requests in the middle of `<body>`). Pass the same css2 URL here instead:
+ *
+ * - Before `wp_head` (block themes render the template first), the families are merged into one
+ *   `cozy-addons--google-fonts` stylesheet printed in `<head>`, with a preconnect hint, and an
+ *   empty string is returned.
+ * - After `wp_head` (classic themes, late renders), a `<link>` is returned for the families not
+ *   loaded yet on this page, or an empty string when they all are.
+ *
+ * @param string $url A fonts.googleapis.com/css2 URL with one or more `family=` params.
+ * @return string Markup the caller should output (may be empty).
+ */
+function cozy_addons_google_fonts_link( $url ) {
+	static $families = array(); // family name => css2 family spec, e.g. "Inter:wght@400;700".
+	static $printed  = array(); // family names already sent to the browser.
+	static $hinted   = false;
+
+	$query = wp_parse_url( html_entity_decode( (string) $url ), PHP_URL_QUERY );
+	if ( empty( $query ) ) {
+		return '';
+	}
+
+	$new = array();
+	foreach ( explode( '&', $query ) as $pair ) {
+		if ( 0 !== strpos( $pair, 'family=' ) ) {
+			continue;
+		}
+
+		$spec = trim( urldecode( substr( $pair, 7 ) ) );
+		$name = trim( strtok( $spec, ':' ) );
+
+		if ( '' === $name || isset( $families[ $name ] ) ) {
+			continue;
+		}
+
+		$families[ $name ] = $spec;
+		$new[ $name ]      = $spec;
+	}
+
+	if ( empty( $new ) ) {
+		return '';
+	}
+
+	$build_url = function ( $specs ) {
+		$parts = array();
+		foreach ( $specs as $spec ) {
+			$parts[] = 'family=' . str_replace( array( '%20', '%3A', '%40', '%3B', '%2C' ), array( '+', ':', '@', ';', ',' ), rawurlencode( $spec ) );
+		}
+
+		return 'https://fonts.googleapis.com/css2?' . implode( '&', $parts ) . '&display=swap';
+	};
+
+	if ( ! did_action( 'wp_head' ) ) {
+		$handle = 'cozy-addons--google-fonts';
+		$styles = wp_styles();
+
+		if ( ! isset( $styles->registered[ $handle ] ) ) {
+			wp_register_style( $handle, false, array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- Google sets the version.
+		}
+
+		// The handle is printed in wp_head, so its src can keep growing until then.
+		$styles->registered[ $handle ]->src = $build_url( $families );
+		wp_enqueue_style( $handle );
+
+		if ( ! $hinted ) {
+			$hinted = true;
+			add_filter(
+				'wp_resource_hints',
+				function ( $urls, $relation ) {
+					if ( 'preconnect' === $relation ) {
+						$urls[] = 'https://fonts.googleapis.com';
+						$urls[] = array(
+							'href'        => 'https://fonts.gstatic.com',
+							'crossorigin' => 'anonymous',
+						);
+					}
+					return $urls;
+				},
+				10,
+				2
+			);
+		}
+
+		$printed = array_merge( $printed, array_keys( $new ) );
+
+		return '';
+	}
+
+	// Late: anything queued before wp_head is already in <head>; only emit the rest.
+	$pending = array_diff_key( $families, array_flip( $printed ) );
+	if ( empty( $pending ) ) {
+		return '';
+	}
+
+	$printed = array_merge( $printed, array_keys( $pending ) );
+
+	return '<link rel="stylesheet" href="' . esc_url( $build_url( $pending ) ) . '" />';
+}
+
 function cozy_addons_get_option_callback() {
 	$option_name = '';
 
@@ -1885,7 +1987,6 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 		'core/site-title',
 		'core/paragraph',
 		'core/post-title',
-		'cozy-block/mega-menu',
 	);
 
 	if ( ! isset( $block['attrs']['cozyCustomFont'] ) && ! in_array( $block['blockName'], $enabled_blocks, true ) ) {
@@ -2004,7 +2105,7 @@ function append_cozy_custom_font_data_attributes( &$block_content, &$block ) {
 				$block_content = preg_replace( '/<div class="' . preg_quote( $existing_class ) . '.*?"/', '<div class="' . esc_attr( $existing_class ) . '" style="' . trim( $appended_styles, '; ' ) . '"', $block_content );
 			}
 
-			$block_content = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . esc_attr( str_replace( ' ', '+', trim( $custom_font ) ) ) . ':wght@100;200;300;400;500;600;700;800;900" />' . $block_content;
+			$block_content = cozy_addons_google_fonts_link( 'https://fonts.googleapis.com/css2?family=' . rawurlencode( trim( $custom_font ) ) . ':wght@100;200;300;400;500;600;700;800;900' ) . $block_content;
 
 		}
 	}
@@ -2034,7 +2135,6 @@ function apply_cozy_block_animation_responsive_hover_filter( $block_content, $bl
 		'cozy-block/slider',
 		'cozy-block/post-slider',
 		'cozy-block/product-slider',
-		'cozy-block/mega-menu',
 		'cozy-block/grid',
 	);
 
@@ -2058,6 +2158,11 @@ function apply_cozy_block_animation_responsive_hover_filter( $block_content, $bl
 
 			// Append the custom class and inline styles to the class attribute
 			$updated_class = trim( $existing_class . ' cozy-animation__initialized' );
+
+			// This block animates, so the page needs AOS (enqueued once, only on pages that use it).
+			if ( 'none' !== ( $cozy_animation['type'] ?? 'none' ) && class_exists( '\CozyAddons\Assets' ) ) {
+				\CozyAddons\Assets::enqueue_animation_assets();
+			}
 
 			$aos_string = '';
 			if ( 'none' !== $cozy_animation['type'] ) {
@@ -2645,7 +2750,7 @@ if ( ! function_exists( 'cozy_addons_get_popup_default_content' ) ) {
 	 * Used as the default content of a new popup and for the sample popup created
 	 * by the dummy-data seeder.
 	 *
-	 * Wraps the first preset layout ("Video overlay", pattern modal-block-1) in a
+	 * Wraps the first preset layout ("Centered image", pattern modal-block-1) in a
 	 * Popup Modal block. The attributes mirror what the editor applies for that
 	 * layout in updateBlockAttributes( 'popup-builder-1' ), found in
 	 * src/modal/popup-builder/components/LayoutControls.js. Keep the two in sync.

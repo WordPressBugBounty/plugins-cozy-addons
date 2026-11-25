@@ -38,6 +38,9 @@ delete_option( 'ca-cpt--popup-builder-templates' );
 
 delete_option( 'ca-cpt--config' );
 
+// Advanced Mega Menu settings (breakpoints, animations, overlay defaults).
+delete_option( 'ca_menu_settings' );
+
 // Popup Builder analytics counters.
 delete_post_meta_by_key( '_ca_popup_impressions' );
 delete_post_meta_by_key( '_ca_popup_clicks' );
@@ -78,6 +81,7 @@ delete_option( 'ca_form_error_log' );
 delete_option( 'ca_form_error_log_seq' );
 delete_metadata( 'user', 0, 'ca_form_log_dismissed_email', '', true );
 delete_metadata( 'user', 0, 'ca_form_log_dismissed_mailchimp', '', true );
+delete_metadata( 'user', 0, 'ca_form_log_dismissed_brevo', '', true );
 
 if ( is_array( $ca_form_settings ) && ! empty( $ca_form_settings['delete_data'] ) ) {
 	$ca_form_entry_ids = get_posts(
@@ -112,6 +116,15 @@ if ( is_array( $ca_form_settings ) && ! empty( $ca_form_settings['delete_data'] 
 		rmdir( $ca_form_dir ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- Plugin's own folder.
 	}
 }
+
+// Advanced Search: settings, cache version and the recorded searches.
+global $wpdb;
+$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}ca_search_queries" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.DirectDatabaseQuery.SchemaChange
+delete_option( 'ca_search_settings' );
+delete_option( 'ca_search_cache_version' );
+delete_option( 'ca_search_db_version' );
+delete_transient( 'ca_search_popular' );
+wp_clear_scheduled_hook( 'cozy_addons_search_prune' );
 
 $blocks = require_once WP_PLUGIN_DIR . '/cozy-addons/blocks/blocks-manifest.php';
 if ( is_array( $blocks ) ) {

@@ -98,7 +98,7 @@ class Assets {
 	 */
 	public function initialize_resource_handles() {
 		// Swiper.js bundle.
-		wp_register_script( 'cozy-swiper-bundle', COZY_ADDONS_PLUGIN_URL . 'vendor/swiper/swiper-bundle.js', array( 'jquery' ), COZY_ADDONS_VERSION, false );
+		wp_register_script( 'cozy-swiper-bundle', COZY_ADDONS_PLUGIN_URL . 'vendor/swiper/swiper-bundle.js', array(), COZY_ADDONS_VERSION, false );
 		wp_register_style( 'cozy-swiper-bundle', COZY_ADDONS_PLUGIN_URL . 'vendor/swiper/swiper-bundle.css', array(), COZY_ADDONS_VERSION, 'all' );
 
 		// Luxon.
@@ -118,6 +118,36 @@ class Assets {
 			COZY_ADDONS_VERSION,
 			true
 		);
+
+		// AOS animation lib and its initializer. Registered only: on the frontend they are enqueued
+		// by enqueue_animation_assets() when a block actually renders an animation.
+		wp_register_script( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.js', array(), COZY_ADDONS_VERSION, true );
+		wp_register_style( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.css', array(), COZY_ADDONS_VERSION, 'all' );
+		wp_register_script(
+			'cozy-addons--block-script',
+			self::$url . 'js/cozy-block-scripts.js',
+			array( 'cozy-addons--aos' ),
+			COZY_ADDONS_VERSION,
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
+		);
+	}
+
+	/**
+	 * Enqueues the AOS animation assets. Called from the render filter that writes `data-aos`
+	 * attributes, so pages without animated blocks don't load them.
+	 *
+	 * @return void
+	 */
+	public static function enqueue_animation_assets() {
+		if ( ! self::get_instance()->get_utility_function_status( 'animation' ) ) {
+			return;
+		}
+
+		wp_enqueue_style( 'cozy-addons--aos' );
+		wp_enqueue_script( 'cozy-addons--block-script' );
 	}
 
 	/**
@@ -157,13 +187,12 @@ class Assets {
 		// Utility attributes.
 		$styles_status = $this->get_utility_function_status( 'styles' );
 		if ( $styles_status ) {
-			wp_enqueue_script( 'cozy-core-block-scripts', self::$url . 'js/cozy-common-block-scripts.js', array( 'react-jsx-runtime', 'wp-block-editor', 'wp-components', 'wp-blocks', 'wp-element', 'wp-hooks', 'wp-i18n' ), COZY_ADDONS_VERSION, true );
-			wp_localize_script(
+			wp_enqueue_script( 'cozy-core-block-scripts', self::$url . 'js/cozy-common-block-scripts.js', array( 'cozy-addons--global-block-vars', 'react-jsx-runtime', 'wp-block-editor', 'wp-components', 'wp-blocks', 'wp-element', 'wp-hooks', 'wp-i18n' ), COZY_ADDONS_VERSION, true );
+			// The font list already ships in cozyBlockAssets; alias it instead of printing ~44 KB twice.
+			wp_add_inline_script(
 				'cozy-core-block-scripts',
-				'googleFonts',
-				array(
-					'collection' => cozy_addons_google_fonts(),
-				)
+				'window.googleFonts = { collection: ( window.cozyBlockAssets && window.cozyBlockAssets.googleFonts ) || {} };',
+				'before'
 			);
 		}
 
@@ -190,13 +219,10 @@ class Assets {
 	public function load_block_assets() {
 		// Block CSS.
 		wp_enqueue_style( 'cozy-addons--blocks--style', self::$url . 'css/cozy-block.css', array(), COZY_ADDONS_VERSION, 'all' );
-		// AOS animation lib.
-		$animation_status = $this->get_utility_function_status( 'animation' );
-		if ( $animation_status ) {
-			wp_enqueue_script( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.js', array( 'jquery' ), COZY_ADDONS_VERSION, true );
-			wp_enqueue_style( 'cozy-addons--aos', COZY_ADDONS_PLUGIN_URL . 'vendor/aos/aos.css', array(), COZY_ADDONS_VERSION, 'all' );
+		// AOS animation lib: always in the editor canvas, where any block may get an animation.
+		// On the frontend it is enqueued on demand by enqueue_animation_assets().
+		if ( is_admin() ) {
+			self::enqueue_animation_assets();
 		}
-
-		wp_enqueue_script( 'cozy-addons--block-script', COZY_ADDONS_PLUGIN_URL . 'assets/js/cozy-block-scripts.js', array( 'jquery' ), COZY_ADDONS_VERSION, true );
 	}
 }

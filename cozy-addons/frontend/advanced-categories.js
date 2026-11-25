@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
   window["cozyBlockAdvancedCategories"] = (e) => {
     const n = e.replace(/-/gi, "_");
     const blockOptions = window[`cozyBlock_${n}`];
@@ -57,4 +57,4 @@
       );
     }
   };
-})(jQuery);
+})();

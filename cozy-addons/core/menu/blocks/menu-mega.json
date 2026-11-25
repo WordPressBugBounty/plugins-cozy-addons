@@ -1,0 +1,110 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cozy-block/menu-mega",
+	"title": "Mega Menu",
+	"category": "cozy-block",
+	"description": "A menu item that opens a rich panel: links, columns, images and calls to action.",
+	"icon": "layout",
+	"parent": [
+		"cozy-block/mega-menu"
+	],
+	"textdomain": "cozy-addons",
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Mega menu"
+		},
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"opensInNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"rel": {
+			"type": "string",
+			"default": ""
+		},
+		"linkId": {
+			"type": "number",
+			"default": 0
+		},
+		"linkType": {
+			"type": "string",
+			"default": ""
+		},
+		"linkKind": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"badge": {
+			"type": "string",
+			"default": ""
+		},
+		"badgeStyle": {
+			"type": "string",
+			"default": "accent"
+		},
+		"openOn": {
+			"type": "string",
+			"default": "inherit"
+		},
+		"align": {
+			"type": "string",
+			"default": "start"
+		},
+		"widthMode": {
+			"type": "string",
+			"default": "content"
+		},
+		"contentWidth": {
+			"type": "string",
+			"default": "1200px"
+		},
+		"customWidth": {
+			"type": "object",
+			"default": {}
+		},
+		"padding": {
+			"type": "object",
+			"default": {}
+		},
+		"panelBg": {
+			"type": "string",
+			"default": ""
+		},
+		"radius": {
+			"type": "string",
+			"default": ""
+		},
+		"shadow": {
+			"type": "boolean",
+			"default": true
+		},
+		"savedPanel": {
+			"type": "integer",
+			"default": 0
+		}
+	},
+	"keywords": [
+		"mega menu",
+		"megamenu",
+		"mega",
+		"panel",
+		"columns"
+	]
+}
